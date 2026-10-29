@@ -79,7 +79,7 @@ final class SilentDecoder: NSObject, DecoderServiceProtocol, Sendable {
         count.withLock { $0 += 1 }
     }
 
-    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
+    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?, Data?) -> Void) {
         received()
     }
 
@@ -118,6 +118,7 @@ final class LyingDecoder: NSObject, DecoderServiceProtocol {
         var text: String?
         var pixels: Data?
         var tiff: Data?
+        var preview: Data?
     }
 
     let reply: Reply
@@ -126,8 +127,8 @@ final class LyingDecoder: NSObject, DecoderServiceProtocol {
         self.reply = reply
     }
 
-    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
-        reply(self.reply.png, self.reply.width, self.reply.height, self.reply.hash)
+    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?, Data?) -> Void) {
+        reply(self.reply.png, self.reply.width, self.reply.height, self.reply.hash, self.reply.preview)
     }
 
     func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {

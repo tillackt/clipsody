@@ -35,19 +35,19 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
     // thumbnail and TIFF stay at the incoming QoS because the user waits for them.
 
     public func prepareImage(_ data: Data, maxPixels: Int,
-                             reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
+                             reply: @escaping @Sendable (Data?, Int, Int, String?, Data?) -> Void) {
         DispatchQueue.global(qos: .utility).async { [self] in
             watched { prepare(data, maxPixels: maxPixels, reply: reply) }
         }
     }
 
-    private func prepare(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
+    private func prepare(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?, Data?) -> Void) {
         // The service enforces its own limit, whatever the caller asks for.
         guard let image = ImageIngest.prepare(data, maxPixels: min(maxPixels, ImageIngest.maxPixels)) else {
-            reply(nil, 0, 0, nil)
+            reply(nil, 0, 0, nil, nil)
             return
         }
-        reply(image.png, image.width, image.height, image.hash)
+        reply(image.png, image.width, image.height, image.hash, image.preview)
     }
 
     public func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {

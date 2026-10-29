@@ -366,7 +366,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// image formats) and cached, so holding ↓ over screenshots does not decode full-size images.
     private func showPreviewImage(for item: ClipItem) {
         previewTask?.cancel()
-        guard let url = store.imageURL(for: item) else {
+        // The small preview stored with large images; older entries fall back to the full image.
+        guard let url = store.previewURL(for: item) ?? store.imageURL(for: item) else {
             previewImage.image = nil
             return
         }

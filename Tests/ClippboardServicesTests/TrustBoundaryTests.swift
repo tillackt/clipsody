@@ -27,6 +27,20 @@ import Testing
         withExtendedLifetime(service) {}
     }
 
+    @Test func invalidPreviewIsDroppedButImageKept() async throws {
+        let (service, client) = client(.init(png: png, width: 40, height: 30, hash: "x", preview: Data("junk".utf8)))
+        let image = try #require(await client.prepareImage(png))
+        #expect(image.preview == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func realServiceDeliversAValidPreview() async throws {
+        let service = TestService()
+        let image = try #require(await service.client().prepareImage(makeImage(width: 2_400, height: 1_200)))
+        #expect(image.preview.flatMap(PNGValidator.validatedSize(of:))?.width == ImageIngest.previewMaxPixelSize)
+        withExtendedLifetime(service) {}
+    }
+
     @Test func anythingButPNGIsRejected() async {
         let tiff = makeImage(width: 40, height: 30, type: .tiff)
         let (service, client) = client(.init(png: tiff, width: 40, height: 30, hash: "x"))

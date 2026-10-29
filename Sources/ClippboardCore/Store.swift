@@ -101,7 +101,10 @@ public final class Store {
     /// nothing is deleted: an incomplete list would make images still in use look orphaned.
     static func orphanedImageFiles(_ files: [String], referenced: Set<String>?) -> [String] {
         guard let referenced else { return [] }
-        return files.filter { (isImageFileName($0) && !referenced.contains($0)) || isAtomicWriteLeftover($0) }
+        // A preview belongs to its image: it is an orphan exactly when the image is.
+        return files.filter { name in
+            imageFileName(of: name).map { !referenced.contains($0) } ?? isAtomicWriteLeftover(name)
+        }
     }
 
     /// Temporary file of an atomic write (Data.write(options: .atomic)) that a crash left behind;
@@ -261,6 +264,11 @@ public final class Store {
                 logger.error("Could not write image: \(String(describing: error), privacy: .public)")
                 return false
             }
+        }
+        if let preview = image.preview, let previewURL = imageURL(forFile: Self.previewFileName(for: fileName)),
+           !FileManager.default.fileExists(atPath: previewURL.path) {
+            // Only an optimisation: without it the panel previews the full image.
+            if (try? preview.write(to: previewURL, options: .atomic)) != nil { FilePermissions.set(0o600, of: previewURL) }
         }
         let stored = upsert(Row(kind: .image, text: "", hash: image.hash, imageFile: fileName,
                                 width: image.width, height: image.height, byteSize: Int64(image.png.count)),
@@ -454,8 +462,26 @@ public final class Store {
     }
 
     static func isImageFileName(_ name: String) -> Bool {
-        name.count == 68 && name.hasSuffix(".png")
-            && name.dropLast(4).allSatisfy { $0.isASCII && $0.isHexDigit && !$0.isUppercase }
+        imageFileName(of: name) != nil
+    }
+
+    /// "<sha256>.png" for both the image and its "<sha256>-preview.png"; nil for any other name.
+    static func imageFileName(of name: String) -> String? {
+        let base = name.hasSuffix("-preview.png") ? String(name.dropLast(12)) : String(name.dropLast(4))
+        guard name.hasSuffix(".png"), base.count == 64,
+              base.allSatisfy({ $0.isASCII && $0.isHexDigit && !$0.isUppercase }) else { return nil }
+        return base + ".png"
+    }
+
+    static func previewFileName(for imageFile: String) -> String {
+        String(imageFile.dropLast(4)) + "-preview.png"
+    }
+
+    /// The small preview of an image entry if one was stored (large images only).
+    public func previewURL(for item: ClipItem) -> URL? {
+        guard let file = item.imageFile, let url = imageURL(forFile: Self.previewFileName(for: file)),
+              FileManager.default.fileExists(atPath: url.path) else { return nil }
+        return url
     }
 
     // MARK: - SQLite helpers
@@ -526,12 +552,17 @@ public final class Store {
         return deletedRows
     }
 
+    /// Removes a file; for an image also its preview.
     private func removeImage(_ fileName: String) {
         let url = Self.isAtomicWriteLeftover(fileName) && fileName == (fileName as NSString).lastPathComponent
             ? imagesDirectory.appendingPathComponent(fileName)
             : imageURL(forFile: fileName)
         guard let url else { return }
         try? FileManager.default.removeItem(at: url)
+        if !fileName.hasSuffix("-preview.png"), Self.isImageFileName(fileName),
+           let preview = imageURL(forFile: Self.previewFileName(for: fileName)) {
+            try? FileManager.default.removeItem(at: preview)
+        }
     }
 
     /// History is private: folder only for the user (0700), files read/write for the user only (0600).

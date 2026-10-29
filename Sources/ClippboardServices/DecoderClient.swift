@@ -180,8 +180,9 @@ public final class DecoderClient {
     public func prepareImage(_ data: Data) async -> PreparedImage? {
         await call(fallback: nil) { proxy, done in
             // The hash the service sends is ignored: it becomes a file name, so the app computes it.
-            proxy.prepareImage(data, maxPixels: ImageIngest.maxPixels) { png, width, height, _ in
-                done(Self.validatedImage(png: png, width: width, height: height))
+            proxy.prepareImage(data, maxPixels: ImageIngest.maxPixels) { png, width, height, _, preview in
+                done(Self.validatedImage(png: png, width: width, height: height)
+                    .map { $0.withPreview(Self.validatedPreview(preview, width: width, height: height)) })
             }
         }
     }
@@ -242,6 +243,16 @@ public final class DecoderClient {
     /// Accepts only a well-formed PNG (whole chunk structure, see PNGValidator) whose IHDR matches the
     /// reported size within the limits. The PNG is stored and pasted verbatim, so nothing may be
     /// appended or hidden in extra chunks; pixels are not decoded.
+    /// A preview is optional: one that is not a well-formed PNG of preview size with the image's
+    /// aspect ratio is dropped (the full image is used instead), the image itself is kept.
+    nonisolated static func validatedPreview(_ preview: Data?, width: Int, height: Int) -> Data? {
+        guard let preview, let size = PNGValidator.validatedSize(of: preview),
+              size.width <= ImageIngest.previewMaxPixelSize, size.height <= ImageIngest.previewMaxPixelSize,
+              abs(Double(size.width) / Double(size.height) - Double(width) / Double(height))
+                  <= 2 / Double(min(size.width, size.height)) + 0.01 else { return nil }
+        return preview
+    }
+
     nonisolated static func validatedImage(png: Data?, width: Int, height: Int) -> PreparedImage? {
         guard let png, png.count <= ImageIngest.maxBytes,
               let header = PNGValidator.validatedSize(of: png), header.width == width, header.height == height,

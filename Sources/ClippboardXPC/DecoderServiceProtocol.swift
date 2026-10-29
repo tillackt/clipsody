@@ -5,10 +5,11 @@ import Foundation
 /// history, instead of in the app that holds the Accessibility permission. The app treats every
 /// reply as untrusted as well and never parses image formats itself.
 @objc public protocol DecoderServiceProtocol {
-    /// Converts clipboard image data (PNG or TIFF) to PNG. Replies with nil data if the image was
-    /// rejected (format, size) or could not be decoded.
+    /// Converts clipboard image data (PNG or TIFF) to PNG, plus a small preview PNG for large images.
+    /// Replies with nil data if the image was rejected (format, size) or could not be decoded.
     func prepareImage(_ data: Data, maxPixels: Int,
-                      reply: @escaping @Sendable (_ png: Data?, _ width: Int, _ height: Int, _ hash: String?) -> Void)
+                      reply: @escaping @Sendable (_ png: Data?, _ width: Int, _ height: Int, _ hash: String?,
+                                                  _ preview: Data?) -> Void)
 
     /// Recognised text lines joined by newlines; nil if the image could not be read.
     func recognizeText(inPNG png: Data, reply: @escaping @Sendable (_ text: String?) -> Void)

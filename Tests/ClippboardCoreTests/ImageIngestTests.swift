@@ -58,6 +58,20 @@ import UniformTypeIdentifiers
         #expect(PNGHeader.size(of: Data()) == nil)
     }
 
+    @Test func largeImagesGetAPreviewWithTheSameOnScreenSize() throws {
+        let image = try #require(ImageIngest.prepare(makeImage(width: 3_000, height: 1_500, dpi: 144)))
+        let preview = try #require(image.preview)
+        let size = try #require(PNGValidator.validatedSize(of: preview))
+        #expect(size.width == ImageIngest.previewMaxPixelSize && size.height == 512)
+        // 3,000 px at 144 DPI appeared as 1,500 pt; the preview must keep that.
+        let thumbnail = try #require(ImageIngest.thumbnailPixels(ofPNG: preview, maxPixelSize: 4_096))
+        #expect(abs(thumbnail.pointSize.width - 1_500) < 2)
+    }
+
+    @Test func smallImagesNeedNoPreview() throws {
+        #expect(try #require(ImageIngest.prepare(makeImage(width: 800, height: 600))).preview == nil)
+    }
+
     @Test func sameImageGivesSameHash() throws {
         let data = makeImage()
         #expect(ImageIngest.prepare(data)?.hash == ImageIngest.prepare(data)?.hash)

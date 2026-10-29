@@ -66,6 +66,24 @@ import Testing
         #expect(FileManager.default.fileExists(atPath: url.path))
     }
 
+    @Test func previewIsStoredAndRemovedWithItsImage() throws {
+        let image = try #require(ImageIngest.prepare(makeImage(width: 2_000, height: 1_000)))
+        store.addImage(image, app: nil, appPath: nil)
+        let item = try #require(store.items().first)
+        let preview = try #require(store.previewURL(for: item))
+        #expect(preview.lastPathComponent == image.hash + "-preview.png")
+
+        store.delete(item)
+        #expect(!FileManager.default.fileExists(atPath: preview.path))
+    }
+
+    @Test func previewsOfKeptImagesAreNoOrphans() {
+        let image = String(repeating: "ab", count: 32) + ".png"
+        let preview = String(repeating: "ab", count: 32) + "-preview.png"
+        let orphanPreview = String(repeating: "cd", count: 32) + "-preview.png"
+        #expect(Store.orphanedImageFiles([image, preview, orphanPreview], referenced: [image]) == [orphanPreview])
+    }
+
     @Test func pruneRemovesOldAndSurplusEntriesButKeepsPinned() throws {
         let now = Date()
         store.addText("ancient", app: nil, appPath: nil, date: now.addingTimeInterval(-30 * 86_400))

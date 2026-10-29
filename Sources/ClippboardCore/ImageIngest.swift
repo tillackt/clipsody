@@ -9,12 +9,19 @@ public struct PreparedImage: Sendable {
     public let width: Int
     public let height: Int
     public let hash: String
+    /// Downscaled copy for the panel's preview (nil when the image is small enough to show as is).
+    public let preview: Data?
 
-    public init(png: Data, width: Int, height: Int, hash: String) {
+    public func withPreview(_ preview: Data?) -> PreparedImage {
+        PreparedImage(png: png, width: width, height: height, hash: hash, preview: preview)
+    }
+
+    public init(png: Data, width: Int, height: Int, hash: String, preview: Data? = nil) {
         self.png = png
         self.width = width
         self.height = height
         self.hash = hash
+        self.preview = preview
     }
 }
 
@@ -46,7 +53,30 @@ public enum ImageIngest {
         guard !overflow, pixels <= maxPixels,
               let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
               let png = encodePNG(image, properties: properties) else { return nil }
-        return PreparedImage(png: png, width: width, height: height, hash: sha256(png))
+        let preview = makePreview(of: image, properties: properties)
+        return PreparedImage(png: png, width: width, height: height, hash: sha256(png), preview: preview)
+    }
+
+    /// Longest side of the stored preview; enough for the panel on a Retina screen.
+    public static let previewMaxPixelSize = 1_024
+
+    /// A small PNG for the panel, so showing a 5K screenshot does not decode all of it each time.
+    /// Its DPI is scaled down with the pixels, so it appears at the same on-screen size.
+    private static func makePreview(of image: CGImage, properties: [CFString: Any]) -> Data? {
+        let longest = max(image.width, image.height)
+        guard longest > previewMaxPixelSize else { return nil }
+        let scale = Double(previewMaxPixelSize) / Double(longest)
+        let width = max(1, Int((Double(image.width) * scale).rounded()))
+        let height = max(1, Int((Double(image.height) * scale).rounded()))
+        guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0,
+                                      space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                      bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return nil }
+        context.interpolationQuality = .high
+        context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        guard let small = context.makeImage() else { return nil }
+        let dpi = properties[kCGImagePropertyDPIWidth] as? Double ?? 72
+        let scaledDPI = (dpi > 0 ? dpi : 72) * Double(width) / Double(image.width)
+        return encodePNG(small, properties: [kCGImagePropertyDPIWidth: scaledDPI, kCGImagePropertyDPIHeight: scaledDPI])
     }
 
     /// Downscaled preview as raw 8-bit RGBA pixels (premultiplied, sRGB, rows of width × 4 bytes),
