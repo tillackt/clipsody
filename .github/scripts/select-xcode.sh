@@ -3,7 +3,18 @@
 # default is not always the newest; Clipsody needs Swift 6 and xcstringstool from full Xcode.
 set -euo pipefail
 
-XCODE="$(ls -d /Applications/Xcode_[0-9]*.app | grep -v -i -E 'beta|rc' | sort -V | tail -n 1)"
+CANDIDATES=()
+for app in /Applications/Xcode_[0-9]*.app; do
+    # Release candidates and betas are named like Xcode_26.7_beta.app or Xcode_26.7_RC.app.
+    case "$app" in
+        *[Bb]eta* | *[Rr][Cc]*) ;;
+        *) CANDIDATES+=("$app") ;;
+    esac
+done
+XCODE=""
+if [[ ${#CANDIDATES[@]} -gt 0 ]]; then
+    XCODE="$(printf '%s\n' "${CANDIDATES[@]}" | sort -V | tail -n 1)"
+fi
 if [[ -z "$XCODE" ]]; then
     echo "No stable Xcode found in /Applications" >&2
     exit 1

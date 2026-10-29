@@ -1,0 +1,5 @@
+# Findings Betterleaks may skip, one fingerprint per line (commit:path:rule:line).
+# Both are the bundle ID and display name "com.1password.1password": "1Password 8" in the list of apps
+# ignored by default, not a password; today's line carries a betterleaks:allow comment instead.
+8ee1e44a1d8f9279c768d39862f6387ddda142b6:Sources/ClippboardCore/Config.swift:generic-password:18
+3c62d3e868129fae6dafaff1ebb8c00c9f852297:Sources/SettingsWindowController.swift:generic-password:254

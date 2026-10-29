@@ -74,11 +74,26 @@ Needs the certificate and a clean working tree. Runs the tests and builds `build
 
 ## CI
 
-GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on every pull request, on a macOS runner with the newest stable Xcode:
+GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on every pull request:
 
+- **Secret scan:** [Betterleaks](https://github.com/betterleaks/betterleaks) (the successor of gitleaks) scans the whole git history. Known false positives are listed in `.betterleaksignore`.
+- **Lint:** [SwiftLint](https://github.com/realm/SwiftLint) with `--strict` (configuration in `.swiftlint.yml`), [ShellCheck](https://www.shellcheck.net) for the shell scripts and [actionlint](https://github.com/rhysd/actionlint) for the workflows.
 - **Tests:** `./build.sh test`
 - **Translations:** `./build.sh check-strings` fails if the code uses a text the catalog lacks, or the catalog keeps texts the code no longer uses.
 - **App build:** `./build.sh` builds the universal binary; without the certificate it is signed ad hoc, and the signature is still verified.
+
+Lint and secret scan run on Linux; tests and build on macOS with the newest stable Xcode.
+
+### Pre-commit hook
+
+A secret should never reach a commit, so a hook checks the staged changes before every commit (and runs SwiftLint when Swift files changed). Enable it once per clone:
+
+```bash
+brew install betterleaks swiftlint
+git config core.hooksPath .githooks
+```
+
+If the scanner reports a false positive, mark the line with a `betterleaks:allow` comment and say why next to it.
 
 New features are developed on a branch of their own and reach `main` through a pull request once CI is green. Everything in this repository (code, comments, docs, commits, pull requests) is in English.
 

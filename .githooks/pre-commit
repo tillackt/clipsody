@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Runs before every commit (enable once with: git config core.hooksPath .githooks).
+# Stops the commit if the staged changes contain a secret or the Swift code breaks a lint rule,
+# so a key never reaches a commit, let alone GitHub. Skip in an emergency with `git commit --no-verify`.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+if ! command -v betterleaks >/dev/null 2>&1; then
+    echo "pre-commit: betterleaks is not installed (brew install betterleaks); commit stopped" >&2
+    exit 1
+fi
+# Only what is about to be committed; findings are printed with the secret redacted.
+betterleaks git --pre-commit --staged --redact --no-banner .
+
+if git diff --cached --name-only --diff-filter=ACMR | grep -q '\.swift$'; then
+    if command -v swiftlint >/dev/null 2>&1; then
+        swiftlint lint --strict --quiet
+    else
+        echo "pre-commit: swiftlint is not installed (brew install swiftlint); lint skipped, CI will run it" >&2
+    fi
+fi
