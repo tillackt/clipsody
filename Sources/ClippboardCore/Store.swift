@@ -9,8 +9,8 @@ public enum StoreError: Error, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .open(let message): "Datenbank konnte nicht geöffnet werden: \(message)"
-        case .sqlite(let message): "SQLite-Fehler: \(message)"
+        case .open(let message): String(localized: "The database could not be opened: \(message)")
+        case .sqlite(let message): String(localized: "Database error: \(message)")
         }
     }
 }
@@ -82,7 +82,7 @@ public final class Store {
                              "ocr_text", "rich", "rich_type", "width", "height", "byte_size"]
         let missing = required.subtracting(columns)
         guard missing.isEmpty else {
-            throw StoreError.sqlite("Unerwartetes Datenbankschema, es fehlen: \(missing.sorted().joined(separator: ", "))")
+            throw StoreError.sqlite("Unexpected database schema, missing: \(missing.sorted().joined(separator: ", "))")
         }
     }
 

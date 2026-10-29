@@ -19,8 +19,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var previewText: NSTextView { previewTextScroll.documentView as! NSTextView }
     private let previewImage = NSImageView()
     private let infoLabel = NSTextField(labelWithString: "")
-    private let hintLabel = NSTextField(labelWithString: "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P anpinnen   ⌘⌫ löschen")
-    private let emptyLabel = NSTextField(labelWithString: "Keine Einträge")
+    private let hintLabel = NSTextField(labelWithString: String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete"))
+    private let emptyLabel = NSTextField(labelWithString: String(localized: "No entries"))
 
     private var list = HistoryList()
     private var items: [ClipItem] { list.items }
@@ -37,11 +37,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Unchanged, it is not rendered (and scrolled) again; a new search must re-highlight it.
     private var previewedItem: ClipItem?
     private var previewedTerms: [String] = []
-    private let dateFormatter: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.locale = Locale(identifier: "de_DE")
-        return formatter
-    }()
+    private let dateFormatter = RelativeDateTimeFormatter()
 
     var isVisible: Bool { panel.isVisible }
 
@@ -308,8 +304,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         previewedItem = item
         previewedTerms = query.terms
         announceForVoiceOver(item)
-        var info = [item.app ?? "Unbekannte App", dateFormatter.localizedString(for: item.date, relativeTo: Date())]
-        if item.pinned { info.insert("Angepinnt", at: 0) }
+        var info = [item.app ?? String(localized: "Unknown app"), dateFormatter.localizedString(for: item.date, relativeTo: Date())]
+        if item.pinned { info.insert(String(localized: "Pinned"), at: 0) }
         switch item.kind {
         case .text:
             showPreviewText(item.text)
@@ -319,22 +315,23 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
                 info.append(ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file))
             } else {
                 let lines = item.text.split(whereSeparator: \.isNewline).count
-                info.append("\(item.text.count) Zeichen" + (lines > 1 ? ", \(lines) Zeilen" : ""))
+                let characters = String(localized: "\(item.text.count) characters")
+                info.append(lines > 1 ? characters + ", " + String(localized: "\(lines) lines") : characters)
             }
-            if item.hasRichText { info.append("mit Formatierung") }
+            if item.hasRichText { info.append(String(localized: "with formatting")) }
         case .files:
             let paths = item.filePaths
             showPreviewText(paths.joined(separator: "\n"))
             // Paths on network volumes are not checked: a disconnected server blocks for seconds.
             let missing = paths.filter { !$0.hasPrefix("/Volumes/") && !FileManager.default.fileExists(atPath: $0) }.count
-            info.append(paths.count == 1 ? "1 Datei" : "\(paths.count) Dateien")
-            if missing > 0 { info.append("\(missing) nicht mehr vorhanden") }
+            info.append(String(localized: "\(paths.count) files"))
+            if missing > 0 { info.append(String(localized: "\(missing) no longer available")) }
         case .image:
             previewTextScroll.isHidden = true
             previewImage.isHidden = false
             showPreviewImage(for: item)
             info.append(ItemPresentation.imageLabel(for: item))
-            if let text = item.recognizedText, !text.isEmpty { info.append("Text erkannt") }
+            if let text = item.recognizedText, !text.isEmpty { info.append(String(localized: "Text recognized")) }
         }
         infoLabel.stringValue = info.joined(separator: " · ")
     }
@@ -379,7 +376,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private func announceForVoiceOver(_ item: ClipItem) {
         guard NSWorkspace.shared.isVoiceOverEnabled else { return }
         var parts = [ItemPresentation.title(for: item, query: query)]
-        if item.pinned { parts.append("angepinnt") }
+        if item.pinned { parts.append(String(localized: "pinned")) }
         NSAccessibility.post(element: panel, notification: .announcementRequested, userInfo: [
             .announcement: parts.joined(separator: ", "),
             .priority: NSAccessibilityPriorityLevel.high.rawValue,
@@ -433,9 +430,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         background.widthAnchor.constraint(equalToConstant: 820).isActive = true
         background.heightAnchor.constraint(equalToConstant: 460).isActive = true
 
-        search.placeholderString = "Zwischenablage durchsuchen …"
-        search.setAccessibilityLabel("Zwischenablage durchsuchen")
-        table.setAccessibilityLabel("Einträge der Zwischenablage")
+        search.placeholderString = String(localized: "Search clipboard…")
+        search.setAccessibilityLabel(String(localized: "Search clipboard"))
+        table.setAccessibilityLabel(String(localized: "Clipboard entries"))
         search.font = .systemFont(ofSize: 22, weight: .light)
         search.isBordered = false
         search.drawsBackground = false

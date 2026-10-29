@@ -6,7 +6,7 @@ import ClippboardCore
 @MainActor
 enum KeyLabel {
     static func display(_ spec: HotKeySpec) -> String {
-        spec.modifierSymbols + (spec.keyCode == UInt32(kVK_Space) ? "Space" : character(for: spec.keyCode) ?? spec.display)
+        spec.modifierSymbols + (spec.keyCode == UInt32(kVK_Space) ? String(localized: "Space") : character(for: spec.keyCode) ?? spec.display)
     }
 
     /// Character the key produces on the current keyboard layout, uppercased.

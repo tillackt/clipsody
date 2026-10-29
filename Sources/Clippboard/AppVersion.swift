@@ -8,6 +8,7 @@ enum AppVersion {
         let version = info["CFBundleShortVersionString"] as? String ?? "?"
         let build = info["CFBundleVersion"] as? String ?? "?"
         let commit = info["ClippboardCommit"] as? String
-        return "Version \(version) (Build \(build)" + (commit.map { ", \($0)" } ?? "") + ")"
+        let commitSuffix = commit.map { ", \($0)" } ?? ""
+        return String(localized: "Version \(version) (Build \(build)\(commitSuffix))")
     }
 }

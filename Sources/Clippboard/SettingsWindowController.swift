@@ -10,13 +10,13 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     private let onChange: (Config) -> Void
 
     private let hotKeyRecorder: HotKeyRecorder
-    private let launchAtLogin = NSButton(checkboxWithTitle: "Beim Anmelden automatisch starten", target: nil, action: nil)
+    private let launchAtLogin = NSButton(checkboxWithTitle: String(localized: "Start automatically at login"), target: nil, action: nil)
     private let accessibilityStatus = NSTextField(labelWithString: "")
     private let retentionField = NSTextField()
     private let retentionStepper = NSStepper()
     private let maxItemsField = NSTextField()
     private let maxItemsStepper = NSStepper()
-    private let keepImages = NSButton(checkboxWithTitle: "Bilder speichern", target: nil, action: nil)
+    private let keepImages = NSButton(checkboxWithTitle: String(localized: "Save images"), target: nil, action: nil)
     private let ignoredTable = NSTableView()
     private let ignoredButtons = NSSegmentedControl()
 
@@ -33,7 +33,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             backing: .buffered,
             defer: false
         )
-        window.title = "Clippboard – Einstellungen"
+        window.title = String(localized: "Clippboard – Settings")
         window.isReleasedWhenClosed = false
         super.init(window: window)
         window.delegate = self
@@ -84,20 +84,20 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         switch SMAppService.mainApp.status {
         case .enabled:
             launchAtLogin.state = .on
-            launchAtLogin.title = "Beim Anmelden automatisch starten"
+            launchAtLogin.title = String(localized: "Start automatically at login")
         case .requiresApproval:
             // Registered, but macOS waits for the user to allow it under Login Items.
             launchAtLogin.state = .off
-            launchAtLogin.title = "Beim Anmelden starten (in Systemeinstellungen freigeben)"
+            launchAtLogin.title = String(localized: "Start at login (allow in System Settings)")
         default:
             launchAtLogin.state = .off
-            launchAtLogin.title = "Beim Anmelden automatisch starten"
+            launchAtLogin.title = String(localized: "Start automatically at login")
         }
         if Paster.isTrusted(prompt: false) {
-            accessibilityStatus.stringValue = "✓ Erlaubt"
+            accessibilityStatus.stringValue = String(localized: "✓ Allowed")
             accessibilityStatus.textColor = .systemGreen
         } else {
-            accessibilityStatus.stringValue = "✗ Nicht erlaubt"
+            accessibilityStatus.stringValue = String(localized: "✗ Not allowed")
             accessibilityStatus.textColor = .systemRed
         }
     }
@@ -180,8 +180,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.application]
         panel.directoryURL = URL(fileURLWithPath: "/Applications")
-        panel.prompt = "Ignorieren"
-        panel.message = "App auswählen, deren Kopien nicht gespeichert werden sollen"
+        panel.prompt = String(localized: "Ignore")
+        panel.message = String(localized: "Choose an app whose copies should not be saved")
         panel.beginSheetModal(for: window!) { [weak self] response in
             guard let self, response == .OK, let url = panel.url,
                   let bundleId = Bundle(url: url)?.bundleIdentifier,
@@ -215,7 +215,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         cell.icon.image = appURL.map { NSWorkspace.shared.icon(forFile: $0.path) }
             ?? NSImage(systemSymbolName: "app.dashed", accessibilityDescription: nil)
         cell.title.stringValue = name
-        cell.detail.stringValue = appURL == nil ? "nicht installiert" : bundleId
+        cell.detail.stringValue = appURL == nil ? String(localized: "not installed") : bundleId
         return cell
     }
 
@@ -278,58 +278,58 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         }
 
         // General
-        section("Allgemein")
+        section(String(localized: "General"))
         hotKeyRecorder.onChange = { [weak self] in self?.hotKeyChanged($0) }
-        row("Tastenkürzel:", hotKeyRecorder, alignWith: hotKeyRecorder, help: """
-            Öffnet und schließt die Historie aus jeder App heraus. Zum Ändern auf das Feld klicken und die neue \
-            Kombination drücken, mit ⌘ oder ⌃ (macOS lässt ⌥ allein nicht zu). Esc bricht ab.
-            """)
+        row(String(localized: "Shortcut:"), hotKeyRecorder, alignWith: hotKeyRecorder, help: String(localized: """
+            Opens and closes the history from any app. To change it, click the field and press the new \
+            combination, with ⌘ or ⌃ (macOS does not allow ⌥ alone). Esc cancels.
+            """))
 
         launchAtLogin.target = self
         launchAtLogin.action = #selector(launchAtLoginChanged)
-        row("Autostart:", launchAtLogin, alignWith: launchAtLogin, help: """
-            Startet Clippboard nach dem Anmelden am Mac. Nur solange die App läuft, wird kopierter Inhalt \
-            in die Historie aufgenommen.
-            """)
+        row(String(localized: "Launch:"), launchAtLogin, alignWith: launchAtLogin, help: String(localized: """
+            Starts Clippboard when you log in to your Mac. Copied content is only added to the history \
+            while the app is running.
+            """))
 
-        let accessibilityButton = NSButton(title: "Systemeinstellungen öffnen …", target: self, action: #selector(openAccessibilitySettings))
+        let accessibilityButton = NSButton(title: String(localized: "Open System Settings…"), target: self, action: #selector(openAccessibilitySettings))
         let accessibilityStack = NSStackView(views: [accessibilityStatus, accessibilityButton])
         accessibilityStack.spacing = 12
-        row("Direkt einfügen:", accessibilityStack, alignWith: accessibilityStatus, help: """
-            Damit ⏎ den Eintrag sofort in die aktive App einfügt, braucht Clippboard die Berechtigung \
-            „Bedienungshilfen“. Ohne sie landet der Eintrag nur in der Zwischenablage und du drückst selbst ⌘V. \
-            Wurde die App ohne festes Zertifikat gebaut (ad hoc), muss die Berechtigung nach jedem Neubau neu gesetzt \
-            werden (entfernen und wieder hinzufügen).
-            """)
+        row(String(localized: "Paste directly:"), accessibilityStack, alignWith: accessibilityStatus, help: String(localized: """
+            For ⏎ to paste the entry straight into the active app, Clippboard needs the Accessibility \
+            permission. Without it, the entry is only put on the clipboard and you press ⌘V yourself. \
+            If the app was built without a fixed certificate (ad hoc), the permission must be granted again after \
+            every rebuild (remove it and add it again).
+            """))
 
         // History
-        section("Historie")
-        let retention = numberControl(retentionField, retentionStepper, unit: "Tage", range: Config.retentionRange, step: 1,
+        section(String(localized: "History"))
+        let retention = numberControl(retentionField, retentionStepper, unit: String(localized: "days"), range: Config.retentionRange, step: 1,
                                       action: #selector(retentionChanged(_:)))
-        let retentionLabel = row("Aufbewahren:", retention, alignWith: retentionField, help: """
-            Ältere Einträge werden automatisch gelöscht, beim Start und danach stündlich. Wird der Wert \
-            verkleinert, verschwinden ältere Einträge sofort. Angepinnte Einträge (⌘P) werden nie automatisch gelöscht.
-            """)
+        let retentionLabel = row(String(localized: "Keep for:"), retention, alignWith: retentionField, help: String(localized: """
+            Older entries are deleted automatically, at launch and every hour after that. If you lower the \
+            value, older entries disappear right away. Pinned entries (⌘P) are never deleted automatically.
+            """))
 
-        let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: "Einträge", range: Config.maxItemsRange, step: 50,
+        let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: String(localized: "entries"), range: Config.maxItemsRange, step: 50,
                                      action: #selector(maxItemsChanged(_:)))
-        let maxItemsLabel = row("Höchstens:", maxItems, alignWith: maxItemsField, help: """
-            Obergrenze für die Historie. Kommen mehr Einträge zusammen, fallen die ältesten weg, auch wenn \
-            sie jünger als die Aufbewahrungszeit sind. Angepinnte Einträge zählen nicht mit.
-            """)
+        let maxItemsLabel = row(String(localized: "At most:"), maxItems, alignWith: maxItemsField, help: String(localized: """
+            Upper limit for the history. When there are more entries, the oldest are dropped, even if they \
+            are newer than the retention period. Pinned entries do not count.
+            """))
 
         retentionStepper.setAccessibilityTitleUIElement(retentionLabel)
         maxItemsStepper.setAccessibilityTitleUIElement(maxItemsLabel)
 
         keepImages.target = self
         keepImages.action = #selector(keepImagesChanged)
-        row("Bilder:", keepImages, alignWith: keepImages, help: """
-            Kopierte Bilder wie Screenshots werden als PNG gespeichert und lassen sich wieder einfügen. \
-            Ist das aus, merkt sich Clippboard nur Texte und Dateipfade.
-            """)
+        row(String(localized: "Images:"), keepImages, alignWith: keepImages, help: String(localized: """
+            Copied images such as screenshots are saved as PNG and can be pasted again. \
+            When this is off, Clippboard only remembers text and file paths.
+            """))
 
         // Privacy
-        section("Datenschutz")
+        section(String(localized: "Privacy"))
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("app"))
         column.resizingMask = .autoresizingMask
         ignoredTable.addTableColumn(column)
@@ -351,13 +351,13 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         ignoredButtons.segmentCount = 2
         // Image-only segments: the descriptions are what VoiceOver reads.
         let addImage = NSImage(named: NSImage.addTemplateName)
-        addImage?.accessibilityDescription = "App hinzufügen"
+        addImage?.accessibilityDescription = String(localized: "Add app")
         let removeImage = NSImage(named: NSImage.removeTemplateName)
-        removeImage?.accessibilityDescription = "Ausgewählte App entfernen"
+        removeImage?.accessibilityDescription = String(localized: "Remove selected app")
         ignoredButtons.setImage(addImage, forSegment: 0)
         ignoredButtons.setImage(removeImage, forSegment: 1)
-        ignoredButtons.setToolTip("App hinzufügen", forSegment: 0)
-        ignoredButtons.setToolTip("Ausgewählte App entfernen", forSegment: 1)
+        ignoredButtons.setToolTip(String(localized: "Add app"), forSegment: 0)
+        ignoredButtons.setToolTip(String(localized: "Remove selected app"), forSegment: 1)
         ignoredButtons.target = self
         ignoredButtons.action = #selector(ignoredButtonClicked)
 
@@ -365,11 +365,11 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         ignoredStack.orientation = .vertical
         ignoredStack.alignment = .leading
         ignoredStack.spacing = 0
-        let ignoredTitle = NSTextField(labelWithString: "Ignorierte Apps:")
-        let ignoredHelp = NSTextField(wrappingLabelWithString: """
-            Was in diesen Apps kopiert wird, landet nie in der Historie, z. B. aus Passwort-Managern. \
-            Unabhängig davon speichert Clippboard nie Inhalte, die eine App als vertraulich markiert.
-            """)
+        let ignoredTitle = NSTextField(labelWithString: String(localized: "Ignored apps:"))
+        let ignoredHelp = NSTextField(wrappingLabelWithString: String(localized: """
+            Anything copied in these apps never ends up in the history, e.g. from password managers. \
+            Regardless of this list, Clippboard never saves content an app marks as confidential.
+            """))
         ignoredHelp.font = .systemFont(ofSize: 11)
         ignoredHelp.textColor = .secondaryLabelColor
         ignoredHelp.preferredMaxLayoutWidth = 520
@@ -380,24 +380,24 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         grid.addRow(with: [ignoredTitle, ignoredContent]).yPlacement = .top
 
         // Data
-        section("Daten")
+        section(String(localized: "Data"))
         let pathLabel = NSTextField(labelWithString: (dataDirectory.path as NSString).abbreviatingWithTildeInPath)
         pathLabel.lineBreakMode = .byTruncatingMiddle
         pathLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        let revealButton = NSButton(title: "Im Finder zeigen", target: self, action: #selector(revealData))
+        let revealButton = NSButton(title: String(localized: "Show in Finder"), target: self, action: #selector(revealData))
         let dataStack = NSStackView(views: [pathLabel, revealButton])
         dataStack.spacing = 12
-        row("Speicherort:", dataStack, alignWith: pathLabel, help: """
-            Hier liegen Datenbank, Bilder und config.json. Alles bleibt lokal auf diesem Mac, nichts wird \
-            übertragen. Den Verlauf löschst du über das Menüleisten-Symbol.
-            """)
+        row(String(localized: "Location:"), dataStack, alignWith: pathLabel, help: String(localized: """
+            The database, images and config.json are stored here. Everything stays on this Mac; nothing is \
+            sent anywhere. You clear the history from the menu bar icon.
+            """))
 
         let versionLabel = NSTextField(labelWithString: AppVersion.display)
         versionLabel.isSelectable = true
-        row("Version:", versionLabel, alignWith: versionLabel, help: """
-            Die Build-Nummer zählt die Änderungen am Quellcode, dahinter steht die genaue Code-Version. \
-            Bei Fehlermeldungen bitte mit angeben.
-            """)
+        row(String(localized: "Version:"), versionLabel, alignWith: versionLabel, help: String(localized: """
+            The build number counts the changes to the source code, followed by the exact code version. \
+            Please include it when reporting a problem.
+            """))
 
         // Columns only exist once rows were added.
         grid.column(at: 0).xPlacement = .trailing

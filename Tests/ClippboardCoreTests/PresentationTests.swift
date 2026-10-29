@@ -40,15 +40,15 @@ import Testing
         #expect(query.matches(screenshot))
         let title = ItemPresentation.title(for: screenshot, query: query)
         // Shortened on both sides around the match
-        #expect(title.hasPrefix("Bild 946×858 – „…"))
-        #expect(title.hasSuffix("…“"))
+        #expect(title.hasPrefix("Image 946×858 – “…"))
+        #expect(title.hasSuffix("…”"))
         #expect(title.contains("Fehler 500"))
-        #expect(ItemPresentation.title(for: screenshot, query: SearchQuery("")) == "Bild 946×858")
+        #expect(ItemPresentation.title(for: screenshot, query: SearchQuery("")) == "Image 946×858")
     }
 
     @Test func imageLabelIncludesSize() {
         let label = ItemPresentation.imageLabel(for: item(.image, width: 10, height: 20, bytes: 2_000_000))
-        #expect(label.hasPrefix("Bild 10×20 ("))
+        #expect(label.hasPrefix("Image 10×20 ("))
     }
 
     @Test func textTitleCollapsesLines() {
@@ -59,7 +59,7 @@ import Testing
     @Test func filesTitleListsNames() {
         #expect(ItemPresentation.title(for: item(.files, paths: ["/a/one.pdf"]), query: SearchQuery("")) == "one.pdf")
         #expect(ItemPresentation.title(for: item(.files, paths: ["/a/one.pdf", "/b/two.png"]), query: SearchQuery(""))
-            == "2 Dateien: one.pdf, two.png")
+            == "2 files: one.pdf, two.png")
     }
 
     @Test func termsThatMatchNothingVisibleDoNotLoopForever() {

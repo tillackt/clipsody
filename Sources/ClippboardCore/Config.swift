@@ -17,8 +17,8 @@ public struct Config: Codable, Equatable, Sendable {
     public static let defaultIgnoredAppNames = [
         "com.1password.1password": "1Password 8",
         "com.agilebits.onepassword7": "1Password 7",
-        "com.apple.keychainaccess": "Schlüsselbundverwaltung",
-        "com.apple.Passwords": "Passwörter",
+        "com.apple.keychainaccess": String(localized: "Keychain Access"),
+        "com.apple.Passwords": String(localized: "Passwords"),
         "com.bitwarden.desktop": "Bitwarden",
         "org.keepassxc.keepassxc": "KeePassXC",
         "com.markmcguill.strongbox.mac": "Strongbox",

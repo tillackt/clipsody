@@ -29,10 +29,10 @@ final class HotKeyRecorder: NSButton {
 
     @objc private func startRecording() {
         isRecording = true
-        title = "Tastenkombination drücken …"
+        title = String(localized: "Press shortcut…")
         window?.makeFirstResponder(self)
         onRecordingChange?(true)
-        announce("Tastenkombination drücken, Escape bricht ab")
+        announce(String(localized: "Press a key combination; Escape cancels"))
     }
 
     /// Ends a recording without changing the hotkey (window closed or left).
@@ -45,7 +45,7 @@ final class HotKeyRecorder: NSButton {
         isRecording = false
         updateTitle()
         if !recorded { onRecordingChange?(false) }
-        announce("Tastenkürzel \(title)")
+        announce(String(localized: "Shortcut \(title)"))
     }
 
     // ⌘-combinations arrive here instead of keyDown.

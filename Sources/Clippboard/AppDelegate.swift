@@ -12,7 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var paster = Paster(decoder: decoder)
     private lazy var hotKeys = HotKeyController(
         onPress: { [unowned self] in panel.toggle() },
-        onRegister: { [unowned self] label in openItem?.title = "Historie öffnen (\(label))" },
+        onRegister: { [unowned self] label in openItem?.title = String(localized: "Open History (\(label))") },
         onError: { [unowned self] message in alert(message) }
     )
     private var statusItem: NSStatusItem!
@@ -30,10 +30,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         config = Config.load(from: store.directory) { [unowned self] backup in
-            alert("""
-                Die Einstellungen (config.json) waren beschädigt und wurden durch die Standardwerte ersetzt. \
-                Die alte Datei liegt als \(backup.lastPathComponent) im Datenordner.
-                """)
+            alert(String(localized: """
+                The settings (config.json) were damaged and have been replaced with the defaults. \
+                The old file is in the data folder as \(backup.lastPathComponent).
+                """))
         }
 
         prune()
@@ -164,10 +164,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func clearHistory() {
         let alert = NSAlert()
-        alert.messageText = "Gesamte Historie löschen?"
-        alert.informativeText = "Angepinnte Einträge bleiben erhalten."
-        alert.addButton(withTitle: "Löschen")
-        alert.addButton(withTitle: "Abbrechen")
+        alert.messageText = String(localized: "Clear the entire history?")
+        alert.informativeText = String(localized: "Pinned entries are kept.")
+        alert.addButton(withTitle: String(localized: "Clear"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
         NSApp.bringToFront()
         if alert.runModal() == .alertFirstButtonReturn {
             images.discardPending()
@@ -185,15 +185,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         // Items are enabled explicitly; otherwise isEnabled would be ignored.
         menu.autoenablesItems = false
-        openItem = menu.addItem(withTitle: "Historie öffnen", action: #selector(openPanel), keyEquivalent: "")
-        menu.addItem(withTitle: "Einstellungen …", action: #selector(openSettings), keyEquivalent: ",")
+        openItem = menu.addItem(withTitle: String(localized: "Open History"), action: #selector(openPanel), keyEquivalent: "")
+        menu.addItem(withTitle: String(localized: "Settings…"), action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Historie löschen …", action: #selector(clearHistory), keyEquivalent: "")
+        menu.addItem(withTitle: String(localized: "Clear History…"), action: #selector(clearHistory), keyEquivalent: "")
         menu.addItem(.separator())
         // Informational only, no action: disabled items show greyed out.
         let versionItem = menu.addItem(withTitle: "Clippboard – \(AppVersion.display)", action: nil, keyEquivalent: "")
         versionItem.isEnabled = false
-        menu.addItem(withTitle: "Beenden", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: String(localized: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         for item in menu.items where item.action != nil && item.action != #selector(NSApplication.terminate(_:)) {
             item.target = self
         }
@@ -205,18 +205,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let mainMenu = NSMenu()
         let appItem = NSMenuItem()
         appItem.submenu = NSMenu()
-        appItem.submenu?.addItem(withTitle: "Beenden", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appItem.submenu?.addItem(withTitle: String(localized: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         mainMenu.addItem(appItem)
 
         let editItem = NSMenuItem()
-        let edit = NSMenu(title: "Bearbeiten")
-        edit.addItem(withTitle: "Widerrufen", action: Selector(("undo:")), keyEquivalent: "z")
-        let redo = edit.addItem(withTitle: "Wiederholen", action: Selector(("redo:")), keyEquivalent: "z")
+        let edit = NSMenu(title: String(localized: "Edit"))
+        edit.addItem(withTitle: String(localized: "Undo"), action: Selector(("undo:")), keyEquivalent: "z")
+        let redo = edit.addItem(withTitle: String(localized: "Redo"), action: Selector(("redo:")), keyEquivalent: "z")
         redo.keyEquivalentModifierMask = [.command, .shift]
-        edit.addItem(withTitle: "Ausschneiden", action: #selector(NSText.cut(_:)), keyEquivalent: "x")
-        edit.addItem(withTitle: "Kopieren", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
-        edit.addItem(withTitle: "Einsetzen", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
-        edit.addItem(withTitle: "Alles auswählen", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        edit.addItem(withTitle: String(localized: "Cut"), action: #selector(NSText.cut(_:)), keyEquivalent: "x")
+        edit.addItem(withTitle: String(localized: "Copy"), action: #selector(NSText.copy(_:)), keyEquivalent: "c")
+        edit.addItem(withTitle: String(localized: "Paste"), action: #selector(NSText.paste(_:)), keyEquivalent: "v")
+        edit.addItem(withTitle: String(localized: "Select All"), action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         editItem.submenu = edit
         mainMenu.addItem(editItem)
         NSApp.mainMenu = mainMenu

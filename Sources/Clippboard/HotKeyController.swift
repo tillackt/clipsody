@@ -25,7 +25,7 @@ final class HotKeyController {
         current = hotkey
         isSuspended = false
         guard let spec = HotKeySpec(hotkey) else {
-            onError("Ungültiger Hotkey „\(hotkey)“ in config.json. Beispiel: \"cmd+option+c\"")
+            onError(String(localized: "Invalid hotkey “\(hotkey)” in config.json. Example: \"cmd+option+c\""))
             return false
         }
         let label = KeyLabel.display(spec)
@@ -34,10 +34,10 @@ final class HotKeyController {
         do {
             hotKey = try HotKey(spec: spec, handler: onPress)
         } catch let error as HotKeyError where error.isAlreadyTaken {
-            onError("Der Hotkey \(label) ist bereits von einer anderen App belegt (z. B. Alfred).")
+            onError(String(localized: "The hotkey \(label) is already used by another app."))
             return false
         } catch {
-            onError("macOS hat den Hotkey \(label) abgelehnt (\(error)). Bitte eine Kombination mit ⌘ oder ⌃ wählen.")
+            onError(String(localized: "macOS rejected the hotkey \(label) (\(String(describing: error))). Please choose a combination with ⌘ or ⌃."))
             return false
         }
         onRegister(label)

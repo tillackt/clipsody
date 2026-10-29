@@ -4,6 +4,7 @@
 #   ./build.sh test      run the unit tests
 #   ./build.sh install   run the tests, build, copy to ~/Applications and restart
 #   ./build.sh release   run the tests and build; fails without the signing certificate
+#   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -14,6 +15,17 @@ ARCHS=(--arch arm64 --arch x86_64)
 
 if [[ "${1:-}" == "test" ]]; then
     swift test
+    exit
+fi
+if [[ "${1:-}" == "strings" ]]; then
+    # The compiler lists every String(localized:) it sees; sync adds new keys to the catalog
+    # and marks keys that are no longer used as stale.
+    STRINGS_TMP="$(mktemp -d)"
+    trap 'rm -rf "$STRINGS_TMP"' EXIT
+    swift build --scratch-path "$STRINGS_TMP/build" \
+        -Xswiftc -emit-localized-strings -Xswiftc -emit-localized-strings-path -Xswiftc "$STRINGS_TMP/strings"
+    xcrun xcstringstool sync Resources/Localizable.xcstrings --stringsdata "$STRINGS_TMP"/strings/*.stringsdata
+    echo "Synced Resources/Localizable.xcstrings; translate new entries before the next release"
     exit
 fi
 if [[ "${1:-}" == "install" || "${1:-}" == "release" ]]; then
@@ -30,6 +42,9 @@ cp "$BIN_DIR/Clippboard" "$APP/Contents/MacOS/Clippboard"
 # Local symbols are not needed at runtime and only enlarge the download.
 strip -x "$APP/Contents/MacOS/Clippboard"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
+# One <language>.lproj per translation; English is the source language and the fallback.
+xcrun xcstringstool compile Resources/Localizable.xcstrings --output-directory "$APP/Contents/Resources" \
+    --serialization-format binary
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
 # Build number = commit count, plus the commit itself; "+" marks uncommitted changes.
 # Outside a git checkout (e.g. a source download) there is no history to count.

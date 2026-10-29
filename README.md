@@ -34,7 +34,7 @@ Swift-Paket mit diesen Zielen:
 - `Tests/ClippboardServicesTests`: Tests dafür, inklusive echter XPC-Aufrufe über einen Test-Listener
 - `Tests/ClippboardCoreTests`: Tests für den Kern und die Bildumwandlung (Swift Testing)
 
-Voraussetzung: Xcode oder die Command Line Tools mit Swift 6.
+Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, weil die Übersetzungen mit `xcstringstool` aus Xcode kompiliert werden).
 
 ## Bauen & installieren
 
@@ -50,6 +50,18 @@ Voraussetzung: Xcode oder die Command Line Tools mit Swift 6.
 
 1. **Bedienungshilfen** erlauben (Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen → Clippboard). Ohne das wird der Eintrag nur in die Zwischenablage gelegt, nicht eingefügt. Nach jedem Neubau muss die Berechtigung neu gesetzt werden (Ad-hoc-Signatur): Eintrag entfernen und wieder hinzufügen.
 2. Menüleisten-Icon → **Einstellungen …** → Autostart einschalten.
+
+## Sprachen
+
+Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. Für Clippboard allein lässt sich die Sprache unter Systemeinstellungen → Allgemein → Sprache & Region → Programme umstellen.
+
+Alle Texte und Übersetzungen stehen in `Resources/Localizable.xcstrings`. Texte im Code werden mit `String(localized:)` geschrieben, auf Englisch. Nach neuen oder geänderten Texten:
+
+```bash
+./build.sh strings
+```
+
+Das trägt neue Texte in den Katalog ein; danach die Übersetzungen ergänzen (in Xcode oder direkt in der JSON-Datei). Ein Test prüft, dass jede Sprache jeden Text mit denselben Platzhaltern hat.
 3. In Alfred den Clipboard-Hotkey abschalten oder Alfred beenden, sonst reagieren beide auf ⌥⌘C.
 
 ### Berechtigung über Neubauten hinweg behalten (einmalig)

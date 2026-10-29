@@ -48,12 +48,12 @@ public enum ItemPresentation {
     public static func title(for item: ClipItem, query: SearchQuery) -> String {
         switch item.kind {
         case .image:
-            // Like Alfred: "Bild 478×406 (762 KB)", plus the matching line when found via recognised text
+            // "Image 478×406 (762 KB)", plus the matching line when found via recognised text
             let base = imageLabel(for: item)
-            return recognizedSnippet(for: item, query: query).map { "\(base) – „\($0)“" } ?? base
+            return recognizedSnippet(for: item, query: query).map { String(localized: "\(base) – “\($0)”") } ?? base
         case .files:
             let names = item.filePaths.map { ($0 as NSString).lastPathComponent }
-            return names.count == 1 ? names[0] : "\(names.count) Dateien: " + names.joined(separator: ", ")
+            return names.count == 1 ? names[0] : String(localized: "\(names.count) files") + ": " + names.joined(separator: ", ")
         case .text:
             let collapsed = item.text.prefix(2_000)
                 .split(whereSeparator: \.isNewline)
@@ -66,7 +66,8 @@ public enum ItemPresentation {
 
     public static func imageLabel(for item: ClipItem) -> String {
         let size = ByteCountFormatter.string(fromByteCount: item.byteSize, countStyle: .file)
-        return "Bild \(item.imageWidth)×\(item.imageHeight)" + (item.byteSize > 0 ? " (\(size))" : "")
+        let label = String(localized: "Image \(item.imageWidth)×\(item.imageHeight)")
+        return label + (item.byteSize > 0 ? " (\(size))" : "")
     }
 
     /// Searchable part of a text; huge texts (logs) would otherwise slow down every keystroke.
@@ -75,7 +76,7 @@ public enum ItemPresentation {
     /// Everything a search term may match: content (its first 100,000 characters), label,
     /// source app and recognised text.
     public static func searchText(for item: ClipItem) -> String {
-        let label = item.kind == .image ? "Bild" : ""
+        let label = item.kind == .image ? String(localized: "Image") : ""
         let content = String(item.text.prefix(searchablePrefix))
         return [content, label, item.app ?? "", item.recognizedText ?? ""].joined(separator: "\n")
     }
