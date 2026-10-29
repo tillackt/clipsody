@@ -15,9 +15,13 @@ BUNDLE_ID="io.github.tillackt.clipsody"
 IDENTITY="Clippboard Signing"
 APP="build/Clipsody.app"
 ARCHS=(--arch arm64 --arch x86_64)
+# CI sets WARNINGS_AS_ERRORS=1: the code builds without warnings, and a new one fails the build there.
+# Local builds stay lenient, so a newer Xcode with new warnings does not block an install.
+STRICT=()
+if [[ "${WARNINGS_AS_ERRORS:-0}" == "1" ]]; then STRICT=(-Xswiftc -warnings-as-errors); fi
 
 if [[ "${1:-}" == "test" ]]; then
-    swift test
+    swift test ${STRICT[@]+"${STRICT[@]}"}
     exit
 fi
 # The translations are compiled with xcstringstool, which only full Xcode has; fail before a long build.
@@ -68,10 +72,10 @@ PYTHON
 fi
 if [[ "${1:-}" == "install" || "${1:-}" == "release" ]]; then
     # Never install or ship a build whose tests fail.
-    swift test
+    swift test ${STRICT[@]+"${STRICT[@]}"}
 fi
 
-swift build -c release "${ARCHS[@]}"
+swift build -c release "${ARCHS[@]}" ${STRICT[@]+"${STRICT[@]}"}
 BIN_DIR="$(swift build -c release "${ARCHS[@]}" --show-bin-path)"
 
 rm -rf "$APP"
