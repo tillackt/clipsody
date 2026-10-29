@@ -277,15 +277,18 @@ public final class Store {
         return stored
     }
 
-    /// Moves an item to the top of the history.
-    public func touch(_ item: ClipItem) {
+    /// Moves an item to the top of the history. Returns false if it could not be stored.
+    @discardableResult
+    public func touch(_ item: ClipItem) -> Bool {
         run("UPDATE items SET ts = ? WHERE id = ?") { stmt in
             sqlite3_bind_double(stmt, 1, Date().timeIntervalSince1970)
             sqlite3_bind_int64(stmt, 2, item.id)
         }
     }
 
-    public func setPinned(_ pinned: Bool, for item: ClipItem) {
+    /// Returns false if the change could not be stored.
+    @discardableResult
+    public func setPinned(_ pinned: Bool, for item: ClipItem) -> Bool {
         run("UPDATE items SET pinned = ? WHERE id = ?") { stmt in
             sqlite3_bind_int(stmt, 1, pinned ? 1 : 0)
             sqlite3_bind_int64(stmt, 2, item.id)
@@ -419,14 +422,6 @@ public final class Store {
     public func fullText(for item: ClipItem) -> String? {
         var text: String?
         query("SELECT text FROM items WHERE id = ? AND kind = 0", bind: { sqlite3_bind_int64($0, 1, item.id) }) {
-            text = Self.string($0, 0)
-        }
-        return text
-    }
-
-    public func recognizedText(forImageFile fileName: String) -> String? {
-        var text: String?
-        query("SELECT ocr_text FROM items WHERE image_file = ? LIMIT 1", bind: { Self.bind($0, 1, fileName) }) {
             text = Self.string($0, 0)
         }
         return text

@@ -148,14 +148,6 @@ import Testing
         #expect(store.fullText(for: item) == long)
     }
 
-    @Test func recognizedTextCanBeReadPerImage() throws {
-        let image = try #require(ImageCodec.prepare(makeImage()))
-        store.addImage(image, app: nil, appPath: nil)
-        #expect(store.recognizedText(forImageFile: image.hash + ".png") == nil)
-        store.setRecognizedText("Rechnung", forImageFile: image.hash + ".png")
-        #expect(store.recognizedText(forImageFile: image.hash + ".png") == "Rechnung")
-    }
-
 }
 
 @Suite struct MigrationTests {

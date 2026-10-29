@@ -59,6 +59,23 @@ final class LockHolder {
         #expect(store.setRecognizedText("x", forImageFile: image.hash + ".png"))
     }
 
+    @Test func failedTouchAndPinAreReported() throws {
+        let directory = try TemporaryDirectory()
+        let store = try Store(directory: directory.url)
+        store.addText("entry", app: nil, appPath: nil)
+        let item = try #require(store.items().first)
+        let writer = LockHolder(path: directory.url.appendingPathComponent("history.sqlite").path,
+                                sql: "BEGIN IMMEDIATE;")
+
+        #expect(!store.touch(item))
+        #expect(!store.setPinned(true, for: item))
+
+        writer.release()
+        #expect(store.touch(item))
+        #expect(store.setPinned(true, for: item))
+        #expect(store.items().first?.pinned == true)
+    }
+
     @Test func pendingWipeFromACrashedRunIsDoneAtLaunch() throws {
         let running = try TemporaryDirectory()
         let afterCrash = try TemporaryDirectory()

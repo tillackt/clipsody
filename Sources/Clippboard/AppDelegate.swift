@@ -40,9 +40,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         recognition = TextRecognitionQueue(store: store) { [decoder] png in
             await decoder.recognizeText(inPNG: png)
-        } onRecognized: { [unowned self] file in
+        } onRecognized: { [unowned self] file, text in
             // The open panel searches its own copy of the entries.
-            panel.refreshRecognizedText(forImageFile: file)
+            panel.refreshRecognizedText(text, forImageFile: file)
         }
         images = ImageQueue(store: store, accepts: { [unowned self] appBundleID in
             config.keepImages && !(appBundleID.map(config.ignoredApps.contains) ?? false)

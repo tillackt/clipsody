@@ -6,7 +6,7 @@ import Foundation
 public final class TextRecognitionQueue {
     private let store: Store
     private let recognize: (Data) async -> RecognitionResult
-    private let onRecognized: (String) -> Void
+    private let onRecognized: (_ file: String, _ text: String) -> Void
     private var running: Task<Void, Never>?
     /// Invalid file names; never processed.
     private var invalid = Set<String>()
@@ -15,9 +15,10 @@ public final class TextRecognitionQueue {
     /// The service did not answer for these; retried with the next `start()`, not in a tight loop.
     private var failed = Set<String>()
 
-    /// `recognize` gets the PNG bytes (never a path); `onRecognized` receives the image file name.
+    /// `recognize` gets the PNG bytes (never a path); `onRecognized` receives the image file name
+    /// and the stored text.
     public init(store: Store, recognize: @escaping (Data) async -> RecognitionResult,
-                onRecognized: @escaping (String) -> Void) {
+                onRecognized: @escaping (_ file: String, _ text: String) -> Void) {
         self.store = store
         self.recognize = recognize
         self.onRecognized = onRecognized
@@ -77,7 +78,7 @@ public final class TextRecognitionQueue {
             case .text(let text):
                 // A failed write (database locked, disk full) is retried later, not in a tight loop.
                 if store.setRecognizedText(text, forImageFile: file) {
-                    onRecognized(file)
+                    onRecognized(file, text)
                 } else {
                     failed.insert(file)
                 }

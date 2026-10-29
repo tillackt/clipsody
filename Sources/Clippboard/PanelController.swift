@@ -22,12 +22,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private let hintLabel = NSTextField(labelWithString: "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P anpinnen   ⌘⌫ löschen")
     private let emptyLabel = NSTextField(labelWithString: "Keine Einträge")
 
-    private var allItems: [ClipItem] = []
-    private var items: [ClipItem] = []
-    private var query = SearchQuery("")
-    /// Folded search text per item id, built on the first search after a load instead of on every
-    /// keystroke; nil until then, since most openings never search.
-    private var searchIndex: [Int64: String]?
+    private var list = HistoryList()
+    private var items: [ClipItem] { list.items }
+    private var query: SearchQuery { list.query }
     private let iconCache = NSCache<NSString, NSImage>()
     private let previewCache: NSCache<NSString, NSImage> = {
         let cache = NSCache<NSString, NSImage>()
@@ -73,9 +70,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         // No target when Clippboard itself is in front (e.g. the settings window): then nothing is pasted.
         let frontmost = NSWorkspace.shared.frontmostApplication
         targetApp = frontmost?.processIdentifier == ProcessInfo.processInfo.processIdentifier ? nil : frontmost
-        reloadItems()
         search.stringValue = ""
-        applyFilter()
+        reloadItems()
+        showItems()
         positionOnActiveScreen()
         panel.makeKeyAndOrderFront(nil)
         panel.makeFirstResponder(search)
@@ -87,9 +84,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         // background would only cost memory.
         previewTask?.cancel()
         previewedItem = nil
-        allItems = []
-        items = []
-        searchIndex = nil
+        list = HistoryList()
         // Single deletes are wiped from disk in one go when the panel closes.
         store.flushDeletions()
         previewCache.removeAllObjects()
@@ -101,19 +96,17 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Refreshes the list when the clipboard changes while the panel is open.
     func reloadIfVisible() {
         guard isVisible else { return }
+        let selected = selectedItem?.id
         reloadItems()
-        applyFilter(selecting: selectedItem?.id)
+        showItems(selecting: selected)
     }
 
     /// Takes over newly recognised text for one image without reloading the whole list.
-    func refreshRecognizedText(forImageFile file: String) {
-        guard isVisible, let text = store.recognizedText(forImageFile: file) else { return }
-        for index in allItems.indices where allItems[index].imageFile == file {
-            allItems[index].recognizedText = text
-            // Without an index there is nothing to patch; it is built from allItems when needed.
-            searchIndex?[allItems[index].id] = SearchQuery.fold(ItemPresentation.searchText(for: allItems[index]))
-        }
-        applyFilter(selecting: selectedItem?.id)
+    func refreshRecognizedText(_ text: String, forImageFile file: String) {
+        guard isVisible else { return }
+        let selected = selectedItem?.id
+        list.setRecognizedText(text, forImageFile: file)
+        showItems(selecting: selected)
     }
 
     private var selectedItem: ClipItem? {
@@ -153,9 +146,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
-        store.setPinned(!item.pinned, for: item)
+        guard store.setPinned(!item.pinned, for: item) else {
+            NSSound.beep()
+            return
+        }
         reloadItems()
-        applyFilter(selecting: item.id)
+        showItems(selecting: item.id)
     }
 
     private func deleteSelected() {
@@ -163,13 +159,13 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         guard items.indices.contains(row) else { return }
         let item = items[row]
         // Keep the selection on the neighbour that moves into this row.
-        let neighbour = items.indices.contains(row + 1) ? items[row + 1] : (row > 0 ? items[row - 1] : nil)
+        let neighbour = list.neighbour(ofRow: row)
         guard store.delete(item) else {
             NSSound.beep()
             return
         }
-        allItems.removeAll { $0.id == item.id }
-        applyFilter(selecting: neighbour?.id)
+        list.remove(id: item.id)
+        showItems(selecting: neighbour?.id)
     }
 
     @objc private func rowDoubleClicked() {
@@ -216,21 +212,15 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     // MARK: - Filtering
 
-    private func applyFilter(selecting id: Int64? = nil) {
-        query = SearchQuery(search.stringValue)
-        if query.isEmpty {
-            items = allItems
-        } else {
-            let index = searchIndex ?? buildSearchIndex()
-            items = allItems.filter { query.matches(foldedText: index[$0.id] ?? "") }
-        }
+    private func showItems(selecting id: Int64? = nil) {
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
-        select(id.flatMap { id in items.firstIndex { $0.id == id } } ?? 0)
+        select(list.row(selecting: id))
     }
 
     func controlTextDidChange(_ notification: Notification) {
-        applyFilter()
+        list.filter(search.stringValue)
+        showItems()
     }
 
     func control(_ control: NSControl, textView: NSTextView, doCommandBy selector: Selector) -> Bool {
@@ -350,16 +340,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     private func reloadItems() {
-        allItems = store.items()
-        searchIndex = nil
-    }
-
-    private func buildSearchIndex() -> [Int64: String] {
-        let index = Dictionary(uniqueKeysWithValues: allItems.map {
-            ($0.id, SearchQuery.fold(ItemPresentation.searchText(for: $0)))
-        })
-        searchIndex = index
-        return index
+        list.load(store.items(), query: search.stringValue)
     }
 
     /// Shows a downscaled image, made by the decoder service as raw pixels (the app never decodes

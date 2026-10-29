@@ -95,16 +95,18 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
     @Test func allPendingImagesAreRecognised() async throws {
         try addImage(width: 5)
         try addImage(width: 6)
-        var recognised: [String] = []
-        let queue = TextRecognitionQueue(store: store, recognize: { png in .text("bytes \(png.count)") }) {
-            recognised.append($0)
+        var recognised: [String: String] = [:]
+        let queue = TextRecognitionQueue(store: store, recognize: { png in .text("bytes \(png.count)") }) { file, text in
+            recognised[file] = text
         }
 
         queue.start()
         await queue.waitUntilIdle()
 
         #expect(recognised.count == 2)
-        #expect(store.items().allSatisfy { $0.recognizedText?.hasPrefix("bytes ") == true })
+        // The callback passes on exactly what was stored.
+        #expect(store.items().allSatisfy { $0.recognizedText?.hasPrefix("bytes ") == true
+            && recognised[$0.imageFile ?? ""] == $0.recognizedText })
         #expect(store.imageFilesWithoutRecognizedText().isEmpty)
     }
 
@@ -112,7 +114,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         try addImage(width: 5)
         let item = try #require(store.items().first)
         try FileManager.default.removeItem(at: #require(store.imageURL(for: item)))
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("never") }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("never") }) { _, _ in }
 
         queue.start()
         await queue.waitUntilIdle()
@@ -123,7 +125,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
     @Test func serviceFailureIsRetriedNotStoredAsNoText() async throws {
         try addImage(width: 5)
         var answer = RecognitionResult.failed
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in answer }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in answer }) { _, _ in }
 
         queue.start()
         await queue.waitUntilIdle()
@@ -143,7 +145,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         try FileManager.default.removeItem(at: url)
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
         var calls = 0
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in calls += 1; return .text("x") }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in calls += 1; return .text("x") }) { _, _ in }
 
         queue.start()
         await queue.waitUntilIdle()
@@ -154,7 +156,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
 
     @Test func unreadableImageIsMarkedDone() async throws {
         try addImage(width: 5)
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in .unreadable }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .unreadable }) { _, _ in }
         queue.start()
         await queue.waitUntilIdle()
         #expect(store.items().first?.recognizedText == "")
@@ -165,7 +167,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         store.addImage(image, app: nil, appPath: nil)
         let url = try #require(store.items().first.flatMap(store.imageURL(for:)))
         try FileManager.default.removeItem(at: url)
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("back") }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("back") }) { _, _ in }
         queue.start()
         await queue.waitUntilIdle()
 
