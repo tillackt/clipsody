@@ -16,7 +16,9 @@ public enum StoreError: Error, CustomStringConvertible {
 /// SQLite-backed clipboard history. Images live as PNG files next to the database.
 /// Not thread-safe: use one instance from one thread (the app uses the main thread).
 /// The class holds the connection and the state; reading, writing, deleting, migrations and the
-/// SQLite helpers live in extensions in the Store+*.swift files.
+/// SQLite helpers live in extensions in the Store+*.swift files. Their internal (not public)
+/// members, such as `db`, `query` or `execute`, exist for those extensions only: other code in
+/// ClipsodyCore goes through the public API like the app does.
 public final class Store {
     public let directory: URL
     public let imagesDirectory: URL

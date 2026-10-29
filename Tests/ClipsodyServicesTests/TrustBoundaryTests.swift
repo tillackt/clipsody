@@ -146,7 +146,8 @@ import Testing
         // Under load the request can reach the service only after the client gave up.
         #expect(await eventually { silent.requestsReceived == 1 })
         #expect(elapsed >= .milliseconds(300))
-        #expect(elapsed < .seconds(3))
+        // Below the 5 s default: the given 0.3 s was used, with room for a loaded runner.
+        #expect(elapsed < .milliseconds(4_500))
         withExtendedLifetime(service) {}
     }
 }

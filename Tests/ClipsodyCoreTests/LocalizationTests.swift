@@ -53,13 +53,16 @@ import Testing
         }
     }
 
+    /// Texts with a number that is not a count, so they need no plural forms.
+    static let numbersWithoutPlural: Set = ["Image %lld×%lld"]
+
     /// A count text needs plural forms in every language, English included ("1 files" otherwise),
     /// with at least "one" and "other", and Polish with all four of its forms.
     @Test func countTextsHaveCompletePluralForms() throws {
         let strings = try Self.catalog()
         for (key, entry) in strings where Self.placeholders(key).contains("%lld") {
+            guard !Self.numbersWithoutPlural.contains(key) else { continue }
             let localizations = Self.localizations(entry)
-            guard Self.pluralForms(localizations["en"]) != nil else { continue }
             for language in ["en"] + Self.languages {
                 let forms = Self.pluralForms(localizations[language])
                 let required: Set<String> = language == "pl" ? ["one", "few", "many", "other"] : ["one", "other"]

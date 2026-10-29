@@ -53,7 +53,7 @@ extension PanelController {
 
     /// Shows a downscaled image, made by the decoder service as raw pixels (the app never decodes
     /// image formats) and cached, so holding ↓ over screenshots does not decode full-size images.
-    func showPreviewImage(for item: ClipItem) {
+    private func showPreviewImage(for item: ClipItem) {
         previewTask?.cancel()
         // The small preview stored with large images; older entries fall back to the full image.
         guard let url = store.previewURL(for: item) ?? store.imageURL(for: item) else {
@@ -84,7 +84,7 @@ extension PanelController {
     }
 
     /// Focus stays in the search field, so VoiceOver would not notice the selection moving.
-    func announceForVoiceOver(_ item: ClipItem) {
+    private func announceForVoiceOver(_ item: ClipItem) {
         guard NSWorkspace.shared.isVoiceOverEnabled else { return }
         var parts = [ItemPresentation.title(for: item, query: query)]
         if item.pinned { parts.append(String(localized: "pinned")) }
@@ -94,7 +94,7 @@ extension PanelController {
         ])
     }
 
-    func showPreviewText(_ text: String) {
+    private func showPreviewText(_ text: String) {
         previewTextScroll.isHidden = false
         previewImage.isHidden = true
         let shown = String(text.prefix(ItemPresentation.searchablePrefix))
