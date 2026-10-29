@@ -239,13 +239,16 @@ public final class Store {
 
     // MARK: - Reading
 
-    public func items(limit: Int) -> [ClipItem] {
+    /// All entries, pinned first. Without a limit pinned entries cannot push others out of view;
+    /// `prune` keeps the total bounded.
+    public func items(limit: Int? = nil) -> [ClipItem] {
         var result: [ClipItem] = []
         let sql = """
             SELECT id, kind, text, image_file, app, app_path, ts, pinned, ocr_text, rich_type, width, height, byte_size
             FROM items ORDER BY pinned DESC, ts DESC LIMIT ?
             """
-        query(sql, bind: { sqlite3_bind_int64($0, 1, Int64(limit)) }) { stmt in
+        // LIMIT -1 means no limit in SQLite.
+        query(sql, bind: { sqlite3_bind_int64($0, 1, Int64(limit ?? -1)) }) { stmt in
             let kind = ClipItem.Kind(rawValue: Int(sqlite3_column_int(stmt, 1))) ?? .text
             let raw = Self.string(stmt, 2) ?? ""
             let paths = kind == .files ? Self.decodePaths(raw) : []

@@ -15,17 +15,26 @@ public struct Config: Codable, Equatable, Sendable {
         "com.bitwarden.desktop",
     ]
 
+    public static let retentionRange = 1...365
+    public static let maxItemsRange = 50...10_000
+
     public init() {}
 
     // Missing keys fall back to the defaults so the file may list only what differs.
+    // Numbers are clamped: a hand-edited "maxItems": 0 must not wipe the history.
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         let d = Config()
         hotkey = try c.decodeIfPresent(String.self, forKey: .hotkey) ?? d.hotkey
-        retentionDays = try c.decodeIfPresent(Int.self, forKey: .retentionDays) ?? d.retentionDays
-        maxItems = try c.decodeIfPresent(Int.self, forKey: .maxItems) ?? d.maxItems
+        retentionDays = Self.clamp(try c.decodeIfPresent(Int.self, forKey: .retentionDays) ?? d.retentionDays,
+                                   to: Self.retentionRange)
+        maxItems = Self.clamp(try c.decodeIfPresent(Int.self, forKey: .maxItems) ?? d.maxItems, to: Self.maxItemsRange)
         keepImages = try c.decodeIfPresent(Bool.self, forKey: .keepImages) ?? d.keepImages
         ignoredApps = try c.decodeIfPresent([String].self, forKey: .ignoredApps) ?? d.ignoredApps
+    }
+
+    public static func clamp(_ value: Int, to range: ClosedRange<Int>) -> Int {
+        min(max(value, range.lowerBound), range.upperBound)
     }
 
     public static func url(in directory: URL) -> URL {
@@ -78,6 +87,20 @@ public struct HotKeySpec: Equatable, Sendable {
         "space": 49,
     ]
 
+    /// ⌃⌥⇧⌘ symbols of the modifiers, in the order macOS uses in menus.
+    public var modifierSymbols: String {
+        Self.symbols(for: modifiers)
+    }
+
+    private static func symbols(for modifiers: UInt32) -> String {
+        var symbols = ""
+        if modifiers & control != 0 { symbols += "⌃" }
+        if modifiers & option != 0 { symbols += "⌥" }
+        if modifiers & shift != 0 { symbols += "⇧" }
+        if modifiers & command != 0 { symbols += "⌘" }
+        return symbols
+    }
+
     /// Config name of a key code ("c", "5", "space"), nil for keys the hotkey cannot use.
     public static func keyName(for keyCode: UInt16) -> String? {
         keyCodes.first { $0.value == UInt32(keyCode) }?.key
@@ -85,7 +108,6 @@ public struct HotKeySpec: Equatable, Sendable {
 
     public init?(_ string: String) {
         var modifiers: UInt32 = 0
-        var symbols = ""
         var key: (code: UInt32, name: String)?
         for part in string.lowercased().split(separator: "+").map({ $0.trimmingCharacters(in: .whitespaces) }) {
             switch part {
@@ -98,14 +120,10 @@ public struct HotKeySpec: Equatable, Sendable {
                 key = (code, part == "space" ? "Space" : part.uppercased())
             }
         }
-        guard let key, modifiers != 0 else { return nil }
-        // Same order macOS uses in menus: ⌃⌥⇧⌘
-        if modifiers & Self.control != 0 { symbols += "⌃" }
-        if modifiers & Self.option != 0 { symbols += "⌥" }
-        if modifiers & Self.shift != 0 { symbols += "⇧" }
-        if modifiers & Self.command != 0 { symbols += "⌘" }
+        // Since macOS 15 hotkeys need ⌘ or ⌃; ⌥ and ⇧ alone are refused by RegisterEventHotKey.
+        guard let key, modifiers & (Self.command | Self.control) != 0 else { return nil }
         self.keyCode = key.code
         self.modifiers = modifiers
-        self.display = symbols + key.name
+        self.display = Self.symbols(for: modifiers) + key.name
     }
 }

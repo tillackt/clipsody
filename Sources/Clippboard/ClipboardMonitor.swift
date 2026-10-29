@@ -24,9 +24,12 @@ final class ClipboardMonitor {
     }
 
     func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { [weak self] _ in
+        let timer = Timer(timeInterval: 0.4, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.poll() }
         }
+        // Common modes: keep polling while the status menu or an alert is open, otherwise copies get lost.
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
     }
 
     /// Call after writing to the pasteboard ourselves so that write is not recorded again.

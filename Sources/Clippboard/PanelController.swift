@@ -1,4 +1,5 @@
 import AppKit
+import Carbon
 import ClippboardCore
 
 /// Borderless panel that can take keyboard focus without activating the app,
@@ -102,7 +103,6 @@ private final class ClipRowView: NSTableCellView {
 @MainActor
 final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
-    private let maxItems: () -> Int
     /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
     private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
@@ -130,9 +130,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     var isVisible: Bool { panel.isVisible }
 
-    init(store: Store, maxItems: @escaping () -> Int, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
+    init(store: Store, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
         self.store = store
-        self.maxItems = maxItems
         self.onPaste = onPaste
         panel = KeyPanel(
             contentRect: NSRect(x: 0, y: 0, width: 820, height: 460),
@@ -152,11 +151,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     func show() {
+        // No target when Clippboard itself is in front (e.g. the settings window): then nothing is pasted.
         let frontmost = NSWorkspace.shared.frontmostApplication
-        if frontmost?.processIdentifier != ProcessInfo.processInfo.processIdentifier {
-            targetApp = frontmost
-        }
-        allItems = store.items(limit: maxItems())
+        targetApp = frontmost?.processIdentifier == ProcessInfo.processInfo.processIdentifier ? nil : frontmost
+        allItems = store.items()
         search.stringValue = ""
         applyFilter()
         positionOnActiveScreen()
@@ -171,8 +169,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Refreshes the list when the clipboard changes while the panel is open.
     func reloadIfVisible() {
         guard isVisible else { return }
-        allItems = store.items(limit: maxItems())
-        applyFilter()
+        allItems = store.items()
+        applyFilter(selecting: selectedItem?.id)
+    }
+
+    private var selectedItem: ClipItem? {
+        items.indices.contains(table.selectedRow) ? items[table.selectedRow] : nil
     }
 
     func windowDidResignKey(_ notification: Notification) {
@@ -209,7 +211,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         guard items.indices.contains(row) else { return }
         let item = items[row]
         store.setPinned(!item.pinned, for: item)
-        allItems = store.items(limit: maxItems())
+        allItems = store.items()
         applyFilter(selecting: item.id)
     }
 
@@ -217,11 +219,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
+        // Keep the selection on the neighbour that moves into this row.
+        let neighbour = items.indices.contains(row + 1) ? items[row + 1] : (row > 0 ? items[row - 1] : nil)
         store.delete(item)
         allItems.removeAll { $0.id == item.id }
-        items.remove(at: row)
-        table.reloadData()
-        select(min(row, items.count - 1))
+        applyFilter(selecting: neighbour?.id)
     }
 
     @objc private func rowDoubleClicked() {
@@ -235,24 +237,26 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     private func select(_ row: Int) {
-        guard items.indices.contains(row) else {
-            updatePreview()
-            return
+        if items.indices.contains(row) {
+            table.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            table.scrollRowToVisible(row)
         }
-        table.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
-        table.scrollRowToVisible(row)
+        // The table posts no selection change when the row number stays the same after a reload,
+        // although the item in that row may be a different one.
+        updatePreview()
     }
 
     private func handleKeyEquivalent(_ event: NSEvent) -> Bool {
-        let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+        // Only the four modifier keys count, so Caps Lock does not break the shortcuts.
+        let flags = event.modifierFlags.intersection([.command, .option, .control, .shift])
         guard flags == .command else { return false }
         // ⌘⌫ deletes the selected entry
-        if event.keyCode == 51 {
+        if event.keyCode == UInt16(kVK_Delete) {
             deleteSelected()
             return true
         }
         // ⌘P pins or unpins the selected entry
-        if event.keyCode == 35 {
+        if event.keyCode == UInt16(kVK_ANSI_P) {
             togglePinSelected()
             return true
         }

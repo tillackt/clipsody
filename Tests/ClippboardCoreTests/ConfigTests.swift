@@ -10,6 +10,16 @@ import Testing
         #expect(config.hotkey == Config().hotkey)
     }
 
+    @Test func outOfRangeNumbersAreClamped() throws {
+        let json = #"{"retentionDays": 0, "maxItems": -1}"#
+        let config = try JSONDecoder().decode(Config.self, from: Data(json.utf8))
+        #expect(config.retentionDays == Config.retentionRange.lowerBound)
+        #expect(config.maxItems == Config.maxItemsRange.lowerBound)
+
+        let huge = try JSONDecoder().decode(Config.self, from: Data(#"{"maxItems": 99999999}"#.utf8))
+        #expect(huge.maxItems == Config.maxItemsRange.upperBound)
+    }
+
     @Test func saveAndLoadRoundTrip() throws {
         let directory = try TemporaryDirectory()
         var config = Config()
@@ -32,13 +42,15 @@ import Testing
         #expect(spec.keyCode == 8)
         #expect(spec.modifiers == HotKeySpec.command | HotKeySpec.option)
         #expect(spec.display == "⌥⌘C")
+        #expect(spec.modifierSymbols == "⌥⌘")
     }
 
     @Test func displayUsesMenuOrder() {
         #expect(HotKeySpec("shift+cmd+ctrl+option+space")?.display == "⌃⌥⇧⌘Space")
     }
 
-    @Test(arguments: ["c", "cmd+", "cmd+f13", "", "hyper+c"])
+    // Option or Shift alone are not accepted by macOS 15 and later.
+    @Test(arguments: ["c", "cmd+", "cmd+f13", "", "hyper+c", "option+c", "shift+option+v"])
     func rejectsInvalidSpecs(_ text: String) {
         #expect(HotKeySpec(text) == nil)
     }

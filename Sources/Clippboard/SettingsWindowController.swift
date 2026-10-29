@@ -1,4 +1,5 @@
 import AppKit
+import Carbon
 import ClippboardCore
 import ServiceManagement
 import UniformTypeIdentifiers
@@ -33,6 +34,11 @@ final class HotKeyRecorder: NSButton {
         onRecordingChange?(true)
     }
 
+    /// Ends a recording without changing the hotkey (window closed or left).
+    func cancelRecording() {
+        stopRecording()
+    }
+
     private func stopRecording() {
         guard isRecording else { return }
         isRecording = false
@@ -58,12 +64,13 @@ final class HotKeyRecorder: NSButton {
     }
 
     private func record(_ event: NSEvent) {
-        if event.keyCode == 53 { // Esc cancels
+        if event.keyCode == UInt16(kVK_Escape) { // Esc cancels
             stopRecording()
             return
         }
         let flags = event.modifierFlags.intersection([.control, .option, .shift, .command])
-        guard !flags.isEmpty, flags != .shift, let key = HotKeySpec.keyName(for: event.keyCode) else {
+        // macOS 15+ refuses hotkeys without ⌘ or ⌃.
+        guard !flags.isDisjoint(with: [.command, .control]), let key = HotKeySpec.keyName(for: event.keyCode) else {
             NSSound.beep()
             return
         }
@@ -79,7 +86,7 @@ final class HotKeyRecorder: NSButton {
     }
 
     private func updateTitle() {
-        title = HotKeySpec(hotkey)?.display ?? hotkey
+        title = HotKeySpec(hotkey).map(KeyLabel.display) ?? hotkey
     }
 }
 
@@ -133,6 +140,15 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     }
 
     // Permission and login item can change outside the app, e.g. in System Settings.
+    // Leaving the window must not leave the global hotkey switched off mid-recording.
+    func windowWillClose(_ notification: Notification) {
+        hotKeyRecorder.cancelRecording()
+    }
+
+    func windowDidResignKey(_ notification: Notification) {
+        hotKeyRecorder.cancelRecording()
+    }
+
     func windowDidBecomeKey(_ notification: Notification) {
         refreshSystemState()
     }
@@ -194,14 +210,14 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     }
 
     @objc private func retentionChanged(_ sender: NSControl) {
-        config.retentionDays = clamp(sender.integerValue, to: 1...365)
+        config.retentionDays = Config.clamp(sender.integerValue, to: Config.retentionRange)
         retentionField.integerValue = config.retentionDays
         retentionStepper.integerValue = config.retentionDays
         commit()
     }
 
     @objc private func maxItemsChanged(_ sender: NSControl) {
-        config.maxItems = clamp(sender.integerValue, to: 50...10_000)
+        config.maxItems = Config.clamp(sender.integerValue, to: Config.maxItemsRange)
         maxItemsField.integerValue = config.maxItems
         maxItemsStepper.integerValue = config.maxItems
         commit()
@@ -242,10 +258,6 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
 
     @objc private func revealData() {
         NSWorkspace.shared.activateFileViewerSelecting([dataDirectory])
-    }
-
-    private func clamp(_ value: Int, to range: ClosedRange<Int>) -> Int {
-        min(max(value, range.lowerBound), range.upperBound)
     }
 
     // MARK: - Ignored apps table
@@ -343,7 +355,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         hotKeyRecorder.onChange = { [weak self] in self?.hotKeyChanged($0) }
         row("Tastenkürzel:", hotKeyRecorder, alignWith: hotKeyRecorder, help: """
             Öffnet und schließt die Historie aus jeder App heraus. Zum Ändern auf das Feld klicken und die neue \
-            Kombination drücken, mindestens mit ⌘, ⌥ oder ⌃. Esc bricht ab.
+            Kombination drücken, mit ⌘ oder ⌃ (macOS lässt ⌥ allein nicht zu). Esc bricht ab.
             """)
 
         launchAtLogin.target = self
@@ -364,14 +376,14 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
 
         // History
         section("Historie")
-        let retention = numberControl(retentionField, retentionStepper, unit: "Tage", range: 1...365, step: 1,
+        let retention = numberControl(retentionField, retentionStepper, unit: "Tage", range: Config.retentionRange, step: 1,
                                       action: #selector(retentionChanged(_:)))
         row("Aufbewahren:", retention, alignWith: retentionField, help: """
             Ältere Einträge werden automatisch gelöscht, beim Start und danach stündlich. Wird der Wert \
             verkleinert, verschwinden ältere Einträge sofort. Angepinnte Einträge (⌘P) werden nie automatisch gelöscht.
             """)
 
-        let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: "Einträge", range: 50...10_000, step: 50,
+        let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: "Einträge", range: Config.maxItemsRange, step: 50,
                                      action: #selector(maxItemsChanged(_:)))
         row("Höchstens:", maxItems, alignWith: maxItemsField, help: """
             Obergrenze für die Historie. Kommen mehr Einträge zusammen, fallen die ältesten weg, auch wenn \

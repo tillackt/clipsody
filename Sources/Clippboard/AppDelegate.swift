@@ -14,6 +14,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
     private var isRecognizingText = false
+    /// Images whose file vanished before recognition finished; not retried in this session.
+    private var unreadableImages = Set<String>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         do {
@@ -29,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         prune()
 
         monitor = ClipboardMonitor(store: store) { [unowned self] in config }
-        panel = PanelController(store: store, maxItems: { [unowned self] in config.maxItems }) { [unowned self] item, target, formatted in
+        panel = PanelController(store: store) { [unowned self] item, target, formatted in
             paste(item, into: target, withFormatting: formatted)
         }
         monitor.onChange = { [unowned self] in
@@ -80,22 +82,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
+        // Without a living target (Clippboard itself was in front, or the app quit) the entry is only copied.
+        guard let target, !target.isTerminated else {
+            logger.notice("Paste: no target app, item only copied")
+            return
+        }
         // If Clippboard itself is active (e.g. the settings window was used), ⌘V would land here.
-        if let target, !target.isActive {
+        if !target.isActive {
             if #available(macOS 14.0, *) { NSApp.yieldActivation(to: target) }
             target.activate(options: [])
         }
         Task {
             // Wait up to ~0.5 s for the target app to be frontmost, then let its window regain focus.
-            for _ in 0..<20 where target != nil {
-                if NSWorkspace.shared.frontmostApplication?.processIdentifier == target?.processIdentifier { break }
+            for _ in 0..<20 where !isFrontmost(target) {
                 try? await Task.sleep(for: .milliseconds(25))
+            }
+            // Never send ⌘V to whatever else came to the front (a chat, a notification): the entry
+            // could end up in the wrong place. It stays on the clipboard instead.
+            guard isFrontmost(target) else {
+                logger.error("Paste: \(target.localizedName ?? "-", privacy: .public) did not come to the front, item only copied")
+                NSSound.beep()
+                return
             }
             try? await Task.sleep(for: .milliseconds(100))
             let types = (NSPasteboard.general.types ?? []).map(\.rawValue).joined(separator: ", ")
             let frontmost = NSWorkspace.shared.frontmostApplication?.localizedName ?? "-"
             logger.notice("""
-                Paste: ⌘V to \(target?.localizedName ?? "-", privacy: .public) \
+                Paste: ⌘V to \(target.localizedName ?? "-", privacy: .public) \
                 (frontmost \(frontmost, privacy: .public), formatted \(withFormatting), \
                 kind \(item.kind.rawValue), pasteboard: \(types, privacy: .public))
                 """)
@@ -103,18 +116,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    private func isFrontmost(_ app: NSRunningApplication) -> Bool {
+        NSWorkspace.shared.frontmostApplication?.processIdentifier == app.processIdentifier
+    }
+
     // MARK: - Text recognition
 
     /// Recognises text in stored images one at a time in the background, so screenshots become searchable.
     private func recognizePendingText() {
-        guard !isRecognizingText, let file = store.imageFilesWithoutRecognizedText().first else { return }
+        guard !isRecognizingText,
+              let file = store.imageFilesWithoutRecognizedText().first(where: { !unreadableImages.contains($0) })
+        else { return }
         isRecognizingText = true
         let url = store.imagesDirectory.appendingPathComponent(file)
         Task { [weak self] in
             let text = await TextRecognizer.recognize(imageAt: url)
             guard let self else { return }
-            // Stored even when empty so the image is not processed again.
-            store.setRecognizedText(text ?? "", forImageFile: file)
+            if FileManager.default.fileExists(atPath: url.path) {
+                // Stored even when empty so the image is not processed again.
+                store.setRecognizedText(text ?? "", forImageFile: file)
+            } else {
+                // Deleted meanwhile: writing "" could hit a new entry for the same image copied again.
+                unreadableImages.insert(file)
+            }
             isRecognizingText = false
             recognizePendingText()
         }
@@ -129,11 +153,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         hotKeySpec = spec
-        hotKey = HotKey(spec: spec) { [weak self] in self?.panel.toggle() }
-        if hotKey == nil {
-            alert("Der Hotkey \(spec.display) ist bereits von einer anderen App belegt (z. B. Alfred).")
+        let label = KeyLabel.display(spec)
+        do {
+            hotKey = try HotKey(spec: spec) { [weak self] in self?.panel.toggle() }
+        } catch let error as HotKeyError where error.isAlreadyTaken {
+            alert("Der Hotkey \(label) ist bereits von einer anderen App belegt (z. B. Alfred).")
+        } catch {
+            alert("macOS hat den Hotkey \(label) abgelehnt (\(error)). Bitte eine Kombination mit ⌘ oder ⌃ wählen.")
         }
-        openItem?.title = "Historie öffnen (\(spec.display))"
+        openItem?.title = "Historie öffnen (\(label))"
     }
 
     private func prune() {

@@ -96,6 +96,18 @@ import Testing
         #expect(SearchQuery("fehlermeldung").matches(item))
     }
 
+    @Test func pinnedEntriesDoNotHideOthers() throws {
+        for index in 0..<4 {
+            store.addText("entry \(index)", app: nil, appPath: nil, date: Date(timeIntervalSince1970: Double(index)))
+        }
+        let oldest = try #require(store.items().last)
+        store.setPinned(true, for: oldest)
+        store.prune(retentionDays: 365_000, maxItems: 3)
+
+        #expect(store.items().count == 4)
+        #expect(store.items().first?.text == "entry 0")
+    }
+
     @Test func metadataRoundTrip() {
         #expect(store.metadata("x") == nil)
         store.setMetadata("1", for: "x")
