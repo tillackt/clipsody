@@ -54,7 +54,10 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         // Opens centred on the active screen each time, instead of wherever it was last closed;
         // an already open window stays where the user moved it. Not center(): it places windows
         // in the upper third.
-        if let window, !window.isVisible, let screen = NSScreen.main?.visibleFrame {
+        // The screen under the mouse: an inactive agent app's NSScreen.main can be the other display.
+        let mouse = NSEvent.mouseLocation
+        let activeScreen = NSScreen.screens.first { NSMouseInRect(mouse, $0.frame, false) } ?? NSScreen.main
+        if let window, !window.isVisible, let screen = activeScreen?.visibleFrame {
             window.setFrameOrigin(NSPoint(x: screen.midX - window.frame.width / 2,
                                           y: screen.midY - window.frame.height / 2))
         }
