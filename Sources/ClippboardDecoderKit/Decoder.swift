@@ -78,7 +78,7 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
 
     private func makeThumbnail(_ png: Data, maxPixelSize: Int,
                                reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {
-        guard let thumbnail = ImageCodec.thumbnailPixels(ofPNG: png, maxPixelSize: min(maxPixelSize, 4_096)) else {
+        guard let thumbnail = ImageCodec.thumbnailPixels(ofPNG: png, maxPixelSize: min(maxPixelSize, ImageIngest.maxThumbnailPixelSize)) else {
             reply(nil, 0, 0, 0, 0)
             return
         }

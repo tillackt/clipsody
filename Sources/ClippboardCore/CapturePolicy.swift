@@ -39,4 +39,9 @@ public enum CaptureLimits {
     public static let maxTextBytes = 2_000_000
     /// Formatting above this size is dropped; the plain text is still stored.
     public static let maxRichTextBytes = 1_000_000
+    /// Characters of a text used for search, list title and preview; huge texts (logs) would
+    /// otherwise slow down every keystroke and the panel's opening.
+    public static let searchableCharacters = 100_000
+    /// Text recognised in an image is stored for search only; more than this is cut off.
+    public static let recognizedCharacters = 100_000
 }

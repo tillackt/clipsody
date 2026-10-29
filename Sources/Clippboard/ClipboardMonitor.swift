@@ -78,12 +78,13 @@ final class ClipboardMonitor {
            !urls.isEmpty {
             return .files(urls.map(\.path))
         }
-        if let text = pasteboard.string(forType: .string), !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            guard CapturePolicy.acceptsText(text) else {
+        if let text = pasteboard.string(forType: .string) {
+            if CapturePolicy.acceptsText(text) { return .text(text, Self.richText(from: pasteboard)) }
+            if text.utf8.count > CaptureLimits.maxTextBytes {
                 logger.notice("Skipped text of \(text.utf8.count) bytes (limit \(CaptureLimits.maxTextBytes))")
                 return nil
             }
-            return .text(text, Self.richText(from: pasteboard))
+            // Blank text: an image may come along with it (e.g. copied from a web page).
         }
         if keepImages {
             if let image = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) {

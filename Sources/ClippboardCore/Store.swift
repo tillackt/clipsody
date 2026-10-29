@@ -25,7 +25,7 @@ public final class Store {
     private var hasUnwipedDeletions = false
 
     /// Characters of a text loaded for the list; enough for title, preview and search.
-    public static let listTextPrefix = ItemPresentation.searchablePrefix
+    public static let listTextPrefix = CaptureLimits.searchableCharacters
 
     public static var defaultDirectory: URL {
         FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -174,7 +174,8 @@ public final class Store {
     }
 
     /// Image size as numbers instead of a German label in `text`, file lists as JSON
-    /// (paths may contain newlines), and a key-value table for app state.
+    /// (paths may contain newlines), and a key-value table for app state (unused since the Alfred
+    /// import was removed; kept because released migrations never change).
     private func migrateToV2() throws {
         try execute("""
             ALTER TABLE items ADD COLUMN width INTEGER NOT NULL DEFAULT 0;

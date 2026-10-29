@@ -34,6 +34,9 @@ public enum ImageIngest {
     /// Longest side of the stored preview; enough for the panel on a Retina screen.
     public static let previewMaxPixelSize = 1_024
 
+    /// Upper bound for thumbnails the service renders and the app accepts.
+    public static let maxThumbnailPixelSize = 4_096
+
     public static func sha256(_ data: Data) -> String {
         SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
     }

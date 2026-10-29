@@ -70,7 +70,7 @@ public enum ItemPresentation {
     }
 
     /// Searchable part of a text; huge texts (logs) would otherwise slow down every keystroke.
-    public static let searchablePrefix = 100_000
+    public static let searchablePrefix = CaptureLimits.searchableCharacters
 
     /// Everything a search term may match: content (its first 100,000 characters), label,
     /// source app and recognised text.

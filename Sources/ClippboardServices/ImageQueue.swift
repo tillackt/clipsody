@@ -56,7 +56,7 @@ public final class ImageQueue {
         generation += 1
     }
 
-    /// Waits until every queued conversion has finished (for tests and orderly shutdown).
+    /// Waits until every queued conversion has finished (for tests).
     public func waitUntilIdle() async {
         await chain?.value
     }

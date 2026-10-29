@@ -389,7 +389,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private func showPreviewText(_ text: String) {
         previewTextScroll.isHidden = false
         previewImage.isHidden = true
-        let shown = String(text.prefix(100_000))
+        let shown = String(text.prefix(ItemPresentation.searchablePrefix))
         let string = NSMutableAttributedString(string: shown, attributes: [
             .font: NSFont.monospacedSystemFont(ofSize: 13, weight: .regular), .foregroundColor: NSColor.labelColor,
         ])

@@ -142,14 +142,15 @@ public final class DecoderClient {
     private var idleTask: Task<Void, Never>?
 
     /// Recognised text is stored for search only; more than this is cut off.
-    public nonisolated static let maxRecognizedCharacters = 100_000
+    public nonisolated static let maxRecognizedCharacters = CaptureLimits.recognizedCharacters
 
     /// Connects to the XPC service embedded in the app bundle and only accepts it if it is signed
     /// like the app (see CodeSigningRequirement), so a replaced service binary is refused.
     /// Without a requirement no service is contacted: every call returns its fallback.
-    public convenience init(appBundleID: String = Bundle.main.bundleIdentifier ?? "local.thorsten.clippboard") {
-        let serviceName = DecoderService.name(forAppBundleID: appBundleID)
-        guard let requirement = CodeSigningRequirement.forService(identifier: serviceName) else {
+    public convenience init(appBundleID: String? = Bundle.main.bundleIdentifier) {
+        // Without a bundle (e.g. a bare binary) there is no embedded service to verify.
+        let serviceName = appBundleID.map(DecoderService.name(forAppBundleID:)) ?? "invalid.decoder"
+        guard appBundleID != nil, let requirement = CodeSigningRequirement.forService(identifier: serviceName) else {
             // An already invalidated connection fails every message right away without launching
             // anything, so clipboard data never reaches an unverified process.
             self.init {
@@ -275,7 +276,7 @@ public final class DecoderClient {
 
     /// Wraps raw RGBA bytes in a CGImage after checking that size and buffer length agree.
     nonisolated static func thumbnail(from pixels: RawPixels, maxPixelSize: Int) -> Thumbnail? {
-        let limit = min(maxPixelSize, 4_096)
+        let limit = min(maxPixelSize, ImageIngest.maxThumbnailPixelSize)
         guard pixels.width > 0, pixels.height > 0, pixels.width <= limit, pixels.height <= limit,
               pixels.data.count == pixels.width * pixels.height * 4,
               pointSizeFits(pixels),
