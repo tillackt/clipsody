@@ -40,6 +40,28 @@ public struct HotKeySpec: Equatable, Sendable {
         keyCodes.first { $0.value == UInt32(keyCode) }?.key
     }
 
+    /// Canonical config form ("ctrl+option+shift+cmd+c"), the format the settings recorder writes.
+    public var configString: String {
+        // Only parsed specs exist, so the key code always has a name.
+        Self.configString(modifiers: modifiers, key: Self.keyName(for: UInt16(keyCode)) ?? "")
+    }
+
+    private static func configString(modifiers: UInt32, key: String) -> String {
+        var parts: [String] = []
+        if modifiers & control != 0 { parts.append("ctrl") }
+        if modifiers & option != 0 { parts.append("option") }
+        if modifiers & shift != 0 { parts.append("shift") }
+        if modifiers & command != 0 { parts.append("cmd") }
+        return (parts + [key]).joined(separator: "+")
+    }
+
+    /// Spec of a pressed key with Carbon modifier masks; nil under the same rules as parsing.
+    public init?(keyCode: UInt16, modifiers: UInt32) {
+        guard let key = Self.keyName(for: keyCode) else { return nil }
+        // Going through the parser keeps one place that decides which combinations are valid.
+        self.init(Self.configString(modifiers: modifiers, key: key))
+    }
+
     public init?(_ string: String) {
         var modifiers: UInt32 = 0
         var key: (code: UInt32, name: String)?

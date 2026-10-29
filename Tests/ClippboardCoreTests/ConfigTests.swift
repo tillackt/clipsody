@@ -88,4 +88,35 @@ import Testing
         #expect(HotKeySpec.keyName(for: 49) == "space")
         #expect(HotKeySpec.keyName(for: 200) == nil)
     }
+
+    @Test(arguments: ["option+cmd+c", "ctrl+v", "ctrl+option+shift+cmd+space", "shift+cmd+5"])
+    func configStringRoundTrips(_ text: String) throws {
+        let spec = try #require(HotKeySpec(text))
+        #expect(spec.configString == text)
+        #expect(HotKeySpec(spec.configString) == spec)
+    }
+
+    // Older config files and hand edits use any order and aliases; they must keep their meaning.
+    @Test func configStringIsCanonicalForExistingConfigs() throws {
+        let spec = try #require(HotKeySpec("cmd+option+c"))
+        #expect(spec.configString == "option+cmd+c")
+        #expect(HotKeySpec("Command + Alt + C") == spec)
+    }
+
+    @Test func initFromKeyCodeMatchesParsedSpec() {
+        let spec = HotKeySpec(keyCode: 8, modifiers: HotKeySpec.command | HotKeySpec.option)
+        #expect(spec == HotKeySpec("cmd+option+c"))
+        #expect(spec?.configString == "option+cmd+c")
+        #expect(HotKeySpec(keyCode: 49, modifiers: HotKeySpec.control)?.display == "⌃Space")
+    }
+
+    @Test(arguments: [HotKeySpec.option, HotKeySpec.shift, HotKeySpec.option | HotKeySpec.shift, 0])
+    func initFromKeyCodeNeedsCommandOrControl(_ modifiers: UInt32) {
+        #expect(HotKeySpec(keyCode: 8, modifiers: modifiers) == nil)
+    }
+
+    @Test(arguments: [UInt16(53), 105, 200]) // Escape, F13, nothing
+    func initFromKeyCodeRejectsUnknownKeys(_ keyCode: UInt16) {
+        #expect(HotKeySpec(keyCode: keyCode, modifiers: HotKeySpec.command) == nil)
+    }
 }

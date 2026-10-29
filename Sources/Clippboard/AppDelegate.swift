@@ -10,7 +10,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var panel: PanelController!
     private let decoder = DecoderClient()
     private lazy var paster = Paster(decoder: decoder)
-    private var hotKey: HotKey?
+    private lazy var hotKeys = HotKeyController(
+        onPress: { [unowned self] in panel.toggle() },
+        onRegister: { [unowned self] label in openItem?.title = "Historie öffnen (\(label))" },
+        onError: { [unowned self] message in alert(message) }
+    )
     private var statusItem: NSStatusItem!
     private var openItem: NSMenuItem!
     private var settings: SettingsWindowController?
@@ -60,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         buildMainMenu()
         buildStatusItem()
-        registerHotKey(config.hotkey)
+        hotKeys.register(config.hotkey)
 
         pruneTimer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.prune() }
@@ -121,30 +125,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Settings
 
-    /// Registers `hotkey` in place of the current one. On failure nothing is registered and the
-    /// caller decides what to restore; the alert explains why.
-    @discardableResult
-    private func registerHotKey(_ hotkey: String) -> Bool {
-        guard let spec = HotKeySpec(hotkey) else {
-            alert("Ungültiger Hotkey „\(hotkey)“ in config.json. Beispiel: \"cmd+option+c\"")
-            return false
-        }
-        let label = KeyLabel.display(spec)
-        // Release the old one first, otherwise re-registering the same combination counts as taken.
-        hotKey = nil
-        do {
-            hotKey = try HotKey(spec: spec) { [weak self] in self?.panel.toggle() }
-        } catch let error as HotKeyError where error.isAlreadyTaken {
-            alert("Der Hotkey \(label) ist bereits von einer anderen App belegt (z. B. Alfred).")
-            return false
-        } catch {
-            alert("macOS hat den Hotkey \(label) abgelehnt (\(error)). Bitte eine Kombination mit ⌘ oder ⌃ wählen.")
-            return false
-        }
-        openItem?.title = "Historie öffnen (\(label))"
-        return true
-    }
-
     private func prune() {
         store.prune(retentionDays: config.retentionDays, maxItems: config.maxItems)
         // An open panel must not keep showing (and pasting) entries that are gone.
@@ -160,9 +140,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             settings = SettingsWindowController(
                 config: config,
                 dataDirectory: store.directory,
-                // The registered hotkey would swallow the keystroke while recording a new one.
                 onRecordingHotKey: { [unowned self] recording in
-                    if recording { hotKey = nil } else { registerHotKey(config.hotkey) }
+                    if recording { hotKeys.suspend() } else { hotKeys.resume() }
                 },
                 onChange: { [unowned self] newConfig in applySettings(newConfig) }
             )
@@ -172,9 +151,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func applySettings(_ newConfig: Config) {
         var newConfig = newConfig
+        // Also for an unchanged hotkey: a recording that ends on the same key must resume it.
         // A rejected hotkey must not be saved: the old one stays registered and in the settings.
-        if newConfig.hotkey != config.hotkey, !registerHotKey(newConfig.hotkey) {
-            registerHotKey(config.hotkey)
+        if !hotKeys.replace(with: newConfig.hotkey) {
             newConfig.hotkey = config.hotkey
             settings?.restoreHotkey(config.hotkey)
         }

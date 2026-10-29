@@ -8,6 +8,8 @@ final class HotKeyRecorder: NSButton {
         didSet { updateTitle() }
     }
     var onChange: ((String) -> Void)?
+    /// true when recording starts, false when it ends without a new key. A recorded key arrives
+    /// through `onChange` only, so the owner registers once instead of restoring the old key first.
     var onRecordingChange: ((Bool) -> Void)?
     private var isRecording = false
 
@@ -38,11 +40,11 @@ final class HotKeyRecorder: NSButton {
         stopRecording()
     }
 
-    private func stopRecording() {
+    private func stopRecording(recorded: Bool = false) {
         guard isRecording else { return }
         isRecording = false
         updateTitle()
-        onRecordingChange?(false)
+        if !recorded { onRecordingChange?(false) }
         announce("Tastenkürzel \(title)")
     }
 
@@ -68,20 +70,18 @@ final class HotKeyRecorder: NSButton {
             stopRecording()
             return
         }
-        let flags = event.modifierFlags.intersection([.control, .option, .shift, .command])
-        // macOS 15+ refuses hotkeys without ⌘ or ⌃.
-        guard !flags.isDisjoint(with: [.command, .control]), let key = HotKeySpec.keyName(for: event.keyCode) else {
+        var modifiers: UInt32 = 0
+        if event.modifierFlags.contains(.control) { modifiers |= HotKeySpec.control }
+        if event.modifierFlags.contains(.option) { modifiers |= HotKeySpec.option }
+        if event.modifierFlags.contains(.shift) { modifiers |= HotKeySpec.shift }
+        if event.modifierFlags.contains(.command) { modifiers |= HotKeySpec.command }
+        // Unknown keys and combinations without ⌘ or ⌃ (refused by macOS 15+) keep recording.
+        guard let spec = HotKeySpec(keyCode: event.keyCode, modifiers: modifiers) else {
             NSSound.beep()
             return
         }
-        var parts: [String] = []
-        if flags.contains(.control) { parts.append("ctrl") }
-        if flags.contains(.option) { parts.append("option") }
-        if flags.contains(.shift) { parts.append("shift") }
-        if flags.contains(.command) { parts.append("cmd") }
-        parts.append(key)
-        hotkey = parts.joined(separator: "+")
-        stopRecording()
+        hotkey = spec.configString
+        stopRecording(recorded: true)
         onChange?(hotkey)
     }
 
