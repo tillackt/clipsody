@@ -44,7 +44,13 @@ enum AppLanguage {
 
     /// Starts a new instance once this one has quit; two instances would fight over the hotkey.
     static func relaunch() {
-        let script = "while /bin/kill -0 \(ProcessInfo.processInfo.processIdentifier) 2>/dev/null; do sleep 0.1; done; /usr/bin/open \"$0\""
+        // Right after the process is gone, LaunchServices may still refuse to open the app (-600);
+        // retried for a few seconds, or the user would be left without a running Clippboard.
+        let script = """
+            while /bin/kill -0 \(ProcessInfo.processInfo.processIdentifier) 2>/dev/null; do sleep 0.1; done
+            for _ in 1 2 3 4 5 6 7 8 9 10; do sleep 0.5; /usr/bin/open "$0" && exit 0; done
+            exit 1
+            """
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/sh")
         process.arguments = ["-c", script, Bundle.main.bundlePath]
