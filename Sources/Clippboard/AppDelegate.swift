@@ -8,8 +8,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var config = Config()
     private var monitor: ClipboardMonitor!
     private var panel: PanelController!
-    private let paster = Paster()
     private let decoder = DecoderClient()
+    private lazy var paster = Paster(decoder: decoder)
     private var hotKey: HotKey?
     private var statusItem: NSStatusItem!
     private var openItem: NSMenuItem!
@@ -42,7 +42,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             recognition.start()
         }
         monitor = ClipboardMonitor(store: store, images: images) { [unowned self] in config }
-        panel = PanelController(store: store) { [unowned self] item, target, formatted in
+        panel = PanelController(store: store, decoder: decoder) { [unowned self] item, target, formatted in
             paste(item, into: target, withFormatting: formatted)
         }
         monitor.onChange = { [unowned self] in

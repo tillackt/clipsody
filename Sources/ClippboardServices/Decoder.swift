@@ -8,7 +8,8 @@ import Vision
 public final class Decoder: NSObject, DecoderServiceProtocol {
     public func prepareImage(_ data: Data, maxPixels: Int,
                              reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
-        guard let image = ImageIngest.prepare(data, maxPixels: maxPixels) else {
+        // The service enforces its own limit, whatever the caller asks for.
+        guard let image = ImageIngest.prepare(data, maxPixels: min(maxPixels, ImageIngest.maxPixels)) else {
             reply(nil, 0, 0, nil)
             return
         }
@@ -28,6 +29,20 @@ public final class Decoder: NSObject, DecoderServiceProtocol {
         }
         let lines = (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
         reply(lines.joined(separator: "\n"))
+    }
+
+    public func thumbnail(ofPNG png: Data, maxPixelSize: Int,
+                          reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {
+        guard let thumbnail = ImageIngest.thumbnailPixels(ofPNG: png, maxPixelSize: min(maxPixelSize, 4_096)) else {
+            reply(nil, 0, 0, 0, 0)
+            return
+        }
+        reply(thumbnail.pixels, thumbnail.width, thumbnail.height,
+              Double(thumbnail.pointSize.width), Double(thumbnail.pointSize.height))
+    }
+
+    public func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {
+        reply(ImageIngest.tiff(fromPNG: png))
     }
 }
 

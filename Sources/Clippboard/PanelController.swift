@@ -1,10 +1,12 @@
 import AppKit
 import Carbon
 import ClippboardCore
+import ClippboardServices
 
 @MainActor
 final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
+    private let decoder: DecoderClient
     /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
     private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
@@ -41,8 +43,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     var isVisible: Bool { panel.isVisible }
 
-    init(store: Store, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
+    init(store: Store, decoder: DecoderClient, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
         self.store = store
+        self.decoder = decoder
         self.onPaste = onPaste
         panel = KeyPanel(
             contentRect: NSRect(x: 0, y: 0, width: 820, height: 460),
@@ -322,8 +325,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         })
     }
 
-    /// Shows a downscaled image, built off the main thread and cached, so holding ↓ over
-    /// screenshots does not decode full-size images.
+    /// Shows a downscaled image, made by the decoder service as raw pixels (the app never decodes
+    /// image formats) and cached, so holding ↓ over screenshots does not decode full-size images.
     private func showPreviewImage(for item: ClipItem) {
         previewTask?.cancel()
         guard let url = store.imageURL(for: item) else {
@@ -338,11 +341,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         previewImage.image = nil
         let scale = panel.backingScaleFactor
         let maxPixelSize = Int(max(previewImage.bounds.width, previewImage.bounds.height, 400) * scale)
-        previewTask = Task { [weak self] in
-            let result = await Task.detached(priority: .userInitiated) {
-                ImageIngest.thumbnail(of: url, maxPixelSize: maxPixelSize)
-            }.value
-            guard let self, !Task.isCancelled, let result else { return }
+        previewTask = Task { [weak self, decoder] in
+            // Reading a multi-MB file must not block the main thread.
+            let png = await Task.detached(priority: .userInitiated) { try? Data(contentsOf: url) }.value
+            guard let png, !Task.isCancelled,
+                  let result = await decoder.thumbnail(ofPNG: png, maxPixelSize: maxPixelSize),
+                  let self, !Task.isCancelled else { return }
             let thumbnail = NSImage(cgImage: result.image, size: result.pointSize)
             previewCache.setObject(thumbnail, forKey: key, cost: result.image.bytesPerRow * result.image.height)
             previewImage.image = thumbnail

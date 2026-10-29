@@ -69,4 +69,43 @@ final class TestService {
 final class SilentDecoder: NSObject, DecoderServiceProtocol {
     func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {}
     func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {}
+    func thumbnail(ofPNG png: Data, maxPixelSize: Int,
+                   reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {}
+    func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {}
+}
+
+/// A compromised service: answers, but with whatever it likes.
+final class LyingDecoder: NSObject, DecoderServiceProtocol {
+    struct Reply: Sendable {
+        var png: Data?
+        var width = 0
+        var height = 0
+        var hash: String?
+        var text: String?
+        var pixels: Data?
+        var tiff: Data?
+    }
+
+    let reply: Reply
+
+    init(_ reply: Reply) {
+        self.reply = reply
+    }
+
+    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
+        reply(self.reply.png, self.reply.width, self.reply.height, self.reply.hash)
+    }
+
+    func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {
+        reply(self.reply.text)
+    }
+
+    func thumbnail(ofPNG png: Data, maxPixelSize: Int,
+                   reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {
+        reply(self.reply.pixels, self.reply.width, self.reply.height, 100, 100)
+    }
+
+    func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {
+        reply(self.reply.tiff)
+    }
 }

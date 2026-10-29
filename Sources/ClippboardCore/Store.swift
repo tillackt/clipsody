@@ -221,7 +221,11 @@ public final class Store {
     @discardableResult
     public func addImage(_ image: PreparedImage, app: String?, appPath: String?, date: Date = Date()) -> Bool {
         let fileName = image.hash + ".png"
-        let url = imagesDirectory.appendingPathComponent(fileName)
+        // The hash names a file; anything but "<sha256>.png" must never become a path.
+        guard let url = imageURL(forFile: fileName) else {
+            logger.error("Rejected image with invalid name")
+            return false
+        }
         let isNewFile = !FileManager.default.fileExists(atPath: url.path)
         if isNewFile {
             do {

@@ -36,14 +36,25 @@ import Testing
         #expect(ImageIngest.prepare(makeImage(type: .gif)) == nil)
     }
 
-    @Test func thumbnailIsDownscaled() throws {
-        let directory = try TemporaryDirectory()
-        let url = directory.url.appendingPathComponent("big.png")
-        try makeImage(width: 400, height: 100, type: .png, dpi: 144).write(to: url)
-        let thumbnail = try #require(ImageIngest.thumbnail(of: url, maxPixelSize: 100))
-        #expect(thumbnail.image.width == 100 && thumbnail.image.height == 25)
+    @Test func thumbnailIsDownscaledRawPixels() throws {
+        let png = makeImage(width: 400, height: 100, type: .png, dpi: 144)
+        let thumbnail = try #require(ImageIngest.thumbnailPixels(ofPNG: png, maxPixelSize: 100))
+        #expect(thumbnail.width == 100 && thumbnail.height == 25)
+        #expect(thumbnail.pixels.count == 100 * 25 * 4)
         // 400 px at 144 DPI (Retina) appeared as 200 pt on screen
         #expect(thumbnail.pointSize == CGSize(width: 200, height: 50))
+    }
+
+    @Test func thumbnailsAreOnlyMadeFromPNG() {
+        #expect(ImageIngest.thumbnailPixels(ofPNG: makeImage(type: .tiff), maxPixelSize: 100) == nil)
+    }
+
+    @Test func pngHeaderGivesSizeWithoutDecoding() throws {
+        let size = try #require(PNGHeader.size(of: makeImage(width: 321, height: 123, type: .png)))
+        #expect(size.width == 321 && size.height == 123)
+        #expect(PNGHeader.size(of: makeImage(type: .tiff)) == nil)
+        #expect(PNGHeader.size(of: Data([0x89, 0x50, 0x4E, 0x47])) == nil)
+        #expect(PNGHeader.size(of: Data()) == nil)
     }
 
     @Test func sameImageGivesSameHash() throws {

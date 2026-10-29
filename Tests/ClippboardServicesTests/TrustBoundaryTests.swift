@@ -1,0 +1,82 @@
+import ClippboardCore
+import Foundation
+import Testing
+@testable import ClippboardServices
+
+/// What a compromised decoder service may send back, and what the app must make of it.
+@MainActor
+@Suite struct TrustBoundaryTests {
+    let png = makeImage(width: 40, height: 30, type: .png)
+
+    func client(_ reply: LyingDecoder.Reply) -> (TestService, DecoderClient) {
+        let service = TestService { LyingDecoder(reply) }
+        return (service, service.client(timeout: .seconds(5)))
+    }
+
+    @Test func hashIsComputedByTheAppNotTakenFromTheService() async throws {
+        let (service, client) = client(.init(png: png, width: 40, height: 30, hash: "../../../Desktop/escaped"))
+        let image = try #require(await client.prepareImage(png))
+        #expect(image.hash == ImageIngest.sha256(png))
+        withExtendedLifetime(service) {}
+    }
+
+    @Test(arguments: [(41, 30), (40, 0), (0, 0), (-40, 30)])
+    func sizesThatDoNotMatchTheHeaderAreRejected(width: Int, height: Int) async {
+        let (service, client) = client(.init(png: png, width: width, height: height, hash: "x"))
+        #expect(await client.prepareImage(png) == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func anythingButPNGIsRejected() async {
+        let tiff = makeImage(width: 40, height: 30, type: .tiff)
+        let (service, client) = client(.init(png: tiff, width: 40, height: 30, hash: "x"))
+        #expect(await client.prepareImage(png) == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func recognisedTextIsCappedInLength() async throws {
+        let huge = String(repeating: "a", count: DecoderClient.maxRecognizedCharacters + 5_000)
+        let (service, client) = client(.init(text: huge))
+        let text = try #require(await client.recognizeText(inPNG: png))
+        #expect(text.count == DecoderClient.maxRecognizedCharacters)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test(arguments: [(10, 10, 399), (10, 10, 401), (0, 10, 0), (5_000, 1, 20_000)])
+    func pixelBuffersThatDoNotFitTheirSizeAreRejected(width: Int, height: Int, bytes: Int) async {
+        let (service, client) = client(.init(width: width, height: height, pixels: Data(count: bytes)))
+        #expect(await client.thumbnail(ofPNG: png, maxPixelSize: 4_096) == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func fittingPixelBufferBecomesAnImage() async throws {
+        let (service, client) = client(.init(width: 10, height: 10, pixels: Data(count: 400)))
+        let thumbnail = try #require(await client.thumbnail(ofPNG: png, maxPixelSize: 100))
+        #expect(thumbnail.image.width == 10)
+        withExtendedLifetime(service) {}
+    }
+}
+
+@MainActor
+@Suite struct ServiceOutputTests {
+    @Test func realThumbnailComesBackAsPixels() async throws {
+        let service = TestService()
+        let png = makeImage(width: 800, height: 200, type: .png)
+        let thumbnail = try #require(await service.client().thumbnail(ofPNG: png, maxPixelSize: 400))
+        #expect(thumbnail.image.width == 400 && thumbnail.image.height == 100)
+    }
+
+    @Test func tiffIsMadeByTheService() throws {
+        let service = TestService()
+        let tiff = try #require(service.client().tiffBlocking(fromPNG: makeImage(type: .png)))
+        // "II*\0" (little endian) or "MM\0*" (big endian)
+        #expect(tiff.starts(with: [0x49, 0x49, 0x2A, 0x00]) || tiff.starts(with: [0x4D, 0x4D, 0x00, 0x2A]))
+    }
+
+    @Test func tiffRequestToAHangingServiceGivesUp() {
+        let service = TestService { SilentDecoder() }
+        let started = ContinuousClock.now
+        #expect(service.client().tiffBlocking(fromPNG: makeImage(type: .png), timeout: 0.3) == nil)
+        #expect(ContinuousClock.now - started < .seconds(3))
+    }
+}

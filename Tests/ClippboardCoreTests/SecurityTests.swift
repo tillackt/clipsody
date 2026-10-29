@@ -73,6 +73,18 @@ import Testing
         #expect(store.imageURL(forFile: name) == nil)
     }
 
+    @Test func imagesWithForeignHashesAreNotWritten() throws {
+        let directory = try TemporaryDirectory()
+        let store = try Store(directory: directory.url)
+        let real = try #require(ImageIngest.prepare(makeImage()))
+        let forged = PreparedImage(png: real.png, width: real.width, height: real.height, hash: "../../escaped")
+
+        #expect(!store.addImage(forged, app: nil, appPath: nil))
+        #expect(!FileManager.default.fileExists(atPath: directory.url.deletingLastPathComponent()
+            .appendingPathComponent("escaped.png").path))
+        #expect(store.items().isEmpty)
+    }
+
     @Test func generatedImageNamesAreAccepted() throws {
         let directory = try TemporaryDirectory()
         let store = try Store(directory: directory.url)

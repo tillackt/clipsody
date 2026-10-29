@@ -86,7 +86,14 @@ final class ClipboardMonitor {
             return .text(text, Self.richText(from: pasteboard))
         }
         if keepImages {
-            if let image = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) { return .image(image) }
+            if let image = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) {
+                // Oversized data is not even queued or sent to the decoder service.
+                guard image.count <= ImageIngest.maxBytes else {
+                    logger.notice("Skipped image of \(image.count) bytes (limit \(ImageIngest.maxBytes))")
+                    return nil
+                }
+                return .image(image)
+            }
         }
         return nil
     }

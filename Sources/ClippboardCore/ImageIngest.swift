@@ -49,11 +49,13 @@ public enum ImageIngest {
         return PreparedImage(png: png, width: width, height: height, hash: sha256(png))
     }
 
-    /// Downscaled version for the preview, so browsing screenshots does not decode full 5K images.
-    /// `pointSize` is the size the original appears at (pixels at its DPI), so a Retina screenshot
-    /// is not shown twice as large as it was on screen.
-    public static func thumbnail(of url: URL, maxPixelSize: Int) -> (image: CGImage, pointSize: CGSize)? {
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+    /// Downscaled preview as raw 8-bit RGBA pixels (premultiplied, sRGB, rows of width × 4 bytes),
+    /// made in the decoder service so the app never decodes an image format. `pointSize` is the size
+    /// the original appears at (pixels at its DPI), so a Retina screenshot is not shown twice as large.
+    public static func thumbnailPixels(ofPNG png: Data, maxPixelSize: Int)
+        -> (pixels: Data, width: Int, height: Int, pointSize: CGSize)? {
+        guard let source = CGImageSourceCreateWithData(png as CFData, nil),
+              CGImageSourceGetType(source) as String? == UTType.png.identifier,
               let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
               let width = properties[kCGImagePropertyPixelWidth] as? Double,
               let height = properties[kCGImagePropertyPixelHeight] as? Double else { return nil }
@@ -65,7 +67,23 @@ public enum ImageIngest {
         guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options) else { return nil }
         let dpi = properties[kCGImagePropertyDPIWidth] as? Double ?? 72
         let scale = 72 / (dpi > 0 ? dpi : 72)
-        return (image, CGSize(width: width * scale, height: height * scale))
+        guard let pixels = rgbaPixels(of: image) else { return nil }
+        return (pixels, image.width, image.height, CGSize(width: width * scale, height: height * scale))
+    }
+
+    /// Redraws `image` into a plain RGBA buffer in the layout `thumbnailPixels` promises.
+    private static func rgbaPixels(of image: CGImage) -> Data? {
+        let bytesPerRow = image.width * 4
+        var buffer = Data(count: bytesPerRow * image.height)
+        let drawn = buffer.withUnsafeMutableBytes { raw -> Bool in
+            guard let context = CGContext(data: raw.baseAddress, width: image.width, height: image.height,
+                                          bitsPerComponent: 8, bytesPerRow: bytesPerRow,
+                                          space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                          bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return false }
+            context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+            return true
+        }
+        return drawn ? buffer : nil
     }
 
     /// TIFF version of a stored PNG, for apps that do not accept PNG.
@@ -76,7 +94,7 @@ public enum ImageIngest {
         return encode(image, type: .tiff, properties: properties)
     }
 
-    static func sha256(_ data: Data) -> String {
+    public static func sha256(_ data: Data) -> String {
         SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
     }
 

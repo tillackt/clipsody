@@ -1,20 +1,28 @@
 import AppKit
 import ApplicationServices
 import ClippboardCore
+import ClippboardServices
 
 /// Supplies the TIFF version of a pasted image only if the receiving app asks for it;
 /// a 5K screenshot is about 30 MB as TIFF.
 private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
     private let png: Data
+    private let decoder: DecoderClient
     private let onFinished: @Sendable (ObjectIdentifier) -> Void
 
-    init(png: Data, onFinished: @escaping @Sendable (ObjectIdentifier) -> Void) {
+    init(png: Data, decoder: DecoderClient, onFinished: @escaping @Sendable (ObjectIdentifier) -> Void) {
         self.png = png
+        self.decoder = decoder
         self.onFinished = onFinished
     }
 
     func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
-        if type == .tiff, let tiff = ImageIngest.tiff(fromPNG: png) {
+        // The pasteboard asks on the main thread and waits; the conversion happens in the decoder
+        // service, so the app does not decode the image itself.
+        guard type == .tiff else { return }
+        let png = png
+        let decoder = decoder
+        if let tiff = MainActor.assumeIsolated({ decoder.tiffBlocking(fromPNG: png) }) {
             item.setData(tiff, forType: .tiff)
         }
     }
@@ -28,6 +36,12 @@ private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
 /// Puts a history entry on the pasteboard and pastes it into the app the user came from.
 @MainActor
 final class Paster {
+    private let decoder: DecoderClient
+
+    init(decoder: DecoderClient) {
+        self.decoder = decoder
+    }
+
     /// The pasteboard item does not own its data provider, so it is kept here until released.
     private var tiffProvider: TIFFProvider?
     /// Only the latest paste may send ⌘V; a quicker second one cancels the first.
@@ -104,7 +118,7 @@ final class Paster {
             let pasteboardItem = NSPasteboardItem()
             pasteboardItem.setData(png, forType: .png)
             // Some older apps only accept TIFF.
-            let provider = TIFFProvider(png: png) { [weak self] finished in
+            let provider = TIFFProvider(png: png, decoder: decoder) { [weak self] finished in
                 Task { @MainActor in
                     if let self, let current = self.tiffProvider, ObjectIdentifier(current) == finished {
                         self.tiffProvider = nil
