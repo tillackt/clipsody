@@ -83,13 +83,18 @@ public final class Store {
     /// or between deleting a row and its file. Unknown files are left alone.
     private func removeOrphanedImages() {
         var referenced = Set<String>()
-        query("SELECT image_file FROM items WHERE image_file IS NOT NULL") { stmt in
+        let complete = query("SELECT image_file FROM items WHERE image_file IS NOT NULL") { stmt in
             if let file = Self.string(stmt, 0) { referenced.insert(file) }
         }
         let files = (try? FileManager.default.contentsOfDirectory(atPath: imagesDirectory.path)) ?? []
-        for file in files where Self.isImageFileName(file) && !referenced.contains(file) {
-            removeImage(file)
-        }
+        Self.orphanedImageFiles(files, referenced: complete ? referenced : nil).forEach(removeImage)
+    }
+
+    /// Files to delete as orphans. Without a complete list of referenced files (the query failed)
+    /// nothing is deleted: an incomplete list would make images still in use look orphaned.
+    static func orphanedImageFiles(_ files: [String], referenced: Set<String>?) -> [String] {
+        guard let referenced else { return [] }
+        return files.filter { isImageFileName($0) && !referenced.contains($0) }
     }
 
     deinit {
@@ -266,9 +271,12 @@ public final class Store {
         }
     }
 
-    public func delete(_ item: ClipItem) {
-        deleteWhere("id = ?") { sqlite3_bind_int64($0, 1, item.id) }
+    /// Returns false if the entry could not be deleted.
+    @discardableResult
+    public func delete(_ item: ClipItem) -> Bool {
+        let deleted = deleteWhere("id = ?") { sqlite3_bind_int64($0, 1, item.id) }
         wipeDeletedContent()
+        return deleted
     }
 
     /// Deletes everything except pinned entries.
@@ -316,8 +324,9 @@ public final class Store {
         }
     }
 
-    /// Runs `body` in one transaction (e.g. a bulk import); rolls back if it throws.
-    public func transaction(_ body: () throws -> Void) throws {
+    /// Runs `body` in one transaction; rolls back if it throws. Internal on purpose: image files
+    /// deleted inside a transaction would not come back with a rollback.
+    func transaction(_ body: () throws -> Void) throws {
         try execute("BEGIN IMMEDIATE")
         do {
             try body()
@@ -446,17 +455,22 @@ public final class Store {
     }
 
     /// Deletes matching rows and the image files no remaining row refers to.
-    private func deleteWhere(_ condition: String, bind: (OpaquePointer?) -> Void) {
+    /// Returns false if the rows could not be deleted.
+    @discardableResult
+    private func deleteWhere(_ condition: String, bind: (OpaquePointer?) -> Void) -> Bool {
         var files: [String] = []
         query("SELECT image_file FROM items WHERE image_file IS NOT NULL AND (\(condition))", bind: bind) { stmt in
             if let file = Self.string(stmt, 0) { files.append(file) }
         }
-        guard run("DELETE FROM items WHERE \(condition)", bind: bind) else { return }
+        guard run("DELETE FROM items WHERE \(condition)", bind: bind) else { return false }
         for file in files {
             var stillUsed = false
-            query("SELECT 1 FROM items WHERE image_file = ? LIMIT 1", bind: { Self.bind($0, 1, file) }) { _ in stillUsed = true }
-            if !stillUsed { removeImage(file) }
+            let checked = query("SELECT 1 FROM items WHERE image_file = ? LIMIT 1",
+                                bind: { Self.bind($0, 1, file) }) { _ in stillUsed = true }
+            // Only delete a file when it is certain that no entry uses it any more.
+            if checked && !stillUsed { removeImage(file) }
         }
+        return true
     }
 
     private func removeImage(_ fileName: String) {

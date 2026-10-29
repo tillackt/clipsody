@@ -5,22 +5,29 @@ import Foundation
 @MainActor
 public final class TextRecognitionQueue {
     private let store: Store
-    private let recognize: (Data) async -> String?
+    private let recognize: (Data) async -> RecognitionResult
     private let onRecognized: (String) -> Void
     private var running: Task<Void, Never>?
-    /// Images that could not be processed in this session (file gone or invalid name).
-    private var skipped = Set<String>()
+    /// Invalid file names; never processed.
+    private var invalid = Set<String>()
+    /// Files that were missing; retried as soon as the file exists again (the image copied anew).
+    private var missing = Set<String>()
+    /// The service did not answer for these; retried with the next `start()`, not in a tight loop.
+    private var failed = Set<String>()
 
     /// `recognize` gets the PNG bytes (never a path); `onRecognized` receives the image file name.
-    public init(store: Store, recognize: @escaping (Data) async -> String?, onRecognized: @escaping (String) -> Void) {
+    public init(store: Store, recognize: @escaping (Data) async -> RecognitionResult,
+                onRecognized: @escaping (String) -> Void) {
         self.store = store
         self.recognize = recognize
         self.onRecognized = onRecognized
     }
 
-    /// Starts working through pending images unless that is already happening.
+    /// Starts working through pending images unless that is already happening. Images whose
+    /// recognition failed earlier are tried again.
     public func start() {
         guard running == nil else { return }
+        failed.removeAll()
         running = Task { [weak self] in
             await self?.processPending()
             self?.running = nil
@@ -32,23 +39,43 @@ public final class TextRecognitionQueue {
         await running?.value
     }
 
-    private func processPending() async {
-        while let file = store.imageFilesWithoutRecognizedText().first(where: { !skipped.contains($0) }) {
+    private func nextFile() -> (file: String, url: URL)? {
+        for file in store.imageFilesWithoutRecognizedText() where !invalid.contains(file) && !failed.contains(file) {
             // Validated path only: a tampered database must not make Vision read files elsewhere.
             guard let url = store.imageURL(forFile: file) else {
-                skipped.insert(file)
+                invalid.insert(file)
                 continue
             }
-            // The decoder service gets the bytes, not the path.
-            let png = try? Data(contentsOf: url)
-            let text = if let png { await recognize(png) } else { String?.none }
-            if FileManager.default.fileExists(atPath: url.path) {
-                // Stored even when empty so the image is not processed again.
-                store.setRecognizedText(text ?? "", forImageFile: file)
-                onRecognized(file)
-            } else {
+            if missing.contains(file) && !FileManager.default.fileExists(atPath: url.path) { continue }
+            missing.remove(file)
+            return (file, url)
+        }
+        return nil
+    }
+
+    private func processPending() async {
+        while let (file, url) = nextFile() {
+            // Reading a multi-MB file must not block the main thread; the service gets the bytes, not the path.
+            let png = await Task.detached(priority: .utility) { try? Data(contentsOf: url) }.value
+            guard let png else {
+                missing.insert(file)
+                continue
+            }
+            let result = await recognize(png)
+            guard FileManager.default.fileExists(atPath: url.path) else {
                 // Deleted meanwhile: writing "" could hit a new entry for the same image copied again.
-                skipped.insert(file)
+                missing.insert(file)
+                continue
+            }
+            switch result {
+            case .text(let text):
+                store.setRecognizedText(text, forImageFile: file)
+                onRecognized(file)
+            case .unreadable:
+                // Final: stored as empty so the image is not processed again.
+                store.setRecognizedText("", forImageFile: file)
+            case .failed:
+                failed.insert(file)
             }
         }
     }

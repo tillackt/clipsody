@@ -145,7 +145,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let item = items[row]
         // Keep the selection on the neighbour that moves into this row.
         let neighbour = items.indices.contains(row + 1) ? items[row + 1] : (row > 0 ? items[row - 1] : nil)
-        store.delete(item)
+        guard store.delete(item) else {
+            NSSound.beep()
+            return
+        }
         allItems.removeAll { $0.id == item.id }
         applyFilter(selecting: neighbour?.id)
     }

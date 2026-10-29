@@ -27,8 +27,11 @@ import Testing
         let service = TestService()
         let client = service.client()
         let png = try #require(await client.prepareImage(makeImage(text: "Clippboard 4711", width: 700, height: 120))).png
-        let text = await client.recognizeText(inPNG: png)
-        #expect(text?.contains("4711") == true)
+        guard case .text(let text) = await client.recognizeText(inPNG: png) else {
+            Issue.record("no text recognised")
+            return
+        }
+        #expect(text.contains("4711"))
     }
 
     @Test func hangingServiceTimesOutWithFallback() async {

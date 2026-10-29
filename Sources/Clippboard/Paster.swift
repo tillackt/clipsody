@@ -126,9 +126,13 @@ final class Paster {
                 }
             }
             pasteboardItem.setDataProvider(provider, forTypes: [.tiff])
-            tiffProvider = provider
+            // clearContents() tells the previous provider it is finished, so that provider must still
+            // be alive then; it is only released afterwards.
+            let previous = tiffProvider
             pasteboard.clearContents()
             pasteboard.writeObjects([pasteboardItem])
+            tiffProvider = provider
+            withExtendedLifetime(previous) {}
         case .files:
             let urls = item.filePaths
                 .filter { FileManager.default.fileExists(atPath: $0) }

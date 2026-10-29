@@ -62,6 +62,16 @@ private final class BlockingResult<Value: Sendable>: @unchecked Sendable {
     }
 }
 
+/// Outcome of text recognition. A failure of the service (crash, timeout, unreachable) is not the
+/// same as an image without text: only the latter is final.
+public enum RecognitionResult: Sendable, Equatable {
+    case text(String)
+    /// The service could read the request but not the image.
+    case unreadable
+    /// The service did not answer; worth trying again later.
+    case failed
+}
+
 /// A preview built from raw pixels the service sent; no image format was parsed in the app.
 public struct Thumbnail {
     public let image: CGImage
@@ -119,10 +129,10 @@ public final class DecoderClient {
         }
     }
 
-    public func recognizeText(inPNG png: Data) async -> String? {
-        await call(fallback: nil) { proxy, done in
+    public func recognizeText(inPNG png: Data) async -> RecognitionResult {
+        await call(fallback: .failed) { proxy, done in
             proxy.recognizeText(inPNG: png) { text in
-                done(text.map { String($0.prefix(Self.maxRecognizedCharacters)) })
+                done(text.map { .text(String($0.prefix(Self.maxRecognizedCharacters))) } ?? .unreadable)
             }
         }
     }

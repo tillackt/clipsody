@@ -37,7 +37,10 @@ import Testing
     @Test func recognisedTextIsCappedInLength() async throws {
         let huge = String(repeating: "a", count: DecoderClient.maxRecognizedCharacters + 5_000)
         let (service, client) = client(.init(text: huge))
-        let text = try #require(await client.recognizeText(inPNG: png))
+        guard case .text(let text) = await client.recognizeText(inPNG: png) else {
+            Issue.record("no text")
+            return
+        }
         #expect(text.count == DecoderClient.maxRecognizedCharacters)
         withExtendedLifetime(service) {}
     }

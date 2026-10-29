@@ -27,6 +27,22 @@ import Testing
         withExtendedLifetime(store) {}
     }
 
+    @Test func noOrphanCleanupWithoutCompleteReferenceList() {
+        let files = [String(repeating: "ab", count: 32) + ".png", String(repeating: "cd", count: 32) + ".png"]
+        #expect(Store.orphanedImageFiles(files, referenced: nil).isEmpty)
+        #expect(Store.orphanedImageFiles(files, referenced: [files[0]]) == [files[1]])
+        #expect(Store.orphanedImageFiles(files + ["notes.txt"], referenced: []) == files)
+    }
+
+    @Test func deleteReportsSuccess() throws {
+        let directory = try TemporaryDirectory()
+        let store = try Store(directory: directory.url)
+        store.addText("x", app: nil, appPath: nil)
+        let item = try #require(store.items().first)
+        #expect(store.delete(item))
+        #expect(store.items().isEmpty)
+    }
+
     @Test func referencedImageFilesStay() throws {
         let directory = try TemporaryDirectory()
         let image = try #require(ImageIngest.prepare(makeImage()))

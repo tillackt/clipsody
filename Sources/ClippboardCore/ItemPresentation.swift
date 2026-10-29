@@ -33,6 +33,8 @@ public struct SearchQuery: Sendable {
         for term in terms {
             var remaining = string.startIndex..<string.endIndex
             while let found = string.range(of: term, options: Self.options, range: remaining) {
+                // An empty match (e.g. a term that is only a combining accent) would never advance.
+                guard !found.isEmpty else { break }
                 ranges.append(NSRange(found, in: string))
                 remaining = found.upperBound..<string.endIndex
             }

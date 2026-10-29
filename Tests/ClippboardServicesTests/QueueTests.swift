@@ -84,7 +84,9 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         try addImage(width: 5)
         try addImage(width: 6)
         var recognised: [String] = []
-        let queue = TextRecognitionQueue(store: store, recognize: { png in "bytes \(png.count)" }) { recognised.append($0) }
+        let queue = TextRecognitionQueue(store: store, recognize: { png in .text("bytes \(png.count)") }) {
+            recognised.append($0)
+        }
 
         queue.start()
         await queue.waitUntilIdle()
@@ -98,11 +100,51 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         try addImage(width: 5)
         let item = try #require(store.items().first)
         try FileManager.default.removeItem(at: #require(store.imageURL(for: item)))
-        let queue = TextRecognitionQueue(store: store, recognize: { _ in "never" }) { _ in }
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("never") }) { _ in }
 
         queue.start()
         await queue.waitUntilIdle()
 
         #expect(store.items().first?.recognizedText == nil)
+    }
+
+    @Test func serviceFailureIsRetriedNotStoredAsNoText() async throws {
+        try addImage(width: 5)
+        var answer = RecognitionResult.failed
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in answer }) { _ in }
+
+        queue.start()
+        await queue.waitUntilIdle()
+        #expect(store.items().first?.recognizedText == nil)
+        #expect(store.imageFilesWithoutRecognizedText().count == 1)
+
+        answer = .text("found later")
+        queue.start()
+        await queue.waitUntilIdle()
+        #expect(store.items().first?.recognizedText == "found later")
+    }
+
+    @Test func unreadableImageIsMarkedDone() async throws {
+        try addImage(width: 5)
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .unreadable }) { _ in }
+        queue.start()
+        await queue.waitUntilIdle()
+        #expect(store.items().first?.recognizedText == "")
+    }
+
+    @Test func imageCopiedAgainAfterItsFileVanishedIsRecognised() async throws {
+        let image = try #require(ImageIngest.prepare(makeImage(width: 7, height: 5)))
+        store.addImage(image, app: nil, appPath: nil)
+        let url = try #require(store.items().first.flatMap(store.imageURL(for:)))
+        try FileManager.default.removeItem(at: url)
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in .text("back") }) { _ in }
+        queue.start()
+        await queue.waitUntilIdle()
+
+        // Same image copied again: the file is back, so it must not stay skipped.
+        try image.png.write(to: url)
+        queue.start()
+        await queue.waitUntilIdle()
+        #expect(store.items().first?.recognizedText == "back")
     }
 }

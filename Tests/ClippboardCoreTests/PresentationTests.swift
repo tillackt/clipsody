@@ -63,6 +63,12 @@ import Testing
             == "2 Dateien: one.pdf, two.png")
     }
 
+    @Test func termsThatMatchNothingVisibleDoNotLoopForever() {
+        // A lone combining accent can produce empty matches.
+        let ranges = SearchQuery("\u{0301}").ranges(in: "Café")
+        #expect(ranges.count <= 1)
+    }
+
     @Test func highlightRangesCoverEveryMatch() {
         let ranges = SearchQuery("ab").ranges(in: "AB xx ab")
         #expect(ranges == [NSRange(location: 0, length: 2), NSRange(location: 6, length: 2)])
