@@ -204,6 +204,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         alert.addButton(withTitle: "Abbrechen")
         NSApp.bringToFront()
         if alert.runModal() == .alertFirstButtonReturn {
+            monitor.discardPendingImages()
             store.clear()
         }
     }

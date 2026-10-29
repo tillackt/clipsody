@@ -42,7 +42,8 @@ func sqliteValue(_ path: String, _ sql: String) -> String? {
 }
 
 /// A small RGBA test image with distinct pixels, encoded as `type` with the given DPI.
-func makeImage(width: Int = 12, height: Int = 7, type: UTType = .tiff, dpi: Double = 144) -> Data {
+func makeImage(width: Int = 12, height: Int = 7, type: UTType = .tiff, dpi: Double = 144,
+               extraProperties: [CFString: Any] = [:]) -> Data {
     let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width * 4,
                             space: CGColorSpace(name: CGColorSpace.sRGB)!,
                             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
@@ -54,8 +55,9 @@ func makeImage(width: Int = 12, height: Int = 7, type: UTType = .tiff, dpi: Doub
     }
     let output = NSMutableData()
     let destination = CGImageDestinationCreateWithData(output, type.identifier as CFString, 1, nil)!
-    let properties = [kCGImagePropertyDPIWidth: dpi, kCGImagePropertyDPIHeight: dpi] as CFDictionary
-    CGImageDestinationAddImage(destination, context.makeImage()!, properties)
+    var properties: [CFString: Any] = [kCGImagePropertyDPIWidth: dpi, kCGImagePropertyDPIHeight: dpi]
+    properties.merge(extraProperties) { $1 }
+    CGImageDestinationAddImage(destination, context.makeImage()!, properties as CFDictionary)
     CGImageDestinationFinalize(destination)
     return output as Data
 }

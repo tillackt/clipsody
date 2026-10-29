@@ -14,17 +14,26 @@ import Testing
         #expect(imageProperties(of: image.png)[kCGImagePropertyDPIWidth] as? Double == 144)
     }
 
-    @Test func pngIsKeptByteForByte() throws {
+    @Test func pngIsReencodedWithSamePixels() throws {
         let png = makeImage(type: .png)
-        let image = try #require(ImageIngest.prepare(png, isPNG: true))
-        #expect(image.png == png)
+        let image = try #require(ImageIngest.prepare(png))
+        #expect(pixels(of: image.png) == pixels(of: png))
         #expect(image.width == 12 && image.height == 7)
     }
 
-    @Test func dataClaimingToBePNGIsStillConverted() throws {
-        let tiff = makeImage(type: .tiff)
-        let image = try #require(ImageIngest.prepare(tiff, isPNG: true))
-        #expect(imageProperties(of: image.png)[kCGImagePropertyPNGDictionary] != nil)
+    @Test func metadataSuchAsGPSIsStripped() throws {
+        let gps: [CFString: Any] = [kCGImagePropertyGPSLatitude: 52.52, kCGImagePropertyGPSLongitude: 13.40]
+        let tagged = makeImage(type: .png, extraProperties: [kCGImagePropertyGPSDictionary: gps])
+        #expect(imageProperties(of: tagged)[kCGImagePropertyGPSDictionary] != nil)
+
+        let image = try #require(ImageIngest.prepare(tagged))
+
+        #expect(imageProperties(of: image.png)[kCGImagePropertyGPSDictionary] == nil)
+    }
+
+    @Test func otherFormatsAreNotDecoded() {
+        #expect(ImageIngest.prepare(makeImage(type: .jpeg)) == nil)
+        #expect(ImageIngest.prepare(makeImage(type: .gif)) == nil)
     }
 
     @Test func thumbnailIsDownscaled() throws {

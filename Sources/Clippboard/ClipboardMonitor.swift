@@ -9,6 +9,12 @@ final class ClipboardMonitor {
     private var lastChangeCount = NSPasteboard.general.changeCount
     private var timer: Timer?
     var onChange: (() -> Void)?
+    /// Bumped by `discardPendingImages()`; conversions started earlier are not stored.
+    private var generation = 0
+    /// Images are converted one after another; the chain is the last queued conversion.
+    private var imageChain: Task<Void, Never>?
+    private var pendingImages = 0
+    private static let maxPendingImages = 3
 
     // Markers (nspasteboard.org and older tools) that password managers and helpers set
     // for content that must not end up in a history.
@@ -39,6 +45,11 @@ final class ClipboardMonitor {
         self.timer = timer
     }
 
+    /// Call when the history is cleared: images still being converted must not reappear.
+    func discardPendingImages() {
+        generation += 1
+    }
+
     /// Call after writing to the pasteboard ourselves so that write is not recorded again.
     func ignoreCurrentContents() {
         lastChangeCount = NSPasteboard.general.changeCount
@@ -47,7 +58,7 @@ final class ClipboardMonitor {
     private enum Content {
         case files([String])
         case text(String, RichText?)
-        case image(Data, isPNG: Bool)
+        case image(Data)
     }
 
     private func poll() {
@@ -74,19 +85,34 @@ final class ClipboardMonitor {
             store.addFiles(paths, app: appName, appPath: appPath)
         case .text(let text, let rich):
             store.addText(text, rich: rich, app: appName, appPath: appPath)
-        case .image(let data, let isPNG):
-            // Decoding and PNG encoding a 5K screenshot takes a noticeable moment: keep it off the main thread.
-            Task { [store, weak self] in
-                let image = await Task.detached(priority: .userInitiated) {
-                    ImageIngest.prepare(data, isPNG: isPNG)
-                }.value
-                guard let image else { return }
-                store.addImage(image, app: appName, appPath: appPath)
-                self?.onChange?()
-            }
+        case .image(let data):
+            enqueueImage(data, app: appName, appPath: appPath)
             return
         }
         onChange?()
+    }
+
+    /// Decoding and PNG encoding a 5K screenshot takes a noticeable moment, so it runs off the main
+    /// thread, one image at a time (bounded memory) and in copy order. The entry gets the time of
+    /// the copy, not of the end of the conversion, so a text copied meanwhile stays on top.
+    private func enqueueImage(_ data: Data, app: String?, appPath: String?) {
+        guard pendingImages < Self.maxPendingImages else {
+            logger.notice("Skipped image: \(self.pendingImages) conversions already pending")
+            return
+        }
+        let copiedAt = Date()
+        let generation = generation
+        let previous = imageChain
+        pendingImages += 1
+        imageChain = Task { [store, weak self] in
+            await previous?.value
+            let image = await Task.detached(priority: .userInitiated) { ImageIngest.prepare(data) }.value
+            guard let self else { return }
+            pendingImages -= 1
+            guard let image, generation == self.generation else { return }
+            store.addImage(image, app: app, appPath: appPath, date: copiedAt)
+            onChange?()
+        }
     }
 
     private func read(_ pasteboard: NSPasteboard, keepImages: Bool) -> Content? {
@@ -103,8 +129,7 @@ final class ClipboardMonitor {
             return .text(text, Self.richText(from: pasteboard))
         }
         if keepImages {
-            if let png = pasteboard.data(forType: .png) { return .image(png, isPNG: true) }
-            if let tiff = pasteboard.data(forType: .tiff) { return .image(tiff, isPNG: false) }
+            if let image = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) { return .image(image) }
         }
         return nil
     }

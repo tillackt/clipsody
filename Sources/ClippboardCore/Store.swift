@@ -184,7 +184,8 @@ public final class Store {
         let url = imagesDirectory.appendingPathComponent(fileName)
         if !FileManager.default.fileExists(atPath: url.path) {
             do {
-                try image.png.write(to: url)
+                // Atomic: a crash mid-write must not leave a truncated file that later copies reuse.
+                try image.png.write(to: url, options: .atomic)
                 Self.setPermissions(0o600, of: url)
             } catch {
                 logger.error("Could not write image: \(String(describing: error), privacy: .public)")

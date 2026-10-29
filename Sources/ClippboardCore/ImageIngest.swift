@@ -11,28 +11,33 @@ public struct PreparedImage: Sendable {
     public let hash: String
 }
 
-/// Converts pasteboard image data (TIFF, PNG, …) into PNG with ImageIO, keeping pixels,
-/// colour profile and resolution (DPI) unchanged.
+/// Converts pasteboard image data (PNG or TIFF) into PNG with ImageIO, keeping pixels,
+/// colour profile and resolution (DPI). Everything else is dropped on purpose: re-encoding
+/// strips metadata such as GPS positions and text chunks, and bounds the stored size.
 public enum ImageIngest {
     /// Larger than any real screenshot (a 6K display is ~20 MP / ~80 MB as TIFF); protects against
     /// clipboard content crafted to exhaust memory or disk.
     public static let maxBytes = 200_000_000
     public static let maxPixels = 50_000_000
 
-    /// `isPNG`: the data already is PNG and is stored byte for byte instead of being re-encoded.
+    /// Formats ImageIO may decode here; anything else is rejected before decoding, which keeps
+    /// the attack surface of untrusted clipboard data small.
+    private static let acceptedTypes: Set<String> = [UTType.png.identifier, UTType.tiff.identifier]
+
     /// Runs off the main thread in the app; it does not touch shared state.
-    public static func prepare(_ data: Data, isPNG: Bool = false, maxPixels: Int = maxPixels) -> PreparedImage? {
-        // Size is read from the header first, so oversized images are never decoded.
+    public static func prepare(_ data: Data, maxPixels: Int = maxPixels) -> PreparedImage? {
+        // Format and size are read from the header first, so oversized images are never decoded.
         guard data.count <= maxBytes,
               let source = CGImageSourceCreateWithData(data as CFData, nil),
+              let type = CGImageSourceGetType(source) as String?, acceptedTypes.contains(type),
               let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
               let width = properties[kCGImagePropertyPixelWidth] as? Int,
               let height = properties[kCGImagePropertyPixelHeight] as? Int,
-              width > 0, height > 0, width * height <= maxPixels else { return nil }
-        if isPNG, CGImageSourceGetType(source) as String? == UTType.png.identifier {
-            return PreparedImage(png: data, width: width, height: height, hash: sha256(data))
-        }
-        guard let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
+              width > 0, height > 0 else { return nil }
+        // A crafted header can claim sizes whose product overflows Int.
+        let (pixels, overflow) = width.multipliedReportingOverflow(by: height)
+        guard !overflow, pixels <= maxPixels,
+              let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
               let png = encodePNG(image, properties: properties) else { return nil }
         return PreparedImage(png: png, width: width, height: height, hash: sha256(png))
     }
