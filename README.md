@@ -78,7 +78,7 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on 
 
 - **Secret scan:** [Betterleaks](https://github.com/betterleaks/betterleaks) (the successor of gitleaks) scans the whole git history. Known false positives are listed in `.betterleaksignore`.
 - **Lint:** [SwiftLint](https://github.com/realm/SwiftLint) with `--strict` (configuration in `.swiftlint.yml`), [ShellCheck](https://www.shellcheck.net) for the shell scripts and [actionlint](https://github.com/rhysd/actionlint) for the workflows.
-- **Tests:** `./build.sh test`
+- **Tests and coverage:** `./build.sh coverage` runs the tests with line coverage, writes a per-file table to the run's summary and fails below 88 % (core, services and decoder kit; the AppKit app target has no unit tests).
 - **Translations:** `./build.sh check-strings` fails if the code uses a text the catalog lacks, or the catalog keeps texts the code no longer uses.
 - **App build:** `./build.sh` builds the universal binary; without the certificate it is signed ad hoc, and the signature is still verified.
 
