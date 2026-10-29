@@ -102,7 +102,7 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 
 ## Weitergabe
 
-Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumme des Release-Archivs (`shasum -a 256 Clippboard.zip`) und den SHA-256-Fingerabdruck des Signaturzertifikats (`codesign -d --extract-certificates Clippboard.app && shasum -a 256 codesign0`). So erkennen Empfänger eine neu signierte oder veränderte Kopie.
+Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumme des Release-Archivs (`shasum -a 256 Clippboard.dmg`) und den SHA-256-Fingerabdruck des Signaturzertifikats (`codesign -d --extract-certificates Clippboard.app && shasum -a 256 codesign0`). So erkennen Empfänger eine neu signierte oder veränderte Kopie.
 
 ## Daten
 

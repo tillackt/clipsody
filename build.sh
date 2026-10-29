@@ -17,6 +17,16 @@ if [[ "${1:-}" == "test" ]]; then
     swift test
     exit
 fi
+# The translations are compiled with xcstringstool, which only full Xcode has; fail before a long build.
+if ! xcrun --find xcstringstool >/dev/null 2>&1; then
+    echo "Full Xcode is required (xcstringstool missing); install it and run: sudo xcode-select -s /Applications/Xcode.app" >&2
+    exit 1
+fi
+if [[ "${1:-}" == "release" ]] && [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
+    # A release must match a commit exactly, or its version cannot be traced back to the source.
+    echo "Release builds need a clean working tree; commit or stash first" >&2
+    exit 1
+fi
 if [[ "${1:-}" == "strings" ]]; then
     # The compiler lists every String(localized:) it sees; sync adds new keys to the catalog
     # and marks keys that are no longer used as stale.
@@ -24,7 +34,12 @@ if [[ "${1:-}" == "strings" ]]; then
     trap 'rm -rf "$STRINGS_TMP"' EXIT
     swift build --scratch-path "$STRINGS_TMP/build" \
         -Xswiftc -emit-localized-strings -Xswiftc -emit-localized-strings-path -Xswiftc "$STRINGS_TMP/strings"
-    xcrun xcstringstool sync Resources/Localizable.xcstrings --stringsdata "$STRINGS_TMP"/strings/*.stringsdata
+    STRINGS_DATA=("$STRINGS_TMP"/strings/*.stringsdata)
+    if [[ ! -e "${STRINGS_DATA[0]}" ]]; then
+        echo "The compiler produced no .stringsdata files; nothing to sync" >&2
+        exit 1
+    fi
+    xcrun xcstringstool sync Resources/Localizable.xcstrings --stringsdata "${STRINGS_DATA[@]}"
     echo "Synced Resources/Localizable.xcstrings; translate new entries before the next release"
     exit
 fi
@@ -109,6 +124,16 @@ if [[ "${1:-}" == "install" ]]; then
     TARGET="/Applications/Clippboard.app"
     # Earlier versions installed per user; two copies would confuse Spotlight and the login item.
     OLD_TARGET="$HOME/Applications/Clippboard.app"
+    # Checked before anything is quit or removed: a failed copy must not leave the user without an app.
+    if [[ ! -w /Applications ]]; then
+        echo "/Applications is not writable for $(whoami); install aborted, nothing changed" >&2
+        exit 1
+    fi
+    STAGED="/Applications/.Clippboard.app.installing"
+    rm -rf "$STAGED"
+    # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
+    ditto "$APP" "$STAGED"
+    codesign --verify --strict --deep "$STAGED"
     pkill -x Clippboard || true
     # Wait until the old instance is gone (at most 10 s), otherwise `open` fails with error -600.
     for _ in $(seq 50); do
@@ -116,14 +141,16 @@ if [[ "${1:-}" == "install" ]]; then
         sleep 0.2
     done
     if pgrep -x Clippboard >/dev/null; then
+        rm -rf "$STAGED"
         echo "Clippboard did not quit; install aborted" >&2
         exit 1
     fi
     # LaunchServices needs a moment after the process is gone.
     sleep 1
-    rm -rf "$TARGET" "$OLD_TARGET"
-    # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
-    ditto "$APP" "$TARGET"
+    # Same volume: the swap is a rename, and the old per-user copy goes only once the new one is in place.
+    rm -rf "$TARGET"
+    mv "$STAGED" "$TARGET"
+    rm -rf "$OLD_TARGET"
     open "$TARGET"
     echo "Installed and started $TARGET"
 fi
