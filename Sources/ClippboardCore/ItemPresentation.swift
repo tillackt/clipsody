@@ -4,17 +4,27 @@ import Foundation
 public struct SearchQuery: Sendable {
     public static let options: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
     public let terms: [String]
+    private let foldedTerms: [String]
 
     public init(_ text: String) {
         terms = text.split(whereSeparator: \.isWhitespace).map(String.init)
+        foldedTerms = terms.map(Self.fold)
     }
 
     public var isEmpty: Bool { terms.isEmpty }
 
+    /// Case- and diacritic-free form; computed once per item so each keystroke is a plain substring search.
+    public static func fold(_ text: String) -> String {
+        text.folding(options: options, locale: nil)
+    }
+
     public func matches(_ item: ClipItem) -> Bool {
-        guard !isEmpty else { return true }
-        let haystack = ItemPresentation.searchText(for: item)
-        return terms.allSatisfy { haystack.range(of: $0, options: Self.options) != nil }
+        matches(foldedText: Self.fold(ItemPresentation.searchText(for: item)))
+    }
+
+    /// `foldedText` is `SearchQuery.fold(ItemPresentation.searchText(for:))`, cached by the caller.
+    public func matches(foldedText: String) -> Bool {
+        foldedTerms.allSatisfy { foldedText.contains($0) }
     }
 
     /// Ranges of all terms in `string`, for highlighting.

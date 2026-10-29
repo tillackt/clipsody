@@ -5,7 +5,8 @@ import Vision
 enum TextRecognizer {
     /// Recognised lines joined by newlines; nil if the image could not be read.
     static func recognize(imageAt url: URL) async -> String? {
-        await Task.detached(priority: .utility) {
+        // Background priority: macOS throttles it on battery; nobody waits for the result.
+        await Task.detached(priority: .background) {
             let request = VNRecognizeTextRequest()
             request.recognitionLevel = .accurate
             request.recognitionLanguages = ["de-DE", "en-US"]

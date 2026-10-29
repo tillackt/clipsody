@@ -48,6 +48,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         pruneTimer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.prune() }
         }
+        pruneTimer?.tolerance = 60
 
         // Asks once for Accessibility permission; without it entries are only copied, not pasted.
         _ = Paster.isTrusted(prompt: true)

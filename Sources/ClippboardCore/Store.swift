@@ -40,7 +40,10 @@ public final class Store {
         }
         // Deleted content is overwritten with zeros instead of lingering in free pages.
         try execute("PRAGMA secure_delete = ON")
+        // WAL: fewer disk syncs per copied item.
+        try execute("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL")
         try migrate()
+        try enableIncrementalVacuum()
         restrictPermissions()
     }
 
@@ -143,6 +146,16 @@ public final class Store {
         }
     }
 
+    /// Lets the file shrink again after pruning (otherwise it stays at its largest size).
+    /// Switching an existing database needs one VACUUM, which cannot run inside a transaction.
+    private func enableIncrementalVacuum() throws {
+        var mode = 0
+        query("PRAGMA auto_vacuum") { mode = Int(sqlite3_column_int($0, 0)) }
+        guard mode != 2 else { return }
+        try execute("PRAGMA auto_vacuum = INCREMENTAL")
+        try execute("VACUUM")
+    }
+
     // MARK: - Writing
 
     public func addText(_ text: String, rich: RichText? = nil, app: String?, appPath: String?, date: Date = Date()) {
@@ -216,6 +229,7 @@ public final class Store {
             sqlite3_bind_double(stmt, 1, cutoff)
             sqlite3_bind_int64(stmt, 2, Int64(maxItems))
         }
+        try? execute("PRAGMA incremental_vacuum")
     }
 
     public func metadata(_ key: String) -> String? {

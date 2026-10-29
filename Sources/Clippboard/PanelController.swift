@@ -121,7 +121,15 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var allItems: [ClipItem] = []
     private var items: [ClipItem] = []
     private var query = SearchQuery("")
+    /// Folded search text per item id, built once per load instead of on every keystroke.
+    private var searchIndex: [Int64: String] = [:]
     private let iconCache = NSCache<NSString, NSImage>()
+    private let previewCache: NSCache<NSString, NSImage> = {
+        let cache = NSCache<NSString, NSImage>()
+        cache.countLimit = 20
+        return cache
+    }()
+    private var previewTask: Task<Void, Never>?
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "de_DE")
@@ -154,7 +162,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         // No target when Clippboard itself is in front (e.g. the settings window): then nothing is pasted.
         let frontmost = NSWorkspace.shared.frontmostApplication
         targetApp = frontmost?.processIdentifier == ProcessInfo.processInfo.processIdentifier ? nil : frontmost
-        allItems = store.items()
+        reloadItems()
         search.stringValue = ""
         applyFilter()
         positionOnActiveScreen()
@@ -169,7 +177,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Refreshes the list when the clipboard changes while the panel is open.
     func reloadIfVisible() {
         guard isVisible else { return }
-        allItems = store.items()
+        reloadItems()
         applyFilter(selecting: selectedItem?.id)
     }
 
@@ -211,7 +219,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         guard items.indices.contains(row) else { return }
         let item = items[row]
         store.setPinned(!item.pinned, for: item)
-        allItems = store.items()
+        reloadItems()
         applyFilter(selecting: item.id)
     }
 
@@ -272,7 +280,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     private func applyFilter(selecting id: Int64? = nil) {
         query = SearchQuery(search.stringValue)
-        items = query.isEmpty ? allItems : allItems.filter(query.matches)
+        items = query.isEmpty ? allItems : allItems.filter { query.matches(foldedText: searchIndex[$0.id] ?? "") }
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
         select(id.flatMap { id in items.firstIndex { $0.id == id } } ?? 0)
@@ -304,7 +312,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        EmphasizedRowView()
+        let id = NSUserInterfaceItemIdentifier("row")
+        if let reused = tableView.makeView(withIdentifier: id, owner: nil) as? EmphasizedRowView { return reused }
+        let rowView = EmphasizedRowView()
+        rowView.identifier = id
+        return rowView
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -326,10 +338,14 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Icon of the app the entry was copied from; for files the icon of the (first) file.
     private func icon(for item: ClipItem) -> NSImage? {
         if item.kind == .files {
-            guard let path = item.filePaths.first, FileManager.default.fileExists(atPath: path) else {
-                return NSImage(systemSymbolName: "doc", accessibilityDescription: nil)
-            }
-            return NSWorkspace.shared.icon(forFile: path)
+            guard let path = item.filePaths.first else { return nil }
+            if let cached = iconCache.object(forKey: path as NSString) { return cached }
+            // Checking a file on a disconnected network volume can block for seconds.
+            let reachable = !path.hasPrefix("/Volumes/") && FileManager.default.fileExists(atPath: path)
+            let icon = reachable ? NSWorkspace.shared.icon(forFile: path)
+                                 : NSImage(systemSymbolName: "doc", accessibilityDescription: nil)!
+            iconCache.setObject(icon, forKey: path as NSString)
+            return icon
         }
         let key = item.appPath ?? ""
         if let cached = iconCache.object(forKey: key as NSString) { return cached }
@@ -368,11 +384,45 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         case .image:
             previewTextScroll.isHidden = true
             previewImage.isHidden = false
-            previewImage.image = store.imageURL(for: item).flatMap(NSImage.init(contentsOf:))
+            showPreviewImage(for: item)
             info.append(ItemPresentation.imageLabel(for: item))
             if let text = item.recognizedText, !text.isEmpty { info.append("Text erkannt") }
         }
         infoLabel.stringValue = info.joined(separator: " · ")
+    }
+
+    private func reloadItems() {
+        allItems = store.items()
+        searchIndex = Dictionary(uniqueKeysWithValues: allItems.map {
+            ($0.id, SearchQuery.fold(ItemPresentation.searchText(for: $0)))
+        })
+    }
+
+    /// Shows a downscaled image, built off the main thread and cached, so holding ↓ over
+    /// screenshots does not decode full-size images.
+    private func showPreviewImage(for item: ClipItem) {
+        previewTask?.cancel()
+        guard let url = store.imageURL(for: item) else {
+            previewImage.image = nil
+            return
+        }
+        let key = url.lastPathComponent as NSString
+        if let cached = previewCache.object(forKey: key) {
+            previewImage.image = cached
+            return
+        }
+        previewImage.image = nil
+        let scale = panel.backingScaleFactor
+        let maxPixelSize = Int(max(previewImage.bounds.width, previewImage.bounds.height, 400) * scale)
+        previewTask = Task { [weak self] in
+            let result = await Task.detached(priority: .userInitiated) {
+                ImageIngest.thumbnail(of: url, maxPixelSize: maxPixelSize)
+            }.value
+            guard let self, !Task.isCancelled, let result else { return }
+            let thumbnail = NSImage(cgImage: result.image, size: result.pointSize)
+            previewCache.setObject(thumbnail, forKey: key)
+            previewImage.image = thumbnail
+        }
     }
 
     private func showPreviewText(_ text: String) {

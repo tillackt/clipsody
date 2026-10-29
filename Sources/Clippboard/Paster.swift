@@ -2,8 +2,27 @@ import AppKit
 import ApplicationServices
 import ClippboardCore
 
+/// Supplies the TIFF version of a pasted image only if the receiving app asks for it;
+/// a 5K screenshot is about 30 MB as TIFF.
+private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
+    private let png: Data
+
+    init(png: Data) {
+        self.png = png
+    }
+
+    func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
+        if type == .tiff, let tiff = ImageIngest.tiff(fromPNG: png) {
+            item.setData(tiff, forType: .tiff)
+        }
+    }
+}
+
 @MainActor
 enum Paster {
+    /// Kept alive until the next paste; the pasteboard item does not own its data provider.
+    private static var tiffProvider: TIFFProvider?
+
     static func isTrusted(prompt: Bool) -> Bool {
         // Literal value of kAXTrustedCheckOptionPrompt, which Swift 6 treats as unsafe global state.
         let options = ["AXTrustedCheckOptionPrompt": prompt] as CFDictionary
@@ -23,12 +42,14 @@ enum Paster {
             }
         case .image:
             guard let imageURL, let png = try? Data(contentsOf: imageURL) else { return false }
-            pasteboard.clearContents()
-            pasteboard.setData(png, forType: .png)
+            let item = NSPasteboardItem()
+            item.setData(png, forType: .png)
             // Some older apps only accept TIFF.
-            if let tiff = ImageIngest.tiff(fromPNG: png) {
-                pasteboard.setData(tiff, forType: .tiff)
-            }
+            let provider = TIFFProvider(png: png)
+            item.setDataProvider(provider, forTypes: [.tiff])
+            tiffProvider = provider
+            pasteboard.clearContents()
+            pasteboard.writeObjects([item])
         case .files:
             let urls = item.filePaths
                 .filter { FileManager.default.fileExists(atPath: $0) }

@@ -19,6 +19,14 @@ import Testing
         #expect(SearchQuery("   ").matches(entry))
     }
 
+    @Test func cachedFoldedTextGivesSameResult() {
+        let entry = item(text: "Café Größe", app: "Notes")
+        let folded = SearchQuery.fold(ItemPresentation.searchText(for: entry))
+        for text in ["cafe", "GRÖSSE", "notes cafe", "tee"] {
+            #expect(SearchQuery(text).matches(foldedText: folded) == SearchQuery(text).matches(entry))
+        }
+    }
+
     @Test func imagesMatchByRecognizedTextAndShowSnippet() {
         let line = "Protokoll vom Dienstag: Der Server meldet einen Fehler 500 beim Speichern der Datei im Archiv, bitte später erneut versuchen"
         let screenshot = item(.image, recognized: "Menü\n" + line, width: 946, height: 858)

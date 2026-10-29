@@ -32,6 +32,8 @@ final class ClipboardMonitor {
         let timer = Timer(timeInterval: 0.4, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.poll() }
         }
+        // Lets macOS bundle wake-ups with other timers; reading changeCount is cheap anyway.
+        timer.tolerance = 0.1
         // Common modes: keep polling while the status menu or an alert is open, otherwise copies get lost.
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
@@ -45,7 +47,7 @@ final class ClipboardMonitor {
     private enum Content {
         case files([String])
         case text(String, RichText?)
-        case image(Data)
+        case image(Data, isPNG: Bool)
     }
 
     private func poll() {
@@ -72,9 +74,17 @@ final class ClipboardMonitor {
             store.addFiles(paths, app: appName, appPath: appPath)
         case .text(let text, let rich):
             store.addText(text, rich: rich, app: appName, appPath: appPath)
-        case .image(let data):
-            guard let image = ImageIngest.prepare(data) else { return }
-            store.addImage(image, app: appName, appPath: appPath)
+        case .image(let data, let isPNG):
+            // Decoding and PNG encoding a 5K screenshot takes a noticeable moment: keep it off the main thread.
+            Task { [store, weak self] in
+                let image = await Task.detached(priority: .userInitiated) {
+                    ImageIngest.prepare(data, isPNG: isPNG)
+                }.value
+                guard let image else { return }
+                store.addImage(image, app: appName, appPath: appPath)
+                self?.onChange?()
+            }
+            return
         }
         onChange?()
     }
@@ -92,8 +102,9 @@ final class ClipboardMonitor {
             }
             return .text(text, Self.richText(from: pasteboard))
         }
-        if keepImages, let data = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) {
-            return .image(data)
+        if keepImages {
+            if let png = pasteboard.data(forType: .png) { return .image(png, isPNG: true) }
+            if let tiff = pasteboard.data(forType: .tiff) { return .image(tiff, isPNG: false) }
         }
         return nil
     }

@@ -15,6 +15,12 @@ import Testing
         #expect(store.schemaVersion == 2)
     }
 
+    @Test func databaseUsesWALAndIncrementalVacuum() {
+        let path = directory.url.appendingPathComponent("history.sqlite").path
+        #expect(sqliteValue(path, "PRAGMA journal_mode") == "wal")
+        #expect(sqliteValue(path, "PRAGMA auto_vacuum") == "2") // 2 = incremental
+    }
+
     @Test func duplicateTextKeepsOneEntryWithNewestTimeAndApp() {
         let old = Date(timeIntervalSince1970: 1_000)
         let new = Date(timeIntervalSince1970: 2_000)

@@ -29,6 +29,18 @@ func sqlite(_ path: String, _ sql: String) {
     }
 }
 
+/// First column of the first row of a query, via a separate connection.
+func sqliteValue(_ path: String, _ sql: String) -> String? {
+    var db: OpaquePointer?
+    sqlite3_open(path, &db)
+    defer { sqlite3_close(db) }
+    var stmt: OpaquePointer?
+    sqlite3_prepare_v2(db, sql, -1, &stmt, nil)
+    defer { sqlite3_finalize(stmt) }
+    guard sqlite3_step(stmt) == SQLITE_ROW, let text = sqlite3_column_text(stmt, 0) else { return nil }
+    return String(cString: text)
+}
+
 /// A small RGBA test image with distinct pixels, encoded as `type` with the given DPI.
 func makeImage(width: Int = 12, height: Int = 7, type: UTType = .tiff, dpi: Double = 144) -> Data {
     let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width * 4,
