@@ -16,7 +16,8 @@ permissions:
 
 concurrency:
   group: codeql-${{ github.ref }}
-  cancel-in-progress: true
+  # Only pull requests: every commit on main keeps its own result (and code scanning has no gaps).
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   analyze:

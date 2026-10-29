@@ -1,0 +1,6 @@
+# actionlint 1.7.12 predates GitHub's macOS 27 image, whose label is "xcode-27" (GitHub's
+# runner-images README); without this entry it reports the label as unknown. Remove it once
+# actionlint knows the label.
+self-hosted-runner:
+  labels:
+    - xcode-27
