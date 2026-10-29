@@ -72,6 +72,16 @@ Without a certificate of its own, `build.sh` signs ad hoc, and macOS forgets the
 
 Needs the certificate and a clean working tree. Runs the tests and builds `build/Clipsody.dmg`, plus `build/release-notes.txt` with the SHA-256 of the DMG and the fingerprint of the signing certificate.
 
+## Versioning
+
+Releases follow [Semantic Versioning](https://semver.org), starting with 1.0.0. The version lives in `Resources/Info.plist` (`CFBundleShortVersionString`); each release is tagged `vMAJOR.MINOR.PATCH`. For a desktop app the numbers describe what users experience:
+
+- **MAJOR:** a break for users: an older macOS version is no longer supported, the data format changes without a way back, a feature is removed, or the bundle ID or signing certificate changes (users lose granted permissions).
+- **MINOR:** new features that keep everything working, e.g. a new language, setting or the update check.
+- **PATCH:** bug fixes and translation corrections only.
+
+The build number (commit count) and the commit hash run alongside and are shown in Settings → Info. A test checks the version format on every pull request, and `./build.sh release` refuses a version that was already released from another commit.
+
 ## CI
 
 GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on every pull request:
