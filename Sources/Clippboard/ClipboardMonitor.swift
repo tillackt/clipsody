@@ -1,26 +1,20 @@
 import AppKit
 import ClippboardCore
+import ClippboardServices
 
 /// Polls the general pasteboard; macOS offers no change notification for it.
 @MainActor
 final class ClipboardMonitor {
     private let store: Store
-    private let decoder: DecoderClient
+    private let images: ImageQueue
     private let config: () -> Config
     private var lastChangeCount = NSPasteboard.general.changeCount
     private var timer: Timer?
     var onChange: (() -> Void)?
-    /// Bumped by `discardPendingImages()`; conversions started earlier are not stored.
-    private var generation = 0
-    /// Images are converted one after another; the chain is the last queued conversion.
-    private var imageChain: Task<Void, Never>?
-    private var pendingImages = 0
-    private static let maxPendingImages = 3
 
-
-    init(store: Store, decoder: DecoderClient, config: @escaping () -> Config) {
-        self.decoder = decoder
+    init(store: Store, images: ImageQueue, config: @escaping () -> Config) {
         self.store = store
+        self.images = images
         self.config = config
     }
 
@@ -33,11 +27,6 @@ final class ClipboardMonitor {
         // Common modes: keep polling while the status menu or an alert is open, otherwise copies get lost.
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
-    }
-
-    /// Call when the history is cleared: images still being converted must not reappear.
-    func discardPendingImages() {
-        generation += 1
     }
 
     /// Call after writing to the pasteboard ourselves so that write is not recorded again.
@@ -75,34 +64,12 @@ final class ClipboardMonitor {
         case .text(let text, let rich):
             store.addText(text, rich: rich, app: appName, appPath: appPath)
         case .image(let data):
-            enqueueImage(data, app: appName, appPath: appPath)
+            // Untrusted image data is converted in the sandboxed decoder service; the queue
+            // stores it and calls back when done.
+            images.enqueue(data, app: appName, appPath: appPath)
             return
         }
         onChange?()
-    }
-
-    /// Decoding and PNG encoding a 5K screenshot takes a noticeable moment, so it runs off the main
-    /// thread, one image at a time (bounded memory) and in copy order. The entry gets the time of
-    /// the copy, not of the end of the conversion, so a text copied meanwhile stays on top.
-    private func enqueueImage(_ data: Data, app: String?, appPath: String?) {
-        guard pendingImages < Self.maxPendingImages else {
-            logger.notice("Skipped image: \(self.pendingImages) conversions already pending")
-            return
-        }
-        let copiedAt = Date()
-        let generation = generation
-        let previous = imageChain
-        pendingImages += 1
-        imageChain = Task { [store, weak self] in
-            await previous?.value
-            // Untrusted image data is decoded in the sandboxed decoder service, not in this process.
-            let image = await self?.decoder.prepareImage(data)
-            guard let self else { return }
-            pendingImages -= 1
-            guard let image, generation == self.generation else { return }
-            store.addImage(image, app: app, appPath: appPath, date: copiedAt)
-            onChange?()
-        }
     }
 
     private func read(_ pasteboard: NSPasteboard, keepImages: Bool) -> Content? {

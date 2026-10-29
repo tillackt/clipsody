@@ -23,12 +23,14 @@ Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Grö
 
 ## Projekt
 
-Swift-Paket mit drei Zielen:
+Swift-Paket mit diesen Zielen:
 
 - `Sources/ClippboardCore`: Speicher (SQLite mit versionierten Migrationen), Konfiguration, Bildumwandlung, Suche, ohne AppKit
 - `Sources/Clippboard`: die Menüleisten-App (AppKit, Hotkey, Zwischenablage, Einfügen)
 - `Sources/ClippboardDecoder`: XPC-Dienst in einer Sandbox, der Bilder aus der Zwischenablage umwandelt und Text in Screenshots erkennt
 - `Sources/ClippboardXPC`: die Schnittstelle zwischen App und Dienst
+- `Sources/ClippboardServices`: Dekoder, XPC-Client und die Warteschlangen für Bilder und Texterkennung, ohne AppKit
+- `Tests/ClippboardServicesTests`: Tests dafür, inklusive echter XPC-Aufrufe über einen Test-Listener
 - `Tests/ClippboardCoreTests`: Tests für den Kern (Swift Testing)
 
 Voraussetzung: Xcode oder die Command Line Tools mit Swift 6.

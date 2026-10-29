@@ -1,5 +1,6 @@
 import AppKit
 import ClippboardCore
+import ClippboardServices
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -14,9 +15,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var openItem: NSMenuItem!
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
-    private var isRecognizingText = false
-    /// Images whose file vanished before recognition finished; not retried in this session.
-    private var unreadableImages = Set<String>()
+    private var images: ImageQueue!
+    private var recognition: TextRecognitionQueue!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         do {
@@ -29,16 +29,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         prune()
 
-        monitor = ClipboardMonitor(store: store, decoder: decoder) { [unowned self] in config }
+        recognition = TextRecognitionQueue(store: store) { [decoder] png in
+            await decoder.recognizeText(inPNG: png)
+        } onRecognized: { [unowned self] _ in
+            // The open panel searches its own copy of the entries.
+            panel.reloadIfVisible()
+        }
+        images = ImageQueue(store: store) { [decoder] data in
+            await decoder.prepareImage(data)
+        } onStored: { [unowned self] in
+            panel.reloadIfVisible()
+            recognition.start()
+        }
+        monitor = ClipboardMonitor(store: store, images: images) { [unowned self] in config }
         panel = PanelController(store: store) { [unowned self] item, target, formatted in
             paste(item, into: target, withFormatting: formatted)
         }
         monitor.onChange = { [unowned self] in
             panel.reloadIfVisible()
-            recognizePendingText()
         }
         monitor.start()
-        recognizePendingText()
+        recognition.start()
 
         buildMainMenu()
         buildStatusItem()
@@ -74,38 +85,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         monitor.ignoreCurrentContents()
         store.touch(item)
-    }
-
-    // MARK: - Text recognition
-
-    /// Recognises text in stored images one at a time in the background, so screenshots become searchable.
-    private func recognizePendingText() {
-        guard !isRecognizingText,
-              let file = store.imageFilesWithoutRecognizedText().first(where: { !unreadableImages.contains($0) })
-        else { return }
-        // Validated path only: a tampered database must not make Vision read files elsewhere.
-        guard let url = store.imageURL(forFile: file) else {
-            unreadableImages.insert(file)
-            return recognizePendingText()
-        }
-        isRecognizingText = true
-        Task { [weak self] in
-            guard let self else { return }
-            // Read in the sandboxed decoder service; it gets the bytes, not the path.
-            let png = try? Data(contentsOf: url)
-            let text = if let png { await decoder.recognizeText(inPNG: png) } else { String?.none }
-            if FileManager.default.fileExists(atPath: url.path) {
-                // Stored even when empty so the image is not processed again.
-                store.setRecognizedText(text ?? "", forImageFile: file)
-                // The open panel searches its own copy of the entries.
-                panel.reloadIfVisible()
-            } else {
-                // Deleted meanwhile: writing "" could hit a new entry for the same image copied again.
-                unreadableImages.insert(file)
-            }
-            isRecognizingText = false
-            recognizePendingText()
-        }
     }
 
     // MARK: - Settings
@@ -180,7 +159,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         alert.addButton(withTitle: "Abbrechen")
         NSApp.bringToFront()
         if alert.runModal() == .alertFirstButtonReturn {
-            monitor.discardPendingImages()
+            images.discardPending()
             store.clear()
             panel.reloadIfVisible()
         }

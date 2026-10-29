@@ -1,0 +1,108 @@
+import ClippboardCore
+import Foundation
+import Testing
+@testable import ClippboardServices
+
+/// Converts like the service, with an optional delay per call.
+private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage? {
+    var remaining = delays
+    return { data in
+        if !remaining.isEmpty { try? await Task.sleep(for: remaining.removeFirst()) }
+        return ImageIngest.prepare(data)
+    }
+}
+
+@MainActor
+@Suite struct ImageQueueTests {
+    let directory: TemporaryDirectory
+    let store: Store
+
+    init() throws {
+        directory = try TemporaryDirectory()
+        store = try Store(directory: directory.url)
+    }
+
+    @Test func imagesAreStoredInCopyOrderWithCopyTime() async {
+        // The first conversion is slower, but it still lands first and keeps its copy time.
+        let queue = ImageQueue(store: store, prepare: preparing(delays: [.milliseconds(150), .zero])) {}
+        let first = Date(timeIntervalSince1970: 1_000)
+        let second = Date(timeIntervalSince1970: 2_000)
+        queue.enqueue(makeImage(width: 10, height: 10), app: "A", appPath: nil, copiedAt: first)
+        queue.enqueue(makeImage(width: 20, height: 20), app: "B", appPath: nil, copiedAt: second)
+        await queue.waitUntilIdle()
+
+        let items = store.items()
+        #expect(items.map(\.app) == ["B", "A"])
+        #expect(items.map(\.date) == [second, first])
+    }
+
+    @Test func discardedConversionsAreNotStored() async {
+        let queue = ImageQueue(store: store, prepare: preparing(delays: [.milliseconds(100)])) {}
+        queue.enqueue(makeImage(), app: nil, appPath: nil)
+        queue.discardPending()
+        await queue.waitUntilIdle()
+        #expect(store.items().isEmpty)
+    }
+
+    @Test func tooManyPendingImagesAreDropped() async {
+        let queue = ImageQueue(store: store, maxPending: 2,
+                               prepare: preparing(delays: [.milliseconds(100), .milliseconds(100)])) {}
+        #expect(queue.enqueue(makeImage(width: 1, height: 1), app: nil, appPath: nil))
+        #expect(queue.enqueue(makeImage(width: 2, height: 2), app: nil, appPath: nil))
+        #expect(!queue.enqueue(makeImage(width: 3, height: 3), app: nil, appPath: nil))
+        await queue.waitUntilIdle()
+        #expect(store.items().count == 2)
+        #expect(queue.pendingCount == 0)
+    }
+
+    @Test func failedConversionsAreSkipped() async {
+        var stored = 0
+        let queue = ImageQueue(store: store, prepare: { _ in nil }) { stored += 1 }
+        queue.enqueue(makeImage(), app: nil, appPath: nil)
+        await queue.waitUntilIdle()
+        #expect(stored == 0)
+        #expect(store.items().isEmpty)
+    }
+}
+
+@MainActor
+@Suite struct TextRecognitionQueueTests {
+    let directory: TemporaryDirectory
+    let store: Store
+
+    init() throws {
+        directory = try TemporaryDirectory()
+        store = try Store(directory: directory.url)
+    }
+
+    func addImage(width: Int) throws {
+        let image = try #require(ImageIngest.prepare(makeImage(width: width, height: 5)))
+        store.addImage(image, app: nil, appPath: nil)
+    }
+
+    @Test func allPendingImagesAreRecognised() async throws {
+        try addImage(width: 5)
+        try addImage(width: 6)
+        var recognised: [String] = []
+        let queue = TextRecognitionQueue(store: store, recognize: { png in "bytes \(png.count)" }) { recognised.append($0) }
+
+        queue.start()
+        await queue.waitUntilIdle()
+
+        #expect(recognised.count == 2)
+        #expect(store.items().allSatisfy { $0.recognizedText?.hasPrefix("bytes ") == true })
+        #expect(store.imageFilesWithoutRecognizedText().isEmpty)
+    }
+
+    @Test func imagesWhoseFileVanishedAreSkipped() async throws {
+        try addImage(width: 5)
+        let item = try #require(store.items().first)
+        try FileManager.default.removeItem(at: #require(store.imageURL(for: item)))
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in "never" }) { _ in }
+
+        queue.start()
+        await queue.waitUntilIdle()
+
+        #expect(store.items().first?.recognizedText == nil)
+    }
+}

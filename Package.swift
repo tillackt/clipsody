@@ -5,7 +5,7 @@ let package = Package(
     name: "Clippboard",
     platforms: [.macOS(.v13)],
     targets: [
-        // Storage, configuration, image handling, search and import: no AppKit, unit-tested.
+        // Storage, configuration, image handling and search: no AppKit, unit-tested.
         .target(
             name: "ClippboardCore"
         ),
@@ -13,19 +13,28 @@ let package = Package(
         .target(
             name: "ClippboardXPC"
         ),
+        // Decoder service implementation, its XPC client and the queues that use it: no AppKit, unit-tested.
+        .target(
+            name: "ClippboardServices",
+            dependencies: ["ClippboardCore", "ClippboardXPC"]
+        ),
         // The menu-bar app itself (AppKit UI, hotkey, pasteboard).
         .executableTarget(
             name: "Clippboard",
-            dependencies: ["ClippboardCore", "ClippboardXPC"]
+            dependencies: ["ClippboardCore", "ClippboardServices"]
         ),
         // Sandboxed XPC service that decodes clipboard images and runs text recognition.
         .executableTarget(
             name: "ClippboardDecoder",
-            dependencies: ["ClippboardCore", "ClippboardXPC"]
+            dependencies: ["ClippboardServices"]
         ),
         .testTarget(
             name: "ClippboardCoreTests",
             dependencies: ["ClippboardCore"]
+        ),
+        .testTarget(
+            name: "ClippboardServicesTests",
+            dependencies: ["ClippboardServices", "ClippboardCore", "ClippboardXPC"]
         ),
     ]
 )
