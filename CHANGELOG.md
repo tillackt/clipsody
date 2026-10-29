@@ -6,6 +6,7 @@ All notable changes, newest first. Versions follow [Semantic Versioning](https:/
 
 - **Ready for clipboard privacy in macOS 27.** Newer versions of macOS ask before an app reads what you copy in other apps. Settings → General now shows whether Clipsody may (Allowed, Asks when needed, Denied) and explains how to allow it. While access is denied, the menu bar menu says so instead of the history silently standing still.
 - **Check your copy more thoroughly:** the website and the release notes now show how to check the signing certificate's fingerprint, the check a re-signed copy cannot fake.
+- **Text in screenshots is found again on macOS 27.** macOS 27 broke the text recognition Clipsody used; it now uses Apple's newer interface and, where the precise model is unavailable, a faster one.
 - Tested on macOS 27 with Xcode 27 in addition to macOS 26.
 - Behind the scenes: stricter release checks (pinned signing certificate, version and changelog checks, verified upload), sturdier tests, tidier code.
 
