@@ -87,12 +87,15 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
         // macOS 27 broke accurate recognition through VNRecognizeTextRequest (no results or an
         // error); the Swift API from macOS 15 on still works. Older systems keep the old request.
         if #available(macOS 15.0, *) {
-            var request = RecognizeTextRequest()
-            request.recognitionLevel = .accurate
-            request.recognitionLanguages = [Locale.Language(identifier: "de-DE"), Locale.Language(identifier: "en-US")]
-            request.usesLanguageCorrection = true
-            let observations = try await request.perform(on: png)
-            return observations.compactMap { $0.topCandidates(1).first?.string }
+            do {
+                return try await recognizedLines(inPNG: png, level: .accurate)
+            } catch {
+                // The accurate model is compiled for the Neural Engine or GPU on first use, which
+                // fails where neither is available (e.g. virtual machines on macOS 27). The fast
+                // level does without it: fewer details, but text.
+                logger.error("Accurate text recognition failed, using fast: \(String(describing: error), privacy: .public)")
+                return try await recognizedLines(inPNG: png, level: .fast)
+            }
         }
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
@@ -100,6 +103,16 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
         request.usesLanguageCorrection = true
         try VNImageRequestHandler(data: png).perform([request])
         return (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
+    }
+
+    @available(macOS 15.0, *)
+    static func recognizedLines(inPNG png: Data, level: RecognizeTextRequest.RecognitionLevel) async throws -> [String] {
+        var request = RecognizeTextRequest()
+        request.recognitionLevel = level
+        request.recognitionLanguages = [Locale.Language(identifier: "de-DE"), Locale.Language(identifier: "en-US")]
+        request.usesLanguageCorrection = true
+        let observations = try await request.perform(on: png)
+        return observations.compactMap { $0.topCandidates(1).first?.string }
     }
 
     public func thumbnail(ofPNG png: Data, maxPixelSize: Int,

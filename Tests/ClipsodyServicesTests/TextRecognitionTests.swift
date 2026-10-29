@@ -14,4 +14,12 @@ import Testing
             Issue.record("Vision failed: \(String(describing: error))")
         }
     }
+
+    /// The fallback when the accurate model cannot be compiled must read text on its own.
+    @available(macOS 15.0, *)
+    @Test func fastLevelReadsText() async throws {
+        let png = try #require(ImageCodec.prepare(makeImage(text: "Clipsody 4711", width: 700, height: 120))).png
+        let lines = try await ClipsodyDecoderKit.Decoder.recognizedLines(inPNG: png, level: .fast)
+        #expect(lines.joined(separator: " ").contains("4711"), "recognised: \(lines)")
+    }
 }
