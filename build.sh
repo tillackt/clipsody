@@ -33,9 +33,14 @@ cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
 # Build number = commit count, plus the commit itself; "+" marks uncommitted changes.
 # Outside a git checkout (e.g. a source download) there is no history to count.
-BUILD_NUMBER="$(git rev-list --count HEAD 2>/dev/null || echo 0)"
-COMMIT="$( (git rev-parse --short HEAD 2>/dev/null || echo unknown); git diff --quiet HEAD 2>/dev/null || echo +)"
-COMMIT="${COMMIT//$'\n'/}"
+if COMMIT="$(git rev-parse --short HEAD 2>/dev/null)"; then
+    BUILD_NUMBER="$(git rev-list --count HEAD)"
+    # Untracked files count too: a new source file is part of the build.
+    if [[ -n "$(git status --porcelain)" ]]; then COMMIT="$COMMIT+"; fi
+else
+    BUILD_NUMBER=0
+    COMMIT=unknown
+fi
 plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$APP/Contents/Info.plist"
 plutil -replace ClippboardCommit -string "$COMMIT" "$APP/Contents/Info.plist"
 
@@ -56,7 +61,10 @@ plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$XPC/Contents/Info.plis
 # the Accessibility permission. A stable signing identity keeps that permission across rebuilds.
 # Without the "Clippboard Signing" certificate the build falls back to an ad-hoc
 # signature, and the permission must be granted again after every rebuild.
-if security find-identity -p codesigning | grep -q "\"$IDENTITY\""; then
+# Not `security … | grep -q`: under pipefail grep's early exit can make the pipe "fail" and the
+# certificate look missing, which would silently sign ad-hoc.
+IDENTITIES="$(security find-identity -p codesigning)"
+if [[ "$IDENTITIES" == *"\"$IDENTITY\""* ]]; then
     SIGN_AS="$IDENTITY"
 else
     if [[ "${1:-}" == "release" ]]; then
@@ -98,7 +106,8 @@ if [[ "${1:-}" == "install" ]]; then
     sleep 1
     mkdir -p "$HOME/Applications"
     rm -rf "$TARGET"
-    cp -R "$APP" "$TARGET"
+    # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
+    ditto "$APP" "$TARGET"
     open "$TARGET"
     echo "Installed and started $TARGET"
 fi
