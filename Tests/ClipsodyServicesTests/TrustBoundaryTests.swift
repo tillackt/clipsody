@@ -137,13 +137,14 @@ import Testing
         withExtendedLifetime(service) {}
     }
 
-    @Test func tiffRequestToAHangingServiceGivesUp() {
+    @Test func tiffRequestToAHangingServiceGivesUp() async {
         let silent = SilentDecoder()
         let service = TestService { silent }
         let started = ContinuousClock.now
         #expect(service.client().tiffBlocking(fromPNG: makeImage(type: .png), timeout: 0.3) == nil)
         let elapsed = ContinuousClock.now - started
-        #expect(silent.requestsReceived == 1)
+        // Under load the request can reach the service only after the client gave up.
+        #expect(await eventually { silent.requestsReceived == 1 })
         #expect(elapsed >= .milliseconds(300))
         #expect(elapsed < .seconds(3))
         withExtendedLifetime(service) {}
