@@ -10,6 +10,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     private let onChange: (Config) -> Void
 
     private let hotKeyRecorder: HotKeyRecorder
+    private let languagePopUp = NSPopUpButton()
     private let launchAtLogin = NSButton(checkboxWithTitle: String(localized: "Start automatically at login"), target: nil, action: nil)
     private let accessibilityStatus = NSTextField(labelWithString: "")
     private let retentionField = NSTextField()
@@ -136,6 +137,20 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             alert.beginSheetModal(for: window!)
         }
         refreshSystemState()
+    }
+
+    @objc private func languageChanged() {
+        let language = languagePopUp.selectedItem?.representedObject as? String
+        AppLanguage.select(language)
+        // Nothing to restart for if the effective language stays the one on screen.
+        guard (language ?? AppLanguage.systemLanguage) != Bundle.main.preferredLocalizations.first else { return }
+        let alert = NSAlert()
+        alert.messageText = String(localized: "Clippboard needs to restart to switch the language.")
+        alert.addButton(withTitle: String(localized: "Restart Now"))
+        alert.addButton(withTitle: String(localized: "Later"))
+        alert.beginSheetModal(for: window!) { response in
+            if response == .alertFirstButtonReturn { AppLanguage.relaunch() }
+        }
     }
 
     @objc private func openAccessibilitySettings() {
@@ -283,6 +298,21 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         row(String(localized: "Shortcut:"), hotKeyRecorder, alignWith: hotKeyRecorder, help: String(localized: """
             Opens and closes the history from any app. To change it, click the field and press the new \
             combination, with ⌘ or ⌃ (macOS does not allow ⌥ alone). Esc cancels.
+            """))
+
+        let systemName = AppLanguage.displayName(AppLanguage.systemLanguage)
+        languagePopUp.addItem(withTitle: String(localized: "System (\(systemName))"))
+        languagePopUp.menu?.addItem(.separator())
+        for language in AppLanguage.available {
+            languagePopUp.addItem(withTitle: AppLanguage.displayName(language))
+            languagePopUp.lastItem?.representedObject = language
+        }
+        let selectedIndex = AppLanguage.selected.map { languagePopUp.indexOfItem(withRepresentedObject: $0) } ?? -1
+        languagePopUp.selectItem(at: max(selectedIndex, 0))
+        languagePopUp.target = self
+        languagePopUp.action = #selector(languageChanged)
+        row(String(localized: "Language:"), languagePopUp, alignWith: languagePopUp, help: String(localized: """
+            By default Clippboard uses the language of your Mac. A change takes effect after Clippboard restarts.
             """))
 
         launchAtLogin.target = self

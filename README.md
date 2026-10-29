@@ -53,7 +53,7 @@ Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, w
 
 ## Sprachen
 
-Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. Für Clippboard allein lässt sich die Sprache unter Systemeinstellungen → Allgemein → Sprache & Region → Programme umstellen.
+Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. In den Einstellungen unter **Sprache** lässt sich eine andere wählen; sie gilt nach einem Neustart der App. Die Wahl landet dort, wo auch macOS die Sprache pro App speichert (Systemeinstellungen → Allgemein → Sprache & Region → Programme), beide Wege zeigen also dasselbe.
 
 Alle Texte und Übersetzungen stehen in `Resources/Localizable.xcstrings`. Texte im Code werden mit `String(localized:)` geschrieben, auf Englisch. Nach neuen oder geänderten Texten:
 
