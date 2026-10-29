@@ -26,7 +26,9 @@ Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Grö
 Swift-Paket mit drei Zielen:
 
 - `Sources/ClippboardCore`: Speicher (SQLite mit versionierten Migrationen), Konfiguration, Bildumwandlung, Suche und Alfred-Import, ohne AppKit
-- `Sources/Clippboard`: die Menüleisten-App (AppKit, Hotkey, Zwischenablage, Texterkennung)
+- `Sources/Clippboard`: die Menüleisten-App (AppKit, Hotkey, Zwischenablage, Einfügen)
+- `Sources/ClippboardDecoder`: XPC-Dienst in einer Sandbox, der Bilder aus der Zwischenablage umwandelt und Text in Screenshots erkennt
+- `Sources/ClippboardXPC`: die Schnittstelle zwischen App und Dienst
 - `Tests/ClippboardCoreTests`: Tests für den Kern (Swift Testing)
 
 Voraussetzung: Xcode oder die Command Line Tools mit Swift 6.
@@ -80,6 +82,7 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 - Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet. Ab macOS 15 können Aufnahme-Apps, die ScreenCaptureKit nutzen, es trotzdem erfassen.
 - Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
 - Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.
+- Bilder aus der Zwischenablage sind fremde Daten. Sie werden deshalb nicht in der App dekodiert, sondern im Hilfsprozess `ClippboardDecoder` (eingebettet in der App). Er läuft in einer App-Sandbox ohne weitere Rechte: kein Zugriff auf Dateien außerhalb seines Containers, kein Netzwerk, keine Historie. Er bekommt nur die Bytes und liefert ein neu kodiertes PNG bzw. den erkannten Text zurück. Eine Schwachstelle in der Bilddekodierung trifft damit diesen abgeschotteten Prozess statt der App. Ist der Dienst nicht erreichbar, werden keine Bilder gespeichert.
 
 ## Daten
 

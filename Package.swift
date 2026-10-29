@@ -9,10 +9,19 @@ let package = Package(
         .target(
             name: "ClippboardCore"
         ),
-        // The menu-bar app itself (AppKit UI, hotkey, pasteboard, Vision).
+        // XPC interface shared by the app and the decoder service.
+        .target(
+            name: "ClippboardXPC"
+        ),
+        // The menu-bar app itself (AppKit UI, hotkey, pasteboard).
         .executableTarget(
             name: "Clippboard",
-            dependencies: ["ClippboardCore"]
+            dependencies: ["ClippboardCore", "ClippboardXPC"]
+        ),
+        // Sandboxed XPC service that decodes clipboard images and runs text recognition.
+        .executableTarget(
+            name: "ClippboardDecoder",
+            dependencies: ["ClippboardCore", "ClippboardXPC"]
         ),
         .testTarget(
             name: "ClippboardCoreTests",

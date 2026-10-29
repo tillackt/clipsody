@@ -31,6 +31,15 @@ strip -x "$APP/Contents/MacOS/Clippboard"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
 
+# Sandboxed XPC service that decodes clipboard images and reads screenshots (see README).
+DECODER_ID="$BUNDLE_ID.decoder"
+XPC="$APP/Contents/XPCServices/ClippboardDecoder.xpc"
+mkdir -p "$XPC/Contents/MacOS"
+cp "$BIN_DIR/ClippboardDecoder" "$XPC/Contents/MacOS/ClippboardDecoder"
+strip -x "$XPC/Contents/MacOS/ClippboardDecoder"
+cp Resources/ClippboardDecoder-Info.plist "$XPC/Contents/Info.plist"
+plutil -replace CFBundleIdentifier -string "$DECODER_ID" "$XPC/Contents/Info.plist"
+
 # Hardened runtime: no code injection (DYLD_INSERT_LIBRARIES etc.) into a process that holds
 # the Accessibility permission. A stable signing identity keeps that permission across rebuilds.
 # Without the "Clippboard Signing" certificate the build falls back to an ad-hoc
@@ -50,6 +59,8 @@ sign() {
     codesign --force --options runtime --sign "$SIGN_AS" --identifier "$2" ${entitlements[@]+"${entitlements[@]}"} "$1"
 }
 
+# Inside out: the embedded service first, then the app that seals it.
+sign "$XPC" "$DECODER_ID" Resources/ClippboardDecoder.entitlements
 sign "$APP" "$BUNDLE_ID"
 codesign --verify --strict --deep "$APP"
 echo "Built and verified $APP (signed as \"$SIGN_AS\")"

@@ -5,6 +5,7 @@ import ClippboardCore
 @MainActor
 final class ClipboardMonitor {
     private let store: Store
+    private let decoder: DecoderClient
     private let config: () -> Config
     private var lastChangeCount = NSPasteboard.general.changeCount
     private var timer: Timer?
@@ -17,7 +18,8 @@ final class ClipboardMonitor {
     private static let maxPendingImages = 3
 
 
-    init(store: Store, config: @escaping () -> Config) {
+    init(store: Store, decoder: DecoderClient, config: @escaping () -> Config) {
+        self.decoder = decoder
         self.store = store
         self.config = config
     }
@@ -93,7 +95,8 @@ final class ClipboardMonitor {
         pendingImages += 1
         imageChain = Task { [store, weak self] in
             await previous?.value
-            let image = await Task.detached(priority: .userInitiated) { ImageIngest.prepare(data) }.value
+            // Untrusted image data is decoded in the sandboxed decoder service, not in this process.
+            let image = await self?.decoder.prepareImage(data)
             guard let self else { return }
             pendingImages -= 1
             guard let image, generation == self.generation else { return }

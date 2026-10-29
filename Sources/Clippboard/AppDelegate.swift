@@ -8,6 +8,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var monitor: ClipboardMonitor!
     private var panel: PanelController!
     private let paster = Paster()
+    private let decoder = DecoderClient()
     private var hotKey: HotKey?
     private var statusItem: NSStatusItem!
     private var openItem: NSMenuItem!
@@ -30,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                       force: CommandLine.arguments.contains("--import-alfred"))
         prune()
 
-        monitor = ClipboardMonitor(store: store) { [unowned self] in config }
+        monitor = ClipboardMonitor(store: store, decoder: decoder) { [unowned self] in config }
         panel = PanelController(store: store) { [unowned self] item, target, formatted in
             paste(item, into: target, withFormatting: formatted)
         }
@@ -91,8 +92,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         isRecognizingText = true
         Task { [weak self] in
-            let text = await TextRecognizer.recognize(imageAt: url)
             guard let self else { return }
+            // Read in the sandboxed decoder service; it gets the bytes, not the path.
+            let png = try? Data(contentsOf: url)
+            let text = if let png { await decoder.recognizeText(inPNG: png) } else { String?.none }
             if FileManager.default.fileExists(atPath: url.path) {
                 // Stored even when empty so the image is not processed again.
                 store.setRecognizedText(text ?? "", forImageFile: file)

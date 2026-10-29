@@ -9,6 +9,13 @@ public struct PreparedImage: Sendable {
     public let width: Int
     public let height: Int
     public let hash: String
+
+    public init(png: Data, width: Int, height: Int, hash: String) {
+        self.png = png
+        self.width = width
+        self.height = height
+        self.hash = hash
+    }
 }
 
 /// Converts pasteboard image data (PNG or TIFF) into PNG with ImageIO, keeping pixels,
