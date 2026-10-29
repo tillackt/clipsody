@@ -1,5 +1,7 @@
 # Clipsody
 
+[![CI](https://github.com/tillackt/clipsody/actions/workflows/ci.yml/badge.svg)](https://github.com/tillackt/clipsody/actions/workflows/ci.yml)
+
 Schlanke Clipboard-Historie für macOS als Ersatz für Alfreds Clipboard-Feature. Native Swift/AppKit-App ohne Abhängigkeiten.
 
 ## Bedienung
@@ -61,6 +63,16 @@ Ohne eigenes Zertifikat signiert `build.sh` ad hoc, und macOS vergisst die Bedie
 3. `./build.sh install` ausführen und die Berechtigung ein letztes Mal setzen.
 
 `build.sh` nimmt das Zertifikat automatisch, sobald es vorhanden ist.
+
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) läuft bei jedem Push auf `main` und bei jedem Pull Request, auf einem macOS-Runner mit dem neuesten stabilen Xcode:
+
+- **Tests:** `./build.sh test`
+- **Übersetzungen:** `./build.sh check-strings` schlägt fehl, wenn ein Text im Code nicht im Katalog steht oder der Katalog Texte enthält, die der Code nicht mehr nutzt.
+- **App-Build:** `./build.sh` baut das Universal Binary; ohne Zertifikat ad hoc signiert, die Signatur wird trotzdem geprüft.
+
+Neue Funktionen entstehen auf einem eigenen Branch und kommen per Pull Request nach `main`, nachdem die CI grün ist.
 
 ## Sprachen
 

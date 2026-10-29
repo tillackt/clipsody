@@ -5,6 +5,7 @@
 #   ./build.sh install   run the tests, build, copy to /Applications and restart
 #   ./build.sh release   run the tests and build build/Clipsody.dmg with checksums; needs the signing certificate and a clean tree
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
+#   ./build.sh check-strings  fail if code and Resources/Localizable.xcstrings disagree (CI)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -29,7 +30,7 @@ if [[ "${1:-}" == "release" ]] && [[ -n "$(git status --porcelain 2>/dev/null)" 
     echo "Release builds need a clean working tree; commit or stash first" >&2
     exit 1
 fi
-if [[ "${1:-}" == "strings" ]]; then
+if [[ "${1:-}" == "strings" || "${1:-}" == "check-strings" ]]; then
     # The compiler lists every String(localized:) it sees; sync adds new keys to the catalog
     # and marks keys that are no longer used as stale.
     STRINGS_TMP="$(mktemp -d)"
@@ -41,8 +42,28 @@ if [[ "${1:-}" == "strings" ]]; then
         echo "The compiler produced no .stringsdata files; nothing to sync" >&2
         exit 1
     fi
-    xcrun xcstringstool sync Resources/Localizable.xcstrings --stringsdata "${STRINGS_DATA[@]}"
-    echo "Synced Resources/Localizable.xcstrings; translate new entries before the next release"
+    if [[ "${1:-}" == "strings" ]]; then
+        xcrun xcstringstool sync Resources/Localizable.xcstrings --stringsdata "${STRINGS_DATA[@]}"
+        echo "Synced Resources/Localizable.xcstrings; translate new entries before the next release"
+        exit
+    fi
+    # check-strings (CI): sync a copy and fail if the code and the catalog disagree, without
+    # touching the real file. The copy keeps its name: the table name comes from it.
+    mkdir "$STRINGS_TMP/catalog"
+    cp Resources/Localizable.xcstrings "$STRINGS_TMP/catalog/"
+    xcrun xcstringstool sync "$STRINGS_TMP/catalog/Localizable.xcstrings" --stringsdata "${STRINGS_DATA[@]}"
+    python3 - "$STRINGS_TMP/catalog/Localizable.xcstrings" <<'PYTHON'
+import json, sys
+strings = json.load(open(sys.argv[1]))["strings"]
+new = sorted(k for k, v in strings.items() if not v.get("localizations", {}).keys() - {"en"})
+stale = sorted(k for k, v in strings.items() if v.get("extractionState") == "stale")
+for key in new:
+    print(f"Not in the catalog yet (run ./build.sh strings and translate): {key}")
+for key in stale:
+    print(f"No longer used in the code (run ./build.sh strings and remove): {key}")
+sys.exit(1 if new or stale else 0)
+PYTHON
+    echo "Localizable.xcstrings matches the code"
     exit
 fi
 if [[ "${1:-}" == "install" || "${1:-}" == "release" ]]; then
