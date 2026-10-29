@@ -3,7 +3,7 @@
 #   ./build.sh           build the app bundle
 #   ./build.sh test      run the unit tests
 #   ./build.sh install   run the tests, build, copy to /Applications and restart
-#   ./build.sh release   run the tests and build; fails without the signing certificate
+#   ./build.sh release   run the tests and build build/Clippboard.dmg with checksums; needs the signing certificate and a clean tree
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -119,6 +119,39 @@ sign "$XPC" "$DECODER_ID" Resources/ClippboardDecoder.entitlements
 sign "$APP" "$BUNDLE_ID"
 codesign --verify --strict --deep "$APP"
 echo "Built and verified $APP (signed as \"$SIGN_AS\")"
+
+if [[ "${1:-}" == "release" ]]; then
+    # Disk image to download: the app plus a link to /Applications to drag it onto.
+    DMG="build/Clippboard.dmg"
+    RELEASE_TMP="$(mktemp -d)"
+    trap 'rm -rf "$RELEASE_TMP"' EXIT
+    mkdir "$RELEASE_TMP/dmg" "$RELEASE_TMP/cert"
+    ditto "$APP" "$RELEASE_TMP/dmg/Clippboard.app"
+    ln -s /Applications "$RELEASE_TMP/dmg/Applications"
+    rm -f "$DMG"
+    # ULFO (LZFSE) opens on every supported macOS (13+) and is smaller than zlib.
+    hdiutil create -quiet -volname Clippboard -srcfolder "$RELEASE_TMP/dmg" -fs HFS+ -format ULFO "$DMG"
+    # Signed like the app, so a tampered image shows up in `codesign --verify`.
+    codesign --force --sign "$SIGN_AS" --identifier "$BUNDLE_ID.dmg" "$DMG"
+    codesign --verify --strict "$DMG"
+    hdiutil verify -quiet "$DMG"
+
+    # What the download page and the release notes publish, so recipients can check their copy.
+    DMG_SHA="$(shasum -a 256 "$DMG" | cut -d ' ' -f 1)"
+    codesign -d --extract-certificates="$RELEASE_TMP/cert/cert" "$APP" 2>/dev/null
+    CERT_SHA="$(shasum -a 256 "$RELEASE_TMP/cert/cert0" | cut -d ' ' -f 1)"
+    VERSION="$(plutil -extract CFBundleShortVersionString raw "$APP/Contents/Info.plist")"
+    echo "$DMG_SHA  Clippboard.dmg" > "$DMG.sha256"
+    cat > build/release-notes.txt <<EOF
+Clippboard $VERSION (Build $BUILD_NUMBER, $COMMIT)
+
+SHA-256 Clippboard.dmg:       $DMG_SHA
+SHA-256 signing certificate:  $CERT_SHA
+
+Check:  shasum -a 256 ~/Downloads/Clippboard.dmg
+EOF
+    cat build/release-notes.txt
+fi
 
 if [[ "${1:-}" == "install" ]]; then
     TARGET="/Applications/Clippboard.app"
