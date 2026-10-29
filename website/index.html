@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<!-- Before publishing: replace tillackt with the GitHub account (see website/README.md). -->
 <header class="top">
     <div class="wrap">
         <a class="brand" href="./"><img src="assets/logo.svg" alt="">Clipsody</a>
@@ -144,7 +143,8 @@
             </ol>
             <div class="note" id="pruefen">
                 <strong>Echt oder nicht?</strong> Lade Clipsody nur von dieser Seite oder von GitHub. Zu jeder Version stehen dort die SHA-256-Prüfsumme der DMG und der Fingerabdruck des Signaturzertifikats. Prüfen kannst du sie im Terminal:
-                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg</code></pre>
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app &amp;&amp; shasum -a 256 /tmp/clipsody-cert0</code></pre>
                 Zertifikat-Fingerabdruck (SHA-256): <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
             </div>
         </div>

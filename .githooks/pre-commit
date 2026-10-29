@@ -12,7 +12,9 @@ fi
 # Only what is about to be committed; findings are printed with the secret redacted.
 betterleaks git --pre-commit --staged --redact --no-banner .
 
-if git diff --cached --name-only --diff-filter=ACMR | grep -q '\.swift$'; then
+# Captured first: `git diff | grep -q` under pipefail can fail on SIGPIPE and skip the lint silently.
+STAGED_FILES="$(git diff --cached --name-only --diff-filter=ACMR)"
+if [[ "$STAGED_FILES" == *.swift* ]]; then
     if command -v swiftlint >/dev/null 2>&1; then
         swiftlint lint --strict --quiet
     else

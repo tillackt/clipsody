@@ -13,7 +13,7 @@ Static site without a build step, scripts, external fonts or tracking.
 2. ~~**License**~~: done, GPLv3 (see `LICENSE` in the repository).
 3. ~~**Certificate fingerprint**~~: done. `./build.sh release` writes it to `build/release-notes.txt`; it stays the same as long as the same certificate signs.
 4. **Legal notice and privacy policy**: fill in and have them checked.
-5. **Download link:** the pages link to `…/releases/latest/download/Clipsody.dmg`. That works as soon as every release contains a file with exactly this name.
+5. ~~**Download link**~~: done; the pages link to `…/releases/latest/download/Clipsody.dmg`, which `./build.sh release` uploads under exactly this name.
 
 ## Publishing with your own domain
 

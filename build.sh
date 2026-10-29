@@ -4,16 +4,31 @@
 #   ./build.sh test      run the unit tests
 #   ./build.sh coverage  run the unit tests with line coverage; fails below COVERAGE_MIN (default 88) percent
 #   ./build.sh install   run the tests, build, copy to /Applications and restart
-#   ./build.sh release   run the tests and build build/Clipsody.dmg with checksums; needs the signing certificate and a clean tree
+#   ./build.sh release   run the tests and build build/Clipsody.dmg with checksums and release notes; needs the
+#                        signing certificate, a clean tree on origin/main and a CHANGELOG.md entry;
+#                        PUBLISH=1 also creates the GitHub release and checks the uploaded file
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
 #   ./build.sh check-strings  fail if code and Resources/Localizable.xcstrings disagree (CI)
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# A mistyped mode ("relase") must not silently fall back to a plain build without the release checks.
+case "${1:-}" in
+    "" | test | coverage | install | release | strings | check-strings) ;;
+    *)
+        echo "Unknown mode \"$1\"; use test, coverage, install, release, strings, check-strings or nothing" >&2
+        exit 2
+        ;;
+esac
+
 BUNDLE_ID="io.github.tillackt.clipsody"
 # Keychain name of the self-signed certificate, from before the app was renamed to Clipsody;
 # renaming it would mean a new certificate, a new fingerprint and new permissions for everyone.
 IDENTITY="Clippboard Signing"
+# SHA-256 of that certificate, as published on the website and in every release. Releases must carry
+# exactly this one: a different certificate (even one with the same name) would cost every user the
+# permissions they granted.
+RELEASE_CERT_SHA256="4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6"
 APP="build/Clipsody.app"
 ARCHS=(--arch arm64 --arch x86_64)
 # CI sets WARNINGS_AS_ERRORS=1: the code builds without warnings, and a new one fails the build there.
@@ -73,10 +88,28 @@ if [[ "${1:-}" == "release" ]]; then
         echo "Version \"$RELEASE_VERSION\" in Resources/Info.plist is not MAJOR.MINOR.PATCH" >&2
         exit 1
     fi
-    git fetch -q --tags origin 2>/dev/null || true
+    # The checks below need the remote's tags and main; without them they would pass by mistake.
+    if ! git fetch -q --tags origin main; then
+        echo "Could not fetch tags and main from origin; release aborted" >&2
+        exit 1
+    fi
+    if ! git merge-base --is-ancestor HEAD origin/main; then
+        echo "Release from a commit on origin/main: merge the release pull request and pull first" >&2
+        exit 1
+    fi
     TAG_COMMIT="$(git rev-parse -q --verify "refs/tags/v$RELEASE_VERSION^{commit}" || true)"
     if [[ -n "$TAG_COMMIT" && "$TAG_COMMIT" != "$(git rev-parse HEAD)" ]]; then
         echo "v$RELEASE_VERSION was already released from another commit; raise the version first" >&2
+        exit 1
+    fi
+    LATEST_RELEASED="$(git tag -l 'v[0-9]*' | sed 's/^v//' | sort -V | tail -n 1)"
+    if [[ -n "$LATEST_RELEASED" && "$LATEST_RELEASED" != "$RELEASE_VERSION" ]] &&
+        [[ "$(printf '%s\n%s\n' "$LATEST_RELEASED" "$RELEASE_VERSION" | sort -V | tail -n 1)" != "$RELEASE_VERSION" ]]; then
+        echo "Version $RELEASE_VERSION is not newer than the latest release $LATEST_RELEASED" >&2
+        exit 1
+    fi
+    if ! grep -q "^## $RELEASE_VERSION " CHANGELOG.md; then
+        echo "CHANGELOG.md has no section \"## $RELEASE_VERSION …\" for this release" >&2
         exit 1
     fi
 fi
@@ -194,11 +227,21 @@ codesign --verify --strict --deep "$APP"
 echo "Built and verified $APP (signed as \"$SIGN_AS\")"
 
 if [[ "${1:-}" == "release" ]]; then
+    RELEASE_TMP="$(mktemp -d)"
+    MOUNT="$RELEASE_TMP/mnt"
+    trap 'hdiutil detach -quiet "$MOUNT" 2>/dev/null || true; rm -rf "$RELEASE_TMP"' EXIT
+    mkdir "$RELEASE_TMP/dmg" "$RELEASE_TMP/cert" "$MOUNT"
+
+    # Only the published certificate may sign a release.
+    codesign -d --extract-certificates="$RELEASE_TMP/cert/cert" "$APP" 2>/dev/null
+    CERT_SHA="$(shasum -a 256 "$RELEASE_TMP/cert/cert0" | cut -d ' ' -f 1)"
+    if [[ "$CERT_SHA" != "$RELEASE_CERT_SHA256" ]]; then
+        echo "The app is signed with certificate $CERT_SHA, not the published $RELEASE_CERT_SHA256; release aborted" >&2
+        exit 1
+    fi
+
     # Disk image to download: the app plus a link to /Applications to drag it onto.
     DMG="build/Clipsody.dmg"
-    RELEASE_TMP="$(mktemp -d)"
-    trap 'rm -rf "$RELEASE_TMP"' EXIT
-    mkdir "$RELEASE_TMP/dmg" "$RELEASE_TMP/cert"
     ditto "$APP" "$RELEASE_TMP/dmg/Clipsody.app"
     ln -s /Applications "$RELEASE_TMP/dmg/Applications"
     rm -f "$DMG"
@@ -209,23 +252,54 @@ if [[ "${1:-}" == "release" ]]; then
     codesign --verify --strict "$DMG"
     hdiutil verify -quiet "$DMG"
 
-    # What the download page and the release notes publish, so recipients can check their copy.
-    DMG_SHA="$(shasum -a 256 "$DMG" | cut -d ' ' -f 1)"
-    codesign -d --extract-certificates="$RELEASE_TMP/cert/cert" "$APP" 2>/dev/null
-    CERT_SHA="$(shasum -a 256 "$RELEASE_TMP/cert/cert0" | cut -d ' ' -f 1)"
+    # What users get: the app inside the image, checked like they would.
     VERSION="$(plutil -extract CFBundleShortVersionString raw "$APP/Contents/Info.plist")"
+    hdiutil attach -quiet -readonly -nobrowse -mountpoint "$MOUNT" "$DMG"
+    codesign --verify --strict --deep "$MOUNT/Clipsody.app"
+    if [[ "$(plutil -extract CFBundleShortVersionString raw "$MOUNT/Clipsody.app/Contents/Info.plist")" != "$VERSION" ]]; then
+        echo "The app in the disk image is not version $VERSION; release aborted" >&2
+        exit 1
+    fi
+    hdiutil detach -quiet "$MOUNT"
+
+    # Checksums and release notes: the notes come from .github/release-notes.md and this version's
+    # section of CHANGELOG.md.
+    DMG_SHA="$(shasum -a 256 "$DMG" | cut -d ' ' -f 1)"
     echo "$DMG_SHA  Clipsody.dmg" > "$DMG.sha256"
-    cat > build/release-notes.txt <<EOF
-Clipsody $VERSION (Build $BUILD_NUMBER, $COMMIT)
+    awk -v version="$VERSION" '
+        index($0, "## " version " ") == 1 { inside = 1; next }
+        inside && /^## / { exit }
+        inside { print }
+    ' CHANGELOG.md > "$RELEASE_TMP/changes.md"
+    awk -v changes="$RELEASE_TMP/changes.md" '
+        $0 == "{{CHANGES}}" { while ((getline line < changes) > 0) print line; next }
+        { print }
+    ' .github/release-notes.md |
+        sed -e "s/{{VERSION}}/$VERSION/g" -e "s/{{BUILD}}/$BUILD_NUMBER/g" -e "s/{{COMMIT}}/$COMMIT/g" \
+            -e "s/{{DMG_SHA}}/$DMG_SHA/g" -e "s/{{CERT_SHA}}/$CERT_SHA/g" > build/release-notes.md
+    echo "Clipsody $VERSION (Build $BUILD_NUMBER, $COMMIT)"
+    echo "SHA-256 Clipsody.dmg:          $DMG_SHA"
+    echo "SHA-256 signing certificate:   $CERT_SHA"
+    echo "Release notes: build/release-notes.md"
 
-SHA-256 Clipsody.dmg:       $DMG_SHA
-SHA-256 signing certificate:  $CERT_SHA
-
-Check:  shasum -a 256 ~/Downloads/Clipsody.dmg
-EOF
-    cat build/release-notes.txt
-    echo
-    echo "Publish: gh release create v$VERSION build/Clipsody.dmg --target $(git rev-parse HEAD) --title \"Clipsody $VERSION\" --notes-file build/release-notes.txt"
+    if [[ "${PUBLISH:-0}" == "1" ]]; then
+        # Nothing may swap the image between building and uploading.
+        if [[ "$(shasum -a 256 "$DMG" | cut -d ' ' -f 1)" != "$DMG_SHA" ]]; then
+            echo "build/Clipsody.dmg changed after it was built; release aborted" >&2
+            exit 1
+        fi
+        gh release create "v$VERSION" "$DMG" "$DMG.sha256" --target "$(git rev-parse HEAD)" \
+            --title "Clipsody $VERSION" --notes-file build/release-notes.md
+        # GitHub's own checksum of the uploaded file must be the one the notes announce.
+        UPLOADED="$(gh release view "v$VERSION" --json assets -q '.assets[] | select(.name == "Clipsody.dmg") | .digest')"
+        if [[ "$UPLOADED" != "sha256:$DMG_SHA" ]]; then
+            echo "GitHub reports $UPLOADED for the uploaded Clipsody.dmg, expected sha256:$DMG_SHA" >&2
+            exit 1
+        fi
+        echo "Published https://github.com/tillackt/clipsody/releases/tag/v$VERSION"
+    else
+        echo "Not published. Publish with: PUBLISH=1 ./build.sh release"
+    fi
 fi
 
 if [[ "${1:-}" == "install" ]]; then
@@ -235,8 +309,15 @@ if [[ "${1:-}" == "install" ]]; then
         echo "/Applications is not writable for $(whoami); install aborted, nothing changed" >&2
         exit 1
     fi
-    STAGED="/Applications/.Clipsody.app.installing"
-    rm -rf "$STAGED"
+    # One install at a time: two would delete each other's freshly installed app.
+    LOCK="/Applications/.Clipsody.install.lock"
+    if ! mkdir "$LOCK" 2>/dev/null; then
+        echo "Another install is running (if not, remove $LOCK); install aborted, nothing changed" >&2
+        exit 1
+    fi
+    STAGE_DIR="$(mktemp -d /Applications/.Clipsody.install.XXXXXX)"
+    trap 'rm -rf "$STAGE_DIR" "$LOCK"' EXIT
+    STAGED="$STAGE_DIR/Clipsody.app"
     # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
     ditto "$APP" "$STAGED"
     codesign --verify --strict --deep "$STAGED"
@@ -247,7 +328,6 @@ if [[ "${1:-}" == "install" ]]; then
         sleep 0.2
     done
     if pgrep -x Clipsody >/dev/null; then
-        rm -rf "$STAGED"
         echo "Clipsody did not quit; install aborted" >&2
         exit 1
     fi
