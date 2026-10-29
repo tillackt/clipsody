@@ -367,14 +367,14 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
                                       action: #selector(retentionChanged(_:)))
         row("Aufbewahren:", retention, alignWith: retentionField, help: """
             Ältere Einträge werden automatisch gelöscht, beim Start und danach stündlich. Wird der Wert \
-            verkleinert, verschwinden ältere Einträge sofort.
+            verkleinert, verschwinden ältere Einträge sofort. Angepinnte Einträge (⌘P) werden nie automatisch gelöscht.
             """)
 
         let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: "Einträge", range: 50...10_000, step: 50,
                                      action: #selector(maxItemsChanged(_:)))
         row("Höchstens:", maxItems, alignWith: maxItemsField, help: """
             Obergrenze für die Historie. Kommen mehr Einträge zusammen, fallen die ältesten weg, auch wenn \
-            sie jünger als die Aufbewahrungszeit sind.
+            sie jünger als die Aufbewahrungszeit sind. Angepinnte Einträge zählen nicht mit.
             """)
 
         keepImages.target = self

@@ -7,20 +7,34 @@ enum Paster {
         return AXIsProcessTrustedWithOptions(options)
     }
 
-    static func write(_ item: ClipItem, store: Store) {
+    /// Puts the item on the pasteboard; returns false if there is nothing left to paste
+    /// (image file or all copied files gone).
+    static func write(_ item: ClipItem, store: Store, withFormatting: Bool) -> Bool {
         let pasteboard = NSPasteboard.general
-        pasteboard.clearContents()
         switch item.kind {
         case .text:
+            pasteboard.clearContents()
             pasteboard.setString(item.text, forType: .string)
+            if withFormatting, let rich = store.richText(for: item) {
+                pasteboard.setData(rich.data, forType: rich.type)
+            }
         case .image:
-            guard let url = store.imageURL(for: item), let png = try? Data(contentsOf: url) else { return }
+            guard let url = store.imageURL(for: item), let png = try? Data(contentsOf: url) else { return false }
+            pasteboard.clearContents()
             pasteboard.setData(png, forType: .png)
             // Some older apps only accept TIFF.
             if let tiff = NSImage(data: png)?.tiffRepresentation {
                 pasteboard.setData(tiff, forType: .tiff)
             }
+        case .files:
+            let urls = item.filePaths
+                .filter { FileManager.default.fileExists(atPath: $0) }
+                .map { NSURL(fileURLWithPath: $0) }
+            guard !urls.isEmpty else { return false }
+            pasteboard.clearContents()
+            pasteboard.writeObjects(urls)
         }
+        return true
     }
 
     /// Simulates ⌘V in the frontmost app. Requires Accessibility permission.

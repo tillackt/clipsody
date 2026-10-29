@@ -44,13 +44,13 @@ final class ClipboardMonitor {
         let appName = app?.localizedName
         let appPath = app?.bundleURL?.path
 
-        // Files copied in Finder: keep their paths as text.
+        // Files copied in Finder are pasted back as files, not as path text.
         if let urls = pasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL],
            !urls.isEmpty {
-            store.addText(urls.map(\.path).joined(separator: "\n"), app: appName, appPath: appPath)
+            store.addFiles(urls.map(\.path), app: appName, appPath: appPath)
         } else if let text = pasteboard.string(forType: .string),
                   !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            store.addText(text, app: appName, appPath: appPath)
+            store.addText(text, rich: Self.richText(from: pasteboard), app: appName, appPath: appPath)
         } else if config.keepImages,
                   let data = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) {
             store.addImage(data, app: appName, appPath: appPath)
@@ -58,5 +58,16 @@ final class ClipboardMonitor {
             return
         }
         onChange?()
+    }
+
+    /// Formatting for ⌥⏎: RTF from Office/Pages/TextEdit, otherwise HTML from browsers.
+    private static func richText(from pasteboard: NSPasteboard) -> (data: Data, type: NSPasteboard.PasteboardType)? {
+        let maxBytes = 5_000_000
+        for type in [NSPasteboard.PasteboardType.rtf, .html] {
+            if let data = pasteboard.data(forType: type), data.count <= maxBytes {
+                return (data, type)
+            }
+        }
+        return nil
     }
 }

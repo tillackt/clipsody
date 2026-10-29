@@ -11,6 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var openItem: NSMenuItem!
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
+    private var isRecognizingText = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         do {
@@ -26,11 +27,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         prune()
 
         monitor = ClipboardMonitor(store: store) { [unowned self] in config }
-        panel = PanelController(store: store, maxItems: { [unowned self] in config.maxItems }) { [unowned self] item, target in
-            paste(item, into: target)
+        panel = PanelController(store: store, maxItems: { [unowned self] in config.maxItems }) { [unowned self] item, target, formatted in
+            paste(item, into: target, withFormatting: formatted)
         }
-        monitor.onChange = { [unowned self] in panel.reloadIfVisible() }
+        monitor.onChange = { [unowned self] in
+            panel.reloadIfVisible()
+            recognizePendingText()
+        }
         monitor.start()
+        recognizePendingText()
 
         buildMainMenu()
         buildStatusItem()
@@ -54,8 +59,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Paste
 
-    private func paste(_ item: ClipItem, into target: NSRunningApplication?) {
-        Paster.write(item, store: store)
+    private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
+        guard Paster.write(item, store: store, withFormatting: withFormatting) else {
+            NSLog("Clippboard paste: content no longer available (file moved or deleted)")
+            NSSound.beep()
+            return
+        }
         monitor.ignoreCurrentContents()
         store.touch(item)
 
@@ -76,6 +85,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                   target?.localizedName ?? "-",
                   NSWorkspace.shared.frontmostApplication?.localizedName ?? "-")
             Paster.sendPasteKeystroke()
+        }
+    }
+
+    // MARK: - Text recognition
+
+    /// Recognises text in stored images one at a time in the background, so screenshots become searchable.
+    private func recognizePendingText() {
+        guard !isRecognizingText, let file = store.imageFilesWithoutRecognizedText().first else { return }
+        isRecognizingText = true
+        TextRecognizer.recognize(imageAt: store.imagesDirectory.appendingPathComponent(file)) { [weak self] text in
+            guard let self else { return }
+            // Stored even when empty so the image is not processed again.
+            store.setRecognizedText(text, forImageFile: file)
+            isRecognizingText = false
+            recognizePendingText()
         }
     }
 
@@ -141,6 +165,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func clearHistory() {
         let alert = NSAlert()
         alert.messageText = "Gesamte Historie löschen?"
+        alert.informativeText = "Angepinnte Einträge bleiben erhalten."
         alert.addButton(withTitle: "Löschen")
         alert.addButton(withTitle: "Abbrechen")
         NSApp.activate(ignoringOtherApps: true)

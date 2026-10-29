@@ -8,16 +8,27 @@ struct ClipItem {
     enum Kind: Int {
         case text = 0
         case image = 1
+        case files = 2
     }
 
     let id: Int64
     let kind: Kind
-    /// Plain text for text items, a short description ("Bild 287×523") for images.
+    /// Plain text for text items, a short description ("Bild 287×523") for images,
+    /// newline-separated paths for files.
     let text: String
     let imageFile: String?
     let app: String?
     let appPath: String?
     let date: Date
+    let pinned: Bool
+    /// Text recognised in an image; nil until recognition ran.
+    let recognizedText: String?
+    /// Whether formatted text (RTF/HTML) was stored alongside the plain text.
+    let hasRichText: Bool
+
+    var filePaths: [String] {
+        kind == .files ? text.split(separator: "\n").map(String.init) : []
+    }
 }
 
 enum StoreError: Error {
@@ -53,10 +64,28 @@ final class Store {
             );
             CREATE INDEX IF NOT EXISTS items_ts ON items(ts);
             """)
+        migrate()
     }
 
     deinit {
         sqlite3_close(db)
+    }
+
+    /// Adds columns introduced after the first release to existing databases.
+    private func migrate() {
+        var columns = Set<String>()
+        query("PRAGMA table_info(items)") { stmt in
+            if let name = Self.string(stmt, 1) { columns.insert(name) }
+        }
+        let added = [
+            "pinned": "INTEGER NOT NULL DEFAULT 0",
+            "ocr_text": "TEXT",
+            "rich": "BLOB",
+            "rich_type": "TEXT",
+        ]
+        for (column, definition) in added where !columns.contains(column) {
+            exec("ALTER TABLE items ADD COLUMN \(column) \(definition)")
+        }
     }
 
     var isEmpty: Bool {
@@ -67,8 +96,17 @@ final class Store {
 
     // MARK: - Writing
 
-    func addText(_ text: String, app: String?, appPath: String?, date: Date = Date()) {
-        upsert(kind: .text, text: text, imageFile: nil, hash: Self.sha256("t:" + text), app: app, appPath: appPath, date: date)
+    /// `rich` is optional formatted text (RTF or HTML) pasted with ⌥⏎.
+    func addText(_ text: String, rich: (data: Data, type: NSPasteboard.PasteboardType)? = nil,
+                 app: String?, appPath: String?, date: Date = Date()) {
+        upsert(kind: .text, text: text, imageFile: nil, hash: Self.sha256("t:" + text), rich: rich,
+               app: app, appPath: appPath, date: date)
+    }
+
+    func addFiles(_ paths: [String], app: String?, appPath: String?, date: Date = Date()) {
+        let text = paths.joined(separator: "\n")
+        upsert(kind: .files, text: text, imageFile: nil, hash: Self.sha256("f:" + text), rich: nil,
+               app: app, appPath: appPath, date: date)
     }
 
     /// Accepts any image data NSBitmapImageRep can read (PNG, TIFF, …) and stores it as PNG.
@@ -82,7 +120,7 @@ final class Store {
             try? png.write(to: url)
         }
         let label = "Bild \(rep.pixelsWide)×\(rep.pixelsHigh)"
-        upsert(kind: .image, text: label, imageFile: fileName, hash: hash, app: app, appPath: appPath, date: date)
+        upsert(kind: .image, text: label, imageFile: fileName, hash: hash, rich: nil, app: app, appPath: appPath, date: date)
     }
 
     /// Moves an item to the top of the history.
@@ -93,38 +131,50 @@ final class Store {
         }
     }
 
+    func setPinned(_ pinned: Bool, for item: ClipItem) {
+        run("UPDATE items SET pinned = ? WHERE id = ?") { stmt in
+            sqlite3_bind_int(stmt, 1, pinned ? 1 : 0)
+            sqlite3_bind_int64(stmt, 2, item.id)
+        }
+    }
+
+    func setRecognizedText(_ text: String, forImageFile fileName: String) {
+        run("UPDATE items SET ocr_text = ? WHERE image_file = ?") { stmt in
+            Self.bind(stmt, 1, text)
+            Self.bind(stmt, 2, fileName)
+        }
+    }
+
     func delete(_ item: ClipItem) {
         run("DELETE FROM items WHERE id = ?") { stmt in sqlite3_bind_int64(stmt, 1, item.id) }
         removeImage(item.imageFile)
     }
 
+    /// Deletes everything except pinned entries.
     func clear() {
-        exec("DELETE FROM items")
-        let files = (try? FileManager.default.contentsOfDirectory(atPath: imagesDirectory.path)) ?? []
-        files.forEach(removeImage)
+        deleteWhere("pinned = 0") { _ in }
     }
 
-    /// Drops everything older than the retention period and everything beyond maxItems.
+    /// Drops unpinned entries older than the retention period or beyond maxItems.
     func prune(retentionDays: Int, maxItems: Int) {
         let cutoff = Date().addingTimeInterval(-Double(retentionDays) * 86_400).timeIntervalSince1970
-        let condition = "ts < ? OR id NOT IN (SELECT id FROM items ORDER BY ts DESC LIMIT ?)"
-        let bind: (OpaquePointer?) -> Void = { stmt in
+        let condition = """
+            pinned = 0 AND (ts < ? OR id NOT IN (SELECT id FROM items WHERE pinned = 0 ORDER BY ts DESC LIMIT ?))
+            """
+        deleteWhere(condition) { stmt in
             sqlite3_bind_double(stmt, 1, cutoff)
             sqlite3_bind_int64(stmt, 2, Int64(maxItems))
         }
-        var files: [String] = []
-        query("SELECT image_file FROM items WHERE image_file IS NOT NULL AND (\(condition))", bind: bind) { stmt in
-            if let file = Self.string(stmt, 0) { files.append(file) }
-        }
-        run("DELETE FROM items WHERE \(condition)", bind: bind)
-        files.forEach(removeImage)
     }
 
     // MARK: - Reading
 
     func items(limit: Int) -> [ClipItem] {
         var result: [ClipItem] = []
-        let sql = "SELECT id, kind, text, image_file, app, app_path, ts FROM items ORDER BY ts DESC LIMIT ?"
+        let sql = """
+            SELECT id, kind, text, image_file, app, app_path, ts, pinned, ocr_text, rich_type
+            FROM items ORDER BY pinned DESC, ts DESC LIMIT ?
+            """
         query(sql, bind: { sqlite3_bind_int64($0, 1, Int64(limit)) }) { stmt in
             result.append(ClipItem(
                 id: sqlite3_column_int64(stmt, 0),
@@ -133,10 +183,33 @@ final class Store {
                 imageFile: Self.string(stmt, 3),
                 app: Self.string(stmt, 4),
                 appPath: Self.string(stmt, 5),
-                date: Date(timeIntervalSince1970: sqlite3_column_double(stmt, 6))
+                date: Date(timeIntervalSince1970: sqlite3_column_double(stmt, 6)),
+                pinned: sqlite3_column_int(stmt, 7) != 0,
+                recognizedText: Self.string(stmt, 8),
+                hasRichText: Self.string(stmt, 9) != nil
             ))
         }
         return result
+    }
+
+    func richText(for item: ClipItem) -> (data: Data, type: NSPasteboard.PasteboardType)? {
+        var result: (Data, NSPasteboard.PasteboardType)?
+        query("SELECT rich, rich_type FROM items WHERE id = ? AND rich IS NOT NULL",
+              bind: { sqlite3_bind_int64($0, 1, item.id) }) { stmt in
+            guard let bytes = sqlite3_column_blob(stmt, 0), let type = Self.string(stmt, 1) else { return }
+            let data = Data(bytes: bytes, count: Int(sqlite3_column_bytes(stmt, 0)))
+            result = (data, NSPasteboard.PasteboardType(type))
+        }
+        return result
+    }
+
+    /// Image files whose text has not been recognised yet.
+    func imageFilesWithoutRecognizedText() -> [String] {
+        var files: [String] = []
+        query("SELECT DISTINCT image_file FROM items WHERE kind = 1 AND ocr_text IS NULL AND image_file IS NOT NULL") { stmt in
+            if let file = Self.string(stmt, 0) { files.append(file) }
+        }
+        return files
     }
 
     func imageURL(for item: ClipItem) -> URL? {
@@ -145,13 +218,18 @@ final class Store {
 
     // MARK: - SQLite helpers
 
-    private func upsert(kind: ClipItem.Kind, text: String, imageFile: String?, hash: String, app: String?, appPath: String?, date: Date) {
-        // On a duplicate keep the newest timestamp and the app that copied it last.
+    private func upsert(kind: ClipItem.Kind, text: String, imageFile: String?, hash: String,
+                        rich: (data: Data, type: NSPasteboard.PasteboardType)?,
+                        app: String?, appPath: String?, date: Date) {
+        // On a duplicate keep the newest timestamp and the app (and formatting) of the latest copy.
         let sql = """
-            INSERT INTO items(kind, text, image_file, hash, app, app_path, ts) VALUES(?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO items(kind, text, image_file, hash, app, app_path, ts, rich, rich_type)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(hash) DO UPDATE SET
                 app = CASE WHEN excluded.ts > ts THEN excluded.app ELSE app END,
                 app_path = CASE WHEN excluded.ts > ts THEN excluded.app_path ELSE app_path END,
+                rich = CASE WHEN excluded.ts > ts THEN excluded.rich ELSE rich END,
+                rich_type = CASE WHEN excluded.ts > ts THEN excluded.rich_type ELSE rich_type END,
                 ts = MAX(ts, excluded.ts)
             """
         run(sql) { stmt in
@@ -162,6 +240,29 @@ final class Store {
             Self.bind(stmt, 5, app)
             Self.bind(stmt, 6, appPath)
             sqlite3_bind_double(stmt, 7, date.timeIntervalSince1970)
+            if let rich {
+                _ = rich.data.withUnsafeBytes { buffer in
+                    sqlite3_bind_blob(stmt, 8, buffer.baseAddress, Int32(buffer.count), SQLITE_TRANSIENT)
+                }
+                Self.bind(stmt, 9, rich.type.rawValue)
+            } else {
+                sqlite3_bind_null(stmt, 8)
+                sqlite3_bind_null(stmt, 9)
+            }
+        }
+    }
+
+    /// Deletes matching rows and the image files no remaining row refers to.
+    private func deleteWhere(_ condition: String, bind: (OpaquePointer?) -> Void) {
+        var files: [String] = []
+        query("SELECT image_file FROM items WHERE image_file IS NOT NULL AND (\(condition))", bind: bind) { stmt in
+            if let file = Self.string(stmt, 0) { files.append(file) }
+        }
+        run("DELETE FROM items WHERE \(condition)", bind: bind)
+        for file in files {
+            var stillUsed = false
+            query("SELECT 1 FROM items WHERE image_file = ? LIMIT 1", bind: { Self.bind($0, 1, file) }) { _ in stillUsed = true }
+            if !stillUsed { removeImage(file) }
         }
     }
 

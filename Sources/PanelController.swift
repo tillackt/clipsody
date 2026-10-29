@@ -25,7 +25,30 @@ private final class EmphasizedRowView: NSTableRowView {
 private final class ClipRowView: NSTableCellView {
     let icon = NSImageView()
     let title = NSTextField(labelWithString: "")
+    let pin = NSImageView(image: NSImage(systemSymbolName: "pin.fill", accessibilityDescription: "Angepinnt")!)
     let shortcut = NSTextField(labelWithString: "")
+    private var plainTitle = ""
+    private var highlights: [NSRange] = []
+
+    /// Title with search matches marked; colours follow the row's selection state.
+    func setTitle(_ text: String, highlights: [NSRange]) {
+        plainTitle = text
+        self.highlights = highlights
+        renderTitle()
+    }
+
+    private func renderTitle() {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .byTruncatingTail
+        let base: NSColor = backgroundStyle == .emphasized ? .alternateSelectedControlTextColor : .labelColor
+        let string = NSMutableAttributedString(string: plainTitle, attributes: [
+            .font: NSFont.systemFont(ofSize: 14), .foregroundColor: base, .paragraphStyle: paragraph,
+        ])
+        for range in highlights {
+            string.addAttributes([.backgroundColor: NSColor.findHighlightColor, .foregroundColor: NSColor.black], range: range)
+        }
+        title.attributedStringValue = string
+    }
 
     init(identifier: NSUserInterfaceItemIdentifier) {
         super.init(frame: .zero)
@@ -40,8 +63,11 @@ private final class ClipRowView: NSTableCellView {
         shortcut.font = .systemFont(ofSize: 12)
         shortcut.textColor = .secondaryLabelColor
         shortcut.setContentHuggingPriority(.required, for: .horizontal)
+        pin.contentTintColor = .secondaryLabelColor
+        pin.symbolConfiguration = .init(pointSize: 11, weight: .regular)
+        pin.setContentHuggingPriority(.required, for: .horizontal)
 
-        for view in [icon, title, shortcut] {
+        for view in [icon, title, pin, shortcut] {
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
         }
@@ -52,7 +78,9 @@ private final class ClipRowView: NSTableCellView {
             icon.heightAnchor.constraint(equalToConstant: 22),
             title.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 8),
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
-            shortcut.leadingAnchor.constraint(greaterThanOrEqualTo: title.trailingAnchor, constant: 8),
+            pin.leadingAnchor.constraint(greaterThanOrEqualTo: title.trailingAnchor, constant: 6),
+            pin.centerYAnchor.constraint(equalTo: centerYAnchor),
+            shortcut.leadingAnchor.constraint(equalTo: pin.trailingAnchor, constant: 6),
             shortcut.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             shortcut.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
@@ -62,7 +90,10 @@ private final class ClipRowView: NSTableCellView {
 
     override var backgroundStyle: NSView.BackgroundStyle {
         didSet {
-            shortcut.textColor = backgroundStyle == .emphasized ? .alternateSelectedControlTextColor : .secondaryLabelColor
+            let emphasized = backgroundStyle == .emphasized
+            shortcut.textColor = emphasized ? .alternateSelectedControlTextColor : .secondaryLabelColor
+            pin.contentTintColor = emphasized ? .alternateSelectedControlTextColor : .secondaryLabelColor
+            renderTitle()
         }
     }
 }
@@ -70,7 +101,8 @@ private final class ClipRowView: NSTableCellView {
 final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
     private let maxItems: () -> Int
-    private let onPaste: (ClipItem, NSRunningApplication?) -> Void
+    /// Item, target app, and whether to paste with formatting (⌥⏎).
+    private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
     private var targetApp: NSRunningApplication?
 
@@ -81,10 +113,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var previewText: NSTextView { previewTextScroll.documentView as! NSTextView }
     private let previewImage = NSImageView()
     private let infoLabel = NSTextField(labelWithString: "")
+    private let hintLabel = NSTextField(labelWithString: "⏎ einfügen   ⌥⏎ mit Formatierung   ⌘P anpinnen   ⌘⌫ löschen")
     private let emptyLabel = NSTextField(labelWithString: "Keine Einträge")
 
     private var allItems: [ClipItem] = []
     private var items: [ClipItem] = []
+    private var searchTerms: [String] = []
     private let iconCache = NSCache<NSString, NSImage>()
     private var fileSizes: [String: String] = [:]
     private let dateFormatter: RelativeDateTimeFormatter = {
@@ -95,7 +129,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     var isVisible: Bool { panel.isVisible }
 
-    init(store: Store, maxItems: @escaping () -> Int, onPaste: @escaping (ClipItem, NSRunningApplication?) -> Void) {
+    init(store: Store, maxItems: @escaping () -> Int, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
         self.store = store
         self.maxItems = maxItems
         self.onPaste = onPaste
@@ -158,15 +192,24 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     // MARK: - Actions
 
-    private func pasteSelected() {
-        paste(at: table.selectedRow)
+    private func pasteSelected(withFormatting: Bool = false) {
+        paste(at: table.selectedRow, withFormatting: withFormatting)
     }
 
-    private func paste(at row: Int) {
+    private func paste(at row: Int, withFormatting: Bool = false) {
         guard items.indices.contains(row) else { return }
         let item = items[row]
         hide()
-        onPaste(item, targetApp)
+        onPaste(item, targetApp, withFormatting)
+    }
+
+    private func togglePinSelected() {
+        let row = table.selectedRow
+        guard items.indices.contains(row) else { return }
+        let item = items[row]
+        store.setPinned(!item.pinned, for: item)
+        allItems = store.items(limit: maxItems())
+        applyFilter(selecting: item.id)
     }
 
     private func deleteSelected() {
@@ -207,6 +250,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             deleteSelected()
             return true
         }
+        // ⌘P pins or unpins the selected entry
+        if event.keyCode == 35 {
+            togglePinSelected()
+            return true
+        }
         // ⌘1 … ⌘9 paste the n-th visible entry
         if let chars = event.charactersIgnoringModifiers, let digit = Int(chars), (1...9).contains(digit) {
             paste(at: digit - 1)
@@ -217,19 +265,34 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     // MARK: - Filtering
 
-    private func applyFilter() {
-        let terms = search.stringValue.split(whereSeparator: \.isWhitespace).map(String.init)
-        if terms.isEmpty {
+    private static let matchOptions: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
+
+    private func applyFilter(selecting id: Int64? = nil) {
+        searchTerms = search.stringValue.split(whereSeparator: \.isWhitespace).map(String.init)
+        if searchTerms.isEmpty {
             items = allItems
         } else {
             items = allItems.filter { item in
-                let haystack = item.text + " " + (item.app ?? "")
-                return terms.allSatisfy { haystack.range(of: $0, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+                let haystack = [item.text, item.app ?? "", item.recognizedText ?? ""].joined(separator: " ")
+                return searchTerms.allSatisfy { haystack.range(of: $0, options: Self.matchOptions) != nil }
             }
         }
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
-        select(0)
+        select(id.flatMap { id in items.firstIndex { $0.id == id } } ?? 0)
+    }
+
+    /// Ranges of all search terms in `string`, for highlighting.
+    private func matchRanges(in string: String) -> [NSRange] {
+        var ranges: [NSRange] = []
+        for term in searchTerms {
+            var remaining = string.startIndex..<string.endIndex
+            while let found = string.range(of: term, options: Self.matchOptions, range: remaining) {
+                ranges.append(NSRange(found, in: string))
+                remaining = found.upperBound..<string.endIndex
+            }
+        }
+        return ranges
     }
 
     func controlTextDidChange(_ notification: Notification) {
@@ -243,6 +306,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         case #selector(NSResponder.scrollPageUp(_:)), #selector(NSResponder.pageUp(_:)): move(by: -10)
         case #selector(NSResponder.scrollPageDown(_:)), #selector(NSResponder.pageDown(_:)): move(by: 10)
         case #selector(NSResponder.insertNewline(_:)): pasteSelected()
+        // ⌥⏎ arrives as "insert newline ignoring field editor"
+        case #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)): pasteSelected(withFormatting: true)
         case #selector(NSResponder.cancelOperation(_:)): hide()
         default: return false
         }
@@ -263,8 +328,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let id = NSUserInterfaceItemIdentifier("clip")
         let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ClipRowView ?? ClipRowView(identifier: id)
         let item = items[row]
-        cell.title.stringValue = title(for: item)
+        let text = title(for: item)
+        cell.setTitle(text, highlights: matchRanges(in: text))
         cell.icon.image = icon(for: item)
+        cell.pin.isHidden = !item.pinned
         cell.shortcut.stringValue = row < 9 ? "⌘\(row + 1)" : ""
         return cell
     }
@@ -274,15 +341,35 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     private func title(for item: ClipItem) -> String {
-        if item.kind == .image {
-            // Like Alfred: "Bild 478×406 (762 KB)"
-            return fileSize(of: item).map { "\(item.text) (\($0))" } ?? item.text
+        switch item.kind {
+        case .image:
+            // Like Alfred: "Bild 478×406 (762 KB)", plus the matching line when found via recognised text
+            let base = fileSize(of: item).map { "\(item.text) (\($0))" } ?? item.text
+            return recognizedSnippet(for: item).map { "\(base) – „\($0)“" } ?? base
+        case .files:
+            let names = item.filePaths.map { ($0 as NSString).lastPathComponent }
+            return names.count == 1 ? names[0] : "\(names.count) Dateien: " + names.joined(separator: ", ")
+        case .text:
+            break
         }
         let collapsed = item.text.split(whereSeparator: \.isNewline)
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
             .joined(separator: " ⏎ ")
         return String(collapsed.prefix(300))
+    }
+
+    /// First recognised line containing a search term, shortened around the match.
+    private func recognizedSnippet(for item: ClipItem) -> String? {
+        guard let text = item.recognizedText, !searchTerms.isEmpty else { return nil }
+        for line in text.split(whereSeparator: \.isNewline) {
+            let line = String(line)
+            guard let match = searchTerms.lazy.compactMap({ line.range(of: $0, options: Self.matchOptions) }).first else { continue }
+            let start = line.index(match.lowerBound, offsetBy: -25, limitedBy: line.startIndex) ?? line.startIndex
+            let end = line.index(match.upperBound, offsetBy: 40, limitedBy: line.endIndex) ?? line.endIndex
+            return (start > line.startIndex ? "…" : "") + line[start..<end] + (end < line.endIndex ? "…" : "")
+        }
+        return nil
     }
 
     private func fileSize(of item: ClipItem) -> String? {
@@ -295,8 +382,14 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         return formatted
     }
 
-    /// Icon of the app the entry was copied from, for text and images alike.
+    /// Icon of the app the entry was copied from; for files the icon of the (first) file.
     private func icon(for item: ClipItem) -> NSImage? {
+        if item.kind == .files {
+            guard let path = item.filePaths.first, FileManager.default.fileExists(atPath: path) else {
+                return NSImage(systemSymbolName: "doc", accessibilityDescription: nil)
+            }
+            return NSWorkspace.shared.icon(forFile: path)
+        }
         let key = item.appPath ?? ""
         if let cached = iconCache.object(forKey: key as NSString) { return cached }
 
@@ -318,21 +411,45 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         }
         let item = items[row]
         var info = [item.app ?? "Unbekannte App", dateFormatter.localizedString(for: item.date, relativeTo: Date())]
+        if item.pinned { info.insert("Angepinnt", at: 0) }
         switch item.kind {
         case .text:
-            previewTextScroll.isHidden = false
-            previewImage.isHidden = true
-            previewText.string = String(item.text.prefix(100_000))
-            previewText.scrollToBeginningOfDocument(nil)
+            showPreviewText(item.text)
             let lines = item.text.split(whereSeparator: \.isNewline).count
             info.append("\(item.text.count) Zeichen" + (lines > 1 ? ", \(lines) Zeilen" : ""))
+            if item.hasRichText { info.append("mit Formatierung") }
+        case .files:
+            let paths = item.filePaths
+            showPreviewText(paths.joined(separator: "\n"))
+            let missing = paths.filter { !FileManager.default.fileExists(atPath: $0) }.count
+            info.append(paths.count == 1 ? "1 Datei" : "\(paths.count) Dateien")
+            if missing > 0 { info.append("\(missing) nicht mehr vorhanden") }
         case .image:
             previewTextScroll.isHidden = true
             previewImage.isHidden = false
             previewImage.image = store.imageURL(for: item).flatMap(NSImage.init(contentsOf:))
             info.append(item.text)
+            if let text = item.recognizedText, !text.isEmpty { info.append("Text erkannt") }
         }
         infoLabel.stringValue = info.joined(separator: " · ")
+    }
+
+    private func showPreviewText(_ text: String) {
+        previewTextScroll.isHidden = false
+        previewImage.isHidden = true
+        let shown = String(text.prefix(100_000))
+        let string = NSMutableAttributedString(string: shown, attributes: [
+            .font: NSFont.monospacedSystemFont(ofSize: 13, weight: .regular), .foregroundColor: NSColor.labelColor,
+        ])
+        for range in matchRanges(in: shown) {
+            string.addAttributes([.backgroundColor: NSColor.findHighlightColor, .foregroundColor: NSColor.black], range: range)
+        }
+        previewText.textStorage?.setAttributedString(string)
+        if let first = matchRanges(in: shown).first {
+            previewText.scrollRangeToVisible(first)
+        } else {
+            previewText.scrollToBeginningOfDocument(nil)
+        }
     }
 
     // MARK: - Layout
@@ -414,10 +531,14 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         infoLabel.textColor = .secondaryLabelColor
         infoLabel.lineBreakMode = .byTruncatingTail
 
+        hintLabel.font = .systemFont(ofSize: 10)
+        hintLabel.textColor = .tertiaryLabelColor
+        hintLabel.lineBreakMode = .byTruncatingTail
+
         emptyLabel.textColor = .tertiaryLabelColor
         emptyLabel.isHidden = true
 
-        let views: [NSView] = [search, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage, infoLabel, emptyLabel]
+        let views: [NSView] = [search, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage, infoLabel, hintLabel, emptyLabel]
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
             background.addSubview(view)
@@ -456,7 +577,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
             infoLabel.leadingAnchor.constraint(equalTo: previewTextScroll.leadingAnchor, constant: 4),
             infoLabel.trailingAnchor.constraint(equalTo: previewTextScroll.trailingAnchor),
-            infoLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -12),
+            infoLabel.bottomAnchor.constraint(equalTo: hintLabel.topAnchor, constant: -4),
+
+            hintLabel.leadingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
+            hintLabel.trailingAnchor.constraint(equalTo: infoLabel.trailingAnchor),
+            hintLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10),
         ])
     }
 }

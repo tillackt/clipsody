@@ -41,6 +41,10 @@ enum AlfredImporter {
                 guard let file = Store.string(stmt, 5),
                       let data = try? Data(contentsOf: imageDirectory.appendingPathComponent(file)) else { continue }
                 store.addImage(data, app: app, appPath: appPath, date: date)
+            case 2:
+                let paths = item.split(separator: "\n").map(String.init)
+                guard !paths.isEmpty else { continue }
+                store.addFiles(paths, app: app, appPath: appPath, date: date)
             default:
                 guard !item.isEmpty else { continue }
                 store.addText(item, app: app, appPath: appPath, date: date)

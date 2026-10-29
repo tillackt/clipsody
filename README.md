@@ -7,14 +7,19 @@ Schlanke Clipboard-Historie für macOS als Ersatz für Alfreds Clipboard-Feature
 | Taste | Aktion |
 |---|---|
 | ⌥⌘C | Historie öffnen/schließen |
-| Tippen | Filtern (mehrere Wörter = alle müssen vorkommen, auch App-Name) |
+| Tippen | Filtern (mehrere Wörter = alle müssen vorkommen; sucht auch im App-Namen und im Text auf Bildern) |
 | ↑ / ↓, Bild ↑/↓ | Eintrag wählen |
-| ⏎ oder Doppelklick | In die aktive App einfügen |
+| ⏎ oder Doppelklick | In die aktive App einfügen (Text ohne Formatierung) |
+| ⌥⏎ | Mit Formatierung einfügen (fett, Links, Tabellen aus Word, Outlook, Browser …) |
 | ⌘1 … ⌘9 | n-ten Eintrag direkt einfügen |
+| ⌘P | Eintrag anpinnen/lösen: bleibt oben und wird nie automatisch gelöscht |
 | ⌘⌫ | Eintrag löschen |
 | Esc | Schließen |
 
-Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Größe.
+Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Größe. Suchbegriffe werden in Liste und Vorschau markiert.
+
+- **Bilder** werden verlustfrei als PNG gespeichert. Der Text darauf wird lokal per macOS-Texterkennung (Vision) gelesen, damit Screenshots über ihren Inhalt auffindbar sind.
+- **Dateien** aus dem Finder werden als Dateien wieder eingefügt, nicht als Pfad. Wurde eine Datei inzwischen verschoben oder gelöscht, piept es.
 
 ## Bauen & installieren
 
