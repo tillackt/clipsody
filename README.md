@@ -158,8 +158,6 @@ Whoever passes the app on publishes, next to the download, the SHA-256 checksum 
 
 ## Data
 
-Until the end of October 2026 the app was called **Clippboard**. At first launch Clipsody takes over the old data folder with the history and the chosen language; the Accessibility permission must be granted again, because the bundle ID changed.
-
 Everything is in `~/Library/Application Support/Clipsody/` (Settings → **Info** → **Show in Finder**):
 
 - `history.sqlite`: the entries
