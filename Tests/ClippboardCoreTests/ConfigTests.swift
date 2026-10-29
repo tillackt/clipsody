@@ -20,6 +20,24 @@ import Testing
         #expect(huge.maxItems == Config.maxItemsRange.upperBound)
     }
 
+    @Test func newDefaultIgnoredAppsReachOldConfigsOnce() throws {
+        // Written by an older release: only the first generation, one of them removed by the user.
+        let json = #"{"ignoredApps": ["com.1password.1password", "com.example.custom"]}"#
+        let config = try JSONDecoder().decode(Config.self, from: Data(json.utf8))
+
+        #expect(config.ignoredApps.contains("org.keepassxc.keepassxc"))
+        #expect(config.ignoredApps.contains("com.example.custom"))
+        #expect(!config.ignoredApps.contains("com.bitwarden.desktop")) // removed by the user, stays removed
+        #expect(config.ignoredAppsDefaultsVersion == Config.defaultIgnoredApps.count)
+    }
+
+    @Test func removedNewDefaultsStayRemoved() throws {
+        var config = Config()
+        config.ignoredApps.removeAll { $0 == "org.keepassxc.keepassxc" }
+        let reloaded = try JSONDecoder().decode(Config.self, from: JSONEncoder().encode(config))
+        #expect(!reloaded.ignoredApps.contains("org.keepassxc.keepassxc"))
+    }
+
     @Test func saveAndLoadRoundTrip() throws {
         let directory = try TemporaryDirectory()
         var config = Config()

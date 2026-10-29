@@ -7,15 +7,16 @@ public struct Config: Codable, Equatable, Sendable {
     public var maxItems = 1000
     public var keepImages = true
     /// Bundle IDs whose copies are never recorded (password managers etc.).
-    public var ignoredApps = [
-        "com.1password.1password",
-        "com.agilebits.onepassword7",
-        "com.apple.keychainaccess",
-        "com.apple.Passwords",
-        "com.bitwarden.desktop",
-        "org.keepassxc.keepassxc",
-        "com.markmcguill.strongbox.mac",
-        "in.sinew.Enpass-Desktop",
+    public var ignoredApps = Self.defaultIgnoredApps.flatMap { $0 }
+    /// How many generations of `defaultIgnoredApps` this configuration has seen.
+    public var ignoredAppsDefaultsVersion = Self.defaultIgnoredApps.count
+
+    /// Default ignored apps by the release that introduced them. Append a new generation for new
+    /// defaults: existing configurations receive it once, and apps the user removed stay removed.
+    public static let defaultIgnoredApps: [[String]] = [
+        ["com.1password.1password", "com.agilebits.onepassword7", "com.apple.keychainaccess",
+         "com.apple.Passwords", "com.bitwarden.desktop"],
+        ["org.keepassxc.keepassxc", "com.markmcguill.strongbox.mac", "in.sinew.Enpass-Desktop"],
     ]
 
     public static let retentionRange = 1...365
@@ -34,6 +35,12 @@ public struct Config: Codable, Equatable, Sendable {
         maxItems = Self.clamp(try c.decodeIfPresent(Int.self, forKey: .maxItems) ?? d.maxItems, to: Self.maxItemsRange)
         keepImages = try c.decodeIfPresent(Bool.self, forKey: .keepImages) ?? d.keepImages
         ignoredApps = try c.decodeIfPresent([String].self, forKey: .ignoredApps) ?? d.ignoredApps
+        // Files written before versioning saw only the first generation.
+        let seen = try c.decodeIfPresent(Int.self, forKey: .ignoredAppsDefaultsVersion) ?? 1
+        for added in Self.defaultIgnoredApps.dropFirst(max(seen, 0)).joined() where !ignoredApps.contains(added) {
+            ignoredApps.append(added)
+        }
+        ignoredAppsDefaultsVersion = Self.defaultIgnoredApps.count
     }
 
     public static func clamp(_ value: Int, to range: ClosedRange<Int>) -> Int {
