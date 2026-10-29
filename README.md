@@ -49,19 +49,7 @@ Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, w
 `test` führt die Tests aus. `install` baut `build/Clippboard.app` als Universal Binary (Apple Silicon und Intel), kopiert sie nach `/Applications` (Programme) und startet sie. Beim ersten Start:
 
 1. **Bedienungshilfen** erlauben (Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen → Clippboard). Ohne das wird der Eintrag nur in die Zwischenablage gelegt, nicht eingefügt. Nach jedem Neubau muss die Berechtigung neu gesetzt werden (Ad-hoc-Signatur): Eintrag entfernen und wieder hinzufügen.
-2. Menüleisten-Icon → **Einstellungen …** → Autostart einschalten.
-
-## Sprachen
-
-Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. In den Einstellungen unter **Sprache** lässt sich eine andere wählen; sie gilt nach einem Neustart der App. Die Wahl landet dort, wo auch macOS die Sprache pro App speichert (Systemeinstellungen → Allgemein → Sprache & Region → Programme), beide Wege zeigen also dasselbe.
-
-Alle Texte und Übersetzungen stehen in `Resources/Localizable.xcstrings`. Texte im Code werden mit `String(localized:)` geschrieben, auf Englisch. Nach neuen oder geänderten Texten:
-
-```bash
-./build.sh strings
-```
-
-Das trägt neue Texte in den Katalog ein; danach die Übersetzungen ergänzen (in Xcode oder direkt in der JSON-Datei). Ein Test prüft, dass jede Sprache jeden Text mit denselben Platzhaltern hat.
+2. Menüleisten-Icon → **Einstellungen …** → **Allgemein** → Autostart einschalten.
 3. In Alfred den Clipboard-Hotkey abschalten oder Alfred beenden, sonst reagieren beide auf ⌥⌘C.
 
 ### Berechtigung über Neubauten hinweg behalten (einmalig)
@@ -74,10 +62,21 @@ Ohne eigenes Zertifikat signiert `build.sh` ad hoc, und macOS vergisst die Bedie
 
 `build.sh` nimmt das Zertifikat automatisch, sobald es vorhanden ist.
 
+## Sprachen
+
+Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. In den Einstellungen unter **Allgemein → Sprache** lässt sich eine andere wählen; die App bietet dann an, sich neu zu starten. Die Wahl landet dort, wo auch macOS die Sprache pro App speichert (Systemeinstellungen → Allgemein → Sprache & Region → Programme), beide Wege zeigen also dasselbe.
+
+Alle Texte und Übersetzungen stehen in `Resources/Localizable.xcstrings`. Texte im Code werden mit `String(localized:)` geschrieben, auf Englisch. Nach neuen oder geänderten Texten:
+
+```bash
+./build.sh strings
+```
+
+Das trägt neue Texte in den Katalog ein; danach die Übersetzungen ergänzen (in Xcode oder direkt in der JSON-Datei). Ein Test prüft, dass jede Sprache jeden Text mit denselben Platzhaltern hat.
 
 ## Einstellungen
 
-Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklärt, Änderungen gelten sofort. Gespeichert wird in `~/Library/Application Support/Clippboard/config.json`:
+Menüleisten-Icon → **Einstellungen …** (⌘,), aufgeteilt in die Tabs **Allgemein**, **Historie**, **Datenschutz** und **Info**. Jede Option ist dort erklärt, Änderungen gelten sofort. Gespeichert wird in `~/Library/Application Support/Clippboard/config.json`:
 
 | Schlüssel | Standard | Bedeutung |
 |---|---|---|
@@ -89,7 +88,7 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 
 ## Datenschutz & Sicherheit
 
-- Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType` und ähnliche), werden nie gespeichert. Ebenso nichts aus den Apps unter „Ignorierte Apps“.
+- Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType` und ähnliche), werden nie gespeichert. Ebenso nichts aus den Apps unter **Datenschutz → Ignorierte Apps**.
 - **Grenze:** Clippboard sieht nur, welche App gerade vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung (z. B. Bitwarden in Chrome) ein Passwort, ohne es als vertraulich zu markieren, landet es in der Historie. Solche Einträge mit ⌘⌫ löschen.
 - Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Der Ordner ist von Time Machine und anderen Backups ausgeschlossen.
 - Gelöschte Einträge werden in der Datenbank mit Nullen überschrieben, und das Änderungsprotokoll (WAL) wird geleert: bei „Historie löschen“ und beim Aufräumen sofort, bei einzelnen Einträgen (⌘⌫) gesammelt beim Schließen des Fensters bzw. beim Beenden, nach einem Absturz beim nächsten Start. Die Grenze: Was das Dateisystem auf SSD-Ebene noch physisch vorhält, liegt außerhalb der Kontrolle einer App.
@@ -106,11 +105,14 @@ Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumm
 
 ## Daten
 
+Alles liegt in `~/Library/Application Support/Clippboard/` (Einstellungen → **Info** → **Im Finder zeigen**):
+
 - `history.sqlite`: Einträge
-- `images/`: Bilder als PNG
+- `images/`: Bilder als PNG, dazu verkleinerte Vorschauen
+- `config.json`: Einstellungen
 
 ## Deinstallieren
 
-Einstellungen → **Clippboard deinstallieren …**. Das löscht Historie, Bilder, `config.json` und die Einstellungen der App, entfernt Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Zieht man die App nur selbst in den Papierkorb, bleiben diese Daten liegen: macOS sagt einer App nicht, dass sie gelöscht wird.
+Einstellungen → **Info** → **Clippboard deinstallieren …**. Das löscht Historie, Bilder, `config.json`, die Einstellungen der App sowie Caches und gespeicherten Fensterzustand, entfernt Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Zieht man die App nur selbst in den Papierkorb, bleiben diese Daten liegen: macOS sagt einer App nicht, dass sie gelöscht wird.
 
-Übrig bleibt nur die leere Hülle des Sandbox-Ordners des Bild-Hilfsprozesses (`~/Library/Containers/local.thorsten.clippboard.decoder`, eine Verwaltungsdatei von macOS, keine Nutzerdaten). Seit macOS 14 darf nur das System Container löschen; im Finder lässt sie sich mit Bestätigung in den Papierkorb legen.
+Übrig bleibt nur die leere Hülle des Sandbox-Ordners des Bild-Hilfsprozesses (`~/Library/Containers/local.thorsten.clippboard.decoder`, eine Verwaltungsdatei von macOS, keine Nutzerdaten). Seit macOS 14 darf nur das System Container löschen; im Finder lässt sie sich mit Bestätigung in den Papierkorb legen. Bleibt dort mehr zurück, zeigt die App es an.
