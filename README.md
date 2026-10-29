@@ -84,7 +84,12 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 - Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
 - Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.
 - Bilder aus der Zwischenablage sind fremde Daten. Sie werden deshalb nicht in der App dekodiert, sondern im Hilfsprozess `ClippboardDecoder` (eingebettet in der App). Er läuft in einer App-Sandbox ohne weitere Rechte: kein Zugriff auf Dateien außerhalb seines Containers, kein Netzwerk, keine Historie. Er bekommt nur die Bytes und liefert ein neu kodiertes PNG, den erkannten Text, Vorschaubilder (als rohe Pixel) und beim Einfügen das TIFF zurück. Die App selbst dekodiert keine Bildformate. Eine Schwachstelle in der Bilddekodierung trifft damit diesen abgeschotteten Prozess statt der App.
-- Auch den Antworten des Dienstes traut die App nicht: Sie berechnet den Dateinamen (Hash) selbst, prüft PNG-Kopf und Maße per Byte-Vergleich, begrenzt Text und prüft die Länge von Pixelpuffern. Außerdem akzeptiert sie nur einen Dienst, der mit demselben Zertifikat signiert ist wie die App. Ist der Dienst nicht erreichbar, werden keine Bilder gespeichert.
+- Auch den Antworten des Dienstes traut die App nicht: Sie berechnet den Dateinamen (Hash) selbst und prüft die ganze PNG-Struktur, ohne Pixel zu dekodieren: Signatur, Prüfsumme (CRC) jedes Abschnitts, nur bekannte Abschnittstypen, Maße wie gemeldet, nichts hinter dem Ende. Angehängte Fremddaten werden so weder gespeichert noch eingefügt. Außerdem begrenzt sie Text und prüft Länge und Seitenverhältnis von Vorschaubildern.
+- Welchen Dienst die App akzeptiert, hängt von der Signatur ab. Mit Zertifikat (siehe oben): nur einen Dienst mit derselben Kennung und demselben Zertifikat. Ad hoc signiert gibt es kein Zertifikat, und die Kennung allein kann jedes ad hoc signierte Programm tragen. Deshalb prüft die App beim Start zusätzlich ihr eigenes Siegel samt eingebettetem Dienst; ein ausgetauschter Dienst fällt dabei auf. Wird er ausgetauscht, während die App läuft, fällt das erst beim nächsten Start auf. Kann die App ihre eigene Signatur nicht lesen oder stimmt das Siegel nicht, spricht sie mit keinem Dienst und verarbeitet keine Bilder. Ist der Dienst nicht erreichbar, werden ebenfalls keine Bilder gespeichert.
+
+## Weitergabe
+
+Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumme des Release-Archivs (`shasum -a 256 Clippboard.zip`) und den SHA-256-Fingerabdruck des Signaturzertifikats (`codesign -d --extract-certificates Clippboard.app && shasum -a 256 codesign0`). So erkennen Empfänger eine neu signierte oder veränderte Kopie.
 
 ## Daten
 

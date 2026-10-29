@@ -145,13 +145,23 @@ public final class DecoderClient {
     public nonisolated static let maxRecognizedCharacters = 100_000
 
     /// Connects to the XPC service embedded in the app bundle and only accepts it if it is signed
-    /// like the app (same certificate), so a replaced service binary is refused.
+    /// like the app (see CodeSigningRequirement), so a replaced service binary is refused.
+    /// Without a requirement no service is contacted: every call returns its fallback.
     public convenience init(appBundleID: String = Bundle.main.bundleIdentifier ?? "local.thorsten.clippboard") {
         let serviceName = DecoderService.name(forAppBundleID: appBundleID)
-        let requirement = CodeSigningRequirement.forService(identifier: serviceName)
+        guard let requirement = CodeSigningRequirement.forService(identifier: serviceName) else {
+            // An already invalidated connection fails every message right away without launching
+            // anything, so clipboard data never reaches an unverified process.
+            self.init {
+                let connection = NSXPCConnection(serviceName: serviceName)
+                connection.invalidate()
+                return connection
+            }
+            return
+        }
         self.init {
             let connection = NSXPCConnection(serviceName: serviceName)
-            if let requirement { connection.setCodeSigningRequirement(requirement) }
+            connection.setCodeSigningRequirement(requirement)
             return connection
         }
     }
@@ -229,11 +239,12 @@ public final class DecoderClient {
 
     // MARK: - Validation of replies
 
-    /// Accepts only a PNG whose header matches the reported size within the limits; the size is read
-    /// by comparing bytes, not by decoding the image.
+    /// Accepts only a well-formed PNG (whole chunk structure, see PNGValidator) whose IHDR matches the
+    /// reported size within the limits. The PNG is stored and pasted verbatim, so nothing may be
+    /// appended or hidden in extra chunks; pixels are not decoded.
     nonisolated static func validatedImage(png: Data?, width: Int, height: Int) -> PreparedImage? {
         guard let png, png.count <= ImageIngest.maxBytes,
-              let header = PNGHeader.size(of: png), header.width == width, header.height == height,
+              let header = PNGValidator.validatedSize(of: png), header.width == width, header.height == height,
               width > 0, height > 0 else { return nil }
         let (pixels, overflow) = width.multipliedReportingOverflow(by: height)
         guard !overflow, pixels <= ImageIngest.maxPixels else { return nil }
@@ -247,13 +258,16 @@ public final class DecoderClient {
         let pointSize: CGSize
     }
 
+    /// Far beyond any real image side (a 6K display is 6,016 px wide); the point size drives layout,
+    /// so a huge value from the service must not reach it.
+    nonisolated static let maxPointSize: CGFloat = 100_000
+
     /// Wraps raw RGBA bytes in a CGImage after checking that size and buffer length agree.
     nonisolated static func thumbnail(from pixels: RawPixels, maxPixelSize: Int) -> Thumbnail? {
         let limit = min(maxPixelSize, 4_096)
         guard pixels.width > 0, pixels.height > 0, pixels.width <= limit, pixels.height <= limit,
               pixels.data.count == pixels.width * pixels.height * 4,
-              pixels.pointSize.width > 0, pixels.pointSize.height > 0,
-              pixels.pointSize.width.isFinite, pixels.pointSize.height.isFinite,
+              pointSizeFits(pixels),
               let provider = CGDataProvider(data: pixels.data as CFData),
               let image = CGImage(width: pixels.width, height: pixels.height, bitsPerComponent: 8, bitsPerPixel: 32,
                                   bytesPerRow: pixels.width * 4, space: CGColorSpace(name: CGColorSpace.sRGB)!,
@@ -261,6 +275,20 @@ public final class DecoderClient {
                                   provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
         else { return nil }
         return Thumbnail(image: image, pointSize: pixels.pointSize)
+    }
+
+    /// The point size must be bounded and have the thumbnail's aspect ratio. Downscaling rounds each
+    /// side, so the pixel ratio may be off by one pixel per side; a side of one pixel says nothing
+    /// about the upper bound (a 5000 × 1 image still becomes 400 × 1).
+    private nonisolated static func pointSizeFits(_ pixels: RawPixels) -> Bool {
+        let point = pixels.pointSize
+        guard point.width.isFinite, point.height.isFinite, point.width > 0, point.height > 0,
+              point.width <= maxPointSize, point.height <= maxPointSize else { return false }
+        let ratio = point.width / point.height
+        let width = CGFloat(pixels.width), height = CGFloat(pixels.height)
+        let lower = (width - 1) / (height + 1)
+        let upper = height > 1 ? (width + 1) / (height - 1) : .infinity
+        return ratio >= lower && ratio <= upper
     }
 
     // MARK: - Connection

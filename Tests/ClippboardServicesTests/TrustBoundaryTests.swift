@@ -34,6 +34,27 @@ import Testing
         withExtendedLifetime(service) {}
     }
 
+    @Test func validPNGWithAppendedPayloadIsRejected() async {
+        let (service, client) = client(.init(png: png + Data("payload".utf8), width: 40, height: 30, hash: "x"))
+        #expect(await client.prepareImage(png) == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func validHeaderFollowedByJunkIsRejected() async {
+        let junk = png.prefix(33) + Data(repeating: 0x41, count: 500)
+        let (service, client) = client(.init(png: junk, width: 40, height: 30, hash: "x"))
+        #expect(await client.prepareImage(png) == nil)
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func pngWithBadCRCIsRejected() async {
+        var damaged = png
+        damaged[damaged.count - 20] ^= 0xFF
+        let (service, client) = client(.init(png: damaged, width: 40, height: 30, hash: "x"))
+        #expect(await client.prepareImage(png) == nil)
+        withExtendedLifetime(service) {}
+    }
+
     @Test func recognisedTextIsCappedInLength() async throws {
         let huge = String(repeating: "a", count: DecoderClient.maxRecognizedCharacters + 5_000)
         let (service, client) = client(.init(text: huge))
@@ -57,6 +78,24 @@ import Testing
         let thumbnail = try #require(await client.thumbnail(ofPNG: png, maxPixelSize: 100))
         #expect(thumbnail.image.width == 10)
         withExtendedLifetime(service) {}
+    }
+
+    @Test(arguments: [
+        (10, 10, 1e6, 1e6), (10, 10, 100_001, 100_001), (10, 10, .infinity, 100), (10, 10, .nan, 100),
+        (10, 10, 100_000, 1), (10, 10, 1, 100_000), (400, 100, 100, 400), (400, 1, 1, 5_000),
+    ] as [(Int, Int, Double, Double)])
+    func pointSizesOutOfBoundsOrAspectAreRejected(width: Int, height: Int, pointWidth: Double, pointHeight: Double) {
+        let pixels = DecoderClient.RawPixels(data: Data(count: width * height * 4), width: width, height: height,
+                                             pointSize: CGSize(width: pointWidth, height: pointHeight))
+        #expect(DecoderClient.thumbnail(from: pixels, maxPixelSize: 4_096) == nil)
+    }
+
+    @Test(arguments: [(10, 10, 100, 100), (400, 100, 800, 200), (400, 1, 5_000, 1), (3, 400, 7.5, 1_000)]
+          as [(Int, Int, Double, Double)])
+    func pointSizesOfRealImagesAreAccepted(width: Int, height: Int, pointWidth: Double, pointHeight: Double) {
+        let pixels = DecoderClient.RawPixels(data: Data(count: width * height * 4), width: width, height: height,
+                                             pointSize: CGSize(width: pointWidth, height: pointHeight))
+        #expect(DecoderClient.thumbnail(from: pixels, maxPixelSize: 4_096) != nil)
     }
 }
 
