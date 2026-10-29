@@ -26,8 +26,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         config = Config.load(from: store.directory)
 
-        let imported = AlfredImporter.importIfNeeded(into: store, force: CommandLine.arguments.contains("--import-alfred"))
-        if imported > 0 { logger.info("Imported \(imported) entries from Alfred") }
+        AlfredImporter.importIfNeeded(into: store, config: config,
+                                      force: CommandLine.arguments.contains("--import-alfred"))
         prune()
 
         monitor = ClipboardMonitor(store: store) { [unowned self] in config }
@@ -84,8 +84,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard !isRecognizingText,
               let file = store.imageFilesWithoutRecognizedText().first(where: { !unreadableImages.contains($0) })
         else { return }
+        // Validated path only: a tampered database must not make Vision read files elsewhere.
+        guard let url = store.imageURL(forFile: file) else {
+            unreadableImages.insert(file)
+            return recognizePendingText()
+        }
         isRecognizingText = true
-        let url = store.imagesDirectory.appendingPathComponent(file)
         Task { [weak self] in
             let text = await TextRecognizer.recognize(imageAt: url)
             guard let self else { return }

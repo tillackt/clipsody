@@ -53,8 +53,43 @@ public final class Store {
         // nothing instead of keeping old frames (with deleted content) around for reuse.
         try execute("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA journal_size_limit = 0")
         try migrate()
-        try enableIncrementalVacuum()
+        try validateSchema()
+        // Only an optimisation: a failure (e.g. disk full) must not keep the app from starting.
+        do {
+            try enableIncrementalVacuum()
+        } catch {
+            logger.error("Could not enable incremental vacuum: \(String(describing: error), privacy: .public)")
+        }
         restrictPermissions()
+        removeOrphanedImages()
+    }
+
+    /// A database edited by hand or by a broken tool may claim the current version without the
+    /// columns that go with it; then every query would silently return nothing.
+    private func validateSchema() throws {
+        var columns = Set<String>()
+        query("PRAGMA table_info(items)") { stmt in
+            if let name = Self.string(stmt, 1) { columns.insert(name) }
+        }
+        let required: Set = ["id", "kind", "text", "image_file", "hash", "app", "app_path", "ts", "pinned",
+                             "ocr_text", "rich", "rich_type", "width", "height", "byte_size"]
+        let missing = required.subtracting(columns)
+        guard missing.isEmpty else {
+            throw StoreError.sqlite("Unerwartetes Datenbankschema, es fehlen: \(missing.sorted().joined(separator: ", "))")
+        }
+    }
+
+    /// Image files no entry refers to: left by a crash between writing a file and storing its row,
+    /// or between deleting a row and its file. Unknown files are left alone.
+    private func removeOrphanedImages() {
+        var referenced = Set<String>()
+        query("SELECT image_file FROM items WHERE image_file IS NOT NULL") { stmt in
+            if let file = Self.string(stmt, 0) { referenced.insert(file) }
+        }
+        let files = (try? FileManager.default.contentsOfDirectory(atPath: imagesDirectory.path)) ?? []
+        for file in files where Self.isImageFileName(file) && !referenced.contains(file) {
+            removeImage(file)
+        }
     }
 
     deinit {
@@ -168,33 +203,41 @@ public final class Store {
 
     // MARK: - Writing
 
-    public func addText(_ text: String, rich: RichText? = nil, app: String?, appPath: String?, date: Date = Date()) {
+    // The add methods return whether the entry was stored; failures are also logged.
+
+    @discardableResult
+    public func addText(_ text: String, rich: RichText? = nil, app: String?, appPath: String?, date: Date = Date()) -> Bool {
         upsert(Row(kind: .text, text: text, hash: ImageIngest.sha256(Data(("t:" + text).utf8)), rich: rich),
                app: app, appPath: appPath, date: date)
     }
 
-    public func addFiles(_ paths: [String], app: String?, appPath: String?, date: Date = Date()) {
+    @discardableResult
+    public func addFiles(_ paths: [String], app: String?, appPath: String?, date: Date = Date()) -> Bool {
         let json = Self.encodePaths(paths)
-        upsert(Row(kind: .files, text: json, hash: ImageIngest.sha256(Data(("f:" + json).utf8))),
-               app: app, appPath: appPath, date: date)
+        return upsert(Row(kind: .files, text: json, hash: ImageIngest.sha256(Data(("f:" + json).utf8))),
+                      app: app, appPath: appPath, date: date)
     }
 
-    public func addImage(_ image: PreparedImage, app: String?, appPath: String?, date: Date = Date()) {
+    @discardableResult
+    public func addImage(_ image: PreparedImage, app: String?, appPath: String?, date: Date = Date()) -> Bool {
         let fileName = image.hash + ".png"
         let url = imagesDirectory.appendingPathComponent(fileName)
-        if !FileManager.default.fileExists(atPath: url.path) {
+        let isNewFile = !FileManager.default.fileExists(atPath: url.path)
+        if isNewFile {
             do {
                 // Atomic: a crash mid-write must not leave a truncated file that later copies reuse.
                 try image.png.write(to: url, options: .atomic)
                 Self.setPermissions(0o600, of: url)
             } catch {
                 logger.error("Could not write image: \(String(describing: error), privacy: .public)")
-                return
+                return false
             }
         }
-        upsert(Row(kind: .image, text: "", hash: image.hash, imageFile: fileName,
-                   width: image.width, height: image.height, byteSize: Int64(image.png.count)),
-               app: app, appPath: appPath, date: date)
+        let stored = upsert(Row(kind: .image, text: "", hash: image.hash, imageFile: fileName,
+                                width: image.width, height: image.height, byteSize: Int64(image.png.count)),
+                            app: app, appPath: appPath, date: date)
+        if !stored && isNewFile { removeImage(fileName) }
+        return stored
     }
 
     /// Moves an item to the top of the history.
@@ -261,7 +304,8 @@ public final class Store {
         return value
     }
 
-    public func setMetadata(_ value: String, for key: String) {
+    @discardableResult
+    public func setMetadata(_ value: String, for key: String) -> Bool {
         run("INSERT INTO meta(key, value) VALUES(?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value") { stmt in
             Self.bind(stmt, 1, key)
             Self.bind(stmt, 2, value)
@@ -340,7 +384,7 @@ public final class Store {
 
     /// Only names the app itself generates ("<sha256>.png"); anything else (e.g. "../x" from a
     /// tampered database) never becomes a path.
-    func imageURL(forFile fileName: String) -> URL? {
+    public func imageURL(forFile fileName: String) -> URL? {
         Self.isImageFileName(fileName) ? imagesDirectory.appendingPathComponent(fileName) : nil
     }
 
@@ -362,7 +406,7 @@ public final class Store {
         var byteSize: Int64 = 0
     }
 
-    private func upsert(_ row: Row, app: String?, appPath: String?, date: Date) {
+    private func upsert(_ row: Row, app: String?, appPath: String?, date: Date) -> Bool {
         // On a duplicate keep the newest timestamp and the app (and formatting) of the latest copy.
         let sql = """
             INSERT INTO items(kind, text, image_file, hash, app, app_path, ts, rich, rich_type, width, height, byte_size)
@@ -374,7 +418,7 @@ public final class Store {
                 rich_type = CASE WHEN excluded.ts > ts THEN excluded.rich_type ELSE rich_type END,
                 ts = MAX(ts, excluded.ts)
             """
-        run(sql) { stmt in
+        return run(sql) { stmt in
             sqlite3_bind_int(stmt, 1, Int32(row.kind.rawValue))
             Self.bind(stmt, 2, row.text)
             Self.bind(stmt, 3, row.imageFile)
@@ -486,17 +530,24 @@ public final class Store {
         }
     }
 
+    /// Binds with the explicit UTF-8 length, so text containing NUL characters is stored completely.
     private static func bind(_ stmt: OpaquePointer?, _ index: Int32, _ value: String?) {
         if let value {
-            sqlite3_bind_text(stmt, index, value, -1, SQLITE_TRANSIENT)
+            var value = value
+            value.withUTF8 { buffer in
+                _ = sqlite3_bind_text(stmt, index, UnsafeRawPointer(buffer.baseAddress)?.assumingMemoryBound(to: CChar.self),
+                                      Int32(buffer.count), SQLITE_TRANSIENT)
+            }
         } else {
             sqlite3_bind_null(stmt, index)
         }
     }
 
+    /// Reads the column by its byte length; a C string would stop at the first NUL character.
     static func string(_ stmt: OpaquePointer?, _ column: Int32) -> String? {
-        guard let cString = sqlite3_column_text(stmt, column) else { return nil }
-        return String(cString: cString)
+        guard let text = sqlite3_column_text(stmt, column) else { return nil }
+        let length = Int(sqlite3_column_bytes(stmt, column))
+        return String(decoding: UnsafeBufferPointer(start: text, count: length), as: UTF8.self)
     }
 
     private static func encodePaths(_ paths: [String]) -> String {
