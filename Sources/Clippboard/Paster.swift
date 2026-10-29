@@ -2,9 +2,11 @@ import AppKit
 import ApplicationServices
 import ClippboardCore
 
+@MainActor
 enum Paster {
     static func isTrusted(prompt: Bool) -> Bool {
-        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: prompt] as CFDictionary
+        // Literal value of kAXTrustedCheckOptionPrompt, which Swift 6 treats as unsafe global state.
+        let options = ["AXTrustedCheckOptionPrompt": prompt] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)
     }
 

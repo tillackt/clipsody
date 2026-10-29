@@ -7,14 +7,12 @@ let package = Package(
     targets: [
         // Storage, configuration, image handling, search and import: no AppKit, unit-tested.
         .target(
-            name: "ClippboardCore",
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            name: "ClippboardCore"
         ),
         // The menu-bar app itself (AppKit UI, hotkey, pasteboard, Vision).
         .executableTarget(
             name: "Clippboard",
-            dependencies: ["ClippboardCore"],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            dependencies: ["ClippboardCore"]
         ),
         .testTarget(
             name: "ClippboardCoreTests",

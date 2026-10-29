@@ -2,6 +2,7 @@ import AppKit
 import ClippboardCore
 
 /// Polls the general pasteboard; macOS offers no change notification for it.
+@MainActor
 final class ClipboardMonitor {
     private let store: Store
     private let config: () -> Config
@@ -23,7 +24,9 @@ final class ClipboardMonitor {
     }
 
     func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { [weak self] _ in self?.poll() }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated { self?.poll() }
+        }
     }
 
     /// Call after writing to the pasteboard ourselves so that write is not recorded again.

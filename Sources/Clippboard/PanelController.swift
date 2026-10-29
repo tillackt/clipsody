@@ -99,6 +99,7 @@ private final class ClipRowView: NSTableCellView {
     }
 }
 
+@MainActor
 final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
     private let maxItems: () -> Int

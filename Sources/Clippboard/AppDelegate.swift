@@ -1,6 +1,7 @@
 import AppKit
 import ClippboardCore
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var store: Store!
     private var config = Config()
@@ -42,7 +43,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         buildStatusItem()
         registerHotKey()
 
-        pruneTimer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in self?.prune() }
+        pruneTimer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated { self?.prune() }
+        }
 
         // Asks once for Accessibility permission; without it entries are only copied, not pasted.
         _ = Paster.isTrusted(prompt: true)
@@ -82,7 +85,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if #available(macOS 14.0, *) { NSApp.yieldActivation(to: target) }
             target.activate(options: [])
         }
-        whenFrontmost(target, attemptsLeft: 20) {
+        Task {
+            // Wait up to ~0.5 s for the target app to be frontmost, then let its window regain focus.
+            for _ in 0..<20 where target != nil {
+                if NSWorkspace.shared.frontmostApplication?.processIdentifier == target?.processIdentifier { break }
+                try? await Task.sleep(for: .milliseconds(25))
+            }
+            try? await Task.sleep(for: .milliseconds(100))
             let types = (NSPasteboard.general.types ?? []).map(\.rawValue).joined(separator: ", ")
             let frontmost = NSWorkspace.shared.frontmostApplication?.localizedName ?? "-"
             logger.notice("""
@@ -100,24 +109,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func recognizePendingText() {
         guard !isRecognizingText, let file = store.imageFilesWithoutRecognizedText().first else { return }
         isRecognizingText = true
-        TextRecognizer.recognize(imageAt: store.imagesDirectory.appendingPathComponent(file)) { [weak self] text in
+        let url = store.imagesDirectory.appendingPathComponent(file)
+        Task { [weak self] in
+            let text = await TextRecognizer.recognize(imageAt: url)
             guard let self else { return }
             // Stored even when empty so the image is not processed again.
-            store.setRecognizedText(text, forImageFile: file)
+            store.setRecognizedText(text ?? "", forImageFile: file)
             isRecognizingText = false
             recognizePendingText()
-        }
-    }
-
-    /// Waits up to ~0.5 s for the target app to be frontmost, then lets its window regain focus.
-    private func whenFrontmost(_ target: NSRunningApplication?, attemptsLeft: Int, then action: @escaping () -> Void) {
-        let frontmost = NSWorkspace.shared.frontmostApplication?.processIdentifier
-        if target == nil || frontmost == target?.processIdentifier || attemptsLeft == 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: action)
-            return
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) { [weak self] in
-            self?.whenFrontmost(target, attemptsLeft: attemptsLeft - 1, then: action)
         }
     }
 

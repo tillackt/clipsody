@@ -49,7 +49,7 @@ public final class Store {
 
     /// Ordered schema steps; `PRAGMA user_version` stores how many have been applied.
     /// Append new steps, never change released ones.
-    private static let migrations: [(Store) throws -> Void] = [
+    private static let migrations: [@Sendable (Store) throws -> Void] = [
         { try $0.migrateToV1() },
         { try $0.migrateToV2() },
     ]
