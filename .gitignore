@@ -2,4 +2,4 @@ build/
 .build/
 .swiftpm/
 .DS_Store
-.claude/worktrees/
+.claude/

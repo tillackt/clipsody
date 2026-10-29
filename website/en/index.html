@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clippboard – Clipboard history for the Mac</title>
+    <meta name="description" content="Clippboard remembers everything you copy – text, images and files – and pastes it back from the keyboard. Free, open source and fully local.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="alternate" hreflang="de" href="../">
+    <link rel="alternate" hreflang="en" href="./">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<!-- Before publishing: replace DEIN-GITHUB-NAME with the GitHub account (see website/README.md). -->
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Clippboard</a>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#install">Install</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a class="lang" href="../" hreflang="de" lang="de">Deutsch</a>
+    </div>
+</header>
+
+<main>
+    <div class="hero wrap">
+        <h1>Everything you copy.<br>One keystroke away.</h1>
+        <p class="lead">Clippboard remembers text, images and files from your clipboard.
+            Press <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd>, type, hit <kbd>⏎</kbd> – and it lands right where you were typing.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases/latest/download/Clippboard.dmg">Download for free</a>
+            <a class="button secondary" href="https://github.com/DEIN-GITHUB-NAME/clippboard">Source on GitHub</a>
+        </div>
+        <p class="meta">macOS 13 Ventura or later · Apple Silicon and Intel · App interface in German</p>
+        <div class="badges">
+            <span class="badge">Free</span>
+            <span class="badge">Open source</span>
+            <span class="badge">No account, no tracking</span>
+            <span class="badge">Everything stays on your Mac</span>
+        </div>
+
+        <div class="shot" aria-hidden="true">
+            <div class="panel">
+                <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
+                <div class="body">
+                    <ul>
+                        <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
+                        <li><span class="ico b"></span><span class="t">Please check the <mark>invoice</mark> by Friday ⏎ Thanks!</span><span class="k">⌘2</span></li>
+                        <li><span class="ico c"></span><span class="t"><mark>Invoice</mark>_October.pdf</span><span class="k">⌘3</span></li>
+                        <li><span class="ico d"></span><span class="t">IBAN for the <mark>invoice</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
+                        <li><span class="ico e"></span><span class="t">https://example.com/<mark>invoice</mark>/1043</span><span class="k">⌘5</span></li>
+                    </ul>
+                    <div class="preview">
+                        <div class="img">Screenshot · text recognised<br><br>
+                            <b><mark>Invoice</mark> no. 2026-1043</b><br>
+                            Service period: October 2026<br>
+                            Total: €1,240.00<br>
+                            Due: 15 Nov 2026</div>
+                        <div class="info">Preview · 3 minutes ago · image 2880×1800 · text recognised</div>
+                        <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                    </div>
+                </div>
+            </div>
+            <p class="caption">Search also finds text that only appears in a screenshot. (Illustration; the app’s interface is in German.)</p>
+        </div>
+    </div>
+
+    <section class="alt" id="features">
+        <div class="wrap">
+            <h2>Lean. Fast. Keyboard-first.</h2>
+            <p class="sub">No launcher, no workflows, no hundred settings – just a clipboard that remembers.</p>
+            <div class="grid">
+                <div class="card"><div class="icon">⌨️</div><h3>One shortcut, everywhere</h3>
+                    <p><kbd>⌥⌘C</kbd> opens the history in any app. Arrow keys, <kbd>⏎</kbd>, done – the entry is pasted where you were.</p></div>
+                <div class="card"><div class="icon">🔎</div><h3>Finds text in images</h3>
+                    <p>Screenshots are read locally with macOS text recognition. Type a word from the error message and the screenshot shows up.</p></div>
+                <div class="card"><div class="icon">🖼️</div><h3>Text, images, files</h3>
+                    <p>Images are kept lossless; copied files are pasted back as files, not as paths.</p></div>
+                <div class="card"><div class="icon">✍️</div><h3>With or without formatting</h3>
+                    <p><kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only.</p></div>
+                <div class="card"><div class="icon">📌</div><h3>Pin what you use often</h3>
+                    <p>IBAN, address, commands: <kbd>⌘P</kbd> keeps an entry on top and never deletes it automatically.</p></div>
+                <div class="card"><div class="icon">🪶</div><h3>Light and frugal</h3>
+                    <p>A native Mac app without dependencies. It sits quietly in the menu bar and keeps your history as long as you like.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="keys">
+        <div class="wrap">
+            <h2>All from the keyboard</h2>
+            <p class="sub">You don’t need the mouse – but you can use it.</p>
+            <table class="keys">
+                <tr><td><kbd>⌥⌘C</kbd></td><td>Open or close the history (configurable)</td></tr>
+                <tr><td>Type</td><td>Filter – in text, app names and text in images</td></tr>
+                <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Select an entry</td></tr>
+                <tr><td><kbd>⏎</kbd></td><td>Paste, with formatting</td></tr>
+                <tr><td><kbd>⌥⏎</kbd></td><td>Paste plain text only</td></tr>
+                <tr><td><kbd>⌘1</kbd> … <kbd>⌘9</kbd></td><td>Paste one of the first nine entries directly</td></tr>
+                <tr><td><kbd>⌘P</kbd></td><td>Pin or unpin</td></tr>
+                <tr><td><kbd>⌘⌫</kbd></td><td>Delete an entry</td></tr>
+                <tr><td><kbd>esc</kbd></td><td>Close</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="privacy">
+        <div class="wrap">
+            <h2>Your clipboard is yours</h2>
+            <p class="sub">Personal things end up on a clipboard: passwords, addresses, messages. That’s why Clippboard is private by design.</p>
+            <div class="grid">
+                <div class="card"><h3>Nothing leaves your Mac</h3>
+                    <p>No account, no server, no analytics – Clippboard doesn’t use the network at all. The history lives only on your Mac and is excluded from backups.</p></div>
+                <div class="card"><h3>Passwords stay out</h3>
+                    <p>Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box.</p></div>
+                <div class="card"><h3>Deleted means deleted</h3>
+                    <p>Deleted entries are overwritten in the database and its change log is emptied – after a crash, at the next launch.</p></div>
+                <div class="card"><h3>Images in a sandbox</h3>
+                    <p>Untrusted image data is processed in an isolated helper process without file or network access, not in the app itself.</p></div>
+                <div class="card"><h3>Verifiable</h3>
+                    <p>The source is open. You don’t have to trust anyone – you can read it and build the app yourself.</p></div>
+                <div class="card"><h3>Hidden from screen sharing</h3>
+                    <p>The window is hidden from screenshots and classic screen sharing.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <div class="wrap">
+            <h2>Install</h2>
+            <p class="sub">Clippboard is free and therefore not notarised by Apple. macOS asks once on first launch – here’s how:</p>
+            <ol class="steps">
+                <li><a href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases/latest/download/Clippboard.dmg">Download Clippboard.dmg</a>, open it and drag <strong>Clippboard</strong> into <strong>Applications</strong>.</li>
+                <li>Launch Clippboard. macOS says it cannot verify the app – click <strong>Done</strong>.</li>
+                <li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and choose <strong>Open Anyway</strong> for Clippboard.</li>
+                <li>To let <kbd>⏎</kbd> paste directly, allow Clippboard under <strong>Privacy &amp; Security → Accessibility</strong>. Without it, the entry is only put on the clipboard and you press <kbd>⌘V</kbd> yourself.</li>
+                <li>Done: press <kbd>⌥⌘C</kbd>. The menu bar icon leads to the settings, where you can also start Clippboard at login.</li>
+            </ol>
+            <div class="note" id="verify">
+                <strong>Genuine or not?</strong> Only download Clippboard from this site or from GitHub. Every release lists the SHA-256 checksum of the DMG and the fingerprint of the signing certificate. Check them in Terminal:
+                <pre><code>shasum -a 256 ~/Downloads/Clippboard.dmg</code></pre>
+                Certificate fingerprint (SHA-256): <code>ADDED-WITH-THE-FIRST-RELEASE</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="wrap">
+            <h2>FAQ</h2>
+            <p class="sub">&nbsp;</p>
+            <details><summary>Is Clippboard really free?</summary>
+                <p>Yes. No ads, no subscription, no trial. The source is open.</p></details>
+            <details><summary>Why does Clippboard need the Accessibility permission?</summary>
+                <p>Only to trigger <kbd>⌘V</kbd> in the app you came from after you pick an entry. Clippboard does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself.</p></details>
+            <details><summary>How long is the history kept?</summary>
+                <p>7 days and at most 1,000 entries by default; both can be changed in the settings. Pinned entries always stay.</p></details>
+            <details><summary>Are my passwords stored?</summary>
+                <p>No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clippboard sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>Does Clippboard run on my Mac?</summary>
+                <p>macOS 13 Ventura or later, on Apple Silicon and Intel.</p></details>
+            <details><summary>Is the app available in English?</summary>
+                <p>The app’s interface is currently German only.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clippboard</span>
+        <a href="https://github.com/DEIN-GITHUB-NAME/clippboard">GitHub</a>
+        <a href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases">All releases</a>
+        <span>License: LIZENZ-EINTRAGEN</span>
+        <span class="spacer"></span>
+        <a href="../impressum.html" lang="de">Impressum</a>
+        <a href="../datenschutz.html" lang="de">Privacy policy</a>
+    </div>
+</footer>
+</body>
+</html>

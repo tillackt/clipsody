@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clippboard – Zwischenablage-Verlauf für den Mac</title>
+    <meta name="description" content="Clippboard merkt sich alles, was du kopierst – Texte, Bilder und Dateien – und fügt es per Tastatur wieder ein. Kostenlos, Open Source und komplett lokal.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <link rel="alternate" hreflang="en" href="en/">
+    <link rel="alternate" hreflang="de" href="./">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<!-- Before publishing: replace DEIN-GITHUB-NAME with the GitHub account (see website/README.md). -->
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="assets/logo.svg" alt="">Clippboard</a>
+        <nav>
+            <a href="#funktionen">Funktionen</a>
+            <a href="#datenschutz">Datenschutz</a>
+            <a href="#installation">Installation</a>
+            <a href="#fragen">Fragen</a>
+        </nav>
+        <a class="lang" href="en/" hreflang="en" lang="en">English</a>
+    </div>
+</header>
+
+<main>
+    <div class="hero wrap">
+        <h1>Alles, was du kopierst.<br>Einen Tastendruck entfernt.</h1>
+        <p class="lead">Clippboard merkt sich Texte, Bilder und Dateien aus deiner Zwischenablage.
+            <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> drücken, tippen, <kbd>⏎</kbd> – und der Eintrag ist da, wo du gerade schreibst.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases/latest/download/Clippboard.dmg">Kostenlos laden</a>
+            <a class="button secondary" href="https://github.com/DEIN-GITHUB-NAME/clippboard">Quellcode auf GitHub</a>
+        </div>
+        <p class="meta">macOS 13 Ventura oder neuer · Apple Silicon und Intel · Oberfläche auf Deutsch</p>
+        <div class="badges">
+            <span class="badge">Kostenlos</span>
+            <span class="badge">Open Source</span>
+            <span class="badge">Kein Konto, kein Tracking</span>
+            <span class="badge">Alles bleibt auf deinem Mac</span>
+        </div>
+
+        <div class="shot" aria-hidden="true">
+            <div class="panel">
+                <div class="search"><span class="typed">rechnung</span><span class="caret"></span></div>
+                <div class="body">
+                    <ul>
+                        <li class="sel"><span class="ico a"></span><span class="t">Bild 2880×1800 (612 KB) – „…<mark>Rechnung</mark> Nr. 2026-1043…“</span><span class="k">⌘1</span></li>
+                        <li><span class="ico b"></span><span class="t">Bitte die <mark>Rechnung</mark> bis Freitag prüfen ⏎ Danke!</span><span class="k">⌘2</span></li>
+                        <li><span class="ico c"></span><span class="t"><mark>Rechnung</mark>_Oktober.pdf</span><span class="k">⌘3</span></li>
+                        <li><span class="ico d"></span><span class="t">IBAN für die <mark>Rechnung</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
+                        <li><span class="ico e"></span><span class="t">https://example.com/<mark>rechnung</mark>/1043</span><span class="k">⌘5</span></li>
+                    </ul>
+                    <div class="preview">
+                        <div class="img">Screenshot · Text darauf erkannt<br><br>
+                            <b><mark>Rechnung</mark> Nr. 2026-1043</b><br>
+                            Leistungszeitraum: Oktober 2026<br>
+                            Gesamtbetrag: 1.240,00 €<br>
+                            Zahlbar bis: 15.11.2026</div>
+                        <div class="info">Vorschau · vor 3 Minuten · Bild 2880×1800 · Text erkannt</div>
+                        <div class="hint">⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P anpinnen   ⌘⌫ löschen</div>
+                    </div>
+                </div>
+            </div>
+            <p class="caption">Die Suche findet auch Text, der nur in einem Screenshot steht.</p>
+        </div>
+    </div>
+
+    <section class="alt" id="funktionen">
+        <div class="wrap">
+            <h2>Schlank. Schnell. Per Tastatur.</h2>
+            <p class="sub">Keine Startleiste, keine Workflows, keine hundert Einstellungen – nur eine Zwischenablage, die sich erinnert.</p>
+            <div class="grid">
+                <div class="card"><div class="icon">⌨️</div><h3>Ein Kürzel, überall</h3>
+                    <p><kbd>⌥⌘C</kbd> öffnet den Verlauf in jeder App. Pfeiltasten, <kbd>⏎</kbd>, fertig – der Eintrag landet dort, wo du warst.</p></div>
+                <div class="card"><div class="icon">🔎</div><h3>Findet auch Text in Bildern</h3>
+                    <p>Screenshots werden lokal per macOS-Texterkennung gelesen. Tipp ein Wort aus der Fehlermeldung, und der Screenshot ist da.</p></div>
+                <div class="card"><div class="icon">🖼️</div><h3>Texte, Bilder, Dateien</h3>
+                    <p>Bilder bleiben verlustfrei erhalten, kopierte Dateien werden wieder als Dateien eingefügt – nicht als Pfad.</p></div>
+                <div class="card"><div class="icon">✍️</div><h3>Mit oder ohne Formatierung</h3>
+                    <p><kbd>⏎</kbd> behält Fett, Links und Tabellen aus Word, Outlook oder dem Browser. <kbd>⌥⏎</kbd> fügt nur den reinen Text ein.</p></div>
+                <div class="card"><div class="icon">📌</div><h3>Anpinnen, was du oft brauchst</h3>
+                    <p>IBAN, Adresse, Befehle: Mit <kbd>⌘P</kbd> bleibt ein Eintrag oben und wird nie automatisch gelöscht.</p></div>
+                <div class="card"><div class="icon">🪶</div><h3>Leicht und sparsam</h3>
+                    <p>Native Mac-App ohne Abhängigkeiten. Läuft unauffällig in der Menüleiste und hält deinen Verlauf so lange, wie du willst.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tasten">
+        <div class="wrap">
+            <h2>Alles mit der Tastatur</h2>
+            <p class="sub">Die Maus brauchst du nicht – kannst sie aber benutzen.</p>
+            <table class="keys">
+                <tr><td><kbd>⌥⌘C</kbd></td><td>Verlauf öffnen oder schließen (frei wählbar)</td></tr>
+                <tr><td>Tippen</td><td>Filtern – in Texten, App-Namen und Text auf Bildern</td></tr>
+                <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Eintrag wählen</td></tr>
+                <tr><td><kbd>⏎</kbd></td><td>Einfügen, mit Formatierung</td></tr>
+                <tr><td><kbd>⌥⏎</kbd></td><td>Einfügen, nur reiner Text</td></tr>
+                <tr><td><kbd>⌘1</kbd> … <kbd>⌘9</kbd></td><td>Einen der ersten neun Einträge direkt einfügen</td></tr>
+                <tr><td><kbd>⌘P</kbd></td><td>Anpinnen oder lösen</td></tr>
+                <tr><td><kbd>⌘⌫</kbd></td><td>Eintrag löschen</td></tr>
+                <tr><td><kbd>esc</kbd></td><td>Schließen</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="datenschutz">
+        <div class="wrap">
+            <h2>Deine Zwischenablage gehört dir</h2>
+            <p class="sub">In einer Zwischenablage landet Persönliches: Passwörter, Adressen, Nachrichten. Deshalb ist Clippboard von Grund auf privat gebaut.</p>
+            <div class="grid">
+                <div class="card"><h3>Nichts verlässt deinen Mac</h3>
+                    <p>Kein Konto, kein Server, keine Statistik – Clippboard nutzt das Netzwerk überhaupt nicht. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen.</p></div>
+                <div class="card"><h3>Passwörter bleiben draußen</h3>
+                    <p>Was Passwort-Manager als vertraulich markieren, wird nie gespeichert. 1Password, Bitwarden, KeePassXC & Co. sind von Haus aus ausgenommen.</p></div>
+                <div class="card"><h3>Gelöscht heißt gelöscht</h3>
+                    <p>Gelöschte Einträge werden in der Datenbank überschrieben und das Änderungsprotokoll geleert – auch nach einem Absturz beim nächsten Start.</p></div>
+                <div class="card"><h3>Bilder in der Sandbox</h3>
+                    <p>Fremde Bilddaten werden in einem abgeschotteten Hilfsprozess ohne Datei- und Netzwerkzugriff verarbeitet, nicht in der App selbst.</p></div>
+                <div class="card"><h3>Prüfbar</h3>
+                    <p>Der Quellcode ist offen. Du musst niemandem glauben – du kannst nachsehen und die App auch selbst bauen.</p></div>
+                <div class="card"><h3>Nicht im Bildschirm-Teilen</h3>
+                    <p>Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation">
+        <div class="wrap">
+            <h2>Installation</h2>
+            <p class="sub">Clippboard ist kostenlos und deshalb nicht bei Apple notarisiert. Beim ersten Öffnen fragt macOS einmal nach – so geht's:</p>
+            <ol class="steps">
+                <li><a href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases/latest/download/Clippboard.dmg">Clippboard.dmg laden</a>, öffnen und <strong>Clippboard</strong> in den Ordner <strong>Programme</strong> ziehen.</li>
+                <li>Clippboard starten. macOS meldet, dass die App nicht überprüft werden kann – auf <strong>Fertig</strong> klicken.</li>
+                <li><strong>Systemeinstellungen → Datenschutz &amp; Sicherheit</strong> öffnen, nach unten scrollen und bei Clippboard <strong>Trotzdem öffnen</strong> wählen.</li>
+                <li>Damit <kbd>⏎</kbd> direkt einfügen kann, Clippboard unter <strong>Datenschutz &amp; Sicherheit → Bedienungshilfen</strong> erlauben. Ohne diese Erlaubnis landet der Eintrag nur in der Zwischenablage und du drückst selbst <kbd>⌘V</kbd>.</li>
+                <li>Fertig: <kbd>⌥⌘C</kbd> drücken. Über das Symbol in der Menüleiste erreichst du die Einstellungen und kannst Clippboard beim Anmelden starten lassen.</li>
+            </ol>
+            <div class="note" id="pruefen">
+                <strong>Echt oder nicht?</strong> Lade Clippboard nur von dieser Seite oder von GitHub. Zu jeder Version stehen dort die SHA-256-Prüfsumme der DMG und der Fingerabdruck des Signaturzertifikats. Prüfen kannst du sie im Terminal:
+                <pre><code>shasum -a 256 ~/Downloads/Clippboard.dmg</code></pre>
+                Zertifikat-Fingerabdruck (SHA-256): <code>WIRD-MIT-DEM-ERSTEN-RELEASE-EINGETRAGEN</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="fragen">
+        <div class="wrap">
+            <h2>Fragen</h2>
+            <p class="sub">&nbsp;</p>
+            <details><summary>Ist Clippboard wirklich kostenlos?</summary>
+                <p>Ja. Keine Werbung, kein Abo, keine Testphase. Der Quellcode ist offen.</p></details>
+            <details><summary>Warum braucht Clippboard die Berechtigung „Bedienungshilfen“?</summary>
+                <p>Nur, um nach der Auswahl <kbd>⌘V</kbd> in der App auszulösen, aus der du gekommen bist. Clippboard liest damit keine Bildschirminhalte und keine Tastatureingaben. Ohne die Berechtigung funktioniert alles – du fügst dann nur selbst ein.</p></details>
+            <details><summary>Wie lange wird der Verlauf gespeichert?</summary>
+                <p>Standardmäßig 7 Tage und höchstens 1.000 Einträge. Beides stellst du in den Einstellungen ein. Angepinnte Einträge bleiben immer.</p></details>
+            <details><summary>Werden meine Passwörter gespeichert?</summary>
+                <p>Nein, wenn dein Passwort-Manager sie als vertraulich kennzeichnet – das tun die gängigen. Bekannte Passwort-Manager sind zusätzlich ausgenommen. Eine Grenze gibt es: Clippboard sieht, welche App vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung ein Passwort ohne diese Kennzeichnung, landet es im Verlauf – dann einfach mit <kbd>⌘⌫</kbd> löschen.</p></details>
+            <details><summary>Läuft Clippboard auf meinem Mac?</summary>
+                <p>Ab macOS 13 Ventura, auf Apple Silicon und Intel.</p></details>
+            <details><summary>Gibt es Clippboard auf Englisch?</summary>
+                <p>Die Oberfläche der App ist derzeit nur auf Deutsch.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clippboard</span>
+        <a href="https://github.com/DEIN-GITHUB-NAME/clippboard">GitHub</a>
+        <a href="https://github.com/DEIN-GITHUB-NAME/clippboard/releases">Alle Versionen</a>
+        <span>Lizenz: LIZENZ-EINTRAGEN</span>
+        <span class="spacer"></span>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+</footer>
+</body>
+</html>
