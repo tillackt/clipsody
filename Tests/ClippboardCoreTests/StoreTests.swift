@@ -114,6 +114,23 @@ import Testing
         #expect(store.items().first?.text == "entry 0")
     }
 
+    @Test func listHoldsTheBeginningOfLongTextsAndPasteGetsAll() throws {
+        let long = String(repeating: "ä", count: Store.listTextPrefix * 2 + 10) // > 4 bytes per prefix character
+        store.addText(long, app: nil, appPath: nil)
+        let item = try #require(store.items().first)
+        #expect(item.text.count == Store.listTextPrefix)
+        #expect(item.textByteCount == long.utf8.count)
+        #expect(store.fullText(for: item) == long)
+    }
+
+    @Test func recognizedTextCanBeReadPerImage() throws {
+        let image = try #require(ImageIngest.prepare(makeImage()))
+        store.addImage(image, app: nil, appPath: nil)
+        #expect(store.recognizedText(forImageFile: image.hash + ".png") == nil)
+        store.setRecognizedText("Rechnung", forImageFile: image.hash + ".png")
+        #expect(store.recognizedText(forImageFile: image.hash + ".png") == "Rechnung")
+    }
+
     @Test func metadataRoundTrip() {
         #expect(store.metadata("x") == nil)
         store.setMetadata("1", for: "x")

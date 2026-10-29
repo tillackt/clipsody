@@ -21,6 +21,11 @@ public final class Store {
     public let directory: URL
     public let imagesDirectory: URL
     private var db: OpaquePointer?
+    /// Single deletes are wiped from disk in one go (see `flushDeletions`), not on every ⌘⌫.
+    private var hasUnwipedDeletions = false
+
+    /// Characters of a text loaded for the list; enough for title, preview and search.
+    public static let listTextPrefix = ItemPresentation.searchablePrefix
 
     public static var defaultDirectory: URL {
         FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -274,15 +279,21 @@ public final class Store {
     /// Returns false if the entry could not be deleted.
     @discardableResult
     public func delete(_ item: ClipItem) -> Bool {
-        let deleted = deleteWhere("id = ?") { sqlite3_bind_int64($0, 1, item.id) }
+        guard deleteWhere("id = ?", bind: { sqlite3_bind_int64($0, 1, item.id) }) != nil else { return false }
+        hasUnwipedDeletions = true
+        return true
+    }
+
+    /// Removes what single deletes left in the WAL and free pages. The app calls it when the panel
+    /// closes and when it quits, so holding ⌘⌫ does not run a checkpoint per entry.
+    public func flushDeletions() {
+        guard hasUnwipedDeletions else { return }
         wipeDeletedContent()
-        return deleted
     }
 
     /// Deletes everything except pinned entries.
     public func clear() {
-        deleteWhere("pinned = 0") { _ in }
-        wipeDeletedContent()
+        if (deleteWhere("pinned = 0") { _ in } ?? 0) > 0 || hasUnwipedDeletions { wipeDeletedContent() }
     }
 
     /// Drops unpinned entries older than the retention period or beyond maxItems.
@@ -291,17 +302,19 @@ public final class Store {
         let condition = """
             pinned = 0 AND (ts < ? OR id NOT IN (SELECT id FROM items WHERE pinned = 0 ORDER BY ts DESC LIMIT ?))
             """
-        deleteWhere(condition) { stmt in
+        let deleted = deleteWhere(condition) { stmt in
             sqlite3_bind_double(stmt, 1, cutoff)
             sqlite3_bind_int64(stmt, 2, Int64(maxItems))
         }
-        wipeDeletedContent()
+        // Most hourly runs delete nothing; then there is nothing to wipe.
+        if (deleted ?? 0) > 0 || hasUnwipedDeletions { wipeDeletedContent() }
     }
 
     /// secure_delete zeroes freed pages, but in WAL mode the old page versions (with the deleted
     /// text) still sit in the -wal file. Copying everything into the main file and truncating the
     /// WAL to zero bytes removes them; incremental_vacuum hands freed pages back to the file system.
     private func wipeDeletedContent() {
+        hasUnwipedDeletions = false
         try? execute("PRAGMA incremental_vacuum")
         var busy = 0
         query("PRAGMA wal_checkpoint(TRUNCATE)") { busy = Int(sqlite3_column_int($0, 0)) }
@@ -343,12 +356,23 @@ public final class Store {
     /// `prune` keeps the total bounded.
     public func items(limit: Int? = nil) -> [ClipItem] {
         var result: [ClipItem] = []
+        // Texts are loaded only up to listTextPrefix: opening the panel must not read and decode
+        // several multi-MB texts. Pasting fetches the whole text with fullText(for:).
         let sql = """
-            SELECT id, kind, text, image_file, app, app_path, ts, pinned, ocr_text, rich_type, width, height, byte_size
+            SELECT id, kind,
+                   CASE WHEN kind = 0 AND length(CAST(text AS BLOB)) > ? THEN substr(text, 1, ?) ELSE text END,
+                   image_file, app, app_path,
+                   ts, pinned, ocr_text, rich_type, width, height, byte_size, length(CAST(text AS BLOB))
             FROM items ORDER BY pinned DESC, ts DESC LIMIT ?
             """
-        // LIMIT -1 means no limit in SQLite.
-        query(sql, bind: { sqlite3_bind_int64($0, 1, Int64(limit ?? -1)) }) { stmt in
+        query(sql, bind: { stmt in
+            // Only really large texts are cut: SQLite's substr() stops at a NUL character, so texts
+            // below 4 bytes per prefix character are always loaded whole.
+            sqlite3_bind_int64(stmt, 1, Int64(Self.listTextPrefix * 4))
+            sqlite3_bind_int64(stmt, 2, Int64(Self.listTextPrefix))
+            // LIMIT -1 means no limit in SQLite.
+            sqlite3_bind_int64(stmt, 3, Int64(limit ?? -1))
+        }) { stmt in
             let kind = ClipItem.Kind(rawValue: Int(sqlite3_column_int(stmt, 1))) ?? .text
             let raw = Self.string(stmt, 2) ?? ""
             let paths = kind == .files ? Self.decodePaths(raw) : []
@@ -356,6 +380,7 @@ public final class Store {
                 id: sqlite3_column_int64(stmt, 0),
                 kind: kind,
                 text: kind == .files ? paths.joined(separator: "\n") : raw,
+                textByteCount: Int(sqlite3_column_int64(stmt, 13)),
                 filePaths: paths,
                 imageFile: Self.string(stmt, 3),
                 imageWidth: Int(sqlite3_column_int64(stmt, 10)),
@@ -370,6 +395,23 @@ public final class Store {
             ))
         }
         return result
+    }
+
+    /// The complete text of a text entry (the list holds only its beginning).
+    public func fullText(for item: ClipItem) -> String? {
+        var text: String?
+        query("SELECT text FROM items WHERE id = ? AND kind = 0", bind: { sqlite3_bind_int64($0, 1, item.id) }) {
+            text = Self.string($0, 0)
+        }
+        return text
+    }
+
+    public func recognizedText(forImageFile fileName: String) -> String? {
+        var text: String?
+        query("SELECT ocr_text FROM items WHERE image_file = ? LIMIT 1", bind: { Self.bind($0, 1, fileName) }) {
+            text = Self.string($0, 0)
+        }
+        return text
     }
 
     public func richText(for item: ClipItem) -> RichText? {
@@ -455,14 +497,15 @@ public final class Store {
     }
 
     /// Deletes matching rows and the image files no remaining row refers to.
-    /// Returns false if the rows could not be deleted.
+    /// Number of deleted rows, nil if they could not be deleted.
     @discardableResult
-    private func deleteWhere(_ condition: String, bind: (OpaquePointer?) -> Void) -> Bool {
+    private func deleteWhere(_ condition: String, bind: (OpaquePointer?) -> Void) -> Int? {
         var files: [String] = []
         query("SELECT image_file FROM items WHERE image_file IS NOT NULL AND (\(condition))", bind: bind) { stmt in
             if let file = Self.string(stmt, 0) { files.append(file) }
         }
-        guard run("DELETE FROM items WHERE \(condition)", bind: bind) else { return false }
+        guard run("DELETE FROM items WHERE \(condition)", bind: bind) else { return nil }
+        let deletedRows = Int(sqlite3_changes(db))
         for file in files {
             var stillUsed = false
             let checked = query("SELECT 1 FROM items WHERE image_file = ? LIMIT 1",
@@ -470,7 +513,7 @@ public final class Store {
             // Only delete a file when it is certain that no entry uses it any more.
             if checked && !stillUsed { removeImage(file) }
         }
-        return true
+        return deletedRows
     }
 
     private func removeImage(_ fileName: String) {

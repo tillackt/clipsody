@@ -5,9 +5,8 @@ import Testing
 @Suite struct PresentationTests {
     func item(_ kind: ClipItem.Kind = .text, text: String = "", paths: [String] = [], app: String? = nil,
               recognized: String? = nil, width: Int = 0, height: Int = 0, bytes: Int64 = 0) -> ClipItem {
-        ClipItem(id: 1, kind: kind, text: text, filePaths: paths, imageFile: nil, imageWidth: width,
-                 imageHeight: height, byteSize: bytes, app: app, appPath: nil, date: Date(), pinned: false,
-                 recognizedText: recognized, hasRichText: false)
+        ClipItem(id: 1, kind: kind, text: text, filePaths: paths, imageWidth: width, imageHeight: height,
+                 byteSize: bytes, app: app, date: Date(), recognizedText: recognized)
     }
 
     @Test func searchIsCaseAndDiacriticInsensitiveAndNeedsAllTerms() {

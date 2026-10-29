@@ -52,6 +52,7 @@ import Testing
         store.addText(pruned, app: nil, appPath: nil, date: Date(timeIntervalSince1970: 0))
 
         try store.delete(#require(store.items().first { $0.text == deleted }))
+        store.flushDeletions()
         store.prune(retentionDays: 7, maxItems: 1_000)
 
         #expect(!databaseFilesContain(deleted, in: directory.url))

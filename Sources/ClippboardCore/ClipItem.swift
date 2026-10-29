@@ -9,8 +9,11 @@ public struct ClipItem: Equatable, Sendable {
 
     public let id: Int64
     public let kind: Kind
-    /// Text items: the text. Files: the paths, one per line (for display and search). Images: empty.
-    public let text: String
+    /// Text items: the beginning of the text (see `Store.listTextPrefix`; `Store.fullText` has all
+    /// of it). Files: the paths, one per line (for display and search). Images: empty.
+    public var text: String
+    /// Size of the complete text in bytes, also when `text` holds only its beginning.
+    public let textByteCount: Int
     public let filePaths: [String]
     public let imageFile: String?
     public let imageWidth: Int
@@ -22,9 +25,30 @@ public struct ClipItem: Equatable, Sendable {
     public let date: Date
     public let pinned: Bool
     /// Text recognised in an image; nil until recognition ran.
-    public let recognizedText: String?
+    public var recognizedText: String?
     /// Whether formatted text (RTF/HTML) was stored alongside the plain text.
     public let hasRichText: Bool
+
+    public init(id: Int64, kind: Kind, text: String, textByteCount: Int? = nil, filePaths: [String] = [],
+                imageFile: String? = nil, imageWidth: Int = 0, imageHeight: Int = 0, byteSize: Int64 = 0,
+                app: String? = nil, appPath: String? = nil, date: Date, pinned: Bool = false,
+                recognizedText: String? = nil, hasRichText: Bool = false) {
+        self.id = id
+        self.kind = kind
+        self.text = text
+        self.textByteCount = textByteCount ?? text.utf8.count
+        self.filePaths = filePaths
+        self.imageFile = imageFile
+        self.imageWidth = imageWidth
+        self.imageHeight = imageHeight
+        self.byteSize = byteSize
+        self.app = app
+        self.appPath = appPath
+        self.date = date
+        self.pinned = pinned
+        self.recognizedText = recognizedText
+        self.hasRichText = hasRichText
+    }
 }
 
 /// Formatted text as it came from the pasteboard; `type` is the UTI (public.rtf, public.html).

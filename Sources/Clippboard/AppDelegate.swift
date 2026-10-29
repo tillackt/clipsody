@@ -31,9 +31,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         recognition = TextRecognitionQueue(store: store) { [decoder] png in
             await decoder.recognizeText(inPNG: png)
-        } onRecognized: { [unowned self] _ in
+        } onRecognized: { [unowned self] file in
             // The open panel searches its own copy of the entries.
-            panel.reloadIfVisible()
+            panel.refreshRecognizedText(forImageFile: file)
         }
         images = ImageQueue(store: store) { [decoder] data in
             await decoder.prepareImage(data)
@@ -76,7 +76,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Paste
 
+    func applicationWillTerminate(_ notification: Notification) {
+        store?.flushDeletions()
+    }
+
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
+        var item = item
+        // The list holds only the beginning of long texts.
+        if item.kind == .text, let text = store.fullText(for: item) { item.text = text }
         let rich = withFormatting ? store.richText(for: item) : nil
         guard paster.paste(item, imageURL: store.imageURL(for: item), rich: rich, into: target) else {
             logger.error("Paste: content no longer available (file moved or deleted)")

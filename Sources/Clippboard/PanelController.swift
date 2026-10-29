@@ -35,6 +35,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         return cache
     }()
     private var previewTask: Task<Void, Never>?
+    /// The item the preview currently shows; an unchanged item is not rendered (and scrolled) again.
+    private var previewedItem: ClipItem?
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "de_DE")
@@ -81,9 +83,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         // Everything is reloaded on the next show; holding texts, index and previews in the
         // background would only cost memory.
         previewTask?.cancel()
+        previewedItem = nil
         allItems = []
         items = []
         searchIndex = [:]
+        // Single deletes are wiped from disk in one go when the panel closes.
+        store.flushDeletions()
         previewCache.removeAllObjects()
         previewText.string = ""
         previewImage.image = nil
@@ -94,6 +99,16 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     func reloadIfVisible() {
         guard isVisible else { return }
         reloadItems()
+        applyFilter(selecting: selectedItem?.id)
+    }
+
+    /// Takes over newly recognised text for one image without reloading the whole list.
+    func refreshRecognizedText(forImageFile file: String) {
+        guard isVisible, let text = store.recognizedText(forImageFile: file) else { return }
+        for index in allItems.indices where allItems[index].imageFile == file {
+            allItems[index].recognizedText = text
+            searchIndex[allItems[index].id] = SearchQuery.fold(ItemPresentation.searchText(for: allItems[index]))
+        }
         applyFilter(selecting: selectedItem?.id)
     }
 
@@ -286,16 +301,19 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             previewTextScroll.isHidden = true
             previewImage.isHidden = true
             infoLabel.stringValue = ""
+            previewedItem = nil
             return
         }
         let item = items[row]
+        guard item != previewedItem else { return }
+        previewedItem = item
         announceForVoiceOver(item)
         var info = [item.app ?? "Unbekannte App", dateFormatter.localizedString(for: item.date, relativeTo: Date())]
         if item.pinned { info.insert("Angepinnt", at: 0) }
         switch item.kind {
         case .text:
             showPreviewText(item.text)
-            let bytes = item.text.utf8.count
+            let bytes = item.textByteCount
             if bytes > ItemPresentation.searchablePrefix {
                 // Counting characters and lines of a multi-MB text would stall arrowing through the list.
                 info.append(ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file))
@@ -345,6 +363,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let scale = panel.backingScaleFactor
         let maxPixelSize = Int(max(previewImage.bounds.width, previewImage.bounds.height, 400) * scale)
         previewTask = Task { [weak self, decoder] in
+            // Holding ↓ over screenshots: only the image the selection rests on is decoded.
+            try? await Task.sleep(for: .milliseconds(100))
+            guard !Task.isCancelled else { return }
             // Reading a multi-MB file must not block the main thread.
             let png = await Task.detached(priority: .userInitiated) { try? Data(contentsOf: url) }.value
             guard let png, !Task.isCancelled,
