@@ -98,10 +98,20 @@ import Testing
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 1)
-        try await Task.sleep(for: .milliseconds(800))
+        try await waitForIdleShutdown(of: client)
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 2)
         withExtendedLifetime(service) {}
+    }
+
+    /// Waits for the idle shutdown itself, not a fixed time: under load (all suites in parallel)
+    /// the idle task can run much later than its timeout.
+    private func waitForIdleShutdown(of client: DecoderClient) async throws {
+        let deadline = ContinuousClock.now + .seconds(5)
+        while client.hasConnection, ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        #expect(!client.hasConnection)
     }
 
     @Test func clientRecoversAfterATimeout() async throws {
@@ -147,7 +157,7 @@ import Testing
         }
         #expect(client.tiffBlocking(fromPNG: makeImage(type: .png)) != nil)
         #expect(connections == 1)
-        try await Task.sleep(for: .milliseconds(800))
+        try await waitForIdleShutdown(of: client)
         #expect(client.tiffBlocking(fromPNG: makeImage(type: .png)) != nil)
         #expect(connections == 2)
         withExtendedLifetime(service) {}

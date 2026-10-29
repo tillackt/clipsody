@@ -136,6 +136,8 @@ public final class DecoderClient {
     private let timeout: Duration
     private let idleTimeout: Duration
     private var connection: NSXPCConnection?
+    /// For tests: whether a connection is currently open.
+    var hasConnection: Bool { connection != nil }
     /// Counts connections, so a late handler of an old one can tell it is no longer current.
     private var connectionGeneration = 0
     private var callsInFlight = 0
