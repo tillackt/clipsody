@@ -86,6 +86,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var allItems: [ClipItem] = []
     private var items: [ClipItem] = []
     private let iconCache = NSCache<NSString, NSImage>()
+    private var fileSizes: [String: String] = [:]
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "de_DE")
@@ -273,6 +274,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     }
 
     private func title(for item: ClipItem) -> String {
+        if item.kind == .image {
+            // Like Alfred: "Bild 478×406 (762 KB)"
+            return fileSize(of: item).map { "\(item.text) (\($0))" } ?? item.text
+        }
         let collapsed = item.text.split(whereSeparator: \.isNewline)
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
@@ -280,23 +285,27 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         return String(collapsed.prefix(300))
     }
 
+    private func fileSize(of item: ClipItem) -> String? {
+        guard let file = item.imageFile else { return nil }
+        if let cached = fileSizes[file] { return cached }
+        guard let url = store.imageURL(for: item),
+              let bytes = (try? FileManager.default.attributesOfItem(atPath: url.path))?[.size] as? Int64 else { return nil }
+        let formatted = ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
+        fileSizes[file] = formatted
+        return formatted
+    }
+
+    /// Icon of the app the entry was copied from, for text and images alike.
     private func icon(for item: ClipItem) -> NSImage? {
-        let key: String
-        switch item.kind {
-        case .image: key = item.imageFile ?? ""
-        case .text: key = item.appPath ?? ""
-        }
+        let key = item.appPath ?? ""
         if let cached = iconCache.object(forKey: key as NSString) { return cached }
 
         var image: NSImage?
-        if item.kind == .image, let url = store.imageURL(for: item) {
-            image = NSImage(contentsOf: url)
-        } else if let path = item.appPath, FileManager.default.fileExists(atPath: path) {
+        if let path = item.appPath, FileManager.default.fileExists(atPath: path) {
             image = NSWorkspace.shared.icon(forFile: path)
+            iconCache.setObject(image!, forKey: key as NSString)
         }
-        image = image ?? NSImage(systemSymbolName: "doc.text", accessibilityDescription: nil)
-        if let image, !key.isEmpty { iconCache.setObject(image, forKey: key as NSString) }
-        return image
+        return image ?? NSImage(systemSymbolName: item.kind == .image ? "photo" : "doc.text", accessibilityDescription: nil)
     }
 
     private func updatePreview() {
