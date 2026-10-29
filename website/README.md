@@ -14,7 +14,7 @@ Statische Seite ohne Build-Schritt, ohne Skripte, ohne externe Schriftarten und 
 3. **Zertifikat-Fingerabdruck:** `WIRD-MIT-DEM-ERSTEN-RELEASE-EINGETRAGEN` bzw. `ADDED-WITH-THE-FIRST-RELEASE` mit dem SHA-256 des Signaturzertifikats füllen:
 
    ```bash
-   codesign -d --extract-certificates ~/Applications/Clippboard.app && shasum -a 256 codesign0
+   codesign -d --extract-certificates /Applications/Clippboard.app && shasum -a 256 codesign0
    ```
 
 4. **Impressum und Datenschutz** ausfüllen und prüfen lassen.
