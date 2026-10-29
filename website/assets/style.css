@@ -167,3 +167,7 @@ footer .spacer { flex: 1; }
     .panel ul { border-right: none; border-bottom: 1px solid var(--panel-line); }
     section { padding: 56px 0; }
 }
+
+/* Legal notice and privacy policy: one narrow column of text. */
+main.legal { max-width: 760px; padding-top: 48px; padding-bottom: 64px; }
+main.legal h2 { text-align: left; }
