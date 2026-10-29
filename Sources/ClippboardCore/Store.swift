@@ -121,6 +121,7 @@ public final class Store {
     private static let migrations: [@Sendable (Store) throws -> Void] = [
         { try $0.migrateToV1() },
         { try $0.migrateToV2() },
+        { try $0.migrateToV3() },
     ]
 
     var schemaVersion: Int {
@@ -207,6 +208,12 @@ public final class Store {
                 sqlite3_bind_int64(stmt, 3, row.id)
             }
         }
+    }
+
+    /// OCR lookups and the still-used check on delete query by image file; without an index each
+    /// of them scans the whole table.
+    private func migrateToV3() throws {
+        try execute("CREATE INDEX IF NOT EXISTS items_image_file ON items(image_file)")
     }
 
     /// Lets the file shrink again after pruning (otherwise it stays at its largest size).

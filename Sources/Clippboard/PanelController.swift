@@ -25,8 +25,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var allItems: [ClipItem] = []
     private var items: [ClipItem] = []
     private var query = SearchQuery("")
-    /// Folded search text per item id, built once per load instead of on every keystroke.
-    private var searchIndex: [Int64: String] = [:]
+    /// Folded search text per item id, built on the first search after a load instead of on every
+    /// keystroke; nil until then, since most openings never search.
+    private var searchIndex: [Int64: String]?
     private let iconCache = NSCache<NSString, NSImage>()
     private let previewCache: NSCache<NSString, NSImage> = {
         let cache = NSCache<NSString, NSImage>()
@@ -88,7 +89,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         previewedItem = nil
         allItems = []
         items = []
-        searchIndex = [:]
+        searchIndex = nil
         // Single deletes are wiped from disk in one go when the panel closes.
         store.flushDeletions()
         previewCache.removeAllObjects()
@@ -109,7 +110,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         guard isVisible, let text = store.recognizedText(forImageFile: file) else { return }
         for index in allItems.indices where allItems[index].imageFile == file {
             allItems[index].recognizedText = text
-            searchIndex[allItems[index].id] = SearchQuery.fold(ItemPresentation.searchText(for: allItems[index]))
+            // Without an index there is nothing to patch; it is built from allItems when needed.
+            searchIndex?[allItems[index].id] = SearchQuery.fold(ItemPresentation.searchText(for: allItems[index]))
         }
         applyFilter(selecting: selectedItem?.id)
     }
@@ -216,7 +218,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     private func applyFilter(selecting id: Int64? = nil) {
         query = SearchQuery(search.stringValue)
-        items = query.isEmpty ? allItems : allItems.filter { query.matches(foldedText: searchIndex[$0.id] ?? "") }
+        if query.isEmpty {
+            items = allItems
+        } else {
+            let index = searchIndex ?? buildSearchIndex()
+            items = allItems.filter { query.matches(foldedText: index[$0.id] ?? "") }
+        }
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
         select(id.flatMap { id in items.firstIndex { $0.id == id } } ?? 0)
@@ -344,9 +351,15 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     private func reloadItems() {
         allItems = store.items()
-        searchIndex = Dictionary(uniqueKeysWithValues: allItems.map {
+        searchIndex = nil
+    }
+
+    private func buildSearchIndex() -> [Int64: String] {
+        let index = Dictionary(uniqueKeysWithValues: allItems.map {
             ($0.id, SearchQuery.fold(ItemPresentation.searchText(for: $0)))
         })
+        searchIndex = index
+        return index
     }
 
     /// Shows a downscaled image, made by the decoder service as raw pixels (the app never decodes

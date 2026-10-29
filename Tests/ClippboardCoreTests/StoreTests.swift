@@ -12,7 +12,13 @@ import Testing
     }
 
     @Test func newDatabaseIsAtLatestSchemaVersion() {
-        #expect(store.schemaVersion == 2)
+        #expect(store.schemaVersion == 3)
+    }
+
+    @Test func imageFileLookupsUseAnIndex() {
+        let path = directory.url.appendingPathComponent("history.sqlite").path
+        #expect(sqliteValue(path, "SELECT name FROM sqlite_master WHERE type = 'index' AND name = 'items_image_file'")
+                == "items_image_file")
     }
 
     @Test func databaseUsesWALAndIncrementalVacuum() {
@@ -151,7 +157,7 @@ import Testing
 
         let store = try Store(directory: directory.url)
 
-        #expect(store.schemaVersion == 2)
+        #expect(store.schemaVersion == 3)
         let items = store.items(limit: 10)
         let image = try #require(items.first { $0.kind == .image })
         #expect(image.text.isEmpty)
@@ -160,6 +166,24 @@ import Testing
         let files = try #require(items.first { $0.kind == .files })
         #expect(files.filePaths == ["/tmp/a", "/tmp/b"])
         #expect(items.first { $0.kind == .text }?.text == "plain text")
+    }
+
+    @Test func migratesV2DatabaseToV3() throws {
+        let directory = try TemporaryDirectory()
+        let path = directory.url.appendingPathComponent("history.sqlite").path
+        do {
+            let store = try Store(directory: directory.url)
+            store.addText("kept", app: nil, appPath: nil)
+        }
+        // Roll back to what a v2 build left behind.
+        try sqlite(path, "DROP INDEX items_image_file; PRAGMA user_version = 2;")
+        #expect(sqliteValue(path, "SELECT count(*) FROM sqlite_master WHERE name = 'items_image_file'") == "0")
+
+        let store = try Store(directory: directory.url)
+
+        #expect(store.schemaVersion == 3)
+        #expect(sqliteValue(path, "SELECT count(*) FROM sqlite_master WHERE name = 'items_image_file'") == "1")
+        #expect(store.items(limit: 10).first?.text == "kept")
     }
 
     @Test func reopeningDoesNotMigrateAgain() throws {

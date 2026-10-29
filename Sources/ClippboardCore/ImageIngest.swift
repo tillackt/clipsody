@@ -91,7 +91,9 @@ public enum ImageIngest {
         guard let source = CGImageSourceCreateWithData(png as CFData, nil),
               let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else { return nil }
         let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any] ?? [:]
-        return encode(image, type: .tiff, properties: properties)
+        // Lossless LZW (5): uncompressed, a 5K screenshot would put ~59 MB on the pasteboard.
+        let lzw: [CFString: Any] = [kCGImagePropertyTIFFDictionary: [kCGImagePropertyTIFFCompression: 5]]
+        return encode(image, type: .tiff, properties: properties, extra: lzw)
     }
 
     public static func sha256(_ data: Data) -> String {
@@ -102,7 +104,8 @@ public enum ImageIngest {
         encode(image, type: .png, properties: properties)
     }
 
-    private static func encode(_ image: CGImage, type: UTType, properties: [CFString: Any]) -> Data? {
+    private static func encode(_ image: CGImage, type: UTType, properties: [CFString: Any],
+                               extra: [CFString: Any] = [:]) -> Data? {
         let output = NSMutableData()
         guard let destination = CGImageDestinationCreateWithData(output, type.identifier as CFString, 1, nil) else {
             return nil
@@ -112,6 +115,7 @@ public enum ImageIngest {
         for key in [kCGImagePropertyDPIWidth, kCGImagePropertyDPIHeight] {
             kept[key] = properties[key]
         }
+        kept.merge(extra) { $1 }
         CGImageDestinationAddImage(destination, image, kept as CFDictionary)
         guard CGImageDestinationFinalize(destination) else { return nil }
         return output as Data

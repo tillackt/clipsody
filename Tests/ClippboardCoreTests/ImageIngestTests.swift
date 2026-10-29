@@ -1,6 +1,7 @@
 import Foundation
 import ImageIO
 import Testing
+import UniformTypeIdentifiers
 @testable import ClippboardCore
 
 @Suite struct ImageIngestTests {
@@ -70,5 +71,26 @@ import Testing
         let image = try #require(ImageIngest.prepare(makeImage(type: .png)))
         let tiff = try #require(ImageIngest.tiff(fromPNG: image.png))
         #expect(pixels(of: tiff) == pixels(of: image.png))
+        let tiffProperties = imageProperties(of: tiff)[kCGImagePropertyTIFFDictionary] as? [CFString: Any]
+        #expect(tiffProperties?[kCGImagePropertyTIFFCompression] as? Int == 5) // 5 = LZW
+    }
+
+    @Test func tiffForPastingIsCompressed() throws {
+        let width = 400, height = 300
+        let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width * 4,
+                                space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+        context.setFillColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1)
+        context.fill(CGRect(x: 0, y: 0, width: width, height: height))
+        let output = NSMutableData()
+        let destination = CGImageDestinationCreateWithData(output, UTType.png.identifier as CFString, 1, nil)!
+        CGImageDestinationAddImage(destination, context.makeImage()!, nil)
+        CGImageDestinationFinalize(destination)
+        let png = output as Data
+
+        let tiff = try #require(ImageIngest.tiff(fromPNG: png))
+
+        #expect(tiff.count < width * height * 4 / 10)
+        #expect(pixels(of: tiff) == pixels(of: png))
     }
 }

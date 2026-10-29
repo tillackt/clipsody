@@ -23,7 +23,7 @@ final class ClipboardMonitor {
             MainActor.assumeIsolated { self?.poll() }
         }
         // Lets macOS bundle wake-ups with other timers; reading changeCount is cheap anyway.
-        timer.tolerance = 0.1
+        timer.tolerance = 0.2
         // Common modes: keep polling while the status menu or an alert is open, otherwise copies get lost.
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
