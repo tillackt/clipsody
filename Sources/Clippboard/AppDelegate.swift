@@ -202,7 +202,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         alert.informativeText = "Angepinnte Einträge bleiben erhalten."
         alert.addButton(withTitle: "Löschen")
         alert.addButton(withTitle: "Abbrechen")
-        NSApp.activate(ignoringOtherApps: true)
+        NSApp.bringToFront()
         if alert.runModal() == .alertFirstButtonReturn {
             store.clear()
         }
@@ -252,7 +252,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let alert = NSAlert()
         alert.messageText = "Clippboard"
         alert.informativeText = message
-        NSApp.activate(ignoringOtherApps: true)
+        NSApp.bringToFront()
         alert.runModal()
     }
 

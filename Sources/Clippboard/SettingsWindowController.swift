@@ -132,7 +132,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     func show(with config: Config) {
         self.config = config
         refreshValues()
-        NSApp.activate(ignoringOtherApps: true)
+        NSApp.bringToFront()
         showWindow(nil)
         // Agent apps are often not activated in time; force the window to the front anyway.
         window?.orderFrontRegardless()
@@ -167,7 +167,18 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     }
 
     private func refreshSystemState() {
-        launchAtLogin.state = SMAppService.mainApp.status == .enabled ? .on : .off
+        switch SMAppService.mainApp.status {
+        case .enabled:
+            launchAtLogin.state = .on
+            launchAtLogin.title = "Beim Anmelden automatisch starten"
+        case .requiresApproval:
+            // Registered, but macOS waits for the user to allow it under Login Items.
+            launchAtLogin.state = .mixed
+            launchAtLogin.title = "Beim Anmelden starten (in Systemeinstellungen freigeben)"
+        default:
+            launchAtLogin.state = .off
+            launchAtLogin.title = "Beim Anmelden automatisch starten"
+        }
         if Paster.isTrusted(prompt: false) {
             accessibilityStatus.stringValue = "✓ Erlaubt"
             accessibilityStatus.textColor = .systemGreen
@@ -189,6 +200,11 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     }
 
     @objc private func launchAtLoginChanged() {
+        if SMAppService.mainApp.status == .requiresApproval {
+            SMAppService.openSystemSettingsLoginItems()
+            refreshSystemState()
+            return
+        }
         do {
             if launchAtLogin.state == .on {
                 try SMAppService.mainApp.register()

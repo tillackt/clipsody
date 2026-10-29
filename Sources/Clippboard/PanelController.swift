@@ -472,6 +472,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         background.heightAnchor.constraint(equalToConstant: 460).isActive = true
 
         search.placeholderString = "Zwischenablage durchsuchen …"
+        search.setAccessibilityLabel("Zwischenablage durchsuchen")
+        table.setAccessibilityLabel("Einträge der Zwischenablage")
         search.font = .systemFont(ofSize: 22, weight: .light)
         search.isBordered = false
         search.drawsBackground = false
