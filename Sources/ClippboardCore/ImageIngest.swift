@@ -14,12 +14,19 @@ public struct PreparedImage: Sendable {
 /// Converts pasteboard image data (TIFF, PNG, …) into PNG with ImageIO, keeping pixels,
 /// colour profile and resolution (DPI) unchanged.
 public enum ImageIngest {
-    public static func prepare(_ data: Data) -> PreparedImage? {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil),
+    /// Larger than any real screenshot (a 6K display is ~20 MP / ~80 MB as TIFF); protects against
+    /// clipboard content crafted to exhaust memory or disk.
+    public static let maxBytes = 200_000_000
+    public static let maxPixels = 50_000_000
+
+    public static func prepare(_ data: Data, maxPixels: Int = maxPixels) -> PreparedImage? {
+        // Size is read from the header first, so oversized images are never decoded.
+        guard data.count <= maxBytes,
+              let source = CGImageSourceCreateWithData(data as CFData, nil),
               let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
               let width = properties[kCGImagePropertyPixelWidth] as? Int,
               let height = properties[kCGImagePropertyPixelHeight] as? Int,
-              width > 0, height > 0,
+              width > 0, height > 0, width * height <= maxPixels,
               let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
               let png = encodePNG(image, properties: properties) else { return nil }
         return PreparedImage(png: png, width: width, height: height, hash: sha256(png))

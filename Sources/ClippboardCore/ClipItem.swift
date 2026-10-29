@@ -37,3 +37,11 @@ public struct RichText: Equatable, Sendable {
         self.type = type
     }
 }
+
+/// Limits for what is recorded from the clipboard.
+public enum CaptureLimits {
+    /// Plain text above this size (e.g. a huge log) is not stored.
+    public static let maxTextBytes = 2_000_000
+    /// Formatting above this size is dropped; the plain text is still stored.
+    public static let maxRichTextBytes = 1_000_000
+}

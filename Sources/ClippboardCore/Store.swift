@@ -38,7 +38,10 @@ public final class Store {
             sqlite3_close(db)
             throw StoreError.open(message)
         }
+        // Deleted content is overwritten with zeros instead of lingering in free pages.
+        try execute("PRAGMA secure_delete = ON")
         try migrate()
+        restrictPermissions()
     }
 
     deinit {
@@ -159,6 +162,7 @@ public final class Store {
         if !FileManager.default.fileExists(atPath: url.path) {
             do {
                 try image.png.write(to: url)
+                Self.setPermissions(0o600, of: url)
             } catch {
                 logger.error("Could not write image: \(String(describing: error), privacy: .public)")
                 return
@@ -198,6 +202,8 @@ public final class Store {
     /// Deletes everything except pinned entries.
     public func clear() {
         deleteWhere("pinned = 0") { _ in }
+        // Rebuild the file so nothing of the cleared history remains on disk.
+        try? execute("VACUUM")
     }
 
     /// Drops unpinned entries older than the retention period or beyond maxItems.
@@ -292,7 +298,18 @@ public final class Store {
     }
 
     public func imageURL(for item: ClipItem) -> URL? {
-        item.imageFile.map { imagesDirectory.appendingPathComponent($0) }
+        item.imageFile.flatMap(imageURL(forFile:))
+    }
+
+    /// Only names the app itself generates ("<sha256>.png"); anything else (e.g. "../x" from a
+    /// tampered database) never becomes a path.
+    func imageURL(forFile fileName: String) -> URL? {
+        Self.isImageFileName(fileName) ? imagesDirectory.appendingPathComponent(fileName) : nil
+    }
+
+    static func isImageFileName(_ name: String) -> Bool {
+        name.count == 68 && name.hasSuffix(".png")
+            && name.dropLast(4).allSatisfy { $0.isASCII && $0.isHexDigit && !$0.isUppercase }
     }
 
     // MARK: - SQLite helpers
@@ -358,7 +375,25 @@ public final class Store {
     }
 
     private func removeImage(_ fileName: String) {
-        try? FileManager.default.removeItem(at: imagesDirectory.appendingPathComponent(fileName))
+        guard let url = imageURL(forFile: fileName) else { return }
+        try? FileManager.default.removeItem(at: url)
+    }
+
+    /// History is private: folder only for the user (0700), files read/write for the user only (0600).
+    private func restrictPermissions() {
+        Self.setPermissions(0o700, of: directory)
+        Self.setPermissions(0o700, of: imagesDirectory)
+        let files = (try? FileManager.default.contentsOfDirectory(at: imagesDirectory, includingPropertiesForKeys: nil)) ?? []
+        let databaseFiles = ["history.sqlite", "history.sqlite-journal", "history.sqlite-wal", "history.sqlite-shm"]
+            .map { directory.appendingPathComponent($0) }
+        for url in files + databaseFiles + [Config.url(in: directory)]
+        where FileManager.default.fileExists(atPath: url.path) {
+            Self.setPermissions(0o600, of: url)
+        }
+    }
+
+    static func setPermissions(_ mode: Int, of url: URL) {
+        try? FileManager.default.setAttributes([.posixPermissions: mode], ofItemAtPath: url.path)
     }
 
     private func fileSize(of url: URL) -> Int64? {

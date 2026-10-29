@@ -13,6 +13,9 @@ public struct Config: Codable, Equatable, Sendable {
         "com.apple.keychainaccess",
         "com.apple.Passwords",
         "com.bitwarden.desktop",
+        "org.keepassxc.keepassxc",
+        "com.markmcguill.strongbox.mac",
+        "in.sinew.Enpass-Desktop",
     ]
 
     public static let retentionRange = 1...365
@@ -60,6 +63,7 @@ public struct Config: Codable, Equatable, Sendable {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         do {
             try encoder.encode(self).write(to: Self.url(in: directory))
+            Store.setPermissions(0o600, of: Self.url(in: directory))
         } catch {
             logger.error("Could not save config.json: \(String(describing: error), privacy: .public)")
         }

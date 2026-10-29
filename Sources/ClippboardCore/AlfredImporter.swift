@@ -47,6 +47,7 @@ public enum AlfredImporter {
                 switch sqlite3_column_int(stmt, 4) {
                 case 1:
                     guard let file = Store.string(stmt, 5),
+                          file == (file as NSString).lastPathComponent, !file.hasPrefix("."),
                           let data = try? Data(contentsOf: imageDirectory.appendingPathComponent(file)),
                           let image = ImageIngest.prepare(data) else { continue }
                     store.addImage(image, app: app, appPath: appPath, date: date)

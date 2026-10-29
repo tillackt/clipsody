@@ -71,7 +71,14 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 | `keepImages` | `true` | Bilder speichern |
 | `ignoredApps` | Passwort-Manager | Bundle-IDs, aus denen nichts gespeichert wird |
 
-Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType`), werden nie gespeichert.
+## Datenschutz & Sicherheit
+
+- Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType` und ähnliche), werden nie gespeichert. Ebenso nichts aus den Apps unter „Ignorierte Apps“.
+- **Grenze:** Clippboard sieht nur, welche App gerade vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung (z. B. Bitwarden in Chrome) ein Passwort, ohne es als vertraulich zu markieren, landet es in der Historie. Solche Einträge mit ⌘⌫ löschen.
+- Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Gelöschte Einträge werden in der Datenbank überschrieben, „Historie löschen“ baut die Datei neu auf.
+- Das Fenster ist bei Bildschirmfreigabe, Aufnahmen und Screenshots nicht zu sehen.
+- Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
+- Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.
 
 ## Daten
 

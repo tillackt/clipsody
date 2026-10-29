@@ -403,6 +403,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             panel.standardWindowButton(button)?.isHidden = true
         }
         panel.level = .floating
+        // Keep clipboard contents out of screen sharing, recordings and screenshots.
+        panel.sharingType = .none
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient]
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false

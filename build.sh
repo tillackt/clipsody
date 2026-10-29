@@ -25,14 +25,15 @@ cp "$BIN_DIR/Clippboard" "$APP/Contents/MacOS/Clippboard"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
 
-# A stable signing identity keeps the Accessibility permission across rebuilds.
+# Hardened runtime: no code injection (DYLD_INSERT_LIBRARIES etc.) into a process that holds
+# the Accessibility permission. A stable signing identity keeps that permission across rebuilds.
 # Without the "Clippboard Signing" certificate the build falls back to an ad-hoc
 # signature, and the permission must be granted again after every rebuild.
 if security find-identity -p codesigning | grep -q "\"$IDENTITY\""; then
-    codesign --force --sign "$IDENTITY" --identifier "$BUNDLE_ID" "$APP"
+    codesign --force --options runtime --sign "$IDENTITY" --identifier "$BUNDLE_ID" "$APP"
     echo "Signed with \"$IDENTITY\""
 else
-    codesign --force --sign - --identifier "$BUNDLE_ID" "$APP"
+    codesign --force --options runtime --sign - --identifier "$BUNDLE_ID" "$APP"
     echo "Signed ad-hoc (no \"$IDENTITY\" certificate found, see README)"
 fi
 echo "Built $APP"
