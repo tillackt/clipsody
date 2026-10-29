@@ -42,7 +42,7 @@ final class LockHolder {
         store.flushDeletions()
         #expect(!store.hasPendingWipe)
         let wal = FileManager.default.contents(atPath: directory.url.appendingPathComponent("history.sqlite-wal").path)
-        #expect(wal.map { $0.range(of: Data(secret.utf8)) == nil } ?? true)
+        #expect(wal.map { !$0.contains(Data(secret.utf8)) } ?? true)
     }
 
     @Test func failedWriteOfRecognizedTextIsReported() throws {
@@ -90,13 +90,13 @@ final class LockHolder {
         }
         withExtendedLifetime(store) {}
         let crashedWAL = try Data(contentsOf: afterCrash.url.appendingPathComponent("history.sqlite-wal"))
-        #expect(crashedWAL.range(of: Data(secret.utf8)) != nil)
+        #expect(crashedWAL.contains(Data(secret.utf8)))
 
         let relaunched = try Store(directory: afterCrash.url)
 
         for name in ["history.sqlite", "history.sqlite-wal"] {
             let data = FileManager.default.contents(atPath: afterCrash.url.appendingPathComponent(name).path) ?? Data()
-            #expect(data.range(of: Data(secret.utf8)) == nil, "\(name)")
+            #expect(!data.contains(Data(secret.utf8)), "\(name)")
         }
         withExtendedLifetime(relaunched) {}
     }

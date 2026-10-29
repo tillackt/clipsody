@@ -180,7 +180,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         let queue = TextRecognitionQueue(store: store, recognize: { _ in .unreadable }) { _, _ in }
         queue.start()
         await queue.waitUntilIdle()
-        #expect(store.items().first?.recognizedText == "")
+        #expect(store.items().first?.recognizedText?.isEmpty == true)
     }
 
     @Test func imageCopiedAgainAfterItsFileVanishedIsRecognised() async throws {

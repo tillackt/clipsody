@@ -75,7 +75,9 @@ import UniformTypeIdentifiers
 
     @Test func sameImageGivesSameHash() throws {
         let data = makeImage()
-        #expect(ImageCodec.prepare(data)?.hash == ImageCodec.prepare(data)?.hash)
+        let first = ImageCodec.prepare(data)?.hash
+        let second = ImageCodec.prepare(data)?.hash
+        #expect(first != nil && first == second)
     }
 
     @Test func garbageIsRejected() {

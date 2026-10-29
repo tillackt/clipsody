@@ -1,6 +1,12 @@
 import Foundation
 import SQLite3
 
+// One wrapper around one SQLite connection: schema, migrations, reads, writes and wiping
+// belong together, so this file stays above the length limits for new code.
+// swiftlint:disable file_length
+
+// Named like the C constant it stands in for.
+// swiftlint:disable:next identifier_name
 private let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
 public enum StoreError: Error, CustomStringConvertible {
@@ -17,7 +23,7 @@ public enum StoreError: Error, CustomStringConvertible {
 
 /// SQLite-backed clipboard history. Images live as PNG files next to the database.
 /// Not thread-safe: use one instance from one thread (the app uses the main thread).
-public final class Store {
+public final class Store { // swiftlint:disable:this type_body_length
     public let directory: URL
     public let imagesDirectory: URL
     private var db: OpaquePointer?
@@ -510,8 +516,8 @@ public final class Store {
         var kind: ClipItem.Kind
         var text: String
         var hash: String
-        var rich: RichText? = nil
-        var imageFile: String? = nil
+        var rich: RichText?
+        var imageFile: String?
         var width = 0
         var height = 0
         var byteSize: Int64 = 0
@@ -598,7 +604,6 @@ public final class Store {
         }
     }
 
-
     private func fileSize(of url: URL) -> Int64? {
         (try? FileManager.default.attributesOfItem(atPath: url.path))?[.size] as? Int64
     }
@@ -661,6 +666,8 @@ public final class Store {
     static func string(_ stmt: OpaquePointer?, _ column: Int32) -> String? {
         guard let text = sqlite3_column_text(stmt, column) else { return nil }
         let length = Int(sqlite3_column_bytes(stmt, column))
+        // Lenient on purpose: invalid UTF-8 in a stored text becomes U+FFFD instead of losing the entry.
+        // swiftlint:disable:next optional_data_string_conversion
         return String(decoding: UnsafeBufferPointer(start: text, count: length), as: UTF8.self)
     }
 

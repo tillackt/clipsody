@@ -86,7 +86,8 @@ final class ClipRowView: NSTableCellView {
         ])
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not supported") }
 
     override var backgroundStyle: NSView.BackgroundStyle {
         didSet {

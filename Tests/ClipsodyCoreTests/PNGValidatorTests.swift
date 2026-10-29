@@ -76,7 +76,7 @@ import UniformTypeIdentifiers
         var offset = 8
         while offset + 12 <= bytes.count {
             let length = bytes[offset..<offset + 4].reduce(0) { $0 << 8 | Int($1) }
-            let type = String(decoding: bytes[offset + 4..<offset + 8], as: UTF8.self)
+            let type = String(bytes: bytes[offset + 4..<offset + 8], encoding: .ascii) ?? ""
             result.append((type, offset..<offset + 12 + length))
             offset += 12 + length
         }

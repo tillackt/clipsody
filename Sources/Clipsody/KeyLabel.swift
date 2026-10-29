@@ -6,7 +6,8 @@ import ClipsodyCore
 @MainActor
 enum KeyLabel {
     static func display(_ spec: HotKeySpec) -> String {
-        spec.modifierSymbols + (spec.keyCode == UInt32(kVK_Space) ? String(localized: "Space") : character(for: spec.keyCode) ?? spec.display)
+        let key = spec.keyCode == UInt32(kVK_Space) ? String(localized: "Space") : character(for: spec.keyCode) ?? spec.display
+        return spec.modifierSymbols + key
     }
 
     /// Character the key produces on the current keyboard layout, uppercased.

@@ -22,6 +22,8 @@ final class ResumeOnce<Value: Sendable>: Sendable {
     }
 
     private let state = OSAllocatedUnfairLock(initialState: State())
+    /// Whether the value was delivered now, plus what to resume and run outside the lock.
+    private typealias Resolution = (Bool, CheckedContinuation<Value, Never>?, (@Sendable () -> Void)?)
 
     init() {}
 
@@ -61,8 +63,7 @@ final class ResumeOnce<Value: Sendable>: Sendable {
     /// Returns false if a value was already delivered.
     @discardableResult
     func resume(_ value: Value) -> Bool {
-        let (delivered, continuation, action) = state.withLock {
-            state -> (Bool, CheckedContinuation<Value, Never>?, (@Sendable () -> Void)?) in
+        let (delivered, continuation, action) = state.withLock { state -> Resolution in
             switch state.phase {
             case .pending:
                 state.phase = .resolved(value)
@@ -144,7 +145,7 @@ public final class DecoderClient {
     private var idleTask: Task<Void, Never>?
 
     /// Recognised text is stored for search only; more than this is cut off.
-    public nonisolated static let maxRecognizedCharacters = CaptureLimits.recognizedCharacters
+    nonisolated public static let maxRecognizedCharacters = CaptureLimits.recognizedCharacters
 
     /// Connects to the XPC service embedded in the app bundle and only accepts it if it is signed
     /// like the app (see CodeSigningRequirement), so a replaced service binary is refused.
@@ -294,7 +295,7 @@ public final class DecoderClient {
     /// The point size must be bounded and have the thumbnail's aspect ratio. Downscaling rounds each
     /// side, so the pixel ratio may be off by one pixel per side; a side of one pixel says nothing
     /// about the upper bound (a 5000 × 1 image still becomes 400 × 1).
-    private nonisolated static func pointSizeFits(_ pixels: RawPixels) -> Bool {
+    nonisolated private static func pointSizeFits(_ pixels: RawPixels) -> Bool {
         let point = pixels.pointSize
         guard point.width.isFinite, point.height.isFinite, point.width > 0, point.height > 0,
               point.width <= maxPointSize, point.height <= maxPointSize else { return false }

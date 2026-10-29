@@ -15,7 +15,8 @@ public struct Config: Codable, Equatable, Sendable {
     /// defaults: existing configurations receive it once, and apps the user removed stay removed.
     /// Display names for the defaults, shown when such an app is not installed.
     public static let defaultIgnoredAppNames = [
-        "com.1password.1password": "1Password 8",
+        // A bundle ID and an app name; the generic-password rule of the secret scanner mistakes it for a password.
+        "com.1password.1password": "1Password 8", // betterleaks:allow
         "com.agilebits.onepassword7": "1Password 7",
         "com.apple.keychainaccess": String(localized: "Keychain Access"),
         "com.apple.Passwords": String(localized: "Passwords"),
@@ -39,16 +40,16 @@ public struct Config: Codable, Equatable, Sendable {
     // Missing keys fall back to the defaults so the file may list only what differs.
     // Numbers are clamped: a hand-edited "maxItems": 0 must not wipe the history.
     public init(from decoder: Decoder) throws {
-        let c = try decoder.container(keyedBy: CodingKeys.self)
-        let d = Config()
-        hotkey = try c.decodeIfPresent(String.self, forKey: .hotkey) ?? d.hotkey
-        retentionDays = Self.clamp(try c.decodeIfPresent(Int.self, forKey: .retentionDays) ?? d.retentionDays,
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let defaults = Config()
+        hotkey = try container.decodeIfPresent(String.self, forKey: .hotkey) ?? defaults.hotkey
+        retentionDays = Self.clamp(try container.decodeIfPresent(Int.self, forKey: .retentionDays) ?? defaults.retentionDays,
                                    to: Self.retentionRange)
-        maxItems = Self.clamp(try c.decodeIfPresent(Int.self, forKey: .maxItems) ?? d.maxItems, to: Self.maxItemsRange)
-        keepImages = try c.decodeIfPresent(Bool.self, forKey: .keepImages) ?? d.keepImages
-        ignoredApps = try c.decodeIfPresent([String].self, forKey: .ignoredApps) ?? d.ignoredApps
+        maxItems = Self.clamp(try container.decodeIfPresent(Int.self, forKey: .maxItems) ?? defaults.maxItems, to: Self.maxItemsRange)
+        keepImages = try container.decodeIfPresent(Bool.self, forKey: .keepImages) ?? defaults.keepImages
+        ignoredApps = try container.decodeIfPresent([String].self, forKey: .ignoredApps) ?? defaults.ignoredApps
         // Files written before versioning saw only the first generation.
-        let seen = try c.decodeIfPresent(Int.self, forKey: .ignoredAppsDefaultsVersion) ?? 1
+        let seen = try container.decodeIfPresent(Int.self, forKey: .ignoredAppsDefaultsVersion) ?? 1
         for added in Self.defaultIgnoredApps.dropFirst(max(seen, 0)).joined() where !ignoredApps.contains(added) {
             ignoredApps.append(added)
         }

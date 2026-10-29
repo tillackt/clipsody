@@ -34,7 +34,8 @@ import Testing
     }
 
     @Test func imagesMatchByRecognizedTextAndShowSnippet() {
-        let line = "Protokoll vom Dienstag: Der Server meldet einen Fehler 500 beim Speichern der Datei im Archiv, bitte später erneut versuchen"
+        let line = "Protokoll vom Dienstag: Der Server meldet einen Fehler 500 beim Speichern der Datei im Archiv, "
+            + "bitte später erneut versuchen"
         let screenshot = item(.image, recognized: "Menü\n" + line, width: 946, height: 858)
         let query = SearchQuery("fehler")
         #expect(query.matches(screenshot))
