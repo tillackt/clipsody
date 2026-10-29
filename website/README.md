@@ -1,26 +1,25 @@
 # Website
 
-Statische Seite ohne Build-Schritt, ohne Skripte, ohne externe Schriftarten und ohne Tracking.
+Static site without a build step, scripts, external fonts or tracking.
 
-- `index.html`: Deutsch
-- `en/index.html`: Englisch
-- `impressum.html`, `datenschutz.html`: Platzhalter
-- `assets/`: Stylesheet und Logo
+- `index.html`: German
+- `en/index.html`: English
+- `impressum.html`, `datenschutz.html`: legal notice and privacy policy (German, placeholders for now)
+- `assets/`: stylesheet and logo
 
-## Vor der Veröffentlichung
+## Before publishing
 
-1. ~~**GitHub-Name**~~: erledigt, `tillackt` (Repo `tillackt/clipsody`).
-2. ~~**Lizenz**~~: erledigt, GPLv3 (siehe `LICENSE` im Repo).
-3. ~~**Zertifikat-Fingerabdruck**~~: erledigt. `./build.sh release` gibt ihn in `build/release-notes.txt` aus; er bleibt gleich, solange dasselbe Zertifikat signiert.
+1. ~~**GitHub account**~~: done, `tillackt` (repository `tillackt/clipsody`).
+2. ~~**License**~~: done, GPLv3 (see `LICENSE` in the repository).
+3. ~~**Certificate fingerprint**~~: done. `./build.sh release` writes it to `build/release-notes.txt`; it stays the same as long as the same certificate signs.
+4. **Legal notice and privacy policy**: fill in and have them checked.
+5. **Download link:** the pages link to `…/releases/latest/download/Clipsody.dmg`. That works as soon as every release contains a file with exactly this name.
 
-4. **Impressum und Datenschutz** ausfüllen und prüfen lassen.
-5. **Download-Link:** Die Seite verlinkt auf `…/releases/latest/download/Clipsody.dmg`. Das funktioniert, sobald jedes Release eine Datei mit genau diesem Namen enthält.
+## Publishing with your own domain
 
-## Veröffentlichen mit eigener Domain
+GitHub Pages can serve this folder (repository settings → Pages, e.g. through a GitHub Action that publishes `website/`) and connect a custom domain with HTTPS. Alternatively, upload the folder's contents to any web space.
 
-GitHub Pages kann diesen Ordner ausliefern (Repository-Einstellungen → Pages, z. B. über eine GitHub Action, die `website/` veröffentlicht) und eine eigene Domain mit HTTPS verbinden. Alternativ den Ordnerinhalt auf beliebigen Webspace hochladen.
-
-Lokal ansehen:
+View locally:
 
 ```bash
 open website/index.html

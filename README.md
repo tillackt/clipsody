@@ -2,43 +2,43 @@
 
 [![CI](https://github.com/tillackt/clipsody/actions/workflows/ci.yml/badge.svg)](https://github.com/tillackt/clipsody/actions/workflows/ci.yml)
 
-Schlanke Clipboard-Historie für macOS als Ersatz für Alfreds Clipboard-Feature. Native Swift/AppKit-App ohne Abhängigkeiten.
+Lean clipboard history for macOS. A native Swift/AppKit app without dependencies, built as a replacement for Alfred's clipboard feature.
 
-## Bedienung
+## Usage
 
-| Taste | Aktion |
+| Key | Action |
 |---|---|
-| ⌥⌘C | Historie öffnen/schließen |
-| Tippen | Filtern (mehrere Wörter = alle müssen vorkommen; sucht auch im App-Namen und im Text auf Bildern) |
-| ↑ / ↓, Bild ↑/↓ | Eintrag wählen |
-| ⏎ oder Doppelklick | In die aktive App einfügen, mit Formatierung (fett, Links, Tabellen aus Word, Outlook, Browser …) |
-| ⌥⏎ | Nur den reinen Text einfügen, ohne Formatierung |
-| ⌘1 … ⌘9 | n-ten Eintrag direkt einfügen |
-| ⌘P | Eintrag anpinnen/lösen: bleibt oben und wird nie automatisch gelöscht |
-| ⌘⌫ | Eintrag löschen |
-| Esc | Schließen |
+| ⌥⌘C | Open/close the history |
+| Type | Filter (several words must all match; also searches app names and text in images) |
+| ↑ / ↓, Page ↑/↓ | Select an entry |
+| ⏎ or double-click | Paste into the active app, with formatting (bold, links, tables from Word, Outlook, the browser …) |
+| ⌥⏎ | Paste plain text only, without formatting |
+| ⌘1 … ⌘9 | Paste the n-th entry directly |
+| ⌘P | Pin/unpin an entry: it stays on top and is never deleted automatically |
+| ⌘⌫ | Delete an entry |
+| Esc | Close |
 
-Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Größe. Suchbegriffe werden in Liste und Vorschau markiert.
+On the right is a preview (full text or image), below it the app, age and size. Search terms are highlighted in the list and the preview.
 
-- **Bilder** werden verlustfrei als PNG gespeichert. Der Text darauf wird lokal per macOS-Texterkennung (Vision) gelesen, damit Screenshots über ihren Inhalt auffindbar sind.
-- **Dateien** aus dem Finder werden als Dateien wieder eingefügt, nicht als Pfad. Wurde eine Datei inzwischen verschoben oder gelöscht, piept es.
+- **Images** are stored losslessly as PNG. Their text is read locally with macOS text recognition (Vision), so screenshots can be found by their content.
+- **Files** from the Finder are pasted back as files, not as paths. If a file has been moved or deleted since, the app beeps.
 
-## Projekt
+## Project
 
-Swift-Paket mit diesen Zielen:
+A Swift package with these targets:
 
-- `Sources/ClipsodyCore`: Speicher (SQLite mit versionierten Migrationen), Konfiguration, Bildgrenzen und Hashes, Suche, ohne AppKit
-- `Sources/Clipsody`: die Menüleisten-App (AppKit, Hotkey, Zwischenablage, Einfügen)
-- `Sources/ClipsodyDecoder`: XPC-Dienst in einer Sandbox, der Bilder aus der Zwischenablage umwandelt und Text in Screenshots erkennt
-- `Sources/ClipsodyXPC`: die Schnittstelle zwischen App und Dienst
-- `Sources/ClipsodyDecoderKit`: Bildumwandlung (ImageIO), Texterkennung (Vision) und das Dekoder-Objekt des Dienstes. Nur der Dienst und die Tests linken es; die App linkt es nicht und kann Bildformate daher gar nicht selbst dekodieren
-- `Sources/ClipsodyServices`: XPC-Client und die Warteschlangen für Bilder und Texterkennung, ohne AppKit
-- `Tests/ClipsodyServicesTests`: Tests dafür, inklusive echter XPC-Aufrufe über einen Test-Listener
-- `Tests/ClipsodyCoreTests`: Tests für den Kern und die Bildumwandlung (Swift Testing)
+- `Sources/ClipsodyCore`: storage (SQLite with versioned migrations), configuration, image limits and hashes, search; no AppKit
+- `Sources/Clipsody`: the menu bar app (AppKit, hotkey, pasteboard, pasting)
+- `Sources/ClipsodyDecoder`: a sandboxed XPC service that converts clipboard images and recognises text in screenshots
+- `Sources/ClipsodyXPC`: the interface between app and service
+- `Sources/ClipsodyDecoderKit`: image conversion (ImageIO), text recognition (Vision) and the service's decoder object. Only the service and the tests link it; the app does not, so it cannot decode image formats itself
+- `Sources/ClipsodyServices`: the XPC client and the queues for images and text recognition; no AppKit
+- `Tests/ClipsodyServicesTests`: tests for those, including real XPC calls through a test listener
+- `Tests/ClipsodyCoreTests`: tests for the core and the image conversion (Swift Testing)
 
-Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, weil die Übersetzungen mit `xcstringstool` aus Xcode kompiliert werden).
+Requires Xcode with Swift 6. The Command Line Tools alone are not enough, because the translations are compiled with Xcode's `xcstringstool`.
 
-## Bauen & installieren
+## Build & install
 
 ```bash
 ./build.sh test
@@ -48,89 +48,97 @@ Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, w
 ./build.sh install
 ```
 
-`test` führt die Tests aus. `install` baut `build/Clipsody.app` als Universal Binary (Apple Silicon und Intel), kopiert sie nach `/Applications` (Programme) und startet sie. Beim ersten Start:
+`test` runs the tests. `install` builds `build/Clipsody.app` as a universal binary (Apple Silicon and Intel), copies it to `/Applications` and starts it. On first launch:
 
-1. **Bedienungshilfen** erlauben (Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen → Clipsody). Ohne das wird der Eintrag nur in die Zwischenablage gelegt, nicht eingefügt. Nach jedem Neubau muss die Berechtigung neu gesetzt werden (Ad-hoc-Signatur): Eintrag entfernen und wieder hinzufügen.
-2. Menüleisten-Icon → **Einstellungen …** → **Allgemein** → Autostart einschalten.
-3. In Alfred den Clipboard-Hotkey abschalten oder Alfred beenden, sonst reagieren beide auf ⌥⌘C.
+1. Allow **Accessibility** (System Settings → Privacy & Security → Accessibility → Clipsody). Without it, the entry is only put on the clipboard, not pasted. With an ad-hoc signature the permission must be granted again after every rebuild: remove the entry and add it again.
+2. Menu bar icon → **Settings…** → **General** → turn on launch at login.
+3. In Alfred, turn off the clipboard hotkey or quit Alfred; otherwise both react to ⌥⌘C.
 
-### Berechtigung über Neubauten hinweg behalten (einmalig)
+### Keep the permission across rebuilds (once)
 
-Ohne eigenes Zertifikat signiert `build.sh` ad hoc, und macOS vergisst die Bedienungshilfen-Berechtigung bei jedem Neubau. Abhilfe:
+Without a certificate of its own, `build.sh` signs ad hoc, and macOS forgets the Accessibility permission with every rebuild. To avoid that:
 
-1. Schlüsselbundverwaltung öffnen → Menü **Schlüsselbundverwaltung → Zertifikatsassistent → Zertifikat erstellen …**
-2. Name: `Clippboard Signing`, Identitätstyp: **Selbstsignierter Root**, Zertifikatstyp: **Codesignierung** → Erstellen.
-3. `./build.sh install` ausführen und die Berechtigung ein letztes Mal setzen.
+1. Open Keychain Access → menu **Keychain Access → Certificate Assistant → Create a Certificate…**
+2. Name: `Clippboard Signing`, Identity Type: **Self-Signed Root**, Certificate Type: **Code Signing** → Create. (The name predates the rename to Clipsody and is kept, so the certificate's fingerprint stays the same.)
+3. Run `./build.sh install` and grant the permission one last time.
 
-`build.sh` nimmt das Zertifikat automatisch, sobald es vorhanden ist.
+`build.sh` uses the certificate automatically once it exists.
+
+### Release
+
+```bash
+./build.sh release
+```
+
+Needs the certificate and a clean working tree. Runs the tests and builds `build/Clipsody.dmg`, plus `build/release-notes.txt` with the SHA-256 of the DMG and the fingerprint of the signing certificate.
 
 ## CI
 
-GitHub Actions (`.github/workflows/ci.yml`) läuft bei jedem Push auf `main` und bei jedem Pull Request, auf einem macOS-Runner mit dem neuesten stabilen Xcode:
+GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on every pull request, on a macOS runner with the newest stable Xcode:
 
 - **Tests:** `./build.sh test`
-- **Übersetzungen:** `./build.sh check-strings` schlägt fehl, wenn ein Text im Code nicht im Katalog steht oder der Katalog Texte enthält, die der Code nicht mehr nutzt.
-- **App-Build:** `./build.sh` baut das Universal Binary; ohne Zertifikat ad hoc signiert, die Signatur wird trotzdem geprüft.
+- **Translations:** `./build.sh check-strings` fails if the code uses a text the catalog lacks, or the catalog keeps texts the code no longer uses.
+- **App build:** `./build.sh` builds the universal binary; without the certificate it is signed ad hoc, and the signature is still verified.
 
-Neue Funktionen entstehen auf einem eigenen Branch und kommen per Pull Request nach `main`, nachdem die CI grün ist.
+New features are developed on a branch of their own and reach `main` through a pull request once CI is green. Everything in this repository (code, comments, docs, commits, pull requests) is in English.
 
-## Sprachen
+## Languages
 
-Die App spricht Englisch (Ausgangssprache), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien) und folgt der Systemsprache. In den Einstellungen unter **Allgemein → Sprache** lässt sich eine andere wählen; die App bietet dann an, sich neu zu starten. Die Wahl landet dort, wo auch macOS die Sprache pro App speichert (Systemeinstellungen → Allgemein → Sprache & Region → Programme), beide Wege zeigen also dasselbe.
+The app speaks English (the source language), German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese, and follows the system language. Another one can be chosen under **General → Language** in the settings; the app then offers to restart. The choice is stored where macOS keeps the per-app language (System Settings → General → Language & Region → Applications), so both show the same.
 
-Alle Texte und Übersetzungen stehen in `Resources/Localizable.xcstrings`. Texte im Code werden mit `String(localized:)` geschrieben, auf Englisch. Nach neuen oder geänderten Texten:
+All texts and translations live in `Resources/Localizable.xcstrings`. Texts in the code are written in English with `String(localized:)`. After adding or changing texts:
 
 ```bash
 ./build.sh strings
 ```
 
-Das trägt neue Texte in den Katalog ein; danach die Übersetzungen ergänzen (in Xcode oder direkt in der JSON-Datei). Ein Test prüft, dass jede Sprache jeden Text mit denselben Platzhaltern hat.
+This adds new texts to the catalog; then add the translations (in Xcode or directly in the JSON file). A test checks that every language has every text with the same placeholders.
 
-## Einstellungen
+## Settings
 
-Menüleisten-Icon → **Einstellungen …** (⌘,), aufgeteilt in die Tabs **Allgemein**, **Historie**, **Datenschutz** und **Info**. Jede Option ist dort erklärt, Änderungen gelten sofort. Gespeichert wird in `~/Library/Application Support/Clipsody/config.json`:
+Menu bar icon → **Settings…** (⌘,), split into the tabs **General**, **History**, **Privacy** and **Info**. Every option is explained there, and changes apply immediately. They are stored in `~/Library/Application Support/Clipsody/config.json`:
 
-| Schlüssel | Standard | Bedeutung |
+| Key | Default | Meaning |
 |---|---|---|
-| `hotkey` | `cmd+option+c` | Modifier `cmd`, `option`, `ctrl`, `shift` + Buchstabe/Ziffer/`space` |
-| `retentionDays` | `7` | Einträge älter als n Tage werden gelöscht |
-| `maxItems` | `1000` | Maximale Anzahl Einträge |
-| `keepImages` | `true` | Bilder speichern |
-| `ignoredApps` | Passwort-Manager | Bundle-IDs, aus denen nichts gespeichert wird |
+| `hotkey` | `cmd+option+c` | Modifiers `cmd`, `option`, `ctrl`, `shift` + letter/digit/`space` |
+| `retentionDays` | `7` | Entries older than n days are deleted |
+| `maxItems` | `1000` | Maximum number of entries |
+| `keepImages` | `true` | Save images |
+| `ignoredApps` | password managers | Bundle IDs from which nothing is saved |
 
-## Datenschutz & Sicherheit
+## Privacy & security
 
-- Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType` und ähnliche), werden nie gespeichert. Ebenso nichts aus den Apps unter **Datenschutz → Ignorierte Apps**.
-- **Grenze:** Clipsody sieht nur, welche App gerade vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung (z. B. Bitwarden in Chrome) ein Passwort, ohne es als vertraulich zu markieren, landet es in der Historie. Solche Einträge mit ⌘⌫ löschen.
-- Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Der Ordner ist von Time Machine und anderen Backups ausgeschlossen.
-- Gelöschte Einträge werden in der Datenbank mit Nullen überschrieben, und das Änderungsprotokoll (WAL) wird geleert: bei „Historie löschen“ und beim Aufräumen sofort, bei einzelnen Einträgen (⌘⌫) gesammelt beim Schließen des Fensters bzw. beim Beenden, nach einem Absturz beim nächsten Start. Die Grenze: Was das Dateisystem auf SSD-Ebene noch physisch vorhält, liegt außerhalb der Kontrolle einer App.
-- Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet. Ab macOS 15 können Aufnahme-Apps, die ScreenCaptureKit nutzen, es trotzdem erfassen.
-- Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
-- Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.
-- Bilder aus der Zwischenablage sind fremde Daten. Sie werden deshalb nicht in der App dekodiert, sondern im Hilfsprozess `ClipsodyDecoder` (eingebettet in der App). Er läuft in einer App-Sandbox ohne weitere Rechte: kein Zugriff auf Dateien außerhalb seines Containers, kein Netzwerk, keine Historie. Er bekommt nur die Bytes und liefert ein neu kodiertes PNG, den erkannten Text, Vorschaubilder (als rohe Pixel) und beim Einfügen das TIFF zurück. Die App selbst dekodiert keine Bildformate. Eine Schwachstelle in der Bilddekodierung trifft damit diesen abgeschotteten Prozess statt der App.
-- Auch den Antworten des Dienstes traut die App nicht: Sie berechnet den Dateinamen (Hash) selbst und prüft die ganze PNG-Struktur, ohne Pixel zu dekodieren: Signatur, Prüfsumme (CRC) jedes Abschnitts, nur bekannte Abschnittstypen, Maße wie gemeldet, nichts hinter dem Ende. Angehängte Fremddaten werden so weder gespeichert noch eingefügt. Außerdem begrenzt sie Text und prüft Länge und Seitenverhältnis von Vorschaubildern.
-- Welchen Dienst die App akzeptiert, hängt von der Signatur ab. Mit Zertifikat (siehe oben): nur einen Dienst mit derselben Kennung und demselben Zertifikat. Ad hoc signiert gibt es kein Zertifikat, und die Kennung allein kann jedes ad hoc signierte Programm tragen. Deshalb prüft die App beim Start zusätzlich ihr eigenes Siegel samt eingebettetem Dienst; ein ausgetauschter Dienst fällt dabei auf. Wird er ausgetauscht, während die App läuft, fällt das erst beim nächsten Start auf. Kann die App ihre eigene Signatur nicht lesen oder stimmt das Siegel nicht, spricht sie mit keinem Dienst und verarbeitet keine Bilder. Ist der Dienst nicht erreichbar, werden ebenfalls keine Bilder gespeichert.
+- Entries that password managers mark as concealed (`org.nspasteboard.ConcealedType` and similar) are never saved. Neither is anything from the apps under **Privacy → Ignored apps**.
+- **Limit:** Clipsody only sees which app is in front, not who copied. If a browser extension (e.g. Bitwarden in Chrome) copies a password without marking it as concealed, it ends up in the history. Delete such entries with ⌘⌫.
+- All data stays local: the folder is readable only by you (0700), files are 0600. The folder is excluded from Time Machine and other backups.
+- Deleted entries are overwritten with zeros in the database, and its change log (WAL) is emptied: immediately for "Clear History" and the automatic clean-up, for single entries (⌘⌫) in one go when the window closes or the app quits, and after a crash at the next launch. The limit: what the file system still keeps physically on the SSD is outside an app's control.
+- The window is hidden from screenshots and classic screen sharing. Since macOS 15, recording apps that use ScreenCaptureKit can still capture it.
+- Texts over 2 MB and images over 50 megapixels are not recorded.
+- The app runs with the hardened runtime, so no other program can inject code into it and abuse its Accessibility permission.
+- Clipboard images are untrusted data. They are therefore not decoded in the app but in the helper process `ClipsodyDecoder` (embedded in the app). It runs in an app sandbox without further entitlements: no access to files outside its container, no network, no history. It only gets the bytes and returns a re-encoded PNG, the recognised text, preview images (as raw pixels) and, when pasting, the TIFF. The app itself decodes no image formats, so a vulnerability in image decoding hits this isolated process instead of the app.
+- The app does not trust the service's replies either: it computes the file name (hash) itself and checks the whole PNG structure without decoding pixels: signature, checksum (CRC) of every chunk, only known chunk types, dimensions as reported, nothing after the end. Appended foreign data is thus neither stored nor pasted. It also limits text and checks the size and aspect ratio of preview images.
+- Which service the app accepts depends on the signature. With a certificate (see above): only a service with the same identifier and the same certificate. Signed ad hoc there is no certificate, and any ad-hoc signed program can carry the identifier. The app therefore also checks its own seal including the embedded service at launch; a replaced service shows up there. If it is replaced while the app is running, that shows at the next launch. If the app cannot read its own signature or the seal does not verify, it talks to no service and processes no images. If the service cannot be reached, no images are stored either.
 
-## Weitergabe
+## Distribution
 
-Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumme des Release-Archivs (`shasum -a 256 Clipsody.dmg`) und den SHA-256-Fingerabdruck des Signaturzertifikats (`codesign -d --extract-certificates Clipsody.app && shasum -a 256 codesign0`). So erkennen Empfänger eine neu signierte oder veränderte Kopie.
+Whoever passes the app on publishes, next to the download, the SHA-256 checksum of the release file (`shasum -a 256 Clipsody.dmg`) and the SHA-256 fingerprint of the signing certificate (`codesign -d --extract-certificates Clipsody.app && shasum -a 256 codesign0`). That way recipients can recognise a re-signed or modified copy.
 
-## Daten
+## Data
 
-Die App hieß bis Ende Oktober 2026 **Clippboard**. Beim ersten Start übernimmt Clipsody den alten Datenordner samt Historie und die gewählte Sprache; die Bedienungshilfen-Berechtigung muss neu erteilt werden, weil sich die Bundle-ID geändert hat.
+Until the end of October 2026 the app was called **Clippboard**. At first launch Clipsody takes over the old data folder with the history and the chosen language; the Accessibility permission must be granted again, because the bundle ID changed.
 
-Alles liegt in `~/Library/Application Support/Clipsody/` (Einstellungen → **Info** → **Im Finder zeigen**):
+Everything is in `~/Library/Application Support/Clipsody/` (Settings → **Info** → **Show in Finder**):
 
-- `history.sqlite`: Einträge
-- `images/`: Bilder als PNG, dazu verkleinerte Vorschauen
-- `config.json`: Einstellungen
+- `history.sqlite`: the entries
+- `images/`: images as PNG, plus scaled-down previews
+- `config.json`: the settings
 
-## Deinstallieren
+## Uninstall
 
-Einstellungen → **Info** → **Clipsody deinstallieren …**. Das löscht Historie, Bilder, `config.json`, die Einstellungen der App sowie Caches und gespeicherten Fensterzustand, entfernt Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Zieht man die App nur selbst in den Papierkorb, bleiben diese Daten liegen: macOS sagt einer App nicht, dass sie gelöscht wird.
+Settings → **Info** → **Uninstall Clipsody…**. This deletes the history, images, `config.json`, the app's preferences, caches and saved window state, removes launch at login and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays behind: macOS does not tell an app that it is being deleted.
 
-Übrig bleibt nur die leere Hülle des Sandbox-Ordners des Bild-Hilfsprozesses (`~/Library/Containers/io.github.tillackt.clipsody.decoder`, eine Verwaltungsdatei von macOS, keine Nutzerdaten). Seit macOS 14 darf nur das System Container löschen; im Finder lässt sie sich mit Bestätigung in den Papierkorb legen. Bleibt dort mehr zurück, zeigt die App es an.
+Only the empty shell of the image helper's sandbox folder remains (`~/Library/Containers/io.github.tillackt.clipsody.decoder`, a macOS management file, no user data). Since macOS 14 only the system may delete containers; in the Finder it can be moved to the Trash after confirming. If more than that remains there, the app reports it.
 
-## Lizenz
+## License
 
-GNU General Public License v3.0, siehe [LICENSE](LICENSE). Wer Clipsody verändert und weitergibt, muss den Quellcode seiner Version ebenfalls unter der GPLv3 offenlegen.
+GNU General Public License v3.0, see [LICENSE](LICENSE). Anyone who modifies and distributes Clipsody must publish the source code of their version under the GPLv3 as well.
