@@ -27,7 +27,7 @@ import Testing
     func databaseFilesContain(_ secret: String, in directory: URL) -> Bool {
         ["history.sqlite", "history.sqlite-wal", "history.sqlite-shm"].contains { name in
             let data = FileManager.default.contents(atPath: directory.appendingPathComponent(name).path) ?? Data()
-            return data.range(of: Data(secret.utf8)) != nil
+            return data.contains(Data(secret.utf8))
         }
     }
 

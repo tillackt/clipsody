@@ -48,6 +48,8 @@ func makeImage(text: String = "", width: Int = 12, height: Int = 7, type: UTType
 /// Runs a decoder object behind a real XPC connection inside the test process.
 final class TestService {
     let listener = NSXPCListener.anonymous()
+    // The listener holds its delegate weakly; this strong reference keeps it alive.
+    // swiftlint:disable:next weak_delegate
     private let delegate: DecoderListenerDelegate
 
     init(_ makeExportedObject: @escaping @Sendable () -> DecoderServiceProtocol = { Decoder() }) {

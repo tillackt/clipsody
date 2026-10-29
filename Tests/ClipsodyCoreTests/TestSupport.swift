@@ -81,5 +81,7 @@ func pixels(of data: Data) -> [UInt8] {
 
 func imageProperties(of data: Data) -> [CFString: Any] {
     let source = CGImageSourceCreateWithData(data as CFData, nil)!
+    // Test helper: a test image without properties is a broken test, so crashing is fine.
+    // swiftlint:disable:next force_cast
     return CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as! [CFString: Any]
 }

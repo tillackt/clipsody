@@ -3,8 +3,12 @@ import Carbon
 import ClipsodyCore
 import ClipsodyServices
 
+// The history panel: window, list, preview and keyboard handling in one place, so it stays above
+// the length limits for new code.
+// swiftlint:disable file_length
 @MainActor
-final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
+final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, // swiftlint:disable:this type_body_length
+    NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
     private let decoder: DecoderClient
     /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
@@ -16,6 +20,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private let search = NSTextField()
     private let table = NSTableView()
     private let previewTextScroll = NSTextView.scrollableTextView()
+    // scrollableTextView() always creates an NSTextView as its document view.
+    // swiftlint:disable:next force_cast
     private var previewText: NSTextView { previewTextScroll.documentView as! NSTextView }
     private let previewImage = NSImageView()
     private let infoLabel = NSTextField(labelWithString: "")
@@ -63,7 +69,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     // MARK: - Show / hide
 
     func toggle() {
-        isVisible ? hide() : show()
+        if isVisible { hide() } else { show() }
     }
 
     func show() {
@@ -426,6 +432,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         panel.onKeyEquivalent = { [weak self] event in self?.handleKeyEquivalent(event) ?? false }
     }
 
+    // Builds and constrains every view of the panel in one pass.
+    // swiftlint:disable:next function_body_length
     private func buildLayout() {
         let background = NSVisualEffectView()
         background.material = .popover
@@ -497,7 +505,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         emptyLabel.textColor = .tertiaryLabelColor
         emptyLabel.isHidden = true
 
-        let views: [NSView] = [search, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage, infoLabel, hintLabel, emptyLabel]
+        let views: [NSView] = [search, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage,
+                               infoLabel, hintLabel, emptyLabel]
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
             background.addSubview(view)

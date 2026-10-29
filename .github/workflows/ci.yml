@@ -1,4 +1,5 @@
-# Tests, the release build and the translation catalog for every push to main and every pull request.
+# Tests, lint, secret scan, the app build and the translation catalog for every push to main and
+# every pull request.
 name: CI
 
 on:
@@ -17,6 +18,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    name: Lint and secret scan
+    # Nothing here needs macOS, and Linux runners start faster.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The secret scan covers every commit, not only the newest.
+          fetch-depth: 0
+      - name: Scan the history for secrets (Betterleaks)
+        run: .github/scripts/betterleaks.sh
+      - name: SwiftLint
+        run: docker run --rm -v "$PWD:/work" -w /work ghcr.io/realm/swiftlint:0.65.1 swiftlint lint --strict
+      - name: ShellCheck
+        run: shellcheck build.sh .github/scripts/*.sh .githooks/pre-commit
+      - name: actionlint
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.12 -color
+
   test:
     name: Tests
     runs-on: macos-26
@@ -39,8 +59,6 @@ jobs:
           fetch-depth: 0
       - name: Select the newest stable Xcode
         run: .github/scripts/select-xcode.sh
-      - name: Check shell script syntax
-        run: bash -n build.sh .github/scripts/select-xcode.sh
       - name: Check the translation catalog against the code
         run: ./build.sh check-strings
       - name: Build the universal app

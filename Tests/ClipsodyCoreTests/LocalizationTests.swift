@@ -35,10 +35,7 @@ import Testing
 
     /// Placeholders regardless of position ("%2$@" counts as "%@"), so a translation may reorder them.
     static func placeholders(_ text: String) -> [String] {
-        let regex = try! NSRegularExpression(pattern: "%(?:[0-9]+\\$)?(lld|@)")
-        return regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
-            .map { "%" + (text as NSString).substring(with: $0.range(at: 1)) }
-            .sorted()
+        text.matches(of: /%(?:[0-9]+\$)?(lld|@)/).map { "%" + $0.output.1 }.sorted()
     }
 
     @Test func everyTextIsTranslatedWithTheSamePlaceholders() throws {

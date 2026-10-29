@@ -4,7 +4,11 @@ import ClipsodyCore
 import ServiceManagement
 import UniformTypeIdentifiers
 
-final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate {
+// Builds the whole settings UI in code; the layout is long but linear, so it stays above the
+// length limits for new code.
+// swiftlint:disable file_length
+final class SettingsWindowController: NSWindowController, NSWindowDelegate, // swiftlint:disable:this type_body_length
+    NSTableViewDataSource, NSTableViewDelegate {
     private var config: Config
     private let dataDirectory: URL
     private let onChange: (Config) -> Void
@@ -46,7 +50,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         window.center()
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not supported") }
 
     func show(with config: Config) {
         self.config = config
@@ -267,6 +272,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
 
     // MARK: - Layout
 
+    // One row after another, top to bottom; splitting it would only scatter the layout.
+    // swiftlint:disable:next function_body_length
     private func buildLayout() {
         // One grid per tab; the helpers below add rows to the current one.
         var grid = NSGridView()
@@ -299,7 +306,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             return label
         }
 
-        func numberControl(_ field: NSTextField, _ stepper: NSStepper, range: ClosedRange<Int>, step: Int, action: Selector) -> NSStackView {
+        func numberControl(_ field: NSTextField, _ stepper: NSStepper, range: ClosedRange<Int>, step: Int,
+                           action: Selector) -> NSStackView {
             let formatter = NumberFormatter()
             formatter.minimum = NSNumber(value: range.lowerBound)
             formatter.maximum = NSNumber(value: range.upperBound)
@@ -353,7 +361,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             while the app is running.
             """))
 
-        let accessibilityButton = NSButton(title: String(localized: "Open System Settings…"), target: self, action: #selector(openAccessibilitySettings))
+        let accessibilityButton = NSButton(title: String(localized: "Open System Settings…"), target: self,
+                                           action: #selector(openAccessibilitySettings))
         let accessibilityStack = NSStackView(views: [accessibilityStatus, accessibilityButton])
         accessibilityStack.spacing = 12
         row(String(localized: "Paste directly:"), accessibilityStack, alignWith: accessibilityStatus, help: String(localized: """
@@ -527,5 +536,6 @@ private final class IgnoredAppCell: NSTableCellView {
         ])
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not supported") }
 }
