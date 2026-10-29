@@ -56,19 +56,63 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
         }
     }
 
+    /// Runs on a GCD thread (see recognizeText), so waiting for the async recognition blocks no thread
+    /// of Swift's cooperative pool, and the watchdog still covers the whole request.
     private func recognize(_ png: Data, reply: @escaping @Sendable (String?) -> Void) {
+        let outcome = Outcome()
+        let done = DispatchSemaphore(value: 0)
+        Task.detached {
+            do {
+                outcome.set(.success(try await Self.recognizedLines(inPNG: png)))
+            } catch {
+                outcome.set(.failure(error))
+            }
+            done.signal()
+        }
+        done.wait()
+        switch outcome.result {
+        case .some(.success(let lines)):
+            reply(lines.joined(separator: "\n"))
+        case .some(.failure(let error)):
+            // The client only learns "failed"; the reason goes to the log.
+            logger.error("Text recognition failed: \(String(describing: error), privacy: .public)")
+            reply(nil)
+        case .none:
+            reply(nil)
+        }
+    }
+
+    /// The recognised lines, top candidate each; throws what Vision throws.
+    static func recognizedLines(inPNG png: Data) async throws -> [String] {
+        // macOS 27 broke accurate recognition through VNRecognizeTextRequest (no results or an
+        // error); the Swift API from macOS 15 on still works. Older systems keep the old request.
+        if #available(macOS 15.0, *) {
+            do {
+                return try await recognizedLines(inPNG: png, level: .accurate)
+            } catch {
+                // The accurate model is compiled for the Neural Engine or GPU on first use, which
+                // fails where neither is available (e.g. virtual machines on macOS 27). The fast
+                // level does without it: fewer details, but text.
+                logger.error("Accurate text recognition failed, using fast: \(String(describing: error), privacy: .public)")
+                return try await recognizedLines(inPNG: png, level: .fast)
+            }
+        }
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
         request.recognitionLanguages = ["de-DE", "en-US"]
         request.usesLanguageCorrection = true
-        do {
-            try VNImageRequestHandler(data: png).perform([request])
-        } catch {
-            reply(nil)
-            return
-        }
-        let lines = (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
-        reply(lines.joined(separator: "\n"))
+        try VNImageRequestHandler(data: png).perform([request])
+        return (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
+    }
+
+    @available(macOS 15.0, *)
+    static func recognizedLines(inPNG png: Data, level: RecognizeTextRequest.RecognitionLevel) async throws -> [String] {
+        var request = RecognizeTextRequest()
+        request.recognitionLevel = level
+        request.recognitionLanguages = [Locale.Language(identifier: "de-DE"), Locale.Language(identifier: "en-US")]
+        request.usesLanguageCorrection = true
+        let observations = try await request.perform(on: png)
+        return observations.compactMap { $0.topCandidates(1).first?.string }
     }
 
     public func thumbnail(ofPNG png: Data, maxPixelSize: Int,
@@ -106,6 +150,24 @@ private final class Flag: @unchecked Sendable {
     func set() {
         lock.lock()
         value = true
+        lock.unlock()
+    }
+}
+
+/// The result of the async text recognition, handed to the GCD thread that waits for it.
+private final class Outcome: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value: Result<[String], Error>?
+
+    var result: Result<[String], Error>? {
+        lock.lock()
+        defer { lock.unlock() }
+        return value
+    }
+
+    func set(_ result: Result<[String], Error>) {
+        lock.lock()
+        value = result
         lock.unlock()
     }
 }

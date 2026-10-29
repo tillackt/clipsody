@@ -5,11 +5,15 @@ set -euo pipefail
 
 CANDIDATES=()
 for app in /Applications/Xcode_[0-9]*.app; do
-    # Release candidates and betas are named like Xcode_26.7_beta.app or Xcode_26.7_RC.app.
-    case "$app" in
-        *[Bb]eta* | *[Rr][Cc]*) ;;
-        *) CANDIDATES+=("$app") ;;
-    esac
+    # Only plain version numbers (Xcode_27.1.app, Xcode_26.6.0.app): betas and release candidates
+    # carry a suffix, spelled in many ways (_beta, _RC, _Release_Candidate). The runners also have
+    # plain-named symlinks to them (Xcode_27.2.app -> Xcode_27.2_Release_Candidate.app), so the
+    # real folder's name counts, not the link's.
+    real="$(cd "$app" && pwd -P)"
+    if [[ "$(basename "$app")" =~ ^Xcode_[0-9]+(\.[0-9]+)*\.app$ ]] &&
+        [[ "$(basename "$real")" =~ ^Xcode_[0-9]+(\.[0-9]+)*\.app$ ]]; then
+        CANDIDATES+=("$app")
+    fi
 done
 XCODE=""
 if [[ ${#CANDIDATES[@]} -gt 0 ]]; then
