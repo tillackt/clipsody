@@ -86,6 +86,8 @@ Lint and secret scan run on Linux; tests and build on macOS with the newest stab
 
 Tests and the app build treat compiler warnings as errors (`WARNINGS_AS_ERRORS=1`); local builds stay lenient. **Static analysis:** CodeQL (`.github/workflows/codeql.yml`) runs the security-and-quality queries on the Swift code and on the workflows, on every pull request, on `main` and weekly. Findings appear under Security → Code scanning.
 
+**Website:** `.github/workflows/website.yml` validates the HTML (html-validate) and checks links and anchors (lychee) whenever `website/` changes, and weekly for external links.
+
 The workflows pin their actions to commit SHAs, and Dependabot (`.github/dependabot.yml`) proposes updates weekly. `main` is protected: changes arrive only through pull requests with green CI, and force pushes are blocked. GitHub's own secret scanning with push protection rejects pushes that contain known credential formats, as a second line of defence behind the pre-commit hook.
 
 ### Pre-commit hook

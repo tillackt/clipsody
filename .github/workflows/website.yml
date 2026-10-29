@@ -1,0 +1,41 @@
+# Checks the static website: valid HTML and no broken links or anchors. Runs when the website
+# changes, and weekly because external links break without any change here.
+name: Website
+
+on:
+  push:
+    branches: [main]
+    paths: ["website/**", ".github/workflows/website.yml"]
+  pull_request:
+    paths: ["website/**", ".github/workflows/website.yml"]
+  schedule:
+    - cron: "41 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: HTML and links
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Pinned to a commit like in ci.yml; Dependabot proposes updates.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate the HTML (html-validate, recommended rules)
+        # Version pinned; rules in website/.htmlvalidate.json.
+        run: npx --yes html-validate@11.17.0 website
+      - name: Check links and anchors (lychee)
+        # The DMG link only resolves once the first release exists.
+        run: >
+          docker run --rm -v "$PWD:/input" -w /input lycheeverse/lychee:0.24.2
+          --no-progress --include-fragments --max-retries 3
+          --exclude 'releases/latest/download/'
+          'website/**/*.html'
