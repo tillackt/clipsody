@@ -2,6 +2,7 @@
 # Builds Clipsody.app (universal: Apple Silicon + Intel) into ./build.
 #   ./build.sh           build the app bundle
 #   ./build.sh test      run the unit tests
+#   ./build.sh coverage  run the unit tests with line coverage; fails below COVERAGE_MIN (default 88) percent
 #   ./build.sh install   run the tests, build, copy to /Applications and restart
 #   ./build.sh release   run the tests and build build/Clipsody.dmg with checksums; needs the signing certificate and a clean tree
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
@@ -15,9 +16,44 @@ BUNDLE_ID="io.github.tillackt.clipsody"
 IDENTITY="Clippboard Signing"
 APP="build/Clipsody.app"
 ARCHS=(--arch arm64 --arch x86_64)
+# CI sets WARNINGS_AS_ERRORS=1: the code builds without warnings, and a new one fails the build there.
+# Local builds stay lenient, so a newer Xcode with new warnings does not block an install.
+STRICT=()
+if [[ "${WARNINGS_AS_ERRORS:-0}" == "1" ]]; then STRICT=(-Xswiftc -warnings-as-errors); fi
 
 if [[ "${1:-}" == "test" ]]; then
-    swift test
+    swift test ${STRICT[@]+"${STRICT[@]}"}
+    exit
+fi
+if [[ "${1:-}" == "coverage" ]]; then
+    # Line coverage of the tested modules (core, services, decoder kit); the AppKit app target has
+    # no unit tests. Below COVERAGE_MIN percent the run fails, so coverage cannot quietly erode.
+    COVERAGE_MIN="${COVERAGE_MIN:-88}"
+    swift test --enable-code-coverage ${STRICT[@]+"${STRICT[@]}"}
+    TEST_BIN_DIR="$(swift build --show-bin-path)"
+    REPORT="$(xcrun llvm-cov report \
+        "$TEST_BIN_DIR/ClipsodyPackageTests.xctest/Contents/MacOS/ClipsodyPackageTests" \
+        -instr-profile "$TEST_BIN_DIR/codecov/default.profdata" \
+        -ignore-filename-regex='(\.build|Tests)/')"
+    # Column 10 of llvm-cov's report is the line coverage.
+    TOTAL="$(awk '/^TOTAL/ { sub("%", "", $10); print $10 }' <<<"$REPORT")"
+    awk 'NR > 2 && !/^-/ { printf "%-55s %s\n", $1, $10 }' <<<"$REPORT"
+    echo "Line coverage: $TOTAL% (minimum $COVERAGE_MIN%)"
+    if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+        {
+            echo "### Test coverage: $TOTAL% of lines (minimum $COVERAGE_MIN%)"
+            echo
+            echo "Core, services and decoder kit; the AppKit app target has no unit tests."
+            echo
+            echo "| File | Lines |"
+            echo "|---|---:|"
+            awk 'NR > 2 && !/^-/ && !/^TOTAL/ { printf "| %s | %s |\n", $1, $10 }' <<<"$REPORT"
+        } >> "$GITHUB_STEP_SUMMARY"
+    fi
+    if awk -v total="$TOTAL" -v min="$COVERAGE_MIN" 'BEGIN { exit !(total + 0 < min + 0) }'; then
+        echo "Line coverage $TOTAL% is below the minimum of $COVERAGE_MIN%" >&2
+        exit 1
+    fi
     exit
 fi
 # The translations are compiled with xcstringstool, which only full Xcode has; fail before a long build.
@@ -68,10 +104,10 @@ PYTHON
 fi
 if [[ "${1:-}" == "install" || "${1:-}" == "release" ]]; then
     # Never install or ship a build whose tests fail.
-    swift test
+    swift test ${STRICT[@]+"${STRICT[@]}"}
 fi
 
-swift build -c release "${ARCHS[@]}"
+swift build -c release "${ARCHS[@]}" ${STRICT[@]+"${STRICT[@]}"}
 BIN_DIR="$(swift build -c release "${ARCHS[@]}" --show-bin-path)"
 
 rm -rf "$APP"
