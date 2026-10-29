@@ -1,14 +1,13 @@
-import Carbon
 import Foundation
 
 /// User settings, read from ~/Library/Application Support/Clippboard/config.json.
-struct Config: Codable {
-    var hotkey = "cmd+option+c"
-    var retentionDays = 7
-    var maxItems = 1000
-    var keepImages = true
+public struct Config: Codable, Equatable, Sendable {
+    public var hotkey = "cmd+option+c"
+    public var retentionDays = 7
+    public var maxItems = 1000
+    public var keepImages = true
     /// Bundle IDs whose copies are never recorded (password managers etc.).
-    var ignoredApps = [
+    public var ignoredApps = [
         "com.1password.1password",
         "com.agilebits.onepassword7",
         "com.apple.keychainaccess",
@@ -16,10 +15,10 @@ struct Config: Codable {
         "com.bitwarden.desktop",
     ]
 
-    init() {}
+    public init() {}
 
     // Missing keys fall back to the defaults so the file may list only what differs.
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         let d = Config()
         hotkey = try c.decodeIfPresent(String.self, forKey: .hotkey) ?? d.hotkey
@@ -29,16 +28,16 @@ struct Config: Codable {
         ignoredApps = try c.decodeIfPresent([String].self, forKey: .ignoredApps) ?? d.ignoredApps
     }
 
-    static func url(in directory: URL) -> URL {
+    public static func url(in directory: URL) -> URL {
         directory.appendingPathComponent("config.json")
     }
 
-    static func load(from directory: URL) -> Config {
+    public static func load(from directory: URL) -> Config {
         if let data = try? Data(contentsOf: url(in: directory)) {
             do {
                 return try JSONDecoder().decode(Config.self, from: data)
             } catch {
-                log.error("Invalid config.json, using defaults: \(error, privacy: .public)")
+                logger.error("Invalid config.json, using defaults: \(String(describing: error), privacy: .public)")
                 return Config()
             }
         }
@@ -47,19 +46,30 @@ struct Config: Codable {
         return config
     }
 
-    func save(to directory: URL) {
+    public func save(to directory: URL) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-        try? encoder.encode(self).write(to: Self.url(in: directory))
+        do {
+            try encoder.encode(self).write(to: Self.url(in: directory))
+        } catch {
+            logger.error("Could not save config.json: \(String(describing: error), privacy: .public)")
+        }
     }
 }
 
 /// Parses strings like "cmd+option+c" into a Carbon key code and modifier mask.
-struct HotKeySpec {
-    let keyCode: UInt32
-    let modifiers: UInt32
-    let display: String
+public struct HotKeySpec: Equatable, Sendable {
+    // Carbon modifier masks (cmdKey, shiftKey, optionKey, controlKey), kept here so Core needs no Carbon.
+    public static let command: UInt32 = 1 << 8
+    public static let shift: UInt32 = 1 << 9
+    public static let option: UInt32 = 1 << 11
+    public static let control: UInt32 = 1 << 12
 
+    public let keyCode: UInt32
+    public let modifiers: UInt32
+    public let display: String
+
+    // Virtual key codes of the ANSI layout (physical key positions).
     private static let keyCodes: [String: UInt32] = [
         "a": 0, "s": 1, "d": 2, "f": 3, "h": 4, "g": 5, "z": 6, "x": 7, "c": 8, "v": 9,
         "b": 11, "q": 12, "w": 13, "e": 14, "r": 15, "y": 16, "t": 17,
@@ -69,20 +79,20 @@ struct HotKeySpec {
     ]
 
     /// Config name of a key code ("c", "5", "space"), nil for keys the hotkey cannot use.
-    static func keyName(for keyCode: UInt16) -> String? {
+    public static func keyName(for keyCode: UInt16) -> String? {
         keyCodes.first { $0.value == UInt32(keyCode) }?.key
     }
 
-    init?(_ string: String) {
+    public init?(_ string: String) {
         var modifiers: UInt32 = 0
         var symbols = ""
         var key: (code: UInt32, name: String)?
         for part in string.lowercased().split(separator: "+").map({ $0.trimmingCharacters(in: .whitespaces) }) {
             switch part {
-            case "ctrl", "control": modifiers |= UInt32(controlKey)
-            case "opt", "option", "alt": modifiers |= UInt32(optionKey)
-            case "shift": modifiers |= UInt32(shiftKey)
-            case "cmd", "command": modifiers |= UInt32(cmdKey)
+            case "ctrl", "control": modifiers |= Self.control
+            case "opt", "option", "alt": modifiers |= Self.option
+            case "shift": modifiers |= Self.shift
+            case "cmd", "command": modifiers |= Self.command
             default:
                 guard let code = Self.keyCodes[part] else { return nil }
                 key = (code, part == "space" ? "Space" : part.uppercased())
@@ -90,10 +100,10 @@ struct HotKeySpec {
         }
         guard let key, modifiers != 0 else { return nil }
         // Same order macOS uses in menus: ⌃⌥⇧⌘
-        if modifiers & UInt32(controlKey) != 0 { symbols += "⌃" }
-        if modifiers & UInt32(optionKey) != 0 { symbols += "⌥" }
-        if modifiers & UInt32(shiftKey) != 0 { symbols += "⇧" }
-        if modifiers & UInt32(cmdKey) != 0 { symbols += "⌘" }
+        if modifiers & Self.control != 0 { symbols += "⌃" }
+        if modifiers & Self.option != 0 { symbols += "⌥" }
+        if modifiers & Self.shift != 0 { symbols += "⇧" }
+        if modifiers & Self.command != 0 { symbols += "⌘" }
         self.keyCode = key.code
         self.modifiers = modifiers
         self.display = symbols + key.name

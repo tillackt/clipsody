@@ -1,4 +1,5 @@
 import AppKit
+import ClippboardCore
 
 /// Borderless panel that can take keyboard focus without activating the app,
 /// so the app the user is working in stays frontmost (like Spotlight/Alfred).
@@ -118,9 +119,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     private var allItems: [ClipItem] = []
     private var items: [ClipItem] = []
-    private var searchTerms: [String] = []
+    private var query = SearchQuery("")
     private let iconCache = NSCache<NSString, NSImage>()
-    private var fileSizes: [String: String] = [:]
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "de_DE")
@@ -265,34 +265,12 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     // MARK: - Filtering
 
-    private static let matchOptions: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
-
     private func applyFilter(selecting id: Int64? = nil) {
-        searchTerms = search.stringValue.split(whereSeparator: \.isWhitespace).map(String.init)
-        if searchTerms.isEmpty {
-            items = allItems
-        } else {
-            items = allItems.filter { item in
-                let haystack = [item.text, item.app ?? "", item.recognizedText ?? ""].joined(separator: " ")
-                return searchTerms.allSatisfy { haystack.range(of: $0, options: Self.matchOptions) != nil }
-            }
-        }
+        query = SearchQuery(search.stringValue)
+        items = query.isEmpty ? allItems : allItems.filter(query.matches)
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
         select(id.flatMap { id in items.firstIndex { $0.id == id } } ?? 0)
-    }
-
-    /// Ranges of all search terms in `string`, for highlighting.
-    private func matchRanges(in string: String) -> [NSRange] {
-        var ranges: [NSRange] = []
-        for term in searchTerms {
-            var remaining = string.startIndex..<string.endIndex
-            while let found = string.range(of: term, options: Self.matchOptions, range: remaining) {
-                ranges.append(NSRange(found, in: string))
-                remaining = found.upperBound..<string.endIndex
-            }
-        }
-        return ranges
     }
 
     func controlTextDidChange(_ notification: Notification) {
@@ -328,8 +306,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let id = NSUserInterfaceItemIdentifier("clip")
         let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ClipRowView ?? ClipRowView(identifier: id)
         let item = items[row]
-        let text = title(for: item)
-        cell.setTitle(text, highlights: matchRanges(in: text))
+        let text = ItemPresentation.title(for: item, query: query)
+        cell.setTitle(text, highlights: query.ranges(in: text))
         cell.icon.image = icon(for: item)
         cell.pin.isHidden = !item.pinned
         cell.shortcut.stringValue = row < 9 ? "⌘\(row + 1)" : ""
@@ -338,48 +316,6 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     func tableViewSelectionDidChange(_ notification: Notification) {
         updatePreview()
-    }
-
-    private func title(for item: ClipItem) -> String {
-        switch item.kind {
-        case .image:
-            // Like Alfred: "Bild 478×406 (762 KB)", plus the matching line when found via recognised text
-            let base = fileSize(of: item).map { "\(item.text) (\($0))" } ?? item.text
-            return recognizedSnippet(for: item).map { "\(base) – „\($0)“" } ?? base
-        case .files:
-            let names = item.filePaths.map { ($0 as NSString).lastPathComponent }
-            return names.count == 1 ? names[0] : "\(names.count) Dateien: " + names.joined(separator: ", ")
-        case .text:
-            break
-        }
-        let collapsed = item.text.split(whereSeparator: \.isNewline)
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-            .joined(separator: " ⏎ ")
-        return String(collapsed.prefix(300))
-    }
-
-    /// First recognised line containing a search term, shortened around the match.
-    private func recognizedSnippet(for item: ClipItem) -> String? {
-        guard let text = item.recognizedText, !searchTerms.isEmpty else { return nil }
-        for line in text.split(whereSeparator: \.isNewline) {
-            let line = String(line)
-            guard let match = searchTerms.lazy.compactMap({ line.range(of: $0, options: Self.matchOptions) }).first else { continue }
-            let start = line.index(match.lowerBound, offsetBy: -25, limitedBy: line.startIndex) ?? line.startIndex
-            let end = line.index(match.upperBound, offsetBy: 40, limitedBy: line.endIndex) ?? line.endIndex
-            return (start > line.startIndex ? "…" : "") + line[start..<end] + (end < line.endIndex ? "…" : "")
-        }
-        return nil
-    }
-
-    private func fileSize(of item: ClipItem) -> String? {
-        guard let file = item.imageFile else { return nil }
-        if let cached = fileSizes[file] { return cached }
-        guard let url = store.imageURL(for: item),
-              let bytes = (try? FileManager.default.attributesOfItem(atPath: url.path))?[.size] as? Int64 else { return nil }
-        let formatted = ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
-        fileSizes[file] = formatted
-        return formatted
     }
 
     /// Icon of the app the entry was copied from; for files the icon of the (first) file.
@@ -428,7 +364,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             previewTextScroll.isHidden = true
             previewImage.isHidden = false
             previewImage.image = store.imageURL(for: item).flatMap(NSImage.init(contentsOf:))
-            info.append(item.text)
+            info.append(ItemPresentation.imageLabel(for: item))
             if let text = item.recognizedText, !text.isEmpty { info.append("Text erkannt") }
         }
         infoLabel.stringValue = info.joined(separator: " · ")
@@ -441,11 +377,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         let string = NSMutableAttributedString(string: shown, attributes: [
             .font: NSFont.monospacedSystemFont(ofSize: 13, weight: .regular), .foregroundColor: NSColor.labelColor,
         ])
-        for range in matchRanges(in: shown) {
+        for range in query.ranges(in: shown) {
             string.addAttributes([.backgroundColor: NSColor.findHighlightColor, .foregroundColor: NSColor.black], range: range)
         }
         previewText.textStorage?.setAttributedString(string)
-        if let first = matchRanges(in: shown).first {
+        if let first = query.ranges(in: shown).first {
             previewText.scrollRangeToVisible(first)
         } else {
             previewText.scrollToBeginningOfDocument(nil)

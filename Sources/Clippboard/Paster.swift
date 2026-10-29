@@ -1,5 +1,6 @@
 import AppKit
 import ApplicationServices
+import ClippboardCore
 
 enum Paster {
     static func isTrusted(prompt: Bool) -> Bool {
@@ -8,22 +9,22 @@ enum Paster {
     }
 
     /// Puts the item on the pasteboard; returns false if there is nothing left to paste
-    /// (image file or all copied files gone).
-    static func write(_ item: ClipItem, store: Store, withFormatting: Bool) -> Bool {
+    /// (image file or all copied files gone). `rich` is added for text when given.
+    static func write(_ item: ClipItem, imageURL: URL?, rich: RichText?) -> Bool {
         let pasteboard = NSPasteboard.general
         switch item.kind {
         case .text:
             pasteboard.clearContents()
             pasteboard.setString(item.text, forType: .string)
-            if withFormatting, let rich = store.richText(for: item) {
-                pasteboard.setData(rich.data, forType: rich.type)
+            if let rich {
+                pasteboard.setData(rich.data, forType: NSPasteboard.PasteboardType(rich.type))
             }
         case .image:
-            guard let url = store.imageURL(for: item), let png = try? Data(contentsOf: url) else { return false }
+            guard let imageURL, let png = try? Data(contentsOf: imageURL) else { return false }
             pasteboard.clearContents()
             pasteboard.setData(png, forType: .png)
             // Some older apps only accept TIFF.
-            if let tiff = NSImage(data: png)?.tiffRepresentation {
+            if let tiff = ImageIngest.tiff(fromPNG: png) {
                 pasteboard.setData(tiff, forType: .tiff)
             }
         case .files:

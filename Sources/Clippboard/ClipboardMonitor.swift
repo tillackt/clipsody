@@ -1,4 +1,5 @@
 import AppKit
+import ClippboardCore
 
 /// Polls the general pasteboard; macOS offers no change notification for it.
 final class ClipboardMonitor {
@@ -53,19 +54,20 @@ final class ClipboardMonitor {
             store.addText(text, rich: Self.richText(from: pasteboard), app: appName, appPath: appPath)
         } else if config.keepImages,
                   let data = pasteboard.data(forType: .png) ?? pasteboard.data(forType: .tiff) {
-            store.addImage(data, app: appName, appPath: appPath)
+            guard let image = ImageIngest.prepare(data) else { return }
+            store.addImage(image, app: appName, appPath: appPath)
         } else {
             return
         }
         onChange?()
     }
 
-    /// Formatting for ⌥⏎: RTF from Office/Pages/TextEdit, otherwise HTML from browsers.
-    private static func richText(from pasteboard: NSPasteboard) -> (data: Data, type: NSPasteboard.PasteboardType)? {
+    /// Formatting pasted with ⏎: RTF from Office/Pages/TextEdit, otherwise HTML from browsers.
+    private static func richText(from pasteboard: NSPasteboard) -> RichText? {
         let maxBytes = 5_000_000
         for type in [NSPasteboard.PasteboardType.rtf, .html] {
             if let data = pasteboard.data(forType: type), data.count <= maxBytes {
-                return (data, type)
+                return RichText(data: data, type: type.rawValue)
             }
         }
         return nil

@@ -1,4 +1,5 @@
 import Carbon
+import ClippboardCore
 
 /// Global hotkey via the Carbon API; works without Accessibility permission.
 final class HotKey {

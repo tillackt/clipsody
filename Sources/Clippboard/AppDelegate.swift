@@ -1,4 +1,5 @@
 import AppKit
+import ClippboardCore
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var store: Store!
@@ -17,13 +18,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         do {
             store = try Store()
         } catch {
-            fail("Die Datenbank konnte nicht geöffnet werden: \(error)")
+            fail("\(error)")
             return
         }
         config = Config.load(from: store.directory)
 
         let imported = AlfredImporter.importIfNeeded(into: store, force: CommandLine.arguments.contains("--import-alfred"))
-        if imported > 0 { log.info("Imported \(imported) entries from Alfred") }
+        if imported > 0 { logger.info("Imported \(imported) entries from Alfred") }
         prune()
 
         monitor = ClipboardMonitor(store: store) { [unowned self] in config }
@@ -60,8 +61,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Paste
 
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
-        guard Paster.write(item, store: store, withFormatting: withFormatting) else {
-            log.error("Paste: content no longer available (file moved or deleted)")
+        let rich = withFormatting ? store.richText(for: item) : nil
+        guard Paster.write(item, imageURL: store.imageURL(for: item), rich: rich) else {
+            logger.error("Paste: content no longer available (file moved or deleted)")
             NSSound.beep()
             return
         }
@@ -69,7 +71,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         store.touch(item)
 
         guard Paster.isTrusted(prompt: false) else {
-            log.error("Paste: no Accessibility permission, item only copied")
+            logger.error("Paste: no Accessibility permission, item only copied")
             NSSound.beep()
             _ = Paster.isTrusted(prompt: true)
             return
@@ -83,7 +85,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         whenFrontmost(target, attemptsLeft: 20) {
             let types = (NSPasteboard.general.types ?? []).map(\.rawValue).joined(separator: ", ")
             let frontmost = NSWorkspace.shared.frontmostApplication?.localizedName ?? "-"
-            log.notice("""
+            logger.notice("""
                 Paste: ⌘V to \(target?.localizedName ?? "-", privacy: .public) \
                 (frontmost \(frontmost, privacy: .public), formatted \(withFormatting), \
                 kind \(item.kind.rawValue), pasteboard: \(types, privacy: .public))

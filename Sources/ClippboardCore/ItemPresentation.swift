@@ -1,0 +1,79 @@
+import Foundation
+
+/// What the user typed into the search field, split into terms that must all match.
+public struct SearchQuery: Sendable {
+    public static let options: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
+    public let terms: [String]
+
+    public init(_ text: String) {
+        terms = text.split(whereSeparator: \.isWhitespace).map(String.init)
+    }
+
+    public var isEmpty: Bool { terms.isEmpty }
+
+    public func matches(_ item: ClipItem) -> Bool {
+        guard !isEmpty else { return true }
+        let haystack = ItemPresentation.searchText(for: item)
+        return terms.allSatisfy { haystack.range(of: $0, options: Self.options) != nil }
+    }
+
+    /// Ranges of all terms in `string`, for highlighting.
+    public func ranges(in string: String) -> [NSRange] {
+        var ranges: [NSRange] = []
+        for term in terms {
+            var remaining = string.startIndex..<string.endIndex
+            while let found = string.range(of: term, options: Self.options, range: remaining) {
+                ranges.append(NSRange(found, in: string))
+                remaining = found.upperBound..<string.endIndex
+            }
+        }
+        return ranges
+    }
+}
+
+/// Texts shown for an item in the history list; free of AppKit so it can be tested.
+public enum ItemPresentation {
+    public static func title(for item: ClipItem, query: SearchQuery) -> String {
+        switch item.kind {
+        case .image:
+            // Like Alfred: "Bild 478×406 (762 KB)", plus the matching line when found via recognised text
+            let base = imageLabel(for: item)
+            return recognizedSnippet(for: item, query: query).map { "\(base) – „\($0)“" } ?? base
+        case .files:
+            let names = item.filePaths.map { ($0 as NSString).lastPathComponent }
+            return names.count == 1 ? names[0] : "\(names.count) Dateien: " + names.joined(separator: ", ")
+        case .text:
+            let collapsed = item.text.prefix(2_000)
+                .split(whereSeparator: \.isNewline)
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }
+                .joined(separator: " ⏎ ")
+            return String(collapsed.prefix(300))
+        }
+    }
+
+    public static func imageLabel(for item: ClipItem) -> String {
+        let size = ByteCountFormatter.string(fromByteCount: item.byteSize, countStyle: .file)
+        return "Bild \(item.imageWidth)×\(item.imageHeight)" + (item.byteSize > 0 ? " (\(size))" : "")
+    }
+
+    /// Everything a search term may match: content, label, source app and recognised text.
+    public static func searchText(for item: ClipItem) -> String {
+        let label = item.kind == .image ? "Bild" : ""
+        return [item.text, label, item.app ?? "", item.recognizedText ?? ""].joined(separator: "\n")
+    }
+
+    /// First recognised line containing a search term, shortened around the match.
+    public static func recognizedSnippet(for item: ClipItem, query: SearchQuery) -> String? {
+        guard let text = item.recognizedText, !query.isEmpty else { return nil }
+        for line in text.split(whereSeparator: \.isNewline) {
+            let line = String(line)
+            guard let match = query.terms.lazy.compactMap({ line.range(of: $0, options: SearchQuery.options) }).first
+            else { continue }
+            let start = line.index(match.lowerBound, offsetBy: -25, limitedBy: line.startIndex) ?? line.startIndex
+            let end = line.index(match.upperBound, offsetBy: 40, limitedBy: line.endIndex) ?? line.endIndex
+            return (start > line.startIndex ? "…" : "") + line[start..<end] + (end < line.endIndex ? "…" : "")
+        }
+        return nil
+    }
+}
