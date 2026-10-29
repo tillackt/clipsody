@@ -51,8 +51,9 @@ jobs:
           persist-credentials: false
       - name: Select the newest stable Xcode
         run: .github/scripts/select-xcode.sh
-      - name: Run the unit tests
-        run: ./build.sh test
+      - name: Run the unit tests with coverage
+        # Fails below 88 % line coverage; the per-file table is in the run's summary.
+        run: ./build.sh coverage
         env:
           WARNINGS_AS_ERRORS: "1"
 
