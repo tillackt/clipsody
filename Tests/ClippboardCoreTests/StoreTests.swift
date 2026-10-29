@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import Foundation
 import Testing
 @testable import ClippboardCore
@@ -56,7 +57,7 @@ import Testing
     }
 
     @Test func imageIsWrittenAsFileWithSize() throws {
-        let image = try #require(ImageIngest.prepare(makeImage(width: 30, height: 20)))
+        let image = try #require(ImageCodec.prepare(makeImage(width: 30, height: 20)))
         store.addImage(image, app: "Monosnap", appPath: nil)
         let item = try #require(store.items(limit: 1).first)
         #expect(item.kind == .image)
@@ -67,7 +68,7 @@ import Testing
     }
 
     @Test func previewIsStoredAndRemovedWithItsImage() throws {
-        let image = try #require(ImageIngest.prepare(makeImage(width: 2_000, height: 1_000)))
+        let image = try #require(ImageCodec.prepare(makeImage(width: 2_000, height: 1_000)))
         store.addImage(image, app: nil, appPath: nil)
         let item = try #require(store.items().first)
         let preview = try #require(store.previewURL(for: item))
@@ -101,7 +102,7 @@ import Testing
     }
 
     @Test func clearKeepsPinnedAndRemovesUnusedImageFiles() throws {
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         store.addImage(image, app: nil, appPath: nil)
         store.addText("keep me", app: nil, appPath: nil)
         let keep = try #require(store.items(limit: 10).first { $0.kind == .text })
@@ -115,7 +116,7 @@ import Testing
     }
 
     @Test func recognizedTextIsSearchable() throws {
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         store.addImage(image, app: nil, appPath: nil)
         #expect(store.imageFilesWithoutRecognizedText() == [image.hash + ".png"])
 
@@ -148,7 +149,7 @@ import Testing
     }
 
     @Test func recognizedTextCanBeReadPerImage() throws {
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         store.addImage(image, app: nil, appPath: nil)
         #expect(store.recognizedText(forImageFile: image.hash + ".png") == nil)
         store.setRecognizedText("Rechnung", forImageFile: image.hash + ".png")

@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import ClippboardServices
 import ClippboardXPC
 import CoreGraphics

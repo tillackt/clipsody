@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import CoreGraphics
 import Foundation
 import ImageIO
@@ -7,7 +8,7 @@ import UniformTypeIdentifiers
 
 @Suite struct PNGValidatorTests {
     /// A PNG as the app stores it: re-encoded by ImageIngest.
-    let png = ImageIngest.prepare(makeImage(width: 40, height: 30, type: .tiff))!.png
+    let png = ImageCodec.prepare(makeImage(width: 40, height: 30, type: .tiff))!.png
 
     @Test func crcMatchesTheStandardCheckValue() {
         #expect(PNGValidator.crc32(Array("123456789".utf8)) == 0xCBF4_3926)
@@ -16,7 +17,7 @@ import UniformTypeIdentifiers
     @Test(arguments: [CGColorSpace.sRGB, CGColorSpace.displayP3, CGColorSpace.genericGrayGamma2_2].map { $0 as String })
     func pngsReencodedByImageIngestPass(colorSpace: String) throws {
         let source = try #require(encode(width: 33, height: 17, colorSpace: colorSpace, type: .png))
-        let prepared = try #require(ImageIngest.prepare(source))
+        let prepared = try #require(ImageCodec.prepare(source))
         let size = try #require(PNGValidator.validatedSize(of: prepared.png))
         #expect(size.width == 33 && size.height == 17)
     }

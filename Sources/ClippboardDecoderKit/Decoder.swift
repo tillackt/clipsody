@@ -43,7 +43,7 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
 
     private func prepare(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?, Data?) -> Void) {
         // The service enforces its own limit, whatever the caller asks for.
-        guard let image = ImageIngest.prepare(data, maxPixels: min(maxPixels, ImageIngest.maxPixels)) else {
+        guard let image = ImageCodec.prepare(data, maxPixels: min(maxPixels, ImageIngest.maxPixels)) else {
             reply(nil, 0, 0, nil, nil)
             return
         }
@@ -78,7 +78,7 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
 
     private func makeThumbnail(_ png: Data, maxPixelSize: Int,
                                reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {
-        guard let thumbnail = ImageIngest.thumbnailPixels(ofPNG: png, maxPixelSize: min(maxPixelSize, 4_096)) else {
+        guard let thumbnail = ImageCodec.thumbnailPixels(ofPNG: png, maxPixelSize: min(maxPixelSize, 4_096)) else {
             reply(nil, 0, 0, 0, 0)
             return
         }
@@ -87,7 +87,7 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
     }
 
     public func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {
-        watched { reply(ImageIngest.tiff(fromPNG: png)) }
+        watched { reply(ImageCodec.tiff(fromPNG: png)) }
     }
 }
 

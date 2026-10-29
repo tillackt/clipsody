@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import Foundation
 import SQLite3
 import Testing
@@ -11,7 +12,7 @@ import Testing
     @Test func historyIsOnlyReadableByTheUser() throws {
         let directory = try TemporaryDirectory()
         let store = try Store(directory: directory.url)
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         store.addImage(image, app: nil, appPath: nil)
         Config().save(to: directory.url)
 
@@ -77,7 +78,7 @@ import Testing
     @Test func imagesWithForeignHashesAreNotWritten() throws {
         let directory = try TemporaryDirectory()
         let store = try Store(directory: directory.url)
-        let real = try #require(ImageIngest.prepare(makeImage()))
+        let real = try #require(ImageCodec.prepare(makeImage()))
         let forged = PreparedImage(png: real.png, width: real.width, height: real.height, hash: "../../escaped")
 
         #expect(!store.addImage(forged, app: nil, appPath: nil))
@@ -110,7 +111,7 @@ import Testing
 
     @Test func oversizedImagesAreRejectedBeforeDecoding() {
         let data = makeImage(width: 40, height: 40)
-        #expect(ImageIngest.prepare(data, maxPixels: 1_599) == nil)
-        #expect(ImageIngest.prepare(data, maxPixels: 1_600) != nil)
+        #expect(ImageCodec.prepare(data, maxPixels: 1_599) == nil)
+        #expect(ImageCodec.prepare(data, maxPixels: 1_600) != nil)
     }
 }

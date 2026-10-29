@@ -1,4 +1,4 @@
-import ClippboardServices
+import ClippboardDecoderKit
 import Foundation
 
 // XPC services bundled in an app are only reachable by that app.

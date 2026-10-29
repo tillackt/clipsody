@@ -14,7 +14,7 @@ public enum PNGValidator {
     /// for Display P3); for HDR images it may add the PNG 3rd edition chunks for content light level
     /// and mastering display (both spellings that appeared, cLLI/mDCV and cLLi/mDCv), which must not
     /// make HDR screenshots disappear. Anything else (text, private chunks) has no business in an
-    /// image re-encoded by ImageIngest.
+    /// image re-encoded by ImageCodec.
     private static let allowedTypes: Set<String> = [
         "IHDR", "PLTE", "IDAT", "IEND", "pHYs", "iCCP", "sRGB", "gAMA", "cHRM", "tRNS", "eXIf", "cICP",
         "cLLI", "mDCV", "cLLi", "mDCv",

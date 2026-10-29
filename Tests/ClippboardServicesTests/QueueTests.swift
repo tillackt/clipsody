@@ -1,4 +1,5 @@
 import ClippboardCore
+import ClippboardDecoderKit
 import Foundation
 import Testing
 @testable import ClippboardServices
@@ -8,7 +9,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
     var remaining = delays
     return { data in
         if !remaining.isEmpty { try? await Task.sleep(for: remaining.removeFirst()) }
-        return ImageIngest.prepare(data)
+        return ImageCodec.prepare(data)
     }
 }
 
@@ -87,7 +88,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
     }
 
     func addImage(width: Int) throws {
-        let image = try #require(ImageIngest.prepare(makeImage(width: width, height: 5)))
+        let image = try #require(ImageCodec.prepare(makeImage(width: width, height: 5)))
         store.addImage(image, app: nil, appPath: nil)
     }
 
@@ -160,7 +161,7 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
     }
 
     @Test func imageCopiedAgainAfterItsFileVanishedIsRecognised() async throws {
-        let image = try #require(ImageIngest.prepare(makeImage(width: 7, height: 5)))
+        let image = try #require(ImageCodec.prepare(makeImage(width: 7, height: 5)))
         store.addImage(image, app: nil, appPath: nil)
         let url = try #require(store.items().first.flatMap(store.imageURL(for:)))
         try FileManager.default.removeItem(at: url)

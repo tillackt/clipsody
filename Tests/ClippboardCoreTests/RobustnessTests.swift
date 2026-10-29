@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import Foundation
 import Testing
 @testable import ClippboardCore
@@ -47,7 +48,7 @@ import Testing
 
     @Test func referencedImageFilesStay() throws {
         let directory = try TemporaryDirectory()
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         do {
             let store = try Store(directory: directory.url)
             store.addImage(image, app: nil, appPath: nil)

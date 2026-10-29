@@ -13,7 +13,13 @@ let package = Package(
         .target(
             name: "ClippboardXPC"
         ),
-        // Decoder service implementation, its XPC client and the queues that use it: no AppKit, unit-tested.
+        // Image decoding/encoding (ImageIO), text recognition (Vision) and the decoder service object.
+        // Only the decoder service and tests link it, so the app cannot decode untrusted images itself.
+        .target(
+            name: "ClippboardDecoderKit",
+            dependencies: ["ClippboardCore", "ClippboardXPC"]
+        ),
+        // XPC client of the decoder service and the queues that use it: no AppKit, unit-tested.
         .target(
             name: "ClippboardServices",
             dependencies: ["ClippboardCore", "ClippboardXPC"]
@@ -26,15 +32,15 @@ let package = Package(
         // Sandboxed XPC service that decodes clipboard images and runs text recognition.
         .executableTarget(
             name: "ClippboardDecoder",
-            dependencies: ["ClippboardServices"]
+            dependencies: ["ClippboardDecoderKit"]
         ),
         .testTarget(
             name: "ClippboardCoreTests",
-            dependencies: ["ClippboardCore"]
+            dependencies: ["ClippboardCore", "ClippboardDecoderKit"]
         ),
         .testTarget(
             name: "ClippboardServicesTests",
-            dependencies: ["ClippboardServices", "ClippboardCore", "ClippboardXPC"]
+            dependencies: ["ClippboardServices", "ClippboardCore", "ClippboardXPC", "ClippboardDecoderKit"]
         ),
     ]
 )

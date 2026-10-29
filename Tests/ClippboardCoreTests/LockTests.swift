@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import Foundation
 import SQLite3
 import Testing
@@ -47,7 +48,7 @@ final class LockHolder {
     @Test func failedWriteOfRecognizedTextIsReported() throws {
         let directory = try TemporaryDirectory()
         let store = try Store(directory: directory.url)
-        let image = try #require(ImageIngest.prepare(makeImage()))
+        let image = try #require(ImageCodec.prepare(makeImage()))
         store.addImage(image, app: nil, appPath: nil)
         let writer = LockHolder(path: directory.url.appendingPathComponent("history.sqlite").path,
                                 sql: "BEGIN IMMEDIATE;")

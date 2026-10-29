@@ -1,3 +1,4 @@
+import ClippboardDecoderKit
 import Foundation
 import ImageIO
 import Testing
@@ -7,7 +8,7 @@ import UniformTypeIdentifiers
 @Suite struct ImageIngestTests {
     @Test func tiffBecomesLosslessPNGWithSameResolution() throws {
         let tiff = makeImage(width: 12, height: 7, type: .tiff, dpi: 144)
-        let image = try #require(ImageIngest.prepare(tiff))
+        let image = try #require(ImageCodec.prepare(tiff))
 
         #expect(image.width == 12 && image.height == 7)
         #expect(imageProperties(of: image.png)[kCGImagePropertyPNGDictionary] != nil)
@@ -17,7 +18,7 @@ import UniformTypeIdentifiers
 
     @Test func pngIsReencodedWithSamePixels() throws {
         let png = makeImage(type: .png)
-        let image = try #require(ImageIngest.prepare(png))
+        let image = try #require(ImageCodec.prepare(png))
         #expect(pixels(of: image.png) == pixels(of: png))
         #expect(image.width == 12 && image.height == 7)
     }
@@ -27,19 +28,19 @@ import UniformTypeIdentifiers
         let tagged = makeImage(type: .png, extraProperties: [kCGImagePropertyGPSDictionary: gps])
         #expect(imageProperties(of: tagged)[kCGImagePropertyGPSDictionary] != nil)
 
-        let image = try #require(ImageIngest.prepare(tagged))
+        let image = try #require(ImageCodec.prepare(tagged))
 
         #expect(imageProperties(of: image.png)[kCGImagePropertyGPSDictionary] == nil)
     }
 
     @Test func otherFormatsAreNotDecoded() {
-        #expect(ImageIngest.prepare(makeImage(type: .jpeg)) == nil)
-        #expect(ImageIngest.prepare(makeImage(type: .gif)) == nil)
+        #expect(ImageCodec.prepare(makeImage(type: .jpeg)) == nil)
+        #expect(ImageCodec.prepare(makeImage(type: .gif)) == nil)
     }
 
     @Test func thumbnailIsDownscaledRawPixels() throws {
         let png = makeImage(width: 400, height: 100, type: .png, dpi: 144)
-        let thumbnail = try #require(ImageIngest.thumbnailPixels(ofPNG: png, maxPixelSize: 100))
+        let thumbnail = try #require(ImageCodec.thumbnailPixels(ofPNG: png, maxPixelSize: 100))
         #expect(thumbnail.width == 100 && thumbnail.height == 25)
         #expect(thumbnail.pixels.count == 100 * 25 * 4)
         // 400 px at 144 DPI (Retina) appeared as 200 pt on screen
@@ -47,7 +48,7 @@ import UniformTypeIdentifiers
     }
 
     @Test func thumbnailsAreOnlyMadeFromPNG() {
-        #expect(ImageIngest.thumbnailPixels(ofPNG: makeImage(type: .tiff), maxPixelSize: 100) == nil)
+        #expect(ImageCodec.thumbnailPixels(ofPNG: makeImage(type: .tiff), maxPixelSize: 100) == nil)
     }
 
     @Test func pngHeaderGivesSizeWithoutDecoding() throws {
@@ -59,31 +60,31 @@ import UniformTypeIdentifiers
     }
 
     @Test func largeImagesGetAPreviewWithTheSameOnScreenSize() throws {
-        let image = try #require(ImageIngest.prepare(makeImage(width: 3_000, height: 1_500, dpi: 144)))
+        let image = try #require(ImageCodec.prepare(makeImage(width: 3_000, height: 1_500, dpi: 144)))
         let preview = try #require(image.preview)
         let size = try #require(PNGValidator.validatedSize(of: preview))
         #expect(size.width == ImageIngest.previewMaxPixelSize && size.height == 512)
         // 3,000 px at 144 DPI appeared as 1,500 pt; the preview must keep that.
-        let thumbnail = try #require(ImageIngest.thumbnailPixels(ofPNG: preview, maxPixelSize: 4_096))
+        let thumbnail = try #require(ImageCodec.thumbnailPixels(ofPNG: preview, maxPixelSize: 4_096))
         #expect(abs(thumbnail.pointSize.width - 1_500) < 2)
     }
 
     @Test func smallImagesNeedNoPreview() throws {
-        #expect(try #require(ImageIngest.prepare(makeImage(width: 800, height: 600))).preview == nil)
+        #expect(try #require(ImageCodec.prepare(makeImage(width: 800, height: 600))).preview == nil)
     }
 
     @Test func sameImageGivesSameHash() throws {
         let data = makeImage()
-        #expect(ImageIngest.prepare(data)?.hash == ImageIngest.prepare(data)?.hash)
+        #expect(ImageCodec.prepare(data)?.hash == ImageCodec.prepare(data)?.hash)
     }
 
     @Test func garbageIsRejected() {
-        #expect(ImageIngest.prepare(Data("not an image".utf8)) == nil)
+        #expect(ImageCodec.prepare(Data("not an image".utf8)) == nil)
     }
 
     @Test func tiffForPastingKeepsPixels() throws {
-        let image = try #require(ImageIngest.prepare(makeImage(type: .png)))
-        let tiff = try #require(ImageIngest.tiff(fromPNG: image.png))
+        let image = try #require(ImageCodec.prepare(makeImage(type: .png)))
+        let tiff = try #require(ImageCodec.tiff(fromPNG: image.png))
         #expect(pixels(of: tiff) == pixels(of: image.png))
         let tiffProperties = imageProperties(of: tiff)[kCGImagePropertyTIFFDictionary] as? [CFString: Any]
         #expect(tiffProperties?[kCGImagePropertyTIFFCompression] as? Int == 5) // 5 = LZW
@@ -102,7 +103,7 @@ import UniformTypeIdentifiers
         CGImageDestinationFinalize(destination)
         let png = output as Data
 
-        let tiff = try #require(ImageIngest.tiff(fromPNG: png))
+        let tiff = try #require(ImageCodec.tiff(fromPNG: png))
 
         #expect(tiff.count < width * height * 4 / 10)
         #expect(pixels(of: tiff) == pixels(of: png))
