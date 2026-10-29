@@ -1155,16 +1155,16 @@
             "value": "Clippboard konnte diese Objekte nicht entfernen, bitte lösche sie selbst:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard n’a pas pu supprimer ces éléments, supprimez-les vous-même :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Clippboard no pudo eliminar estos elementos; bórralos tú:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard n’a pas pu supprimer ces éléments, supprimez-les vous-même :"
           }
         },
         "it": {
@@ -1235,52 +1235,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "O Clippboard precisa reiniciar para trocar o idioma."
-          }
-        }
-      }
-    },
-    "Clippboard – Settings": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Einstellungen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Ajustes"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Réglages"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Impostazioni"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Instellingen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Ustawienia"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard – Ajustes"
           }
         }
       }
@@ -1423,52 +1377,6 @@
         }
       }
     },
-    "Data": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daten"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Datos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Données"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dati"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gegevens"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dane"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dados"
-          }
-        }
-      }
-    },
     "Database error: %@": {
       "localizations": {
         "de": {
@@ -1523,16 +1431,16 @@
             "value": "Löscht Historie, Bilder und Einstellungen, entfernt das Anmeldeobjekt und die Berechtigung „Bedienungshilfen“ und legt Clippboard in den Papierkorb. Ziehst du die App selbst in den Papierkorb, bleiben diese Daten zurück."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Supprime l’historique, les images et les réglages, retire l’ouverture à la connexion et l’autorisation « Accessibilité », puis place Clippboard dans la corbeille. Si vous glissez vous-même l’app dans la corbeille, ces données restent sur le Mac."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clippboard a la papelera. Si arrastras tú la app a la papelera, estos datos se quedan en el Mac."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprime l’historique, les images et les réglages, retire l’ouverture à la connexion et l’autorisation « Accessibilité », puis place Clippboard dans la corbeille. Si vous glissez vous-même l’app dans la corbeille, ces données restent sur le Mac."
           }
         },
         "it": {
@@ -1971,6 +1879,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Imagens:"
+          }
+        }
+      }
+    },
+    "Info": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Información"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informacje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informações"
           }
         }
       }
@@ -3915,16 +3869,16 @@
             "value": "Die Historie samt angepinnter Einträge, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clippboard wandert in den Papierkorb. Das lässt sich nicht rückgängig machen."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la corbeille. Cette action est irréversible."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clippboard pasa a la papelera. No se puede deshacer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la corbeille. Cette action est irréversible."
           }
         },
         "it": {
@@ -4099,16 +4053,16 @@
             "value": "Deinstallieren"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désinstaller"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Desinstalar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller"
           }
         },
         "it": {
@@ -4145,16 +4099,16 @@
             "value": "Clippboard deinstallieren?"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désinstaller Clippboard ?"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "¿Desinstalar Clippboard?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller Clippboard ?"
           }
         },
         "it": {
@@ -4191,16 +4145,16 @@
             "value": "Clippboard deinstallieren …"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désinstaller Clippboard…"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Desinstalar Clippboard…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller Clippboard…"
           }
         },
         "it": {
@@ -4237,16 +4191,16 @@
             "value": "Deinstallieren:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désinstaller :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Desinstalar:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller :"
           }
         },
         "it": {

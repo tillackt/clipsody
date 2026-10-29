@@ -21,6 +21,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     private let keepImages = NSButton(checkboxWithTitle: String(localized: "Save images"), target: nil, action: nil)
     private let ignoredTable = NSTableView()
     private let ignoredButtons = NSSegmentedControl()
+    private let tabs = NSTabViewController()
+    private static let selectedTabKey = "SettingsSelectedTab"
 
     init(config: Config, dataDirectory: URL, onRecordingHotKey: @escaping (Bool) -> Void,
          onChange: @escaping (Config) -> Void, onUninstall: @escaping () -> Void) {
@@ -37,7 +39,6 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             backing: .buffered,
             defer: false
         )
-        window.title = String(localized: "Clippboard – Settings")
         window.isReleasedWhenClosed = false
         super.init(window: window)
         window.delegate = self
@@ -50,6 +51,9 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     func show(with config: Config) {
         self.config = config
         refreshValues()
+        // Opens centred on the active screen each time, instead of wherever it was last closed;
+        // an already open window stays where the user moved it.
+        if window?.isVisible == false { window?.center() }
         NSApp.bringToFront()
         showWindow(nil)
         // Agent apps are often not activated in time; force the window to the front anyway.
@@ -61,6 +65,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     // Leaving the window must not leave the global hotkey switched off mid-recording.
     func windowWillClose(_ notification: Notification) {
         hotKeyRecorder.cancelRecording()
+        UserDefaults.standard.set(tabs.selectedTabViewItemIndex, forKey: Self.selectedTabKey)
     }
 
     func windowDidResignKey(_ notification: Notification) {
@@ -256,17 +261,15 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     // MARK: - Layout
 
     private func buildLayout() {
-        let grid = NSGridView()
-        grid.columnSpacing = 14
-        grid.rowSpacing = 10
+        // One grid per tab; the helpers below add rows to the current one.
+        var grid = NSGridView()
+        var pages: [(title: String, symbol: String, grid: NSGridView)] = []
 
-        func section(_ title: String) {
-            let label = NSTextField(labelWithString: title)
-            label.font = .boldSystemFont(ofSize: 13)
-            let row = grid.addRow(with: [label, NSGridCell.emptyContentView])
-            row.mergeCells(in: NSRange(location: 0, length: 2))
-            row.cell(at: 0).xPlacement = .leading
-            if grid.numberOfRows > 1 { row.topPadding = 8 }
+        func page(_ title: String, symbol: String) {
+            grid = NSGridView()
+            grid.columnSpacing = 14
+            grid.rowSpacing = 16
+            pages.append((title, symbol, grid))
         }
 
         @discardableResult
@@ -278,7 +281,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             let helpLabel = NSTextField(wrappingLabelWithString: help)
             helpLabel.font = .systemFont(ofSize: 11)
             helpLabel.textColor = .secondaryLabelColor
-            helpLabel.preferredMaxLayoutWidth = 520
+            helpLabel.preferredMaxLayoutWidth = 480
             let stack = NSStackView(views: [control, helpLabel])
             stack.orientation = .vertical
             stack.alignment = .leading
@@ -312,7 +315,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         }
 
         // General
-        section(String(localized: "General"))
+        page(String(localized: "General"), symbol: "gearshape")
         hotKeyRecorder.onChange = { [weak self] in self?.hotKeyChanged($0) }
         row(String(localized: "Shortcut:"), hotKeyRecorder, alignWith: hotKeyRecorder, help: String(localized: """
             Opens and closes the history from any app. To change it, click the field and press the new \
@@ -352,7 +355,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             """))
 
         // History
-        section(String(localized: "History"))
+        page(String(localized: "History"), symbol: "clock.arrow.circlepath")
         let retention = numberControl(retentionField, retentionStepper, unit: String(localized: "days"), range: Config.retentionRange, step: 1,
                                       action: #selector(retentionChanged(_:)))
         let retentionLabel = row(String(localized: "Keep for:"), retention, alignWith: retentionField, help: String(localized: """
@@ -378,7 +381,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             """))
 
         // Privacy
-        section(String(localized: "Privacy"))
+        page(String(localized: "Privacy"), symbol: "hand.raised")
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("app"))
         column.resizingMask = .autoresizingMask
         ignoredTable.addTableColumn(column)
@@ -392,8 +395,9 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         tableScroll.hasVerticalScroller = true
         tableScroll.borderType = .bezelBorder
         tableScroll.translatesAutoresizingMaskIntoConstraints = false
-        tableScroll.widthAnchor.constraint(equalToConstant: 520).isActive = true
-        tableScroll.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        tableScroll.widthAnchor.constraint(equalToConstant: 480).isActive = true
+        // The tab has room for the whole default list without scrolling.
+        tableScroll.heightAnchor.constraint(equalToConstant: 200).isActive = true
 
         ignoredButtons.segmentStyle = .smallSquare
         ignoredButtons.trackingMode = .momentary
@@ -421,15 +425,15 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             """))
         ignoredHelp.font = .systemFont(ofSize: 11)
         ignoredHelp.textColor = .secondaryLabelColor
-        ignoredHelp.preferredMaxLayoutWidth = 520
+        ignoredHelp.preferredMaxLayoutWidth = 480
         let ignoredContent = NSStackView(views: [ignoredStack, ignoredHelp])
         ignoredContent.orientation = .vertical
         ignoredContent.alignment = .leading
         ignoredContent.spacing = 5
         grid.addRow(with: [ignoredTitle, ignoredContent]).yPlacement = .top
 
-        // Data
-        section(String(localized: "Data"))
+        // Info
+        page(String(localized: "Info"), symbol: "info.circle")
         let pathLabel = NSTextField(labelWithString: (dataDirectory.path as NSString).abbreviatingWithTildeInPath)
         pathLabel.lineBreakMode = .byTruncatingMiddle
         pathLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -455,42 +459,34 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             this data stays behind.
             """))
 
-        // Columns only exist once rows were added.
-        grid.column(at: 0).xPlacement = .trailing
-
-        let content = FlippedView()
-        grid.translatesAutoresizingMaskIntoConstraints = false
-        content.translatesAutoresizingMaskIntoConstraints = false
-        content.addSubview(grid)
-        NSLayoutConstraint.activate([
-            grid.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
-            grid.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 24),
-            grid.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -24),
-            grid.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -20),
-        ])
-
-        // Scrolls on small screens instead of growing past the bottom edge.
-        let scroll = NSScrollView()
-        scroll.documentView = content
-        scroll.hasVerticalScroller = true
-        scroll.autohidesScrollers = true
-        scroll.drawsBackground = false
-        NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo: scroll.contentView.topAnchor),
-            content.leadingAnchor.constraint(equalTo: scroll.contentView.leadingAnchor),
-            content.widthAnchor.constraint(equalTo: scroll.contentView.widthAnchor),
-        ])
-        window?.contentView = scroll
-
-        let fitting = content.fittingSize
-        let maxHeight = (NSScreen.main?.visibleFrame.height ?? 800) - 80
-        window?.setContentSize(NSSize(width: fitting.width, height: min(fitting.height, maxHeight)))
+        // All tabs share the widest tab's width, so switching only changes the height.
+        let width = pages.map { $0.grid.fittingSize.width }.max() ?? 0
+        for page in pages {
+            // Columns only exist once rows were added.
+            page.grid.column(at: 0).xPlacement = .trailing
+            page.grid.translatesAutoresizingMaskIntoConstraints = false
+            let view = NSView()
+            view.addSubview(page.grid)
+            NSLayoutConstraint.activate([
+                page.grid.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+                page.grid.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+                page.grid.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+                view.widthAnchor.constraint(equalToConstant: width + 48),
+            ])
+            let controller = NSViewController()
+            controller.view = view
+            controller.title = page.title
+            controller.preferredContentSize = view.fittingSize
+            let item = NSTabViewItem(viewController: controller)
+            item.label = page.title
+            item.image = NSImage(systemSymbolName: page.symbol, accessibilityDescription: nil)
+            tabs.addTabViewItem(item)
+        }
+        tabs.tabStyle = .toolbar
+        tabs.selectedTabViewItemIndex = min(UserDefaults.standard.integer(forKey: Self.selectedTabKey), pages.count - 1)
+        window?.contentViewController = tabs
+        window?.toolbarStyle = .preference
     }
-}
-
-/// Top-left origin so the settings start at the top of the scroll view.
-private final class FlippedView: NSView {
-    override var isFlipped: Bool { true }
 }
 
 /// Row of the ignored-apps list; reused by the table instead of being rebuilt per call.
