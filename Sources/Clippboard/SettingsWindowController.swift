@@ -52,8 +52,12 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         self.config = config
         refreshValues()
         // Opens centred on the active screen each time, instead of wherever it was last closed;
-        // an already open window stays where the user moved it.
-        if window?.isVisible == false { window?.center() }
+        // an already open window stays where the user moved it. Not center(): it places windows
+        // in the upper third.
+        if let window, !window.isVisible, let screen = NSScreen.main?.visibleFrame {
+            window.setFrameOrigin(NSPoint(x: screen.midX - window.frame.width / 2,
+                                          y: screen.midY - window.frame.height / 2))
+        }
         NSApp.bringToFront()
         showWindow(nil)
         // Agent apps are often not activated in time; force the window to the front anyway.
