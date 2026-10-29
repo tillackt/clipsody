@@ -85,7 +85,7 @@ import Testing
         let victim = directory.url.appendingPathComponent("victim.txt")
         try Data("keep".utf8).write(to: victim)
         do { _ = try Store(directory: directory.url) }
-        sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
+        try sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
             INSERT INTO items(kind, text, image_file, hash, ts) VALUES (1, '', '../victim.txt', 'evil', 1);
             """)
 
@@ -108,7 +108,7 @@ import Testing
         try FileManager.default.createDirectory(at: databases.appendingPathComponent("clipboard.alfdb.data"),
                                                 withIntermediateDirectories: true)
         try makeImage().write(to: databases.appendingPathComponent("outside.tiff"))
-        sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
+        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
             CREATE TABLE clipboard(item, ts decimal, app, apppath, dataType integer, dataHash);
             INSERT INTO clipboard VALUES ('Image', 1, NULL, NULL, 1, '../outside.tiff');
             """)

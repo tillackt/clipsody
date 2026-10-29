@@ -129,7 +129,7 @@ import Testing
         let directory = try TemporaryDirectory()
         try FileManager.default.createDirectory(at: directory.url.appendingPathComponent("images"),
                                                 withIntermediateDirectories: true)
-        sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
+        try sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
             CREATE TABLE items(id INTEGER PRIMARY KEY AUTOINCREMENT, kind INTEGER NOT NULL, text TEXT NOT NULL,
                 image_file TEXT, hash TEXT NOT NULL UNIQUE, app TEXT, app_path TEXT, ts REAL NOT NULL);
             ALTER TABLE items ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0;

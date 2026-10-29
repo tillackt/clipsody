@@ -77,7 +77,7 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 - **Grenze:** Clippboard sieht nur, welche App gerade vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung (z. B. Bitwarden in Chrome) ein Passwort, ohne es als vertraulich zu markieren, landet es in der Historie. Solche Einträge mit ⌘⌫ löschen.
 - Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Der Ordner ist von Time Machine und anderen Backups ausgeschlossen.
 - Gelöschte Einträge (⌘⌫, Aufräumen, „Historie löschen“) werden in der Datenbank mit Nullen überschrieben, und das Änderungsprotokoll (WAL) wird danach geleert. Die Grenze: Was das Dateisystem auf SSD-Ebene noch physisch vorhält, liegt außerhalb der Kontrolle einer App.
-- Das Fenster ist bei Bildschirmfreigabe, Aufnahmen und Screenshots nicht zu sehen.
+- Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet. Ab macOS 15 können Aufnahme-Apps, die ScreenCaptureKit nutzen, es trotzdem erfassen.
 - Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
 - Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.
 

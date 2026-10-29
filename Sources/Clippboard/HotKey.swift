@@ -11,8 +11,8 @@ struct HotKeyError: Error {
 /// Only one instance is meant to exist: the Carbon callback reaches it through a static handler.
 @MainActor
 final class HotKey {
-    // Read in deinit, which is not main-actor isolated; only ever set during init on the main thread.
-    nonisolated(unsafe) private var ref: EventHotKeyRef?
+    // Read in deinit, which is not main-actor isolated; set once in init and never changed.
+    nonisolated(unsafe) private let ref: EventHotKeyRef
     private static var handler: (() -> Void)?
     private static var eventHandlerInstalled = false
 
@@ -28,11 +28,13 @@ final class HotKey {
             Self.eventHandlerInstalled = true
         }
         let id = EventHotKeyID(signature: OSType(0x434C_4950), id: 1) // 'CLIP'
+        var ref: EventHotKeyRef?
         let status = RegisterEventHotKey(spec.keyCode, spec.modifiers, id, GetApplicationEventTarget(), 0, &ref)
-        guard status == noErr else { throw HotKeyError(status: status) }
+        guard status == noErr, let ref else { throw HotKeyError(status: status) }
+        self.ref = ref
     }
 
     deinit {
-        if let ref { UnregisterEventHotKey(ref) }
+        UnregisterEventHotKey(ref)
     }
 }

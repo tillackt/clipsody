@@ -41,7 +41,7 @@ import Testing
 
     @Test func databaseWithCurrentVersionButMissingColumnsIsRejected() throws {
         let directory = try TemporaryDirectory()
-        sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
+        try sqlite(directory.url.appendingPathComponent("history.sqlite").path, """
             CREATE TABLE items(id INTEGER PRIMARY KEY, kind INTEGER, text TEXT, hash TEXT UNIQUE, ts REAL);
             PRAGMA user_version = 2;
             """)
@@ -74,13 +74,13 @@ import Testing
 
     @Test func failedImportIsRetriedAtNextLaunch() throws {
         // Wrong schema: reading fails, nothing may be marked as done.
-        sqlite(databases.appendingPathComponent("clipboard.alfdb").path, "CREATE TABLE clipboard(other);")
+        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, "CREATE TABLE clipboard(other);")
         let store = try Store(directory: data.url)
         #expect(AlfredImporter.importIfNeeded(into: store, supportDirectory: alfred.url) == 0)
         #expect(store.metadata("alfredImportDone") == nil)
 
         try FileManager.default.removeItem(at: databases.appendingPathComponent("clipboard.alfdb"))
-        sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
+        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
             CREATE TABLE clipboard(item, ts decimal, app, apppath, dataType integer, dataHash);
             INSERT INTO clipboard VALUES ('second try', 1, NULL, NULL, 0, 'h');
             """)
@@ -92,7 +92,7 @@ import Testing
         let secretApp = try makeApp(named: "Vault", bundleId: "com.example.vault")
         try makeImage().write(to: databases.appendingPathComponent("clipboard.alfdb.data/img.tiff"))
         let huge = String(repeating: "x", count: CaptureLimits.maxTextBytes + 1)
-        sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
+        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
             CREATE TABLE clipboard(item, ts decimal, app, apppath, dataType integer, dataHash);
             INSERT INTO clipboard VALUES ('password123', 1, 'Vault', '\(secretApp)', 0, 'h1');
             INSERT INTO clipboard VALUES ('Image', 2, NULL, NULL, 1, 'img.tiff');

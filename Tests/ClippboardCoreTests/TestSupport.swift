@@ -18,14 +18,19 @@ final class TemporaryDirectory {
     }
 }
 
+struct FixtureError: Error, CustomStringConvertible {
+    let description: String
+}
+
 /// Runs raw SQL against a database file, for building fixtures such as old schemas.
-func sqlite(_ path: String, _ sql: String) {
+func sqlite(_ path: String, _ sql: String) throws {
     var db: OpaquePointer?
     sqlite3_open(path, &db)
     defer { sqlite3_close(db) }
     var error: UnsafeMutablePointer<CChar>?
     if sqlite3_exec(db, sql, nil, nil, &error) != SQLITE_OK {
-        fatalError("Fixture SQL failed: \(String(cString: error!))")
+        defer { sqlite3_free(error) }
+        throw FixtureError(description: "Fixture SQL failed: \(error.map { String(cString: $0) } ?? "?")")
     }
 }
 

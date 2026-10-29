@@ -9,7 +9,7 @@ import Testing
         let images = databases.appendingPathComponent("clipboard.alfdb.data")
         try FileManager.default.createDirectory(at: images, withIntermediateDirectories: true)
         try makeImage(width: 5, height: 4).write(to: images.appendingPathComponent("img.tiff"))
-        sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
+        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
             CREATE TABLE clipboard(item, ts decimal, app, apppath, dataType integer, dataHash);
             INSERT INTO clipboard VALUES ('hello from alfred', 800000000, 'Notes', '/Applications/Notes.app', 0, 'h1');
             INSERT INTO clipboard VALUES ('Image: 5x4', 800000001, 'Monosnap', NULL, 1, 'img.tiff');

@@ -34,9 +34,9 @@ public final class Store {
         // opens it (SQLite gives its -wal/-shm files the database file's mode).
         let ownerOnly: [FileAttributeKey: Any] = [.posixPermissions: 0o700]
         try FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true, attributes: ownerOnly)
-        Self.setPermissions(0o700, of: directory)
-        Self.setPermissions(0o700, of: imagesDirectory)
-        Self.excludeFromBackup(directory)
+        FilePermissions.set(0o700, of: directory)
+        FilePermissions.set(0o700, of: imagesDirectory)
+        FilePermissions.excludeFromBackup(directory)
 
         let path = directory.appendingPathComponent("history.sqlite").path
         if !FileManager.default.fileExists(atPath: path) {
@@ -227,7 +227,7 @@ public final class Store {
             do {
                 // Atomic: a crash mid-write must not leave a truncated file that later copies reuse.
                 try image.png.write(to: url, options: .atomic)
-                Self.setPermissions(0o600, of: url)
+                FilePermissions.set(0o600, of: url)
             } catch {
                 logger.error("Could not write image: \(String(describing: error), privacy: .public)")
                 return false
@@ -462,28 +462,17 @@ public final class Store {
 
     /// History is private: folder only for the user (0700), files read/write for the user only (0600).
     private func restrictPermissions() {
-        Self.setPermissions(0o700, of: directory)
-        Self.setPermissions(0o700, of: imagesDirectory)
+        FilePermissions.set(0o700, of: directory)
+        FilePermissions.set(0o700, of: imagesDirectory)
         let files = (try? FileManager.default.contentsOfDirectory(at: imagesDirectory, includingPropertiesForKeys: nil)) ?? []
         let databaseFiles = ["history.sqlite", "history.sqlite-journal", "history.sqlite-wal", "history.sqlite-shm"]
             .map { directory.appendingPathComponent($0) }
         for url in files + databaseFiles + [Config.url(in: directory)]
         where FileManager.default.fileExists(atPath: url.path) {
-            Self.setPermissions(0o600, of: url)
+            FilePermissions.set(0o600, of: url)
         }
     }
 
-    /// Time Machine and other backups would keep entries that "clear" and retention already removed.
-    private static func excludeFromBackup(_ url: URL) {
-        var url = url
-        var values = URLResourceValues()
-        values.isExcludedFromBackup = true
-        try? url.setResourceValues(values)
-    }
-
-    static func setPermissions(_ mode: Int, of url: URL) {
-        try? FileManager.default.setAttributes([.posixPermissions: mode], ofItemAtPath: url.path)
-    }
 
     private func fileSize(of url: URL) -> Int64? {
         (try? FileManager.default.attributesOfItem(atPath: url.path))?[.size] as? Int64
