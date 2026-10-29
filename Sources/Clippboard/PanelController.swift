@@ -319,8 +319,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
                 info.append(AppLocale.fileSize(Int64(bytes)))
             } else {
                 let lines = item.text.split(whereSeparator: \.isNewline).count
-                let characters = String(localized: "\(item.text.count) characters")
-                info.append(lines > 1 ? characters + ", " + String(localized: "\(lines) lines") : characters)
+                // Separate parts, joined by " · " like the rest of the line: no language-specific comma.
+                info.append(String(localized: "\(item.text.count) characters"))
+                if lines > 1 { info.append(String(localized: "\(lines) lines")) }
             }
             if item.hasRichText { info.append(String(localized: "with formatting")) }
         case .files:

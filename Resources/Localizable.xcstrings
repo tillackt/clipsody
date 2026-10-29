@@ -18,7 +18,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ – « %@ »"
+            "value": "%@ – « %@ »"
           }
         },
         "it": {
@@ -30,7 +30,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ – “%@”"
+            "value": "%@ – ‘%@’"
           }
         },
         "pl": {
@@ -367,6 +367,166 @@
         }
       }
     },
+    "%lld files: %@": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld file: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld files: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld Datei: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld Dateien: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld fichier : %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld fichiers : %2$@"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld archivo: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld archivos: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld file: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld file: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld bestand: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld bestanden: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "pl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld plik: %2$@"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld pliki: %2$@"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld plików: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld pliku: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld arquivo: %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld arquivos: %2$@"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld lines": {
       "localizations": {
         "de": {
@@ -571,13 +731,13 @@
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld ya no disponible"
+                  "value": "%lld ya no está disponible"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%lld ya no disponibles"
+                  "value": "%lld ya no están disponibles"
                 }
               }
             }
@@ -779,48 +939,48 @@
         }
       }
     },
-    "At most:": {
+    "At most (entries):": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Höchstens:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Como máximo:"
+            "value": "Höchstens (Einträge):"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Au maximum :"
+            "value": "Au maximum (éléments) :"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Como máximo (elementos):"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Al massimo:"
+            "value": "Al massimo (elementi):"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maximaal:"
+            "value": "Maximaal (items):"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maksymalnie:"
+            "value": "Maks. liczba elementów:"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "No máximo:"
+            "value": "No máximo (itens):"
           }
         }
       }
@@ -830,7 +990,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Standardmäßig nutzt Clippboard die Sprache deines Macs. Eine Änderung wirkt nach dem Neustart von Clippboard."
+            "value": "Standardmäßig nutzt Clippboard die Sprache deines Macs. Eine Änderung wird nach dem Neustart von Clippboard wirksam."
           }
         },
         "es": {
@@ -1004,7 +1164,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apagar"
+            "value": "Limpar"
           }
         }
       }
@@ -1050,7 +1210,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apagar histórico…"
+            "value": "Limpar Histórico…"
           }
         }
       }
@@ -1096,7 +1256,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apagar todo o histórico?"
+            "value": "Limpar todo o histórico?"
           }
         }
       }
@@ -1158,7 +1318,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard no pudo eliminar estos elementos; bórralos tú:"
+            "value": "Clippboard no pudo eliminar estos elementos; bórralos manualmente:"
           }
         },
         "fr": {
@@ -1434,13 +1594,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clippboard a la papelera. Si arrastras tú la app a la papelera, estos datos se quedan en el Mac."
+            "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clippboard a la Papelera. Si arrastras tú la app a la Papelera, estos datos se quedan en el Mac."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supprime l’historique, les images et les réglages, retire l’ouverture à la connexion et l’autorisation « Accessibilité », puis place Clippboard dans la corbeille. Si vous glissez vous-même l’app dans la corbeille, ces données restent sur le Mac."
+            "value": "Supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation « Accessibilité », puis place Clippboard dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur le Mac."
           }
         },
         "it": {
@@ -1452,13 +1612,13 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verwijdert de geschiedenis, afbeeldingen en instellingen, haalt het inlogonderdeel en de toestemming ‘Toegankelijkheid’ weg en zet Clippboard in de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens achter."
+            "value": "Verwijdert de geschiedenis, afbeeldingen en instellingen, haalt het inlogonderdeel en de toestemming ‘Toegankelijkheid’ weg en zet Clippboard in de Prullenmand. Sleep je de app zelf naar de Prullenmand, dan blijven deze gegevens achter."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi Clippboard do kosza. Jeśli sam przeciągniesz aplikację do kosza, te dane zostaną na Macu."
+            "value": "Usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi Clippboard do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na Macu."
           }
         },
         "pt-BR": {
@@ -1532,7 +1692,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pour que ⏎ colle l’élément directement dans l’app active, Clippboard a besoin de l’autorisation « Accessibilité ». Sans elle, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur ⌘V. Si l’app a été compilée sans certificat fixe (ad hoc), l’autorisation doit être accordée à nouveau après chaque compilation (la retirer puis l’ajouter)."
+            "value": "Pour que ⏎ colle l’élément directement dans l’app active, Clippboard a besoin de l’autorisation « Accessibilité ». Sans elle, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur ⌘V. Si l’app a été compilée sans certificat fixe (ad hoc), l’autorisation doit être accordée à nouveau après chaque compilation (la retirer puis l’ajouter)."
           }
         },
         "it": {
@@ -1550,7 +1710,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aby ⏎ wklejał element bezpośrednio do aktywnej aplikacji, Clippboard potrzebuje uprawnienia „Dostępność”. Bez niego element trafia tylko do schowka i sam naciskasz ⌘V. Jeśli aplikacja została zbudowana bez stałego certyfikatu (ad hoc), uprawnienie trzeba nadać ponownie po każdej kompilacji (usunąć i dodać jeszcze raz)."
+            "value": "Aby ⏎ wklejał element bezpośrednio do aktywnej aplikacji, Clippboard potrzebuje uprawnienia „Dostępność”. Bez niego element trafia tylko do schowka i trzeba nacisnąć ⌘V. Jeśli aplikacja została zbudowana bez stałego certyfikatu (ad hoc), uprawnienie trzeba nadać ponownie po każdej kompilacji (usunąć i dodać jeszcze raz)."
           }
         },
         "pt-BR": {
@@ -1891,16 +2051,16 @@
             "value": "Info"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Infos"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Información"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infos"
           }
         },
         "it": {
@@ -1929,24 +2089,24 @@
         }
       }
     },
-    "Invalid hotkey “%@” in config.json. Example: \"cmd+option+c\"": {
+    "Invalid shortcut “%@” in config.json. Example: \"cmd+option+c\"": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ungültiger Hotkey „%@“ in config.json. Beispiel: \"cmd+option+c\""
+            "value": "Ungültiges Tastenkürzel „%@“ in config.json. Beispiel: \"cmd+option+c\""
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raccourci « %@ » non valide dans config.json. Exemple : \"cmd+option+c\""
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Atajo «%@» no válido en config.json. Ejemplo: \"cmd+option+c\""
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccourci « %@ » non valide dans config.json. Exemple : \"cmd+option+c\""
           }
         },
         "it": {
@@ -1975,48 +2135,48 @@
         }
       }
     },
-    "Keep for:": {
+    "Keep for (days):": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufbewahren:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conservar:"
+            "value": "Aufbewahren (Tage):"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conserver :"
+            "value": "Conserver (jours) :"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conservar (días):"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conserva per:"
+            "value": "Conserva per (giorni):"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bewaren:"
+            "value": "Bewaren (dagen):"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przechowuj:"
+            "value": "Przechowuj (dni):"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manter por:"
+            "value": "Manter por (dias):"
           }
         }
       }
@@ -2038,7 +2198,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trousseaux d’accès"
+            "value": "Trousseau d’accès"
           }
         },
         "it": {
@@ -2452,7 +2612,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvrir Réglages Système…"
+            "value": "Ouvrir les Réglages Système…"
           }
         },
         "it": {
@@ -3062,7 +3222,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nu opnieuw starten"
+            "value": "Start nu opnieuw"
           }
         },
         "pl": {
@@ -3498,7 +3658,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beim Anmelden starten (in Systemeinstellungen freigeben)"
+            "value": "Beim Anmelden starten (in den Systemeinstellungen erlauben)"
           }
         },
         "es": {
@@ -3510,7 +3670,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer à l’ouverture de session (à autoriser dans Réglages Système)"
+            "value": "Ouvrir à la connexion (à autoriser dans les Réglages Système)"
           }
         },
         "it": {
@@ -3556,7 +3716,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer automatiquement à l’ouverture de session"
+            "value": "Ouvrir automatiquement à la connexion"
           }
         },
         "it": {
@@ -3602,7 +3762,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lance Clippboard à l’ouverture de session sur votre Mac. Le contenu copié n’est ajouté à l’historique que lorsque l’app est ouverte."
+            "value": "Ouvre Clippboard lorsque vous vous connectez à votre Mac. Le contenu copié n’est ajouté à l’historique que lorsque l’app est ouverte."
           }
         },
         "it": {
@@ -3820,7 +3980,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hier liegen Datenbank, Bilder und config.json. Alles bleibt lokal auf diesem Mac, nichts wird übertragen. Den Verlauf löschst du über das Menüleisten-Symbol."
+            "value": "Hier liegen Datenbank, Bilder und config.json. Alles bleibt lokal auf diesem Mac, nichts wird übertragen. Die Historie löschst du über das Menüleisten-Symbol."
           }
         },
         "es": {
@@ -3872,13 +4032,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clippboard pasa a la papelera. No se puede deshacer."
+            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clippboard pasa a la Papelera. No se puede deshacer."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la corbeille. Cette action est irréversible."
+            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la Corbeille. Cette action est irréversible."
           }
         },
         "it": {
@@ -3890,65 +4050,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clippboard gaat naar de prullenmand. Dit kan niet ongedaan worden gemaakt."
+            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clippboard gaat naar de Prullenmand. Dit kan niet ongedaan worden gemaakt."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clippboard trafi do kosza. Tej operacji nie można cofnąć."
+            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clippboard trafi do Kosza. Tej operacji nie można cofnąć."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clippboard vai para o Lixo. Não é possível desfazer."
-          }
-        }
-      }
-    },
-    "The hotkey %@ is already used by another app.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Hotkey %@ ist bereits von einer anderen App belegt."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El atajo %@ ya lo usa otra app."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le raccourci %@ est déjà utilisé par une autre app."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La scorciatoia %@ è già usata da un’altra app."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De sneltoets %@ wordt al door een andere app gebruikt."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skrót %@ jest już używany przez inną aplikację."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O atalho %@ já está sendo usado por outro app."
           }
         }
       }
@@ -3995,6 +4109,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Os ajustes (config.json) estavam danificados e foram substituídos pelos valores padrão. O arquivo antigo está na pasta de dados como %@."
+          }
+        }
+      }
+    },
+    "The shortcut %@ is already used by another app.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Tastenkürzel %@ ist bereits von einer anderen App belegt."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le raccourci %@ est déjà utilisé par une autre app."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El atajo %@ ya lo usa otra app."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La scorciatoia %@ è già usata da un’altra app."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De sneltoets %@ wordt al door een andere app gebruikt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skrót %@ jest już używany przez inną aplikację."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O atalho %@ já está sendo usado por outro app."
           }
         }
       }
@@ -4413,140 +4573,48 @@
         }
       }
     },
-    "days": {
+    "macOS rejected the shortcut %@. Please choose a combination with ⌘ or ⌃.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tage"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "días"
+            "value": "macOS hat das Tastenkürzel %@ abgelehnt. Bitte eine Kombination mit ⌘ oder ⌃ wählen."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "jours"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "giorni"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "dagen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "dni"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "dias"
-          }
-        }
-      }
-    },
-    "entries": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einträge"
+            "value": "macOS a refusé le raccourci %@. Choisissez une combinaison avec ⌘ ou ⌃."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "elementos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "éléments"
+            "value": "macOS ha rechazado el atajo %@. Elige una combinación con ⌘ o ⌃."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "elementi"
+            "value": "macOS ha rifiutato la scorciatoia %@. Scegli una combinazione con ⌘ o ⌃."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "items"
+            "value": "macOS heeft de sneltoets %@ geweigerd. Kies een combinatie met ⌘ of ⌃."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "elementów"
+            "value": "macOS odrzucił skrót %@. Wybierz kombinację z ⌘ lub ⌃."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "itens"
-          }
-        }
-      }
-    },
-    "macOS rejected the hotkey %@ (%@). Please choose a combination with ⌘ or ⌃.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS hat den Hotkey %@ abgelehnt (%@). Bitte eine Kombination mit ⌘ oder ⌃ wählen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS ha rechazado el atajo %@ (%@). Elige una combinación con ⌘ o ⌃."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS a refusé le raccourci %@ (%@). Choisissez une combinaison avec ⌘ ou ⌃."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS ha rifiutato la scorciatoia %@ (%@). Scegli una combinazione con ⌘ o ⌃."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS heeft de sneltoets %@ geweigerd (%@). Kies een combinatie met ⌘ of ⌃."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS odrzucił skrót %@ (%@). Wybierz kombinację z ⌘ lub ⌃."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O macOS recusou o atalho %@ (%@). Escolha uma combinação com ⌘ ou ⌃."
+            "value": "O macOS recusou o atalho %@. Escolha uma combinação com ⌘ ou ⌃."
           }
         }
       }
@@ -4586,7 +4654,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "nie zainstalowano"
+            "value": "niezainstalowana"
           }
         },
         "pt-BR": {

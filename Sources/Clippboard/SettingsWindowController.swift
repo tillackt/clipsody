@@ -299,7 +299,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             return label
         }
 
-        func numberControl(_ field: NSTextField, _ stepper: NSStepper, unit: String, range: ClosedRange<Int>, step: Int, action: Selector) -> NSStackView {
+        func numberControl(_ field: NSTextField, _ stepper: NSStepper, range: ClosedRange<Int>, step: Int, action: Selector) -> NSStackView {
             let formatter = NumberFormatter()
             formatter.minimum = NSNumber(value: range.lowerBound)
             formatter.maximum = NSNumber(value: range.upperBound)
@@ -316,7 +316,9 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             stepper.valueWraps = false
             stepper.target = self
             stepper.action = action
-            let stack = NSStackView(views: [field, stepper, NSTextField(labelWithString: unit)])
+            // The unit is part of the row label: a word after the number would need plural forms
+            // (1 day, 2 days; Polish has four), which a catalog cannot give without the number.
+            let stack = NSStackView(views: [field, stepper])
             stack.spacing = 4
             return stack
         }
@@ -363,16 +365,16 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
 
         // History
         page(String(localized: "History"), symbol: "clock.arrow.circlepath")
-        let retention = numberControl(retentionField, retentionStepper, unit: String(localized: "days"), range: Config.retentionRange, step: 1,
+        let retention = numberControl(retentionField, retentionStepper, range: Config.retentionRange, step: 1,
                                       action: #selector(retentionChanged(_:)))
-        let retentionLabel = row(String(localized: "Keep for:"), retention, alignWith: retentionField, help: String(localized: """
+        let retentionLabel = row(String(localized: "Keep for (days):"), retention, alignWith: retentionField, help: String(localized: """
             Older entries are deleted automatically, at launch and every hour after that. If you lower the \
             value, older entries disappear right away. Pinned entries (⌘P) are never deleted automatically.
             """))
 
-        let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: String(localized: "entries"), range: Config.maxItemsRange, step: 50,
+        let maxItems = numberControl(maxItemsField, maxItemsStepper, range: Config.maxItemsRange, step: 50,
                                      action: #selector(maxItemsChanged(_:)))
-        let maxItemsLabel = row(String(localized: "At most:"), maxItems, alignWith: maxItemsField, help: String(localized: """
+        let maxItemsLabel = row(String(localized: "At most (entries):"), maxItems, alignWith: maxItemsField, help: String(localized: """
             Upper limit for the history. When there are more entries, the oldest are dropped, even if they \
             are newer than the retention period. Pinned entries do not count.
             """))

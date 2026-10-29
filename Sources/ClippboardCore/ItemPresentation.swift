@@ -53,7 +53,10 @@ public enum ItemPresentation {
             return recognizedSnippet(for: item, query: query).map { String(localized: "\(base) – “\($0)”") } ?? base
         case .files:
             let names = item.filePaths.map { ($0 as NSString).lastPathComponent }
-            return names.count == 1 ? names[0] : String(localized: "\(names.count) files") + ": " + names.joined(separator: ", ")
+            guard names.count > 1 else { return names.first ?? "" }
+            // One string for count and names, so each language places its own colon (French " :").
+            let list = names.formatted(.list(type: .and, width: .narrow).locale(AppLocale.current))
+            return String(localized: "\(names.count) files: \(list)")
         case .text:
             let collapsed = item.text.prefix(2_000)
                 .split(whereSeparator: \.isNewline)

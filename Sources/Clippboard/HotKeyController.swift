@@ -25,7 +25,7 @@ final class HotKeyController {
         current = hotkey
         isSuspended = false
         guard let spec = HotKeySpec(hotkey) else {
-            onError(String(localized: "Invalid hotkey “\(hotkey)” in config.json. Example: \"cmd+option+c\""))
+            onError(String(localized: "Invalid shortcut “\(hotkey)” in config.json. Example: \"cmd+option+c\""))
             return false
         }
         let label = KeyLabel.display(spec)
@@ -34,10 +34,12 @@ final class HotKeyController {
         do {
             hotKey = try HotKey(spec: spec, handler: onPress)
         } catch let error as HotKeyError where error.isAlreadyTaken {
-            onError(String(localized: "The hotkey \(label) is already used by another app."))
+            onError(String(localized: "The shortcut \(label) is already used by another app."))
             return false
         } catch {
-            onError(String(localized: "macOS rejected the hotkey \(label) (\(String(describing: error))). Please choose a combination with ⌘ or ⌃."))
+            // The raw error (an OSStatus) means nothing to users; it goes to the log.
+            logger.error("Hotkey registration failed: \(String(describing: error), privacy: .public)")
+            onError(String(localized: "macOS rejected the shortcut \(label). Please choose a combination with ⌘ or ⌃."))
             return false
         }
         onRegister(label)
