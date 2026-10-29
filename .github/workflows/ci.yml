@@ -1,0 +1,48 @@
+# Tests, the release build and the translation catalog for every push to main and every pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Read-only token: CI never writes to the repository.
+permissions:
+  contents: read
+
+# A new push to the same branch or pull request makes the running checks obsolete.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select the newest stable Xcode
+        run: .github/scripts/select-xcode.sh
+      - name: Run the unit tests
+        run: ./build.sh test
+
+  build:
+    name: App build and translations
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # build.sh numbers builds by the commit count, which needs the whole history.
+          fetch-depth: 0
+      - name: Select the newest stable Xcode
+        run: .github/scripts/select-xcode.sh
+      - name: Check shell script syntax
+        run: bash -n build.sh .github/scripts/select-xcode.sh
+      - name: Check the translation catalog against the code
+        run: ./build.sh check-strings
+      - name: Build the universal app
+        # Without the signing certificate the app is signed ad hoc; build.sh still verifies the signature.
+        run: ./build.sh
