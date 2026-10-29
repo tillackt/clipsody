@@ -11,10 +11,13 @@ public enum PNGValidator {
 
     /// Critical chunks plus the standard ancillary chunks for colour and resolution. ImageIO also
     /// writes eXIf (resolution only, as ImageIngest passes nothing else) and cICP (colour signalling
-    /// for Display P3). Anything else (text, private chunks) has no business in an image re-encoded
-    /// by ImageIngest.
+    /// for Display P3); for HDR images it may add the PNG 3rd edition chunks for content light level
+    /// and mastering display (both spellings that appeared, cLLI/mDCV and cLLi/mDCv), which must not
+    /// make HDR screenshots disappear. Anything else (text, private chunks) has no business in an
+    /// image re-encoded by ImageIngest.
     private static let allowedTypes: Set<String> = [
         "IHDR", "PLTE", "IDAT", "IEND", "pHYs", "iCCP", "sRGB", "gAMA", "cHRM", "tRNS", "eXIf", "cICP",
+        "cLLI", "mDCV", "cLLi", "mDCv",
     ]
 
     /// Width and height from IHDR if `data` is a well-formed PNG: signature, chunks that stay
