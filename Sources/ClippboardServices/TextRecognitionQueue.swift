@@ -14,6 +14,8 @@ public final class TextRecognitionQueue {
     private var missing = Set<String>()
     /// The service did not answer for these; retried with the next `start()`, not in a tight loop.
     private var failed = Set<String>()
+    /// Set before the store goes away (uninstall); nothing is started or written afterwards.
+    private var isStopped = false
 
     /// `recognize` gets the PNG bytes (never a path); `onRecognized` receives the image file name
     /// and the stored text.
@@ -27,12 +29,18 @@ public final class TextRecognitionQueue {
     /// Starts working through pending images unless that is already happening. Images whose
     /// recognition failed earlier are tried again.
     public func start() {
-        guard running == nil else { return }
+        guard running == nil, !isStopped else { return }
         failed.removeAll()
         running = Task { [weak self] in
             await self?.processPending()
             self?.running = nil
         }
+    }
+
+    /// Stops for good: a recognition still in flight is not stored.
+    public func stop() {
+        isStopped = true
+        running?.cancel()
     }
 
     /// Waits until the current run has finished (for tests).
@@ -55,7 +63,7 @@ public final class TextRecognitionQueue {
     }
 
     private func processPending() async {
-        while let (file, url) = nextFile() {
+        while !isStopped, let (file, url) = nextFile() {
             // Reading a multi-MB file must not block the main thread; the service gets the bytes, not the path.
             let png = await Task.detached(priority: .utility) { try? Data(contentsOf: url) }.value
             guard let png else {
@@ -69,6 +77,7 @@ public final class TextRecognitionQueue {
                 continue
             }
             let result = await recognize(png)
+            if isStopped { return }
             guard FileManager.default.fileExists(atPath: url.path) else {
                 // Deleted meanwhile: writing "" could hit a new entry for the same image copied again.
                 missing.insert(file)

@@ -164,15 +164,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func uninstall() {
-        // Nothing may write into the data folder while and after it is deleted.
+        // Nothing may write into the data folder, or show the deleted history, while and after it
+        // is deleted: tccutil and the failure alert both let the run loop go on.
         monitor.stop()
         pruneTimer?.invalidate()
         images.discardPending()
+        recognition.stop()
+        hotKeys.suspend()
+        panel.hide()
         let failed = Uninstaller.run(dataDirectory: store.directory)
         if !failed.isEmpty {
             alert(String(localized: "Clippboard could not remove these items; please delete them yourself:") + "\n\n"
                 + failed.joined(separator: "\n"))
         }
+        // An image pasted last still owes the clipboard its TIFF version.
+        paster.prepareForTermination()
         // Not terminate(): quitting normally would flush the database and save window state again.
         exit(0)
     }

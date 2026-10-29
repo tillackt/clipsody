@@ -110,6 +110,27 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         #expect(store.imageFilesWithoutRecognizedText().isEmpty)
     }
 
+    @Test func stoppedQueueStoresNothingAndDoesNotRestart() async throws {
+        try addImage(width: 5)
+        try addImage(width: 6)
+        var queue: TextRecognitionQueue?
+        var calls = 0
+        // Stops while the first recognition is in flight, as uninstalling does.
+        queue = TextRecognitionQueue(store: store, recognize: { _ in
+            calls += 1
+            queue?.stop()
+            return .text("late")
+        }) { _, _ in }
+
+        queue?.start()
+        await queue?.waitUntilIdle()
+        queue?.start()
+        await queue?.waitUntilIdle()
+
+        #expect(calls == 1)
+        #expect(store.items().allSatisfy { $0.recognizedText == nil })
+    }
+
     @Test func imagesWhoseFileVanishedAreSkipped() async throws {
         try addImage(width: 5)
         let item = try #require(store.items().first)

@@ -33,8 +33,8 @@ enum Uninstaller {
         let tcc = Process()
         tcc.executableURL = URL(fileURLWithPath: "/usr/bin/tccutil")
         tcc.arguments = ["reset", "All", bundleID]
-        try? tcc.run()
-        tcc.waitUntilExit()
+        // waitUntilExit on a task that never launched raises an exception.
+        if (try? tcc.run()) != nil { tcc.waitUntilExit() }
 
         // The preferences daemon writes an emptied domain back to disk; wait for that before the
         // file is deleted, or an empty plist reappears.
@@ -42,9 +42,18 @@ enum Uninstaller {
         UserDefaults.standard.synchronize()
 
         // Since macOS 14 only the container manager may delete a container itself; its contents
-        // go, the empty, protected shell stays and holds no user data. Not reported as a failure.
+        // go, the empty, protected shell with the manager's metadata stays and holds no user data.
+        // Anything else that remains (or cannot be listed) is reported.
         let container = library.appendingPathComponent("Containers/\(bundleID).decoder")
-        try? fileManager.removeItem(at: container)
+        if fileManager.fileExists(atPath: container.path) {
+            try? fileManager.removeItem(at: container)
+            if fileManager.fileExists(atPath: container.path) {
+                let remaining = try? fileManager.contentsOfDirectory(atPath: container.path)
+                if remaining.map({ !Set($0).isSubset(of: [".com.apple.containermanagerd.metadata.plist"]) }) ?? true {
+                    failed.append((container.path as NSString).abbreviatingWithTildeInPath)
+                }
+            }
+        }
 
         let leftovers = [
             dataDirectory,
