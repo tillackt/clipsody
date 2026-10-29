@@ -457,6 +457,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             """))
 
         let uninstallButton = NSButton(title: String(localized: "Uninstall Clippboard…"), target: self, action: #selector(confirmUninstall))
+        // Only an installed Clippboard.app can remove itself safely.
+        uninstallButton.isEnabled = Uninstaller.bundleID != nil
         row(String(localized: "Uninstall:"), uninstallButton, alignWith: uninstallButton, help: String(localized: """
             Deletes the history, images and settings, removes the login item and the Accessibility \
             permission, and moves Clippboard to the Trash. If you drag the app to the Trash yourself, \

@@ -8,10 +8,23 @@ import ServiceManagement
 /// nothing behind.
 @MainActor
 enum Uninstaller {
+    /// The app's bundle ID, but only when running from a real Clippboard.app. Run from the build
+    /// folder (`swift run`), the "bundle" is the folder holding the executable, which must never be
+    /// trashed; an empty or odd ID would turn the paths below into whole Library folders.
+    static var bundleID: String? {
+        let bundle = Bundle.main
+        guard bundle.bundleURL.pathExtension == "app",
+              bundle.executableURL?.lastPathComponent == "Clippboard",
+              let id = bundle.bundleIdentifier,
+              id.wholeMatch(of: /[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+/) != nil else { return nil }
+        return id
+    }
+
     /// Paths that could not be removed; the caller shows them, the app quits either way.
+    /// Does nothing outside a real app bundle (see `bundleID`).
     static func run(dataDirectory: URL) -> [String] {
+        guard let bundleID else { return [] }
         let fileManager = FileManager.default
-        let bundleID = Bundle.main.bundleIdentifier ?? "local.thorsten.clippboard"
         let library = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Library")
         var failed: [String] = []
 
