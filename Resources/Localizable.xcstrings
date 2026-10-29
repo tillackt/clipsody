@@ -833,16 +833,16 @@
             "value": "Standardmäßig nutzt Clippboard die Sprache deines Macs. Eine Änderung wirkt nach dem Neustart von Clippboard."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Par défaut, Clippboard utilise la langue de votre Mac. Une modification prend effet après le redémarrage de Clippboard."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Por defecto, Clippboard usa el idioma de tu Mac. Un cambio se aplica después de reiniciar Clippboard."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par défaut, Clippboard utilise la langue de votre Mac. Une modification prend effet après le redémarrage de Clippboard."
           }
         },
         "it": {
@@ -1147,6 +1147,52 @@
         }
       }
     },
+    "Clippboard could not remove these items; please delete them yourself:": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard konnte diese Objekte nicht entfernen, bitte lösche sie selbst:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard n’a pas pu supprimer ces éléments, supprimez-les vous-même :"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard no pudo eliminar estos elementos; bórralos tú:"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard non è riuscito a rimuovere questi elementi; eliminali manualmente:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard kon deze onderdelen niet verwijderen; verwijder ze zelf:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard nie mógł usunąć tych elementów, usuń je samodzielnie:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clippboard não conseguiu remover estes itens; apague-os você mesmo:"
+          }
+        }
+      }
+    },
     "Clippboard needs to restart to switch the language.": {
       "localizations": {
         "de": {
@@ -1155,16 +1201,16 @@
             "value": "Clippboard muss neu starten, um die Sprache zu wechseln."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clippboard doit redémarrer pour changer de langue."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Clippboard debe reiniciarse para cambiar el idioma."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard doit redémarrer pour changer de langue."
           }
         },
         "it": {
@@ -1465,6 +1511,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Erro no banco de dados: %@"
+          }
+        }
+      }
+    },
+    "Deletes the history, images and settings, removes the login item and the Accessibility permission, and moves Clippboard to the Trash. If you drag the app to the Trash yourself, this data stays behind.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löscht Historie, Bilder und Einstellungen, entfernt das Anmeldeobjekt und die Berechtigung „Bedienungshilfen“ und legt Clippboard in den Papierkorb. Ziehst du die App selbst in den Papierkorb, bleiben diese Daten zurück."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprime l’historique, les images et les réglages, retire l’ouverture à la connexion et l’autorisation « Accessibilité », puis place Clippboard dans la corbeille. Si vous glissez vous-même l’app dans la corbeille, ces données restent sur le Mac."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clippboard a la papelera. Si arrastras tú la app a la papelera, estos datos se quedan en el Mac."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e l’autorizzazione «Accessibilità» e sposta Clippboard nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijdert de geschiedenis, afbeeldingen en instellingen, haalt het inlogonderdeel en de toestemming ‘Toegankelijkheid’ weg en zet Clippboard in de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens achter."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi Clippboard do kosza. Jeśli sam przeciągniesz aplikację do kosza, te dane zostaną na Macu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de “Acessibilidade” e move o Clippboard para o Lixo. Se você arrastar o app para o Lixo, esses dados ficam no Mac."
           }
         }
       }
@@ -2029,16 +2121,16 @@
             "value": "Sprache:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Langue :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Idioma:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue :"
           }
         },
         "it": {
@@ -2075,16 +2167,16 @@
             "value": "Später"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plus tard"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Más tarde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus tard"
           }
         },
         "it": {
@@ -2995,16 +3087,16 @@
             "value": "Jetzt neu starten"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Redémarrer maintenant"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Reiniciar ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redémarrer maintenant"
           }
         },
         "it": {
@@ -3593,16 +3685,16 @@
             "value": "System (%@)"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Système (%@)"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sistema (%@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Système (%@)"
           }
         },
         "it": {
@@ -3815,6 +3907,52 @@
         }
       }
     },
+    "The history including pinned entries, all images and the settings are deleted for good, and Clippboard moves to the Trash. This cannot be undone.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Historie samt angepinnter Einträge, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clippboard wandert in den Papierkorb. Das lässt sich nicht rückgängig machen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la corbeille. Cette action est irréversible."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clippboard pasa a la papelera. No se puede deshacer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La cronologia, compresi gli elementi fissati, tutte le immagini e le impostazioni vengono eliminate definitivamente e Clippboard viene spostato nel Cestino. L’operazione non può essere annullata."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clippboard gaat naar de prullenmand. Dit kan niet ongedaan worden gemaakt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clippboard trafi do kosza. Tej operacji nie można cofnąć."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clippboard vai para o Lixo. Não é possível desfazer."
+          }
+        }
+      }
+    },
     "The hotkey %@ is already used by another app.": {
       "localizations": {
         "de": {
@@ -3949,6 +4087,190 @@
           "stringUnit": {
             "state": "translated",
             "value": "Desfazer"
+          }
+        }
+      }
+    },
+    "Uninstall": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deinstallieren"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstalla"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijder"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odinstaluj"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar"
+          }
+        }
+      }
+    },
+    "Uninstall Clippboard?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard deinstallieren?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller Clippboard ?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Desinstalar Clippboard?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstallare Clippboard?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard verwijderen?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odinstalować Clippboard?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar o Clippboard?"
+          }
+        }
+      }
+    },
+    "Uninstall Clippboard…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clippboard deinstallieren …"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller Clippboard…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar Clippboard…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstalla Clippboard…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijder Clippboard…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odinstaluj Clippboard…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar o Clippboard…"
+          }
+        }
+      }
+    },
+    "Uninstall:": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deinstallieren:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désinstaller :"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar:"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disinstalla:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijderen:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odinstaluj:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desinstalar:"
           }
         }
       }

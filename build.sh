@@ -2,7 +2,7 @@
 # Builds Clippboard.app (universal: Apple Silicon + Intel) into ./build.
 #   ./build.sh           build the app bundle
 #   ./build.sh test      run the unit tests
-#   ./build.sh install   run the tests, build, copy to ~/Applications and restart
+#   ./build.sh install   run the tests, build, copy to /Applications and restart
 #   ./build.sh release   run the tests and build; fails without the signing certificate
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
 set -euo pipefail
@@ -106,7 +106,9 @@ codesign --verify --strict --deep "$APP"
 echo "Built and verified $APP (signed as \"$SIGN_AS\")"
 
 if [[ "${1:-}" == "install" ]]; then
-    TARGET="$HOME/Applications/Clippboard.app"
+    TARGET="/Applications/Clippboard.app"
+    # Earlier versions installed per user; two copies would confuse Spotlight and the login item.
+    OLD_TARGET="$HOME/Applications/Clippboard.app"
     pkill -x Clippboard || true
     # Wait until the old instance is gone (at most 10 s), otherwise `open` fails with error -600.
     for _ in $(seq 50); do
@@ -119,8 +121,7 @@ if [[ "${1:-}" == "install" ]]; then
     fi
     # LaunchServices needs a moment after the process is gone.
     sleep 1
-    mkdir -p "$HOME/Applications"
-    rm -rf "$TARGET"
+    rm -rf "$TARGET" "$OLD_TARGET"
     # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
     ditto "$APP" "$TARGET"
     open "$TARGET"

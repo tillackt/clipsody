@@ -29,6 +29,11 @@ final class ClipboardMonitor {
         self.timer = timer
     }
 
+    func stop() {
+        timer?.invalidate()
+        timer = nil
+    }
+
     /// Call after writing to the pasteboard ourselves so that write is not recorded again.
     func ignoreCurrentContents() {
         lastChangeCount = NSPasteboard.general.changeCount

@@ -143,7 +143,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 onRecordingHotKey: { [unowned self] recording in
                     if recording { hotKeys.suspend() } else { hotKeys.resume() }
                 },
-                onChange: { [unowned self] newConfig in applySettings(newConfig) }
+                onChange: { [unowned self] newConfig in applySettings(newConfig) },
+                onUninstall: { [unowned self] in uninstall() }
             )
         }
         settings?.show(with: config)
@@ -160,6 +161,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         config = newConfig
         config.save(to: store.directory)
         prune()
+    }
+
+    private func uninstall() {
+        // Nothing may write into the data folder while and after it is deleted.
+        monitor.stop()
+        pruneTimer?.invalidate()
+        images.discardPending()
+        let failed = Uninstaller.run(dataDirectory: store.directory)
+        if !failed.isEmpty {
+            alert(String(localized: "Clippboard could not remove these items; please delete them yourself:") + "\n\n"
+                + failed.joined(separator: "\n"))
+        }
+        // Not terminate(): quitting normally would flush the database and save window state again.
+        exit(0)
     }
 
     @objc private func clearHistory() {

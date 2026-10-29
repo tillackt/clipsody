@@ -8,6 +8,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     private var config: Config
     private let dataDirectory: URL
     private let onChange: (Config) -> Void
+    private let onUninstall: () -> Void
 
     private let hotKeyRecorder: HotKeyRecorder
     private let languagePopUp = NSPopUpButton()
@@ -21,10 +22,12 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     private let ignoredTable = NSTableView()
     private let ignoredButtons = NSSegmentedControl()
 
-    init(config: Config, dataDirectory: URL, onRecordingHotKey: @escaping (Bool) -> Void, onChange: @escaping (Config) -> Void) {
+    init(config: Config, dataDirectory: URL, onRecordingHotKey: @escaping (Bool) -> Void,
+         onChange: @escaping (Config) -> Void, onUninstall: @escaping () -> Void) {
         self.config = config
         self.dataDirectory = dataDirectory
         self.onChange = onChange
+        self.onUninstall = onUninstall
         hotKeyRecorder = HotKeyRecorder(hotkey: config.hotkey)
         hotKeyRecorder.onRecordingChange = onRecordingHotKey
 
@@ -204,6 +207,22 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             config.ignoredApps.append(bundleId)
             ignoredTable.reloadData()
             commit()
+        }
+    }
+
+    @objc private func confirmUninstall() {
+        let alert = NSAlert()
+        alert.alertStyle = .critical
+        alert.messageText = String(localized: "Uninstall Clippboard?")
+        alert.informativeText = String(localized: """
+            The history including pinned entries, all images and the settings are deleted for good, \
+            and Clippboard moves to the Trash. This cannot be undone.
+            """)
+        alert.addButton(withTitle: String(localized: "Uninstall"))
+        alert.buttons.first?.hasDestructiveAction = true
+        alert.addButton(withTitle: String(localized: "Cancel"))
+        alert.beginSheetModal(for: window!) { [weak self] response in
+            if response == .alertFirstButtonReturn { self?.onUninstall() }
         }
     }
 
@@ -427,6 +446,13 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         row(String(localized: "Version:"), versionLabel, alignWith: versionLabel, help: String(localized: """
             The build number counts the changes to the source code, followed by the exact code version. \
             Please include it when reporting a problem.
+            """))
+
+        let uninstallButton = NSButton(title: String(localized: "Uninstall Clippboard…"), target: self, action: #selector(confirmUninstall))
+        row(String(localized: "Uninstall:"), uninstallButton, alignWith: uninstallButton, help: String(localized: """
+            Deletes the history, images and settings, removes the login item and the Accessibility \
+            permission, and moves Clippboard to the Trash. If you drag the app to the Trash yourself, \
+            this data stays behind.
             """))
 
         // Columns only exist once rows were added.

@@ -46,7 +46,7 @@ Voraussetzung: Xcode mit Swift 6 (die Command Line Tools allein reichen nicht, w
 ./build.sh install
 ```
 
-`test` führt die Tests aus. `install` baut `build/Clippboard.app` als Universal Binary (Apple Silicon und Intel), kopiert sie nach `~/Applications` und startet sie. Beim ersten Start:
+`test` führt die Tests aus. `install` baut `build/Clippboard.app` als Universal Binary (Apple Silicon und Intel), kopiert sie nach `/Applications` (Programme) und startet sie. Beim ersten Start:
 
 1. **Bedienungshilfen** erlauben (Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen → Clippboard). Ohne das wird der Eintrag nur in die Zwischenablage gelegt, nicht eingefügt. Nach jedem Neubau muss die Berechtigung neu gesetzt werden (Ad-hoc-Signatur): Eintrag entfernen und wieder hinzufügen.
 2. Menüleisten-Icon → **Einstellungen …** → Autostart einschalten.
@@ -108,3 +108,9 @@ Wer die App weitergibt, veröffentlicht neben dem Download die SHA-256-Prüfsumm
 
 - `history.sqlite`: Einträge
 - `images/`: Bilder als PNG
+
+## Deinstallieren
+
+Einstellungen → **Clippboard deinstallieren …**. Das löscht Historie, Bilder, `config.json` und die Einstellungen der App, entfernt Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Zieht man die App nur selbst in den Papierkorb, bleiben diese Daten liegen: macOS sagt einer App nicht, dass sie gelöscht wird.
+
+Übrig bleibt nur die leere Hülle des Sandbox-Ordners des Bild-Hilfsprozesses (`~/Library/Containers/local.thorsten.clippboard.decoder`, eine Verwaltungsdatei von macOS, keine Nutzerdaten). Seit macOS 14 darf nur das System Container löschen; im Finder lässt sie sich mit Bestätigung in den Papierkorb legen.
