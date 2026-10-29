@@ -349,6 +349,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         background.blendingMode = .behindWindow
         background.state = .active
         panel.contentView = background
+        background.widthAnchor.constraint(equalToConstant: 820).isActive = true
+        background.heightAnchor.constraint(equalToConstant: 460).isActive = true
 
         search.placeholderString = "Zwischenablage durchsuchen …"
         search.font = .systemFont(ofSize: 22, weight: .light)
@@ -393,6 +395,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
         previewImage.imageScaling = .scaleProportionallyDown
         previewImage.imageAlignment = .alignCenter
+        // An image view asks for its image's pixel size; without this, large images grow the whole panel.
+        for orientation in [NSLayoutConstraint.Orientation.horizontal, .vertical] {
+            previewImage.setContentCompressionResistancePriority(.defaultLow, for: orientation)
+            previewImage.setContentHuggingPriority(.defaultLow, for: orientation)
+        }
 
         infoLabel.font = .systemFont(ofSize: 11)
         infoLabel.textColor = .secondaryLabelColor
