@@ -136,6 +136,8 @@ Menu bar icon → **Settings…** (⌘,), split into the tabs **General**, **His
 - The app does not trust the service's replies either: it computes the file name (hash) itself and checks the whole PNG structure without decoding pixels: signature, checksum (CRC) of every chunk, only known chunk types, dimensions as reported, nothing after the end. Appended foreign data is thus neither stored nor pasted. It also limits text and checks the size and aspect ratio of preview images.
 - Which service the app accepts depends on the signature. With a certificate (see above): only a service with the same identifier and the same certificate. Signed ad hoc there is no certificate, and any ad-hoc signed program can carry the identifier. The app therefore also checks its own seal including the embedded service at launch; a replaced service shows up there. If it is replaced while the app is running, that shows at the next launch. If the app cannot read its own signature or the seal does not verify, it talks to no service and processes no images. If the service cannot be reached, no images are stored either.
 
+Found a vulnerability? Please report it privately, see [SECURITY.md](SECURITY.md).
+
 ## Distribution
 
 Whoever passes the app on publishes, next to the download, the SHA-256 checksum of the release file (`shasum -a 256 Clipsody.dmg`) and the SHA-256 fingerprint of the signing certificate (`codesign -d --extract-certificates Clipsody.app && shasum -a 256 codesign0`). That way recipients can recognise a re-signed or modified copy.
