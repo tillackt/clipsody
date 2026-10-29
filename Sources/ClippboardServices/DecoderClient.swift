@@ -7,9 +7,20 @@ import Foundation
 final class ResumeOnce<Value: Sendable>: @unchecked Sendable {
     private let lock = NSLock()
     private var continuation: CheckedContinuation<Value, Never>?
+    private var onResume: (@Sendable () -> Void)?
 
     init(_ continuation: CheckedContinuation<Value, Never>) {
         self.continuation = continuation
+    }
+
+    /// Runs `action` once the continuation is resumed (right away if it already was); used to
+    /// cancel the timeout as soon as a reply arrives.
+    func whenResumed(_ action: @escaping @Sendable () -> Void) {
+        lock.lock()
+        let alreadyResumed = continuation == nil
+        if !alreadyResumed { onResume = action }
+        lock.unlock()
+        if alreadyResumed { action() }
     }
 
     /// Returns false if the continuation was already resumed.
@@ -17,9 +28,12 @@ final class ResumeOnce<Value: Sendable>: @unchecked Sendable {
     func resume(_ value: Value) -> Bool {
         lock.lock()
         let pending = continuation
+        let action = onResume
         continuation = nil
+        onResume = nil
         lock.unlock()
         pending?.resume(returning: value)
+        if pending != nil { action?() }
         return pending != nil
     }
 }
@@ -63,7 +77,12 @@ public struct Thumbnail {
 public final class DecoderClient {
     private let makeConnection: @MainActor () -> NSXPCConnection
     private let timeout: Duration
+    private let idleTimeout: Duration
     private var connection: NSXPCConnection?
+    /// Counts connections, so a late handler of an old one can tell it is no longer current.
+    private var connectionGeneration = 0
+    private var callsInFlight = 0
+    private var idleTask: Task<Void, Never>?
 
     /// Recognised text is stored for search only; more than this is cut off.
     public nonisolated static let maxRecognizedCharacters = 100_000
@@ -82,9 +101,12 @@ public final class DecoderClient {
 
     /// `makeConnection` lets tests use an anonymous listener instead of the bundled service.
     /// A service that hangs (e.g. on a crafted image) must not block its callers forever: after
-    /// `timeout` the call returns its fallback.
-    public init(timeout: Duration = .seconds(30), makeConnection: @escaping @MainActor () -> NSXPCConnection) {
+    /// `timeout` the call returns its fallback. After `idleTimeout` without calls the connection is
+    /// closed, so the service process can end and give back its memory.
+    public init(timeout: Duration = .seconds(30), idleTimeout: Duration = .seconds(60),
+                makeConnection: @escaping @MainActor () -> NSXPCConnection) {
         self.timeout = timeout
+        self.idleTimeout = idleTimeout
         self.makeConnection = makeConnection
     }
 
@@ -174,6 +196,12 @@ public final class DecoderClient {
     ) async -> Value {
         let connection = currentConnection()
         let timeout = timeout
+        callsInFlight += 1
+        idleTask?.cancel()
+        defer {
+            callsInFlight -= 1
+            scheduleIdleShutdown()
+        }
         return await withCheckedContinuation { continuation in
             let once = ResumeOnce(continuation)
             // @Sendable: XPC calls this on its own queue. A closure formed here would otherwise be
@@ -187,28 +215,55 @@ public final class DecoderClient {
                 return
             }
             send(proxy) { value in once.resume(value) }
-            Task { [weak self] in
+            let timer = Task { [weak self] in
                 try? await Task.sleep(for: timeout)
-                if once.resume(fallback) {
-                    logger.error("Decoder service timed out; restarting it")
-                    connection.invalidate()
-                    self?.connection = nil
-                }
+                guard !Task.isCancelled, once.resume(fallback) else { return }
+                // Closing the connection ends the service process (it exits when disconnected);
+                // launchd starts a fresh one for the next request.
+                logger.error("Decoder service timed out; restarting it")
+                self?.drop(connection)
             }
+            once.whenResumed { timer.cancel() }
         }
     }
 
     private func currentConnection() -> NSXPCConnection {
         if let connection { return connection }
         let connection = makeConnection()
+        connectionGeneration += 1
+        let generation = connectionGeneration
         connection.remoteObjectInterface = NSXPCInterface(with: DecoderServiceProtocol.self)
         // launchd restarts the service on the next message after a crash; only a fully
-        // invalidated connection has to be recreated.
+        // invalidated connection has to be recreated. The generation check matters: this handler
+        // may run after a newer connection has replaced this one.
         connection.invalidationHandler = { @Sendable [weak self] in
-            Task { @MainActor in self?.connection = nil }
+            Task { @MainActor in
+                guard let self, self.connectionGeneration == generation else { return }
+                self.connection = nil
+            }
+        }
+        connection.interruptionHandler = { @Sendable in
+            logger.error("Decoder service ended unexpectedly; it is restarted on the next request")
         }
         connection.resume()
         self.connection = connection
         return connection
+    }
+
+    /// Closes `connection` and forgets it, unless a newer one has already taken its place.
+    private func drop(_ connection: NSXPCConnection) {
+        connection.invalidate()
+        if self.connection === connection { self.connection = nil }
+    }
+
+    private func scheduleIdleShutdown() {
+        guard callsInFlight == 0, connection != nil else { return }
+        idleTask?.cancel()
+        let idleTimeout = idleTimeout
+        idleTask = Task { [weak self] in
+            try? await Task.sleep(for: idleTimeout)
+            guard let self, !Task.isCancelled, callsInFlight == 0, let connection else { return }
+            drop(connection)
+        }
     }
 }

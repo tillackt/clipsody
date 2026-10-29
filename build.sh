@@ -44,6 +44,10 @@ cp "$BIN_DIR/ClippboardDecoder" "$XPC/Contents/MacOS/ClippboardDecoder"
 strip -x "$XPC/Contents/MacOS/ClippboardDecoder"
 cp Resources/ClippboardDecoder-Info.plist "$XPC/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$DECODER_ID" "$XPC/Contents/Info.plist"
+# Same version as the app, so crash reports of the service match a build.
+plutil -replace CFBundleShortVersionString -string "$(plutil -extract CFBundleShortVersionString raw Resources/Info.plist)" \
+    "$XPC/Contents/Info.plist"
+plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$XPC/Contents/Info.plist"
 
 # Hardened runtime: no code injection (DYLD_INSERT_LIBRARIES etc.) into a process that holds
 # the Accessibility permission. A stable signing identity keeps that permission across rebuilds.

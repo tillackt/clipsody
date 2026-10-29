@@ -39,6 +39,41 @@ import Testing
         #expect(ContinuousClock.now - started < .seconds(5))
     }
 
+    @Test func oneReconnectAfterTimeoutIsKept() async throws {
+        // After a timeout the client reconnects once. The old connection's late invalidation must
+        // not throw away the new one, which would make every call open yet another connection.
+        let silent = TestService { SilentDecoder() }
+        let working = TestService()
+        var connections = 0
+        let silentEndpoint = silent.listener.endpoint
+        let workingEndpoint = working.listener.endpoint
+        let client = DecoderClient(timeout: .milliseconds(200), idleTimeout: .seconds(60)) {
+            connections += 1
+            return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
+        }
+        #expect(await client.prepareImage(makeImage()) == nil)
+        #expect(await client.prepareImage(makeImage()) != nil)
+        try await Task.sleep(for: .milliseconds(300))
+        #expect(await client.prepareImage(makeImage()) != nil)
+        #expect(connections == 2)
+    }
+
+    @Test func idleConnectionIsClosedAndReopenedOnDemand() async throws {
+        let service = TestService()
+        var connections = 0
+        let endpoint = service.listener.endpoint
+        let client = DecoderClient(idleTimeout: .milliseconds(100)) {
+            connections += 1
+            return NSXPCConnection(listenerEndpoint: endpoint)
+        }
+        #expect(await client.prepareImage(makeImage()) != nil)
+        #expect(await client.prepareImage(makeImage()) != nil)
+        #expect(connections == 1)
+        try await Task.sleep(for: .milliseconds(400))
+        #expect(await client.prepareImage(makeImage()) != nil)
+        #expect(connections == 2)
+    }
+
     @Test func clientRecoversAfterATimeout() async throws {
         // First call hits a silent service; the client must reconnect for the next call.
         let silent = TestService { SilentDecoder() }
