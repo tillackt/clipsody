@@ -7,6 +7,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var config = Config()
     private var monitor: ClipboardMonitor!
     private var panel: PanelController!
+    private let paster = Paster()
     private var hotKey: HotKey?
     private var hotKeySpec: HotKeySpec?
     private var statusItem: NSStatusItem!
@@ -68,57 +69,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
         let rich = withFormatting ? store.richText(for: item) : nil
-        guard Paster.write(item, imageURL: store.imageURL(for: item), rich: rich) else {
+        guard paster.paste(item, imageURL: store.imageURL(for: item), rich: rich, into: target) else {
             logger.error("Paste: content no longer available (file moved or deleted)")
             NSSound.beep()
             return
         }
         monitor.ignoreCurrentContents()
         store.touch(item)
-
-        guard Paster.isTrusted(prompt: false) else {
-            logger.error("Paste: no Accessibility permission, item only copied")
-            NSSound.beep()
-            _ = Paster.isTrusted(prompt: true)
-            return
-        }
-
-        // Without a living target (Clippboard itself was in front, or the app quit) the entry is only copied.
-        guard let target, !target.isTerminated else {
-            logger.notice("Paste: no target app, item only copied")
-            return
-        }
-        // If Clippboard itself is active (e.g. the settings window was used), ⌘V would land here.
-        if !target.isActive {
-            if #available(macOS 14.0, *) { NSApp.yieldActivation(to: target) }
-            target.activate(options: [])
-        }
-        Task {
-            // Wait up to ~0.5 s for the target app to be frontmost, then let its window regain focus.
-            for _ in 0..<20 where !isFrontmost(target) {
-                try? await Task.sleep(for: .milliseconds(25))
-            }
-            // Never send ⌘V to whatever else came to the front (a chat, a notification): the entry
-            // could end up in the wrong place. It stays on the clipboard instead.
-            guard isFrontmost(target) else {
-                logger.error("Paste: \(target.localizedName ?? "-", privacy: .public) did not come to the front, item only copied")
-                NSSound.beep()
-                return
-            }
-            try? await Task.sleep(for: .milliseconds(100))
-            let types = (NSPasteboard.general.types ?? []).map(\.rawValue).joined(separator: ", ")
-            let frontmost = NSWorkspace.shared.frontmostApplication?.localizedName ?? "-"
-            logger.notice("""
-                Paste: ⌘V to \(target.localizedName ?? "-", privacy: .public) \
-                (frontmost \(frontmost, privacy: .public), formatted \(withFormatting), \
-                kind \(item.kind.rawValue), pasteboard: \(types, privacy: .public))
-                """)
-            Paster.sendPasteKeystroke()
-        }
-    }
-
-    private func isFrontmost(_ app: NSRunningApplication) -> Bool {
-        NSWorkspace.shared.frontmostApplication?.processIdentifier == app.processIdentifier
     }
 
     // MARK: - Text recognition

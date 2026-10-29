@@ -6,9 +6,11 @@ import ClippboardCore
 /// a 5K screenshot is about 30 MB as TIFF.
 private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
     private let png: Data
+    private let onFinished: @Sendable (ObjectIdentifier) -> Void
 
-    init(png: Data) {
+    init(png: Data, onFinished: @escaping @Sendable (ObjectIdentifier) -> Void) {
         self.png = png
+        self.onFinished = onFinished
     }
 
     func pasteboard(_ pasteboard: NSPasteboard?, item: NSPasteboardItem, provideDataForType type: NSPasteboard.PasteboardType) {
@@ -16,12 +18,20 @@ private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
             item.setData(tiff, forType: .tiff)
         }
     }
+
+    /// The pasteboard moved on (something else was copied): the image data is no longer needed.
+    func pasteboardFinishedWithDataProvider(_ pasteboard: NSPasteboard) {
+        onFinished(ObjectIdentifier(self))
+    }
 }
 
+/// Puts a history entry on the pasteboard and pastes it into the app the user came from.
 @MainActor
-enum Paster {
-    /// Kept alive until the next paste; the pasteboard item does not own its data provider.
-    private static var tiffProvider: TIFFProvider?
+final class Paster {
+    /// The pasteboard item does not own its data provider, so it is kept here until released.
+    private var tiffProvider: TIFFProvider?
+    /// Only the latest paste may send ⌘V; a quicker second one cancels the first.
+    private var pasteTask: Task<Void, Never>?
 
     static func isTrusted(prompt: Bool) -> Bool {
         // Literal value of kAXTrustedCheckOptionPrompt, which Swift 6 treats as unsafe global state.
@@ -29,9 +39,58 @@ enum Paster {
         return AXIsProcessTrustedWithOptions(options)
     }
 
-    /// Puts the item on the pasteboard; returns false if there is nothing left to paste
-    /// (image file or all copied files gone). `rich` is added for text when given.
-    static func write(_ item: ClipItem, imageURL: URL?, rich: RichText?) -> Bool {
+    /// Writes the entry to the pasteboard and, when allowed and possible, sends ⌘V to `target`.
+    /// Returns false if there was nothing to paste (image file or all copied files gone).
+    func paste(_ item: ClipItem, imageURL: URL?, rich: RichText?, into target: NSRunningApplication?) -> Bool {
+        pasteTask?.cancel()
+        guard write(item, imageURL: imageURL, rich: rich) else { return false }
+
+        guard Self.isTrusted(prompt: false) else {
+            logger.error("Paste: no Accessibility permission, item only copied")
+            NSSound.beep()
+            _ = Self.isTrusted(prompt: true)
+            return true
+        }
+        // Without a living target (Clippboard itself was in front, or the app quit) the entry is only copied.
+        guard let target, !target.isTerminated else {
+            logger.notice("Paste: no target app, item only copied")
+            return true
+        }
+        // If Clippboard itself is active (e.g. the settings window was used), ⌘V would land here.
+        if !target.isActive {
+            if #available(macOS 14.0, *) { NSApp.yieldActivation(to: target) }
+            target.activate(options: [])
+        }
+        let changeCount = NSPasteboard.general.changeCount
+        pasteTask = Task {
+            // Wait up to ~0.5 s for the target app to be frontmost, then let its window regain focus.
+            for _ in 0..<20 where !Self.isFrontmost(target) {
+                try? await Task.sleep(for: .milliseconds(25))
+            }
+            if Self.isFrontmost(target) {
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+            // Checked right before the keystroke: superseded by another paste, another app came to the
+            // front (a chat, a notification), or the clipboard changed meanwhile. In each case ⌘V could
+            // put something in the wrong place, so the entry just stays on the clipboard.
+            guard !Task.isCancelled else { return }
+            guard Self.isFrontmost(target), NSPasteboard.general.changeCount == changeCount else {
+                logger.error("Paste: target not in front or clipboard changed, item only copied")
+                NSSound.beep()
+                return
+            }
+            logger.notice("Paste: ⌘V to \(target.localizedName ?? "-", privacy: .public), kind \(item.kind.rawValue)")
+            Self.sendPasteKeystroke()
+        }
+        return true
+    }
+
+    private static func isFrontmost(_ app: NSRunningApplication) -> Bool {
+        NSWorkspace.shared.frontmostApplication?.processIdentifier == app.processIdentifier
+    }
+
+    /// `rich` is added for text when given.
+    private func write(_ item: ClipItem, imageURL: URL?, rich: RichText?) -> Bool {
         let pasteboard = NSPasteboard.general
         switch item.kind {
         case .text:
@@ -42,14 +101,20 @@ enum Paster {
             }
         case .image:
             guard let imageURL, let png = try? Data(contentsOf: imageURL) else { return false }
-            let item = NSPasteboardItem()
-            item.setData(png, forType: .png)
+            let pasteboardItem = NSPasteboardItem()
+            pasteboardItem.setData(png, forType: .png)
             // Some older apps only accept TIFF.
-            let provider = TIFFProvider(png: png)
-            item.setDataProvider(provider, forTypes: [.tiff])
+            let provider = TIFFProvider(png: png) { [weak self] finished in
+                Task { @MainActor in
+                    if let self, let current = self.tiffProvider, ObjectIdentifier(current) == finished {
+                        self.tiffProvider = nil
+                    }
+                }
+            }
+            pasteboardItem.setDataProvider(provider, forTypes: [.tiff])
             tiffProvider = provider
             pasteboard.clearContents()
-            pasteboard.writeObjects([item])
+            pasteboard.writeObjects([pasteboardItem])
         case .files:
             let urls = item.filePaths
                 .filter { FileManager.default.fileExists(atPath: $0) }
@@ -62,7 +127,7 @@ enum Paster {
     }
 
     /// Simulates ⌘V in the frontmost app. Requires Accessibility permission.
-    static func sendPasteKeystroke() {
+    private static func sendPasteKeystroke() {
         let source = CGEventSource(stateID: .combinedSessionState)
         // Keep keys the user is still holding (e.g. ⏎ from selecting the entry) out of the synthetic event.
         source?.setLocalEventsFilterDuringSuppressionState(
