@@ -75,7 +75,8 @@ Menüleisten-Icon → **Einstellungen …** (⌘,). Jede Option ist dort erklär
 
 - Einträge, die Passwort-Manager als vertraulich markieren (`org.nspasteboard.ConcealedType` und ähnliche), werden nie gespeichert. Ebenso nichts aus den Apps unter „Ignorierte Apps“.
 - **Grenze:** Clippboard sieht nur, welche App gerade vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung (z. B. Bitwarden in Chrome) ein Passwort, ohne es als vertraulich zu markieren, landet es in der Historie. Solche Einträge mit ⌘⌫ löschen.
-- Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Gelöschte Einträge werden in der Datenbank überschrieben, „Historie löschen“ baut die Datei neu auf.
+- Alle Daten bleiben lokal: Ordner nur für dich lesbar (0700), Dateien 0600. Der Ordner ist von Time Machine und anderen Backups ausgeschlossen.
+- Gelöschte Einträge (⌘⌫, Aufräumen, „Historie löschen“) werden in der Datenbank mit Nullen überschrieben, und das Änderungsprotokoll (WAL) wird danach geleert. Die Grenze: Was das Dateisystem auf SSD-Ebene noch physisch vorhält, liegt außerhalb der Kontrolle einer App.
 - Das Fenster ist bei Bildschirmfreigabe, Aufnahmen und Screenshots nicht zu sehen.
 - Texte über 2 MB und Bilder über 50 Megapixel werden nicht aufgezeichnet.
 - Die App läuft mit Hardened Runtime, damit kein anderes Programm Code in sie einschleusen und ihre Bedienungshilfen-Berechtigung missbrauchen kann.

@@ -30,9 +30,18 @@ public final class Store {
     public init(directory: URL = Store.defaultDirectory) throws {
         self.directory = directory
         imagesDirectory = directory.appendingPathComponent("images")
-        try FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true)
+        // Private from the first byte: folders 0700 and the database file 0600 exist before SQLite
+        // opens it (SQLite gives its -wal/-shm files the database file's mode).
+        let ownerOnly: [FileAttributeKey: Any] = [.posixPermissions: 0o700]
+        try FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true, attributes: ownerOnly)
+        Self.setPermissions(0o700, of: directory)
+        Self.setPermissions(0o700, of: imagesDirectory)
+        Self.excludeFromBackup(directory)
 
         let path = directory.appendingPathComponent("history.sqlite").path
+        if !FileManager.default.fileExists(atPath: path) {
+            FileManager.default.createFile(atPath: path, contents: nil, attributes: [.posixPermissions: 0o600])
+        }
         guard sqlite3_open(path, &db) == SQLITE_OK else {
             let message = String(cString: sqlite3_errmsg(db))
             sqlite3_close(db)
@@ -40,8 +49,9 @@ public final class Store {
         }
         // Deleted content is overwritten with zeros instead of lingering in free pages.
         try execute("PRAGMA secure_delete = ON")
-        // WAL: fewer disk syncs per copied item.
-        try execute("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL")
+        // WAL: fewer disk syncs per copied item. journal_size_limit 0 lets checkpoints shrink the WAL to
+        // nothing instead of keeping old frames (with deleted content) around for reuse.
+        try execute("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA journal_size_limit = 0")
         try migrate()
         try enableIncrementalVacuum()
         restrictPermissions()
@@ -210,13 +220,13 @@ public final class Store {
 
     public func delete(_ item: ClipItem) {
         deleteWhere("id = ?") { sqlite3_bind_int64($0, 1, item.id) }
+        wipeDeletedContent()
     }
 
     /// Deletes everything except pinned entries.
     public func clear() {
         deleteWhere("pinned = 0") { _ in }
-        // Rebuild the file so nothing of the cleared history remains on disk.
-        try? execute("VACUUM")
+        wipeDeletedContent()
     }
 
     /// Drops unpinned entries older than the retention period or beyond maxItems.
@@ -229,7 +239,19 @@ public final class Store {
             sqlite3_bind_double(stmt, 1, cutoff)
             sqlite3_bind_int64(stmt, 2, Int64(maxItems))
         }
+        wipeDeletedContent()
+    }
+
+    /// secure_delete zeroes freed pages, but in WAL mode the old page versions (with the deleted
+    /// text) still sit in the -wal file. Copying everything into the main file and truncating the
+    /// WAL to zero bytes removes them; incremental_vacuum hands freed pages back to the file system.
+    private func wipeDeletedContent() {
         try? execute("PRAGMA incremental_vacuum")
+        var busy = 0
+        query("PRAGMA wal_checkpoint(TRUNCATE)") { busy = Int(sqlite3_column_int($0, 0)) }
+        if busy != 0 {
+            logger.error("WAL checkpoint was blocked; deleted content may remain in the WAL until the next one")
+        }
     }
 
     public func metadata(_ key: String) -> String? {
@@ -404,6 +426,14 @@ public final class Store {
         where FileManager.default.fileExists(atPath: url.path) {
             Self.setPermissions(0o600, of: url)
         }
+    }
+
+    /// Time Machine and other backups would keep entries that "clear" and retention already removed.
+    private static func excludeFromBackup(_ url: URL) {
+        var url = url
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try? url.setResourceValues(values)
     }
 
     static func setPermissions(_ mode: Int, of url: URL) {

@@ -22,16 +22,48 @@ import Testing
         #expect(try permissions(of: Config.url(in: directory.url)) == 0o600)
     }
 
-    @Test func clearedTextIsGoneFromTheDatabaseFile() throws {
-        let directory = try TemporaryDirectory()
-        let secret = "correct-horse-battery-staple-\(UUID().uuidString)"
-        do {
-            let store = try Store(directory: directory.url)
-            store.addText(secret, app: nil, appPath: nil)
-            store.clear()
+    /// Checks the main file and the WAL while the store is still open, as in the running app.
+    func databaseFilesContain(_ secret: String, in directory: URL) -> Bool {
+        ["history.sqlite", "history.sqlite-wal", "history.sqlite-shm"].contains { name in
+            let data = FileManager.default.contents(atPath: directory.appendingPathComponent(name).path) ?? Data()
+            return data.range(of: Data(secret.utf8)) != nil
         }
-        let file = try Data(contentsOf: directory.url.appendingPathComponent("history.sqlite"))
-        #expect(file.range(of: Data(secret.utf8)) == nil)
+    }
+
+    @Test func clearedTextIsGoneFromAllDatabaseFilesWhileOpen() throws {
+        let directory = try TemporaryDirectory()
+        let store = try Store(directory: directory.url)
+        let secret = "correct-horse-battery-staple-\(UUID().uuidString)"
+        for index in 0..<5 { store.addText("\(secret) \(index)", app: nil, appPath: nil) }
+        #expect(databaseFilesContain(secret, in: directory.url))
+
+        store.clear()
+
+        #expect(!databaseFilesContain(secret, in: directory.url))
+        withExtendedLifetime(store) {}
+    }
+
+    @Test func deletedAndPrunedTextIsGoneWhileOpen() throws {
+        let directory = try TemporaryDirectory()
+        let store = try Store(directory: directory.url)
+        let deleted = "deleted-\(UUID().uuidString)"
+        let pruned = "pruned-\(UUID().uuidString)"
+        store.addText(deleted, app: nil, appPath: nil)
+        store.addText(pruned, app: nil, appPath: nil, date: Date(timeIntervalSince1970: 0))
+
+        try store.delete(#require(store.items().first { $0.text == deleted }))
+        store.prune(retentionDays: 7, maxItems: 1_000)
+
+        #expect(!databaseFilesContain(deleted, in: directory.url))
+        #expect(!databaseFilesContain(pruned, in: directory.url))
+        withExtendedLifetime(store) {}
+    }
+
+    @Test func historyIsExcludedFromBackups() throws {
+        let directory = try TemporaryDirectory()
+        _ = try Store(directory: directory.url)
+        let values = try directory.url.resourceValues(forKeys: [.isExcludedFromBackupKey])
+        #expect(values.isExcludedFromBackup == true)
     }
 
     @Test(arguments: ["../config.json", "/etc/passwd", "x.png", String(repeating: "A", count: 64) + ".png"])
