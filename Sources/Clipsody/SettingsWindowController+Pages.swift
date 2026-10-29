@@ -47,6 +47,19 @@ extension SettingsWindowController {
             If the app was built without a fixed certificate (ad hoc), the permission must be granted again after \
             every rebuild (remove it and add it again).
             """))
+
+        // Only macOS versions with pasteboard privacy (15.4 and later) have something to show here.
+        if PasteboardAccess.state != .unrestricted {
+            let settingsButton = NSButton(title: String(localized: "Open System Settings…"), target: self,
+                                          action: #selector(openPasteboardSettings))
+            let stack = NSStackView(views: [pasteboardStatus, settingsButton])
+            stack.spacing = 12
+            page.row(String(localized: "Clipboard access:"), stack, alignWith: pasteboardStatus, help: String(localized: """
+                Newer versions of macOS ask before an app reads what you copy in other apps. Clipsody needs \
+                this to keep a history: when asked, choose Allow, or allow Clipsody under System Settings → \
+                Privacy & Security. While access is denied, nothing new is added to the history.
+                """))
+        }
         return page
     }
 

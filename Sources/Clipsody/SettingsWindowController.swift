@@ -16,6 +16,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     let languagePopUp = NSPopUpButton()
     let launchAtLogin = NSButton(checkboxWithTitle: String(localized: "Start automatically at login"), target: nil, action: nil)
     let accessibilityStatus = NSTextField(labelWithString: "")
+    let pasteboardStatus = NSTextField(labelWithString: "")
     let retentionField = NSTextField()
     let retentionStepper = NSStepper()
     let maxItemsField = NSTextField()
@@ -119,6 +120,17 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
             accessibilityStatus.stringValue = String(localized: "✗ Not allowed")
             accessibilityStatus.textColor = .systemRed
         }
+        switch PasteboardAccess.state {
+        case .unrestricted, .allowed:
+            pasteboardStatus.stringValue = String(localized: "✓ Allowed")
+            pasteboardStatus.textColor = .systemGreen
+        case .ask:
+            pasteboardStatus.stringValue = String(localized: "Asks when needed")
+            pasteboardStatus.textColor = .secondaryLabelColor
+        case .denied:
+            pasteboardStatus.stringValue = String(localized: "✗ Denied")
+            pasteboardStatus.textColor = .systemRed
+        }
     }
 
     func commit() {
@@ -169,6 +181,10 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
         alert.beginSheetModal(for: window!) { response in
             if response == .alertFirstButtonReturn { AppLanguage.relaunch() }
         }
+    }
+
+    @objc func openPasteboardSettings() {
+        PasteboardAccess.openSystemSettings()
     }
 
     @objc func openAccessibilitySettings() {

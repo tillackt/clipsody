@@ -369,24 +369,6 @@
     },
     "%lld files: %@": {
       "localizations": {
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%1$lld file: %2$@"
-                }
-              },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%1$lld files: %2$@"
-                }
-              }
-            }
-          }
-        },
         "de": {
           "variations": {
             "plural": {
@@ -405,19 +387,19 @@
             }
           }
         },
-        "fr": {
+        "en": {
           "variations": {
             "plural": {
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld fichier : %2$@"
+                  "value": "%1$lld file: %2$@"
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "%1$lld fichiers : %2$@"
+                  "value": "%1$lld files: %2$@"
                 }
               }
             }
@@ -436,6 +418,24 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%1$lld archivos: %2$@"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld fichier : %2$@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld fichiers : %2$@"
                 }
               }
             }
@@ -480,12 +480,6 @@
         "pl": {
           "variations": {
             "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%1$lld plik: %2$@"
-                }
-              },
               "few": {
                 "stringUnit": {
                   "state": "translated",
@@ -496,6 +490,12 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%1$lld plików: %2$@"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld plik: %2$@"
                 }
               },
               "other": {
@@ -939,6 +939,52 @@
         }
       }
     },
+    "Asks when needed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragt bei Bedarf"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demande si nécessaire"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta cuando hace falta"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiede quando serve"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraagt indien nodig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pyta w razie potrzeby"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunta quando necessário"
+          }
+        }
+      }
+    },
     "At most (entries):": {
       "localizations": {
         "de": {
@@ -947,16 +993,16 @@
             "value": "Höchstens (Einträge):"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Au maximum (éléments) :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Como máximo (elementos):"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au maximum (éléments) :"
           }
         },
         "it": {
@@ -1257,6 +1303,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Limpar todo o histórico?"
+          }
+        }
+      }
+    },
+    "Clipboard access is turned off…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zugriff auf die Zwischenablage ist aus …"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’accès au presse-papiers est désactivé…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El acceso al portapapeles está desactivado…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’accesso agli appunti è disattivato…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toegang tot het klembord staat uit…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dostęp do schowka jest wyłączony…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O acesso à área de transferência está desativado…"
+          }
+        }
+      }
+    },
+    "Clipboard access:": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zugriff auf Zwischenablage:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accès au presse-papiers :"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceso al portapapeles:"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accesso agli appunti:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toegang tot klembord:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dostęp do schowka:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acesso à área de transferência:"
           }
         }
       }
@@ -2097,16 +2235,16 @@
             "value": "Ungültiges Tastenkürzel „%@“ in config.json. Beispiel: \"cmd+option+c\""
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccourci « %@ » non valide dans config.json. Exemple : \"cmd+option+c\""
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Atajo «%@» no válido en config.json. Ejemplo: \"cmd+option+c\""
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raccourci « %@ » non valide dans config.json. Exemple : \"cmd+option+c\""
           }
         },
         "it": {
@@ -2143,16 +2281,16 @@
             "value": "Aufbewahren (Tage):"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conserver (jours) :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Conservar (días):"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conserver (jours) :"
           }
         },
         "it": {
@@ -2407,6 +2545,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Local:"
+          }
+        }
+      }
+    },
+    "Newer versions of macOS ask before an app reads what you copy in other apps. Clipsody needs this to keep a history: when asked, choose Allow, or allow Clipsody under System Settings → Privacy & Security. While access is denied, nothing new is added to the history.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuere macOS-Versionen fragen, bevor eine App liest, was du in anderen Apps kopierst. Clipsody braucht das für die Historie: Wähle bei der Abfrage „Erlauben“ oder erlaube Clipsody unter Systemeinstellungen → Datenschutz & Sicherheit. Solange der Zugriff verweigert ist, kommt nichts Neues in die Historie."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Clipsody en a besoin pour son historique : choisissez « Autoriser » lorsque la demande s’affiche, ou autorisez Clipsody dans Réglages Système → Confidentialité et sécurité. Tant que l’accès est refusé, rien de nouveau n’est ajouté à l’historique."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las versiones recientes de macOS preguntan antes de que una app lea lo que copias en otras apps. Clipsody lo necesita para su historial: cuando se te pregunte, elige «Permitir», o permite Clipsody en Ajustes del Sistema → Privacidad y seguridad. Mientras el acceso esté denegado, no se añade nada nuevo al historial."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le versioni recenti di macOS chiedono il permesso prima che un’app legga ciò che copi in altre app. Clipsody ne ha bisogno per la cronologia: quando richiesto, scegli «Consenti», oppure consenti Clipsody in Impostazioni di Sistema → Privacy e sicurezza. Finché l’accesso è negato, nella cronologia non viene aggiunto nulla di nuovo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nieuwere versies van macOS vragen toestemming voordat een app leest wat je in andere apps kopieert. Clipsody heeft dit nodig voor de geschiedenis: kies ‘Sta toe’ als erom wordt gevraagd, of sta Clipsody toe in Systeeminstellingen → Privacy en beveiliging. Zolang de toegang is geweigerd, komt er niets nieuws in de geschiedenis."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nowsze wersje macOS pytają, zanim aplikacja odczyta to, co kopiujesz w innych aplikacjach. Clipsody potrzebuje tego do historii: gdy pojawi się pytanie, wybierz „Zezwól” albo zezwól Clipsody w Ustawieniach systemowych → Prywatność i ochrona. Dopóki dostęp jest zablokowany, do historii nie trafia nic nowego."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As versões recentes do macOS perguntam antes que um app leia o que você copia em outros apps. O Clipsody precisa disso para o histórico: quando perguntado, escolha “Permitir” ou permita o Clipsody em Ajustes do Sistema → Privacidade e Segurança. Enquanto o acesso estiver negado, nada novo entra no histórico."
           }
         }
       }
@@ -4121,16 +4305,16 @@
             "value": "Das Tastenkürzel %@ ist bereits von einer anderen App belegt."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le raccourci %@ est déjà utilisé par une autre app."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El atajo %@ ya lo usa otra app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le raccourci %@ est déjà utilisé par une autre app."
           }
         },
         "it": {
@@ -4581,16 +4765,16 @@
             "value": "macOS hat das Tastenkürzel %@ abgelehnt. Bitte eine Kombination mit ⌘ oder ⌃ wählen."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS a refusé le raccourci %@. Choisissez une combinaison avec ⌘ ou ⌃."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "macOS ha rechazado el atajo %@. Elige una combinación con ⌘ o ⌃."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS a refusé le raccourci %@. Choisissez une combinaison avec ⌘ ou ⌃."
           }
         },
         "it": {
@@ -4845,6 +5029,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "✓ Permitido"
+          }
+        }
+      }
+    },
+    "✗ Denied": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Verweigert"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Refusé"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Denegado"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Negato"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Geweigerd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Odmówiono"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Negado"
           }
         }
       }

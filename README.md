@@ -142,6 +142,7 @@ Menu bar icon → **Settings…** (⌘,), split into the tabs **General**, **His
 
 ## Privacy & security
 
+- **Clipboard access (macOS 15.4 and later):** macOS can ask before an app reads what you copy in other apps, and newer releases may do so for every app. Clipsody needs this access to keep a history: choose Allow when asked, or allow Clipsody under System Settings → Privacy & Security. Settings → General shows the current state; while access is denied, Clipsody reads nothing, the history stands still and the menu bar menu says so.
 - Entries that password managers mark as concealed (`org.nspasteboard.ConcealedType` and similar) are never saved. Neither is anything from the apps under **Privacy → Ignored apps**.
 - **Limit:** Clipsody only sees which app is in front, not who copied. If a browser extension (e.g. Bitwarden in Chrome) copies a password without marking it as concealed, it ends up in the history. Delete such entries with ⌘⌫.
 - All data stays local: the folder is readable only by you (0700), files are 0600. The folder is excluded from Time Machine and other backups.

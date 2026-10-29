@@ -3,7 +3,7 @@ import ClipsodyCore
 import ClipsodyServices
 
 @MainActor
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var store: Store!
     private var config = Config()
     private var monitor: ClipboardMonitor!
@@ -17,6 +17,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     )
     private var statusItem: NSStatusItem!
     private var openItem: NSMenuItem!
+    /// Shown only while macOS denies Clipsody access to the clipboard; the history stands still then.
+    private var pasteboardDeniedItem: NSMenuItem!
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
     private var images: ImageQueue!
@@ -206,6 +208,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         // Items are enabled explicitly; otherwise isEnabled would be ignored.
         menu.autoenablesItems = false
+        menu.delegate = self
+        pasteboardDeniedItem = menu.addItem(withTitle: String(localized: "Clipboard access is turned off…"),
+                                            action: #selector(openPasteboardSettings), keyEquivalent: "")
+        pasteboardDeniedItem.image = NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: nil)
+        pasteboardDeniedItem.isHidden = true
         openItem = menu.addItem(withTitle: String(localized: "Open History"), action: #selector(openPanel), keyEquivalent: "")
         menu.addItem(withTitle: String(localized: "Settings…"), action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(.separator())
@@ -219,6 +226,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             item.target = self
         }
         statusItem.menu = menu
+    }
+
+    func menuWillOpen(_ menu: NSMenu) {
+        // The state can change in System Settings at any time.
+        pasteboardDeniedItem.isHidden = PasteboardAccess.state != .denied
+    }
+
+    @objc private func openPasteboardSettings() {
+        PasteboardAccess.openSystemSettings()
     }
 
     /// Agent apps have no visible menu bar, but text fields need the Edit actions for ⌘C/⌘V/⌘A.
