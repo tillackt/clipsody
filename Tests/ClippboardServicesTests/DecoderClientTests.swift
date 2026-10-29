@@ -10,17 +10,20 @@ import Testing
         let image = try #require(await service.client().prepareImage(makeImage(width: 30, height: 20)))
         #expect(image.width == 30 && image.height == 20)
         #expect(image.png.starts(with: [0x89, 0x50, 0x4E, 0x47]))
+        withExtendedLifetime(service) {}
     }
 
     @Test func rejectedImageGivesNil() async {
         let service = TestService()
         #expect(await service.client().prepareImage(Data("not an image".utf8)) == nil)
+        withExtendedLifetime(service) {}
     }
 
     @Test func largeImagesCrossTheConnection() async throws {
         let service = TestService()
         let image = try #require(await service.client().prepareImage(makeImage(width: 3_000, height: 2_000)))
         #expect(image.width == 3_000)
+        withExtendedLifetime(service) {}
     }
 
     @Test func textIsRecognisedInTheService() async throws {
@@ -32,14 +35,36 @@ import Testing
             return
         }
         #expect(text.contains("4711"))
+        withExtendedLifetime(service) {}
     }
 
     @Test func hangingServiceTimesOutWithFallback() async {
-        let service = TestService { SilentDecoder() }
-        let client = service.client(timeout: .milliseconds(200))
+        let silent = SilentDecoder()
+        let service = TestService { silent }
+        let timeout = Duration.milliseconds(500)
+        let client = service.client(timeout: timeout)
         let started = ContinuousClock.now
         #expect(await client.prepareImage(makeImage()) == nil)
-        #expect(ContinuousClock.now - started < .seconds(5))
+        let elapsed = ContinuousClock.now - started
+        // A real timeout: the request arrived, and the client gave up after `timeout`, long before
+        // the 30 s default.
+        #expect(silent.requestsReceived == 1)
+        #expect(elapsed >= timeout)
+        #expect(elapsed < .seconds(10))
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func cancellingAWaitingCallReturnsPromptly() async {
+        let silent = SilentDecoder()
+        let service = TestService { silent }
+        let client = service.client()
+        let started = ContinuousClock.now
+        let task = Task { await client.prepareImage(makeImage()) }
+        #expect(await eventually { silent.requestsReceived == 1 })
+        task.cancel()
+        #expect(await task.value == nil)
+        #expect(ContinuousClock.now - started < .seconds(10))
+        withExtendedLifetime(service) {}
     }
 
     @Test func oneReconnectAfterTimeoutIsKept() async throws {
@@ -50,15 +75,16 @@ import Testing
         var connections = 0
         let silentEndpoint = silent.listener.endpoint
         let workingEndpoint = working.listener.endpoint
-        let client = DecoderClient(timeout: .milliseconds(200), idleTimeout: .seconds(60)) {
+        let client = DecoderClient(timeout: .seconds(2), idleTimeout: .seconds(60)) {
             connections += 1
             return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
         }
         #expect(await client.prepareImage(makeImage()) == nil)
         #expect(await client.prepareImage(makeImage()) != nil)
-        try await Task.sleep(for: .milliseconds(300))
+        try await Task.sleep(for: .milliseconds(800))
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 2)
+        withExtendedLifetime((silent, working)) {}
     }
 
     @Test func idleConnectionIsClosedAndReopenedOnDemand() async throws {
@@ -72,23 +98,58 @@ import Testing
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 1)
-        try await Task.sleep(for: .milliseconds(400))
+        try await Task.sleep(for: .milliseconds(800))
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 2)
+        withExtendedLifetime(service) {}
     }
 
     @Test func clientRecoversAfterATimeout() async throws {
         // First call hits a silent service; the client must reconnect for the next call.
         let silent = TestService { SilentDecoder() }
         let working = TestService()
-        var useWorking = false
+        var connections = 0
         let silentEndpoint = silent.listener.endpoint
         let workingEndpoint = working.listener.endpoint
-        let client = DecoderClient(timeout: .milliseconds(200)) {
-            NSXPCConnection(listenerEndpoint: useWorking ? workingEndpoint : silentEndpoint)
+        let client = DecoderClient(timeout: .seconds(2)) {
+            connections += 1
+            return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
         }
         #expect(await client.prepareImage(makeImage()) == nil)
-        useWorking = true
         #expect(await client.prepareImage(makeImage()) != nil)
+        withExtendedLifetime((silent, working)) {}
+    }
+
+    @Test func tiffTimeoutDropsTheConnection() async throws {
+        // A hung TIFF request must not leave later requests queued behind the same service.
+        let silent = TestService { SilentDecoder() }
+        let working = TestService()
+        var connections = 0
+        let silentEndpoint = silent.listener.endpoint
+        let workingEndpoint = working.listener.endpoint
+        let client = DecoderClient(timeout: .seconds(5)) {
+            connections += 1
+            return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
+        }
+        #expect(client.tiffBlocking(fromPNG: makeImage(type: .png), timeout: 0.3) == nil)
+        #expect(await client.prepareImage(makeImage()) != nil)
+        #expect(connections == 2)
+        withExtendedLifetime((silent, working)) {}
+    }
+
+    @Test func connectionOpenedForTIFFIsClosedWhenIdle() async throws {
+        let service = TestService()
+        var connections = 0
+        let endpoint = service.listener.endpoint
+        let client = DecoderClient(idleTimeout: .milliseconds(100)) {
+            connections += 1
+            return NSXPCConnection(listenerEndpoint: endpoint)
+        }
+        #expect(client.tiffBlocking(fromPNG: makeImage(type: .png)) != nil)
+        #expect(connections == 1)
+        try await Task.sleep(for: .milliseconds(800))
+        #expect(client.tiffBlocking(fromPNG: makeImage(type: .png)) != nil)
+        #expect(connections == 2)
+        withExtendedLifetime(service) {}
     }
 }

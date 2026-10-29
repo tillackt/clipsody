@@ -67,8 +67,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         pruneTimer?.tolerance = 60
 
-        // Asks once for Accessibility permission; without it entries are only copied, not pasted.
-        _ = Paster.isTrusted(prompt: true)
+        // No prompt at launch, or users without the permission would see it on every start; the
+        // first paste attempt asks. Without it entries are only copied, not pasted.
+        if !Paster.isTrusted(prompt: false) {
+            logger.notice("No Accessibility permission yet; asked on the first paste")
+        }
 
         if CommandLine.arguments.contains("--settings") {
             openSettings()
@@ -91,6 +94,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         store?.flushDeletions()
+        paster.prepareForTermination()
     }
 
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {

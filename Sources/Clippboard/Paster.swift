@@ -6,7 +6,7 @@ import ClippboardServices
 /// Supplies the TIFF version of a pasted image only if the receiving app asks for it;
 /// a 5K screenshot is about 30 MB as TIFF.
 private final class TIFFProvider: NSObject, NSPasteboardItemDataProvider {
-    private let png: Data
+    let png: Data
     private let decoder: DecoderClient
     private let onFinished: @Sendable (ObjectIdentifier) -> Void
 
@@ -44,6 +44,8 @@ final class Paster {
 
     /// The pasteboard item does not own its data provider, so it is kept here until released.
     private var tiffProvider: TIFFProvider?
+    /// Pasteboard change count right after `tiffProvider` was written; tells whether our item is still there.
+    private var tiffChangeCount: Int?
     /// Only the latest paste may send ⌘V; a quicker second one cancels the first.
     private var pasteTask: Task<Void, Never>?
 
@@ -132,6 +134,7 @@ final class Paster {
             pasteboard.clearContents()
             pasteboard.writeObjects([pasteboardItem])
             tiffProvider = provider
+            tiffChangeCount = pasteboard.changeCount
             withExtendedLifetime(previous) {}
         case .files:
             let urls = item.filePaths
@@ -142,6 +145,22 @@ final class Paster {
             pasteboard.writeObjects(urls)
         }
         return true
+    }
+
+    /// When the app quits, AppKit asks every data provider for its promised types; with a pasted
+    /// image still on the pasteboard that is a synchronous TIFF conversion in the decoder service
+    /// during quit. Writing the PNG again without the promise avoids it.
+    func prepareForTermination() {
+        let pasteboard = NSPasteboard.general
+        guard let provider = tiffProvider, pasteboard.changeCount == tiffChangeCount else { return }
+        let item = NSPasteboardItem()
+        item.setData(provider.png, forType: .png)
+        // clearContents() tells the provider it is finished; `provider` keeps it alive until then.
+        pasteboard.clearContents()
+        pasteboard.writeObjects([item])
+        tiffProvider = nil
+        tiffChangeCount = nil
+        withExtendedLifetime(provider) {}
     }
 
     /// Simulates ⌘V in the frontmost app. Requires Accessibility permission.

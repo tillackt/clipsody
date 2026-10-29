@@ -5,7 +5,7 @@ import Vision
 
 /// What the decoder service does on behalf of the app. Runs sandboxed in the ClippboardDecoder
 /// process (see ClippboardDecoder.entitlements) and only ever sees the bytes it is sent.
-public final class Decoder: NSObject, DecoderServiceProtocol {
+public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
     private let watchdogLimit: TimeInterval?
 
     /// With `watchdogLimit`, the process ends itself when one request runs longer (a crafted image
@@ -15,21 +15,30 @@ public final class Decoder: NSObject, DecoderServiceProtocol {
         self.watchdogLimit = watchdogLimit
     }
 
+    /// Runs `work` synchronously, so the watchdog covers the work itself, wherever it is dispatched.
     private func watched(_ work: () -> Void) {
         guard let watchdogLimit else { return work() }
         let finished = Flag()
         DispatchQueue.global().asyncAfter(deadline: .now() + watchdogLimit) {
             guard !finished.isSet else { return }
             logger.error("Decoder request exceeded \(watchdogLimit) s; ending the service")
-            exit(0)
+            // _exit: the stuck work still runs on another thread, and atexit handlers or static
+            // destructors could crash under it. A failure code keeps the event visible.
+            _exit(EXIT_FAILURE)
         }
         work()
         finished.set()
     }
 
+    // XPC runs requests at the sender's QoS, and the app sends from the main thread. Image
+    // preparation and OCR run in the background, so they go to a lower QoS (efficiency cores);
+    // thumbnail and TIFF stay at the incoming QoS because the user waits for them.
+
     public func prepareImage(_ data: Data, maxPixels: Int,
                              reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
-        watched { prepare(data, maxPixels: maxPixels, reply: reply) }
+        DispatchQueue.global(qos: .utility).async { [self] in
+            watched { prepare(data, maxPixels: maxPixels, reply: reply) }
+        }
     }
 
     private func prepare(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
@@ -42,7 +51,9 @@ public final class Decoder: NSObject, DecoderServiceProtocol {
     }
 
     public func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {
-        watched { recognize(png, reply: reply) }
+        DispatchQueue.global(qos: .utility).async { [self] in
+            watched { recognize(png, reply: reply) }
+        }
     }
 
     private func recognize(_ png: Data, reply: @escaping @Sendable (String?) -> Void) {
@@ -115,7 +126,10 @@ public final class DecoderListenerDelegate: NSObject, NSXPCListenerDelegate {
 
     public func listener(_ listener: NSXPCListener, shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
         if exitWhenDisconnected {
-            connection.invalidationHandler = { exit(0) }
+            // _exit: no atexit handlers or static destructors while work may still run. A reconnect
+            // right after the app dropped the connection may reach this exiting process; that
+            // request simply fails closed and the next one gets a fresh process.
+            connection.invalidationHandler = { _exit(0) }
         }
         connection.exportedInterface = NSXPCInterface(with: DecoderServiceProtocol.self)
         connection.exportedObject = makeExportedObject()

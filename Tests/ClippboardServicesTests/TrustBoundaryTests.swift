@@ -67,6 +67,7 @@ import Testing
         let png = makeImage(width: 800, height: 200, type: .png)
         let thumbnail = try #require(await service.client().thumbnail(ofPNG: png, maxPixelSize: 400))
         #expect(thumbnail.image.width == 400 && thumbnail.image.height == 100)
+        withExtendedLifetime(service) {}
     }
 
     @Test func tiffIsMadeByTheService() throws {
@@ -74,12 +75,24 @@ import Testing
         let tiff = try #require(service.client().tiffBlocking(fromPNG: makeImage(type: .png)))
         // "II*\0" (little endian) or "MM\0*" (big endian)
         #expect(tiff.starts(with: [0x49, 0x49, 0x2A, 0x00]) || tiff.starts(with: [0x4D, 0x4D, 0x00, 0x2A]))
+        withExtendedLifetime(service) {}
+    }
+
+    @Test func tiffWithoutTIFFSignatureIsRejected() {
+        let service = TestService { LyingDecoder(.init(tiff: makeImage(type: .png))) }
+        #expect(service.client(timeout: .seconds(5)).tiffBlocking(fromPNG: makeImage(type: .png)) == nil)
+        withExtendedLifetime(service) {}
     }
 
     @Test func tiffRequestToAHangingServiceGivesUp() {
-        let service = TestService { SilentDecoder() }
+        let silent = SilentDecoder()
+        let service = TestService { silent }
         let started = ContinuousClock.now
         #expect(service.client().tiffBlocking(fromPNG: makeImage(type: .png), timeout: 0.3) == nil)
-        #expect(ContinuousClock.now - started < .seconds(3))
+        let elapsed = ContinuousClock.now - started
+        #expect(silent.requestsReceived == 1)
+        #expect(elapsed >= .milliseconds(300))
+        #expect(elapsed < .seconds(3))
+        withExtendedLifetime(service) {}
     }
 }

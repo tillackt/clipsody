@@ -4,6 +4,7 @@ import CoreGraphics
 import CoreText
 import Foundation
 import ImageIO
+import os
 import UniformTypeIdentifiers
 
 /// A fresh temporary directory per test, removed when the value goes away.
@@ -54,6 +55,8 @@ final class TestService {
         listener.resume()
     }
 
+    /// The client only holds the endpoint: keep the service alive (withExtendedLifetime) for as
+    /// long as the client is used, since deinit invalidates the listener.
     @MainActor
     func client(timeout: Duration = .seconds(30)) -> DecoderClient {
         let endpoint = listener.endpoint
@@ -65,13 +68,44 @@ final class TestService {
     }
 }
 
-/// A service that accepts requests but never answers, like one stuck on a crafted image.
-final class SilentDecoder: NSObject, DecoderServiceProtocol {
-    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {}
-    func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {}
+/// A service that accepts requests but never answers, like one stuck on a crafted image. Counts
+/// what it received, so a test can tell a timeout from a request that never arrived.
+final class SilentDecoder: NSObject, DecoderServiceProtocol, Sendable {
+    private let count = OSAllocatedUnfairLock(initialState: 0)
+
+    var requestsReceived: Int { count.withLock { $0 } }
+
+    private func received() {
+        count.withLock { $0 += 1 }
+    }
+
+    func prepareImage(_ data: Data, maxPixels: Int, reply: @escaping @Sendable (Data?, Int, Int, String?) -> Void) {
+        received()
+    }
+
+    func recognizeText(inPNG png: Data, reply: @escaping @Sendable (String?) -> Void) {
+        received()
+    }
+
     func thumbnail(ofPNG png: Data, maxPixelSize: Int,
-                   reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {}
-    func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {}
+                   reply: @escaping @Sendable (Data?, Int, Int, Double, Double) -> Void) {
+        received()
+    }
+
+    func tiff(fromPNG png: Data, reply: @escaping @Sendable (Data?) -> Void) {
+        received()
+    }
+}
+
+/// Polls `condition` until it holds or `timeout` passes; returns whether it held.
+@MainActor
+func eventually(timeout: Duration = .seconds(5), _ condition: () -> Bool) async -> Bool {
+    let deadline = ContinuousClock.now + timeout
+    while !condition() {
+        guard ContinuousClock.now < deadline else { return false }
+        try? await Task.sleep(for: .milliseconds(10))
+    }
+    return true
 }
 
 /// A compromised service: answers, but with whatever it likes.

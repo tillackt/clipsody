@@ -4,45 +4,89 @@ import CoreGraphics
 import Foundation
 import os
 
-/// Resumes a continuation exactly once, whichever of reply, XPC error or timeout comes first.
+/// Resumes a continuation exactly once, whichever of reply, XPC error, timeout or cancellation
+/// comes first. Created before the continuation exists, so a cancellation that arrives before the
+/// request is sent still decides the result.
 final class ResumeOnce<Value: Sendable>: Sendable {
+    private enum Phase: Sendable {
+        case pending
+        case waiting(CheckedContinuation<Value, Never>)
+        /// Resumed before a continuation was attached.
+        case resolved(Value)
+        case done
+    }
+
     private struct State: Sendable {
-        var continuation: CheckedContinuation<Value, Never>?
+        var phase = Phase.pending
         var onResume: (@Sendable () -> Void)?
     }
 
-    private let state: OSAllocatedUnfairLock<State>
+    private let state = OSAllocatedUnfairLock(initialState: State())
 
-    init(_ continuation: CheckedContinuation<Value, Never>) {
-        state = OSAllocatedUnfairLock(initialState: State(continuation: continuation))
+    init() {}
+
+    /// Returns false if a value was already delivered; `continuation` is then resumed with it
+    /// right away and the request should not be sent.
+    func attach(_ continuation: CheckedContinuation<Value, Never>) -> Bool {
+        // Returns the phase found, so an early value can be delivered outside the lock.
+        let found = state.withLock { state in
+            let found = state.phase
+            switch found {
+            case .pending: state.phase = .waiting(continuation)
+            case .resolved: state.phase = .done
+            case .waiting, .done: preconditionFailure("continuation attached twice")
+            }
+            return found
+        }
+        guard case .resolved(let value) = found else { return true }
+        continuation.resume(returning: value)
+        return false
     }
 
     /// Runs `action` once the continuation is resumed (right away if it already was); used to
     /// cancel the timeout as soon as a reply arrives.
     func whenResumed(_ action: @escaping @Sendable () -> Void) {
         let alreadyResumed = state.withLock { state in
-            if state.continuation == nil { return true }
-            state.onResume = action
-            return false
+            switch state.phase {
+            case .pending, .waiting:
+                state.onResume = action
+                return false
+            case .resolved, .done:
+                return true
+            }
         }
         if alreadyResumed { action() }
     }
 
-    /// Returns false if the continuation was already resumed.
+    /// Returns false if a value was already delivered.
     @discardableResult
     func resume(_ value: Value) -> Bool {
-        let (pending, action) = state.withLock { state in
-            defer { state = State() }
-            return (state.continuation, state.onResume)
+        let (delivered, continuation, action) = state.withLock {
+            state -> (Bool, CheckedContinuation<Value, Never>?, (@Sendable () -> Void)?) in
+            switch state.phase {
+            case .pending:
+                state.phase = .resolved(value)
+                return (true, nil, nil)
+            case .waiting(let continuation):
+                defer { state = State(phase: .done) }
+                return (true, continuation, state.onResume)
+            case .resolved, .done:
+                return (false, nil, nil)
+            }
         }
-        pending?.resume(returning: value)
-        if pending != nil { action?() }
-        return pending != nil
+        continuation?.resume(returning: value)
+        action?()
+        return delivered
     }
 }
 
 /// Holds the first value delivered from another thread for a caller waiting synchronously.
 private final class BlockingResult<Value: Sendable>: @unchecked Sendable {
+    enum Outcome {
+        case finished(Value?)
+        case timedOut
+    }
+
     private let lock = NSLock()
     private let semaphore = DispatchSemaphore(value: 0)
     private var value: Value?
@@ -57,11 +101,11 @@ private final class BlockingResult<Value: Sendable>: @unchecked Sendable {
         semaphore.signal()
     }
 
-    func wait(timeout: TimeInterval) -> Value? {
-        guard semaphore.wait(timeout: .now() + timeout) == .success else { return nil }
+    func wait(timeout: TimeInterval) -> Outcome {
+        guard semaphore.wait(timeout: .now() + timeout) == .success else { return .timedOut }
         lock.lock()
         defer { lock.unlock() }
-        return value
+        return .finished(value)
     }
 }
 
@@ -152,16 +196,35 @@ public final class DecoderClient {
 
     /// For the pasteboard's synchronous request for TIFF data. The reply arrives on an XPC queue,
     /// so waiting here (on the main thread) cannot deadlock; `timeout` keeps a hanging service from
-    /// freezing the app. The bytes are handed to the pasteboard unparsed.
+    /// freezing the app. The bytes are handed to the pasteboard unparsed, after a signature check.
     public func tiffBlocking(fromPNG png: Data, timeout: TimeInterval = 5) -> Data? {
         let connection = currentConnection()
+        callsInFlight += 1
+        idleTask?.cancel()
+        defer {
+            callsInFlight -= 1
+            scheduleIdleShutdown()
+        }
         let result = BlockingResult<Data>()
-        let proxy = connection.remoteObjectProxyWithErrorHandler { @Sendable _ in
+        let proxy = connection.remoteObjectProxyWithErrorHandler { @Sendable error in
+            logger.error("Decoder service error: \(String(describing: error), privacy: .public)")
             result.finish(nil)
         } as? DecoderServiceProtocol
-        proxy?.tiff(fromPNG: png) { tiff in result.finish(tiff) }
-        guard let tiff = result.wait(timeout: timeout), tiff.count <= ImageIngest.maxBytes else { return nil }
-        return tiff
+        guard let proxy else { return nil }
+        proxy.tiff(fromPNG: png) { tiff in result.finish(tiff) }
+        switch result.wait(timeout: timeout) {
+        case .timedOut:
+            // As in call(): later requests must not queue behind the hung service.
+            logger.error("Decoder service timed out on TIFF; restarting it")
+            drop(connection)
+            return nil
+        case .finished(let tiff):
+            // "II*\0" (little endian) or "MM\0*" (big endian)
+            guard let tiff, tiff.count <= ImageIngest.maxBytes,
+                  tiff.starts(with: [0x49, 0x49, 0x2A, 0x00]) || tiff.starts(with: [0x4D, 0x4D, 0x00, 0x2A])
+            else { return nil }
+            return tiff
+        }
     }
 
     // MARK: - Validation of replies
@@ -215,28 +278,34 @@ public final class DecoderClient {
             callsInFlight -= 1
             scheduleIdleShutdown()
         }
-        return await withCheckedContinuation { continuation in
-            let once = ResumeOnce(continuation)
-            // @Sendable: XPC calls this on its own queue. A closure formed here would otherwise be
-            // main-actor isolated, and Swift 6 traps when it runs elsewhere.
-            let proxy = connection.remoteObjectProxyWithErrorHandler { @Sendable error in
-                logger.error("Decoder service error: \(String(describing: error), privacy: .public)")
-                once.resume(fallback)
-            } as? DecoderServiceProtocol
-            guard let proxy else {
-                once.resume(fallback)
-                return
+        let once = ResumeOnce<Value>()
+        return await withTaskCancellationHandler {
+            await withCheckedContinuation { continuation in
+                guard once.attach(continuation) else { return }
+                // @Sendable: XPC calls this on its own queue. A closure formed here would otherwise be
+                // main-actor isolated, and Swift 6 traps when it runs elsewhere.
+                let proxy = connection.remoteObjectProxyWithErrorHandler { @Sendable error in
+                    logger.error("Decoder service error: \(String(describing: error), privacy: .public)")
+                    once.resume(fallback)
+                } as? DecoderServiceProtocol
+                guard let proxy else {
+                    once.resume(fallback)
+                    return
+                }
+                send(proxy) { value in once.resume(value) }
+                let timer = Task { [weak self] in
+                    try? await Task.sleep(for: timeout)
+                    guard !Task.isCancelled, once.resume(fallback) else { return }
+                    // Closing the connection ends the service process (it exits when disconnected);
+                    // launchd starts a fresh one for the next request.
+                    logger.error("Decoder service timed out; restarting it")
+                    self?.drop(connection)
+                }
+                once.whenResumed { timer.cancel() }
             }
-            send(proxy) { value in once.resume(value) }
-            let timer = Task { [weak self] in
-                try? await Task.sleep(for: timeout)
-                guard !Task.isCancelled, once.resume(fallback) else { return }
-                // Closing the connection ends the service process (it exits when disconnected);
-                // launchd starts a fresh one for the next request.
-                logger.error("Decoder service timed out; restarting it")
-                self?.drop(connection)
-            }
-            once.whenResumed { timer.cancel() }
+        } onCancel: {
+            // The caller no longer waits; a late reply is ignored.
+            once.resume(fallback)
         }
     }
 
