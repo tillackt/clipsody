@@ -66,6 +66,20 @@ if [[ "${1:-}" == "release" ]] && [[ -n "$(git status --porcelain 2>/dev/null)" 
     echo "Release builds need a clean working tree; commit or stash first" >&2
     exit 1
 fi
+if [[ "${1:-}" == "release" ]]; then
+    # Semantic Versioning (README "Versioning"): MAJOR.MINOR.PATCH without leading zeros, released once.
+    RELEASE_VERSION="$(plutil -extract CFBundleShortVersionString raw Resources/Info.plist)"
+    if [[ ! "$RELEASE_VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+        echo "Version \"$RELEASE_VERSION\" in Resources/Info.plist is not MAJOR.MINOR.PATCH" >&2
+        exit 1
+    fi
+    git fetch -q --tags origin 2>/dev/null || true
+    TAG_COMMIT="$(git rev-parse -q --verify "refs/tags/v$RELEASE_VERSION^{commit}" || true)"
+    if [[ -n "$TAG_COMMIT" && "$TAG_COMMIT" != "$(git rev-parse HEAD)" ]]; then
+        echo "v$RELEASE_VERSION was already released from another commit; raise the version first" >&2
+        exit 1
+    fi
+fi
 if [[ "${1:-}" == "strings" || "${1:-}" == "check-strings" ]]; then
     # The compiler lists every String(localized:) it sees; sync adds new keys to the catalog
     # and marks keys that are no longer used as stale.
@@ -210,6 +224,8 @@ SHA-256 signing certificate:  $CERT_SHA
 Check:  shasum -a 256 ~/Downloads/Clipsody.dmg
 EOF
     cat build/release-notes.txt
+    echo
+    echo "Publish: gh release create v$VERSION build/Clipsody.dmg --target $(git rev-parse HEAD) --title \"Clipsody $VERSION\" --notes-file build/release-notes.txt"
 fi
 
 if [[ "${1:-}" == "install" ]]; then
