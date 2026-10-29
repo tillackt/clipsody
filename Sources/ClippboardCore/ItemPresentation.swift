@@ -67,10 +67,15 @@ public enum ItemPresentation {
         return "Bild \(item.imageWidth)×\(item.imageHeight)" + (item.byteSize > 0 ? " (\(size))" : "")
     }
 
-    /// Everything a search term may match: content, label, source app and recognised text.
+    /// Searchable part of a text; huge texts (logs) would otherwise slow down every keystroke.
+    public static let searchablePrefix = 100_000
+
+    /// Everything a search term may match: content (its first 100,000 characters), label,
+    /// source app and recognised text.
     public static func searchText(for item: ClipItem) -> String {
         let label = item.kind == .image ? "Bild" : ""
-        return [item.text, label, item.app ?? "", item.recognizedText ?? ""].joined(separator: "\n")
+        let content = String(item.text.prefix(searchablePrefix))
+        return [content, label, item.app ?? "", item.recognizedText ?? ""].joined(separator: "\n")
     }
 
     /// First recognised line containing a search term, shortened around the match.

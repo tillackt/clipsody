@@ -96,6 +96,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if FileManager.default.fileExists(atPath: url.path) {
                 // Stored even when empty so the image is not processed again.
                 store.setRecognizedText(text ?? "", forImageFile: file)
+                // The open panel searches its own copy of the entries.
+                panel.reloadIfVisible()
             } else {
                 // Deleted meanwhile: writing "" could hit a new entry for the same image copied again.
                 unreadableImages.insert(file)
@@ -133,6 +135,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func prune() {
         store.prune(retentionDays: config.retentionDays, maxItems: config.maxItems)
+        // An open panel must not keep showing (and pasting) entries that are gone.
+        panel?.reloadIfVisible()
     }
 
     @objc private func openPanel() {
@@ -177,6 +181,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if alert.runModal() == .alertFirstButtonReturn {
             monitor.discardPendingImages()
             store.clear()
+            panel.reloadIfVisible()
         }
     }
 

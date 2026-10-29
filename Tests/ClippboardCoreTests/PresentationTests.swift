@@ -19,6 +19,13 @@ import Testing
         #expect(SearchQuery("   ").matches(entry))
     }
 
+    @Test func onlyTheBeginningOfHugeTextsIsSearched() {
+        let padding = String(repeating: "x", count: ItemPresentation.searchablePrefix)
+        let log = item(text: "start " + padding + " needle")
+        #expect(SearchQuery("start").matches(log))
+        #expect(!SearchQuery("needle").matches(log))
+    }
+
     @Test func cachedFoldedTextGivesSameResult() {
         let entry = item(text: "Café Größe", app: "Notes")
         let folded = SearchQuery.fold(ItemPresentation.searchText(for: entry))

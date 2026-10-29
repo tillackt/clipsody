@@ -126,7 +126,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private let iconCache = NSCache<NSString, NSImage>()
     private let previewCache: NSCache<NSString, NSImage> = {
         let cache = NSCache<NSString, NSImage>()
-        cache.countLimit = 20
+        // Cost = decoded bytes; a Retina preview is 2–3 MB, so this keeps a handful.
+        cache.totalCostLimit = 12_000_000
         return cache
     }()
     private var previewTask: Task<Void, Never>?
@@ -172,6 +173,16 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     func hide() {
         panel.orderOut(nil)
+        // Everything is reloaded on the next show; holding texts, index and previews in the
+        // background would only cost memory.
+        previewTask?.cancel()
+        allItems = []
+        items = []
+        searchIndex = [:]
+        previewCache.removeAllObjects()
+        previewText.string = ""
+        previewImage.image = nil
+        table.reloadData()
     }
 
     /// Refreshes the list when the clipboard changes while the panel is open.
@@ -348,14 +359,17 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             return icon
         }
         let key = item.appPath ?? ""
-        if let cached = iconCache.object(forKey: key as NSString) { return cached }
+        if let cached = iconCache.object(forKey: (key + "#\(item.kind.rawValue)") as NSString) { return cached }
 
-        var image: NSImage?
+        let image: NSImage
         if let path = item.appPath, FileManager.default.fileExists(atPath: path) {
             image = NSWorkspace.shared.icon(forFile: path)
-            iconCache.setObject(image!, forKey: key as NSString)
+        } else {
+            image = NSImage(systemSymbolName: item.kind == .image ? "photo" : "doc.text", accessibilityDescription: nil)!
         }
-        return image ?? NSImage(systemSymbolName: item.kind == .image ? "photo" : "doc.text", accessibilityDescription: nil)
+        // Cached either way, so a missing app is not looked up again for every row.
+        iconCache.setObject(image, forKey: (key + "#\(item.kind.rawValue)") as NSString)
+        return image
     }
 
     private func updatePreview() {
@@ -372,13 +386,20 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         switch item.kind {
         case .text:
             showPreviewText(item.text)
-            let lines = item.text.split(whereSeparator: \.isNewline).count
-            info.append("\(item.text.count) Zeichen" + (lines > 1 ? ", \(lines) Zeilen" : ""))
+            let bytes = item.text.utf8.count
+            if bytes > ItemPresentation.searchablePrefix {
+                // Counting characters and lines of a multi-MB text would stall arrowing through the list.
+                info.append(ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file))
+            } else {
+                let lines = item.text.split(whereSeparator: \.isNewline).count
+                info.append("\(item.text.count) Zeichen" + (lines > 1 ? ", \(lines) Zeilen" : ""))
+            }
             if item.hasRichText { info.append("mit Formatierung") }
         case .files:
             let paths = item.filePaths
             showPreviewText(paths.joined(separator: "\n"))
-            let missing = paths.filter { !FileManager.default.fileExists(atPath: $0) }.count
+            // Paths on network volumes are not checked: a disconnected server blocks for seconds.
+            let missing = paths.filter { !$0.hasPrefix("/Volumes/") && !FileManager.default.fileExists(atPath: $0) }.count
             info.append(paths.count == 1 ? "1 Datei" : "\(paths.count) Dateien")
             if missing > 0 { info.append("\(missing) nicht mehr vorhanden") }
         case .image:
@@ -420,7 +441,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             }.value
             guard let self, !Task.isCancelled, let result else { return }
             let thumbnail = NSImage(cgImage: result.image, size: result.pointSize)
-            previewCache.setObject(thumbnail, forKey: key)
+            previewCache.setObject(thumbnail, forKey: key, cost: result.image.bytesPerRow * result.image.height)
             previewImage.image = thumbnail
         }
     }
