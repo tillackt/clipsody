@@ -2,36 +2,39 @@ import ClippboardCore
 import ClippboardXPC
 import CoreGraphics
 import Foundation
+import os
 
 /// Resumes a continuation exactly once, whichever of reply, XPC error or timeout comes first.
-final class ResumeOnce<Value: Sendable>: @unchecked Sendable {
-    private let lock = NSLock()
-    private var continuation: CheckedContinuation<Value, Never>?
-    private var onResume: (@Sendable () -> Void)?
+final class ResumeOnce<Value: Sendable>: Sendable {
+    private struct State: Sendable {
+        var continuation: CheckedContinuation<Value, Never>?
+        var onResume: (@Sendable () -> Void)?
+    }
+
+    private let state: OSAllocatedUnfairLock<State>
 
     init(_ continuation: CheckedContinuation<Value, Never>) {
-        self.continuation = continuation
+        state = OSAllocatedUnfairLock(initialState: State(continuation: continuation))
     }
 
     /// Runs `action` once the continuation is resumed (right away if it already was); used to
     /// cancel the timeout as soon as a reply arrives.
     func whenResumed(_ action: @escaping @Sendable () -> Void) {
-        lock.lock()
-        let alreadyResumed = continuation == nil
-        if !alreadyResumed { onResume = action }
-        lock.unlock()
+        let alreadyResumed = state.withLock { state in
+            if state.continuation == nil { return true }
+            state.onResume = action
+            return false
+        }
         if alreadyResumed { action() }
     }
 
     /// Returns false if the continuation was already resumed.
     @discardableResult
     func resume(_ value: Value) -> Bool {
-        lock.lock()
-        let pending = continuation
-        let action = onResume
-        continuation = nil
-        onResume = nil
-        lock.unlock()
+        let (pending, action) = state.withLock { state in
+            defer { state = State() }
+            return (state.continuation, state.onResume)
+        }
         pending?.resume(returning: value)
         if pending != nil { action?() }
         return pending != nil

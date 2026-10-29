@@ -31,7 +31,7 @@ public enum ImageIngest {
     /// the attack surface of untrusted clipboard data small.
     private static let acceptedTypes: Set<String> = [UTType.png.identifier, UTType.tiff.identifier]
 
-    /// Runs off the main thread in the app; it does not touch shared state.
+    /// Runs in the sandboxed decoder service; it does not touch shared state.
     public static func prepare(_ data: Data, maxPixels: Int = maxPixels) -> PreparedImage? {
         // Format and size are read from the header first, so oversized images are never decoded.
         guard data.count <= maxBytes,

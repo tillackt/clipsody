@@ -70,8 +70,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Launching the app again (Spotlight, Finder, `open`) shows the history.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        panel.show()
+        // nil if the store could not be opened at launch
+        panel?.show()
         return false
+    }
+
+    // Opts into secure state restoration; without it macOS 14+ logs a warning at launch.
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        true
     }
 
     // MARK: - Paste
@@ -179,15 +185,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = NSImage(systemSymbolName: "list.clipboard", accessibilityDescription: "Clippboard")
 
         let menu = NSMenu()
+        // Items are enabled explicitly; otherwise isEnabled would be ignored.
+        menu.autoenablesItems = false
         openItem = menu.addItem(withTitle: "Historie öffnen", action: #selector(openPanel), keyEquivalent: "")
         menu.addItem(withTitle: "Einstellungen …", action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Historie löschen …", action: #selector(clearHistory), keyEquivalent: "")
         menu.addItem(.separator())
         // Informational only, no action: disabled items show greyed out.
-        menu.addItem(withTitle: "Clippboard – \(AppVersion.display)", action: nil, keyEquivalent: "").isEnabled = false
+        let versionItem = menu.addItem(withTitle: "Clippboard – \(AppVersion.display)", action: nil, keyEquivalent: "")
+        versionItem.isEnabled = false
         menu.addItem(withTitle: "Beenden", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        for item in menu.items where item.action != #selector(NSApplication.terminate(_:)) {
+        for item in menu.items where item.action != nil && item.action != #selector(NSApplication.terminate(_:)) {
             item.target = self
         }
         statusItem.menu = menu

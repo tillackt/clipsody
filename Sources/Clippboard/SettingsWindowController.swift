@@ -199,14 +199,6 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
     // MARK: - Ignored apps table
 
     // Names for the default entries, shown when the app is not installed.
-    private static let knownAppNames = [
-        "com.1password.1password": "1Password 8",
-        "com.agilebits.onepassword7": "1Password 7",
-        "com.apple.keychainaccess": "Schlüsselbundverwaltung",
-        "com.apple.Passwords": "Passwörter",
-        "com.bitwarden.desktop": "Bitwarden",
-    ]
-
     func numberOfRows(in tableView: NSTableView) -> Int {
         config.ignoredApps.count
     }
@@ -215,7 +207,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         let bundleId = config.ignoredApps[row]
         let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleId)
         let name = appURL.map { FileManager.default.displayName(atPath: $0.path) }
-            ?? Self.knownAppNames[bundleId]
+            ?? Config.defaultIgnoredAppNames[bundleId]
             ?? bundleId
 
         let id = NSUserInterfaceItemIdentifier("app")
@@ -243,8 +235,12 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             if grid.numberOfRows > 1 { row.topPadding = 8 }
         }
 
-        func row(_ title: String, _ control: NSView, alignWith anchor: NSView, help: String) {
+        @discardableResult
+        func row(_ title: String, _ control: NSView, alignWith anchor: NSView, help: String) -> NSTextField {
             let label = NSTextField(labelWithString: title)
+            // VoiceOver names the control after its label and reads the explanation as help.
+            anchor.setAccessibilityTitleUIElement(label)
+            anchor.setAccessibilityHelp(help)
             let helpLabel = NSTextField(wrappingLabelWithString: help)
             helpLabel.font = .systemFont(ofSize: 11)
             helpLabel.textColor = .secondaryLabelColor
@@ -256,6 +252,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             let gridRow = grid.addRow(with: [label, stack])
             gridRow.yPlacement = .top
             label.firstBaselineAnchor.constraint(equalTo: anchor.firstBaselineAnchor).isActive = true
+            return label
         }
 
         func numberControl(_ field: NSTextField, _ stepper: NSStepper, unit: String, range: ClosedRange<Int>, step: Int, action: Selector) -> NSStackView {
@@ -309,17 +306,20 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         section("Historie")
         let retention = numberControl(retentionField, retentionStepper, unit: "Tage", range: Config.retentionRange, step: 1,
                                       action: #selector(retentionChanged(_:)))
-        row("Aufbewahren:", retention, alignWith: retentionField, help: """
+        let retentionLabel = row("Aufbewahren:", retention, alignWith: retentionField, help: """
             Ältere Einträge werden automatisch gelöscht, beim Start und danach stündlich. Wird der Wert \
             verkleinert, verschwinden ältere Einträge sofort. Angepinnte Einträge (⌘P) werden nie automatisch gelöscht.
             """)
 
         let maxItems = numberControl(maxItemsField, maxItemsStepper, unit: "Einträge", range: Config.maxItemsRange, step: 50,
                                      action: #selector(maxItemsChanged(_:)))
-        row("Höchstens:", maxItems, alignWith: maxItemsField, help: """
+        let maxItemsLabel = row("Höchstens:", maxItems, alignWith: maxItemsField, help: """
             Obergrenze für die Historie. Kommen mehr Einträge zusammen, fallen die ältesten weg, auch wenn \
             sie jünger als die Aufbewahrungszeit sind. Angepinnte Einträge zählen nicht mit.
             """)
+
+        retentionStepper.setAccessibilityTitleUIElement(retentionLabel)
+        maxItemsStepper.setAccessibilityTitleUIElement(maxItemsLabel)
 
         keepImages.target = self
         keepImages.action = #selector(keepImagesChanged)
@@ -349,8 +349,13 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         ignoredButtons.segmentStyle = .smallSquare
         ignoredButtons.trackingMode = .momentary
         ignoredButtons.segmentCount = 2
-        ignoredButtons.setImage(NSImage(named: NSImage.addTemplateName), forSegment: 0)
-        ignoredButtons.setImage(NSImage(named: NSImage.removeTemplateName), forSegment: 1)
+        // Image-only segments: the descriptions are what VoiceOver reads.
+        let addImage = NSImage(named: NSImage.addTemplateName)
+        addImage?.accessibilityDescription = "App hinzufügen"
+        let removeImage = NSImage(named: NSImage.removeTemplateName)
+        removeImage?.accessibilityDescription = "Ausgewählte App entfernen"
+        ignoredButtons.setImage(addImage, forSegment: 0)
+        ignoredButtons.setImage(removeImage, forSegment: 1)
         ignoredButtons.setToolTip("App hinzufügen", forSegment: 0)
         ignoredButtons.setToolTip("Ausgewählte App entfernen", forSegment: 1)
         ignoredButtons.target = self

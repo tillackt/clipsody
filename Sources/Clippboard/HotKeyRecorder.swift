@@ -30,6 +30,7 @@ final class HotKeyRecorder: NSButton {
         title = "Tastenkombination drücken …"
         window?.makeFirstResponder(self)
         onRecordingChange?(true)
+        announce("Tastenkombination drücken, Escape bricht ab")
     }
 
     /// Ends a recording without changing the hotkey (window closed or left).
@@ -42,6 +43,7 @@ final class HotKeyRecorder: NSButton {
         isRecording = false
         updateTitle()
         onRecordingChange?(false)
+        announce("Tastenkürzel \(title)")
     }
 
     // ⌘-combinations arrive here instead of keyDown.
@@ -81,6 +83,11 @@ final class HotKeyRecorder: NSButton {
         hotkey = parts.joined(separator: "+")
         stopRecording()
         onChange?(hotkey)
+    }
+
+    private func announce(_ text: String) {
+        NSAccessibility.post(element: self, notification: .announcementRequested,
+                             userInfo: [.announcement: text, .priority: NSAccessibilityPriorityLevel.high.rawValue])
     }
 
     private func updateTitle() {

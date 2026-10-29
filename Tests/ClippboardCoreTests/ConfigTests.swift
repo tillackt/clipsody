@@ -31,6 +31,12 @@ import Testing
         #expect(config.ignoredAppsDefaultsVersion == Config.defaultIgnoredApps.count)
     }
 
+    @Test func everyDefaultIgnoredAppHasAName() {
+        for app in Config.defaultIgnoredApps.joined() {
+            #expect(Config.defaultIgnoredAppNames[app] != nil, "\(app)")
+        }
+    }
+
     @Test func removedNewDefaultsStayRemoved() throws {
         var config = Config()
         config.ignoredApps.removeAll { $0 == "org.keepassxc.keepassxc" }

@@ -32,6 +32,8 @@ import Testing
         #expect(Store.orphanedImageFiles(files, referenced: nil).isEmpty)
         #expect(Store.orphanedImageFiles(files, referenced: [files[0]]) == [files[1]])
         #expect(Store.orphanedImageFiles(files + ["notes.txt"], referenced: []) == files)
+        // Temporary files of interrupted atomic writes go too, even without a reference list check.
+        #expect(Store.orphanedImageFiles([".dat.nosync1a2b.x9"], referenced: []) == [".dat.nosync1a2b.x9"])
     }
 
     @Test func deleteReportsSuccess() throws {

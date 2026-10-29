@@ -131,12 +131,6 @@ import Testing
         #expect(store.recognizedText(forImageFile: image.hash + ".png") == "Rechnung")
     }
 
-    @Test func metadataRoundTrip() {
-        #expect(store.metadata("x") == nil)
-        store.setMetadata("1", for: "x")
-        store.setMetadata("2", for: "x")
-        #expect(store.metadata("x") == "2")
-    }
 }
 
 @Suite struct MigrationTests {

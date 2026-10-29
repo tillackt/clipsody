@@ -93,7 +93,7 @@ final class Paster {
                 NSSound.beep()
                 return
             }
-            logger.notice("Paste: ⌘V to \(target.localizedName ?? "-", privacy: .public), kind \(item.kind.rawValue)")
+            logger.debug("Paste: ⌘V, kind \(item.kind.rawValue)")
             Self.sendPasteKeystroke()
         }
         return true

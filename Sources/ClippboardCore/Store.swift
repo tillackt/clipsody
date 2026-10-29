@@ -99,7 +99,13 @@ public final class Store {
     /// nothing is deleted: an incomplete list would make images still in use look orphaned.
     static func orphanedImageFiles(_ files: [String], referenced: Set<String>?) -> [String] {
         guard let referenced else { return [] }
-        return files.filter { isImageFileName($0) && !referenced.contains($0) }
+        return files.filter { (isImageFileName($0) && !referenced.contains($0)) || isAtomicWriteLeftover($0) }
+    }
+
+    /// Temporary file of an atomic write (Data.write(options: .atomic)) that a crash left behind;
+    /// it may hold a copied image.
+    static func isAtomicWriteLeftover(_ name: String) -> Bool {
+        name.hasPrefix(".dat.nosync")
     }
 
     deinit {
@@ -323,20 +329,6 @@ public final class Store {
         }
     }
 
-    public func metadata(_ key: String) -> String? {
-        var value: String?
-        query("SELECT value FROM meta WHERE key = ?", bind: { Self.bind($0, 1, key) }) { value = Self.string($0, 0) }
-        return value
-    }
-
-    @discardableResult
-    public func setMetadata(_ value: String, for key: String) -> Bool {
-        run("INSERT INTO meta(key, value) VALUES(?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value") { stmt in
-            Self.bind(stmt, 1, key)
-            Self.bind(stmt, 2, value)
-        }
-    }
-
     /// Runs `body` in one transaction; rolls back if it throws. Internal on purpose: image files
     /// deleted inside a transaction would not come back with a rollback.
     func transaction(_ body: () throws -> Void) throws {
@@ -517,7 +509,10 @@ public final class Store {
     }
 
     private func removeImage(_ fileName: String) {
-        guard let url = imageURL(forFile: fileName) else { return }
+        let url = Self.isAtomicWriteLeftover(fileName) && fileName == (fileName as NSString).lastPathComponent
+            ? imagesDirectory.appendingPathComponent(fileName)
+            : imageURL(forFile: fileName)
+        guard let url else { return }
         try? FileManager.default.removeItem(at: url)
     }
 

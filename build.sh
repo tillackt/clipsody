@@ -3,6 +3,7 @@
 #   ./build.sh           build the app bundle
 #   ./build.sh test      run the unit tests
 #   ./build.sh install   run the tests, build, copy to ~/Applications and restart
+#   ./build.sh release   run the tests and build; fails without the signing certificate
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -15,8 +16,8 @@ if [[ "${1:-}" == "test" ]]; then
     swift test
     exit
 fi
-if [[ "${1:-}" == "install" ]]; then
-    # Never install a build whose tests fail.
+if [[ "${1:-}" == "install" || "${1:-}" == "release" ]]; then
+    # Never install or ship a build whose tests fail.
     swift test
 fi
 
@@ -31,8 +32,10 @@ strip -x "$APP/Contents/MacOS/Clippboard"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
 # Build number = commit count, plus the commit itself; "+" marks uncommitted changes.
-BUILD_NUMBER="$(git rev-list --count HEAD)"
-COMMIT="$(git rev-parse --short HEAD)$(git diff --quiet HEAD || echo +)"
+# Outside a git checkout (e.g. a source download) there is no history to count.
+BUILD_NUMBER="$(git rev-list --count HEAD 2>/dev/null || echo 0)"
+COMMIT="$( (git rev-parse --short HEAD 2>/dev/null || echo unknown); git diff --quiet HEAD 2>/dev/null || echo +)"
+COMMIT="${COMMIT//$'\n'/}"
 plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$APP/Contents/Info.plist"
 plutil -replace ClippboardCommit -string "$COMMIT" "$APP/Contents/Info.plist"
 
@@ -56,6 +59,11 @@ plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$XPC/Contents/Info.plis
 if security find-identity -p codesigning | grep -q "\"$IDENTITY\""; then
     SIGN_AS="$IDENTITY"
 else
+    if [[ "${1:-}" == "release" ]]; then
+        # Recipients keep their Accessibility permission across updates only with the same certificate.
+        echo "Release builds need the \"$IDENTITY\" certificate; none found" >&2
+        exit 1
+    fi
     SIGN_AS="-"
     echo "No \"$IDENTITY\" certificate found, signing ad-hoc (see README)"
 fi
