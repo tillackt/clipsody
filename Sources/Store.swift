@@ -273,7 +273,7 @@ final class Store {
 
     private func exec(_ sql: String) {
         if sqlite3_exec(db, sql, nil, nil, nil) != SQLITE_OK {
-            NSLog("Clippboard SQLite error: %@", String(cString: sqlite3_errmsg(db)))
+            log.error("SQLite error: \(String(cString: sqlite3_errmsg(self.db)), privacy: .public)")
         }
     }
 
@@ -284,7 +284,7 @@ final class Store {
     private func query(_ sql: String, bind: (OpaquePointer?) -> Void = { _ in }, row: (OpaquePointer?) -> Void) {
         var stmt: OpaquePointer?
         guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
-            NSLog("Clippboard SQLite error: %@", String(cString: sqlite3_errmsg(db)))
+            log.error("SQLite error: \(String(cString: sqlite3_errmsg(self.db)), privacy: .public)")
             return
         }
         defer { sqlite3_finalize(stmt) }

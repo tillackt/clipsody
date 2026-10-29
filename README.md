@@ -9,8 +9,8 @@ Schlanke Clipboard-Historie für macOS als Ersatz für Alfreds Clipboard-Feature
 | ⌥⌘C | Historie öffnen/schließen |
 | Tippen | Filtern (mehrere Wörter = alle müssen vorkommen; sucht auch im App-Namen und im Text auf Bildern) |
 | ↑ / ↓, Bild ↑/↓ | Eintrag wählen |
-| ⏎ oder Doppelklick | In die aktive App einfügen (Text ohne Formatierung) |
-| ⌥⏎ | Mit Formatierung einfügen (fett, Links, Tabellen aus Word, Outlook, Browser …) |
+| ⏎ oder Doppelklick | In die aktive App einfügen, mit Formatierung (fett, Links, Tabellen aus Word, Outlook, Browser …) |
+| ⌥⏎ | Nur den reinen Text einfügen, ohne Formatierung |
 | ⌘1 … ⌘9 | n-ten Eintrag direkt einfügen |
 | ⌘P | Eintrag anpinnen/lösen: bleibt oben und wird nie automatisch gelöscht |
 | ⌘⌫ | Eintrag löschen |

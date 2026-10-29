@@ -38,7 +38,7 @@ struct Config: Codable {
             do {
                 return try JSONDecoder().decode(Config.self, from: data)
             } catch {
-                NSLog("Clippboard: invalid config.json, using defaults: %@", "\(error)")
+                log.error("Invalid config.json, using defaults: \(error, privacy: .public)")
                 return Config()
             }
         }

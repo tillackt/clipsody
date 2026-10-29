@@ -101,7 +101,7 @@ private final class ClipRowView: NSTableCellView {
 final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate {
     private let store: Store
     private let maxItems: () -> Int
-    /// Item, target app, and whether to paste with formatting (⌥⏎).
+    /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
     private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
     private var targetApp: NSRunningApplication?
@@ -113,7 +113,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     private var previewText: NSTextView { previewTextScroll.documentView as! NSTextView }
     private let previewImage = NSImageView()
     private let infoLabel = NSTextField(labelWithString: "")
-    private let hintLabel = NSTextField(labelWithString: "⏎ einfügen   ⌥⏎ mit Formatierung   ⌘P anpinnen   ⌘⌫ löschen")
+    private let hintLabel = NSTextField(labelWithString: "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P anpinnen   ⌘⌫ löschen")
     private let emptyLabel = NSTextField(labelWithString: "Keine Einträge")
 
     private var allItems: [ClipItem] = []
@@ -192,11 +192,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
 
     // MARK: - Actions
 
-    private func pasteSelected(withFormatting: Bool = false) {
+    private func pasteSelected(withFormatting: Bool = true) {
         paste(at: table.selectedRow, withFormatting: withFormatting)
     }
 
-    private func paste(at row: Int, withFormatting: Bool = false) {
+    private func paste(at row: Int, withFormatting: Bool = true) {
         guard items.indices.contains(row) else { return }
         let item = items[row]
         hide()
@@ -306,8 +306,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         case #selector(NSResponder.scrollPageUp(_:)), #selector(NSResponder.pageUp(_:)): move(by: -10)
         case #selector(NSResponder.scrollPageDown(_:)), #selector(NSResponder.pageDown(_:)): move(by: 10)
         case #selector(NSResponder.insertNewline(_:)): pasteSelected()
-        // ⌥⏎ arrives as "insert newline ignoring field editor"
-        case #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)): pasteSelected(withFormatting: true)
+        // ⌥⏎ arrives as "insert newline ignoring field editor" and pastes plain text
+        case #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)): pasteSelected(withFormatting: false)
         case #selector(NSResponder.cancelOperation(_:)): hide()
         default: return false
         }

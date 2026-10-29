@@ -23,7 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         config = Config.load(from: store.directory)
 
         let imported = AlfredImporter.importIfNeeded(into: store, force: CommandLine.arguments.contains("--import-alfred"))
-        if imported > 0 { NSLog("Clippboard: imported %d entries from Alfred", imported) }
+        if imported > 0 { log.info("Imported \(imported) entries from Alfred") }
         prune()
 
         monitor = ClipboardMonitor(store: store) { [unowned self] in config }
@@ -61,7 +61,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
         guard Paster.write(item, store: store, withFormatting: withFormatting) else {
-            NSLog("Clippboard paste: content no longer available (file moved or deleted)")
+            log.error("Paste: content no longer available (file moved or deleted)")
             NSSound.beep()
             return
         }
@@ -69,7 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         store.touch(item)
 
         guard Paster.isTrusted(prompt: false) else {
-            NSLog("Clippboard paste: no Accessibility permission, item only copied")
+            log.error("Paste: no Accessibility permission, item only copied")
             NSSound.beep()
             _ = Paster.isTrusted(prompt: true)
             return
@@ -81,9 +81,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             target.activate(options: [])
         }
         whenFrontmost(target, attemptsLeft: 20) {
-            NSLog("Clippboard paste: sending ⌘V to %@ (frontmost: %@)",
-                  target?.localizedName ?? "-",
-                  NSWorkspace.shared.frontmostApplication?.localizedName ?? "-")
+            let types = (NSPasteboard.general.types ?? []).map(\.rawValue).joined(separator: ", ")
+            let frontmost = NSWorkspace.shared.frontmostApplication?.localizedName ?? "-"
+            log.notice("""
+                Paste: ⌘V to \(target?.localizedName ?? "-", privacy: .public) \
+                (frontmost \(frontmost, privacy: .public), formatted \(withFormatting), \
+                kind \(item.kind.rawValue), pasteboard: \(types, privacy: .public))
+                """)
             Paster.sendPasteKeystroke()
         }
     }
