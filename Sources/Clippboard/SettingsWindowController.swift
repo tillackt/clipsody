@@ -192,9 +192,15 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
         onChange(config)
     }
 
+    /// The app could not register the recorded hotkey and keeps the previous one.
+    func restoreHotkey(_ hotkey: String) {
+        config.hotkey = hotkey
+        hotKeyRecorder.hotkey = hotkey
+    }
+
     // MARK: - Actions
 
-    @objc private func hotKeyChanged(_ hotkey: String) {
+    private func hotKeyChanged(_ hotkey: String) {
         config.hotkey = hotkey
         commit()
     }

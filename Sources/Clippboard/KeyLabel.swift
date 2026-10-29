@@ -20,7 +20,7 @@ enum KeyLabel {
         let status = layoutData.withUnsafeBytes { buffer -> OSStatus in
             guard let layout = buffer.baseAddress?.assumingMemoryBound(to: UCKeyboardLayout.self) else { return -1 }
             return UCKeyTranslate(layout, UInt16(keyCode), UInt16(kUCKeyActionDisplay), 0, UInt32(LMGetKbdType()),
-                                  OptionBits(kUCKeyTranslateNoDeadKeysBit), &deadKeyState, characters.count,
+                                  OptionBits(kUCKeyTranslateNoDeadKeysMask), &deadKeyState, characters.count,
                                   &length, &characters)
         }
         guard status == noErr, length > 0 else { return nil }
