@@ -57,18 +57,23 @@ public final class Decoder: NSObject, DecoderServiceProtocol, Sendable {
     }
 
     private func recognize(_ png: Data, reply: @escaping @Sendable (String?) -> Void) {
+        do {
+            reply(try Self.recognizedLines(inPNG: png).joined(separator: "\n"))
+        } catch {
+            // The client only learns "failed"; the reason goes to the log.
+            logger.error("Text recognition failed: \(String(describing: error), privacy: .public)")
+            reply(nil)
+        }
+    }
+
+    /// The recognised lines, top candidate each; throws what Vision throws.
+    static func recognizedLines(inPNG png: Data) throws -> [String] {
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
         request.recognitionLanguages = ["de-DE", "en-US"]
         request.usesLanguageCorrection = true
-        do {
-            try VNImageRequestHandler(data: png).perform([request])
-        } catch {
-            reply(nil)
-            return
-        }
-        let lines = (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
-        reply(lines.joined(separator: "\n"))
+        try VNImageRequestHandler(data: png).perform([request])
+        return (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }
     }
 
     public func thumbnail(ofPNG png: Data, maxPixelSize: Int,
