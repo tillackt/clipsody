@@ -199,6 +199,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(withTitle: "Einstellungen …", action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Historie löschen …", action: #selector(clearHistory), keyEquivalent: "")
+        menu.addItem(.separator())
+        // Informational only, no action: disabled items show greyed out.
+        menu.addItem(withTitle: "Clippboard – \(AppVersion.display)", action: nil, keyEquivalent: "").isEnabled = false
         menu.addItem(withTitle: "Beenden", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         for item in menu.items where item.action != #selector(NSApplication.terminate(_:)) {
             item.target = self

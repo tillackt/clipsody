@@ -387,6 +387,13 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTa
             übertragen. Den Verlauf löschst du über das Menüleisten-Symbol.
             """)
 
+        let versionLabel = NSTextField(labelWithString: AppVersion.display)
+        versionLabel.isSelectable = true
+        row("Version:", versionLabel, alignWith: versionLabel, help: """
+            Die Build-Nummer zählt die Änderungen am Quellcode, dahinter steht die genaue Code-Version. \
+            Bei Fehlermeldungen bitte mit angeben.
+            """)
+
         // Columns only exist once rows were added.
         grid.column(at: 0).xPlacement = .trailing
 

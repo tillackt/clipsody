@@ -30,6 +30,11 @@ cp "$BIN_DIR/Clippboard" "$APP/Contents/MacOS/Clippboard"
 strip -x "$APP/Contents/MacOS/Clippboard"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$APP/Contents/Info.plist"
+# Build number = commit count, plus the commit itself; "+" marks uncommitted changes.
+BUILD_NUMBER="$(git rev-list --count HEAD)"
+COMMIT="$(git rev-parse --short HEAD)$(git diff --quiet HEAD || echo +)"
+plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$APP/Contents/Info.plist"
+plutil -replace ClippboardCommit -string "$COMMIT" "$APP/Contents/Info.plist"
 
 # Sandboxed XPC service that decodes clipboard images and reads screenshots (see README).
 DECODER_ID="$BUNDLE_ID.decoder"
