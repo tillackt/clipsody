@@ -47,8 +47,8 @@ import Testing
         #expect(await client.prepareImage(makeImage()) == nil)
         let elapsed = ContinuousClock.now - started
         // A real timeout: the request arrived, and the client gave up after `timeout`, long before
-        // the 30 s default.
-        #expect(silent.requestsReceived == 1)
+        // the 30 s default. Under load the request can reach the service only after the client gave up.
+        #expect(await eventually { silent.requestsReceived == 1 })
         #expect(elapsed >= timeout)
         #expect(elapsed < .seconds(10))
         withExtendedLifetime(service) {}
