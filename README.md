@@ -78,11 +78,13 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on 
 
 - **Secret scan:** [Betterleaks](https://github.com/betterleaks/betterleaks) (the successor of gitleaks) scans the whole git history. Known false positives are listed in `.betterleaksignore`.
 - **Lint:** [SwiftLint](https://github.com/realm/SwiftLint) with `--strict` (configuration in `.swiftlint.yml`), [ShellCheck](https://www.shellcheck.net) for the shell scripts and [actionlint](https://github.com/rhysd/actionlint) for the workflows.
-- **Tests:** `./build.sh test`
+- **Tests and coverage:** `./build.sh coverage` runs the tests with line coverage, writes a per-file table to the run's summary and fails below 88 % (core, services and decoder kit; the AppKit app target has no unit tests).
 - **Translations:** `./build.sh check-strings` fails if the code uses a text the catalog lacks, or the catalog keeps texts the code no longer uses.
 - **App build:** `./build.sh` builds the universal binary; without the certificate it is signed ad hoc, and the signature is still verified.
 
 Lint and secret scan run on Linux; tests and build on macOS with the newest stable Xcode.
+
+Tests and the app build treat compiler warnings as errors (`WARNINGS_AS_ERRORS=1`); local builds stay lenient. **Static analysis:** CodeQL (`.github/workflows/codeql.yml`) runs the security-and-quality queries on the Swift code and on the workflows, on every pull request, on `main` and weekly. Findings appear under Security → Code scanning.
 
 The workflows pin their actions to commit SHAs, and Dependabot (`.github/dependabot.yml`) proposes updates weekly. `main` is protected: changes arrive only through pull requests with green CI, and force pushes are blocked. GitHub's own secret scanning with push protection rejects pushes that contain known credential formats, as a second line of defence behind the pre-commit hook.
 
