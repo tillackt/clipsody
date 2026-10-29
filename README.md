@@ -25,7 +25,7 @@ Rechts steht eine Vorschau (voller Text oder Bild), darunter App, Alter und Grö
 
 Swift-Paket mit drei Zielen:
 
-- `Sources/ClippboardCore`: Speicher (SQLite mit versionierten Migrationen), Konfiguration, Bildumwandlung, Suche und Alfred-Import, ohne AppKit
+- `Sources/ClippboardCore`: Speicher (SQLite mit versionierten Migrationen), Konfiguration, Bildumwandlung, Suche, ohne AppKit
 - `Sources/Clippboard`: die Menüleisten-App (AppKit, Hotkey, Zwischenablage, Einfügen)
 - `Sources/ClippboardDecoder`: XPC-Dienst in einer Sandbox, der Bilder aus der Zwischenablage umwandelt und Text in Screenshots erkennt
 - `Sources/ClippboardXPC`: die Schnittstelle zwischen App und Dienst
@@ -59,7 +59,6 @@ Ohne eigenes Zertifikat signiert `build.sh` ad hoc, und macOS vergisst die Bedie
 
 `build.sh` nimmt das Zertifikat automatisch, sobald es vorhanden ist.
 
-Die Alfred-Historie wird beim ersten Start einmalig importiert. Ein erneuter Import ist mit `~/Applications/Clippboard.app/Contents/MacOS/Clippboard --import-alfred` möglich.
 
 ## Einstellungen
 

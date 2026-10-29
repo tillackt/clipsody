@@ -100,20 +100,4 @@ import Testing
         #expect(ImageIngest.prepare(data, maxPixels: 1_599) == nil)
         #expect(ImageIngest.prepare(data, maxPixels: 1_600) != nil)
     }
-
-    @Test func alfredImportIgnoresPathsOutsideItsDataFolder() throws {
-        let alfred = try TemporaryDirectory()
-        let data = try TemporaryDirectory()
-        let databases = alfred.url.appendingPathComponent("Alfred 3/Databases")
-        try FileManager.default.createDirectory(at: databases.appendingPathComponent("clipboard.alfdb.data"),
-                                                withIntermediateDirectories: true)
-        try makeImage().write(to: databases.appendingPathComponent("outside.tiff"))
-        try sqlite(databases.appendingPathComponent("clipboard.alfdb").path, """
-            CREATE TABLE clipboard(item, ts decimal, app, apppath, dataType integer, dataHash);
-            INSERT INTO clipboard VALUES ('Image', 1, NULL, NULL, 1, '../outside.tiff');
-            """)
-        let store = try Store(directory: data.url)
-
-        #expect(AlfredImporter.importIfNeeded(into: store, supportDirectory: alfred.url) == 0)
-    }
 }

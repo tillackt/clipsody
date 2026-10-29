@@ -27,8 +27,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         config = Config.load(from: store.directory)
 
-        AlfredImporter.importIfNeeded(into: store, config: config,
-                                      force: CommandLine.arguments.contains("--import-alfred"))
         prune()
 
         monitor = ClipboardMonitor(store: store, decoder: decoder) { [unowned self] in config }
