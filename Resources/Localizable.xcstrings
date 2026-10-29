@@ -893,48 +893,48 @@
         }
       }
     },
-    "Anything copied in these apps never ends up in the history, e.g. from password managers. Regardless of this list, Clippboard never saves content an app marks as confidential.": {
+    "Anything copied in these apps never ends up in the history, e.g. from password managers. Regardless of this list, Clipsody never saves content an app marks as confidential.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Was in diesen Apps kopiert wird, landet nie in der Historie, z. B. aus Passwort-Managern. Unabhängig davon speichert Clippboard nie Inhalte, die eine App als vertraulich markiert."
+            "value": "Was in diesen Apps kopiert wird, landet nie in der Historie, z. B. aus Passwort-Managern. Unabhängig davon speichert Clipsody nie Inhalte, die eine App als vertraulich markiert."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lo que se copie en estas apps nunca llega al historial, por ejemplo desde gestores de contraseñas. Independientemente de esta lista, Clippboard nunca guarda contenido que una app marque como confidencial."
+            "value": "Lo que se copie en estas apps nunca llega al historial, por ejemplo desde gestores de contraseñas. Independientemente de esta lista, Clipsody nunca guarda contenido que una app marque como confidencial."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ce qui est copié dans ces apps n’arrive jamais dans l’historique, par exemple depuis les gestionnaires de mots de passe. Indépendamment de cette liste, Clippboard n’enregistre jamais un contenu qu’une app marque comme confidentiel."
+            "value": "Ce qui est copié dans ces apps n’arrive jamais dans l’historique, par exemple depuis les gestionnaires de mots de passe. Indépendamment de cette liste, Clipsody n’enregistre jamais un contenu qu’une app marque comme confidentiel."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ciò che viene copiato in queste app non finisce mai nella cronologia, ad esempio dai gestori di password. Indipendentemente da questo elenco, Clippboard non salva mai contenuti che un’app contrassegna come riservati."
+            "value": "Ciò che viene copiato in queste app non finisce mai nella cronologia, ad esempio dai gestori di password. Indipendentemente da questo elenco, Clipsody non salva mai contenuti che un’app contrassegna come riservati."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wat in deze apps wordt gekopieerd, komt nooit in de geschiedenis terecht, bijvoorbeeld uit wachtwoordmanagers. Los van deze lijst bewaart Clippboard nooit inhoud die een app als vertrouwelijk markeert."
+            "value": "Wat in deze apps wordt gekopieerd, komt nooit in de geschiedenis terecht, bijvoorbeeld uit wachtwoordmanagers. Los van deze lijst bewaart Clipsody nooit inhoud die een app als vertrouwelijk markeert."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "To, co zostanie skopiowane w tych aplikacjach, nigdy nie trafia do historii, np. z menedżerów haseł. Niezależnie od tej listy Clippboard nigdy nie zapisuje treści, które aplikacja oznacza jako poufne."
+            "value": "To, co zostanie skopiowane w tych aplikacjach, nigdy nie trafia do historii, np. z menedżerów haseł. Niezależnie od tej listy Clipsody nigdy nie zapisuje treści, które aplikacja oznacza jako poufne."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O que for copiado nesses apps nunca vai para o histórico, por exemplo de gerenciadores de senhas. Independentemente desta lista, o Clippboard nunca salva conteúdo que um app marque como confidencial."
+            "value": "O que for copiado nesses apps nunca vai para o histórico, por exemplo de gerenciadores de senhas. Independentemente desta lista, o Clipsody nunca salva conteúdo que um app marque como confidencial."
           }
         }
       }
@@ -985,48 +985,48 @@
         }
       }
     },
-    "By default Clippboard uses the language of your Mac. A change takes effect after Clippboard restarts.": {
+    "By default Clipsody uses the language of your Mac. A change takes effect after Clipsody restarts.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Standardmäßig nutzt Clippboard die Sprache deines Macs. Eine Änderung wird nach dem Neustart von Clippboard wirksam."
+            "value": "Standardmäßig nutzt Clipsody die Sprache deines Macs. Eine Änderung wird nach dem Neustart von Clipsody wirksam."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por defecto, Clippboard usa el idioma de tu Mac. Un cambio se aplica después de reiniciar Clippboard."
+            "value": "Por defecto, Clipsody usa el idioma de tu Mac. Un cambio se aplica después de reiniciar Clipsody."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Par défaut, Clippboard utilise la langue de votre Mac. Une modification prend effet après le redémarrage de Clippboard."
+            "value": "Par défaut, Clipsody utilise la langue de votre Mac. Une modification prend effet après le redémarrage de Clipsody."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per impostazione predefinita Clippboard usa la lingua del Mac. Una modifica ha effetto dopo il riavvio di Clippboard."
+            "value": "Per impostazione predefinita Clipsody usa la lingua del Mac. Una modifica ha effetto dopo il riavvio di Clipsody."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Standaard gebruikt Clippboard de taal van je Mac. Een wijziging gaat in nadat Clippboard opnieuw is gestart."
+            "value": "Standaard gebruikt Clipsody de taal van je Mac. Een wijziging gaat in nadat Clipsody opnieuw is gestart."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Domyślnie Clippboard używa języka Twojego Maca. Zmiana zacznie działać po ponownym uruchomieniu Clippboard."
+            "value": "Domyślnie Clipsody używa języka Twojego Maca. Zmiana zacznie działać po ponownym uruchomieniu Clipsody."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por padrão, o Clippboard usa o idioma do seu Mac. Uma alteração entra em vigor depois que o Clippboard reiniciar."
+            "value": "Por padrão, o Clipsody usa o idioma do seu Mac. Uma alteração entra em vigor depois que o Clipsody reiniciar."
           }
         }
       }
@@ -1307,140 +1307,140 @@
         }
       }
     },
-    "Clippboard could not remove these items; please delete them yourself:": {
+    "Clipsody could not remove these items; please delete them yourself:": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard konnte diese Objekte nicht entfernen, bitte lösche sie selbst:"
+            "value": "Clipsody konnte diese Objekte nicht entfernen, bitte lösche sie selbst:"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard no pudo eliminar estos elementos; bórralos manualmente:"
+            "value": "Clipsody no pudo eliminar estos elementos; bórralos manualmente:"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard n’a pas pu supprimer ces éléments, supprimez-les vous-même :"
+            "value": "Clipsody n’a pas pu supprimer ces éléments, supprimez-les vous-même :"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard non è riuscito a rimuovere questi elementi; eliminali manualmente:"
+            "value": "Clipsody non è riuscito a rimuovere questi elementi; eliminali manualmente:"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard kon deze onderdelen niet verwijderen; verwijder ze zelf:"
+            "value": "Clipsody kon deze onderdelen niet verwijderen; verwijder ze zelf:"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard nie mógł usunąć tych elementów, usuń je samodzielnie:"
+            "value": "Clipsody nie mógł usunąć tych elementów, usuń je samodzielnie:"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Clippboard não conseguiu remover estes itens; apague-os você mesmo:"
+            "value": "O Clipsody não conseguiu remover estes itens; apague-os você mesmo:"
           }
         }
       }
     },
-    "Clippboard needs to restart to switch the language.": {
+    "Clipsody needs to restart to switch the language.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard muss neu starten, um die Sprache zu wechseln."
+            "value": "Clipsody muss neu starten, um die Sprache zu wechseln."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard debe reiniciarse para cambiar el idioma."
+            "value": "Clipsody debe reiniciarse para cambiar el idioma."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard doit redémarrer pour changer de langue."
+            "value": "Clipsody doit redémarrer pour changer de langue."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard deve riavviarsi per cambiare lingua."
+            "value": "Clipsody deve riavviarsi per cambiare lingua."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard moet opnieuw starten om van taal te wisselen."
+            "value": "Clipsody moet opnieuw starten om van taal te wisselen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard musi się ponownie uruchomić, aby zmienić język."
+            "value": "Clipsody musi się ponownie uruchomić, aby zmienić język."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Clippboard precisa reiniciar para trocar o idioma."
+            "value": "O Clipsody precisa reiniciar para trocar o idioma."
           }
         }
       }
     },
-    "Copied images such as screenshots are saved as PNG and can be pasted again. When this is off, Clippboard only remembers text and file paths.": {
+    "Copied images such as screenshots are saved as PNG and can be pasted again. When this is off, Clipsody only remembers text and file paths.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kopierte Bilder wie Screenshots werden als PNG gespeichert und lassen sich wieder einfügen. Ist das aus, merkt sich Clippboard nur Texte und Dateipfade."
+            "value": "Kopierte Bilder wie Screenshots werden als PNG gespeichert und lassen sich wieder einfügen. Ist das aus, merkt sich Clipsody nur Texte und Dateipfade."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Las imágenes copiadas, como las capturas de pantalla, se guardan en PNG y se pueden volver a pegar. Si esta opción está desactivada, Clippboard solo recuerda textos y rutas de archivos."
+            "value": "Las imágenes copiadas, como las capturas de pantalla, se guardan en PNG y se pueden volver a pegar. Si esta opción está desactivada, Clipsody solo recuerda textos y rutas de archivos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les images copiées, comme les captures d’écran, sont enregistrées en PNG et peuvent être recollées. Si cette option est désactivée, Clippboard ne retient que les textes et les chemins de fichiers."
+            "value": "Les images copiées, comme les captures d’écran, sont enregistrées en PNG et peuvent être recollées. Si cette option est désactivée, Clipsody ne retient que les textes et les chemins de fichiers."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le immagini copiate, come gli screenshot, vengono salvate in PNG e possono essere incollate di nuovo. Se l’opzione è disattivata, Clippboard ricorda solo testi e percorsi di file."
+            "value": "Le immagini copiate, come gli screenshot, vengono salvate in PNG e possono essere incollate di nuovo. Se l’opzione è disattivata, Clipsody ricorda solo testi e percorsi di file."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gekopieerde afbeeldingen zoals schermafbeeldingen worden als PNG bewaard en kunnen opnieuw worden geplakt. Staat dit uit, dan onthoudt Clippboard alleen tekst en bestandspaden."
+            "value": "Gekopieerde afbeeldingen zoals schermafbeeldingen worden als PNG bewaard en kunnen opnieuw worden geplakt. Staat dit uit, dan onthoudt Clipsody alleen tekst en bestandspaden."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skopiowane obrazy, np. zrzuty ekranu, są zapisywane jako PNG i można je ponownie wkleić. Gdy ta opcja jest wyłączona, Clippboard zapamiętuje tylko teksty i ścieżki plików."
+            "value": "Skopiowane obrazy, np. zrzuty ekranu, są zapisywane jako PNG i można je ponownie wkleić. Gdy ta opcja jest wyłączona, Clipsody zapamiętuje tylko teksty i ścieżki plików."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Imagens copiadas, como capturas de tela, são salvas em PNG e podem ser coladas novamente. Com isso desativado, o Clippboard guarda apenas textos e caminhos de arquivos."
+            "value": "Imagens copiadas, como capturas de tela, são salvas em PNG e podem ser coladas novamente. Com isso desativado, o Clipsody guarda apenas textos e caminhos de arquivos."
           }
         }
       }
@@ -1583,48 +1583,48 @@
         }
       }
     },
-    "Deletes the history, images and settings, removes the login item and the Accessibility permission, and moves Clippboard to the Trash. If you drag the app to the Trash yourself, this data stays behind.": {
+    "Deletes the history, images and settings, removes the login item and the Accessibility permission, and moves Clipsody to the Trash. If you drag the app to the Trash yourself, this data stays behind.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Löscht Historie, Bilder und Einstellungen, entfernt das Anmeldeobjekt und die Berechtigung „Bedienungshilfen“ und legt Clippboard in den Papierkorb. Ziehst du die App selbst in den Papierkorb, bleiben diese Daten zurück."
+            "value": "Löscht Historie, Bilder und Einstellungen, entfernt das Anmeldeobjekt und die Berechtigung „Bedienungshilfen“ und legt Clipsody in den Papierkorb. Ziehst du die App selbst in den Papierkorb, bleiben diese Daten zurück."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clippboard a la Papelera. Si arrastras tú la app a la Papelera, estos datos se quedan en el Mac."
+            "value": "Elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de «Accesibilidad» y mueve Clipsody a la Papelera. Si arrastras tú la app a la Papelera, estos datos se quedan en el Mac."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation « Accessibilité », puis place Clippboard dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur le Mac."
+            "value": "Supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation « Accessibilité », puis place Clipsody dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur le Mac."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e l’autorizzazione «Accessibilità» e sposta Clippboard nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
+            "value": "Elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e l’autorizzazione «Accessibilità» e sposta Clipsody nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verwijdert de geschiedenis, afbeeldingen en instellingen, haalt het inlogonderdeel en de toestemming ‘Toegankelijkheid’ weg en zet Clippboard in de Prullenmand. Sleep je de app zelf naar de Prullenmand, dan blijven deze gegevens achter."
+            "value": "Verwijdert de geschiedenis, afbeeldingen en instellingen, haalt het inlogonderdeel en de toestemming ‘Toegankelijkheid’ weg en zet Clipsody in de Prullenmand. Sleep je de app zelf naar de Prullenmand, dan blijven deze gegevens achter."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi Clippboard do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na Macu."
+            "value": "Usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi Clipsody do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na Macu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de “Acessibilidade” e move o Clippboard para o Lixo. Se você arrastar o app para o Lixo, esses dados ficam no Mac."
+            "value": "Apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de “Acessibilidade” e move o Clipsody para o Lixo. Se você arrastar o app para o Lixo, esses dados ficam no Mac."
           }
         }
       }
@@ -1675,48 +1675,48 @@
         }
       }
     },
-    "For ⏎ to paste the entry straight into the active app, Clippboard needs the Accessibility permission. Without it, the entry is only put on the clipboard and you press ⌘V yourself. If the app was built without a fixed certificate (ad hoc), the permission must be granted again after every rebuild (remove it and add it again).": {
+    "For ⏎ to paste the entry straight into the active app, Clipsody needs the Accessibility permission. Without it, the entry is only put on the clipboard and you press ⌘V yourself. If the app was built without a fixed certificate (ad hoc), the permission must be granted again after every rebuild (remove it and add it again).": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Damit ⏎ den Eintrag sofort in die aktive App einfügt, braucht Clippboard die Berechtigung „Bedienungshilfen“. Ohne sie landet der Eintrag nur in der Zwischenablage und du drückst selbst ⌘V. Wurde die App ohne festes Zertifikat gebaut (ad hoc), muss die Berechtigung nach jedem Neubau neu gesetzt werden (entfernen und wieder hinzufügen)."
+            "value": "Damit ⏎ den Eintrag sofort in die aktive App einfügt, braucht Clipsody die Berechtigung „Bedienungshilfen“. Ohne sie landet der Eintrag nur in der Zwischenablage und du drückst selbst ⌘V. Wurde die App ohne festes Zertifikat gebaut (ad hoc), muss die Berechtigung nach jedem Neubau neu gesetzt werden (entfernen und wieder hinzufügen)."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para que ⏎ pegue el elemento directamente en la app activa, Clippboard necesita el permiso de «Accesibilidad». Sin él, el elemento solo se copia al portapapeles y tú pulsas ⌘V. Si la app se compiló sin un certificado fijo (ad hoc), el permiso debe concederse de nuevo tras cada compilación (quitarlo y volver a añadirlo)."
+            "value": "Para que ⏎ pegue el elemento directamente en la app activa, Clipsody necesita el permiso de «Accesibilidad». Sin él, el elemento solo se copia al portapapeles y tú pulsas ⌘V. Si la app se compiló sin un certificado fijo (ad hoc), el permiso debe concederse de nuevo tras cada compilación (quitarlo y volver a añadirlo)."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pour que ⏎ colle l’élément directement dans l’app active, Clippboard a besoin de l’autorisation « Accessibilité ». Sans elle, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur ⌘V. Si l’app a été compilée sans certificat fixe (ad hoc), l’autorisation doit être accordée à nouveau après chaque compilation (la retirer puis l’ajouter)."
+            "value": "Pour que ⏎ colle l’élément directement dans l’app active, Clipsody a besoin de l’autorisation « Accessibilité ». Sans elle, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur ⌘V. Si l’app a été compilée sans certificat fixe (ad hoc), l’autorisation doit être accordée à nouveau après chaque compilation (la retirer puis l’ajouter)."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Perché ⏎ incolli l’elemento direttamente nell’app attiva, Clippboard ha bisogno dell’autorizzazione «Accessibilità». Senza, l’elemento viene solo copiato negli appunti e premi tu ⌘V. Se l’app è stata compilata senza un certificato fisso (ad hoc), l’autorizzazione va concessa di nuovo dopo ogni compilazione (rimuoverla e aggiungerla di nuovo)."
+            "value": "Perché ⏎ incolli l’elemento direttamente nell’app attiva, Clipsody ha bisogno dell’autorizzazione «Accessibilità». Senza, l’elemento viene solo copiato negli appunti e premi tu ⌘V. Se l’app è stata compilata senza un certificato fisso (ad hoc), l’autorizzazione va concessa di nuovo dopo ogni compilazione (rimuoverla e aggiungerla di nuovo)."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Om met ⏎ het item direct in de actieve app te plakken, heeft Clippboard de toestemming ‘Toegankelijkheid’ nodig. Zonder die toestemming komt het item alleen op het klembord en druk je zelf op ⌘V. Is de app zonder vast certificaat gebouwd (ad hoc), dan moet de toestemming na elke nieuwe build opnieuw worden gegeven (verwijderen en opnieuw toevoegen)."
+            "value": "Om met ⏎ het item direct in de actieve app te plakken, heeft Clipsody de toestemming ‘Toegankelijkheid’ nodig. Zonder die toestemming komt het item alleen op het klembord en druk je zelf op ⌘V. Is de app zonder vast certificaat gebouwd (ad hoc), dan moet de toestemming na elke nieuwe build opnieuw worden gegeven (verwijderen en opnieuw toevoegen)."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aby ⏎ wklejał element bezpośrednio do aktywnej aplikacji, Clippboard potrzebuje uprawnienia „Dostępność”. Bez niego element trafia tylko do schowka i trzeba nacisnąć ⌘V. Jeśli aplikacja została zbudowana bez stałego certyfikatu (ad hoc), uprawnienie trzeba nadać ponownie po każdej kompilacji (usunąć i dodać jeszcze raz)."
+            "value": "Aby ⏎ wklejał element bezpośrednio do aktywnej aplikacji, Clipsody potrzebuje uprawnienia „Dostępność”. Bez niego element trafia tylko do schowka i trzeba nacisnąć ⌘V. Jeśli aplikacja została zbudowana bez stałego certyfikatu (ad hoc), uprawnienie trzeba nadać ponownie po każdej kompilacji (usunąć i dodać jeszcze raz)."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para que ⏎ cole o item direto no app ativo, o Clippboard precisa da permissão de “Acessibilidade”. Sem ela, o item só vai para a área de transferência e você pressiona ⌘V. Se o app foi compilado sem um certificado fixo (ad hoc), a permissão precisa ser concedida de novo após cada compilação (remover e adicionar novamente)."
+            "value": "Para que ⏎ cole o item direto no app ativo, o Clipsody precisa da permissão de “Acessibilidade”. Sem ela, o item só vai para a área de transferência e você pressiona ⌘V. Se o app foi compilado sem um certificado fixo (ad hoc), a permissão precisa ser concedida de novo após cada compilação (remover e adicionar novamente)."
           }
         }
       }
@@ -3745,48 +3745,48 @@
         }
       }
     },
-    "Starts Clippboard when you log in to your Mac. Copied content is only added to the history while the app is running.": {
+    "Starts Clipsody when you log in to your Mac. Copied content is only added to the history while the app is running.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startet Clippboard nach dem Anmelden am Mac. Nur solange die App läuft, wird kopierter Inhalt in die Historie aufgenommen."
+            "value": "Startet Clipsody nach dem Anmelden am Mac. Nur solange die App läuft, wird kopierter Inhalt in die Historie aufgenommen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre Clippboard al iniciar sesión en tu Mac. El contenido copiado solo se añade al historial mientras la app está abierta."
+            "value": "Abre Clipsody al iniciar sesión en tu Mac. El contenido copiado solo se añade al historial mientras la app está abierta."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvre Clippboard lorsque vous vous connectez à votre Mac. Le contenu copié n’est ajouté à l’historique que lorsque l’app est ouverte."
+            "value": "Ouvre Clipsody lorsque vous vous connectez à votre Mac. Le contenu copié n’est ajouté à l’historique que lorsque l’app est ouverte."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avvia Clippboard quando accedi al Mac. I contenuti copiati vengono aggiunti alla cronologia solo mentre l’app è in esecuzione."
+            "value": "Avvia Clipsody quando accedi al Mac. I contenuti copiati vengono aggiunti alla cronologia solo mentre l’app è in esecuzione."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Start Clippboard wanneer je inlogt op je Mac. Gekopieerde inhoud wordt alleen aan de geschiedenis toegevoegd zolang de app draait."
+            "value": "Start Clipsody wanneer je inlogt op je Mac. Gekopieerde inhoud wordt alleen aan de geschiedenis toegevoegd zolang de app draait."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uruchamia Clippboard po zalogowaniu na Macu. Skopiowana treść trafia do historii tylko wtedy, gdy aplikacja działa."
+            "value": "Uruchamia Clipsody po zalogowaniu na Macu. Skopiowana treść trafia do historii tylko wtedy, gdy aplikacja działa."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre o Clippboard quando você inicia sessão no Mac. O conteúdo copiado só é adicionado ao histórico enquanto o app está aberto."
+            "value": "Abre o Clipsody quando você inicia sessão no Mac. O conteúdo copiado só é adicionado ao histórico enquanto o app está aberto."
           }
         }
       }
@@ -4021,48 +4021,48 @@
         }
       }
     },
-    "The history including pinned entries, all images and the settings are deleted for good, and Clippboard moves to the Trash. This cannot be undone.": {
+    "The history including pinned entries, all images and the settings are deleted for good, and Clipsody moves to the Trash. This cannot be undone.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Historie samt angepinnter Einträge, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clippboard wandert in den Papierkorb. Das lässt sich nicht rückgängig machen."
+            "value": "Die Historie samt angepinnter Einträge, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clipsody wandert in den Papierkorb. Das lässt sich nicht rückgängig machen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clippboard pasa a la Papelera. No se puede deshacer."
+            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clipsody pasa a la Papelera. No se puede deshacer."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clippboard est placé dans la Corbeille. Cette action est irréversible."
+            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clipsody est placé dans la Corbeille. Cette action est irréversible."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "La cronologia, compresi gli elementi fissati, tutte le immagini e le impostazioni vengono eliminate definitivamente e Clippboard viene spostato nel Cestino. L’operazione non può essere annullata."
+            "value": "La cronologia, compresi gli elementi fissati, tutte le immagini e le impostazioni vengono eliminate definitivamente e Clipsody viene spostato nel Cestino. L’operazione non può essere annullata."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clippboard gaat naar de Prullenmand. Dit kan niet ongedaan worden gemaakt."
+            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clipsody gaat naar de Prullenmand. Dit kan niet ongedaan worden gemaakt."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clippboard trafi do Kosza. Tej operacji nie można cofnąć."
+            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clipsody trafi do Kosza. Tej operacji nie można cofnąć."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clippboard vai para o Lixo. Não é possível desfazer."
+            "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clipsody vai para o Lixo. Não é possível desfazer."
           }
         }
       }
@@ -4251,94 +4251,94 @@
         }
       }
     },
-    "Uninstall Clippboard?": {
+    "Uninstall Clipsody?": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard deinstallieren?"
+            "value": "Clipsody deinstallieren?"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¿Desinstalar Clippboard?"
+            "value": "¿Desinstalar Clipsody?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désinstaller Clippboard ?"
+            "value": "Désinstaller Clipsody ?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disinstallare Clippboard?"
+            "value": "Disinstallare Clipsody?"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard verwijderen?"
+            "value": "Clipsody verwijderen?"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odinstalować Clippboard?"
+            "value": "Odinstalować Clipsody?"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desinstalar o Clippboard?"
+            "value": "Desinstalar o Clipsody?"
           }
         }
       }
     },
-    "Uninstall Clippboard…": {
+    "Uninstall Clipsody…": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clippboard deinstallieren …"
+            "value": "Clipsody deinstallieren …"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desinstalar Clippboard…"
+            "value": "Desinstalar Clipsody…"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désinstaller Clippboard…"
+            "value": "Désinstaller Clipsody…"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disinstalla Clippboard…"
+            "value": "Disinstalla Clipsody…"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verwijder Clippboard…"
+            "value": "Verwijder Clipsody…"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odinstaluj Clippboard…"
+            "value": "Odinstaluj Clipsody…"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desinstalar o Clippboard…"
+            "value": "Desinstalar o Clipsody…"
           }
         }
       }

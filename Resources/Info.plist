@@ -18,13 +18,13 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleExecutable</key>
-    <string>Clippboard</string>
+    <string>Clipsody</string>
     <key>CFBundleIdentifier</key>
-    <string>local.thorsten.clippboard</string>
+    <string>io.github.tillackt.clipsody</string>
     <key>CFBundleName</key>
-    <string>Clippboard</string>
+    <string>Clipsody</string>
     <key>CFBundleDisplayName</key>
-    <string>Clippboard</string>
+    <string>Clipsody</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>

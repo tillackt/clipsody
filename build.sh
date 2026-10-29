@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
-# Builds Clippboard.app (universal: Apple Silicon + Intel) into ./build.
+# Builds Clipsody.app (universal: Apple Silicon + Intel) into ./build.
 #   ./build.sh           build the app bundle
 #   ./build.sh test      run the unit tests
 #   ./build.sh install   run the tests, build, copy to /Applications and restart
-#   ./build.sh release   run the tests and build build/Clippboard.dmg with checksums; needs the signing certificate and a clean tree
+#   ./build.sh release   run the tests and build build/Clipsody.dmg with checksums; needs the signing certificate and a clean tree
 #   ./build.sh strings   add new texts from the code to Resources/Localizable.xcstrings
 set -euo pipefail
 cd "$(dirname "$0")"
 
-BUNDLE_ID="local.thorsten.clippboard"
+BUNDLE_ID="io.github.tillackt.clipsody"
+# Keychain name of the self-signed certificate, from before the app was renamed to Clipsody;
+# renaming it would mean a new certificate, a new fingerprint and new permissions for everyone.
 IDENTITY="Clippboard Signing"
-APP="build/Clippboard.app"
+APP="build/Clipsody.app"
 ARCHS=(--arch arm64 --arch x86_64)
 
 if [[ "${1:-}" == "test" ]]; then
@@ -53,9 +55,9 @@ BIN_DIR="$(swift build -c release "${ARCHS[@]}" --show-bin-path)"
 
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp "$BIN_DIR/Clippboard" "$APP/Contents/MacOS/Clippboard"
+cp "$BIN_DIR/Clipsody" "$APP/Contents/MacOS/Clipsody"
 # Local symbols are not needed at runtime and only enlarge the download.
-strip -x "$APP/Contents/MacOS/Clippboard"
+strip -x "$APP/Contents/MacOS/Clipsody"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 # One <language>.lproj per translation; English is the source language and the fallback.
 xcrun xcstringstool compile Resources/Localizable.xcstrings --output-directory "$APP/Contents/Resources" \
@@ -72,15 +74,15 @@ else
     COMMIT=unknown
 fi
 plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$APP/Contents/Info.plist"
-plutil -replace ClippboardCommit -string "$COMMIT" "$APP/Contents/Info.plist"
+plutil -replace ClipsodyCommit -string "$COMMIT" "$APP/Contents/Info.plist"
 
 # Sandboxed XPC service that decodes clipboard images and reads screenshots (see README).
 DECODER_ID="$BUNDLE_ID.decoder"
-XPC="$APP/Contents/XPCServices/ClippboardDecoder.xpc"
+XPC="$APP/Contents/XPCServices/ClipsodyDecoder.xpc"
 mkdir -p "$XPC/Contents/MacOS"
-cp "$BIN_DIR/ClippboardDecoder" "$XPC/Contents/MacOS/ClippboardDecoder"
-strip -x "$XPC/Contents/MacOS/ClippboardDecoder"
-cp Resources/ClippboardDecoder-Info.plist "$XPC/Contents/Info.plist"
+cp "$BIN_DIR/ClipsodyDecoder" "$XPC/Contents/MacOS/ClipsodyDecoder"
+strip -x "$XPC/Contents/MacOS/ClipsodyDecoder"
+cp Resources/ClipsodyDecoder-Info.plist "$XPC/Contents/Info.plist"
 plutil -replace CFBundleIdentifier -string "$DECODER_ID" "$XPC/Contents/Info.plist"
 # Same version as the app, so crash reports of the service match a build.
 plutil -replace CFBundleShortVersionString -string "$(plutil -extract CFBundleShortVersionString raw Resources/Info.plist)" \
@@ -115,22 +117,22 @@ sign() {
 }
 
 # Inside out: the embedded service first, then the app that seals it.
-sign "$XPC" "$DECODER_ID" Resources/ClippboardDecoder.entitlements
+sign "$XPC" "$DECODER_ID" Resources/ClipsodyDecoder.entitlements
 sign "$APP" "$BUNDLE_ID"
 codesign --verify --strict --deep "$APP"
 echo "Built and verified $APP (signed as \"$SIGN_AS\")"
 
 if [[ "${1:-}" == "release" ]]; then
     # Disk image to download: the app plus a link to /Applications to drag it onto.
-    DMG="build/Clippboard.dmg"
+    DMG="build/Clipsody.dmg"
     RELEASE_TMP="$(mktemp -d)"
     trap 'rm -rf "$RELEASE_TMP"' EXIT
     mkdir "$RELEASE_TMP/dmg" "$RELEASE_TMP/cert"
-    ditto "$APP" "$RELEASE_TMP/dmg/Clippboard.app"
+    ditto "$APP" "$RELEASE_TMP/dmg/Clipsody.app"
     ln -s /Applications "$RELEASE_TMP/dmg/Applications"
     rm -f "$DMG"
     # ULFO (LZFSE) opens on every supported macOS (13+) and is smaller than zlib.
-    hdiutil create -quiet -volname Clippboard -srcfolder "$RELEASE_TMP/dmg" -fs HFS+ -format ULFO "$DMG"
+    hdiutil create -quiet -volname Clipsody -srcfolder "$RELEASE_TMP/dmg" -fs HFS+ -format ULFO "$DMG"
     # Signed like the app, so a tampered image shows up in `codesign --verify`.
     codesign --force --sign "$SIGN_AS" --identifier "$BUNDLE_ID.dmg" "$DMG"
     codesign --verify --strict "$DMG"
@@ -141,41 +143,45 @@ if [[ "${1:-}" == "release" ]]; then
     codesign -d --extract-certificates="$RELEASE_TMP/cert/cert" "$APP" 2>/dev/null
     CERT_SHA="$(shasum -a 256 "$RELEASE_TMP/cert/cert0" | cut -d ' ' -f 1)"
     VERSION="$(plutil -extract CFBundleShortVersionString raw "$APP/Contents/Info.plist")"
-    echo "$DMG_SHA  Clippboard.dmg" > "$DMG.sha256"
+    echo "$DMG_SHA  Clipsody.dmg" > "$DMG.sha256"
     cat > build/release-notes.txt <<EOF
-Clippboard $VERSION (Build $BUILD_NUMBER, $COMMIT)
+Clipsody $VERSION (Build $BUILD_NUMBER, $COMMIT)
 
-SHA-256 Clippboard.dmg:       $DMG_SHA
+SHA-256 Clipsody.dmg:       $DMG_SHA
 SHA-256 signing certificate:  $CERT_SHA
 
-Check:  shasum -a 256 ~/Downloads/Clippboard.dmg
+Check:  shasum -a 256 ~/Downloads/Clipsody.dmg
 EOF
     cat build/release-notes.txt
 fi
 
 if [[ "${1:-}" == "install" ]]; then
-    TARGET="/Applications/Clippboard.app"
-    # Earlier versions installed per user; two copies would confuse Spotlight and the login item.
-    OLD_TARGET="$HOME/Applications/Clippboard.app"
+    TARGET="/Applications/Clipsody.app"
+    # Earlier versions installed per user, and before that under the old name Clippboard; two
+    # copies would confuse Spotlight and the login item.
+    OLD_TARGETS=("$HOME/Applications/Clipsody.app" "$HOME/Applications/Clippboard.app" "/Applications/Clippboard.app")
+    LEGACY_BUNDLE_ID="local.thorsten.clippboard"
     # Checked before anything is quit or removed: a failed copy must not leave the user without an app.
     if [[ ! -w /Applications ]]; then
         echo "/Applications is not writable for $(whoami); install aborted, nothing changed" >&2
         exit 1
     fi
-    STAGED="/Applications/.Clippboard.app.installing"
+    STAGED="/Applications/.Clipsody.app.installing"
     rm -rf "$STAGED"
     # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
     ditto "$APP" "$STAGED"
     codesign --verify --strict --deep "$STAGED"
+    # The old Clippboard must be gone too: the new app moves its data folder at first launch.
+    pkill -x Clipsody || true
     pkill -x Clippboard || true
-    # Wait until the old instance is gone (at most 10 s), otherwise `open` fails with error -600.
+    # Wait until the old instances are gone (at most 10 s), otherwise `open` fails with error -600.
     for _ in $(seq 50); do
-        pgrep -x Clippboard >/dev/null || break
+        pgrep -x Clipsody >/dev/null || pgrep -x Clippboard >/dev/null || break
         sleep 0.2
     done
-    if pgrep -x Clippboard >/dev/null; then
+    if pgrep -x Clipsody >/dev/null || pgrep -x Clippboard >/dev/null; then
         rm -rf "$STAGED"
-        echo "Clippboard did not quit; install aborted" >&2
+        echo "Clipsody (or the old Clippboard) did not quit; install aborted" >&2
         exit 1
     fi
     # LaunchServices needs a moment after the process is gone.
@@ -183,7 +189,15 @@ if [[ "${1:-}" == "install" ]]; then
     # Same volume: the swap is a rename, and the old per-user copy goes only once the new one is in place.
     rm -rf "$TARGET"
     mv "$STAGED" "$TARGET"
-    rm -rf "$OLD_TARGET"
+    for OLD in "${OLD_TARGETS[@]}"; do
+        if [[ -e "$OLD" ]]; then
+            rm -rf "$OLD"
+            echo "Removed $OLD"
+        fi
+    done
+    # Permissions granted to the old bundle ID are useless now (the new app asks again); a no-op
+    # when there are none.
+    tccutil reset All "$LEGACY_BUNDLE_ID" >/dev/null 2>&1 || true
     open "$TARGET"
     echo "Installed and started $TARGET"
 fi

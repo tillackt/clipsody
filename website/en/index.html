@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clippboard – Clipboard history for the Mac</title>
-    <meta name="description" content="Clippboard remembers everything you copy – text, images and files – and pastes it back from the keyboard. Free, open source and fully local.">
+    <title>Clipsody – Clipboard history for the Mac</title>
+    <meta name="description" content="Clipsody remembers everything you copy – text, images and files – and pastes it back from the keyboard. Free, open source and fully local.">
     <meta name="color-scheme" content="light dark">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="alternate" hreflang="de" href="../">
@@ -15,7 +15,7 @@
 <!-- Before publishing: replace tillackt with the GitHub account (see website/README.md). -->
 <header class="top">
     <div class="wrap">
-        <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Clippboard</a>
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Clipsody</a>
         <nav>
             <a href="#features">Features</a>
             <a href="#privacy">Privacy</a>
@@ -29,11 +29,11 @@
 <main>
     <div class="hero wrap">
         <h1>Everything you copy.<br>One keystroke away.</h1>
-        <p class="lead">Clippboard remembers text, images and files from your clipboard.
+        <p class="lead">Clipsody remembers text, images and files from your clipboard.
             Press <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd>, type, hit <kbd>⏎</kbd> – and it lands right where you were typing.</p>
         <div class="cta">
-            <a class="button" href="https://github.com/tillackt/clippboard/releases/latest/download/Clippboard.dmg">Download for free</a>
-            <a class="button secondary" href="https://github.com/tillackt/clippboard">Source on GitHub</a>
+            <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download for free</a>
+            <a class="button secondary" href="https://github.com/tillackt/clipsody">Source on GitHub</a>
         </div>
         <p class="meta">macOS 13 Ventura or later · Apple Silicon and Intel · Interface in 8 languages</p>
         <div class="badges">
@@ -111,10 +111,10 @@
     <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Your clipboard is yours</h2>
-            <p class="sub">Personal things end up on a clipboard: passwords, addresses, messages. That’s why Clippboard is private by design.</p>
+            <p class="sub">Personal things end up on a clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
             <div class="grid">
                 <div class="card"><h3>Nothing leaves your Mac</h3>
-                    <p>No account, no server, no analytics – Clippboard doesn’t use the network at all. The history lives only on your Mac and is excluded from backups.</p></div>
+                    <p>No account, no server, no analytics – Clipsody doesn’t use the network at all. The history lives only on your Mac and is excluded from backups.</p></div>
                 <div class="card"><h3>Passwords stay out</h3>
                     <p>Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box.</p></div>
                 <div class="card"><h3>Deleted means deleted</h3>
@@ -132,17 +132,17 @@
     <section id="install">
         <div class="wrap">
             <h2>Install</h2>
-            <p class="sub">Clippboard is free and therefore not notarised by Apple. macOS asks once on first launch – here’s how:</p>
+            <p class="sub">Clipsody is free and therefore not notarised by Apple. macOS asks once on first launch – here’s how:</p>
             <ol class="steps">
-                <li><a href="https://github.com/tillackt/clippboard/releases/latest/download/Clippboard.dmg">Download Clippboard.dmg</a>, open it and drag <strong>Clippboard</strong> into <strong>Applications</strong>.</li>
-                <li>Launch Clippboard. macOS says it cannot verify the app – click <strong>Done</strong>. On macOS 13 and 14, right-click Clippboard in <strong>Applications</strong> → <strong>Open</strong> → <strong>Open</strong> instead, and skip step 3.</li>
-                <li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and choose <strong>Open Anyway</strong> for Clippboard (macOS 15 and later).</li>
-                <li>To let <kbd>⏎</kbd> paste directly, allow Clippboard under <strong>Privacy &amp; Security → Accessibility</strong>. Without it, the entry is only put on the clipboard and you press <kbd>⌘V</kbd> yourself.</li>
-                <li>Done: press <kbd>⌥⌘C</kbd>. The menu bar icon leads to the settings, where you can also start Clippboard at login.</li>
+                <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download Clipsody.dmg</a>, open it and drag <strong>Clipsody</strong> into <strong>Applications</strong>.</li>
+                <li>Launch Clipsody. macOS says it cannot verify the app – click <strong>Done</strong>. On macOS 13 and 14, right-click Clipsody in <strong>Applications</strong> → <strong>Open</strong> → <strong>Open</strong> instead, and skip step 3.</li>
+                <li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and choose <strong>Open Anyway</strong> for Clipsody (macOS 15 and later).</li>
+                <li>To let <kbd>⏎</kbd> paste directly, allow Clipsody under <strong>Privacy &amp; Security → Accessibility</strong>. Without it, the entry is only put on the clipboard and you press <kbd>⌘V</kbd> yourself.</li>
+                <li>Done: press <kbd>⌥⌘C</kbd>. The menu bar icon leads to the settings, where you can also start Clipsody at login.</li>
             </ol>
             <div class="note" id="verify">
-                <strong>Genuine or not?</strong> Only download Clippboard from this site or from GitHub. Every release lists the SHA-256 checksum of the DMG and the fingerprint of the signing certificate. Check them in Terminal:
-                <pre><code>shasum -a 256 ~/Downloads/Clippboard.dmg</code></pre>
+                <strong>Genuine or not?</strong> Only download Clipsody from this site or from GitHub. Every release lists the SHA-256 checksum of the DMG and the fingerprint of the signing certificate. Check them in Terminal:
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg</code></pre>
                 Certificate fingerprint (SHA-256): <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
             </div>
         </div>
@@ -152,29 +152,29 @@
         <div class="wrap">
             <h2>FAQ</h2>
             <p class="sub">&nbsp;</p>
-            <details><summary>Is Clippboard really free?</summary>
+            <details><summary>Is Clipsody really free?</summary>
                 <p>Yes. No ads, no subscription, no trial. The source is open, under the GPLv3.</p></details>
-            <details><summary>Why does Clippboard need the Accessibility permission?</summary>
-                <p>Only to trigger <kbd>⌘V</kbd> in the app you came from after you pick an entry. Clippboard does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself.</p></details>
+            <details><summary>Why does Clipsody need the Accessibility permission?</summary>
+                <p>Only to trigger <kbd>⌘V</kbd> in the app you came from after you pick an entry. Clipsody does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself.</p></details>
             <details><summary>How long is the history kept?</summary>
                 <p>7 days and at most 1,000 entries by default; both can be changed in the settings. Pinned entries always stay.</p></details>
             <details><summary>Are my passwords stored?</summary>
-                <p>No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clippboard sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with <kbd>⌘⌫</kbd>.</p></details>
-            <details><summary>Does Clippboard run on my Mac?</summary>
+                <p>No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clipsody sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>Does Clipsody run on my Mac?</summary>
                 <p>macOS 13 Ventura or later, on Apple Silicon and Intel.</p></details>
-            <details><summary>Which languages does Clippboard speak?</summary>
-                <p>English, German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese. Clippboard follows your Mac’s language; you can pick another one under <strong>Settings → General → Language</strong>.</p></details>
-            <details><summary>How do I uninstall Clippboard?</summary>
-                <p><strong>Settings → Info → Uninstall Clippboard…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac.</p></details>
+            <details><summary>Which languages does Clipsody speak?</summary>
+                <p>English, German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese. Clipsody follows your Mac’s language; you can pick another one under <strong>Settings → General → Language</strong>.</p></details>
+            <details><summary>How do I uninstall Clipsody?</summary>
+                <p><strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac.</p></details>
         </div>
     </section>
 </main>
 
 <footer>
     <div class="wrap">
-        <span>Clippboard</span>
-        <a href="https://github.com/tillackt/clippboard">GitHub</a>
-        <a href="https://github.com/tillackt/clippboard/releases">All releases</a>
+        <span>Clipsody</span>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">All releases</a>
         <span>License: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
         <span class="spacer"></span>
         <a href="../impressum.html">Legal notice (German)</a>
