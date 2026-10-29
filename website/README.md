@@ -9,13 +9,9 @@ Statische Seite ohne Build-Schritt, ohne Skripte, ohne externe Schriftarten und 
 
 ## Vor der Veröffentlichung
 
-1. **GitHub-Name:** `DEIN-GITHUB-NAME` in `index.html` und `en/index.html` durch den GitHub-Account ersetzen.
+1. ~~**GitHub-Name**~~: erledigt, `tillackt` (Repo `tillackt/clippboard`).
 2. ~~**Lizenz**~~: erledigt, GPLv3 (siehe `LICENSE` im Repo).
-3. **Zertifikat-Fingerabdruck:** `WIRD-MIT-DEM-ERSTEN-RELEASE-EINGETRAGEN` bzw. `ADDED-WITH-THE-FIRST-RELEASE` mit dem SHA-256 des Signaturzertifikats füllen:
-
-   ```bash
-   codesign -d --extract-certificates /Applications/Clippboard.app && shasum -a 256 codesign0
-   ```
+3. ~~**Zertifikat-Fingerabdruck**~~: erledigt. `./build.sh release` gibt ihn in `build/release-notes.txt` aus; er bleibt gleich, solange dasselbe Zertifikat signiert.
 
 4. **Impressum und Datenschutz** ausfüllen und prüfen lassen.
 5. **Download-Link:** Die Seite verlinkt auf `…/releases/latest/download/Clippboard.dmg`. Das funktioniert, sobald jedes Release eine Datei mit genau diesem Namen enthält.
