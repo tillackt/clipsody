@@ -35,8 +35,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
         return cache
     }()
     private var previewTask: Task<Void, Never>?
-    /// The item the preview currently shows; an unchanged item is not rendered (and scrolled) again.
+    /// What the preview currently shows: the item and the search terms it was highlighted for.
+    /// Unchanged, it is not rendered (and scrolled) again; a new search must re-highlight it.
     private var previewedItem: ClipItem?
+    private var previewedTerms: [String] = []
     private let dateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "de_DE")
@@ -305,8 +307,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             return
         }
         let item = items[row]
-        guard item != previewedItem else { return }
+        guard item != previewedItem || query.terms != previewedTerms else { return }
         previewedItem = item
+        previewedTerms = query.terms
         announceForVoiceOver(item)
         var info = [item.app ?? "Unbekannte App", dateFormatter.localizedString(for: item.date, relativeTo: Date())]
         if item.pinned { info.insert("Angepinnt", at: 0) }
