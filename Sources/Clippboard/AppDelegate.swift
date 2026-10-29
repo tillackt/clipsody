@@ -25,7 +25,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             fail("\(error)")
             return
         }
-        config = Config.load(from: store.directory)
+        config = Config.load(from: store.directory) { [unowned self] backup in
+            alert("""
+                Die Einstellungen (config.json) waren beschädigt und wurden durch die Standardwerte ersetzt. \
+                Die alte Datei liegt als \(backup.lastPathComponent) im Datenordner.
+                """)
+        }
 
         prune()
 
@@ -35,7 +40,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             // The open panel searches its own copy of the entries.
             panel.refreshRecognizedText(forImageFile: file)
         }
-        images = ImageQueue(store: store) { [decoder] data in
+        images = ImageQueue(store: store, accepts: { [unowned self] appBundleID in
+            config.keepImages && !(appBundleID.map(config.ignoredApps.contains) ?? false)
+        }) { [decoder] data in
             await decoder.prepareImage(data)
         } onStored: { [unowned self] in
             panel.reloadIfVisible()
@@ -89,7 +96,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func paste(_ item: ClipItem, into target: NSRunningApplication?, withFormatting: Bool) {
         var item = item
         // The list holds only the beginning of long texts.
-        if item.kind == .text, let text = store.fullText(for: item) { item.text = text }
+        if item.kind == .text, item.textByteCount > item.text.utf8.count {
+            // Only the beginning is in the list; pasting that silently would be wrong.
+            guard let text = store.fullText(for: item) else {
+                logger.error("Paste: full text could not be loaded")
+                NSSound.beep()
+                return
+            }
+            item.text = text
+        }
         let rich = withFormatting ? store.richText(for: item) : nil
         guard paster.paste(item, imageURL: store.imageURL(for: item), rich: rich, into: target) else {
             logger.error("Paste: content no longer available (file moved or deleted)")

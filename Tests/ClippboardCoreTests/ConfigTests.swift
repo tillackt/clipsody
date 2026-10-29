@@ -53,10 +53,14 @@ import Testing
         #expect(Config.load(from: directory.url) == config)
     }
 
-    @Test func invalidFileFallsBackToDefaults() throws {
+    @Test func invalidFileFallsBackToDefaultsAndIsKeptAside() throws {
         let directory = try TemporaryDirectory()
         try Data("{ not json".utf8).write(to: Config.url(in: directory.url))
-        #expect(Config.load(from: directory.url) == Config())
+        var reported: URL?
+        #expect(Config.load(from: directory.url) { reported = $0 } == Config())
+        let backup = try #require(reported)
+        #expect(String(data: try Data(contentsOf: backup), encoding: .utf8) == "{ not json")
+        #expect(!FileManager.default.fileExists(atPath: Config.url(in: directory.url).path))
     }
 }
 

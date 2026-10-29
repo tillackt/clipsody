@@ -58,7 +58,13 @@ public final class TextRecognitionQueue {
             // Reading a multi-MB file must not block the main thread; the service gets the bytes, not the path.
             let png = await Task.detached(priority: .utility) { try? Data(contentsOf: url) }.value
             guard let png else {
-                missing.insert(file)
+                // Gone: retried once the image is copied again. Present but unreadable (permissions,
+                // I/O error): not again in this run, or the loop would read it forever.
+                if FileManager.default.fileExists(atPath: url.path) {
+                    failed.insert(file)
+                } else {
+                    missing.insert(file)
+                }
                 continue
             }
             let result = await recognize(png)
@@ -69,11 +75,15 @@ public final class TextRecognitionQueue {
             }
             switch result {
             case .text(let text):
-                store.setRecognizedText(text, forImageFile: file)
-                onRecognized(file)
+                // A failed write (database locked, disk full) is retried later, not in a tight loop.
+                if store.setRecognizedText(text, forImageFile: file) {
+                    onRecognized(file)
+                } else {
+                    failed.insert(file)
+                }
             case .unreadable:
                 // Final: stored as empty so the image is not processed again.
-                store.setRecognizedText("", forImageFile: file)
+                if !store.setRecognizedText("", forImageFile: file) { failed.insert(file) }
             case .failed:
                 failed.insert(file)
             }

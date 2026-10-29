@@ -9,6 +9,7 @@ public final class ImageQueue {
     private let store: Store
     private let prepare: (Data) async -> PreparedImage?
     private let onStored: () -> Void
+    private let accepts: (_ appBundleID: String?) -> Bool
     private let maxPending: Int
     /// Bumped by `discardPending()`; conversions started earlier are not stored.
     private var generation = 0
@@ -16,17 +17,21 @@ public final class ImageQueue {
     private var chain: Task<Void, Never>?
     public private(set) var pendingCount = 0
 
-    public init(store: Store, maxPending: Int = 3, prepare: @escaping (Data) async -> PreparedImage?,
-                onStored: @escaping () -> Void) {
+    /// `accepts` is asked again when a conversion has finished: if images were switched off or the
+    /// source app was added to the ignored apps meanwhile, the image is dropped.
+    public init(store: Store, maxPending: Int = 3, accepts: @escaping (_ appBundleID: String?) -> Bool = { _ in true },
+                prepare: @escaping (Data) async -> PreparedImage?, onStored: @escaping () -> Void) {
         self.store = store
         self.maxPending = maxPending
+        self.accepts = accepts
         self.prepare = prepare
         self.onStored = onStored
     }
 
     /// Returns false if the image was dropped because too many conversions are pending.
     @discardableResult
-    public func enqueue(_ data: Data, app: String?, appPath: String?, copiedAt: Date = Date()) -> Bool {
+    public func enqueue(_ data: Data, app: String?, appPath: String?, appBundleID: String? = nil,
+                        copiedAt: Date = Date()) -> Bool {
         guard pendingCount < maxPending else {
             logger.notice("Skipped image: \(self.pendingCount) conversions already pending")
             return false
@@ -39,7 +44,7 @@ public final class ImageQueue {
             guard let self else { return }
             let image = await prepare(data)
             pendingCount -= 1
-            guard let image, generation == self.generation else { return }
+            guard let image, generation == self.generation, accepts(appBundleID) else { return }
             store.addImage(image, app: app, appPath: appPath, date: copiedAt)
             onStored()
         }

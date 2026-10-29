@@ -63,12 +63,18 @@ public struct Config: Codable, Equatable, Sendable {
         directory.appendingPathComponent("config.json")
     }
 
-    public static func load(from directory: URL) -> Config {
+    /// `onInvalidFile` is called with the backup of an unreadable config.json, which is moved aside
+    /// (config.json.bad) so the next save does not silently replace the user's settings.
+    public static func load(from directory: URL, onInvalidFile: (URL) -> Void = { _ in }) -> Config {
         if let data = try? Data(contentsOf: url(in: directory)) {
             do {
                 return try JSONDecoder().decode(Config.self, from: data)
             } catch {
                 logger.error("Invalid config.json, using defaults: \(String(describing: error), privacy: .public)")
+                let backup = directory.appendingPathComponent("config.json.bad")
+                try? FileManager.default.removeItem(at: backup)
+                try? FileManager.default.moveItem(at: url(in: directory), to: backup)
+                onInvalidFile(backup)
                 return Config()
             }
         }
@@ -81,7 +87,8 @@ public struct Config: Codable, Equatable, Sendable {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         do {
-            try encoder.encode(self).write(to: Self.url(in: directory))
+            // Atomic: a crash while writing must not leave a half file that loads as "invalid".
+            try encoder.encode(self).write(to: Self.url(in: directory), options: .atomic)
             FilePermissions.set(0o600, of: Self.url(in: directory))
         } catch {
             logger.error("Could not save config.json: \(String(describing: error), privacy: .public)")

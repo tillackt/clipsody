@@ -55,6 +55,17 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         #expect(queue.pendingCount == 0)
     }
 
+    @Test func imagesRejectedMeanwhileAreNotStored() async {
+        // E.g. images switched off while the conversion was running.
+        var accept = true
+        let queue = ImageQueue(store: store, accepts: { _ in accept },
+                               prepare: preparing(delays: [.milliseconds(100)])) {}
+        queue.enqueue(makeImage(), app: nil, appPath: nil, appBundleID: "com.example.app")
+        accept = false
+        await queue.waitUntilIdle()
+        #expect(store.items().isEmpty)
+    }
+
     @Test func failedConversionsAreSkipped() async {
         var stored = 0
         let queue = ImageQueue(store: store, prepare: { _ in nil }) { stored += 1 }
@@ -122,6 +133,22 @@ private func preparing(delays: [Duration] = []) -> (Data) async -> PreparedImage
         queue.start()
         await queue.waitUntilIdle()
         #expect(store.items().first?.recognizedText == "found later")
+    }
+
+    @Test func existingButUnreadableFileDoesNotLoopForever() async throws {
+        try addImage(width: 5)
+        let url = try #require(store.items().first.flatMap(store.imageURL(for:)))
+        // Replace the file by a directory of the same name: it exists, but cannot be read as data.
+        try FileManager.default.removeItem(at: url)
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
+        var calls = 0
+        let queue = TextRecognitionQueue(store: store, recognize: { _ in calls += 1; return .text("x") }) { _ in }
+
+        queue.start()
+        await queue.waitUntilIdle()
+
+        #expect(calls == 0)
+        #expect(store.items().first?.recognizedText == nil)
     }
 
     @Test func unreadableImageIsMarkedDone() async throws {

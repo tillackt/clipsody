@@ -67,6 +67,8 @@ public final class Store {
         }
         restrictPermissions()
         removeOrphanedImages()
+        // Deletes not yet wiped when the app last ended (crash, power loss) are wiped now.
+        wipeDeletedContent()
     }
 
     /// A database edited by hand or by a broken tool may claim the current version without the
@@ -275,7 +277,9 @@ public final class Store {
         }
     }
 
-    public func setRecognizedText(_ text: String, forImageFile fileName: String) {
+    /// Returns false if the text could not be stored.
+    @discardableResult
+    public func setRecognizedText(_ text: String, forImageFile fileName: String) -> Bool {
         run("UPDATE items SET ocr_text = ? WHERE image_file = ?") { stmt in
             Self.bind(stmt, 1, text)
             Self.bind(stmt, 2, fileName)
@@ -319,15 +323,22 @@ public final class Store {
     /// secure_delete zeroes freed pages, but in WAL mode the old page versions (with the deleted
     /// text) still sit in the -wal file. Copying everything into the main file and truncating the
     /// WAL to zero bytes removes them; incremental_vacuum hands freed pages back to the file system.
+    /// The pending flag is only cleared when the checkpoint really truncated the WAL; a blocked or
+    /// failed one is tried again at the next flush, prune or clear.
     private func wipeDeletedContent() {
-        hasUnwipedDeletions = false
         try? execute("PRAGMA incremental_vacuum")
-        var busy = 0
-        query("PRAGMA wal_checkpoint(TRUNCATE)") { busy = Int(sqlite3_column_int($0, 0)) }
-        if busy != 0 {
-            logger.error("WAL checkpoint was blocked; deleted content may remain in the WAL until the next one")
+        var busy = 1
+        let ran = query("PRAGMA wal_checkpoint(TRUNCATE)") { busy = Int(sqlite3_column_int($0, 0)) }
+        if ran && busy == 0 {
+            hasUnwipedDeletions = false
+        } else {
+            hasUnwipedDeletions = true
+            logger.error("WAL checkpoint was blocked; deleted content stays in the WAL until the next try")
         }
     }
+
+    /// Whether deleted content may still be in the WAL (for tests).
+    var hasPendingWipe: Bool { hasUnwipedDeletions }
 
     /// Runs `body` in one transaction; rolls back if it throws. Internal on purpose: image files
     /// deleted inside a transaction would not come back with a rollback.

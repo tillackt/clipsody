@@ -66,7 +66,7 @@ final class ClipboardMonitor {
         case .image(let data):
             // Untrusted image data is converted in the sandboxed decoder service; the queue
             // stores it and calls back when done.
-            images.enqueue(data, app: appName, appPath: appPath)
+            images.enqueue(data, app: appName, appPath: appPath, appBundleID: app?.bundleIdentifier)
             return
         }
         onChange?()
