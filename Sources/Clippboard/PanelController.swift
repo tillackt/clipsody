@@ -37,7 +37,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
     /// Unchanged, it is not rendered (and scrolled) again; a new search must re-highlight it.
     private var previewedItem: ClipItem?
     private var previewedTerms: [String] = []
-    private let dateFormatter = RelativeDateTimeFormatter()
+    private let dateFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = AppLocale.current
+        return formatter
+    }()
 
     var isVisible: Bool { panel.isVisible }
 
@@ -312,7 +316,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate, NS
             let bytes = item.textByteCount
             if bytes > ItemPresentation.searchablePrefix {
                 // Counting characters and lines of a multi-MB text would stall arrowing through the list.
-                info.append(ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file))
+                info.append(AppLocale.fileSize(Int64(bytes)))
             } else {
                 let lines = item.text.split(whereSeparator: \.isNewline).count
                 let characters = String(localized: "\(item.text.count) characters")

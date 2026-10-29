@@ -65,7 +65,7 @@ public enum ItemPresentation {
     }
 
     public static func imageLabel(for item: ClipItem) -> String {
-        let size = ByteCountFormatter.string(fromByteCount: item.byteSize, countStyle: .file)
+        let size = AppLocale.fileSize(item.byteSize)
         let label = String(localized: "Image \(item.imageWidth)×\(item.imageHeight)")
         return label + (item.byteSize > 0 ? " (\(size))" : "")
     }
