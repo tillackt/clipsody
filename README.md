@@ -116,3 +116,7 @@ Alles liegt in `~/Library/Application Support/Clippboard/` (Einstellungen → **
 Einstellungen → **Info** → **Clippboard deinstallieren …**. Das löscht Historie, Bilder, `config.json`, die Einstellungen der App sowie Caches und gespeicherten Fensterzustand, entfernt Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Zieht man die App nur selbst in den Papierkorb, bleiben diese Daten liegen: macOS sagt einer App nicht, dass sie gelöscht wird.
 
 Übrig bleibt nur die leere Hülle des Sandbox-Ordners des Bild-Hilfsprozesses (`~/Library/Containers/local.thorsten.clippboard.decoder`, eine Verwaltungsdatei von macOS, keine Nutzerdaten). Seit macOS 14 darf nur das System Container löschen; im Finder lässt sie sich mit Bestätigung in den Papierkorb legen. Bleibt dort mehr zurück, zeigt die App es an.
+
+## Lizenz
+
+GNU General Public License v3.0, siehe [LICENSE](LICENSE). Wer Clippboard verändert und weitergibt, muss den Quellcode seiner Version ebenfalls unter der GPLv3 offenlegen.

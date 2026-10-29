@@ -10,7 +10,7 @@ Statische Seite ohne Build-Schritt, ohne Skripte, ohne externe Schriftarten und 
 ## Vor der Veröffentlichung
 
 1. **GitHub-Name:** `DEIN-GITHUB-NAME` in `index.html` und `en/index.html` durch den GitHub-Account ersetzen.
-2. **Lizenz:** `LIZENZ-EINTRAGEN` im Fußbereich beider Seiten ersetzen, sobald sie feststeht.
+2. ~~**Lizenz**~~: erledigt, GPLv3 (siehe `LICENSE` im Repo).
 3. **Zertifikat-Fingerabdruck:** `WIRD-MIT-DEM-ERSTEN-RELEASE-EINGETRAGEN` bzw. `ADDED-WITH-THE-FIRST-RELEASE` mit dem SHA-256 des Signaturzertifikats füllen:
 
    ```bash
