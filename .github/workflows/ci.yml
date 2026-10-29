@@ -53,6 +53,8 @@ jobs:
         run: .github/scripts/select-xcode.sh
       - name: Run the unit tests
         run: ./build.sh test
+        env:
+          WARNINGS_AS_ERRORS: "1"
 
   build:
     name: App build and translations
@@ -72,3 +74,6 @@ jobs:
       - name: Build the universal app
         # Without the signing certificate the app is signed ad hoc; build.sh still verifies the signature.
         run: ./build.sh
+        env:
+          # The code builds without warnings; a new warning fails CI.
+          WARNINGS_AS_ERRORS: "1"
