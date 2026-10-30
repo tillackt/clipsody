@@ -22,7 +22,7 @@ German is at the root (`/`), the other languages in folders (`/en/`, `/fr/`, …
 
 The support page (`support.html`) has a form without script or server: it sends a GET request to GitHub's issue form (`.github/ISSUE_TEMPLATE/`), with the entries as query parameters named after the form fields' `id`s (`title`, `description`, `clipsody-version`, `macos-version`); the visitor submits the issue on GitHub. Keep the field ids in the templates and the form in `site/build.py` in step.
 
-Hand-written pages: `impressum.html`, `datenschutz.html` (German, placeholders for now, `noindex`) and `404.html` (`noindex`, root paths under `/clipsody/`). `assets/` holds the stylesheet, the logo, the social preview images (`og-de.png`, `og-en.png`, 1200×630), the Apple touch icon (`icon-180.png`) and `sample-photo.jpg`, the photo shown in the hero (generated with Codex's image model, no third-party rights).
+Hand-written pages: `impressum.html`, `datenschutz.html` (German, placeholders for now, `noindex`) and `404.html` (`noindex`, root paths under `/clipsody/`). `assets/` holds the stylesheet, the logo, the social preview images (`og-<lang>.jpg`, one per language, 1200×630), the Apple touch icon (`icon-180.png`) and `sample-photo.jpg`, the photo shown in the hero (generated with Codex's image model, no third-party rights).
 
 ## Search engines
 
@@ -34,7 +34,7 @@ The preview images and the touch icon are rendered from the logo:
 swift .github/scripts/website-images.swift
 ```
 
-When content changes, update `MODIFIED` in `site/build.py` (used for `dateModified` and `lastmod`).
+When content changes, update `MODIFIED` in `site/build.py` (used for `dateModified` and `lastmod`). `PUBLISHED` is the guides' first publication date; leave it as it is.
 
 ## Before publishing
 

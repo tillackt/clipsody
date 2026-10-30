@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="en_US">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Everything you copied: text, images, files, links</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Pause animation</span><span class="when-paused">▶ Play animation</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pause animation</label>
+            </div>
             <figcaption class="caption">The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>One shortcut, everywhere</h3>
                     <p><kbd>⌥⌘C</kbd> opens your clipboard history in any app. Pick a clip with the arrow keys or enter a search word, press <kbd>⏎</kbd> – the clip lands where you were.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copy multiple items, paste them when you need them</h3>
-                    <p>Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries directly (pinned first, then the newest).</p></div>
+                    <p>Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Finds text in images too</h3>
                     <p>Copied screenshots and images are read on your Mac. Search for a word that appears in the image – and there it is. <a href="#text-in-images">How it works</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Text, images, files</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Spotlight details as of macOS 26.1, October 2026.</p>
+            <p class="asof">Spotlight details checked against macOS 26.1.</p>
             <p class="more">More: <a href="clipboard-history-mac.html">How to see your clipboard history on a Mac – every way</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choose a clip</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Paste with formatting</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Paste plain text only</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Paste one of the first nine entries directly (pinned first, then the newest)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Paste one of the first nine entries shown directly (pinned first, then the newest)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Pin or unpin</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Delete a clip</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Close</td></tr>
@@ -445,7 +448,7 @@
                 <div class="card"><h3>Passwords stay out</h3>
                     <p>Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box.</p></div>
                 <div class="card"><h3>Deleted means deleted</h3>
-                    <p>Deleted entries are overwritten in the database and its change log is emptied – after a crash, at the next launch. Image files of deleted entries are removed.</p></div>
+                    <p>Deleted entries are overwritten in the database and its change log is emptied – even after a crash, at the next launch. Image files of deleted entries are removed.</p></div>
                 <div class="card"><h3>Images in a sandbox</h3>
                     <p>Untrusted image data is processed in an isolated helper process without file or network access, not in the app itself.</p></div>
                 <div class="card"><h3>Verifiable</h3>

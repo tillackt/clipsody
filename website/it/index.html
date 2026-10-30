@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="it_IT">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Tutto ciò che hai copiato: testi, immagini, file, link</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Metti in pausa l’animazione</span><span class="when-paused">▶ Riproduci l’animazione</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Metti in pausa l’animazione</label>
+            </div>
             <figcaption class="caption">La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Una scorciatoia, ovunque</h3>
                     <p><kbd>⌥⌘C</kbd> apre la cronologia degli appunti in qualsiasi app. Scegli un elemento con i tasti freccia o scrivi una parola da cercare, premi <kbd>⏎</kbd> – e finisce proprio dove eri.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copia più elementi, incollali quando servono</h3>
-                    <p>Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi (prima quelli fissati, poi i più recenti).</p></div>
+                    <p>Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trova il testo anche nelle immagini</h3>
                     <p>Screenshot e immagini copiati vengono letti sul tuo Mac. Cerca una parola che compare nell’immagine – ed eccola lì. <a href="#text-in-images">Come funziona</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Testi, immagini, file</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Informazioni su Spotlight aggiornate a macOS 26.1, ottobre 2026.</p>
+            <p class="asof">Informazioni su Spotlight verificate per macOS 26.1.</p>
             <p class="more">Approfondisci: <a href="cronologia-appunti-mac.html">Come vedere la cronologia degli appunti su Mac – tutti i modi</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Scegli un elemento</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Incolla con formattazione</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Incolla solo testo semplice</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Incolla direttamente uno dei primi nove elementi (prima quelli fissati, poi i più recenti)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Incolla direttamente uno dei primi nove elementi mostrati (prima quelli fissati, poi i più recenti)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fissa o sblocca</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Elimina un elemento</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Chiudi</td></tr>
@@ -445,7 +448,7 @@
                 <div class="card"><h3>Le password restano fuori</h3>
                     <p>Ciò che i gestori di password segnano come nascosto non viene mai salvato. 1Password, Bitwarden, KeePassXC e altri sono esclusi fin dall’inizio.</p></div>
                 <div class="card"><h3>Eliminato vuol dire eliminato</h3>
-                    <p>Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – dopo un crash, al prossimo avvio. I file immagine degli elementi eliminati vengono rimossi.</p></div>
+                    <p>Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – anche dopo un crash, al prossimo avvio. I file immagine degli elementi eliminati vengono rimossi.</p></div>
                 <div class="card"><h3>Immagini in una sandbox</h3>
                     <p>I dati delle immagini non attendibili vengono elaborati in un processo di supporto isolato, senza accesso a file o rete, non nell’app stessa.</p></div>
                 <div class="card"><h3>Verificabile</h3>

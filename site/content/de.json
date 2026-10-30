@@ -6,7 +6,7 @@
   "otherLanguages": "Sprache",
   "mainNav": "Hauptnavigation",
   "skipLink": "Zum Inhalt springen",
-  "spotlightAsOf": "Angaben zu Spotlight: Stand macOS 26.1, Oktober 2026.",
+  "spotlightAsOf": "Angaben zu Spotlight geprüft für macOS 26.1.",
   "home": {
     "title": "Clipboard Manager für Mac: Multi-Zwischenablage | Clipsody",
     "description": "Der Mac merkt sich nur den letzten kopierten Eintrag. Clipsody speichert alle – Texte, Bilder, Dateien – mit Suche. Kostenlos und Open Source.",
@@ -101,8 +101,7 @@
       ],
       "ocrPreview": "Screenshot · Text darauf erkannt<br><br><b><mark>Rechnung</mark> Nr. 2026-1043</b><br>Leistungszeitraum: Oktober 2026<br>Gesamtbetrag: 1.240,00 €<br>Zahlbar bis: 15.11.2026",
       "ocrInfo": "Vorschau · vor 3 Minuten · Bild 2880×1800 · Text erkannt",
-      "pause": "Animation anhalten",
-      "resume": "Animation abspielen"
+      "pause": "Animation anhalten"
     },
     "problem": {
       "h2": "Mehrere Einträge kopieren – ohne dass das Erste verloren geht",
@@ -132,7 +131,7 @@
         [
           "📋",
           "Mehrere Einträge kopieren, später einfügen",
-          "Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
+          "Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
         ],
         [
           "🔎",
@@ -270,7 +269,7 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Einen der ersten neun Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)"
+          "Einen der ersten neun angezeigten Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)"
         ],
         [
           "<kbd>⌘P</kbd>",
@@ -417,7 +416,7 @@
         "<a href=\"{download}\">Clipsody laden</a> und in den Ordner <strong>Programme</strong> ziehen (<a href=\"./#install\">Installation im Detail</a>).",
         "Kopiere wie gewohnt mit <kbd>⌘C</kbd>. Jeder Eintrag – Text, Bild oder Datei – landet im Verlauf.",
         "Drücke <kbd>⌥⌘C</kbd>: Die Liste aller kopierten Einträge erscheint. Gib ein Suchwort ein, um sie zu filtern; das findet auch Text in Screenshots.",
-        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge der Liste direkt ein."
+        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
       ],
       "after": "Wie lange der Verlauf hält (1 bis 365 Tage) und wie viele Einträge er fasst (bis 10.000), stellst du selbst ein. Mit <kbd>⌘P</kbd> angepinnte Einträge bleiben dauerhaft. Alles bleibt lokal auf deinem Mac."
     },
@@ -532,7 +531,7 @@
     "ogDescription": "Problem melden oder Idee vorschlagen – das Formular bereitet ein GitHub-Issue für dich vor.",
     "breadcrumbLabel": "Brotkrumen",
     "crumb": "Support",
-    "h1": "Support",
+    "h1": "Clipsody-Support – Problem melden oder Idee vorschlagen",
     "lead": "Clipsody ist ein kostenloses Open-Source-Projekt. Probleme und Ideen werden öffentlich auf GitHub gesammelt – so sieht jeder, was bekannt ist und woran gearbeitet wird.",
     "checkTitle": "Erst kurz prüfen",
     "check": [
@@ -558,7 +557,7 @@
       "Die Clipsody-Version (Einstellungen → Info) und deine macOS-Version.",
       "Die Schritte, die zum Problem führen – so genau wie möglich.",
       "Was du erwartet hast und was stattdessen passiert ist.",
-      "Bei Abstürzen oder Problemen beim Einfügen: das Protokoll. Den Terminal-Befehl dafür zeigt GitHub im Formular."
+      "Bei Problemen beim Einfügen oder mit Bildern: das Protokoll, bei Abstürzen: den Absturzbericht. Wie du beides bekommst, zeigt GitHub im Formular."
     ],
     "securityTitle": "Eine Sicherheitslücke gefunden?",
     "securityText": "Bitte nicht öffentlich melden, sondern über die <a href=\"{security}\">vertrauliche Meldung auf GitHub</a> – die sieht nur der Entwickler."

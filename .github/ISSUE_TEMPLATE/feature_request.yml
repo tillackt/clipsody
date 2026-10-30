@@ -22,3 +22,4 @@ body:
     id: macos-version
     attributes:
       label: macOS version (optional)
+      description: Apple menu → About This Mac

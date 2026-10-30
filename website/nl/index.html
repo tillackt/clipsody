@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gratis klembordbeheerder Mac – veel items kopiëren | Clipsody</title>
-    <meta name="description" content="Je Mac onthoudt alleen het laatste wat je hebt gekopieerd. Clipsody bewaart alles – tekst, afbeeldingen, bestanden – doorzoekbaar via je toetsenbord. Gratis.">
+    <meta name="description" content="Je Mac onthoudt alleen het laatste wat je hebt gekopieerd. Clipsody bewaart alles – tekst, afbeeldingen, bestanden – doorzoekbaar via je toetsenbord.">
     <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="https://tillackt.github.io/clipsody/nl/">
     <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="nl_NL">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Alles wat je hebt gekopieerd: tekst, afbeeldingen, bestanden, links</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Animatie pauzeren</span><span class="when-paused">▶ Animatie afspelen</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Animatie pauzeren</label>
+            </div>
             <figcaption class="caption">De klembordgeschiedenis in Clipsody: alles wat je hebt gekopieerd, een afbeelding, een bestand en zoeken naar tekst in een schermafbeelding.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Eén sneltoets, overal</h3>
                     <p><kbd>⌥⌘C</kbd> opent je klembordgeschiedenis in elke app. Kies een item met de pijltjestoetsen of typ een zoekwoord, druk op <kbd>⏎</kbd> – en het item staat waar je was.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Meerdere items kopiëren, plakken wanneer je ze nodig hebt</h3>
-                    <p>Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen items direct (eerst vastgezette, dan de nieuwste).</p></div>
+                    <p>Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (eerst vastgezette, dan de nieuwste).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Vindt ook tekst in afbeeldingen</h3>
                     <p>Gekopieerde schermafbeeldingen en afbeeldingen worden op je Mac gelezen. Zoek op een woord dat in de afbeelding staat – en daar is hij. <a href="#text-in-images">Zo werkt het</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Tekst, afbeeldingen, bestanden</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Gegevens over Spotlight: stand van macOS 26.1, oktober 2026.</p>
+            <p class="asof">Gegevens over Spotlight gecontroleerd voor macOS 26.1.</p>
             <p class="more">Meer: <a href="klembordgeschiedenis-mac.html">Je klembordgeschiedenis bekijken op een Mac – alle manieren</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Item kiezen</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Plakken met opmaak</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Alleen platte tekst plakken</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Een van de eerste negen items direct plakken (eerst vastgezette, dan de nieuwste)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Een van de eerste negen getoonde items direct plakken (eerst vastgezette, dan de nieuwste)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Vastzetten of losmaken</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Item verwijderen</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Sluiten</td></tr>
@@ -445,7 +448,7 @@
                 <div class="card"><h3>Wachtwoorden blijven buiten</h3>
                     <p>Wat wachtwoordbeheerders als verborgen markeren, wordt nooit opgeslagen. 1Password, Bitwarden, KeePassXC en andere zijn standaard uitgesloten.</p></div>
                 <div class="card"><h3>Verwijderd is verwijderd</h3>
-                    <p>Verwijderde items worden in de database overschreven en het wijzigingslogboek wordt geleegd – na een crash bij de volgende start. Afbeeldingsbestanden van verwijderde items worden verwijderd.</p></div>
+                    <p>Verwijderde items worden in de database overschreven en het wijzigingslogboek wordt geleegd – ook na een crash, bij de volgende start. Afbeeldingsbestanden van verwijderde items worden verwijderd.</p></div>
                 <div class="card"><h3>Afbeeldingen in een sandbox</h3>
                     <p>Niet-vertrouwde afbeeldingsgegevens worden verwerkt in een geïsoleerd hulpproces zonder toegang tot bestanden of netwerk, niet in de app zelf.</p></div>
                 <div class="card"><h3>Controleerbaar</h3>

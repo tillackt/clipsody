@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/icon-180.png">
-    <link rel="stylesheet" href="assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="de_DE">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Alles, was du kopiert hast: Texte, Bilder, Dateien, Links</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Animation anhalten</span><span class="when-paused">▶ Animation abspielen</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Animation anhalten</label>
+            </div>
             <figcaption class="caption">So sieht der Verlauf in Clipsody aus: alle kopierten Einträge, ein Bild, eine Datei und die Suche nach Text in einem Screenshot.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Ein Kürzel, überall</h3>
                     <p><kbd>⌥⌘C</kbd> öffnet den Zwischenablage-Verlauf in jeder App. Eintrag mit den Pfeiltasten wählen oder ein Suchwort eingeben, <kbd>⏎</kbd> drücken – der Eintrag landet dort, wo du warst.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Mehrere Einträge kopieren, später einfügen</h3>
-                    <p>Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein (angepinnte zuerst, dann die neuesten).</p></div>
+                    <p>Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (angepinnte zuerst, dann die neuesten).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Findet auch Text in Bildern</h3>
                     <p>Kopierte Screenshots und Bilder werden auf deinem Mac gelesen. Such nach einem Wort, das auf dem Bild steht – und das Bild ist da. <a href="#text-in-images">So geht’s</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Texte, Bilder, Dateien</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Angaben zu Spotlight: Stand macOS 26.1, Oktober 2026.</p>
+            <p class="asof">Angaben zu Spotlight geprüft für macOS 26.1.</p>
             <p class="more">Mehr dazu: <a href="zwischenablage-verlauf-mac.html">Zwischenablage-Verlauf auf dem Mac anzeigen – alle Wege</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Eintrag wählen</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Einfügen, mit Formatierung</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Einfügen, nur reiner Text</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Einen der ersten neun Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Einen der ersten neun angezeigten Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Anpinnen oder lösen</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Eintrag löschen</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Schließen</td></tr>

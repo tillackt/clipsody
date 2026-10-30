@@ -110,9 +110,9 @@ def head(code, c, page, file, kind, all_content):
 {I}<meta property="og:image" content="{SITE}assets/{og_image(code)}">
 {I}<meta property="og:image:width" content="1200">
 {I}<meta property="og:image:height" content="630">
-{I}<meta property="og:image:alt" content="{attr(page.get('ogImageAlt', page['ogTitle']))}">
+{I}<meta property="og:image:alt" content="{attr(c['home']['ogImageAlt'])}">
 {I}<meta name="twitter:card" content="summary_large_image">
-{I}<meta name="twitter:image:alt" content="{attr(page.get('ogImageAlt', page['ogTitle']))}">
+{I}<meta name="twitter:image:alt" content="{attr(c['home']['ogImageAlt'])}">
 {I}<script type="application/ld+json">
 {structured_data(code, c, page, file, kind)}
 {I}</script>
@@ -132,7 +132,9 @@ def file_for(code, c, kind):
 
 
 def header(code, c, nav, kind, all_content):
-    links = "\n".join(f'{I*3}<a href="{href}">{label}</a>' for href, label in nav)
+    current = SUPPORT_FILE if kind == "support" else None
+    links = "\n".join(f'{I*3}<a href="{href}"{" aria-current=\"page\"" if href == current else ""}>{label}</a>'
+                      for href, label in nav)
     langs = "\n".join(
         f'{I*4}<li><a href="{rel(code, LANGUAGES[other] + file_for(other, all_content[other], kind))}" '
         f'hreflang="{other}" lang="{other}"{" aria-current=\"page\"" if other == code else ""}>'
@@ -163,7 +165,7 @@ def footer(code, c, kind):
 {I}<div class="wrap">
 {I*2}<span>{f['tagline']}</span>
 {extra}
-{I*2}<a href="{SUPPORT_FILE}">{f['support']}</a>
+{I*2}<a href="{SUPPORT_FILE}"{' aria-current="page"' if kind == "support" else ""}>{f['support']}</a>
 {I*2}<a href="{REPO}">GitHub</a>
 {I*2}<a href="{REPO}/releases">{f['releases']}</a>
 {I*2}<span>{f['license']} <a href="{LICENSE}">GPLv3</a></span>
@@ -211,19 +213,20 @@ def hero_figure(code, h):
         panel(f'<span class="typed">{h["ocrSearch"]}</span>', h["ocrItems"], 0,
               f'<div class="img">{h["ocrPreview"]}</div>', h["ocrInfo"], h["hint"]),
     ]
-    # The checkbox comes first so CSS can pause the scenes after it (WCAG 2.2.2, no script).
-    parts = [f'{I*2}<figure class="shot">',
-             f'{I*3}<input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">',
-             f'{I*3}<div class="scenes" aria-hidden="true">']
+    parts = [f'{I*2}<figure class="shot">', f'{I*3}<div class="scenes" aria-hidden="true">']
     for number, (label, scene) in enumerate(zip(h["labels"], scenes), start=1):
         parts += [f'{I*3}<div class="scene s{number}">',
                   f'{I*4}<p class="scene-label"><span class="step">{number}</span>{label}</p>',
                   scene, f'{I*3}</div>']
+    # Pause control (WCAG 2.2.2, no script): a checkbox right before its label, so the focus ring
+    # shows where the control is; CSS pauses the figure with :has().
     parts += [f'{I*3}</div>',
-              f'{I*3}<div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span>'
-              f'<span class="s3"></span><span class="s4"></span>'
-              f'<label class="pause" for="pause-hero"><span class="when-running">⏸ {h["pause"]}</span>'
-              f'<span class="when-paused">▶ {h["resume"]}</span></label></div>',
+              f'{I*3}<div class="controls">',
+              f'{I*4}<span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span>'
+              f'<span class="s3"></span><span class="s4"></span></span>',
+              f'{I*4}<input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">',
+              f'{I*4}<label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>{h["pause"]}</label>',
+              f'{I*3}</div>',
               f'{I*3}<figcaption class="caption">{h["caption"]}</figcaption>',
               f'{I*2}</figure>']
     return "\n".join(parts)
@@ -467,7 +470,7 @@ def support_page(code, c, all_content):
 {I*2}<label for="issue-title">{s['titleLabel']}</label>
 {I*2}<input id="issue-title" name="title" type="text" maxlength="120" placeholder="{attr(s['titlePlaceholder'])}">
 {I*2}<label for="issue-description">{s['descriptionLabel']}</label>
-{I*2}<textarea id="issue-description" name="description" rows="6" maxlength="4000" placeholder="{attr(s['descriptionPlaceholder'])}"></textarea>
+{I*2}<textarea id="issue-description" name="description" rows="6" maxlength="1500" placeholder="{attr(s['descriptionPlaceholder'])}"></textarea>
 {I*2}<div class="pair">
 {I*3}<div>
 {I*4}<label for="issue-version">{s['versionLabel']}</label>
@@ -599,9 +602,8 @@ def outputs():
 
 def leftovers(names):
     """Generated pages from earlier builds that the current content no longer produces."""
-    return sorted(str(path.relative_to(WEBSITE)) for path in WEBSITE.rglob("*.html")
-                  if str(path.relative_to(WEBSITE)) not in names and path.name not in HANDWRITTEN
-                  or (path.name in HANDWRITTEN and path.parent != WEBSITE))
+    relative = (str(path.relative_to(WEBSITE)) for path in WEBSITE.rglob("*.html"))
+    return sorted(name for name in relative if name not in names and name not in HANDWRITTEN)
 
 
 def main():

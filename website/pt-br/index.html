@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gerenciador de área de transferência grátis para Mac | Clipsody</title>
+    <title>Área de transferência no Mac: gerenciador grátis | Clipsody</title>
     <meta name="description" content="Seu Mac só lembra o último item copiado. O Clipsody guarda o histórico da área de transferência: textos, imagens e arquivos, com busca pelo teclado. Grátis.">
     <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="https://tillackt.github.io/clipsody/pt-br/">
@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="pt_BR">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Tudo o que você copiou: textos, imagens, arquivos, links</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Pausar animação</span><span class="when-paused">▶ Reproduzir animação</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pausar animação</label>
+            </div>
             <figcaption class="caption">O histórico da área de transferência no Clipsody: tudo o que você copiou, uma imagem, um arquivo e a busca por texto em uma captura de tela.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Um atalho, em qualquer lugar</h3>
                     <p><kbd>⌥⌘C</kbd> abre o histórico da área de transferência em qualquer app. Escolha um item com as setas ou digite uma palavra, pressione <kbd>⏎</kbd> – e o item vai parar onde você estava.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copie vários itens e cole quando precisar</h3>
-                    <p>Copie primeiro nome, endereço e número do pedido, depois cole um por um a partir da lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens (fixados primeiro, depois os mais recentes).</p></div>
+                    <p>Copie primeiro nome, endereço e número do pedido, depois cole um por um a partir da lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens exibidos (fixados primeiro, depois os mais recentes).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Encontra texto até em imagens</h3>
                     <p>Capturas de tela e imagens copiadas são lidas no seu Mac. Busque uma palavra que aparece na imagem – e lá está ela. <a href="#text-in-images">Como funciona</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textos, imagens, arquivos</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Informações sobre o Spotlight válidas para o macOS 26.1, outubro de 2026.</p>
+            <p class="asof">Informações sobre o Spotlight verificadas no macOS 26.1.</p>
             <p class="more">Mais: <a href="historico-area-de-transferencia-mac.html">Como ver o histórico da área de transferência no Mac – todas as formas</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Escolher um item</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Colar com formatação</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Colar só o texto simples</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Colar direto um dos nove primeiros itens (fixados primeiro, depois os mais recentes)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Colar direto um dos nove primeiros itens exibidos (fixados primeiro, depois os mais recentes)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fixar ou desafixar</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Apagar um item</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Fechar</td></tr>
@@ -445,7 +448,7 @@
                 <div class="card"><h3>Senhas ficam de fora</h3>
                     <p>O que os gerenciadores de senhas marcam como oculto nunca é guardado. 1Password, Bitwarden, KeePassXC e outros já vêm excluídos.</p></div>
                 <div class="card"><h3>Apagado é apagado</h3>
-                    <p>Itens apagados são sobrescritos no banco de dados e o registro de alterações dele é esvaziado – após uma falha, na próxima abertura. Os arquivos de imagem dos itens apagados são removidos.</p></div>
+                    <p>Itens apagados são sobrescritos no banco de dados e o registro de alterações dele é esvaziado – mesmo após uma falha, na próxima abertura. Os arquivos de imagem dos itens apagados são removidos.</p></div>
                 <div class="card"><h3>Imagens em sandbox</h3>
                     <p>Dados de imagem não confiáveis são processados em um processo auxiliar isolado, sem acesso a arquivos ou à rede, e não no próprio app.</p></div>
                 <div class="card"><h3>Verificável</h3>

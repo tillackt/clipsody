@@ -6,7 +6,7 @@
   "otherLanguages": "Lingua",
   "mainNav": "Principale",
   "skipLink": "Vai al contenuto",
-  "spotlightAsOf": "Informazioni su Spotlight aggiornate a macOS 26.1, ottobre 2026.",
+  "spotlightAsOf": "Informazioni su Spotlight verificate per macOS 26.1.",
   "home": {
     "title": "Clipboard manager gratis per Mac – Copia più cose | Clipsody",
     "description": "Il Mac ricorda solo l’ultima cosa che hai copiato. Clipsody le tiene tutte – testi, immagini, file – e le ritrovi dalla tastiera. Gratis e open source.",
@@ -101,8 +101,7 @@
       ],
       "ocrPreview": "Screenshot · testo riconosciuto<br><br><b><mark>Fattura</mark> n. 2026-1043</b><br>Periodo di riferimento: ottobre 2026<br>Totale: 1.240,00 €<br>Scadenza: 15 nov 2026",
       "ocrInfo": "Anteprima · 3 minuti fa · immagine 2880×1800 · testo riconosciuto",
-      "pause": "Metti in pausa l’animazione",
-      "resume": "Riproduci l’animazione"
+      "pause": "Metti in pausa l’animazione"
     },
     "problem": {
       "h2": "Copia più elementi – senza perdere il primo",
@@ -132,7 +131,7 @@
         [
           "📋",
           "Copia più elementi, incollali quando servono",
-          "Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi (prima quelli fissati, poi i più recenti)."
+          "Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti)."
         ],
         [
           "🔎",
@@ -270,7 +269,7 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Incolla direttamente uno dei primi nove elementi (prima quelli fissati, poi i più recenti)"
+          "Incolla direttamente uno dei primi nove elementi mostrati (prima quelli fissati, poi i più recenti)"
         ],
         [
           "<kbd>⌘P</kbd>",
@@ -300,7 +299,7 @@
         ],
         [
           "Eliminato vuol dire eliminato",
-          "Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – dopo un crash, al prossimo avvio. I file immagine degli elementi eliminati vengono rimossi."
+          "Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – anche dopo un crash, al prossimo avvio. I file immagine degli elementi eliminati vengono rimossi."
         ],
         [
           "Immagini in una sandbox",
@@ -417,7 +416,7 @@
         "<a href=\"{download}\">Scarica Clipsody</a> e trascinalo in <strong>Applicazioni</strong> (<a href=\"./#install\">installazione in dettaglio</a>).",
         "Copia come sempre con <kbd>⌘C</kbd>. Ogni elemento – testo, immagine o file – finisce nella cronologia.",
         "Premi <kbd>⌥⌘C</kbd>: compare la lista di tutto ciò che hai copiato. Scrivi una parola per filtrarla; trova anche il testo negli screenshot.",
-        "<kbd>⏎</kbd> incolla l’elemento selezionato proprio dove eri; <kbd>⌥⏎</kbd> lo incolla senza formattazione. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi della lista."
+        "<kbd>⏎</kbd> incolla l’elemento selezionato proprio dove eri; <kbd>⌥⏎</kbd> lo incolla senza formattazione. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti)."
       ],
       "after": "Decidi tu quanto dura la cronologia (da 1 a 365 giorni) e quanti elementi contiene (fino a 10.000). Gli elementi fissati con <kbd>⌘P</kbd> restano per sempre. Tutto resta sul tuo Mac."
     },
@@ -532,7 +531,7 @@
     "ogDescription": "Segnala un problema o proponi un’idea – il modulo prepara per te una issue su GitHub.",
     "breadcrumbLabel": "Percorso di navigazione",
     "crumb": "Supporto",
-    "h1": "Supporto",
+    "h1": "Supporto Clipsody – segnala un problema o proponi un’idea",
     "lead": "Clipsody è un progetto gratuito e open source. Problemi e idee vengono raccolti pubblicamente su GitHub, così tutti vedono cosa è già noto e su cosa si sta lavorando.",
     "checkTitle": "Prima controlla",
     "check": [
@@ -558,7 +557,7 @@
       "La versione di Clipsody (Impostazioni → Info) e la tua versione di macOS.",
       "I passaggi che portano al problema, il più precisi possibile.",
       "Cosa ti aspettavi e cosa è successo invece.",
-      "Per crash o problemi nell’incollare: il log. Il comando da usare nel Terminale te lo mostra GitHub nel modulo."
+      "Per problemi nell’incollare o con le immagini: il log; per i crash: il rapporto del crash. Come ottenerli te lo spiega GitHub nel modulo."
     ],
     "securityTitle": "Hai trovato un problema di sicurezza?",
     "securityText": "Non segnalarlo pubblicamente. Usa invece la <a href=\"{security}\">segnalazione privata su GitHub</a>: la vede solo lo sviluppatore."

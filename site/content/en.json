@@ -6,7 +6,7 @@
   "otherLanguages": "Language",
   "mainNav": "Main",
   "skipLink": "Skip to content",
-  "spotlightAsOf": "Spotlight details as of macOS 26.1, October 2026.",
+  "spotlightAsOf": "Spotlight details checked against macOS 26.1.",
   "home": {
     "title": "Free Mac Clipboard Manager – Copy Multiple Items | Clipsody",
     "description": "Your Mac only remembers the last thing you copied. Clipsody keeps all of it – text, images, files – searchable from the keyboard. Free and open source.",
@@ -101,8 +101,7 @@
       ],
       "ocrPreview": "Screenshot · text recognised<br><br><b><mark>Invoice</mark> no. 2026-1043</b><br>Service period: October 2026<br>Total: €1,240.00<br>Due: 15 Nov 2026",
       "ocrInfo": "Preview · 3 minutes ago · image 2880×1800 · text recognised",
-      "pause": "Pause animation",
-      "resume": "Play animation"
+      "pause": "Pause animation"
     },
     "problem": {
       "h2": "Copy multiple items – without losing the first one",
@@ -132,7 +131,7 @@
         [
           "📋",
           "Copy multiple items, paste them when you need them",
-          "Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries directly (pinned first, then the newest)."
+          "Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
         ],
         [
           "🔎",
@@ -270,7 +269,7 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Paste one of the first nine entries directly (pinned first, then the newest)"
+          "Paste one of the first nine entries shown directly (pinned first, then the newest)"
         ],
         [
           "<kbd>⌘P</kbd>",
@@ -300,7 +299,7 @@
         ],
         [
           "Deleted means deleted",
-          "Deleted entries are overwritten in the database and its change log is emptied – after a crash, at the next launch. Image files of deleted entries are removed."
+          "Deleted entries are overwritten in the database and its change log is emptied – even after a crash, at the next launch. Image files of deleted entries are removed."
         ],
         [
           "Images in a sandbox",
@@ -417,7 +416,7 @@
         "<a href=\"{download}\">Download Clipsody</a> and drag it into <strong>Applications</strong> (<a href=\"./#install\">installation in detail</a>).",
         "Copy as usual with <kbd>⌘C</kbd>. Every clip – text, image or file – goes into the history.",
         "Press <kbd>⌥⌘C</kbd>: the list of everything you copied appears. Enter a search word to filter it; this finds text in screenshots too.",
-        "<kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries of the list directly."
+        "<kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
       ],
       "after": "You decide how long the history lasts (1 to 365 days) and how many clips it holds (up to 10,000). Clips pinned with <kbd>⌘P</kbd> stay for good. Everything stays on your Mac."
     },
@@ -532,7 +531,7 @@
     "ogDescription": "Report a problem or suggest an idea – the form prepares a GitHub issue for you.",
     "breadcrumbLabel": "Breadcrumb",
     "crumb": "Support",
-    "h1": "Support",
+    "h1": "Clipsody Support – Report a Problem or Suggest an Idea",
     "lead": "Clipsody is a free open-source project. Problems and ideas are collected publicly on GitHub, so everyone can see what is known and what is being worked on.",
     "checkTitle": "Check first",
     "check": [
@@ -558,7 +557,7 @@
       "The Clipsody version (Settings → Info) and your macOS version.",
       "The steps that lead to the problem, as exactly as possible.",
       "What you expected and what happened instead.",
-      "For crashes or paste problems: the log. GitHub shows the Terminal command for it in the form."
+      "For paste or image problems: the log; for crashes: the crash report. The GitHub form shows how to get both."
     ],
     "securityTitle": "Found a security problem?",
     "securityText": "Please do not report it publicly. Use the <a href=\"{security}\">private report on GitHub</a> instead; it is only visible to the developer."

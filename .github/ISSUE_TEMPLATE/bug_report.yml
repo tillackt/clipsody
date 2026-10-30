@@ -47,8 +47,9 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Log (optional)
+      label: Log or crash report (optional)
       description: |
-        Helps with crashes and paste problems. In Terminal, run the command below right after the problem happened and paste the output.
-        `log show --last 10m --predicate 'subsystem == "io.github.tillackt.clipsody"'`
+        For paste or image problems: open Terminal (Applications → Utilities), run the command below right after the problem happened and paste the output.
+        `log show --last 10m --predicate 'subsystem BEGINSWITH "io.github.tillackt.clipsody"'`
+        If Clipsody crashed: open the Console app → Crash Reports, select the Clipsody entry and paste its text.
       render: text

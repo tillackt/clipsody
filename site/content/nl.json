@@ -6,10 +6,10 @@
   "otherLanguages": "Taal",
   "mainNav": "Hoofdmenu",
   "skipLink": "Direct naar de inhoud",
-  "spotlightAsOf": "Gegevens over Spotlight: stand van macOS 26.1, oktober 2026.",
+  "spotlightAsOf": "Gegevens over Spotlight gecontroleerd voor macOS 26.1.",
   "home": {
     "title": "Gratis klembordbeheerder Mac – veel items kopiëren | Clipsody",
-    "description": "Je Mac onthoudt alleen het laatste wat je hebt gekopieerd. Clipsody bewaart alles – tekst, afbeeldingen, bestanden – doorzoekbaar via je toetsenbord. Gratis.",
+    "description": "Je Mac onthoudt alleen het laatste wat je hebt gekopieerd. Clipsody bewaart alles – tekst, afbeeldingen, bestanden – doorzoekbaar via je toetsenbord.",
     "ogTitle": "Clipsody – het klembord met een geheugen voor je Mac",
     "ogDescription": "Alles wat je kopieert blijft binnen handbereik: tekst, afbeeldingen en bestanden, doorzoekbaar en terug te plakken via het toetsenbord. Gratis, open source, volledig lokaal.",
     "ogImageAlt": "Clipsody: klembordgeschiedenis voor de Mac",
@@ -101,8 +101,7 @@
       ],
       "ocrPreview": "Schermafbeelding · tekst herkend<br><br><b><mark>Factuur</mark> nr. 2026-1043</b><br>Periode: oktober 2026<br>Totaal: € 1.240,00<br>Vervaldatum: 15 nov. 2026",
       "ocrInfo": "Voorvertoning · 3 minuten geleden · afbeelding 2880×1800 · tekst herkend",
-      "pause": "Animatie pauzeren",
-      "resume": "Animatie afspelen"
+      "pause": "Animatie pauzeren"
     },
     "problem": {
       "h2": "Meerdere items kopiëren – zonder het eerste kwijt te raken",
@@ -132,7 +131,7 @@
         [
           "📋",
           "Meerdere items kopiëren, plakken wanneer je ze nodig hebt",
-          "Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen items direct (eerst vastgezette, dan de nieuwste)."
+          "Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (eerst vastgezette, dan de nieuwste)."
         ],
         [
           "🔎",
@@ -270,7 +269,7 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Een van de eerste negen items direct plakken (eerst vastgezette, dan de nieuwste)"
+          "Een van de eerste negen getoonde items direct plakken (eerst vastgezette, dan de nieuwste)"
         ],
         [
           "<kbd>⌘P</kbd>",
@@ -300,7 +299,7 @@
         ],
         [
           "Verwijderd is verwijderd",
-          "Verwijderde items worden in de database overschreven en het wijzigingslogboek wordt geleegd – na een crash bij de volgende start. Afbeeldingsbestanden van verwijderde items worden verwijderd."
+          "Verwijderde items worden in de database overschreven en het wijzigingslogboek wordt geleegd – ook na een crash, bij de volgende start. Afbeeldingsbestanden van verwijderde items worden verwijderd."
         ],
         [
           "Afbeeldingen in een sandbox",
@@ -381,7 +380,7 @@
   },
   "guide": {
     "title": "Klembordgeschiedenis Mac bekijken – alle manieren | Clipsody",
-    "description": "Hoe zie je op een Mac wat je eerder hebt gekopieerd? Finder, de klembordgeschiedenis in Spotlight (macOS 26) en klembordbeheerders stap voor stap vergeleken.",
+    "description": "Hoe zie je op een Mac wat je eerder hebt gekopieerd? Finder, de klembordgeschiedenis in Spotlight (macOS 26) en klembordbeheerders vergeleken.",
     "ogTitle": "Klembordgeschiedenis bekijken op een Mac – alle manieren",
     "ogDescription": "Finder, de klembordgeschiedenis in Spotlight in macOS 26 en klembordbeheerders stap voor stap vergeleken.",
     "breadcrumbLabel": "Kruimelpad",
@@ -417,7 +416,7 @@
         "<a href=\"{download}\">Download Clipsody</a> en sleep het naar <strong>Apps</strong> (<a href=\"./#install\">installatie in detail</a>).",
         "Kopieer zoals altijd met <kbd>⌘C</kbd>. Elk item – tekst, afbeelding of bestand – komt in de geschiedenis.",
         "Druk op <kbd>⌥⌘C</kbd>: de lijst met alles wat je hebt gekopieerd verschijnt. Typ een zoekwoord om te filteren; zo vind je ook tekst in schermafbeeldingen.",
-        "<kbd>⏎</kbd> plakt het geselecteerde item precies waar je was; <kbd>⌥⏎</kbd> plakt het zonder opmaak. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen items van de lijst direct."
+        "<kbd>⏎</kbd> plakt het geselecteerde item precies waar je was; <kbd>⌥⏎</kbd> plakt het zonder opmaak. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (eerst vastgezette, dan de nieuwste)."
       ],
       "after": "Jij bepaalt hoe lang de geschiedenis meegaat (1 tot 365 dagen) en hoeveel items erin passen (tot 10.000). Items die je met <kbd>⌘P</kbd> vastzet, blijven voorgoed. Alles blijft op je Mac."
     },
@@ -532,7 +531,7 @@
     "ogDescription": "Meld een probleem of stel een idee voor – het formulier zet een GitHub-issue voor je klaar.",
     "breadcrumbLabel": "Kruimelpad",
     "crumb": "Support",
-    "h1": "Support",
+    "h1": "Clipsody-support – meld een probleem of stel een idee voor",
     "lead": "Clipsody is gratis en open source. Problemen en ideeën worden openbaar op GitHub verzameld, zodat iedereen kan zien wat al bekend is en waaraan wordt gewerkt.",
     "checkTitle": "Controleer eerst",
     "check": [
@@ -558,7 +557,7 @@
       "De Clipsody-versie (Instellingen → Info) en je macOS-versie.",
       "De stappen die tot het probleem leiden, zo precies mogelijk.",
       "Wat je verwachtte en wat er in plaats daarvan gebeurde.",
-      "Bij crashes of problemen met plakken: het logboek. Het Terminal-commando daarvoor laat GitHub in het formulier zien."
+      "Bij problemen met plakken of afbeeldingen: het logboek; bij crashes: het crashrapport. Hoe je beide krijgt, laat GitHub in het formulier zien."
     ],
     "securityTitle": "Een beveiligingsprobleem gevonden?",
     "securityText": "Meld het alsjeblieft niet openbaar, maar gebruik de <a href=\"{security}\">vertrouwelijke melding op GitHub</a> – alleen de ontwikkelaar kan die zien."

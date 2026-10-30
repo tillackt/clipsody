@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=19473d7c5f">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="fr_FR">
@@ -217,7 +217,6 @@
         </div>
 
         <figure class="shot">
-            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Tout ce que vous avez copié : textes, images, fichiers, liens</p>
@@ -303,7 +302,11 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Mettre l’animation en pause</span><span class="when-paused">▶ Lire l’animation</span></label></div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Mettre l’animation en pause</label>
+            </div>
             <figcaption class="caption">L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran.</figcaption>
         </figure>
     </div>
@@ -337,7 +340,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Un raccourci, partout</h3>
                     <p><kbd>⌥⌘C</kbd> ouvre l’historique du presse-papiers dans n’importe quelle app. Choisissez un élément avec les flèches ou tapez un mot, appuyez sur <kbd>⏎</kbd> – il est collé là où vous étiez.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copier plusieurs éléments, les coller au moment voulu</h3>
-                    <p>Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments (les épinglés d’abord, puis les plus récents).</p></div>
+                    <p>Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trouve aussi le texte des images</h3>
                     <p>Les captures d’écran et images copiées sont lues sur votre Mac. Cherchez un mot qui figure dans l’image – et la voilà. <a href="#text-in-images">Comment ça marche</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textes, images, fichiers</h3>
@@ -410,7 +413,7 @@
                     </tbody>
                 </table>
             </section>
-            <p class="asof">Informations sur Spotlight à jour pour macOS 26.1, octobre 2026.</p>
+            <p class="asof">Informations sur Spotlight vérifiées pour macOS 26.1.</p>
             <p class="more">En savoir plus : <a href="historique-presse-papiers-mac.html">Afficher l’historique du presse-papiers sur Mac – toutes les méthodes</a></p>
         </div>
     </section>
@@ -426,7 +429,7 @@
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choisir un élément</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Coller avec la mise en forme</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Coller uniquement le texte brut</td></tr>
-                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Coller directement l’un des neuf premiers éléments (les épinglés d’abord, puis les plus récents)</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Coller directement l’un des neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Épingler ou désépingler</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Supprimer un élément</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Fermer</td></tr>
@@ -445,7 +448,7 @@
                 <div class="card"><h3>Les mots de passe restent dehors</h3>
                     <p>Tout ce que les gestionnaires de mots de passe marquent comme masqué n’est jamais enregistré. 1Password, Bitwarden, KeePassXC et d’autres sont exclus d’office.</p></div>
                 <div class="card"><h3>Supprimé, c’est supprimé</h3>
-                    <p>Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – après un plantage, au lancement suivant. Les fichiers image des éléments supprimés sont effacés.</p></div>
+                    <p>Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – même après un plantage, au lancement suivant. Les fichiers image des éléments supprimés sont effacés.</p></div>
                 <div class="card"><h3>Images dans un bac à sable</h3>
                     <p>Les données d’image non fiables sont traitées dans un processus auxiliaire isolé, sans accès aux fichiers ni au réseau, et non dans l’app elle-même.</p></div>
                 <div class="card"><h3>Vérifiable</h3>

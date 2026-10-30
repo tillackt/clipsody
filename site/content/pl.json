@@ -6,7 +6,7 @@
   "otherLanguages": "Język",
   "mainNav": "Główna",
   "skipLink": "Przejdź do treści",
-  "spotlightAsOf": "Informacje o Spotlight: stan na macOS 26.1, październik 2026.",
+  "spotlightAsOf": "Informacje o Spotlight sprawdzone dla macOS 26.1.",
   "home": {
     "title": "Menedżer schowka na Maca za darmo – kopiuj wiele | Clipsody",
     "description": "Mac pamięta tylko ostatnią skopiowaną rzecz. Clipsody zachowuje całą historię schowka – teksty, obrazy, pliki – z wyszukiwaniem z klawiatury. Za darmo.",
@@ -56,8 +56,7 @@
       ],
       "ocrPreview": "Zrzut ekranu · rozpoznano tekst<br><br><b><mark>Faktura</mark> nr 2026-1043</b><br>Okres rozliczeniowy: październik 2026<br>Do zapłaty: 1 240,00 zł<br>Termin płatności: 15.11.2026",
       "ocrInfo": "Podgląd · 3 minuty temu · obraz 2880×1800 · rozpoznano tekst",
-      "pause": "Zatrzymaj animację",
-      "resume": "Odtwórz animację"
+      "pause": "Zatrzymaj animację"
     },
     "problem": {
       "h2": "Kopiuj kilka rzeczy naraz – i nie trać pierwszej",
@@ -80,7 +79,7 @@
       "sub": "Bez launchera, bez workflowów, bez stu ustawień – menedżer schowka, który po prostu pamięta, co kopiujesz.",
       "cards": [
         ["⌨️", "Jeden skrót, wszędzie", "<kbd>⌥⌘C</kbd> otwiera historię schowka w każdej aplikacji. Wybierz element strzałkami albo wpisz szukane słowo, naciśnij <kbd>⏎</kbd> – i element ląduje tam, gdzie właśnie piszesz."],
-        ["📋", "Kopiuj kilka rzeczy, wklejaj, kiedy potrzebujesz", "Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je po kolei z listy. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć elementów (najpierw przypięte, potem najnowsze)."],
+        ["📋", "Kopiuj kilka rzeczy, wklejaj, kiedy potrzebujesz", "Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je po kolei z listy. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (najpierw przypięte, potem najnowsze)."],
         ["🔎", "Znajduje też tekst na obrazach", "Skopiowane zrzuty ekranu i obrazy są odczytywane na twoim Macu. Wyszukaj słowo, które jest na obrazie – i już go masz. <a href=\"#text-in-images\">Jak to działa</a>"],
         ["🖼️", "Teksty, obrazy, pliki", "Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka."],
         ["✍️", "Z formatowaniem lub bez", "<kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst."],
@@ -134,7 +133,7 @@
         ["<kbd>↑</kbd> <kbd>↓</kbd>", "Wybierz element"],
         ["<kbd>⏎</kbd>", "Wklej z formatowaniem"],
         ["<kbd>⌥⏎</kbd>", "Wklej sam tekst"],
-        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Wklej od razu jeden z pierwszych dziewięciu elementów (najpierw przypięte, potem najnowsze)"],
+        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Wklej od razu jeden z pierwszych dziewięciu widocznych elementów (najpierw przypięte, potem najnowsze)"],
         ["<kbd>⌘P</kbd>", "Przypnij lub odepnij"],
         ["<kbd>⌘⌫</kbd>", "Usuń element"],
         ["<kbd>esc</kbd>", "Zamknij"]
@@ -146,7 +145,7 @@
       "cards": [
         ["Twój schowek nigdy nie opuszcza twojego Maca", "Bez konta, bez serwera, bez analityki. Historia jest przechowywana wyłącznie na twoim Macu i wyłączona z kopii zapasowych. Clipsody łączy się z internetem tylko wtedy, gdy na to pozwolisz – żeby sprawdzić, czy jest nowa wersja."],
         ["Hasła zostają poza historią", "To, co menedżery haseł oznaczają jako ukryte, nigdy nie jest zapisywane. 1Password, Bitwarden, KeePassXC i inne są wykluczone od razu."],
-        ["Usunięte znaczy usunięte", "Usunięte elementy są nadpisywane w bazie danych, a jej dziennik zmian jest opróżniany – po awarii przy następnym uruchomieniu. Pliki obrazów usuniętych elementów też są kasowane."],
+        ["Usunięte znaczy usunięte", "Usunięte elementy są nadpisywane w bazie danych, a jej dziennik zmian jest opróżniany – także po awarii, przy następnym uruchomieniu. Pliki obrazów usuniętych elementów też są kasowane."],
         ["Obrazy w piaskownicy", "Niezaufane dane obrazów są przetwarzane w odizolowanym procesie pomocniczym bez dostępu do plików i sieci, a nie w samej aplikacji."],
         ["Do sprawdzenia", "Kod źródłowy jest otwarty. Nie musisz nikomu ufać – możesz go przeczytać i samodzielnie zbudować aplikację."],
         ["Niewidoczne na klasycznych zrzutach ekranu", "Okno jest ukryte na zrzutach ekranu i podczas klasycznego udostępniania ekranu. Od macOS 15 nowoczesne aplikacje do nagrywania ekranu mogą je jednak przechwycić."]
@@ -217,7 +216,7 @@
         "<a href=\"{download}\">Pobierz Clipsody</a> i przeciągnij do folderu <strong>Aplikacje</strong> (<a href=\"./#install\">instalacja krok po kroku</a>).",
         "Kopiuj jak zwykle przez <kbd>⌘C</kbd>. Każdy element – tekst, obraz czy plik – trafia do historii.",
         "Naciśnij <kbd>⌥⌘C</kbd>: pojawi się lista wszystkich skopiowanych elementów. Wpisz szukane słowo, aby ją przefiltrować; znajdziesz tak również tekst na zrzutach ekranu.",
-        "<kbd>⏎</kbd> wkleja wybrany element dokładnie tam, gdzie stoi kursor; <kbd>⌥⏎</kbd> wkleja go bez formatowania. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć elementów listy."
+        "<kbd>⏎</kbd> wkleja wybrany element dokładnie tam, gdzie stoi kursor; <kbd>⌥⏎</kbd> wkleja go bez formatowania. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (najpierw przypięte, potem najnowsze)."
       ],
       "after": "Ty decydujesz, jak długo trwa historia (od 1 do 365 dni) i ile elementów mieści (do 10 000). Elementy przypięte przez <kbd>⌘P</kbd> zostają na stałe. Wszystko zostaje na twoim Macu."
     },
@@ -267,7 +266,7 @@
     "ogDescription": "Zgłoś problem albo zaproponuj pomysł – formularz przygotuje dla ciebie zgłoszenie na GitHubie.",
     "breadcrumbLabel": "Ścieżka nawigacji",
     "crumb": "Pomoc",
-    "h1": "Pomoc",
+    "h1": "Pomoc Clipsody – zgłoś problem albo zaproponuj pomysł",
     "lead": "Clipsody to darmowy projekt open source. Problemy i pomysły zbieramy publicznie na GitHubie, więc każdy widzi, co już wiadomo i nad czym trwają prace.",
     "checkTitle": "Najpierw sprawdź",
     "check": [
@@ -293,7 +292,7 @@
       "Wersja Clipsody (Ustawienia → Informacje) i wersja macOS.",
       "Kroki prowadzące do problemu – jak najdokładniej.",
       "Czego się spodziewasz i co dzieje się zamiast tego.",
-      "Przy awariach lub problemach z wklejaniem: log. Polecenie do Terminala GitHub pokazuje w formularzu."
+      "Przy problemach z wklejaniem lub obrazami: log; przy awariach: raport o awarii. Jak zdobyć jedno i drugie, GitHub pokazuje w formularzu."
     ],
     "securityTitle": "Problem z bezpieczeństwem?",
     "securityText": "Nie zgłaszaj go publicznie. Skorzystaj zamiast tego z <a href=\"{security}\">prywatnego zgłoszenia na GitHubie</a> – widzi je tylko deweloper."

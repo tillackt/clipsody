@@ -6,7 +6,7 @@
   "otherLanguages": "Langue",
   "mainNav": "Navigation principale",
   "skipLink": "Aller au contenu",
-  "spotlightAsOf": "Informations sur Spotlight à jour pour macOS 26.1, octobre 2026.",
+  "spotlightAsOf": "Informations sur Spotlight vérifiées pour macOS 26.1.",
   "home": {
     "title": "Gestionnaire de presse-papiers gratuit pour Mac | Clipsody",
     "description": "Votre Mac ne garde que le dernier élément copié. Clipsody conserve tout – textes, images, fichiers – et le retrouve au clavier. Gratuit et open source.",
@@ -101,8 +101,7 @@
       ],
       "ocrPreview": "Capture d’écran · texte reconnu<br><br><b><mark>Facture</mark> n° 2026-1043</b><br>Période : octobre 2026<br>Total : 1 240,00 €<br>Échéance : 15/11/2026",
       "ocrInfo": "Aperçu · il y a 3 minutes · image 2880×1800 · texte reconnu",
-      "pause": "Mettre l’animation en pause",
-      "resume": "Lire l’animation"
+      "pause": "Mettre l’animation en pause"
     },
     "problem": {
       "h2": "Copier plusieurs éléments – sans perdre le premier",
@@ -132,7 +131,7 @@
         [
           "📋",
           "Copier plusieurs éléments, les coller au moment voulu",
-          "Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments (les épinglés d’abord, puis les plus récents)."
+          "Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents)."
         ],
         [
           "🔎",
@@ -270,7 +269,7 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Coller directement l’un des neuf premiers éléments (les épinglés d’abord, puis les plus récents)"
+          "Coller directement l’un des neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents)"
         ],
         [
           "<kbd>⌘P</kbd>",
@@ -300,7 +299,7 @@
         ],
         [
           "Supprimé, c’est supprimé",
-          "Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – après un plantage, au lancement suivant. Les fichiers image des éléments supprimés sont effacés."
+          "Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – même après un plantage, au lancement suivant. Les fichiers image des éléments supprimés sont effacés."
         ],
         [
           "Images dans un bac à sable",
@@ -417,7 +416,7 @@
         "<a href=\"{download}\">Téléchargez Clipsody</a> et faites-le glisser dans <strong>Applications</strong> (<a href=\"./#install\">installation détaillée</a>).",
         "Copiez comme d’habitude avec <kbd>⌘C</kbd>. Chaque élément – texte, image ou fichier – rejoint l’historique.",
         "Appuyez sur <kbd>⌥⌘C</kbd> : la liste de tout ce que vous avez copié apparaît. Tapez un mot pour la filtrer ; la recherche trouve aussi le texte des captures d’écran.",
-        "<kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments de la liste."
+        "<kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents)."
       ],
       "after": "Vous décidez combien de temps l’historique est conservé (de 1 à 365 jours) et combien d’éléments il contient (jusqu’à 10 000). Les éléments épinglés avec <kbd>⌘P</kbd> restent définitivement. Tout reste sur votre Mac."
     },
@@ -532,7 +531,7 @@
     "ogDescription": "Signalez un problème ou proposez une idée – le formulaire vous prépare un ticket sur GitHub.",
     "breadcrumbLabel": "Fil d’Ariane",
     "crumb": "Assistance",
-    "h1": "Assistance",
+    "h1": "Assistance Clipsody – signaler un problème, proposer une idée",
     "lead": "Clipsody est un projet open source gratuit. Les problèmes et les idées sont rassemblés publiquement sur GitHub : chacun peut voir ce qui est déjà connu et ce qui est en cours.",
     "checkTitle": "À vérifier d’abord",
     "check": [
@@ -558,7 +557,7 @@
       "La version de Clipsody (Réglages → Infos) et votre version de macOS.",
       "Les étapes qui mènent au problème, aussi précisément que possible.",
       "Ce que vous attendiez et ce qui s’est passé à la place.",
-      "En cas de plantage ou de problème de collage : le journal. Le formulaire GitHub indique la commande à saisir dans le Terminal."
+      "Pour un problème de collage ou d’image : le journal ; en cas de plantage : le rapport de plantage. Le formulaire GitHub explique comment obtenir les deux."
     ],
     "securityTitle": "Vous avez trouvé une faille de sécurité ?",
     "securityText": "Ne la signalez pas publiquement. Utilisez plutôt le <a href=\"{security}\">signalement privé sur GitHub</a> ; seul le développeur peut le voir."
