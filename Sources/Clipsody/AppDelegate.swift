@@ -19,6 +19,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var openItem: NSMenuItem!
     /// Shown only while macOS denies Clipsody access to the clipboard; the history stands still then.
     private var pasteboardDeniedItem: NSMenuItem!
+    /// Shown once a check found a newer version.
+    private var updateItem: NSMenuItem!
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
     private var images: ImageQueue!
@@ -67,6 +69,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         buildMainMenu()
         buildStatusItem()
+        // Before the hotkey: the panel must not open behind the one-time consent question.
+        setUpUpdateCheck()
         hotKeys.register(config.hotkey)
 
         pruneTimer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
@@ -80,8 +84,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             logger.notice("No Accessibility permission yet; asked on the first paste")
         }
 
-        setUpUpdateCheck()
-
         if CommandLine.arguments.contains("--settings") {
             openSettings()
         }
@@ -94,7 +96,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             config.checkForUpdates = UpdateController.askForConsent()
             config.save(to: store.directory)
         }
+        updates.onAvailableChange = { [unowned self] in showAvailableUpdate() }
         updates.apply(config)
+    }
+
+    private func showAvailableUpdate() {
+        guard let release = updates.available else { return }
+        updateItem.title = String(localized: "Clipsody \(release.version.description) is available…")
+        updateItem.isHidden = false
+        statusItem.button?.image = StatusIcon.image(badged: true)
     }
 
     /// Launching the app again (Spotlight, Finder, `open`) shows the history.
@@ -219,7 +229,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func buildStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        statusItem.button?.image = NSImage(systemSymbolName: "list.clipboard", accessibilityDescription: "Clipsody")
+        statusItem.button?.image = StatusIcon.image(badged: false)
 
         let menu = NSMenu()
         // Items are enabled explicitly; otherwise isEnabled would be ignored.
@@ -229,6 +239,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                                             action: #selector(openPasteboardSettings), keyEquivalent: "")
         pasteboardDeniedItem.image = NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: nil)
         pasteboardDeniedItem.isHidden = true
+        updateItem = menu.addItem(withTitle: "", action: #selector(showUpdate), keyEquivalent: "")
+        updateItem.image = NSImage(systemSymbolName: "arrow.down.circle", accessibilityDescription: nil)
+        updateItem.isHidden = true
         openItem = menu.addItem(withTitle: String(localized: "Open History"), action: #selector(openPanel), keyEquivalent: "")
         menu.addItem(withTitle: String(localized: "Settings…"), action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(withTitle: String(localized: "Check for Updates…"), action: #selector(checkForUpdates), keyEquivalent: "")
@@ -252,6 +265,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @objc private func checkForUpdates() {
         updates.checkNow()
+    }
+
+    @objc private func showUpdate() {
+        updates.showAvailable()
     }
 
     @objc private func openPasteboardSettings() {

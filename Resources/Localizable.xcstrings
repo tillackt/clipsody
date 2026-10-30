@@ -939,48 +939,48 @@
         }
       }
     },
-    "Asks GitHub for the number of the latest version and tells you when there is a new one; you download it from the release page. Nothing from your clipboard is sent, but GitHub sees your IP address. Without this, Clipsody uses no network unless you click Check Now.": {
+    "Asks GitHub for the number of the latest version and tells you when there is a new one; you download it from the release page. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragt bei GitHub die Nummer der neuesten Version ab und sagt dir, wenn es eine neue gibt; laden kannst du sie dann von der Release-Seite. Aus deiner Zwischenablage wird nichts gesendet, GitHub sieht aber deine IP-Adresse. Ohne diese Option nutzt Clipsody kein Netzwerk, außer du klickst auf „Jetzt suchen“."
+            "value": "Fragt bei GitHub die Nummer der neuesten Version ab und sagt dir, wenn es eine neue gibt; laden kannst du sie dann von der Release-Seite. Aus deiner Zwischenablage wird nichts gesendet; GitHub sieht deine IP-Adresse und die Clipsody-Version. Ohne diese Option nutzt Clipsody kein Netzwerk, außer du klickst auf „Jetzt suchen“."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pregunta a GitHub el número de la última versión y te avisa cuando hay una nueva; la descargas desde la página de la versión. No se envía nada de tu portapapeles, pero GitHub ve tu dirección IP. Sin esta opción, Clipsody no usa la red salvo que hagas clic en «Buscar ahora»."
+            "value": "Pregunta a GitHub el número de la última versión y te avisa cuando hay una nueva; la descargas desde la página de la versión. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Sin esta opción, Clipsody no usa la red salvo que hagas clic en «Buscar ahora»."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demande à GitHub le numéro de la dernière version et vous prévient lorsqu’une nouvelle est disponible ; vous la téléchargez depuis la page de la version. Rien de votre presse-papiers n’est envoyé, mais GitHub voit votre adresse IP. Sans cette option, Clipsody n’utilise pas le réseau, sauf si vous cliquez sur « Rechercher »."
+            "value": "Demande à GitHub le numéro de la dernière version et vous prévient lorsqu’une nouvelle est disponible ; vous la téléchargez depuis la page de la version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Sans cette option, Clipsody n’utilise pas le réseau, sauf si vous cliquez sur « Rechercher »."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chiede a GitHub il numero dell’ultima versione e ti avvisa quando ce n’è una nuova; la scarichi dalla pagina della versione. Nulla dei tuoi appunti viene inviato, ma GitHub vede il tuo indirizzo IP. Senza questa opzione Clipsody non usa la rete, a meno che tu non faccia clic su «Controlla ora»."
+            "value": "Chiede a GitHub il numero dell’ultima versione e ti avvisa quando ce n’è una nuova; la scarichi dalla pagina della versione. Nulla dei tuoi appunti viene inviato; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Senza questa opzione Clipsody non usa la rete, a meno che tu non faccia clic su «Controlla ora»."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vraagt GitHub naar het nummer van de nieuwste versie en laat je weten wanneer er een nieuwe is; je downloadt die via de releasepagina. Er wordt niets van je klembord verstuurd, maar GitHub ziet je IP-adres. Zonder deze optie gebruikt Clipsody geen netwerk, tenzij je op ‘Zoek nu’ klikt."
+            "value": "Vraagt GitHub naar het nummer van de nieuwste versie en laat je weten wanneer er een nieuwe is; je downloadt die via de releasepagina. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de Clipsody-versie. Zonder deze optie gebruikt Clipsody geen netwerk, tenzij je op ‘Zoek nu’ klikt."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pyta GitHub o numer najnowszej wersji i informuje, gdy pojawi się nowa; pobierasz ją ze strony wydania. Nic ze schowka nie jest wysyłane, ale GitHub widzi Twój adres IP. Bez tej opcji Clipsody nie korzysta z sieci, chyba że klikniesz „Sprawdź teraz”."
+            "value": "Pyta GitHub o numer najnowszej wersji i informuje, gdy pojawi się nowa; pobierasz ją ze strony wydania. Nic ze schowka nie jest wysyłane; GitHub widzi Twój adres IP i wersję Clipsody. Bez tej opcji Clipsody nie korzysta z sieci, chyba że klikniesz „Sprawdź teraz”."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pergunta ao GitHub o número da versão mais recente e avisa quando há uma nova; você baixa pela página da versão. Nada da sua área de transferência é enviado, mas o GitHub vê seu endereço IP. Sem esta opção, o Clipsody não usa a rede, a não ser que você clique em “Verificar agora”."
+            "value": "Pergunta ao GitHub o número da versão mais recente e avisa quando há uma nova; você baixa pela página da versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Sem esta opção, o Clipsody não usa a rede, a não ser que você clique em “Verificar agora”."
           }
         }
       }
@@ -1767,6 +1767,52 @@
         }
       }
     },
+    "Clipsody %@ is available…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ ist verfügbar …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ está disponible…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ est disponible…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ è disponibile…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ is beschikbaar…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ jest dostępny…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody %@ está disponível…"
+          }
+        }
+      }
+    },
     "Clipsody could not check for updates.": {
       "localizations": {
         "de": {
@@ -1947,6 +1993,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O Clipsody precisa reiniciar para trocar o idioma."
+          }
+        }
+      }
+    },
+    "Clipsody, update available": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, Update verfügbar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, actualización disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, mise à jour disponible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, aggiornamento disponibile"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, update beschikbaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, dostępna aktualizacja"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, atualização disponível"
           }
         }
       }
@@ -2361,6 +2453,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Geral"
+          }
+        }
+      }
+    },
+    "GitHub did not give a usable answer. Please try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub hat keine brauchbare Antwort geliefert. Bitte versuche es später noch einmal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub no dio una respuesta utilizable. Vuelve a intentarlo más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub n’a pas donné de réponse exploitable. Réessayez plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub non ha dato una risposta utilizzabile. Riprova più tardi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub gaf geen bruikbaar antwoord. Probeer het later opnieuw."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub nie zwrócił użytecznej odpowiedzi. Spróbuj ponownie później."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O GitHub não deu uma resposta utilizável. Tente novamente mais tarde."
           }
         }
       }
@@ -3147,48 +3285,48 @@
         }
       }
     },
-    "Once a day Clipsody can ask GitHub whether a new version is available. Only the version number is fetched; nothing from your clipboard is sent, but GitHub sees your IP address. You can change this at any time in Settings → General.": {
+    "Once a day Clipsody can ask GitHub whether a new version is available. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. You can change this at any time in Settings → General.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clipsody kann einmal täglich bei GitHub nachfragen, ob es eine neue Version gibt. Abgerufen wird nur die Versionsnummer; aus deiner Zwischenablage wird nichts gesendet, GitHub sieht aber deine IP-Adresse. Du kannst das jederzeit unter Einstellungen → Allgemein ändern."
+            "value": "Clipsody kann einmal täglich bei GitHub nachfragen, ob es eine neue Version gibt. Aus deiner Zwischenablage wird nichts gesendet; GitHub sieht deine IP-Adresse und die Clipsody-Version. Du kannst das jederzeit unter Einstellungen → Allgemein ändern."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una vez al día, Clipsody puede preguntar a GitHub si hay una versión nueva. Solo se obtiene el número de versión; no se envía nada de tu portapapeles, pero GitHub ve tu dirección IP. Puedes cambiarlo en cualquier momento en Ajustes → General."
+            "value": "Una vez al día, Clipsody puede preguntar a GitHub si hay una versión nueva. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Puedes cambiarlo en cualquier momento en Ajustes → General."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Une fois par jour, Clipsody peut demander à GitHub si une nouvelle version est disponible. Seul le numéro de version est récupéré ; rien de votre presse-papiers n’est envoyé, mais GitHub voit votre adresse IP. Vous pouvez modifier ce choix à tout moment dans Réglages → Général."
+            "value": "Une fois par jour, Clipsody peut demander à GitHub si une nouvelle version est disponible. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Vous pouvez modifier ce choix à tout moment dans Réglages → Général."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una volta al giorno Clipsody può chiedere a GitHub se è disponibile una nuova versione. Viene scaricato solo il numero di versione; nulla dei tuoi appunti viene inviato, ma GitHub vede il tuo indirizzo IP. Puoi cambiare questa scelta in qualsiasi momento in Impostazioni → Generale."
+            "value": "Una volta al giorno Clipsody può chiedere a GitHub se è disponibile una nuova versione. Nulla dei tuoi appunti viene inviato; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Puoi cambiare questa scelta in qualsiasi momento in Impostazioni → Generale."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clipsody kan eenmaal per dag bij GitHub navragen of er een nieuwe versie is. Alleen het versienummer wordt opgehaald; er wordt niets van je klembord verstuurd, maar GitHub ziet je IP-adres. Je kunt dit altijd wijzigen via Instellingen → Algemeen."
+            "value": "Clipsody kan eenmaal per dag bij GitHub navragen of er een nieuwe versie is. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de Clipsody-versie. Je kunt dit altijd wijzigen via Instellingen → Algemeen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Raz dziennie Clipsody może zapytać GitHub, czy jest dostępna nowa wersja. Pobierany jest tylko numer wersji; nic ze schowka nie jest wysyłane, ale GitHub widzi Twój adres IP. Możesz to zmienić w każdej chwili w Ustawienia → Ogólne."
+            "value": "Raz dziennie Clipsody może zapytać GitHub, czy jest dostępna nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi Twój adres IP i wersję Clipsody. Możesz to zmienić w każdej chwili w Ustawienia → Ogólne."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma vez por dia, o Clipsody pode perguntar ao GitHub se há uma nova versão. Só o número da versão é obtido; nada da sua área de transferência é enviado, mas o GitHub vê seu endereço IP. Você pode mudar isso a qualquer momento em Ajustes → Geral."
+            "value": "Uma vez por dia, o Clipsody pode perguntar ao GitHub se há uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Você pode mudar isso a qualquer momento em Ajustes → Geral."
           }
         }
       }

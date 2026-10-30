@@ -2,34 +2,40 @@ import AppKit
 import ClipsodyCore
 import ClipsodyServices
 
-/// The update check. Clipsody asks once whether it may check automatically (off unless the user
-/// agrees), then checks once a day while that is on, and whenever the user asks. A new version is only
-/// announced: the user downloads it from the release page, as on first install.
+/// The update check in the app. Clipsody asks once whether it may check automatically (off unless the
+/// user agrees), then checks once a day while that is on, and whenever the user asks. A version found
+/// in the background only marks the menu bar icon and adds a menu item, so no alert takes the focus
+/// while the user types elsewhere. The user downloads a new version from the release page.
 @MainActor
 final class UpdateController {
-    private static let lastCheckKey = "UpdateLastCheck"
-    private static let announcedVersionKey = "UpdateAnnouncedVersion"
-
-    private let checker: UpdateChecker
-    private let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
+    private let coordinator: UpdateCoordinator
+    private let currentVersion: String
     private var timer: Timer?
-    private var isChecking = false
+    /// A newer version, found by any check; shown in the menu bar until Clipsody restarts.
+    private(set) var available: UpdateCheck.Release?
+    /// Called when `available` changes.
+    var onAvailableChange: () -> Void = {}
 
-    init(checker: UpdateChecker = UpdateChecker()) {
-        self.checker = checker
+    init(currentVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0") {
+        self.currentVersion = currentVersion
+        coordinator = UpdateCoordinator(currentVersion: currentVersion)
+        coordinator.onOutcome = { [unowned self] outcome in show(outcome) }
     }
 
-    /// Asks whether to check automatically; the answer goes into the settings.
+    /// Asks whether to check automatically; the answer goes into the settings. Return answers no.
     static func askForConsent() -> Bool {
         let alert = NSAlert()
         alert.messageText = String(localized: "Check for updates automatically?")
         alert.informativeText = String(localized: """
-            Once a day Clipsody can ask GitHub whether a new version is available. Only the version number \
-            is fetched; nothing from your clipboard is sent, but GitHub sees your IP address. You can change \
-            this at any time in Settings → General.
+            Once a day Clipsody can ask GitHub whether a new version is available. Nothing from your clipboard \
+            is sent; GitHub sees your IP address and the Clipsody version. You can change this at any time in \
+            Settings → General.
             """)
-        alert.addButton(withTitle: String(localized: "Check Automatically"))
-        alert.addButton(withTitle: String(localized: "Don’t Check"))
+        let allow = alert.addButton(withTitle: String(localized: "Check Automatically"))
+        let decline = alert.addButton(withTitle: String(localized: "Don’t Check"))
+        // The default button must not opt in.
+        allow.keyEquivalent = ""
+        decline.keyEquivalent = "\r"
         NSApp.bringToFront()
         return alert.runModal() == .alertFirstButtonReturn
     }
@@ -38,69 +44,51 @@ final class UpdateController {
     func apply(_ config: Config) {
         timer?.invalidate()
         timer = nil
-        guard config.checkForUpdates == true else { return }
+        guard config.checkForUpdates == true else {
+            coordinator.cancelAutomatic()
+            return
+        }
         // Looks hourly whether a day has passed since the last check: a sleeping Mac skips timer fires,
         // and the time of the last check survives restarts.
         timer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
-            MainActor.assumeIsolated { self?.checkIfDue() }
+            MainActor.assumeIsolated { self?.coordinator.checkIfDue() }
         }
         timer?.tolerance = 300
-        checkIfDue()
+        coordinator.checkIfDue()
     }
 
+    /// Nothing runs or reports afterwards (uninstall).
     func stop() {
         timer?.invalidate()
         timer = nil
+        coordinator.stop()
     }
 
     /// Checks right away and always reports the result.
     func checkNow() {
-        check(userInitiated: true)
+        coordinator.checkNow()
     }
 
-    private func checkIfDue() {
-        let lastCheck = UserDefaults.standard.object(forKey: Self.lastCheckKey) as? Date
-        guard UpdateCheck.isDue(lastCheck: lastCheck) else { return }
-        check(userInitiated: false)
+    /// The menu item of a version found in the background.
+    func showAvailable() {
+        if let available { announce(available) }
     }
 
-    private func check(userInitiated: Bool) {
-        guard !isChecking else { return }
-        isChecking = true
-        let checker = checker
-        let currentVersion = currentVersion
-        Task {
-            do {
-                let release = try await checker.latestRelease(currentVersion: currentVersion)
-                finish(.success(release), userInitiated: userInitiated)
-            } catch {
-                finish(.failure(error), userInitiated: userInitiated)
-            }
-        }
-    }
-
-    private func finish(_ result: Result<UpdateCheck.Release, Error>, userInitiated: Bool) {
-        isChecking = false
-        switch result {
-        case .success(let release):
-            UserDefaults.standard.set(Date(), forKey: Self.lastCheckKey)
-            if UpdateCheck.isNewer(release, than: currentVersion) {
-                // The automatic check announces each version once; checking by hand always shows it.
-                let version = release.version.description
-                guard userInitiated || UserDefaults.standard.string(forKey: Self.announcedVersionKey) != version else { return }
-                UserDefaults.standard.set(version, forKey: Self.announcedVersionKey)
-                announce(release)
-            } else if userInitiated {
-                inform(String(localized: "Clipsody is up to date."),
-                       String(localized: "Version \(currentVersion) is the latest version."))
-            }
-        case .failure(let error):
-            // Not recorded as a check: an offline Mac tries again within the hour.
-            logger.error("Update check failed: \(String(describing: error), privacy: .public)")
-            if userInitiated {
-                inform(String(localized: "Clipsody could not check for updates."),
-                       String(localized: "Please check your internet connection and try again later."))
-            }
+    private func show(_ outcome: UpdateCoordinator.Outcome) {
+        switch outcome {
+        case .available(let release, let userInitiated):
+            available = release
+            onAvailableChange()
+            if userInitiated { announce(release) }
+        case .upToDate:
+            inform(String(localized: "Clipsody is up to date."),
+                   String(localized: "Version \(currentVersion) is the latest version."))
+        case .noConnection:
+            inform(String(localized: "Clipsody could not check for updates."),
+                   String(localized: "Please check your internet connection and try again later."))
+        case .unusableAnswer:
+            inform(String(localized: "Clipsody could not check for updates."),
+                   String(localized: "GitHub did not give a usable answer. Please try again later."))
         }
     }
 

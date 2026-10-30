@@ -55,8 +55,8 @@ extension SettingsWindowController {
         updatesStack.spacing = 12
         page.row(String(localized: "Updates:"), updatesStack, alignWith: checkForUpdates, help: String(localized: """
             Asks GitHub for the number of the latest version and tells you when there is a new one; you \
-            download it from the release page. Nothing from your clipboard is sent, but GitHub sees your IP \
-            address. Without this, Clipsody uses no network unless you click Check Now.
+            download it from the release page. Nothing from your clipboard is sent; GitHub sees your IP address \
+            and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now.
             """))
 
         // Only macOS versions with pasteboard privacy (15.4 and later) have something to show here.
