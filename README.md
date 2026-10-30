@@ -95,13 +95,13 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on 
 - **Translations:** `./build.sh check-strings` fails if the code uses a text the catalog lacks, or the catalog keeps texts the code no longer uses.
 - **App build:** `./build.sh` builds the universal binary; without the certificate it is signed ad hoc, and the signature is still verified.
 
-Lint and secret scan run on Linux; tests and build on macOS with the newest stable Xcode.
+Lint and secret scan run on Linux; tests and build on macOS 26 with the newest stable Xcode (the required checks), and again on GitHub's macOS 27 image with Xcode 27, to catch changes in the newest macOS early.
 
 Tests and the app build treat compiler warnings as errors (`WARNINGS_AS_ERRORS=1`); local builds stay lenient. **Static analysis:** CodeQL (`.github/workflows/codeql.yml`) runs the security-and-quality queries on the Swift code and on the workflows, on every pull request, on `main` and weekly. Findings appear under Security → Code scanning.
 
 **Website:** `.github/workflows/website.yml` validates the HTML (html-validate) and checks links and anchors (lychee) whenever `website/` changes, and weekly for external links.
 
-The workflows pin their actions to commit SHAs, and Dependabot (`.github/dependabot.yml`) proposes updates weekly. `main` is protected: changes arrive only through pull requests with green CI, and force pushes are blocked. GitHub's own secret scanning with push protection rejects pushes that contain known credential formats, as a second line of defence behind the pre-commit hook.
+The workflows pin their actions to commit SHAs, and Dependabot (`.github/dependabot.yml`) proposes updates weekly. Container images (SwiftLint, actionlint, lychee) are pinned by digest and, like Betterleaks in `.github/scripts/betterleaks.sh`, updated by hand. Runs on `main` are never cancelled, so every merge keeps its own result. `main` is protected: changes arrive only through pull requests with green CI, and force pushes are blocked. GitHub's own secret scanning with push protection rejects pushes that contain known credential formats, as a second line of defence behind the pre-commit hook.
 
 ### Pre-commit hook
 

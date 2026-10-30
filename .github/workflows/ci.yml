@@ -12,10 +12,11 @@ on:
 permissions:
   contents: read
 
-# A new push to the same branch or pull request makes the running checks obsolete.
+# A new push to the same pull request makes its running checks obsolete.
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Only pull requests: every commit on main keeps its own result (and code scanning has no gaps).
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   lint:
@@ -32,12 +33,14 @@ jobs:
           fetch-depth: 0
       - name: Scan the history for secrets (Betterleaks)
         run: .github/scripts/betterleaks.sh
+      # Images are pinned by digest: a re-pushed tag cannot change what runs. Dependabot does not
+      # see images inside run steps; bump tag and digest together by hand.
       - name: SwiftLint
-        run: docker run --rm -v "$PWD:/work" -w /work ghcr.io/realm/swiftlint:0.65.1 swiftlint lint --strict
+        run: docker run --rm -v "$PWD:/work" -w /work ghcr.io/realm/swiftlint:0.65.1@sha256:f47e083201e47a136cda5ae847595bfe00226c444ca226fa74fa5dc648a9b057 swiftlint lint --strict
       - name: ShellCheck
         run: shellcheck build.sh .github/scripts/*.sh .githooks/pre-commit
       - name: actionlint
-        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.12 -color
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 -color
 
   test:
     name: Tests
@@ -77,4 +80,26 @@ jobs:
         run: ./build.sh
         env:
           # The code builds without warnings; a new warning fails CI.
+          WARNINGS_AS_ERRORS: "1"
+
+  macos-27:
+    name: Tests and build on macOS 27
+    # The newest macOS and SDK, to catch new deprecations and behaviour early. Not a required check
+    # while the image is new; the required checks run on macos-26.
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Select the newest stable Xcode
+        run: .github/scripts/select-xcode.sh
+      - name: Run the unit tests
+        run: ./build.sh test
+        env:
+          WARNINGS_AS_ERRORS: "1"
+      - name: Build the universal app
+        run: ./build.sh
+        env:
           WARNINGS_AS_ERRORS: "1"
