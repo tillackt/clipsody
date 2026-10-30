@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clipboard manager gratis per Mac – Copia più cose | Clipsody</title>
+    <meta name="description" content="Il Mac ricorda solo l’ultima cosa che hai copiato. Clipsody le tiene tutte – testi, immagini, file – e le ritrovi dalla tastiera. Gratis e open source.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:title" content="Clipsody – gli appunti con la memoria per il tuo Mac">
+    <meta property="og:description" content="Tutto ciò che copi resta a portata di mano: testi, immagini e file, da cercare e incollare di nuovo dalla tastiera. Gratis, open source, tutto in locale.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/it/">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-it.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody: cronologia degli appunti per Mac">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody: cronologia degli appunti per Mac">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Clipsody",
+      "url": "https://tillackt.github.io/clipsody/it/",
+      "description": "Gestore degli appunti e cronologia appunti per Mac: conserva ogni testo, immagine e file che copi, da cercare e incollare di nuovo dalla tastiera.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 13 or later",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-it.jpg",
+      "inLanguage": [
+        "de",
+        "en",
+        "fr",
+        "es",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come vedo su Mac cosa ho copiato prima?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Di serie il Mac ricorda solo l’ultima cosa che hai copiato. Un gestore degli appunti come Clipsody conserva tutto ciò che copi: ⌥⌘C ti mostra tutto, con la ricerca. Tutti i modi, compresi il Finder e la cronologia di Spotlight di macOS 26: come vedere la cronologia degli appunti sul Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come copio più cose e le incollo una dopo l’altra?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con Clipsody copi come sempre con ⌘C – ogni elemento resta nella cronologia. Per incollare, apri la lista con ⌥⌘C e scegli un elemento con ⏎, oppure incolla direttamente uno dei primi nove con ⌘1 fino a ⌘9. Un elemento incollato sale in cima alla lista."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody è davvero gratis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. Niente pubblicità, niente abbonamento, niente versione di prova. Il codice sorgente è aperto, con licenza GPLv3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Perché Clipsody ha bisogno del permesso di Accessibilità?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solo per attivare ⌘V nell’app da cui arrivi, dopo che hai scelto un elemento. Clipsody non lo usa per leggere lo schermo o ciò che digiti. Funziona tutto anche senza – incolli semplicemente tu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Per quanto tempo viene conservata la cronologia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Di default 7 giorni e al massimo 1.000 elementi; puoi aumentare entrambi nelle impostazioni, fino a 365 giorni e 10.000 elementi. Gli elementi fissati restano sempre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le mie password vengono salvate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, se il tuo gestore di password le segna come nascoste – quelli più diffusi lo fanno. Anche i gestori di password noti sono esclusi. Un limite: Clipsody vede quale app è in primo piano, non chi ha copiato. Se un’estensione del browser copia una password senza quel contrassegno, finisce nella cronologia – eliminala semplicemente con ⌘⌫."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody funziona sul mio Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "macOS 13 Ventura o successivo, su Apple Silicon e Intel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In quali lingue è disponibile Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inglese, tedesco, francese, spagnolo, italiano, olandese, polacco e portoghese brasiliano. Clipsody segue la lingua del tuo Mac; puoi sceglierne un’altra in Impostazioni → Generale → Lingua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Perché macOS chiede se Clipsody può leggere gli appunti?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le versioni recenti di macOS chiedono il permesso prima che un’app legga ciò che copi in altre app. Senza questo accesso Clipsody non può tenere una cronologia: scegli Consenti, oppure consenti Clipsody in Impostazioni di Sistema → Privacy e sicurezza. Clipsody mostra lo stato attuale in Impostazioni → Generale. I tuoi appunti comunque non lasciano mai il Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody controlla gli aggiornamenti?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e il menu apre la pagina di download. Puoi cambiarlo in Impostazioni → Generale; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come disinstallo Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Impostazioni → Info → Disinstalla Clipsody… elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Principale">
+            <a href="#features">Funzioni</a>
+            <a href="#compare">Confronto</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#install">Installazione</a>
+            <a href="#faq">FAQ</a>
+            <a href="support.html">Supporto</a>
+        </nav>
+        <details class="langs">
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Lingua: </span>Italiano</summary>
+            <ul>
+                <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li>
+                <li><a href="../es/" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/" hreflang="it" lang="it" aria-current="page">Italiano</a></li>
+                <li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main id="main">
+    <div class="hero wrap">
+        <h1>Il gestore degli appunti per Mac che ricorda tutto</h1>
+        <p class="lead">Il Mac tiene solo l’ultima cosa che hai copiato – copi qualcosa di nuovo e quella precedente sparisce. Clipsody conserva tutto: testi, immagini e file. Con <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> ritrovi qualsiasi elemento, e <kbd>⏎</kbd> lo incolla proprio dove stavi scrivendo.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Scarica gratis</a>
+            <a class="button secondary" href="https://github.com/tillackt/clipsody">Codice sorgente su GitHub</a>
+        </div>
+        <p class="meta">macOS 13 Ventura o successivo · Apple Silicon e Intel · Interfaccia in 8 lingue</p>
+        <div class="badges">
+            <span class="badge">Gratis</span>
+            <span class="badge">Open source</span>
+            <span class="badge">Niente account, niente tracciamento</span>
+            <span class="badge">Tutto resta sul tuo Mac</span>
+        </div>
+
+        <figure class="shot">
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Tutto ciò che hai copiato: testi, immagini, file, link</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Immagine 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Preventivo_Rossi.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/riunioni</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: IT00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Puoi controllare la fattura entro venerdì?<br><br>Grazie!<br>Anna</div>
+                            <div class="info">Testo · 2 minuti fa · da Mail</div>
+                            <div class="hint">⏎ incolla   ⌥⏎ senza formattazione   ⌘P fissa   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Le immagini restano immagini – senza perdita di qualità, con anteprima</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Immagine 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Preventivo_Rossi.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/riunioni</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: IT00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <picture><source srcset="../assets/sample-photo.avif" type="image/avif"><img class="photo" src="../assets/sample-photo.jpg" alt="" width="940" height="470" loading="lazy" decoding="async" fetchpriority="low"></picture>
+                            <div class="info">Immagine 4032×3024 · 12 minuti fa · da Foto</div>
+                            <div class="hint">⏎ incolla   ⌥⏎ senza formattazione   ⌘P fissa   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>I file vengono incollati di nuovo come file</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Immagine 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Preventivo_Rossi.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/riunioni</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: IT00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Preventivo_Rossi.pdf</b><span>~/Documenti/Clienti</span><span>PDF · 248 KB</span></div>
+                            <div class="info">File · 1 ora fa · dal Finder</div>
+                            <div class="hint">⏎ incolla   ⌥⏎ senza formattazione   ⌘P fissa   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>La ricerca trova anche il testo negli screenshot</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">fattura</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Immagine 2880×1800 (612 KB) – “…<mark>Fattura</mark> n. 2026-1043…”</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Puoi controllare la <mark>fattura</mark> entro venerdì? ⏎ Grazie!</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Fattura</mark>_ottobre.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN per la <mark>fattura</mark>: IT00 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>fattura</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Screenshot · testo riconosciuto<br><br><b><mark>Fattura</mark> n. 2026-1043</b><br>Periodo di riferimento: ottobre 2026<br>Totale: 1.240,00 €<br>Scadenza: 15 nov 2026</div>
+                            <div class="info">Anteprima · 3 minuti fa · immagine 2880×1800 · testo riconosciuto</div>
+                            <div class="hint">⏎ incolla   ⌥⏎ senza formattazione   ⌘P fissa   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Metti in pausa l’animazione</label>
+            </div>
+            <figcaption class="caption">La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot.</figcaption>
+        </figure>
+    </div>
+
+    <section class="alt" id="problem">
+        <div class="wrap">
+            <h2>Copia più elementi – senza perdere il primo</h2>
+            <p class="sub">Gli appunti del Mac contengono esattamente un elemento. Copi due cose di seguito e la prima è persa. Clipsody li trasforma in appunti multipli con una cronologia completa.</p>
+            <div class="grid two">
+                <div class="card"><h3>Senza Clipsody</h3>
+                    <ul class="plain">
+                        <li>C’è solo l’ultima cosa che hai copiato.</li>
+                        <li>Per ogni pezzo di testo torni all’altra finestra, copi di nuovo, cambi di nuovo.</li>
+                        <li>Quello che hai copiato un’ora fa non c’è più.</li>
+                    </ul></div>
+                <div class="card"><h3>Con Clipsody</h3>
+                    <ul class="plain">
+                        <li>Tutto ciò che hai copiato in un’unica lista – fino a 10.000 elementi. Decidi tu quanto restano: da un giorno a un anno.</li>
+                        <li>Prima copi tutto, poi apri la lista con <kbd>⌥⌘C</kbd> e incolli gli elementi che ti servono, uno dopo l’altro.</li>
+                        <li>Scrivi una parola e quello che hai copiato ieri è di nuovo lì.</li>
+                    </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <h2>Cosa fa Clipsody</h2>
+            <p class="sub">Niente launcher, niente workflow, niente cento impostazioni – un clipboard manager che tiene semplicemente traccia di ciò che copi.</p>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Una scorciatoia, ovunque</h3>
+                    <p><kbd>⌥⌘C</kbd> apre la cronologia degli appunti in qualsiasi app. Scegli un elemento con i tasti freccia o scrivi una parola da cercare, premi <kbd>⏎</kbd> – e finisce proprio dove eri.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copia più elementi, incollali quando servono</h3>
+                    <p>Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti).</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trova il testo anche nelle immagini</h3>
+                    <p>Screenshot e immagini copiati vengono letti sul tuo Mac. Cerca una parola che compare nell’immagine – ed eccola lì. <a href="#text-in-images">Come funziona</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Testi, immagini, file</h3>
+                    <p>Le immagini vengono conservate senza perdita di qualità e i file copiati vengono incollati di nuovo come file – non come percorso.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Con o senza formattazione</h3>
+                    <p><kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser. <kbd>⌥⏎</kbd> incolla solo il testo semplice.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fissa ciò che usi spesso</h3>
+                    <p>IBAN, indirizzo, frammenti di testo, comandi: con <kbd>⌘P</kbd> un elemento resta in cima e non viene mai eliminato automaticamente.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>Lo screenshot della settimana scorsa? Cerca il testo che contiene.</h2>
+            <p class="sub">Clipsody legge il testo di ogni immagine che copi – con il riconoscimento del testo di macOS, direttamente sul tuo Mac. Così trovi gli screenshot in base a ciò che c’è scritto.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Sincronizzazione non riuscita</b></p><p>Codice errore 0x8007 – server non raggiungibile.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Immagine negli appunti</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> cattura una parte dello schermo e la mette subito negli appunti. Oppure copia un’immagine da qualsiasi app.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Testo riconosciuto</span><p class="warn">⚠︎ <b><mark>Sincronizzazione non riuscita</mark></b></p><p><mark>Codice errore 0x8007 – server non raggiungibile.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>Clipsody legge il testo</h3>
+                    <p>In background e sul tuo Mac – non viene caricato nulla. Riconosce testo in inglese e in tedesco.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>“Codice errore <mark>0x8007</mark> – server…”</p></div></div>
+                    <h3><span class="step">3</span>Lo ritrovi giorni dopo</h3>
+                    <p>Premi <kbd>⌥⌘C</kbd>, scrivi “0x8007” – ed ecco lo screenshot. <kbd>⏎</kbd> lo incolla come immagine, per esempio in un ticket di assistenza.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Buono a sapersi:</strong> gli screenshot che macOS salva solo come file sulla scrivania non arrivano mai negli appunti. Per farlo aggiungi <kbd>⌃</kbd> alla scorciatoia (<kbd>⇧⌃⌘3</kbd> per tutto lo schermo, <kbd>⇧⌃⌘4</kbd> per un’area).</div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="wrap">
+            <h2>A cosa serve una cronologia degli appunti</h2>
+            <p class="sub">Ovunque copi più di una cosa.</p>
+            <div class="grid">
+                <div class="card"><h3>Compilare moduli</h3>
+                    <p>Raccogli nome, indirizzo e numero d’ordine da un’email e incollali nel modulo uno alla volta – senza cambiare finestra dieci volte.</p></div>
+                <div class="card"><h3>Scrittura e ricerca</h3>
+                    <p>Copia citazioni, link e paragrafi da più fonti e mettili insieme più tardi.</p></div>
+                <div class="card"><h3>Programmazione</h3>
+                    <p>Ritrova comandi, percorsi e frammenti di codice copiati ore fa. Fissa i comandi che usi di continuo.</p></div>
+                <div class="card"><h3>Assistenza e lavoro d’ufficio</h3>
+                    <p>Risposte standard, numeri di conto e firme fissati e sempre pronti – incollati in pochi secondi.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="compare">
+        <div class="wrap">
+            <h2>Ma il Mac non ha già una cronologia degli appunti?</h2>
+            <p class="sub">Da macOS 26 Tahoe, Spotlight può mostrare gli ultimi elementi copiati. Utile sul momento – Clipsody è fatto per tutto ciò che deve durare più di una settimana.</p>
+            <section class="table-scroll" tabindex="0" aria-label="Ma il Mac non ha già una cronologia degli appunti?">
+                <table class="compare">
+                    <thead>
+                    <tr><td></td><th scope="col">Clipsody</th><th scope="col">Cronologia di Spotlight</th><th scope="col">Mac senza app</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th scope="row">Elementi</th><td>tutti, fino a 10.000</td><td>quelli recenti</td><td>solo l’ultimo</td></tr>
+                    <tr><th scope="row">Conservati per</th><td>da 1 a 365 giorni, a tua scelta</td><td>al massimo 7 giorni</td><td>fino al prossimo <kbd>⌘C</kbd></td></tr>
+                    <tr><th scope="row">Incollare</th><td><kbd>⏎</kbd> incolla direttamente nell’app precedente</td><td>copia, poi <kbd>⌘V</kbd> a mano</td><td><kbd>⌘V</kbd></td></tr>
+                    <tr><th scope="row">Fissare</th><td>sì, <kbd>⌘P</kbd></td><td>no</td><td>no</td></tr>
+                    <tr><th scope="row">Funziona su</th><td>macOS 13 Ventura e successivi</td><td>macOS 26 Tahoe e successivi, disattivata di default</td><td>ogni Mac</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            <p class="asof">Informazioni su Spotlight verificate per macOS 26.1.</p>
+            <p class="more">Approfondisci: <a href="cronologia-appunti-mac.html">Come vedere la cronologia degli appunti su Mac – tutti i modi</a></p>
+        </div>
+    </section>
+
+    <section id="keys">
+        <div class="wrap">
+            <h2>Tutto dalla tastiera</h2>
+            <p class="sub">Il mouse non ti serve – ma puoi usarlo.</p>
+            <table class="keys">
+                <tbody>
+                <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Apri o chiudi la cronologia (personalizzabile)</td></tr>
+                <tr><th scope="row">Scrivi una parola da cercare</th><td>Filtra la lista – trova testi, nomi di app e testo nelle immagini</td></tr>
+                <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Scegli un elemento</td></tr>
+                <tr><th scope="row"><kbd>⏎</kbd></th><td>Incolla con formattazione</td></tr>
+                <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Incolla solo testo semplice</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Incolla direttamente uno dei primi nove elementi mostrati (prima quelli fissati, poi i più recenti)</td></tr>
+                <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fissa o sblocca</td></tr>
+                <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Elimina un elemento</td></tr>
+                <tr><th scope="row"><kbd>esc</kbd></th><td>Chiudi</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="privacy">
+        <div class="wrap">
+            <h2>I tuoi appunti sono tuoi</h2>
+            <p class="sub">Negli appunti finiscono cose personali: password, indirizzi, messaggi. Per questo Clipsody è privato fin dalla progettazione.</p>
+            <div class="grid">
+                <div class="card"><h3>I tuoi appunti non lasciano mai il tuo Mac</h3>
+                    <p>Niente account, niente server, niente statistiche. La cronologia esiste solo sul tuo Mac ed è esclusa dai backup. Clipsody va online solo se glielo permetti – per chiedere se c’è una nuova versione.</p></div>
+                <div class="card"><h3>Le password restano fuori</h3>
+                    <p>Ciò che i gestori di password segnano come nascosto non viene mai salvato. 1Password, Bitwarden, KeePassXC e altri sono esclusi fin dall’inizio.</p></div>
+                <div class="card"><h3>Eliminato vuol dire eliminato</h3>
+                    <p>Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – anche dopo un crash, al prossimo avvio. I file immagine degli elementi eliminati vengono rimossi.</p></div>
+                <div class="card"><h3>Immagini in una sandbox</h3>
+                    <p>I dati delle immagini non attendibili vengono elaborati in un processo di supporto isolato, senza accesso a file o rete, non nell’app stessa.</p></div>
+                <div class="card"><h3>Verificabile</h3>
+                    <p>Il codice sorgente è aperto. Non devi fidarti di nessuno – puoi leggerlo e compilare l’app da te.</p></div>
+                <div class="card"><h3>Escluso dagli screenshot classici</h3>
+                    <p>La finestra non compare negli screenshot né nella classica condivisione dello schermo. Da macOS 15, però, le app di registrazione dello schermo più recenti possono comunque catturarla.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <div class="wrap">
+            <h2>Installazione</h2>
+            <p class="sub">Clipsody non è autenticato da Apple – servirebbe un account sviluppatore a pagamento. Per questo macOS chiede conferma una volta sola al primo avvio – ecco come fare:</p>
+            <ol class="steps">
+                <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Scarica Clipsody.dmg</a>, aprilo e trascina <strong>Clipsody</strong> in <strong>Applicazioni</strong>.</li>
+                <li>Avvia Clipsody. macOS dice che non può verificare l’app – fai clic su <strong>Fine</strong>. Su macOS 13 e 14 invece fai clic destro su Clipsody in <strong>Applicazioni</strong> → <strong>Apri</strong> → <strong>Apri</strong> e salta il passaggio 3.</li>
+                <li>Apri <strong>Impostazioni di Sistema → Privacy e sicurezza</strong>, scorri verso il basso e scegli <strong>Apri comunque</strong> per Clipsody (macOS 15 e successivi).</li>
+                <li>Perché <kbd>⏎</kbd> possa incollare direttamente, consenti Clipsody in <strong>Privacy e sicurezza → Accessibilità</strong>. Senza questo permesso l’elemento viene solo messo negli appunti e premi tu <kbd>⌘V</kbd>.</li>
+                <li>Fatto: premi <kbd>⌥⌘C</kbd>. Dall’icona nella barra dei menu arrivi alle impostazioni, dove puoi anche far partire Clipsody al login.</li>
+            </ol>
+            <div class="note" id="verify">
+                <strong>Originale o no?</strong> Scarica Clipsody solo da questo sito o da GitHub. Ogni release riporta il checksum SHA-256 del DMG e l’impronta del certificato di firma. Verificali nel Terminale:
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app &amp;&amp; shasum -a 256 /tmp/clipsody-cert0</code></pre>
+                Impronta del certificato (SHA-256): <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="wrap">
+            <h2>Domande frequenti</h2>
+            <details><summary>Come vedo su Mac cosa ho copiato prima?</summary>
+                <p>Di serie il Mac ricorda solo l’ultima cosa che hai copiato. Un gestore degli appunti come Clipsody conserva tutto ciò che copi: <kbd>⌥⌘C</kbd> ti mostra tutto, con la ricerca. Tutti i modi, compresi il Finder e la cronologia di Spotlight di macOS 26: <a href="cronologia-appunti-mac.html">come vedere la cronologia degli appunti sul Mac</a>.</p></details>
+            <details><summary>Come copio più cose e le incollo una dopo l’altra?</summary>
+                <p>Con Clipsody copi come sempre con <kbd>⌘C</kbd> – ogni elemento resta nella cronologia. Per incollare, apri la lista con <kbd>⌥⌘C</kbd> e scegli un elemento con <kbd>⏎</kbd>, oppure incolla direttamente uno dei primi nove con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd>. Un elemento incollato sale in cima alla lista.</p></details>
+            <details><summary>Clipsody è davvero gratis?</summary>
+                <p>Sì. Niente pubblicità, niente abbonamento, niente versione di prova. Il codice sorgente è aperto, con licenza GPLv3.</p></details>
+            <details><summary>Perché Clipsody ha bisogno del permesso di Accessibilità?</summary>
+                <p>Solo per attivare <kbd>⌘V</kbd> nell’app da cui arrivi, dopo che hai scelto un elemento. Clipsody non lo usa per leggere lo schermo o ciò che digiti. Funziona tutto anche senza – incolli semplicemente tu.</p></details>
+            <details><summary>Per quanto tempo viene conservata la cronologia?</summary>
+                <p>Di default 7 giorni e al massimo 1.000 elementi; puoi aumentare entrambi nelle impostazioni, fino a 365 giorni e 10.000 elementi. Gli elementi fissati restano sempre.</p></details>
+            <details><summary>Le mie password vengono salvate?</summary>
+                <p>No, se il tuo gestore di password le segna come nascoste – quelli più diffusi lo fanno. Anche i gestori di password noti sono esclusi. Un limite: Clipsody vede quale app è in primo piano, non chi ha copiato. Se un’estensione del browser copia una password senza quel contrassegno, finisce nella cronologia – eliminala semplicemente con <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>Clipsody funziona sul mio Mac?</summary>
+                <p>macOS 13 Ventura o successivo, su Apple Silicon e Intel.</p></details>
+            <details><summary>In quali lingue è disponibile Clipsody?</summary>
+                <p>Inglese, tedesco, francese, spagnolo, italiano, olandese, polacco e portoghese brasiliano. Clipsody segue la lingua del tuo Mac; puoi sceglierne un’altra in <strong>Impostazioni → Generale → Lingua</strong>.</p></details>
+            <details><summary>Perché macOS chiede se Clipsody può leggere gli appunti?</summary>
+                <p>Le versioni recenti di macOS chiedono il permesso prima che un’app legga ciò che copi in altre app. Senza questo accesso Clipsody non può tenere una cronologia: scegli Consenti, oppure consenti Clipsody in <strong>Impostazioni di Sistema → Privacy e sicurezza</strong>. Clipsody mostra lo stato attuale in <strong>Impostazioni → Generale</strong>. I tuoi appunti comunque non lasciano mai il Mac.</p></details>
+            <details><summary>Clipsody controlla gli aggiornamenti?</summary>
+                <p>Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e il menu apre la pagina di download. Puoi cambiarlo in <strong>Impostazioni → Generale</strong>; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento.</p></details>
+            <details><summary>Come disinstallo Clipsody?</summary>
+                <p><strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – gestore degli appunti per macOS</span>
+        <a href="cronologia-appunti-mac.html">Guida: cronologia degli appunti su Mac</a>
+        <a href="support.html">Supporto</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Tutte le release</a>
+        <span>Licenza: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Note legali (in tedesco)</a>
+        <a href="../datenschutz.html">Informativa sulla privacy (in tedesco)</a>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+name: Idea or wish
+description: Suggest a feature or an improvement for Clipsody.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like Clipsody to do?
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: What would it help you with?
+      description: A short example from your day helps to judge how the feature should work.
+  - type: input
+    id: clipsody-version
+    attributes:
+      label: Clipsody version (optional)
+      description: Settings → Info → Version
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version (optional)
+      description: Apple menu → About This Mac

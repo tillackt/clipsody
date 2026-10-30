@@ -3,33 +3,207 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clipsody – Clipboard history for the Mac</title>
-    <meta name="description" content="Clipsody remembers everything you copy – text, images and files – and pastes it back from the keyboard. Free, open source and fully local.">
+    <title>Free Mac Clipboard Manager – Copy Multiple Items | Clipsody</title>
+    <meta name="description" content="Your Mac only remembers the last thing you copied. Clipsody keeps all of it – text, images, files – searchable from the keyboard. Free and open source.">
     <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
-    <link rel="alternate" hreflang="de" href="../">
-    <link rel="alternate" hreflang="en" href="./">
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:title" content="Clipsody – the clipboard with a memory for your Mac">
+    <meta property="og:description" content="Everything you copy stays at hand: text, images and files, searchable and pasted back from the keyboard. Free, open source, fully local.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/en/">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody: clipboard history for the Mac">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody: clipboard history for the Mac">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Clipsody",
+      "url": "https://tillackt.github.io/clipsody/en/",
+      "description": "Clipboard manager and clipboard history for the Mac: keeps every text, image and file you copy, searchable and pasted back from the keyboard.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 13 or later",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-en.jpg",
+      "inLanguage": [
+        "de",
+        "en",
+        "fr",
+        "es",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I see what I copied earlier on a Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Out of the box, the Mac only remembers the last thing you copied. A clipboard manager like Clipsody keeps everything you copy: ⌥⌘C shows it all, searchable. Every way, including Finder and the Spotlight history of macOS 26: how to see your clipboard history on a Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I copy multiple items and paste them one after another?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With Clipsody you just copy as usual with ⌘C – every clip stays in the history. To paste, open the list with ⌥⌘C and pick a clip with ⏎, or paste one of the first nine directly with ⌘1 to ⌘9. A pasted clip moves to the top of the list."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Clipsody really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. No ads, no subscription, no trial. The source is open, under the GPLv3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does Clipsody need the Accessibility permission?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only to trigger ⌘V in the app you came from after you pick an entry. Clipsody does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long is the history kept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "7 days and at most 1,000 entries by default; you can raise both in the settings, up to 365 days and 10,000 entries. Pinned entries always stay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my passwords stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clipsody sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with ⌘⌫."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Clipsody run on my Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "macOS 13 Ventura or later, on Apple Silicon and Intel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which languages does Clipsody speak?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "English, German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese. Clipsody follows your Mac’s language; you can pick another one under Settings → General → Language."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does macOS ask whether Clipsody may read the clipboard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Newer versions of macOS ask before an app reads what you copy in other apps. Without this access Clipsody cannot keep a history: choose Allow, or allow Clipsody under System Settings → Privacy & Security. Clipsody shows the current state under Settings → General. Your clipboard still never leaves your Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Clipsody check for updates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and the menu opens the download page. You can change this under Settings → General; there and in the menu bar menu you can also check yourself at any time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I uninstall Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Settings → Info → Uninstall Clipsody… deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="top">
     <div class="wrap">
-        <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Clipsody</a>
-        <nav>
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Main">
             <a href="#features">Features</a>
+            <a href="#compare">Compare</a>
             <a href="#privacy">Privacy</a>
             <a href="#install">Install</a>
             <a href="#faq">FAQ</a>
+            <a href="support.html">Support</a>
         </nav>
-        <a class="lang" href="../" hreflang="de" lang="de">Deutsch</a>
+        <details class="langs">
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Language: </span>English</summary>
+            <ul>
+                <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/" hreflang="en" lang="en" aria-current="page">English</a></li>
+                <li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li>
+                <li><a href="../es/" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li>
+            </ul>
+        </details>
     </div>
 </header>
 
-<main>
+<main id="main">
     <div class="hero wrap">
-        <h1>Everything you copy.<br>One keystroke away.</h1>
-        <p class="lead">Clipsody remembers text, images and files from your clipboard.
-            Press <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd>, type, hit <kbd>⏎</kbd> – and it lands right where you were typing.</p>
+        <h1>The clipboard manager for Mac that remembers everything</h1>
+        <p class="lead">Your Mac only keeps the last thing you copied – copy something new and the previous one is gone. Clipsody keeps everything: text, images and files. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> brings any of it back, and <kbd>⏎</kbd> pastes it right where you were typing.</p>
         <div class="cta">
             <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download for free</a>
             <a class="button secondary" href="https://github.com/tillackt/clipsody">Source on GitHub</a>
@@ -42,50 +216,205 @@
             <span class="badge">Everything stays on your Mac</span>
         </div>
 
-        <div class="shot" aria-hidden="true">
-            <div class="panel">
-                <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
-                <div class="body">
-                    <ul>
-                        <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
-                        <li><span class="ico b"></span><span class="t">Please check the <mark>invoice</mark> by Friday ⏎ Thanks!</span><span class="k">⌘2</span></li>
-                        <li><span class="ico c"></span><span class="t"><mark>Invoice</mark>_October.pdf</span><span class="k">⌘3</span></li>
-                        <li><span class="ico d"></span><span class="t">IBAN for the <mark>invoice</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
-                        <li><span class="ico e"></span><span class="t">https://example.com/<mark>invoice</mark>/1043</span><span class="k">⌘5</span></li>
-                    </ul>
-                    <div class="preview">
-                        <div class="img">Screenshot · text recognised<br><br>
-                            <b><mark>Invoice</mark> no. 2026-1043</b><br>
-                            Service period: October 2026<br>
-                            Total: €1,240.00<br>
-                            Due: 15 Nov 2026</div>
-                        <div class="info">Preview · 3 minutes ago · image 2880×1800 · text recognised</div>
-                        <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+        <figure class="shot">
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Everything you copied: text, images, files, links</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Please check the invoice by Friday.<br><br>Thanks!<br>Anna</div>
+                            <div class="info">Text · 2 minutes ago · from Mail</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p class="caption">Search also finds text that only appears in a screenshot. (Illustration.)</p>
-        </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Images stay images – lossless, with a preview</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <picture><source srcset="../assets/sample-photo.avif" type="image/avif"><img class="photo" src="../assets/sample-photo.jpg" alt="" width="940" height="470" loading="lazy" decoding="async" fetchpriority="low"></picture>
+                            <div class="info">Image 4032×3024 · 12 minutes ago · from Photos</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>Files are pasted as files again</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Quote_Miller.pdf</b><span>~/Documents/Clients</span><span>PDF · 248 KB</span></div>
+                            <div class="info">File · 1 hour ago · from Finder</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>Search even finds text in screenshots</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Please check the <mark>invoice</mark> by Friday ⏎ Thanks!</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Invoice</mark>_October.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN for the <mark>invoice</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>invoice</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Screenshot · text recognised<br><br><b><mark>Invoice</mark> no. 2026-1043</b><br>Service period: October 2026<br>Total: €1,240.00<br>Due: 15 Nov 2026</div>
+                            <div class="info">Preview · 3 minutes ago · image 2880×1800 · text recognised</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pause animation</label>
+            </div>
+            <figcaption class="caption">The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.</figcaption>
+        </figure>
     </div>
 
-    <section class="alt" id="features">
+    <section class="alt" id="problem">
         <div class="wrap">
-            <h2>Lean. Fast. Keyboard-first.</h2>
-            <p class="sub">No launcher, no workflows, no hundred settings – just a clipboard that remembers.</p>
+            <h2>Copy multiple items – without losing the first one</h2>
+            <p class="sub">The Mac clipboard holds exactly one item. Copy two things in a row and the first is lost. Clipsody turns it into a multi-clipboard with a full history.</p>
+            <div class="grid two">
+                <div class="card"><h3>Without Clipsody</h3>
+                    <ul class="plain">
+                        <li>Only the last thing you copied is there.</li>
+                        <li>Back to the other window for every piece of text, copy again, switch again.</li>
+                        <li>Whatever you copied an hour ago is gone.</li>
+                    </ul></div>
+                <div class="card"><h3>With Clipsody</h3>
+                    <ul class="plain">
+                        <li>Everything you copied in one list – up to 10,000 clips. You decide how long they stay: from one day to a year.</li>
+                        <li>Copy everything first, then open the list with <kbd>⌥⌘C</kbd> and paste the clips you need, one after the other.</li>
+                        <li>Enter a word, and yesterday’s clip is back.</li>
+                    </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <h2>What Clipsody does</h2>
+            <p class="sub">No launcher, no workflows, no hundred settings – a clipboard manager that simply keeps track of what you copy.</p>
             <div class="grid">
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>One shortcut, everywhere</h3>
-                    <p><kbd>⌥⌘C</kbd> opens the history in any app. Arrow keys, <kbd>⏎</kbd>, done – the entry is pasted where you were.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Finds text in images</h3>
-                    <p>Screenshots are read locally with macOS text recognition. Type a word from the error message and the screenshot shows up.</p></div>
+                    <p><kbd>⌥⌘C</kbd> opens your clipboard history in any app. Pick a clip with the arrow keys or enter a search word, press <kbd>⏎</kbd> – the clip lands where you were.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copy multiple items, paste them when you need them</h3>
+                    <p>Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest).</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Finds text in images too</h3>
+                    <p>Copied screenshots and images are read on your Mac. Search for a word that appears in the image – and there it is. <a href="#text-in-images">How it works</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Text, images, files</h3>
-                    <p>Images are kept lossless; copied files are pasted back as files, not as paths.</p></div>
+                    <p>Images are kept lossless, and copied files are pasted as files again – not as a path.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>With or without formatting</h3>
                     <p><kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Pin what you use often</h3>
-                    <p>IBAN, address, commands: <kbd>⌘P</kbd> keeps an entry on top and never deletes it automatically.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🪶</div><h3>Light and frugal</h3>
-                    <p>A native Mac app without dependencies. It sits quietly in the menu bar and keeps your history as long as you like.</p></div>
+                    <p>IBAN, address, snippets, commands: <kbd>⌘P</kbd> keeps a clip at the top, and it is never deleted automatically.</p></div>
             </div>
+        </div>
+    </section>
+
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>That screenshot from last week? Just search for the text on it.</h2>
+            <p class="sub">Clipsody reads the text on every image you copy – with macOS text recognition, right on your Mac. So you find screenshots by what they say.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Sync failed</b></p><p>Error code 0x8007 – server not reachable.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Image on the clipboard</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> captures part of the screen and puts it straight on the clipboard. Or copy an image from any app.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Text recognised</span><p class="warn">⚠︎ <b><mark>Sync failed</mark></b></p><p><mark>Error code 0x8007 – server not reachable.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>Clipsody reads the text</h3>
+                    <p>In the background and on your Mac – nothing is uploaded. English and German text is recognised.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>“Error code <mark>0x8007</mark> – server…”</p></div></div>
+                    <h3><span class="step">3</span>Find it days later</h3>
+                    <p>Press <kbd>⌥⌘C</kbd>, enter “0x8007” – there is the screenshot. <kbd>⏎</kbd> pastes it as an image, say into a support ticket.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Good to know:</strong> screenshots that macOS only saves as a file on the desktop never reach the clipboard. Add <kbd>⌃</kbd> to the shortcut for that (<kbd>⇧⌃⌘3</kbd> for the whole screen, <kbd>⇧⌃⌘4</kbd> for an area).</div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="wrap">
+            <h2>What a clipboard history is good for</h2>
+            <p class="sub">Anywhere you copy more than one thing.</p>
+            <div class="grid">
+                <div class="card"><h3>Filling in forms</h3>
+                    <p>Collect name, address and order number from an email and paste them into the form one by one – without switching windows ten times.</p></div>
+                <div class="card"><h3>Writing and research</h3>
+                    <p>Copy quotes, links and paragraphs from several sources and put them together later.</p></div>
+                <div class="card"><h3>Coding</h3>
+                    <p>Find commands, paths and snippets you copied hours ago. Pin the commands you use all the time.</p></div>
+                <div class="card"><h3>Support and office work</h3>
+                    <p>Canned replies, account numbers and signatures pinned and ready – pasted in seconds.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="compare">
+        <div class="wrap">
+            <h2>Doesn’t the Mac have a clipboard history already?</h2>
+            <p class="sub">Since macOS 26 Tahoe, Spotlight can show recent clips. That helps for the moment – Clipsody is built for everything that should last longer than a week.</p>
+            <section class="table-scroll" tabindex="0" aria-label="Doesn’t the Mac have a clipboard history already?">
+                <table class="compare">
+                    <thead>
+                    <tr><td></td><th scope="col">Clipsody</th><th scope="col">Spotlight history</th><th scope="col">Plain Mac</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th scope="row">Items</th><td>all of them, up to 10,000</td><td>recent ones</td><td>only the last</td></tr>
+                    <tr><th scope="row">Kept for</th><td>1 to 365 days, your choice</td><td>7 days at most</td><td>until the next <kbd>⌘C</kbd></td></tr>
+                    <tr><th scope="row">Pasting</th><td><kbd>⏎</kbd> pastes straight into the previous app</td><td>copy, then <kbd>⌘V</kbd> yourself</td><td><kbd>⌘V</kbd></td></tr>
+                    <tr><th scope="row">Pinning</th><td>yes, <kbd>⌘P</kbd></td><td>no</td><td>no</td></tr>
+                    <tr><th scope="row">Runs on</th><td>macOS 13 Ventura and later</td><td>macOS 26 Tahoe and later, off by default</td><td>every Mac</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            <p class="asof">Spotlight details checked against macOS 26.1.</p>
+            <p class="more">More: <a href="clipboard-history-mac.html">How to see your clipboard history on a Mac – every way</a></p>
         </div>
     </section>
 
@@ -95,15 +424,15 @@
             <p class="sub">You don’t need the mouse – but you can use it.</p>
             <table class="keys">
                 <tbody>
-                <tr><td><kbd>⌥⌘C</kbd></td><td>Open or close the history (configurable)</td></tr>
-                <tr><td>Type</td><td>Filter – in text, app names and text in images</td></tr>
-                <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Select an entry</td></tr>
-                <tr><td><kbd>⏎</kbd></td><td>Paste, with formatting</td></tr>
-                <tr><td><kbd>⌥⏎</kbd></td><td>Paste plain text only</td></tr>
-                <tr><td><kbd>⌘1</kbd> … <kbd>⌘9</kbd></td><td>Paste one of the first nine entries directly</td></tr>
-                <tr><td><kbd>⌘P</kbd></td><td>Pin or unpin</td></tr>
-                <tr><td><kbd>⌘⌫</kbd></td><td>Delete an entry</td></tr>
-                <tr><td><kbd>esc</kbd></td><td>Close</td></tr>
+                <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Open or close the history (configurable)</td></tr>
+                <tr><th scope="row">Enter a search word</th><td>Filter the list – finds text, app names and text in images</td></tr>
+                <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choose a clip</td></tr>
+                <tr><th scope="row"><kbd>⏎</kbd></th><td>Paste with formatting</td></tr>
+                <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Paste plain text only</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Paste one of the first nine entries shown directly (pinned first, then the newest)</td></tr>
+                <tr><th scope="row"><kbd>⌘P</kbd></th><td>Pin or unpin</td></tr>
+                <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Delete a clip</td></tr>
+                <tr><th scope="row"><kbd>esc</kbd></th><td>Close</td></tr>
                 </tbody>
             </table>
         </div>
@@ -112,20 +441,20 @@
     <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Your clipboard is yours</h2>
-            <p class="sub">Personal things end up on a clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
+            <p class="sub">Personal things end up on the clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
             <div class="grid">
-                <div class="card"><h3>Nothing leaves your Mac</h3>
+                <div class="card"><h3>Your clipboard never leaves your Mac</h3>
                     <p>No account, no server, no analytics. The history lives only on your Mac and is excluded from backups. Clipsody only goes online if you allow it – to ask whether there is a new version.</p></div>
                 <div class="card"><h3>Passwords stay out</h3>
                     <p>Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box.</p></div>
                 <div class="card"><h3>Deleted means deleted</h3>
-                    <p>Deleted entries are overwritten in the database and its change log is emptied – after a crash, at the next launch.</p></div>
+                    <p>Deleted entries are overwritten in the database and its change log is emptied – even after a crash, at the next launch. Image files of deleted entries are removed.</p></div>
                 <div class="card"><h3>Images in a sandbox</h3>
                     <p>Untrusted image data is processed in an isolated helper process without file or network access, not in the app itself.</p></div>
                 <div class="card"><h3>Verifiable</h3>
                     <p>The source is open. You don’t have to trust anyone – you can read it and build the app yourself.</p></div>
-                <div class="card"><h3>Hidden from screen sharing</h3>
-                    <p>The window is hidden from screenshots and classic screen sharing.</p></div>
+                <div class="card"><h3>Kept out of classic screenshots</h3>
+                    <p>The window is hidden from screenshots and classic screen sharing. Since macOS 15, modern screen-recording apps can still capture it.</p></div>
             </div>
         </div>
     </section>
@@ -133,7 +462,7 @@
     <section id="install">
         <div class="wrap">
             <h2>Install</h2>
-            <p class="sub">Clipsody is free and therefore not notarised by Apple. macOS asks once on first launch – here’s how:</p>
+            <p class="sub">Clipsody is not notarised by Apple – that needs a paid developer account. So macOS asks once on first launch – here’s how:</p>
             <ol class="steps">
                 <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download Clipsody.dmg</a>, open it and drag <strong>Clipsody</strong> into <strong>Applications</strong>.</li>
                 <li>Launch Clipsody. macOS says it cannot verify the app – click <strong>Done</strong>. On macOS 13 and 14, right-click Clipsody in <strong>Applications</strong> → <strong>Open</strong> → <strong>Open</strong> instead, and skip step 3.</li>
@@ -153,13 +482,16 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
     <section class="alt" id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
-            <p class="sub">&nbsp;</p>
+            <details><summary>How do I see what I copied earlier on a Mac?</summary>
+                <p>Out of the box, the Mac only remembers the last thing you copied. A clipboard manager like Clipsody keeps everything you copy: <kbd>⌥⌘C</kbd> shows it all, searchable. Every way, including Finder and the Spotlight history of macOS 26: <a href="clipboard-history-mac.html">how to see your clipboard history on a Mac</a>.</p></details>
+            <details><summary>How do I copy multiple items and paste them one after another?</summary>
+                <p>With Clipsody you just copy as usual with <kbd>⌘C</kbd> – every clip stays in the history. To paste, open the list with <kbd>⌥⌘C</kbd> and pick a clip with <kbd>⏎</kbd>, or paste one of the first nine directly with <kbd>⌘1</kbd> to <kbd>⌘9</kbd>. A pasted clip moves to the top of the list.</p></details>
             <details><summary>Is Clipsody really free?</summary>
                 <p>Yes. No ads, no subscription, no trial. The source is open, under the GPLv3.</p></details>
             <details><summary>Why does Clipsody need the Accessibility permission?</summary>
                 <p>Only to trigger <kbd>⌘V</kbd> in the app you came from after you pick an entry. Clipsody does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself.</p></details>
             <details><summary>How long is the history kept?</summary>
-                <p>7 days and at most 1,000 entries by default; both can be changed in the settings. Pinned entries always stay.</p></details>
+                <p>7 days and at most 1,000 entries by default; you can raise both in the settings, up to 365 days and 10,000 entries. Pinned entries always stay.</p></details>
             <details><summary>Are my passwords stored?</summary>
                 <p>No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clipsody sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with <kbd>⌘⌫</kbd>.</p></details>
             <details><summary>Does Clipsody run on my Mac?</summary>
@@ -178,7 +510,9 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
 
 <footer>
     <div class="wrap">
-        <span>Clipsody</span>
+        <span>Clipsody – clipboard manager for macOS</span>
+        <a href="clipboard-history-mac.html">Guide: clipboard history on a Mac</a>
+        <a href="support.html">Support</a>
         <a href="https://github.com/tillackt/clipsody">GitHub</a>
         <a href="https://github.com/tillackt/clipsody/releases">All releases</a>
         <span>License: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>

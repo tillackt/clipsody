@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestionnaire de presse-papiers gratuit pour Mac | Clipsody</title>
+    <meta name="description" content="Votre Mac ne garde que le dernier élément copié. Clipsody conserve tout – textes, images, fichiers – et le retrouve au clavier. Gratuit et open source.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:title" content="Clipsody – le presse-papiers qui a de la mémoire, pour Mac">
+    <meta property="og:description" content="Tout ce que vous copiez reste à portée de main : textes, images et fichiers, à rechercher et à recoller au clavier. Gratuit, open source, 100 % local.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/fr/">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-fr.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody : historique du presse-papiers pour Mac">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody : historique du presse-papiers pour Mac">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Clipsody",
+      "url": "https://tillackt.github.io/clipsody/fr/",
+      "description": "Gestionnaire de presse-papiers et historique du presse-papiers pour Mac : conserve chaque texte, image et fichier copié, à rechercher et à recoller au clavier.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 13 or later",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-fr.jpg",
+      "inLanguage": [
+        "de",
+        "en",
+        "fr",
+        "es",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment voir ce que j’ai copié plus tôt sur un Mac ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Par défaut, le Mac ne retient que le dernier élément copié. Un gestionnaire de presse-papiers comme Clipsody conserve tout ce que vous copiez : ⌥⌘C affiche tout, avec recherche. Toutes les méthodes, y compris le Finder et l’historique Spotlight de macOS 26 : voir l’historique du presse-papiers sur Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment copier plusieurs éléments et les coller l’un après l’autre ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Avec Clipsody, vous copiez comme d’habitude avec ⌘C – chaque élément reste dans l’historique. Pour coller, ouvrez la liste avec ⌥⌘C et choisissez un élément avec ⏎, ou collez directement l’un des neuf premiers avec ⌘1 à ⌘9. Un élément collé remonte en haut de la liste."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody est-il vraiment gratuit ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Pas de publicité, pas d’abonnement, pas de version d’essai. Le code source est ouvert, sous licence GPLv3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi Clipsody a-t-il besoin de l’autorisation Accessibilité ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uniquement pour déclencher ⌘V dans l’app d’où vous venez, une fois l’élément choisi. Clipsody ne s’en sert ni pour lire l’écran ni pour lire vos frappes. Tout fonctionne sans – vous collez simplement vous-même."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps l’historique est-il conservé ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Par défaut 7 jours et 1 000 éléments au maximum ; vous pouvez augmenter les deux dans les réglages, jusqu’à 365 jours et 10 000 éléments. Les éléments épinglés restent toujours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mes mots de passe sont-ils enregistrés ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non, si votre gestionnaire de mots de passe les marque comme masqués – c’est le cas des plus courants. Les gestionnaires de mots de passe connus sont en outre exclus. Une limite : Clipsody voit quelle app est au premier plan, pas qui a copié. Si une extension de navigateur copie un mot de passe sans ce marquage, il arrive dans l’historique – supprimez-le simplement avec ⌘⌫."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody fonctionne-t-il sur mon Mac ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "macOS 13 Ventura ou version ultérieure, sur Apple Silicon et Intel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dans quelles langues Clipsody est-il disponible ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anglais, allemand, français, espagnol, italien, néerlandais, polonais et portugais du Brésil. Clipsody suit la langue de votre Mac ; vous pouvez en choisir une autre dans Réglages → Général → Langue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi macOS demande-t-il si Clipsody peut lire le presse-papiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Sans cet accès, Clipsody ne peut pas tenir d’historique : choisissez Autoriser, ou autorisez Clipsody dans Réglages Système → Confidentialité et sécurité. Clipsody affiche l’état actuel dans Réglages → Général. Votre presse-papiers ne quitte jamais votre Mac pour autant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Clipsody recherche-t-il des mises à jour ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et le menu ouvre la page de téléchargement. Vous pouvez modifier ce choix dans Réglages → Général ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment désinstaller Clipsody ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Réglages → Infos → Désinstaller Clipsody… supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Navigation principale">
+            <a href="#features">Fonctions</a>
+            <a href="#compare">Comparatif</a>
+            <a href="#privacy">Confidentialité</a>
+            <a href="#install">Installation</a>
+            <a href="#faq">FAQ</a>
+            <a href="support.html">Assistance</a>
+        </nav>
+        <details class="langs">
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Langue: </span>Français</summary>
+            <ul>
+                <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/" hreflang="fr" lang="fr" aria-current="page">Français</a></li>
+                <li><a href="../es/" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main id="main">
+    <div class="hero wrap">
+        <h1>Le gestionnaire de presse-papiers pour Mac qui retient tout</h1>
+        <p class="lead">Votre Mac ne retient que le dernier élément copié – copiez autre chose, et le précédent disparaît. Clipsody garde tout : textes, images et fichiers. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> vous rend n’importe lequel, et <kbd>⏎</kbd> le colle là où vous étiez en train d’écrire.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Télécharger gratuitement</a>
+            <a class="button secondary" href="https://github.com/tillackt/clipsody">Code source sur GitHub</a>
+        </div>
+        <p class="meta">macOS 13 Ventura ou version ultérieure · Apple Silicon et Intel · Interface en 8 langues</p>
+        <div class="badges">
+            <span class="badge">Gratuit</span>
+            <span class="badge">Open source</span>
+            <span class="badge">Sans compte, sans pistage</span>
+            <span class="badge">Tout reste sur votre Mac</span>
+        </div>
+
+        <figure class="shot">
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Tout ce que vous avez copié : textes, images, fichiers, liens</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2,1 Mo)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Devis_Martin.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunions</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN : FR00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Peux-tu vérifier la facture d’ici vendredi ?<br><br>Merci !<br>Anna</div>
+                            <div class="info">Texte · il y a 2 minutes · depuis Mail</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P épingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Les images restent des images – sans perte, avec aperçu</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 4032×3024 (2,1 Mo)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Devis_Martin.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunions</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN : FR00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <picture><source srcset="../assets/sample-photo.avif" type="image/avif"><img class="photo" src="../assets/sample-photo.jpg" alt="" width="940" height="470" loading="lazy" decoding="async" fetchpriority="low"></picture>
+                            <div class="info">Image 4032×3024 · il y a 12 minutes · depuis Photos</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P épingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>Les fichiers sont recollés en tant que fichiers</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2,1 Mo)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Devis_Martin.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunions</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN : FR00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Devis_Martin.pdf</b><span>~/Documents/Clients</span><span>PDF · 248 Ko</span></div>
+                            <div class="info">Fichier · il y a 1 heure · depuis le Finder</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P épingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>La recherche trouve même le texte des captures d’écran</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">facture</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 Ko) – « …<mark>Facture</mark> n° 2026-1043… »</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Peux-tu vérifier la <mark>facture</mark> d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Facture</mark>_octobre.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN pour la <mark>facture</mark> : FR00 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>facture</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Capture d’écran · texte reconnu<br><br><b><mark>Facture</mark> n° 2026-1043</b><br>Période : octobre 2026<br>Total : 1 240,00 €<br>Échéance : 15/11/2026</div>
+                            <div class="info">Aperçu · il y a 3 minutes · image 2880×1800 · texte reconnu</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P épingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Mettre l’animation en pause</label>
+            </div>
+            <figcaption class="caption">L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran.</figcaption>
+        </figure>
+    </div>
+
+    <section class="alt" id="problem">
+        <div class="wrap">
+            <h2>Copier plusieurs éléments – sans perdre le premier</h2>
+            <p class="sub">Le presse-papiers du Mac ne contient qu’un seul élément. Copiez deux choses d’affilée, et la première est perdue. Clipsody en fait un presse-papiers multiple avec un historique complet.</p>
+            <div class="grid two">
+                <div class="card"><h3>Sans Clipsody</h3>
+                    <ul class="plain">
+                        <li>Seul le dernier élément copié est disponible.</li>
+                        <li>Pour chaque bout de texte : retour à l’autre fenêtre, copier, revenir.</li>
+                        <li>Ce que vous avez copié il y a une heure a disparu.</li>
+                    </ul></div>
+                <div class="card"><h3>Avec Clipsody</h3>
+                    <ul class="plain">
+                        <li>Tout ce que vous copiez dans une seule liste – jusqu’à 10 000 éléments. Vous choisissez combien de temps ils restent : d’un jour à un an.</li>
+                        <li>Copiez d’abord tout, puis ouvrez la liste avec <kbd>⌥⌘C</kbd> et collez les éléments dont vous avez besoin, l’un après l’autre.</li>
+                        <li>Tapez un mot, et ce que vous avez copié hier réapparaît.</li>
+                    </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <h2>Ce que fait Clipsody</h2>
+            <p class="sub">Pas de lanceur, pas de workflows, pas de cent réglages – un gestionnaire de presse-papiers qui garde simplement la trace de ce que vous copiez.</p>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Un raccourci, partout</h3>
+                    <p><kbd>⌥⌘C</kbd> ouvre l’historique du presse-papiers dans n’importe quelle app. Choisissez un élément avec les flèches ou tapez un mot, appuyez sur <kbd>⏎</kbd> – il est collé là où vous étiez.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copier plusieurs éléments, les coller au moment voulu</h3>
+                    <p>Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents).</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trouve aussi le texte des images</h3>
+                    <p>Les captures d’écran et images copiées sont lues sur votre Mac. Cherchez un mot qui figure dans l’image – et la voilà. <a href="#text-in-images">Comment ça marche</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textes, images, fichiers</h3>
+                    <p>Les images sont conservées sans perte, et les fichiers copiés sont recollés en tant que fichiers – pas sous forme de chemin.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Avec ou sans mise en forme</h3>
+                    <p><kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur. <kbd>⌥⏎</kbd> colle uniquement le texte brut.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Épinglez ce qui sert souvent</h3>
+                    <p>IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> garde un élément en haut de la liste, et il n’est jamais supprimé automatiquement.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>La capture d’écran de la semaine dernière ? Cherchez simplement le texte qu’elle contient.</h2>
+            <p class="sub">Clipsody lit le texte de chaque image que vous copiez – avec la reconnaissance de texte de macOS, directement sur votre Mac. Vous retrouvez ainsi vos captures d’écran par leur contenu.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Échec de la synchronisation</b></p><p>Code d’erreur 0x8007 – serveur injoignable.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Une image dans le presse-papiers</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> capture une partie de l’écran et la place directement dans le presse-papiers. Ou copiez une image depuis n’importe quelle app.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Texte reconnu</span><p class="warn">⚠︎ <b><mark>Échec de la synchronisation</mark></b></p><p><mark>Code d’erreur 0x8007 – serveur injoignable.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>Clipsody lit le texte</h3>
+                    <p>En arrière-plan et sur votre Mac – rien n’est envoyé. Le texte en anglais et en allemand est reconnu.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>« Code d’erreur <mark>0x8007</mark> – serveur… »</p></div></div>
+                    <h3><span class="step">3</span>Retrouvée des jours plus tard</h3>
+                    <p>Appuyez sur <kbd>⌥⌘C</kbd>, tapez « 0x8007 » – voilà la capture. <kbd>⏎</kbd> la colle en tant qu’image, par exemple dans un ticket de support.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Bon à savoir :</strong> les captures d’écran que macOS enregistre seulement comme fichier sur le bureau n’arrivent jamais dans le presse-papiers. Ajoutez <kbd>⌃</kbd> au raccourci (<kbd>⇧⌃⌘3</kbd> pour tout l’écran, <kbd>⇧⌃⌘4</kbd> pour une zone).</div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="wrap">
+            <h2>À quoi sert un historique du presse-papiers</h2>
+            <p class="sub">Partout où vous copiez plus d’une chose.</p>
+            <div class="grid">
+                <div class="card"><h3>Remplir des formulaires</h3>
+                    <p>Récupérez nom, adresse et numéro de commande dans un e-mail et collez-les un par un dans le formulaire – sans changer dix fois de fenêtre.</p></div>
+                <div class="card"><h3>Rédaction et recherche</h3>
+                    <p>Copiez citations, liens et paragraphes depuis plusieurs sources, puis assemblez-les plus tard.</p></div>
+                <div class="card"><h3>Développement</h3>
+                    <p>Retrouvez les commandes, chemins et extraits de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse.</p></div>
+                <div class="card"><h3>Support et bureautique</h3>
+                    <p>Réponses types, numéros de compte et signatures épinglés et à portée de main – collés en quelques secondes.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="compare">
+        <div class="wrap">
+            <h2>Le Mac n’a-t-il pas déjà un historique du presse-papiers ?</h2>
+            <p class="sub">Depuis macOS 26 Tahoe, Spotlight peut afficher les derniers éléments copiés. Pratique sur le moment – Clipsody est conçu pour tout ce qui doit durer plus d’une semaine.</p>
+            <section class="table-scroll" tabindex="0" aria-label="Le Mac n’a-t-il pas déjà un historique du presse-papiers ?">
+                <table class="compare">
+                    <thead>
+                    <tr><td></td><th scope="col">Clipsody</th><th scope="col">Historique Spotlight</th><th scope="col">Mac de base</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th scope="row">Éléments</th><td>tous, jusqu’à 10 000</td><td>les plus récents</td><td>seulement le dernier</td></tr>
+                    <tr><th scope="row">Conservés</th><td>de 1 à 365 jours, au choix</td><td>7 jours maximum</td><td>jusqu’au prochain <kbd>⌘C</kbd></td></tr>
+                    <tr><th scope="row">Coller</th><td><kbd>⏎</kbd> colle directement dans l’app précédente</td><td>copier, puis <kbd>⌘V</kbd> vous-même</td><td><kbd>⌘V</kbd></td></tr>
+                    <tr><th scope="row">Épingler</th><td>oui, <kbd>⌘P</kbd></td><td>non</td><td>non</td></tr>
+                    <tr><th scope="row">Fonctionne sur</th><td>macOS 13 Ventura et ultérieur</td><td>macOS 26 Tahoe et ultérieur, désactivé par défaut</td><td>tous les Mac</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            <p class="asof">Informations sur Spotlight vérifiées pour macOS 26.1.</p>
+            <p class="more">En savoir plus : <a href="historique-presse-papiers-mac.html">Afficher l’historique du presse-papiers sur Mac – toutes les méthodes</a></p>
+        </div>
+    </section>
+
+    <section id="keys">
+        <div class="wrap">
+            <h2>Tout au clavier</h2>
+            <p class="sub">Pas besoin de la souris – mais vous pouvez l’utiliser.</p>
+            <table class="keys">
+                <tbody>
+                <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Ouvrir ou fermer l’historique (personnalisable)</td></tr>
+                <tr><th scope="row">Taper un mot</th><td>Filtrer la liste – trouve les textes, les noms d’app et le texte des images</td></tr>
+                <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choisir un élément</td></tr>
+                <tr><th scope="row"><kbd>⏎</kbd></th><td>Coller avec la mise en forme</td></tr>
+                <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Coller uniquement le texte brut</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Coller directement l’un des neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents)</td></tr>
+                <tr><th scope="row"><kbd>⌘P</kbd></th><td>Épingler ou désépingler</td></tr>
+                <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Supprimer un élément</td></tr>
+                <tr><th scope="row"><kbd>esc</kbd></th><td>Fermer</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="privacy">
+        <div class="wrap">
+            <h2>Votre presse-papiers vous appartient</h2>
+            <p class="sub">Le presse-papiers voit passer des choses personnelles : mots de passe, adresses, messages. C’est pourquoi Clipsody protège votre vie privée dès la conception.</p>
+            <div class="grid">
+                <div class="card"><h3>Votre presse-papiers ne quitte jamais votre Mac</h3>
+                    <p>Pas de compte, pas de serveur, pas de statistiques. L’historique reste uniquement sur votre Mac et est exclu des sauvegardes. Clipsody ne se connecte à Internet que si vous l’autorisez – pour vérifier s’il existe une nouvelle version.</p></div>
+                <div class="card"><h3>Les mots de passe restent dehors</h3>
+                    <p>Tout ce que les gestionnaires de mots de passe marquent comme masqué n’est jamais enregistré. 1Password, Bitwarden, KeePassXC et d’autres sont exclus d’office.</p></div>
+                <div class="card"><h3>Supprimé, c’est supprimé</h3>
+                    <p>Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – même après un plantage, au lancement suivant. Les fichiers image des éléments supprimés sont effacés.</p></div>
+                <div class="card"><h3>Images dans un bac à sable</h3>
+                    <p>Les données d’image non fiables sont traitées dans un processus auxiliaire isolé, sans accès aux fichiers ni au réseau, et non dans l’app elle-même.</p></div>
+                <div class="card"><h3>Vérifiable</h3>
+                    <p>Le code source est ouvert. Inutile de faire confiance à qui que ce soit : vous pouvez le lire et compiler l’app vous-même.</p></div>
+                <div class="card"><h3>Exclu des captures d’écran classiques</h3>
+                    <p>La fenêtre est masquée sur les captures d’écran et lors du partage d’écran classique. Depuis macOS 15, les apps modernes d’enregistrement d’écran peuvent tout de même la capturer.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <div class="wrap">
+            <h2>Installation</h2>
+            <p class="sub">Clipsody n’est pas notarié par Apple – il faudrait pour cela un compte développeur payant. macOS pose donc une question au premier lancement – voici comment faire :</p>
+            <ol class="steps">
+                <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Téléchargez Clipsody.dmg</a>, ouvrez-le et faites glisser <strong>Clipsody</strong> dans <strong>Applications</strong>.</li>
+                <li>Lancez Clipsody. macOS indique qu’il ne peut pas vérifier l’app – cliquez sur <strong>Terminé</strong>. Sous macOS 13 et 14, faites plutôt un clic droit sur Clipsody dans <strong>Applications</strong> → <strong>Ouvrir</strong> → <strong>Ouvrir</strong>, et passez l’étape 3.</li>
+                <li>Ouvrez <strong>Réglages Système → Confidentialité et sécurité</strong>, faites défiler vers le bas et choisissez <strong>Ouvrir quand même</strong> pour Clipsody (macOS 15 et ultérieur).</li>
+                <li>Pour que <kbd>⏎</kbd> colle directement, autorisez Clipsody dans <strong>Confidentialité et sécurité → Accessibilité</strong>. Sans cela, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur <kbd>⌘V</kbd>.</li>
+                <li>C’est prêt : appuyez sur <kbd>⌥⌘C</kbd>. L’icône de la barre des menus mène aux réglages, où vous pouvez aussi ouvrir Clipsody à la connexion.</li>
+            </ol>
+            <div class="note" id="verify">
+                <strong>Authentique ou pas ?</strong> Téléchargez Clipsody uniquement sur ce site ou sur GitHub. Chaque version indique la somme de contrôle SHA-256 du DMG et l’empreinte du certificat de signature. Vérifiez-les dans le Terminal :
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app &amp;&amp; shasum -a 256 /tmp/clipsody-cert0</code></pre>
+                Empreinte du certificat (SHA-256) : <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="wrap">
+            <h2>FAQ</h2>
+            <details><summary>Comment voir ce que j’ai copié plus tôt sur un Mac ?</summary>
+                <p>Par défaut, le Mac ne retient que le dernier élément copié. Un gestionnaire de presse-papiers comme Clipsody conserve tout ce que vous copiez : <kbd>⌥⌘C</kbd> affiche tout, avec recherche. Toutes les méthodes, y compris le Finder et l’historique Spotlight de macOS 26 : <a href="historique-presse-papiers-mac.html">voir l’historique du presse-papiers sur Mac</a>.</p></details>
+            <details><summary>Comment copier plusieurs éléments et les coller l’un après l’autre ?</summary>
+                <p>Avec Clipsody, vous copiez comme d’habitude avec <kbd>⌘C</kbd> – chaque élément reste dans l’historique. Pour coller, ouvrez la liste avec <kbd>⌥⌘C</kbd> et choisissez un élément avec <kbd>⏎</kbd>, ou collez directement l’un des neuf premiers avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>. Un élément collé remonte en haut de la liste.</p></details>
+            <details><summary>Clipsody est-il vraiment gratuit ?</summary>
+                <p>Oui. Pas de publicité, pas d’abonnement, pas de version d’essai. Le code source est ouvert, sous licence GPLv3.</p></details>
+            <details><summary>Pourquoi Clipsody a-t-il besoin de l’autorisation Accessibilité ?</summary>
+                <p>Uniquement pour déclencher <kbd>⌘V</kbd> dans l’app d’où vous venez, une fois l’élément choisi. Clipsody ne s’en sert ni pour lire l’écran ni pour lire vos frappes. Tout fonctionne sans – vous collez simplement vous-même.</p></details>
+            <details><summary>Combien de temps l’historique est-il conservé ?</summary>
+                <p>Par défaut 7 jours et 1 000 éléments au maximum ; vous pouvez augmenter les deux dans les réglages, jusqu’à 365 jours et 10 000 éléments. Les éléments épinglés restent toujours.</p></details>
+            <details><summary>Mes mots de passe sont-ils enregistrés ?</summary>
+                <p>Non, si votre gestionnaire de mots de passe les marque comme masqués – c’est le cas des plus courants. Les gestionnaires de mots de passe connus sont en outre exclus. Une limite : Clipsody voit quelle app est au premier plan, pas qui a copié. Si une extension de navigateur copie un mot de passe sans ce marquage, il arrive dans l’historique – supprimez-le simplement avec <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>Clipsody fonctionne-t-il sur mon Mac ?</summary>
+                <p>macOS 13 Ventura ou version ultérieure, sur Apple Silicon et Intel.</p></details>
+            <details><summary>Dans quelles langues Clipsody est-il disponible ?</summary>
+                <p>Anglais, allemand, français, espagnol, italien, néerlandais, polonais et portugais du Brésil. Clipsody suit la langue de votre Mac ; vous pouvez en choisir une autre dans <strong>Réglages → Général → Langue</strong>.</p></details>
+            <details><summary>Pourquoi macOS demande-t-il si Clipsody peut lire le presse-papiers ?</summary>
+                <p>Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Sans cet accès, Clipsody ne peut pas tenir d’historique : choisissez Autoriser, ou autorisez Clipsody dans <strong>Réglages Système → Confidentialité et sécurité</strong>. Clipsody affiche l’état actuel dans <strong>Réglages → Général</strong>. Votre presse-papiers ne quitte jamais votre Mac pour autant.</p></details>
+            <details><summary>Clipsody recherche-t-il des mises à jour ?</summary>
+                <p>Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et le menu ouvre la page de téléchargement. Vous pouvez modifier ce choix dans <strong>Réglages → Général</strong> ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment.</p></details>
+            <details><summary>Comment désinstaller Clipsody ?</summary>
+                <p><strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – gestionnaire de presse-papiers pour macOS</span>
+        <a href="historique-presse-papiers-mac.html">Guide : l’historique du presse-papiers sur Mac</a>
+        <a href="support.html">Assistance</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Toutes les versions</a>
+        <span>Licence : <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Mentions légales (en allemand)</a>
+        <a href="../datenschutz.html">Politique de confidentialité (en allemand)</a>
+    </div>
+</footer>
+</body>
+</html>

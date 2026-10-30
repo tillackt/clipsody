@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voir l’historique du presse-papiers sur Mac | Clipsody</title>
+    <meta name="description" content="Comment retrouver ce que vous avez copié plus tôt sur Mac ? Finder, historique du presse-papiers Spotlight (macOS 26) et gestionnaires comparés pas à pas.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/zwischenablage-verlauf-mac.html">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/historial-portapapeles-mac.html">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/cronologia-appunti-mac.html">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/klembordgeschiedenis-mac.html">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/historia-schowka-mac.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:title" content="Voir l’historique du presse-papiers sur Mac – toutes les méthodes">
+    <meta property="og:description" content="Le Finder, l’historique du presse-papiers de Spotlight dans macOS 26 et les gestionnaires de presse-papiers comparés, pas à pas.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-fr.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody : historique du presse-papiers pour Mac">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody : historique du presse-papiers pour Mac">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Afficher l’historique du presse-papiers sur Mac : toutes les méthodes",
+      "description": "Comment retrouver ce que vous avez copié plus tôt sur Mac ? Finder, historique du presse-papiers Spotlight (macOS 26) et gestionnaires comparés pas à pas.",
+      "inLanguage": "fr",
+      "datePublished": "2026-10-30",
+      "dateModified": "2026-10-30",
+      "mainEntityOfPage": "https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-fr.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Clipsody",
+          "item": "https://tillackt.github.io/clipsody/fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Historique du presse-papiers",
+          "item": "https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Où le presse-papiers est-il stocké sur un Mac ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En mémoire, pas dans un fichier. C’est pourquoi il est vide après un redémarrage, et aucun dossier ne contient les éléments précédents. Un historique enregistré n’existe qu’avec Spotlight (macOS 26 et ultérieur) ou un gestionnaire de presse-papiers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je récupérer ce qui était dans le presse-papiers avant ma dernière copie ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seulement si un historique l’a enregistré : l’historique Spotlight sous macOS 26 et ultérieur, s’il est activé, ou un gestionnaire de presse-papiers comme Clipsody. Sans cela, l’élément précédent est remplacé par la copie suivante."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je copier plusieurs choses à la fois ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le presse-papiers lui-même ne contient qu’un seul élément. Avec un gestionnaire de presse-papiers, vous copiez simplement une chose après l’autre – chaque élément est conservé – puis vous collez ceux dont vous avez besoin. Dans Clipsody, par exemple, avec ⌘1 à ⌘9."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment vider le presse-papiers sur un Mac ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Copiez quelque chose d’anodin, par exemple une espace – cela remplace le contenu actuel. Effacez l’historique Spotlight depuis le menu à droite de son champ de recherche, et celui de Clipsody depuis l’icône de la barre des menus → Effacer l’historique…."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L’iPhone et le Mac partagent-ils un presse-papiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, avec le Presse-papiers universel : avec le même Compte Apple et le Bluetooth, le Wi-Fi et Handoff activés, vous copiez sur l’iPhone et collez sur le Mac. Lui aussi ne transfère que l’élément actuel, pas un historique."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Navigation principale">
+            <a href="./#features">Fonctions</a>
+            <a href="./#install">Installation</a>
+            <a href="./#faq">FAQ</a>
+            <a href="support.html">Assistance</a>
+        </nav>
+        <details class="langs">
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Langue: </span>Français</summary>
+            <ul>
+                <li><a href="../zwischenablage-verlauf-mac.html" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/clipboard-history-mac.html" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/historique-presse-papiers-mac.html" hreflang="fr" lang="fr" aria-current="page">Français</a></li>
+                <li><a href="../es/historial-portapapeles-mac.html" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/cronologia-appunti-mac.html" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/klembordgeschiedenis-mac.html" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/historia-schowka-mac.html" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/historico-area-de-transferencia-mac.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main class="article wrap" id="main">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><a href="./">Clipsody</a> › <span aria-current="page">Historique du presse-papiers</span></nav>
+    <h1>Afficher l’historique du presse-papiers sur Mac : toutes les méthodes</h1>
+    <p class="lead">Vous avez copié quelque chose, puis autre chose – et maintenant il vous faut de nouveau le premier ? Voici ce que le Mac sait faire tout seul, comment fonctionne le nouvel historique de Spotlight, et quand un gestionnaire de presse-papiers vaut la peine.</p>
+    <p class="updated">Mis à jour en octobre 2026, de macOS 13 Ventura à macOS 27</p>
+
+    <div class="note"><strong>En bref :</strong> le presse-papiers du Mac ne contient qu’<em>un seul</em> élément ; chaque <kbd>⌘C</kbd> remplace le précédent. Depuis macOS 26, Spotlight affiche les derniers éléments copiés une fois la fonction activée (<kbd>⌘</kbd> <kbd>Espace</kbd>, puis <kbd>⌘4</kbd>). Pour un historique durable et consultable sur toutes les versions de macOS, utilisez un gestionnaire de presse-papiers comme <a href="./">Clipsody</a>.</div>
+
+    <h2 id="finder">1. Afficher le presse-papiers actuel dans le Finder</h2>
+    <p>Le Finder montre ce qui se trouve dans le presse-papiers en ce moment – mais uniquement cet élément-là :</p>
+    <ol>
+        <li>Cliquez sur le bureau ou sur une fenêtre du Finder pour que le Finder soit au premier plan.</li>
+        <li>Choisissez <strong>Édition → Afficher le presse-papiers</strong> dans la barre des menus.</li>
+    </ol>
+    <p>Une fenêtre affiche le contenu, par exemple un texte ou une image. Les éléments précédents n’y sont pas : ce que vous aviez copié avant a été remplacé. Le presse-papiers réside en mémoire, pas dans un fichier sur le disque – après un redémarrage, il est vide.</p>
+
+    <h2 id="spotlight">2. L’historique du presse-papiers dans Spotlight (macOS 26 et ultérieur)</h2>
+    <p>Avec macOS 26 Tahoe, Apple a doté Spotlight d’un historique du presse-papiers. Il est désactivé par défaut.</p>
+    <ol>
+        <li>Ouvrez Spotlight avec <kbd>⌘</kbd> <kbd>Espace</kbd>.</li>
+        <li>Appuyez sur <kbd>⌘4</kbd>, ou cliquez sur le bouton Presse-papiers à droite du champ de recherche.</li>
+        <li>La première fois, macOS demande s’il faut activer l’historique – confirmez.</li>
+        <li>Trouvez l’élément, copiez-le avec le bouton de copie ou <kbd>⌘C</kbd>, puis collez-le avec <kbd>⌘V</kbd> là où vous en avez besoin.</li>
+    </ol>
+    <p>Pratique sur le moment, mais limité : selon le réglage, les éléments sont conservés 30 minutes, 8 heures ou 7 jours ; il n’est pas possible d’épingler, et coller demande deux étapes (copier, puis <kbd>⌘V</kbd>). Les Mac sous macOS 15 ou antérieur n’en disposent pas. Vous pouvez l’effacer depuis le menu à droite du champ de recherche.</p>
+
+    <h2 id="clipboard-manager">3. Tous les éléments avec un gestionnaire de presse-papiers</h2>
+    <p>Un gestionnaire de presse-papiers (aussi appelé app d’historique du presse-papiers ou presse-papiers multiple) retient tout ce que vous copiez et vous le rend à la demande. Voici comment faire avec <a href="./">Clipsody, le gestionnaire de presse-papiers gratuit pour Mac</a> (macOS 13 et ultérieur) :</p>
+    <ol>
+        <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Téléchargez Clipsody</a> et faites-le glisser dans <strong>Applications</strong> (<a href="./#install">installation détaillée</a>).</li>
+        <li>Copiez comme d’habitude avec <kbd>⌘C</kbd>. Chaque élément – texte, image ou fichier – rejoint l’historique.</li>
+        <li>Appuyez sur <kbd>⌥⌘C</kbd> : la liste de tout ce que vous avez copié apparaît. Tapez un mot pour la filtrer ; la recherche trouve aussi le texte des captures d’écran.</li>
+        <li><kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (les épinglés d’abord, puis les plus récents).</li>
+    </ol>
+    <p>Vous décidez combien de temps l’historique est conservé (de 1 à 365 jours) et combien d’éléments il contient (jusqu’à 10 000). Les éléments épinglés avec <kbd>⌘P</kbd> restent définitivement. Tout reste sur votre Mac.</p>
+
+    <h2 id="compare">Les solutions comparées</h2>
+    <section class="table-scroll" tabindex="0" aria-label="Les solutions comparées">
+        <table class="compare">
+            <thead>
+            <tr><td></td><th scope="col">Finder</th><th scope="col">Historique Spotlight</th><th scope="col">Clipsody</th></tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">Affiche</th><td>seulement l’élément actuel</td><td>les éléments récents</td><td>tous, jusqu’à 10 000</td></tr>
+            <tr><th scope="row">Conservés</th><td>jusqu’au prochain <kbd>⌘C</kbd></td><td>7 jours maximum</td><td>de 1 à 365 jours</td></tr>
+            <tr><th scope="row">Coller</th><td><kbd>⌘V</kbd></td><td>copier, puis <kbd>⌘V</kbd></td><td><kbd>⏎</kbd> directement</td></tr>
+            <tr><th scope="row">Épingler</th><td>non</td><td>non</td><td>oui</td></tr>
+            <tr><th scope="row">macOS</th><td>toutes versions</td><td>26 et ultérieur, désactivé par défaut</td><td>13 et ultérieur</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <p class="asof">Informations sur Spotlight vérifiées pour macOS 26.1.</p>
+
+    <h2 id="shortcuts">Raccourcis clavier du presse-papiers</h2>
+    <table class="keys">
+        <tbody>
+        <tr><th scope="row"><kbd>⌘C</kbd></th><td>Copier</td></tr>
+        <tr><th scope="row"><kbd>⌘X</kbd></th><td>Couper</td></tr>
+        <tr><th scope="row"><kbd>⌘V</kbd></th><td>Coller</td></tr>
+        <tr><th scope="row"><kbd>⌥⇧⌘V</kbd></th><td>Coller sans mise en forme (« Coller et adapter le style », dans de nombreuses apps)</td></tr>
+        <tr><th scope="row"><kbd>⇧⌘4</kbd>, maintenir <kbd>⌃</kbd> pendant la sélection</th><td>Capture d’une zone directement dans le presse-papiers</td></tr>
+        <tr><th scope="row"><kbd>⌘</kbd> <kbd>Espace</kbd>, <kbd>⌘4</kbd></th><td>Historique du presse-papiers de Spotlight (macOS 26 et ultérieur)</td></tr>
+        <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Ouvrir l’historique dans Clipsody</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="faq">FAQ</h2>
+    <details><summary>Où le presse-papiers est-il stocké sur un Mac ?</summary>
+        <p>En mémoire, pas dans un fichier. C’est pourquoi il est vide après un redémarrage, et aucun dossier ne contient les éléments précédents. Un historique enregistré n’existe qu’avec Spotlight (macOS 26 et ultérieur) ou un gestionnaire de presse-papiers.</p></details>
+    <details><summary>Puis-je récupérer ce qui était dans le presse-papiers avant ma dernière copie ?</summary>
+        <p>Seulement si un historique l’a enregistré : l’historique Spotlight sous macOS 26 et ultérieur, s’il est activé, ou un gestionnaire de presse-papiers comme Clipsody. Sans cela, l’élément précédent est remplacé par la copie suivante.</p></details>
+    <details><summary>Puis-je copier plusieurs choses à la fois ?</summary>
+        <p>Le presse-papiers lui-même ne contient qu’un seul élément. Avec un gestionnaire de presse-papiers, vous copiez simplement une chose après l’autre – chaque élément est conservé – puis vous collez ceux dont vous avez besoin. Dans Clipsody, par exemple, avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>.</p></details>
+    <details><summary>Comment vider le presse-papiers sur un Mac ?</summary>
+        <p>Copiez quelque chose d’anodin, par exemple une espace – cela remplace le contenu actuel. Effacez l’historique Spotlight depuis le menu à droite de son champ de recherche, et celui de Clipsody depuis l’icône de la barre des menus → <strong>Effacer l’historique…</strong>.</p></details>
+    <details><summary>L’iPhone et le Mac partagent-ils un presse-papiers ?</summary>
+        <p>Oui, avec le Presse-papiers universel : avec le même Compte Apple et le Bluetooth, le Wi-Fi et Handoff activés, vous copiez sur l’iPhone et collez sur le Mac. Lui aussi ne transfère que l’élément actuel, pas un historique.</p></details>
+
+    <div class="cta-box">
+        <h2>Ne perdez plus jamais ce que vous avez copié</h2>
+        <p>Clipsody est gratuit, open source et fonctionne sous macOS 13 et ultérieur. Tout reste sur votre Mac.</p>
+        <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Télécharger Clipsody gratuitement</a>
+    </div>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – gestionnaire de presse-papiers pour macOS</span>
+        <a href="./">Accueil</a>
+        <a href="support.html">Assistance</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Toutes les versions</a>
+        <span>Licence : <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Mentions légales (en allemand)</a>
+        <a href="../datenschutz.html">Politique de confidentialité (en allemand)</a>
+    </div>
+</footer>
+</body>
+</html>

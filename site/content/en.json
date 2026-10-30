@@ -1,0 +1,575 @@
+{
+  "lang": "en",
+  "ogLocale": "en_US",
+  "name": "English",
+  "guideFile": "clipboard-history-mac.html",
+  "otherLanguages": "Language",
+  "mainNav": "Main",
+  "skipLink": "Skip to content",
+  "spotlightAsOf": "Spotlight details checked against macOS 26.1.",
+  "home": {
+    "title": "Free Mac Clipboard Manager – Copy Multiple Items | Clipsody",
+    "description": "Your Mac only remembers the last thing you copied. Clipsody keeps all of it – text, images, files – searchable from the keyboard. Free and open source.",
+    "ogTitle": "Clipsody – the clipboard with a memory for your Mac",
+    "ogDescription": "Everything you copy stays at hand: text, images and files, searchable and pasted back from the keyboard. Free, open source, fully local.",
+    "ogImageAlt": "Clipsody: clipboard history for the Mac",
+    "appDescription": "Clipboard manager and clipboard history for the Mac: keeps every text, image and file you copy, searchable and pasted back from the keyboard.",
+    "nav": {
+      "features": "Features",
+      "compare": "Compare",
+      "privacy": "Privacy",
+      "install": "Install",
+      "faq": "FAQ",
+      "support": "Support"
+    },
+    "h1": "The clipboard manager for Mac that remembers everything",
+    "lead": "Your Mac only keeps the last thing you copied – copy something new and the previous one is gone. Clipsody keeps everything: text, images and files. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> brings any of it back, and <kbd>⏎</kbd> pastes it right where you were typing.",
+    "download": "Download for free",
+    "source": "Source on GitHub",
+    "meta": "macOS 13 Ventura or later · Apple Silicon and Intel · Interface in 8 languages",
+    "badges": [
+      "Free",
+      "Open source",
+      "No account, no tracking",
+      "Everything stays on your Mac"
+    ],
+    "hero": {
+      "placeholder": "Search …",
+      "items": [
+        [
+          "b",
+          "Please check the invoice by Friday ⏎ Thanks!"
+        ],
+        [
+          "a",
+          "Image 4032×3024 (2.1 MB)"
+        ],
+        [
+          "c",
+          "Quote_Miller.pdf"
+        ],
+        [
+          "e",
+          "https://example.com/meetings"
+        ],
+        [
+          "d",
+          "📌 IBAN: DE00 0000 0000 …"
+        ],
+        [
+          "b",
+          "git push origin main"
+        ]
+      ],
+      "textPreview": "Please check the invoice by Friday.<br><br>Thanks!<br>Anna",
+      "textInfo": "Text · 2 minutes ago · from Mail",
+      "imageInfo": "Image 4032×3024 · 12 minutes ago · from Photos",
+      "fileName": "Quote_Miller.pdf",
+      "filePath": "~/Documents/Clients",
+      "fileMeta": "PDF · 248 KB",
+      "fileInfo": "File · 1 hour ago · from Finder",
+      "hint": "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete",
+      "labels": [
+        "Everything you copied: text, images, files, links",
+        "Images stay images – lossless, with a preview",
+        "Files are pasted as files again",
+        "Search even finds text in screenshots"
+      ],
+      "caption": "The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.",
+      "ocrSearch": "invoice",
+      "ocrItems": [
+        [
+          "a",
+          "Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”"
+        ],
+        [
+          "b",
+          "Please check the <mark>invoice</mark> by Friday ⏎ Thanks!"
+        ],
+        [
+          "c",
+          "<mark>Invoice</mark>_October.pdf"
+        ],
+        [
+          "d",
+          "IBAN for the <mark>invoice</mark>: DE00 0000 …"
+        ],
+        [
+          "e",
+          "https://example.com/<mark>invoice</mark>/1043"
+        ]
+      ],
+      "ocrPreview": "Screenshot · text recognised<br><br><b><mark>Invoice</mark> no. 2026-1043</b><br>Service period: October 2026<br>Total: €1,240.00<br>Due: 15 Nov 2026",
+      "ocrInfo": "Preview · 3 minutes ago · image 2880×1800 · text recognised",
+      "pause": "Pause animation"
+    },
+    "problem": {
+      "h2": "Copy multiple items – without losing the first one",
+      "sub": "The Mac clipboard holds exactly one item. Copy two things in a row and the first is lost. Clipsody turns it into a multi-clipboard with a full history.",
+      "withoutTitle": "Without Clipsody",
+      "without": [
+        "Only the last thing you copied is there.",
+        "Back to the other window for every piece of text, copy again, switch again.",
+        "Whatever you copied an hour ago is gone."
+      ],
+      "withTitle": "With Clipsody",
+      "with": [
+        "Everything you copied in one list – up to 10,000 clips. You decide how long they stay: from one day to a year.",
+        "Copy everything first, then open the list with <kbd>⌥⌘C</kbd> and paste the clips you need, one after the other.",
+        "Enter a word, and yesterday’s clip is back."
+      ]
+    },
+    "features": {
+      "h2": "What Clipsody does",
+      "sub": "No launcher, no workflows, no hundred settings – a clipboard manager that simply keeps track of what you copy.",
+      "cards": [
+        [
+          "⌨️",
+          "One shortcut, everywhere",
+          "<kbd>⌥⌘C</kbd> opens your clipboard history in any app. Pick a clip with the arrow keys or enter a search word, press <kbd>⏎</kbd> – the clip lands where you were."
+        ],
+        [
+          "📋",
+          "Copy multiple items, paste them when you need them",
+          "Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
+        ],
+        [
+          "🔎",
+          "Finds text in images too",
+          "Copied screenshots and images are read on your Mac. Search for a word that appears in the image – and there it is. <a href=\"#text-in-images\">How it works</a>"
+        ],
+        [
+          "🖼️",
+          "Text, images, files",
+          "Images are kept lossless, and copied files are pasted as files again – not as a path."
+        ],
+        [
+          "✍️",
+          "With or without formatting",
+          "<kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only."
+        ],
+        [
+          "📌",
+          "Pin what you use often",
+          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> keeps a clip at the top, and it is never deleted automatically."
+        ]
+      ]
+    },
+    "ocr": {
+      "h2": "That screenshot from last week? Just search for the text on it.",
+      "sub": "Clipsody reads the text on every image you copy – with macOS text recognition, right on your Mac. So you find screenshots by what they say.",
+      "dialogTitle": "Sync failed",
+      "dialogText": "Error code 0x8007 – server not reachable.",
+      "query": "0x8007",
+      "result": "“Error code <mark>0x8007</mark> – server…”",
+      "recognised": "Text recognised",
+      "steps": [
+        [
+          "Image on the clipboard",
+          "<kbd>⇧⌃⌘4</kbd> captures part of the screen and puts it straight on the clipboard. Or copy an image from any app."
+        ],
+        [
+          "Clipsody reads the text",
+          "In the background and on your Mac – nothing is uploaded. English and German text is recognised."
+        ],
+        [
+          "Find it days later",
+          "Press <kbd>⌥⌘C</kbd>, enter “0x8007” – there is the screenshot. <kbd>⏎</kbd> pastes it as an image, say into a support ticket."
+        ]
+      ],
+      "note": "<strong>Good to know:</strong> screenshots that macOS only saves as a file on the desktop never reach the clipboard. Add <kbd>⌃</kbd> to the shortcut for that (<kbd>⇧⌃⌘3</kbd> for the whole screen, <kbd>⇧⌃⌘4</kbd> for an area)."
+    },
+    "uses": {
+      "h2": "What a clipboard history is good for",
+      "sub": "Anywhere you copy more than one thing.",
+      "cards": [
+        [
+          "Filling in forms",
+          "Collect name, address and order number from an email and paste them into the form one by one – without switching windows ten times."
+        ],
+        [
+          "Writing and research",
+          "Copy quotes, links and paragraphs from several sources and put them together later."
+        ],
+        [
+          "Coding",
+          "Find commands, paths and snippets you copied hours ago. Pin the commands you use all the time."
+        ],
+        [
+          "Support and office work",
+          "Canned replies, account numbers and signatures pinned and ready – pasted in seconds."
+        ]
+      ]
+    },
+    "compare": {
+      "h2": "Doesn’t the Mac have a clipboard history already?",
+      "sub": "Since macOS 26 Tahoe, Spotlight can show recent clips. That helps for the moment – Clipsody is built for everything that should last longer than a week.",
+      "head": [
+        "Clipsody",
+        "Spotlight history",
+        "Plain Mac"
+      ],
+      "rows": [
+        [
+          "Items",
+          "all of them, up to 10,000",
+          "recent ones",
+          "only the last"
+        ],
+        [
+          "Kept for",
+          "1 to 365 days, your choice",
+          "7 days at most",
+          "until the next <kbd>⌘C</kbd>"
+        ],
+        [
+          "Pasting",
+          "<kbd>⏎</kbd> pastes straight into the previous app",
+          "copy, then <kbd>⌘V</kbd> yourself",
+          "<kbd>⌘V</kbd>"
+        ],
+        [
+          "Pinning",
+          "yes, <kbd>⌘P</kbd>",
+          "no",
+          "no"
+        ],
+        [
+          "Runs on",
+          "macOS 13 Ventura and later",
+          "macOS 26 Tahoe and later, off by default",
+          "every Mac"
+        ]
+      ],
+      "more": "More: <a href=\"{guide}\">How to see your clipboard history on a Mac – every way</a>"
+    },
+    "keys": {
+      "h2": "All from the keyboard",
+      "sub": "You don’t need the mouse – but you can use it.",
+      "rows": [
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Open or close the history (configurable)"
+        ],
+        [
+          "Enter a search word",
+          "Filter the list – finds text, app names and text in images"
+        ],
+        [
+          "<kbd>↑</kbd> <kbd>↓</kbd>",
+          "Choose a clip"
+        ],
+        [
+          "<kbd>⏎</kbd>",
+          "Paste with formatting"
+        ],
+        [
+          "<kbd>⌥⏎</kbd>",
+          "Paste plain text only"
+        ],
+        [
+          "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
+          "Paste one of the first nine entries shown directly (pinned first, then the newest)"
+        ],
+        [
+          "<kbd>⌘P</kbd>",
+          "Pin or unpin"
+        ],
+        [
+          "<kbd>⌘⌫</kbd>",
+          "Delete a clip"
+        ],
+        [
+          "<kbd>esc</kbd>",
+          "Close"
+        ]
+      ]
+    },
+    "privacy": {
+      "h2": "Your clipboard is yours",
+      "sub": "Personal things end up on the clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.",
+      "cards": [
+        [
+          "Your clipboard never leaves your Mac",
+          "No account, no server, no analytics. The history lives only on your Mac and is excluded from backups. Clipsody only goes online if you allow it – to ask whether there is a new version."
+        ],
+        [
+          "Passwords stay out",
+          "Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box."
+        ],
+        [
+          "Deleted means deleted",
+          "Deleted entries are overwritten in the database and its change log is emptied – even after a crash, at the next launch. Image files of deleted entries are removed."
+        ],
+        [
+          "Images in a sandbox",
+          "Untrusted image data is processed in an isolated helper process without file or network access, not in the app itself."
+        ],
+        [
+          "Verifiable",
+          "The source is open. You don’t have to trust anyone – you can read it and build the app yourself."
+        ],
+        [
+          "Kept out of classic screenshots",
+          "The window is hidden from screenshots and classic screen sharing. Since macOS 15, modern screen-recording apps can still capture it."
+        ]
+      ]
+    },
+    "install": {
+      "h2": "Install",
+      "sub": "Clipsody is not notarised by Apple – that needs a paid developer account. So macOS asks once on first launch – here’s how:",
+      "steps": [
+        "<a href=\"{download}\">Download Clipsody.dmg</a>, open it and drag <strong>Clipsody</strong> into <strong>Applications</strong>.",
+        "Launch Clipsody. macOS says it cannot verify the app – click <strong>Done</strong>. On macOS 13 and 14, right-click Clipsody in <strong>Applications</strong> → <strong>Open</strong> → <strong>Open</strong> instead, and skip step 3.",
+        "Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and choose <strong>Open Anyway</strong> for Clipsody (macOS 15 and later).",
+        "To let <kbd>⏎</kbd> paste directly, allow Clipsody under <strong>Privacy &amp; Security → Accessibility</strong>. Without it, the entry is only put on the clipboard and you press <kbd>⌘V</kbd> yourself.",
+        "Done: press <kbd>⌥⌘C</kbd>. The menu bar icon leads to the settings, where you can also start Clipsody at login."
+      ],
+      "verify": "<strong>Genuine or not?</strong> Only download Clipsody from this site or from GitHub. Every release lists the SHA-256 checksum of the DMG and the fingerprint of the signing certificate. Check them in Terminal:",
+      "fingerprint": "Certificate fingerprint (SHA-256):"
+    },
+    "faq": {
+      "h2": "FAQ",
+      "items": [
+        [
+          "How do I see what I copied earlier on a Mac?",
+          "Out of the box, the Mac only remembers the last thing you copied. A clipboard manager like Clipsody keeps everything you copy: <kbd>⌥⌘C</kbd> shows it all, searchable. Every way, including Finder and the Spotlight history of macOS 26: <a href=\"{guide}\">how to see your clipboard history on a Mac</a>."
+        ],
+        [
+          "How do I copy multiple items and paste them one after another?",
+          "With Clipsody you just copy as usual with <kbd>⌘C</kbd> – every clip stays in the history. To paste, open the list with <kbd>⌥⌘C</kbd> and pick a clip with <kbd>⏎</kbd>, or paste one of the first nine directly with <kbd>⌘1</kbd> to <kbd>⌘9</kbd>. A pasted clip moves to the top of the list."
+        ],
+        [
+          "Is Clipsody really free?",
+          "Yes. No ads, no subscription, no trial. The source is open, under the GPLv3."
+        ],
+        [
+          "Why does Clipsody need the Accessibility permission?",
+          "Only to trigger <kbd>⌘V</kbd> in the app you came from after you pick an entry. Clipsody does not use it to read the screen or your keystrokes. Everything works without it – you just paste yourself."
+        ],
+        [
+          "How long is the history kept?",
+          "7 days and at most 1,000 entries by default; you can raise both in the settings, up to 365 days and 10,000 entries. Pinned entries always stay."
+        ],
+        [
+          "Are my passwords stored?",
+          "No, if your password manager marks them as concealed – the common ones do. Known password managers are excluded as well. One limit: Clipsody sees which app is in front, not who copied. If a browser extension copies a password without that mark, it ends up in the history – just delete it with <kbd>⌘⌫</kbd>."
+        ],
+        [
+          "Does Clipsody run on my Mac?",
+          "macOS 13 Ventura or later, on Apple Silicon and Intel."
+        ],
+        [
+          "Which languages does Clipsody speak?",
+          "English, German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese. Clipsody follows your Mac’s language; you can pick another one under <strong>Settings → General → Language</strong>."
+        ],
+        [
+          "Why does macOS ask whether Clipsody may read the clipboard?",
+          "Newer versions of macOS ask before an app reads what you copy in other apps. Without this access Clipsody cannot keep a history: choose Allow, or allow Clipsody under <strong>System Settings → Privacy &amp; Security</strong>. Clipsody shows the current state under <strong>Settings → General</strong>. Your clipboard still never leaves your Mac."
+        ],
+        [
+          "Does Clipsody check for updates?",
+          "Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and the menu opens the download page. You can change this under <strong>Settings → General</strong>; there and in the menu bar menu you can also check yourself at any time."
+        ],
+        [
+          "How do I uninstall Clipsody?",
+          "<strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
+        ]
+      ]
+    }
+  },
+  "guide": {
+    "title": "How to See Clipboard History on Mac – Every Way | Clipsody",
+    "description": "How do you see what you copied earlier on a Mac? Finder, the Spotlight clipboard history (macOS 26) and clipboard managers compared, step by step.",
+    "ogTitle": "How to see clipboard history on a Mac – every way",
+    "ogDescription": "Finder, the Spotlight clipboard history in macOS 26 and clipboard managers compared, step by step.",
+    "breadcrumbLabel": "Breadcrumb",
+    "crumb": "Clipboard history",
+    "h1": "How to see your clipboard history on a Mac: every way",
+    "lead": "You copied something, then something else – and now you need the first one again? Here is what the Mac can do on its own, how the new Spotlight history works, and when a clipboard manager is worth it.",
+    "updated": "Updated October 2026, macOS 13 Ventura to macOS 27",
+    "summary": "<strong>In short:</strong> the Mac clipboard holds only <em>one</em> item; every <kbd>⌘C</kbd> replaces the previous one. Since macOS 26, Spotlight shows recent clips once you turn it on (<kbd>⌘</kbd> <kbd>Space</kbd>, then <kbd>⌘4</kbd>). For a lasting, searchable history on any macOS version, use a clipboard manager like <a href=\"./\">Clipsody</a>.",
+    "finder": {
+      "h2": "1. Show the current clipboard in Finder",
+      "intro": "Finder shows what is on the clipboard right now – but only that one item:",
+      "steps": [
+        "Click the desktop or a Finder window so Finder is in front.",
+        "Choose <strong>Edit → Show Clipboard</strong> in the menu bar."
+      ],
+      "after": "A window shows the content, such as text or an image. Earlier clips are not there: whatever you copied before has been replaced. The clipboard lives in memory, not in a file on disk – after a restart it is empty."
+    },
+    "spotlight": {
+      "h2": "2. The clipboard history in Spotlight (macOS 26 and later)",
+      "intro": "With macOS 26 Tahoe, Apple gave Spotlight a clipboard history. It is off by default.",
+      "steps": [
+        "Open Spotlight with <kbd>⌘</kbd> <kbd>Space</kbd>.",
+        "Press <kbd>⌘4</kbd>, or click the clipboard button to the right of the search field.",
+        "The first time, macOS asks whether to turn the history on – confirm.",
+        "Find the clip, copy it with the copy button or <kbd>⌘C</kbd>, and paste it with <kbd>⌘V</kbd> where you need it."
+      ],
+      "after": "Good for the moment, with limits: depending on the setting, clips are kept for 30 minutes, 8 hours or 7 days; there is no pinning, and pasting takes two steps (copy, then <kbd>⌘V</kbd>). Macs on macOS 15 or earlier don’t have it. You can clear it from the menu to the right of the search field."
+    },
+    "manager": {
+      "h2": "3. Every clip with a clipboard manager",
+      "intro": "A clipboard manager (also called a clipboard history app or multi-clipboard) remembers everything you copy and brings it back on demand. Here is how it works with <a href=\"./\">Clipsody, the free clipboard manager for Mac</a> (macOS 13 and later):",
+      "steps": [
+        "<a href=\"{download}\">Download Clipsody</a> and drag it into <strong>Applications</strong> (<a href=\"./#install\">installation in detail</a>).",
+        "Copy as usual with <kbd>⌘C</kbd>. Every clip – text, image or file – goes into the history.",
+        "Press <kbd>⌥⌘C</kbd>: the list of everything you copied appears. Enter a search word to filter it; this finds text in screenshots too.",
+        "<kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
+      ],
+      "after": "You decide how long the history lasts (1 to 365 days) and how many clips it holds (up to 10,000). Clips pinned with <kbd>⌘P</kbd> stay for good. Everything stays on your Mac."
+    },
+    "compare": {
+      "h2": "The options compared",
+      "head": [
+        "Finder",
+        "Spotlight history",
+        "Clipsody"
+      ],
+      "rows": [
+        [
+          "Shows",
+          "only the current clip",
+          "recent clips",
+          "all of them, up to 10,000"
+        ],
+        [
+          "Kept for",
+          "until the next <kbd>⌘C</kbd>",
+          "7 days at most",
+          "1 to 365 days"
+        ],
+        [
+          "Pasting",
+          "<kbd>⌘V</kbd>",
+          "copy, then <kbd>⌘V</kbd>",
+          "<kbd>⏎</kbd> directly"
+        ],
+        [
+          "Pinning",
+          "no",
+          "no",
+          "yes"
+        ],
+        [
+          "macOS",
+          "all",
+          "26 and later, off by default",
+          "13 and later"
+        ]
+      ]
+    },
+    "shortcuts": {
+      "h2": "Clipboard keyboard shortcuts",
+      "rows": [
+        [
+          "<kbd>⌘C</kbd>",
+          "Copy"
+        ],
+        [
+          "<kbd>⌘X</kbd>",
+          "Cut"
+        ],
+        [
+          "<kbd>⌘V</kbd>",
+          "Paste"
+        ],
+        [
+          "<kbd>⌥⇧⌘V</kbd>",
+          "Paste without formatting (“Paste and Match Style”, in many apps)"
+        ],
+        [
+          "<kbd>⇧⌘4</kbd>, hold <kbd>⌃</kbd> while selecting",
+          "Screenshot of an area straight to the clipboard"
+        ],
+        [
+          "<kbd>⌘</kbd> <kbd>Space</kbd>, <kbd>⌘4</kbd>",
+          "Spotlight clipboard history (macOS 26 and later)"
+        ],
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Open the history in Clipsody"
+        ]
+      ]
+    },
+    "faq": {
+      "h2": "FAQ",
+      "items": [
+        [
+          "Where is the clipboard stored on a Mac?",
+          "In memory, not in a file. That’s why it is empty after a restart, and there is no folder holding earlier clips. A saved history only exists with Spotlight (macOS 26 and later) or a clipboard manager."
+        ],
+        [
+          "Can I get back what was on the clipboard before I copied something else?",
+          "Only if a history was recording: the Spotlight history on macOS 26 and later, if turned on, or a clipboard manager like Clipsody. Without one, the previous clip is replaced by the next copy."
+        ],
+        [
+          "Can I copy multiple things at once?",
+          "The clipboard itself holds a single item. With a clipboard manager you simply copy one thing after another – each clip is kept – and then paste the ones you need. In Clipsody, for example, with <kbd>⌘1</kbd> to <kbd>⌘9</kbd>."
+        ],
+        [
+          "How do I clear the clipboard on a Mac?",
+          "Copy something harmless, such as a space – it replaces the current content. Clear the Spotlight history from the menu to the right of its search field, and Clipsody’s history from the menu bar icon → <strong>Clear History…</strong>."
+        ],
+        [
+          "Do iPhone and Mac share a clipboard?",
+          "Yes, with Universal Clipboard: with the same Apple Account and Bluetooth, Wi-Fi and Handoff turned on, you can copy on your iPhone and paste on your Mac. It also transfers only the current clip, not a history."
+        ]
+      ]
+    },
+    "cta": {
+      "h2": "Never lose a clip again",
+      "text": "Clipsody is free, open source and runs on macOS 13 and later. Everything stays on your Mac.",
+      "button": "Download Clipsody for free"
+    }
+  },
+  "support": {
+    "title": "Clipsody Support – Report a Problem or Suggest an Idea",
+    "description": "Something not working in Clipsody, or an idea for it? Check the answers first, then report it on GitHub – this form fills in what we need to know.",
+    "ogTitle": "Clipsody support",
+    "ogDescription": "Report a problem or suggest an idea – the form prepares a GitHub issue for you.",
+    "breadcrumbLabel": "Breadcrumb",
+    "crumb": "Support",
+    "h1": "Clipsody Support – Report a Problem or Suggest an Idea",
+    "lead": "Clipsody is a free open-source project. Problems and ideas are collected publicly on GitHub, so everyone can see what is known and what is being worked on.",
+    "checkTitle": "Check first",
+    "check": [
+      "Many questions are answered in the <a href=\"./#faq\">FAQ</a>, installation in <a href=\"./#install\">Install</a>.",
+      "Is your Clipsody up to date? Menu bar icon → <strong>Check for Updates…</strong>",
+      "Maybe someone has already reported it: <a href=\"{issues}\">known issues on GitHub</a>."
+    ],
+    "formTitle": "Report a problem or suggest an idea",
+    "formIntro": "Fill in what you can. The button opens GitHub with your entries filled in; there you can add details and send it. You need a free GitHub account.",
+    "titleLabel": "Short summary",
+    "titlePlaceholder": "e.g. Images from Safari are not saved",
+    "descriptionLabel": "What happened, or what would you like?",
+    "descriptionPlaceholder": "What did you do, what did you expect, and what happened instead?",
+    "versionLabel": "Clipsody version",
+    "versionHint": "Settings → Info → Version",
+    "macosLabel": "macOS version",
+    "macosHint": "Apple menu → About This Mac",
+    "bugButton": "Report a problem on GitHub",
+    "ideaButton": "Suggest an idea on GitHub",
+    "publicNote": "<strong>Issues are public.</strong> Please do not include passwords or other private clipboard contents. Screenshots help, but check what they show.",
+    "includeTitle": "What helps us most",
+    "include": [
+      "The Clipsody version (Settings → Info) and your macOS version.",
+      "The steps that lead to the problem, as exactly as possible.",
+      "What you expected and what happened instead.",
+      "For paste or image problems: the log; for crashes: the crash report. The GitHub form shows how to get both."
+    ],
+    "securityTitle": "Found a security problem?",
+    "securityText": "Please do not report it publicly. Use the <a href=\"{security}\">private report on GitHub</a> instead; it is only visible to the developer."
+  },
+  "footer": {
+    "tagline": "Clipsody – clipboard manager for macOS",
+    "guide": "Guide: clipboard history on a Mac",
+    "home": "Home",
+    "releases": "All releases",
+    "license": "License:",
+    "legal": "Legal notice (German)",
+    "privacyPolicy": "Privacy policy (German)",
+    "support": "Support"
+  }
+}

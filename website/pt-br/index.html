@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Área de transferência no Mac: gerenciador grátis | Clipsody</title>
+    <meta name="description" content="Seu Mac só lembra o último item copiado. O Clipsody guarda o histórico da área de transferência: textos, imagens e arquivos, com busca pelo teclado. Grátis.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=4398de423f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:title" content="Clipsody – a área de transferência com memória para o seu Mac">
+    <meta property="og:description" content="Tudo o que você copia fica à mão: textos, imagens e arquivos, para buscar e colar de novo pelo teclado. Grátis, open source e 100% local.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/pt-br/">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-pt-br.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody: histórico da área de transferência para Mac">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody: histórico da área de transferência para Mac">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Clipsody",
+      "url": "https://tillackt.github.io/clipsody/pt-br/",
+      "description": "Gerenciador de área de transferência (clipboard) e histórico para Mac: guarda cada texto, imagem e arquivo que você copia, com busca e colagem pelo teclado.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 13 or later",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-pt-br.jpg",
+      "inLanguage": [
+        "de",
+        "en",
+        "fr",
+        "es",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Como vejo no Mac o que copiei antes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por padrão, o Mac só lembra o último item copiado. Um gerenciador de área de transferência como o Clipsody guarda tudo o que você copia: ⌥⌘C mostra tudo, com busca. Todas as formas, incluindo o Finder e o histórico do Spotlight no macOS 26: como ver o histórico da área de transferência no Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como copio vários itens e colo um depois do outro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Com o Clipsody, você copia normalmente com ⌘C – cada item fica no histórico. Para colar, abra a lista com ⌥⌘C e escolha um item com ⏎, ou cole direto um dos nove primeiros com ⌘1 a ⌘9. Um item colado sobe para o topo da lista."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Clipsody é grátis mesmo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Sem anúncios, sem assinatura, sem período de teste. O código-fonte é aberto, sob a GPLv3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o Clipsody precisa da permissão de Acessibilidade?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Só para acionar ⌘V no app de onde você veio depois que você escolhe um item. O Clipsody não usa essa permissão para ler a tela nem o que você digita. Tudo funciona sem ela – você só cola por conta própria."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por quanto tempo o histórico é guardado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Por padrão, 7 dias e no máximo 1.000 itens; nos ajustes você pode aumentar os dois, até 365 dias e 10.000 itens. Itens fixados ficam sempre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Minhas senhas são guardadas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não, se o seu gerenciador de senhas as marca como ocultas – os mais comuns fazem isso. Gerenciadores de senhas conhecidos também ficam excluídos. Um limite: o Clipsody vê qual app está em primeiro plano, não quem copiou. Se uma extensão do navegador copiar uma senha sem essa marcação, ela vai para o histórico – é só apagar com ⌘⌫."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Clipsody funciona no meu Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "macOS 13 Ventura ou posterior, em Apple Silicon e Intel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Em quais idiomas o Clipsody está disponível?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inglês, alemão, francês, espanhol, italiano, holandês, polonês e português do Brasil. O Clipsody segue o idioma do seu Mac; você pode escolher outro em Ajustes → Geral → Idioma."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o macOS pergunta se o Clipsody pode ler a área de transferência?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Versões mais recentes do macOS perguntam antes que um app leia o que você copia em outros apps. Sem esse acesso, o Clipsody não consegue manter um histórico: escolha Permitir, ou permita o Clipsody em Ajustes do Sistema → Privacidade e Segurança. O Clipsody mostra o estado atual em Ajustes → Geral. Mesmo assim, sua área de transferência nunca sai do seu Mac."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Clipsody verifica atualizações?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Só se você permitir: na primeira abertura, o Clipsody pergunta se pode consultar o GitHub uma vez por dia em busca de uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Se houver uma nova versão, o ícone na barra de menus ganha um ponto, e o menu abre a página de download. Você pode mudar isso em Ajustes → Geral; lá e no menu da barra de menus você também pode verificar quando quiser."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como desinstalo o Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ajustes → Informações → Desinstalar o Clipsody… apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de Acessibilidade e move o app para o Lixo. Se você só arrastar o app para o Lixo, esses dados ficam no seu Mac."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Principal">
+            <a href="#features">Recursos</a>
+            <a href="#compare">Comparação</a>
+            <a href="#privacy">Privacidade</a>
+            <a href="#install">Instalação</a>
+            <a href="#faq">Perguntas</a>
+            <a href="support.html">Suporte</a>
+        </nav>
+        <details class="langs">
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Idioma: </span>Português (Brasil)</summary>
+            <ul>
+                <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li>
+                <li><a href="../es/" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" aria-current="page">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main id="main">
+    <div class="hero wrap">
+        <h1>O gerenciador de área de transferência para Mac que lembra de tudo</h1>
+        <p class="lead">Seu Mac só guarda o último item copiado – copiou outra coisa, o anterior já era. O Clipsody guarda tudo: textos, imagens e arquivos. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> traz qualquer um de volta, e <kbd>⏎</kbd> cola bem onde você estava digitando.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Baixar grátis</a>
+            <a class="button secondary" href="https://github.com/tillackt/clipsody">Código-fonte no GitHub</a>
+        </div>
+        <p class="meta">macOS 13 Ventura ou posterior · Apple Silicon e Intel · Interface em 8 idiomas</p>
+        <div class="badges">
+            <span class="badge">Grátis</span>
+            <span class="badge">Open source</span>
+            <span class="badge">Sem conta, sem rastreamento</span>
+            <span class="badge">Tudo fica no seu Mac</span>
+        </div>
+
+        <figure class="shot">
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Tudo o que você copiou: textos, imagens, arquivos, links</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Pode conferir a fatura até sexta? ⏎ Obrigada!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Imagem 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Orcamento_Silva.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunioes</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 Chave Pix: 00.000.000/0001-00</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Pode conferir a fatura até sexta?<br><br>Obrigada!<br>Ana</div>
+                            <div class="info">Texto · há 2 minutos · do Mail</div>
+                            <div class="hint">⏎ colar   ⌥⏎ sem formatação   ⌘P fixar   ⌘⌫ apagar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Imagens continuam imagens – sem perda, com pré-visualização</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Pode conferir a fatura até sexta? ⏎ Obrigada!</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Imagem 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Orcamento_Silva.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunioes</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 Chave Pix: 00.000.000/0001-00</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <picture><source srcset="../assets/sample-photo.avif" type="image/avif"><img class="photo" src="../assets/sample-photo.jpg" alt="" width="940" height="470" loading="lazy" decoding="async" fetchpriority="low"></picture>
+                            <div class="info">Imagem 4032×3024 · há 12 minutos · do Fotos</div>
+                            <div class="hint">⏎ colar   ⌥⏎ sem formatação   ⌘P fixar   ⌘⌫ apagar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>Arquivos são colados de novo como arquivos</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Pode conferir a fatura até sexta? ⏎ Obrigada!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Imagem 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Orcamento_Silva.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/reunioes</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 Chave Pix: 00.000.000/0001-00</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Orcamento_Silva.pdf</b><span>~/Documentos/Clientes</span><span>PDF · 248 KB</span></div>
+                            <div class="info">Arquivo · há 1 hora · do Finder</div>
+                            <div class="hint">⏎ colar   ⌥⏎ sem formatação   ⌘P fixar   ⌘⌫ apagar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>A busca encontra até texto em capturas de tela</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">fatura</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Imagem 2880×1800 (612 KB) – “…<mark>Fatura</mark> nº 2026-1043…”</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Pode conferir a <mark>fatura</mark> até sexta? ⏎ Obrigada!</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Fatura</mark>_outubro.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">Chave Pix da <mark>fatura</mark>: 00.000.000/0001-00</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>fatura</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Captura de tela · texto reconhecido<br><br><b><mark>Fatura</mark> nº 2026-1043</b><br>Período: outubro de 2026<br>Total: R$ 1.240,00<br>Vencimento: 15/11/2026</div>
+                            <div class="info">Pré-visualização · há 3 minutos · imagem 2880×1800 · texto reconhecido</div>
+                            <div class="hint">⏎ colar   ⌥⏎ sem formatação   ⌘P fixar   ⌘⌫ apagar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="controls">
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
+                <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pausar animação</label>
+            </div>
+            <figcaption class="caption">O histórico da área de transferência no Clipsody: tudo o que você copiou, uma imagem, um arquivo e a busca por texto em uma captura de tela.</figcaption>
+        </figure>
+    </div>
+
+    <section class="alt" id="problem">
+        <div class="wrap">
+            <h2>Copie vários itens – sem perder o primeiro</h2>
+            <p class="sub">A área de transferência do Mac guarda exatamente um item. Copie duas coisas seguidas e a primeira se perde. O Clipsody transforma ela em uma área de transferência múltipla, com histórico completo.</p>
+            <div class="grid two">
+                <div class="card"><h3>Sem o Clipsody</h3>
+                    <ul class="plain">
+                        <li>Só o último item copiado está lá.</li>
+                        <li>Para cada trecho de texto, voltar à outra janela, copiar de novo, trocar de novo.</li>
+                        <li>O que você copiou uma hora atrás já era.</li>
+                    </ul></div>
+                <div class="card"><h3>Com o Clipsody</h3>
+                    <ul class="plain">
+                        <li>Tudo o que você copiou em uma lista – até 10.000 itens. Você decide por quanto tempo eles ficam: de um dia a um ano.</li>
+                        <li>Copie tudo primeiro, depois abra a lista com <kbd>⌥⌘C</kbd> e cole os itens de que precisa, um depois do outro.</li>
+                        <li>Digite uma palavra e o item de ontem está de volta.</li>
+                    </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <h2>O que o Clipsody faz</h2>
+            <p class="sub">Sem launcher, sem fluxos de trabalho, sem cem ajustes – um gerenciador de área de transferência que simplesmente guarda o que você copia.</p>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Um atalho, em qualquer lugar</h3>
+                    <p><kbd>⌥⌘C</kbd> abre o histórico da área de transferência em qualquer app. Escolha um item com as setas ou digite uma palavra, pressione <kbd>⏎</kbd> – e o item vai parar onde você estava.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copie vários itens e cole quando precisar</h3>
+                    <p>Copie primeiro nome, endereço e número do pedido, depois cole um por um a partir da lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens exibidos (fixados primeiro, depois os mais recentes).</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Encontra texto até em imagens</h3>
+                    <p>Capturas de tela e imagens copiadas são lidas no seu Mac. Busque uma palavra que aparece na imagem – e lá está ela. <a href="#text-in-images">Como funciona</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textos, imagens, arquivos</h3>
+                    <p>As imagens são guardadas sem perda, e arquivos copiados são colados de novo como arquivos – não como um caminho.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Com ou sem formatação</h3>
+                    <p><kbd>⏎</kbd> mantém negrito, links e tabelas do Word, do Outlook ou do navegador. <kbd>⌥⏎</kbd> cola só o texto simples.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fixe o que você usa sempre</h3>
+                    <p>Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> mantém um item no topo, e ele nunca é apagado automaticamente.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>Aquela captura de tela da semana passada? É só buscar o texto que estava nela.</h2>
+            <p class="sub">O Clipsody lê o texto de cada imagem que você copia – com o reconhecimento de texto do macOS, direto no seu Mac. Assim você encontra capturas de tela pelo que está escrito nelas.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Falha na sincronização</b></p><p>Código de erro 0x8007 – servidor inacessível.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Imagem na área de transferência</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> captura uma parte da tela e a coloca direto na área de transferência. Ou copie uma imagem de qualquer app.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Texto reconhecido</span><p class="warn">⚠︎ <b><mark>Falha na sincronização</mark></b></p><p><mark>Código de erro 0x8007 – servidor inacessível.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>O Clipsody lê o texto</h3>
+                    <p>Em segundo plano e no seu Mac – nada é enviado. Ele reconhece texto em inglês e em alemão.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>“Código de erro <mark>0x8007</mark> – servidor…”</p></div></div>
+                    <h3><span class="step">3</span>Encontre dias depois</h3>
+                    <p>Pressione <kbd>⌥⌘C</kbd>, digite “0x8007” – e lá está a captura de tela. <kbd>⏎</kbd> cola como imagem, por exemplo em um chamado de suporte.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Bom saber:</strong> capturas de tela que o macOS só salva como arquivo na mesa nunca chegam à área de transferência. Para isso, adicione <kbd>⌃</kbd> ao atalho (<kbd>⇧⌃⌘3</kbd> para a tela inteira, <kbd>⇧⌃⌘4</kbd> para uma área).</div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="wrap">
+            <h2>Para que serve um histórico da área de transferência</h2>
+            <p class="sub">Para qualquer situação em que você copia mais de uma coisa.</p>
+            <div class="grid">
+                <div class="card"><h3>Preencher formulários</h3>
+                    <p>Junte nome, endereço e número do pedido de um e-mail e cole tudo no formulário, um por um – sem trocar de janela dez vezes.</p></div>
+                <div class="card"><h3>Escrita e pesquisa</h3>
+                    <p>Copie citações, links e parágrafos de várias fontes e monte tudo depois.</p></div>
+                <div class="card"><h3>Programação</h3>
+                    <p>Encontre comandos, caminhos e trechos de código que você copiou horas atrás. Fixe os comandos que você usa o tempo todo.</p></div>
+                <div class="card"><h3>Suporte e escritório</h3>
+                    <p>Respostas prontas, números de conta e assinaturas fixados e à mão – colados em segundos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="compare">
+        <div class="wrap">
+            <h2>Mas o Mac já não tem um histórico da área de transferência?</h2>
+            <p class="sub">Desde o macOS 26 Tahoe, o Spotlight pode mostrar os itens copiados recentemente. Isso ajuda na hora – o Clipsody foi feito para tudo o que precisa durar mais de uma semana.</p>
+            <section class="table-scroll" tabindex="0" aria-label="Mas o Mac já não tem um histórico da área de transferência?">
+                <table class="compare">
+                    <thead>
+                    <tr><td></td><th scope="col">Clipsody</th><th scope="col">Histórico do Spotlight</th><th scope="col">Mac sem nada</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th scope="row">Itens</th><td>todos, até 10.000</td><td>os recentes</td><td>só o último</td></tr>
+                    <tr><th scope="row">Guardados por</th><td>de 1 a 365 dias, você escolhe</td><td>7 dias no máximo</td><td>até o próximo <kbd>⌘C</kbd></td></tr>
+                    <tr><th scope="row">Colar</th><td><kbd>⏎</kbd> cola direto no app anterior</td><td>copiar e depois <kbd>⌘V</kbd> você mesmo</td><td><kbd>⌘V</kbd></td></tr>
+                    <tr><th scope="row">Fixar</th><td>sim, <kbd>⌘P</kbd></td><td>não</td><td>não</td></tr>
+                    <tr><th scope="row">Funciona no</th><td>macOS 13 Ventura e posterior</td><td>macOS 26 Tahoe e posterior, desativado por padrão</td><td>qualquer Mac</td></tr>
+                    </tbody>
+                </table>
+            </section>
+            <p class="asof">Informações sobre o Spotlight verificadas no macOS 26.1.</p>
+            <p class="more">Mais: <a href="historico-area-de-transferencia-mac.html">Como ver o histórico da área de transferência no Mac – todas as formas</a></p>
+        </div>
+    </section>
+
+    <section id="keys">
+        <div class="wrap">
+            <h2>Tudo pelo teclado</h2>
+            <p class="sub">Você não precisa do mouse – mas pode usar, se quiser.</p>
+            <table class="keys">
+                <tbody>
+                <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Abrir ou fechar o histórico (configurável)</td></tr>
+                <tr><th scope="row">Digite uma palavra</th><td>Filtrar a lista – encontra texto, nomes de apps e texto em imagens</td></tr>
+                <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Escolher um item</td></tr>
+                <tr><th scope="row"><kbd>⏎</kbd></th><td>Colar com formatação</td></tr>
+                <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Colar só o texto simples</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Colar direto um dos nove primeiros itens exibidos (fixados primeiro, depois os mais recentes)</td></tr>
+                <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fixar ou desafixar</td></tr>
+                <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Apagar um item</td></tr>
+                <tr><th scope="row"><kbd>esc</kbd></th><td>Fechar</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="privacy">
+        <div class="wrap">
+            <h2>Sua área de transferência é só sua</h2>
+            <p class="sub">Coisas pessoais vão parar na área de transferência: senhas, endereços, mensagens. Por isso, o Clipsody foi pensado para a privacidade desde o início.</p>
+            <div class="grid">
+                <div class="card"><h3>Sua área de transferência nunca sai do seu Mac</h3>
+                    <p>Sem conta, sem servidor, sem analytics. O histórico fica só no seu Mac e fora dos backups. O Clipsody só se conecta à internet se você permitir – para verificar se há uma nova versão.</p></div>
+                <div class="card"><h3>Senhas ficam de fora</h3>
+                    <p>O que os gerenciadores de senhas marcam como oculto nunca é guardado. 1Password, Bitwarden, KeePassXC e outros já vêm excluídos.</p></div>
+                <div class="card"><h3>Apagado é apagado</h3>
+                    <p>Itens apagados são sobrescritos no banco de dados e o registro de alterações dele é esvaziado – mesmo após uma falha, na próxima abertura. Os arquivos de imagem dos itens apagados são removidos.</p></div>
+                <div class="card"><h3>Imagens em sandbox</h3>
+                    <p>Dados de imagem não confiáveis são processados em um processo auxiliar isolado, sem acesso a arquivos ou à rede, e não no próprio app.</p></div>
+                <div class="card"><h3>Verificável</h3>
+                    <p>O código-fonte é aberto. Você não precisa confiar em ninguém – pode ler o código e compilar o app você mesmo.</p></div>
+                <div class="card"><h3>Fora das capturas de tela clássicas</h3>
+                    <p>A janela fica oculta em capturas de tela e no compartilhamento de tela clássico. Desde o macOS 15, apps modernos de gravação de tela ainda conseguem capturá-la.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <div class="wrap">
+            <h2>Instalação</h2>
+            <p class="sub">O Clipsody não é notarizado pela Apple – para isso seria preciso uma conta de desenvolvedor paga. Por isso, o macOS pergunta uma vez na primeira abertura – veja como fazer:</p>
+            <ol class="steps">
+                <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Baixe o Clipsody.dmg</a>, abra o arquivo e arraste o <strong>Clipsody</strong> para <strong>Aplicativos</strong>.</li>
+                <li>Abra o Clipsody. O macOS avisa que não consegue verificar o app – clique em <strong>OK</strong>. No macOS 13 e 14, em vez disso, clique com o botão direito no Clipsody em <strong>Aplicativos</strong> → <strong>Abrir</strong> → <strong>Abrir</strong> e pule o passo 3.</li>
+                <li>Abra <strong>Ajustes do Sistema → Privacidade e Segurança</strong>, role para baixo e escolha <strong>Abrir Mesmo Assim</strong> para o Clipsody (macOS 15 e posterior).</li>
+                <li>Para que <kbd>⏎</kbd> cole direto, permita o Clipsody em <strong>Privacidade e Segurança → Acessibilidade</strong>. Sem isso, o item só vai para a área de transferência e você pressiona <kbd>⌘V</kbd>.</li>
+                <li>Pronto: pressione <kbd>⌥⌘C</kbd>. O ícone na barra de menus leva aos ajustes, onde você também pode abrir o Clipsody ao iniciar sessão.</li>
+            </ol>
+            <div class="note" id="verify">
+                <strong>Original ou não?</strong> Baixe o Clipsody só deste site ou do GitHub. Cada versão traz o checksum SHA-256 do DMG e a impressão digital do certificado de assinatura. Confira no Terminal:
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app &amp;&amp; shasum -a 256 /tmp/clipsody-cert0</code></pre>
+                Impressão digital do certificado (SHA-256): <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="wrap">
+            <h2>Perguntas frequentes</h2>
+            <details><summary>Como vejo no Mac o que copiei antes?</summary>
+                <p>Por padrão, o Mac só lembra o último item copiado. Um gerenciador de área de transferência como o Clipsody guarda tudo o que você copia: <kbd>⌥⌘C</kbd> mostra tudo, com busca. Todas as formas, incluindo o Finder e o histórico do Spotlight no macOS 26: <a href="historico-area-de-transferencia-mac.html">como ver o histórico da área de transferência no Mac</a>.</p></details>
+            <details><summary>Como copio vários itens e colo um depois do outro?</summary>
+                <p>Com o Clipsody, você copia normalmente com <kbd>⌘C</kbd> – cada item fica no histórico. Para colar, abra a lista com <kbd>⌥⌘C</kbd> e escolha um item com <kbd>⏎</kbd>, ou cole direto um dos nove primeiros com <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Um item colado sobe para o topo da lista.</p></details>
+            <details><summary>O Clipsody é grátis mesmo?</summary>
+                <p>Sim. Sem anúncios, sem assinatura, sem período de teste. O código-fonte é aberto, sob a GPLv3.</p></details>
+            <details><summary>Por que o Clipsody precisa da permissão de Acessibilidade?</summary>
+                <p>Só para acionar <kbd>⌘V</kbd> no app de onde você veio depois que você escolhe um item. O Clipsody não usa essa permissão para ler a tela nem o que você digita. Tudo funciona sem ela – você só cola por conta própria.</p></details>
+            <details><summary>Por quanto tempo o histórico é guardado?</summary>
+                <p>Por padrão, 7 dias e no máximo 1.000 itens; nos ajustes você pode aumentar os dois, até 365 dias e 10.000 itens. Itens fixados ficam sempre.</p></details>
+            <details><summary>Minhas senhas são guardadas?</summary>
+                <p>Não, se o seu gerenciador de senhas as marca como ocultas – os mais comuns fazem isso. Gerenciadores de senhas conhecidos também ficam excluídos. Um limite: o Clipsody vê qual app está em primeiro plano, não quem copiou. Se uma extensão do navegador copiar uma senha sem essa marcação, ela vai para o histórico – é só apagar com <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>O Clipsody funciona no meu Mac?</summary>
+                <p>macOS 13 Ventura ou posterior, em Apple Silicon e Intel.</p></details>
+            <details><summary>Em quais idiomas o Clipsody está disponível?</summary>
+                <p>Inglês, alemão, francês, espanhol, italiano, holandês, polonês e português do Brasil. O Clipsody segue o idioma do seu Mac; você pode escolher outro em <strong>Ajustes → Geral → Idioma</strong>.</p></details>
+            <details><summary>Por que o macOS pergunta se o Clipsody pode ler a área de transferência?</summary>
+                <p>Versões mais recentes do macOS perguntam antes que um app leia o que você copia em outros apps. Sem esse acesso, o Clipsody não consegue manter um histórico: escolha Permitir, ou permita o Clipsody em <strong>Ajustes do Sistema → Privacidade e Segurança</strong>. O Clipsody mostra o estado atual em <strong>Ajustes → Geral</strong>. Mesmo assim, sua área de transferência nunca sai do seu Mac.</p></details>
+            <details><summary>O Clipsody verifica atualizações?</summary>
+                <p>Só se você permitir: na primeira abertura, o Clipsody pergunta se pode consultar o GitHub uma vez por dia em busca de uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Se houver uma nova versão, o ícone na barra de menus ganha um ponto, e o menu abre a página de download. Você pode mudar isso em <strong>Ajustes → Geral</strong>; lá e no menu da barra de menus você também pode verificar quando quiser.</p></details>
+            <details><summary>Como desinstalo o Clipsody?</summary>
+                <p><strong>Ajustes → Informações → Desinstalar o Clipsody…</strong> apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de Acessibilidade e move o app para o Lixo. Se você só arrastar o app para o Lixo, esses dados ficam no seu Mac.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – gerenciador de área de transferência para macOS</span>
+        <a href="historico-area-de-transferencia-mac.html">Guia: histórico da área de transferência no Mac</a>
+        <a href="support.html">Suporte</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Todas as versões</a>
+        <span>Licença: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Aviso legal (em alemão)</a>
+        <a href="../datenschutz.html">Política de privacidade (em alemão)</a>
+    </div>
+</footer>
+</body>
+</html>
