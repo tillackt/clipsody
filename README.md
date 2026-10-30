@@ -4,6 +4,8 @@
 
 Lean clipboard history for macOS. A native Swift/AppKit app without dependencies, built as a replacement for Alfred's clipboard feature.
 
+**[Website](https://tillackt.github.io/clipsody/en/)** (features, how it works and FAQ in 8 languages) · **[Download](https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg)** · **[Installation](https://tillackt.github.io/clipsody/en/#install)** · **[Support](https://tillackt.github.io/clipsody/en/support.html)**
+
 ## Usage
 
 | Key | Action |
