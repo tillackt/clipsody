@@ -52,7 +52,7 @@ When content changes, update `MODIFIED` in `site/build.py` (used for `dateModifi
 
 ## Publishing with your own domain
 
-GitHub Pages can serve this folder (repository settings → Pages, e.g. through a GitHub Action that publishes `website/`). A custom domain would need `SITE` in `site/build.py` changed (then rebuild) and redirects from the old address.
+GitHub Pages serves this folder: `.github/workflows/pages.yml` publishes `website/` on every change on `main` (repository settings → Pages → Source: GitHub Actions). A custom domain would need `SITE` in `site/build.py` changed (then rebuild) and redirects from the old address.
 
 View locally:
 

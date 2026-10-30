@@ -1,0 +1,46 @@
+# Publishes website/ on GitHub Pages (https://tillackt.github.io/clipsody/) whenever it changes on main.
+# Pages can only serve the repository root or docs/ from a branch, so the folder is uploaded as an
+# artifact instead (repository settings → Pages → Source: GitHub Actions).
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["website/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deployment at a time; a running one finishes rather than leaving the site half updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publish website
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Pinned to commits like in ci.yml; Dependabot proposes updates.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check that the pages match site/
+        run: python3 site/build.py --check
+      - name: Leave out files that are not part of the site
+        run: rm website/README.md website/.htmlvalidate.json
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: website
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
