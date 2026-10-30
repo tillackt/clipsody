@@ -5,9 +5,9 @@ name: Website
 on:
   push:
     branches: [main]
-    paths: ["website/**", ".github/workflows/website.yml"]
+    paths: ["website/**", ".github/workflows/website.yml", ".github/scripts/structured-data.py"]
   pull_request:
-    paths: ["website/**", ".github/workflows/website.yml"]
+    paths: ["website/**", ".github/workflows/website.yml", ".github/scripts/structured-data.py"]
   schedule:
     - cron: "41 4 * * 1"
   workflow_dispatch:
@@ -33,13 +33,20 @@ jobs:
       - name: Validate the HTML (html-validate, recommended rules)
         # Version pinned; rules in website/.htmlvalidate.json.
         run: npx --yes html-validate@11.17.0 website
+      - name: Check that the structured data matches the pages
+        run: python3 .github/scripts/structured-data.py --check
       - name: Check links and anchors (lychee)
         # Pinned by digest like the images in ci.yml. 429 (rate limited) counts as reachable, so the
         # weekly run does not fail on throttling; the DMG link is checked too. gnu.org (the licence
-        # link) lets requests from GitHub's runners time out, so it is skipped.
+        # link) lets requests from GitHub's runners time out, so it is skipped. The site's own absolute
+        # URLs (canonical, hreflang, Open Graph) point to the local files, so they are checked before
+        # the site is published. 404.html uses root paths that only resolve on GitHub Pages.
         run: >
           docker run --rm -v "$PWD:/input" -w /input
           lycheeverse/lychee:0.24.2@sha256:e2d19e57cf6ab037026f20b8e449a1f30d9d7f81eef4194763aab2eab20bd28d
           --no-progress --include-fragments --max-retries 3 --accept '200..=299,429'
           --exclude '^https://www\.gnu\.org/'
+          --remap '^https://tillackt\.github\.io/clipsody/(.*)$ file:///input/website/$1'
+          --index-files index.html
+          --exclude-path website/404.html
           'website/**/*.html'
