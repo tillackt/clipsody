@@ -48,6 +48,17 @@ extension SettingsWindowController {
             every rebuild (remove it and add it again).
             """))
 
+        checkForUpdates.target = self
+        checkForUpdates.action = #selector(checkForUpdatesChanged)
+        let checkNowButton = NSButton(title: String(localized: "Check Now"), target: self, action: #selector(checkForUpdatesNow))
+        let updatesStack = NSStackView(views: [checkForUpdates, checkNowButton])
+        updatesStack.spacing = 12
+        page.row(String(localized: "Updates:"), updatesStack, alignWith: checkForUpdates, help: String(localized: """
+            Asks GitHub for the number of the latest version and tells you when there is a new one; you \
+            download it from the release page. Nothing from your clipboard is sent, but GitHub sees your IP \
+            address. Without this, Clipsody uses no network unless you click Check Now.
+            """))
+
         // Only macOS versions with pasteboard privacy (15.4 and later) have something to show here.
         if PasteboardAccess.state != .unrestricted {
             let settingsButton = NSButton(title: String(localized: "Open System Settings…"), target: self,
@@ -129,8 +140,8 @@ extension SettingsWindowController {
         let dataStack = NSStackView(views: [pathLabel, revealButton])
         dataStack.spacing = 12
         page.row(String(localized: "Location:"), dataStack, alignWith: pathLabel, help: String(localized: """
-            The database, images and config.json are stored here. Everything stays on this Mac; nothing is \
-            sent anywhere. You clear the history from the menu bar icon.
+            The database, images and config.json are stored here. Your history never leaves this Mac. \
+            You clear it from the menu bar icon.
             """))
 
         let versionLabel = NSTextField(labelWithString: AppVersion.display)

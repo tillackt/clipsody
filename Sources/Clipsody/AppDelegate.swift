@@ -22,6 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var settings: SettingsWindowController?
     private var pruneTimer: Timer?
     private var images: ImageQueue!
+    private let updates = UpdateController()
     private var recognition: TextRecognitionQueue!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -79,9 +80,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             logger.notice("No Accessibility permission yet; asked on the first paste")
         }
 
+        setUpUpdateCheck()
+
         if CommandLine.arguments.contains("--settings") {
             openSettings()
         }
+    }
+
+    private func setUpUpdateCheck() {
+        // Clipsody uses no network until the user agrees, so it asks once (also after updating from
+        // a version without the check).
+        if config.checkForUpdates == nil {
+            config.checkForUpdates = UpdateController.askForConsent()
+            config.save(to: store.directory)
+        }
+        updates.apply(config)
     }
 
     /// Launching the app again (Spotlight, Finder, `open`) shows the history.
@@ -146,6 +159,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                     if recording { hotKeys.suspend() } else { hotKeys.resume() }
                 },
                 onChange: { [unowned self] newConfig in applySettings(newConfig) },
+                onCheckForUpdates: { [unowned self] in updates.checkNow() },
                 onUninstall: { [unowned self] in uninstall() }
             )
         }
@@ -162,6 +176,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
         config = newConfig
         config.save(to: store.directory)
+        updates.apply(config)
         prune()
     }
 
@@ -170,6 +185,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // is deleted: tccutil and the failure alert both let the run loop go on.
         monitor.stop()
         pruneTimer?.invalidate()
+        updates.stop()
         images.discardPending()
         recognition.stop()
         hotKeys.suspend()
@@ -215,6 +231,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         pasteboardDeniedItem.isHidden = true
         openItem = menu.addItem(withTitle: String(localized: "Open History"), action: #selector(openPanel), keyEquivalent: "")
         menu.addItem(withTitle: String(localized: "Settings…"), action: #selector(openSettings), keyEquivalent: ",")
+        menu.addItem(withTitle: String(localized: "Check for Updates…"), action: #selector(checkForUpdates), keyEquivalent: "")
         menu.addItem(.separator())
         menu.addItem(withTitle: String(localized: "Clear History…"), action: #selector(clearHistory), keyEquivalent: "")
         menu.addItem(.separator())
@@ -231,6 +248,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         // The state can change in System Settings at any time.
         pasteboardDeniedItem.isHidden = PasteboardAccess.state != .denied
+    }
+
+    @objc private func checkForUpdates() {
+        updates.checkNow()
     }
 
     @objc private func openPasteboardSettings() {

@@ -10,6 +10,9 @@ public struct Config: Codable, Equatable, Sendable {
     public var ignoredApps = Self.defaultIgnoredApps.flatMap { $0 }
     /// How many generations of `defaultIgnoredApps` this configuration has seen.
     public var ignoredAppsDefaultsVersion = Self.defaultIgnoredApps.count
+    /// Whether Clipsody looks for a new version once a day; nil until the user has been asked.
+    /// Clipsody uses no network unless this is true or the user checks by hand.
+    public var checkForUpdates: Bool?
 
     /// Default ignored apps by the release that introduced them. Append a new generation for new
     /// defaults: existing configurations receive it once, and apps the user removed stay removed.
@@ -54,6 +57,7 @@ public struct Config: Codable, Equatable, Sendable {
             ignoredApps.append(added)
         }
         ignoredAppsDefaultsVersion = Self.defaultIgnoredApps.count
+        checkForUpdates = try container.decodeIfPresent(Bool.self, forKey: .checkForUpdates)
     }
 
     public static func clamp(_ value: Int, to range: ClosedRange<Int>) -> Int {

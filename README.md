@@ -139,12 +139,14 @@ Menu bar icon → **Settings…** (⌘,), split into the tabs **General**, **His
 | `maxItems` | `1000` | Maximum number of entries |
 | `keepImages` | `true` | Save images |
 | `ignoredApps` | password managers | Bundle IDs from which nothing is saved |
+| `checkForUpdates` | not set | Look for a new version once a day (`true`/`false`); Clipsody asks once while it is not set |
 
 ## Privacy & security
 
 - **Clipboard access (macOS 15.4 and later):** macOS can ask before an app reads what you copy in other apps, and newer releases may do so for every app. Clipsody needs this access to keep a history: choose Allow when asked, or allow Clipsody under System Settings → Privacy & Security. Settings → General shows the current state; while access is denied, Clipsody reads nothing, the history stands still and the menu bar menu says so.
 - Entries that password managers mark as concealed (`org.nspasteboard.ConcealedType` and similar) are never saved. Neither is anything from the apps under **Privacy → Ignored apps**.
 - **Limit:** Clipsody only sees which app is in front, not who copied. If a browser extension (e.g. Bitwarden in Chrome) copies a password without marking it as concealed, it ends up in the history. Delete such entries with ⌘⌫.
+- **Update check:** at the first launch Clipsody asks whether it may check for updates automatically; the default is no. If allowed, it asks GitHub's API once a day for the latest release's version number (Settings → General, or **Check for Updates…** in the menu bar menu, any time). Nothing from the history is sent; GitHub sees the IP address and the app version. A new version is only announced, and the release page opens on request; Clipsody downloads and installs nothing itself. Apart from this, the app uses no network.
 - All data stays local: the folder is readable only by you (0700), files are 0600. The folder is excluded from Time Machine and other backups.
 - Deleted entries are overwritten with zeros in the database, and its change log (WAL) is emptied: immediately for "Clear History" and the automatic clean-up, for single entries (⌘⌫) in one go when the window closes or the app quits, and after a crash at the next launch. The limit: what the file system still keeps physically on the SSD is outside an app's control.
 - The window is hidden from screenshots and classic screen sharing. Since macOS 15, recording apps that use ScreenCaptureKit can still capture it.
