@@ -66,11 +66,14 @@ Without a certificate of its own, `build.sh` signs ad hoc, and macOS forgets the
 
 ### Release
 
-```bash
-./build.sh release
-```
+1. On a branch: raise the version in `Resources/Info.plist` (see "Versioning") and add its section to `CHANGELOG.md`. Merge the pull request once CI is green.
+2. On `main`, after `git pull`:
 
-Needs the certificate and a clean working tree. Runs the tests and builds `build/Clipsody.dmg`, plus `build/release-notes.txt` with the SHA-256 of the DMG and the fingerprint of the signing certificate.
+   ```bash
+   PUBLISH=1 ./build.sh release
+   ```
+
+`release` refuses to run unless the working tree is clean, the commit is on `origin/main`, the version is `MAJOR.MINOR.PATCH`, newer than the latest release and not yet tagged elsewhere, `CHANGELOG.md` has its section, and the app is signed with the published certificate (fingerprint in `build.sh`). It runs the tests, builds `build/Clipsody.dmg`, checks the app inside the image, and writes `build/release-notes.md` from `.github/release-notes.md` and the changelog section. With `PUBLISH=1` it then creates the GitHub release `vX.Y.Z` (which also creates the tag) with the image and its checksum file, and compares GitHub's checksum of the upload with the one in the notes. Without it, nothing is published.
 
 ## Versioning
 
@@ -80,7 +83,7 @@ Releases follow [Semantic Versioning](https://semver.org), starting with 1.0.0. 
 - **MINOR:** new features that keep everything working, e.g. a new language, setting or the update check.
 - **PATCH:** bug fixes and translation corrections only.
 
-The build number (commit count) and the commit hash run alongside and are shown in Settings → Info. A test checks the version format on every pull request, and `./build.sh release` refuses a version that was already released from another commit.
+The build number (commit count) and the commit hash run alongside and are shown in Settings → Info. A test checks the version format on every pull request; `./build.sh release` refuses a version that is not newer than the latest release or was already released from another commit, and stops if it cannot fetch the tags to check that. Every version has a section in [CHANGELOG.md](CHANGELOG.md).
 
 ## CI
 
@@ -154,7 +157,14 @@ Found a vulnerability? Please report it privately, see [SECURITY.md](SECURITY.md
 
 ## Distribution
 
-Whoever passes the app on publishes, next to the download, the SHA-256 checksum of the release file (`shasum -a 256 Clipsody.dmg`) and the SHA-256 fingerprint of the signing certificate (`codesign -d --extract-certificates Clipsody.app && shasum -a 256 codesign0`). That way recipients can recognise a re-signed or modified copy.
+Every release lists the SHA-256 checksum of `Clipsody.dmg` and the SHA-256 fingerprint of the signing certificate. Recipients check their copy with:
+
+```bash
+shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app && shasum -a 256 /tmp/clipsody-cert0
+```
+
+The certificate fingerprint is the stronger check: a re-signed copy cannot fake it, while a checksum could be swapped together with the file.
 
 ## Data
 
