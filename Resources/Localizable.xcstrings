@@ -939,6 +939,52 @@
         }
       }
     },
+    "Asks GitHub for the number of the latest version and tells you when there is a new one; you download it from the release page. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragt bei GitHub die Nummer der neuesten Version ab und sagt dir, wenn es eine neue gibt; laden kannst du sie dann von der Release-Seite. Aus deiner Zwischenablage wird nichts gesendet; GitHub sieht deine IP-Adresse und die Clipsody-Version. Ohne diese Option nutzt Clipsody kein Netzwerk, außer du klickst auf „Jetzt suchen“."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta a GitHub el número de la última versión y te avisa cuando hay una nueva; la descargas desde la página de la versión. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Sin esta opción, Clipsody no usa la red salvo que hagas clic en «Buscar ahora»."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demande à GitHub le numéro de la dernière version et vous prévient lorsqu’une nouvelle est disponible ; vous la téléchargez depuis la page de la version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Sans cette option, Clipsody n’utilise pas le réseau, sauf si vous cliquez sur « Rechercher »."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiede a GitHub il numero dell’ultima versione e ti avvisa quando ce n’è una nuova; la scarichi dalla pagina della versione. Nulla dei tuoi appunti viene inviato; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Senza questa opzione Clipsody non usa la rete, a meno che tu non faccia clic su «Controlla ora»."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraagt GitHub naar het nummer van de nieuwste versie en laat je weten wanneer er een nieuwe is; je downloadt die via de releasepagina. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de Clipsody-versie. Zonder deze optie gebruikt Clipsody geen netwerk, tenzij je op ‘Zoek nu’ klikt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pyta GitHub o numer najnowszej wersji i informuje, gdy pojawi się nowa; pobierasz ją ze strony wydania. Nic ze schowka nie jest wysyłane; GitHub widzi Twój adres IP i wersję Clipsody. Bez tej opcji Clipsody nie korzysta z sieci, chyba że klikniesz „Sprawdź teraz”."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunta ao GitHub o número da versão mais recente e avisa quando há uma nova; você baixa pela página da versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Sem esta opção, o Clipsody não usa a rede, a não ser que você clique em “Verificar agora”."
+          }
+        }
+      }
+    },
     "Asks when needed": {
       "localizations": {
         "de": {
@@ -947,16 +993,16 @@
             "value": "Fragt bei Bedarf"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demande si nécessaire"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Pregunta cuando hace falta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demande si nécessaire"
           }
         },
         "it": {
@@ -1119,6 +1165,236 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "Check Automatically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch suchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar automáticamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher automatiquement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla automaticamente"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch zoeken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzaj automatycznie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar automaticamente"
+          }
+        }
+      }
+    },
+    "Check Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt suchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla ora"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoek nu"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdź teraz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar agora"
+          }
+        }
+      }
+    },
+    "Check automatically once a day": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einmal täglich automatisch suchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar automáticamente una vez al día"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher automatiquement une fois par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla automaticamente una volta al giorno"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eenmaal per dag automatisch zoeken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzaj automatycznie raz dziennie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar automaticamente uma vez por dia"
+          }
+        }
+      }
+    },
+    "Check for Updates…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach Updates suchen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des mises à jour…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla aggiornamenti…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoek naar updates…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdź aktualizacje…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar Atualizações…"
+          }
+        }
+      }
+    },
+    "Check for updates automatically?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch nach Updates suchen?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Buscar actualizaciones automáticamente?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher automatiquement les mises à jour ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controllare automaticamente gli aggiornamenti?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch naar updates zoeken?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzać aktualizacje automatycznie?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar atualizações automaticamente?"
           }
         }
       }
@@ -1315,16 +1591,16 @@
             "value": "Zugriff auf die Zwischenablage ist aus …"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L’accès au presse-papiers est désactivé…"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El acceso al portapapeles está desactivado…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’accès au presse-papiers est désactivé…"
           }
         },
         "it": {
@@ -1361,16 +1637,16 @@
             "value": "Zugriff auf Zwischenablage:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Accès au presse-papiers :"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Acceso al portapapeles:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accès au presse-papiers :"
           }
         },
         "it": {
@@ -1445,6 +1721,144 @@
         }
       }
     },
+    "Clipsody %@ is available": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ ist verfügbar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ está disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ est disponible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ è disponibile"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ is beschikbaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ jest dostępny"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody %@ está disponível"
+          }
+        }
+      }
+    },
+    "Clipsody %@ is available…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ ist verfügbar …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ está disponible…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ est disponible…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ è disponibile…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ is beschikbaar…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ jest dostępny…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody %@ está disponível…"
+          }
+        }
+      }
+    },
+    "Clipsody could not check for updates.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody konnte nicht nach Updates suchen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody no pudo buscar actualizaciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody n’a pas pu rechercher de mises à jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody non è riuscito a controllare gli aggiornamenti."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kon niet naar updates zoeken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody nie mógł sprawdzić aktualizacji."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody não conseguiu verificar atualizações."
+          }
+        }
+      }
+    },
     "Clipsody could not remove these items; please delete them yourself:": {
       "localizations": {
         "de": {
@@ -1491,6 +1905,52 @@
         }
       }
     },
+    "Clipsody is up to date.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody ist aktuell."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody está actualizado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody est à jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody è aggiornato."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody is up-to-date."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody jest aktualny."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody está atualizado."
+          }
+        }
+      }
+    },
     "Clipsody needs to restart to switch the language.": {
       "localizations": {
         "de": {
@@ -1533,6 +1993,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O Clipsody precisa reiniciar para trocar o idioma."
+          }
+        }
+      }
+    },
+    "Clipsody, update available": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, Update verfügbar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, actualización disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, mise à jour disponible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, aggiornamento disponibile"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, update beschikbaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, dostępna aktualizacja"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody, atualização disponível"
           }
         }
       }
@@ -1767,6 +2273,52 @@
         }
       }
     },
+    "Don’t Check": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht suchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No buscar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ne pas rechercher"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non controllare"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet zoeken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie sprawdzaj"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não verificar"
+          }
+        }
+      }
+    },
     "Edit": {
       "localizations": {
         "de": {
@@ -1901,6 +2453,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Geral"
+          }
+        }
+      }
+    },
+    "GitHub did not give a usable answer. Please try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub hat keine brauchbare Antwort geliefert. Bitte versuche es später noch einmal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub no dio una respuesta utilizable. Vuelve a intentarlo más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub n’a pas donné de réponse exploitable. Réessayez plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub non ha dato una risposta utilizzabile. Riprova più tardi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub gaf geen bruikbaar antwoord. Probeer het later opnieuw."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub nie zwrócił użytecznej odpowiedzi. Spróbuj ponownie później."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O GitHub não deu uma resposta utilizável. Tente novamente mais tarde."
           }
         }
       }
@@ -2557,16 +3155,16 @@
             "value": "Neuere macOS-Versionen fragen, bevor eine App liest, was du in anderen Apps kopierst. Clipsody braucht das für die Historie: Wähle bei der Abfrage „Erlauben“ oder erlaube Clipsody unter Systemeinstellungen → Datenschutz & Sicherheit. Solange der Zugriff verweigert ist, kommt nichts Neues in die Historie."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Clipsody en a besoin pour son historique : choisissez « Autoriser » lorsque la demande s’affiche, ou autorisez Clipsody dans Réglages Système → Confidentialité et sécurité. Tant que l’accès est refusé, rien de nouveau n’est ajouté à l’historique."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Las versiones recientes de macOS preguntan antes de que una app lea lo que copias en otras apps. Clipsody lo necesita para su historial: cuando se te pregunte, elige «Permitir», o permite Clipsody en Ajustes del Sistema → Privacidad y seguridad. Mientras el acceso esté denegado, no se añade nada nuevo al historial."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Clipsody en a besoin pour son historique : choisissez « Autoriser » lorsque la demande s’affiche, ou autorisez Clipsody dans Réglages Système → Confidentialité et sécurité. Tant que l’accès est refusé, rien de nouveau n’est ajouté à l’historique."
           }
         },
         "it": {
@@ -2687,6 +3285,52 @@
         }
       }
     },
+    "Once a day Clipsody can ask GitHub whether a new version is available. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. You can change this at any time in Settings → General.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kann einmal täglich bei GitHub nachfragen, ob es eine neue Version gibt. Aus deiner Zwischenablage wird nichts gesendet; GitHub sieht deine IP-Adresse und die Clipsody-Version. Du kannst das jederzeit unter Einstellungen → Allgemein ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez al día, Clipsody puede preguntar a GitHub si hay una versión nueva. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Puedes cambiarlo en cualquier momento en Ajustes → General."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois par jour, Clipsody peut demander à GitHub si une nouvelle version est disponible. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Vous pouvez modifier ce choix à tout moment dans Réglages → Général."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una volta al giorno Clipsody può chiedere a GitHub se è disponibile una nuova versione. Nulla dei tuoi appunti viene inviato; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Puoi cambiare questa scelta in qualsiasi momento in Impostazioni → Generale."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kan eenmaal per dag bij GitHub navragen of er een nieuwe versie is. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de Clipsody-versie. Je kunt dit altijd wijzigen via Instellingen → Algemeen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raz dziennie Clipsody może zapytać GitHub, czy jest dostępna nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi Twój adres IP i wersję Clipsody. Możesz to zmienić w każdej chwili w Ustawienia → Ogólne."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma vez por dia, o Clipsody pode perguntar ao GitHub se há uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Você pode mudar isso a qualquer momento em Ajustes → Geral."
+          }
+        }
+      }
+    },
     "Open History": {
       "localizations": {
         "de": {
@@ -2775,6 +3419,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abrir histórico (%@)"
+          }
+        }
+      }
+    },
+    "Open Release Page": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release-Seite öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir página de la versión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir la page de la version"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri pagina della versione"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open releasepagina"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz stronę wydania"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir página da versão"
           }
         }
       }
@@ -3097,6 +3787,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Os itens fixados são mantidos."
+          }
+        }
+      }
+    },
+    "Please check your internet connection and try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitte prüfe deine Internetverbindung und versuche es später noch einmal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprueba tu conexión a internet y vuelve a intentarlo más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifiez votre connexion internet et réessayez plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla la connessione a internet e riprova più tardi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer je internetverbinding en probeer het later opnieuw."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdź połączenie z internetem i spróbuj ponownie później."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifique sua conexão com a internet e tente novamente mais tarde."
           }
         }
       }
@@ -4159,48 +4895,48 @@
         }
       }
     },
-    "The database, images and config.json are stored here. Everything stays on this Mac; nothing is sent anywhere. You clear the history from the menu bar icon.": {
+    "The database, images and config.json are stored here. Your history never leaves this Mac. You clear it from the menu bar icon.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hier liegen Datenbank, Bilder und config.json. Alles bleibt lokal auf diesem Mac, nichts wird übertragen. Die Historie löschst du über das Menüleisten-Symbol."
+            "value": "Hier liegen Datenbank, Bilder und config.json. Deine Historie verlässt diesen Mac nie. Löschen kannst du sie über das Menüleisten-Symbol."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aquí se guardan la base de datos, las imágenes y config.json. Todo permanece en este Mac; no se envía nada. El historial se borra desde el icono de la barra de menús."
+            "value": "Aquí se guardan la base de datos, las imágenes y config.json. Tu historial nunca sale de este Mac. Se borra desde el icono de la barra de menús."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La base de données, les images et config.json se trouvent ici. Tout reste sur ce Mac, rien n’est transmis. Vous effacez l’historique depuis l’icône de la barre des menus."
+            "value": "La base de données, les images et config.json se trouvent ici. Votre historique ne quitte jamais ce Mac. Vous l’effacez depuis l’icône de la barre des menus."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Qui si trovano il database, le immagini e config.json. Tutto resta su questo Mac, nulla viene trasmesso. La cronologia si cancella dall’icona nella barra dei menu."
+            "value": "Qui si trovano il database, le immagini e config.json. La tua cronologia non lascia mai questo Mac. La cancelli dall’icona nella barra dei menu."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hier staan de database, afbeeldingen en config.json. Alles blijft op deze Mac; er wordt niets verstuurd. De geschiedenis wis je via het symbool in de menubalk."
+            "value": "Hier staan de database, afbeeldingen en config.json. Je geschiedenis verlaat deze Mac nooit. Je wist hem via het symbool in de menubalk."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tutaj znajdują się baza danych, obrazy i config.json. Wszystko zostaje na tym Macu, nic nie jest przesyłane. Historię czyścisz z ikony na pasku menu."
+            "value": "Tutaj znajdują się baza danych, obrazy i config.json. Twoja historia nigdy nie opuszcza tego Maca. Czyścisz ją z ikony na pasku menu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aqui ficam o banco de dados, as imagens e o config.json. Tudo fica neste Mac; nada é enviado. Você apaga o histórico pelo ícone na barra de menus."
+            "value": "Aqui ficam o banco de dados, as imagens e o config.json. Seu histórico nunca sai deste Mac. Você o apaga pelo ícone na barra de menus."
           }
         }
       }
@@ -4619,6 +5355,52 @@
         }
       }
     },
+    "Updates:": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizaciones:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mises à jour :"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamenti:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualizacje:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizações:"
+          }
+        }
+      }
+    },
     "Upper limit for the history. When there are more entries, the oldest are dropped, even if they are newer than the retention period. Pinned entries do not count.": {
       "localizations": {
         "de": {
@@ -4711,6 +5493,52 @@
         }
       }
     },
+    "Version %@ is the latest version.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@ ist die neueste Version."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La versión %@ es la más reciente."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La version %@ est la plus récente."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La versione %@ è la più recente."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versie %@ is de nieuwste versie."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wersja %@ jest najnowsza."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A versão %@ é a mais recente."
+          }
+        }
+      }
+    },
     "Version:": {
       "localizations": {
         "de": {
@@ -4753,6 +5581,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Versão:"
+          }
+        }
+      }
+    },
+    "You have version %@. The release page lists what is new and has the download.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast Version %@. Auf der Release-Seite stehen die Neuerungen und der Download."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tienes la versión %@. En la página de la versión encontrarás las novedades y la descarga."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez la version %@. La page de la version présente les nouveautés et le téléchargement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai la versione %@. Nella pagina della versione trovi le novità e il download."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt versie %@. Op de releasepagina staan de nieuwe functies en de download."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masz wersję %@. Na stronie wydania znajdziesz nowości i plik do pobrania."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você tem a versão %@. A página da versão mostra as novidades e o download."
           }
         }
       }
@@ -5041,16 +5915,16 @@
             "value": "✗ Verweigert"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "✗ Refusé"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "✗ Denegado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Refusé"
           }
         },
         "it": {

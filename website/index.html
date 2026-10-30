@@ -115,7 +115,7 @@
             <p class="sub">In einer Zwischenablage landet Persönliches: Passwörter, Adressen, Nachrichten. Deshalb ist Clipsody von Grund auf privat gebaut.</p>
             <div class="grid">
                 <div class="card"><h3>Nichts verlässt deinen Mac</h3>
-                    <p>Kein Konto, kein Server, keine Statistik – Clipsody nutzt das Netzwerk überhaupt nicht. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen.</p></div>
+                    <p>Kein Konto, kein Server, keine Statistik. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen. Ins Netz geht Clipsody nur, wenn du es erlaubst – um nach einer neuen Version zu fragen.</p></div>
                 <div class="card"><h3>Passwörter bleiben draußen</h3>
                     <p>Was Passwort-Manager als vertraulich markieren, wird nie gespeichert. 1Password, Bitwarden, KeePassXC &amp; Co. sind von Haus aus ausgenommen.</p></div>
                 <div class="card"><h3>Gelöscht heißt gelöscht</h3>
@@ -168,6 +168,8 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
                 <p>Deutsch, Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien). Clipsody folgt der Sprache deines Macs; unter <strong>Einstellungen → Allgemein → Sprache</strong> kannst du eine andere wählen.</p></details>
             <details><summary>Warum fragt macOS, ob Clipsody die Zwischenablage lesen darf?</summary>
                 <p>Neuere macOS-Versionen fragen, bevor eine App liest, was du in anderen Apps kopierst. Ohne diesen Zugriff kann Clipsody keine Historie führen: Wähle „Erlauben“ oder erlaube Clipsody unter <strong>Systemeinstellungen → Datenschutz &amp; Sicherheit</strong>. In Clipsody siehst du den Stand unter <strong>Einstellungen → Allgemein</strong>. Die Inhalte bleiben trotzdem nur auf deinem Mac.</p></details>
+            <details><summary>Sucht Clipsody nach Updates?</summary>
+                <p>Nur wenn du es erlaubst: Beim ersten Start fragt Clipsody, ob es einmal täglich bei GitHub nach einer neuen Version fragen darf. Gesendet wird dabei nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Gibt es eine neue Version, bekommt das Menüleisten-Symbol einen Punkt, und im Menü öffnest du die Download-Seite. Ändern kannst du das unter <strong>Einstellungen → Allgemein</strong>; dort und im Menüleisten-Menü kannst du auch jederzeit selbst suchen.</p></details>
             <details><summary>Wie deinstalliere ich Clipsody?</summary>
                 <p><strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac.</p></details>
         </div>

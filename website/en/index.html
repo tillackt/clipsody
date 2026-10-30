@@ -115,7 +115,7 @@
             <p class="sub">Personal things end up on a clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
             <div class="grid">
                 <div class="card"><h3>Nothing leaves your Mac</h3>
-                    <p>No account, no server, no analytics – Clipsody doesn’t use the network at all. The history lives only on your Mac and is excluded from backups.</p></div>
+                    <p>No account, no server, no analytics. The history lives only on your Mac and is excluded from backups. Clipsody only goes online if you allow it – to ask whether there is a new version.</p></div>
                 <div class="card"><h3>Passwords stay out</h3>
                     <p>Anything password managers mark as concealed is never stored. 1Password, Bitwarden, KeePassXC and others are excluded out of the box.</p></div>
                 <div class="card"><h3>Deleted means deleted</h3>
@@ -168,6 +168,8 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
                 <p>English, German, French, Spanish, Italian, Dutch, Polish and Brazilian Portuguese. Clipsody follows your Mac’s language; you can pick another one under <strong>Settings → General → Language</strong>.</p></details>
             <details><summary>Why does macOS ask whether Clipsody may read the clipboard?</summary>
                 <p>Newer versions of macOS ask before an app reads what you copy in other apps. Without this access Clipsody cannot keep a history: choose Allow, or allow Clipsody under <strong>System Settings → Privacy &amp; Security</strong>. Clipsody shows the current state under <strong>Settings → General</strong>. Your clipboard still never leaves your Mac.</p></details>
+            <details><summary>Does Clipsody check for updates?</summary>
+                <p>Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and the menu opens the download page. You can change this under <strong>Settings → General</strong>; there and in the menu bar menu you can also check yourself at any time.</p></details>
             <details><summary>How do I uninstall Clipsody?</summary>
                 <p><strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac.</p></details>
         </div>

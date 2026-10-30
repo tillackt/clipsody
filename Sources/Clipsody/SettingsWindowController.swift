@@ -10,6 +10,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     var config: Config
     let dataDirectory: URL
     let onChange: (Config) -> Void
+    let onCheckForUpdates: () -> Void
     let onUninstall: () -> Void
 
     let hotKeyRecorder: HotKeyRecorder
@@ -22,16 +23,20 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     let maxItemsField = NSTextField()
     let maxItemsStepper = NSStepper()
     let keepImages = NSButton(checkboxWithTitle: String(localized: "Save images"), target: nil, action: nil)
+    let checkForUpdates = NSButton(checkboxWithTitle: String(localized: "Check automatically once a day"),
+                                   target: nil, action: nil)
     let ignoredTable = NSTableView()
     let ignoredButtons = NSSegmentedControl()
     let tabs = NSTabViewController()
     static let selectedTabKey = "SettingsSelectedTab"
 
     init(config: Config, dataDirectory: URL, onRecordingHotKey: @escaping (Bool) -> Void,
-         onChange: @escaping (Config) -> Void, onUninstall: @escaping () -> Void) {
+         onChange: @escaping (Config) -> Void, onCheckForUpdates: @escaping () -> Void,
+         onUninstall: @escaping () -> Void) {
         self.config = config
         self.dataDirectory = dataDirectory
         self.onChange = onChange
+        self.onCheckForUpdates = onCheckForUpdates
         self.onUninstall = onUninstall
         hotKeyRecorder = HotKeyRecorder(hotkey: config.hotkey)
         hotKeyRecorder.onRecordingChange = onRecordingHotKey
@@ -96,6 +101,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
         maxItemsField.integerValue = config.maxItems
         maxItemsStepper.integerValue = config.maxItems
         keepImages.state = config.keepImages ? .on : .off
+        checkForUpdates.state = config.checkForUpdates == true ? .on : .off
         ignoredTable.reloadData()
         refreshSystemState()
     }
@@ -211,6 +217,15 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     @objc func keepImagesChanged() {
         config.keepImages = keepImages.state == .on
         commit()
+    }
+
+    @objc func checkForUpdatesChanged() {
+        config.checkForUpdates = checkForUpdates.state == .on
+        commit()
+    }
+
+    @objc func checkForUpdatesNow() {
+        onCheckForUpdates()
     }
 
     @objc func ignoredButtonClicked() {
