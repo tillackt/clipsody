@@ -2,6 +2,12 @@
 
 All notable changes, newest first. Versions follow [Semantic Versioning](https://semver.org) (see the README, "Versioning"). `./build.sh release` takes the section of the version it builds into the release notes, so every release needs one.
 
+## 1.2.0 – 2026-10-30
+
+- **Find out about new versions – only if you want to.** At the first launch Clipsody asks whether it may check for updates automatically; the default is no. If you agree, it asks GitHub once a day for the latest version number. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. A new version puts a dot on the menu bar icon and adds a menu item that opens the release page; Clipsody downloads and installs nothing itself.
+- **Check for Updates… at any time,** in the menu bar menu or under Settings → General, also with automatic checks turned off.
+- Without your consent, Clipsody still uses no network at all.
+
 ## 1.1.0 – 2026-10-30
 
 - **Ready for clipboard privacy in macOS 27.** Newer versions of macOS ask before an app reads what you copy in other apps. Settings → General now shows whether Clipsody may (Allowed, Asks when needed, Denied) and explains how to allow it. While access is denied, the menu bar menu says so instead of the history silently standing still.
