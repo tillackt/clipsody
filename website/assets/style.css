@@ -43,8 +43,10 @@ html { -webkit-text-size-adjust: 100%; }
 /* In-page links land below the sticky header. */
 [id] { scroll-margin-top: 72px; }
 html { scroll-padding-top: 72px; }
-/* Long compound words (Dutch, German, Polish) must wrap on narrow phones. */
-h1, h2, h3, summary, .lead, .sub { overflow-wrap: break-word; hyphens: auto; }
+/* Long compound words (Dutch, German, Polish) must wrap on narrow phones; hyphenate only there,
+   or headings break into syllables where whole words would fit. */
+h1, h2, h3, summary, .lead, .sub { overflow-wrap: break-word; }
+@media (max-width: 420px) { h1, h2, h3, summary, .lead, .sub { hyphens: auto; } }
 main p a, main li a, .note a, details a { text-decoration: underline; text-underline-offset: 2px; }
 .visually-hidden {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
