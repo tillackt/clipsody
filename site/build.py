@@ -29,6 +29,8 @@ SUPPORT_FILE = "support.html"
 LICENSE = "https://www.gnu.org/licenses/gpl-3.0.html"
 PUBLISHED = "2026-10-30"
 MODIFIED = "2026-10-30"
+# Google Search Console ownership check for the URL-prefix property SITE; it must stay on the root page.
+GOOGLE_VERIFICATION = "y6zX0t01dTgn0AWu55aDK8R_I-DVpHvraNc1cH3KIgc"
 FINGERPRINT = "4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6"
 AUTHOR = {"@type": "Person", "name": "tillackt", "url": "https://github.com/tillackt"}
 # Pages in website/ that are written by hand; every other HTML file there belongs to the generator.
@@ -86,6 +88,8 @@ def head(code, c, page, file, kind, all_content):
     og_alternates = "\n".join(
         f'{I}<meta property="og:locale:alternate" content="{all_content[other]["ogLocale"]}">'
         for other in LANGUAGES if other != code)
+    verification = (f'\n{I}<meta name="google-site-verification" content="{GOOGLE_VERIFICATION}">'
+                    if code == "de" and kind == "home" else "")
     return f"""<!DOCTYPE html>
 <html lang="{code}">
 <head>
@@ -93,7 +97,7 @@ def head(code, c, page, file, kind, all_content):
 {I}<meta name="viewport" content="width=device-width, initial-scale=1">
 {I}<title>{attr(title)}</title>
 {I}<meta name="description" content="{attr(description)}">
-{I}<meta name="color-scheme" content="light dark">
+{I}<meta name="color-scheme" content="light dark">{verification}
 {I}<link rel="canonical" href="{url(code, file)}">
 {alternates}
 {I}<link rel="alternate" hreflang="x-default" href="{url(DEFAULT, file_for(DEFAULT, all_content[DEFAULT], kind))}">
