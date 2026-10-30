@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ver histórico da área de transferência no Mac | Clipsody</title>
+    <meta name="description" content="Como ver no Mac o que você copiou antes? Finder, o histórico da área de transferência do Spotlight (macOS 26) e gerenciadores comparados, passo a passo.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/zwischenablage-verlauf-mac.html">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/historial-portapapeles-mac.html">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/cronologia-appunti-mac.html">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/klembordgeschiedenis-mac.html">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/historia-schowka-mac.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:title" content="Como ver o histórico da área de transferência no Mac">
+    <meta property="og:description" content="Finder, o histórico da área de transferência do Spotlight no macOS 26 e gerenciadores de área de transferência comparados, passo a passo.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Como ver o histórico da área de transferência no Mac: todas as formas",
+      "description": "Como ver no Mac o que você copiou antes? Finder, o histórico da área de transferência do Spotlight (macOS 26) e gerenciadores comparados, passo a passo.",
+      "inLanguage": "pt-BR",
+      "dateModified": "2026-10-30",
+      "mainEntityOfPage": "https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-en.png",
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Clipsody",
+          "item": "https://tillackt.github.io/clipsody/pt-br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guia",
+          "item": "https://tillackt.github.io/clipsody/pt-br/historico-area-de-transferencia-mac.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Onde fica guardada a área de transferência no Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na memória, não em um arquivo. Por isso ela fica vazia depois de reiniciar, e não existe uma pasta com os itens anteriores. Um histórico salvo só existe com o Spotlight (macOS 26 e posterior) ou com um gerenciador de área de transferência."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dá para recuperar o que estava na área de transferência antes de eu copiar outra coisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Só se um histórico estava gravando: o histórico do Spotlight no macOS 26 e posterior, se ativado, ou um gerenciador de área de transferência como o Clipsody. Sem isso, o item anterior é substituído pela próxima cópia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso copiar várias coisas de uma vez?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A área de transferência em si guarda um único item. Com um gerenciador de área de transferência, você simplesmente copia uma coisa depois da outra – cada item fica guardado – e depois cola os que precisar. No Clipsody, por exemplo, com ⌘1 a ⌘9."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como limpo a área de transferência no Mac?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Copie algo inofensivo, como um espaço – isso substitui o conteúdo atual. Limpe o histórico do Spotlight no menu à direita do campo de busca, e o histórico do Clipsody pelo ícone na barra de menus → Limpar Histórico…."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "iPhone e Mac compartilham a área de transferência?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, com a Área de Transferência Universal: com a mesma Conta Apple e com Bluetooth, Wi-Fi e Handoff ativados, você copia no iPhone e cola no Mac. Ela também transfere só o item atual, não um histórico."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Principal">
+            <a href="./#features">Recursos</a>
+            <a href="./#install">Instalação</a>
+            <a href="./#faq">Perguntas</a>
+        </nav>
+        <details class="langs">
+            <summary title="Idioma"><span aria-hidden="true">🌐</span> Português (Brasil)</summary>
+            <ul>
+                <li><a href="../zwischenablage-verlauf-mac.html" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/clipboard-history-mac.html" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/historique-presse-papiers-mac.html" hreflang="fr" lang="fr">Français</a></li>
+                <li><a href="../es/historial-portapapeles-mac.html" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/cronologia-appunti-mac.html" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/klembordgeschiedenis-mac.html" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/historia-schowka-mac.html" hreflang="pl" lang="pl">Polski</a></li>
+                <li><a href="../pt-br/historico-area-de-transferencia-mac.html" hreflang="pt-BR" lang="pt-BR" aria-current="page">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main class="article wrap">
+    <nav class="crumbs" aria-label="Navegação estrutural"><a href="./">Clipsody</a> › Guia</nav>
+    <h1>Como ver o histórico da área de transferência no Mac: todas as formas</h1>
+    <p class="lead">Você copiou uma coisa, depois outra – e agora precisa da primeira de novo? Veja o que o Mac faz sozinho, como funciona o novo histórico do Spotlight e quando vale a pena usar um gerenciador de área de transferência.</p>
+    <p class="updated">Atualizado em outubro de 2026, do macOS 13 Ventura ao macOS 27</p>
+
+    <div class="note"><strong>Resumindo:</strong> a área de transferência do Mac guarda só <em>um</em> item; cada <kbd>⌘C</kbd> substitui o anterior. Desde o macOS 26, o Spotlight mostra os itens copiados recentemente depois que você ativa o recurso (<kbd>⌘</kbd> <kbd>Espaço</kbd>, depois <kbd>⌘4</kbd>). Para um histórico duradouro e pesquisável em qualquer versão do macOS, use um gerenciador de área de transferência (clipboard manager) como o <a href="./">Clipsody</a>.</div>
+
+    <h2 id="finder">1. Mostrar a área de transferência atual no Finder</h2>
+    <p>O Finder mostra o que está na área de transferência agora – mas só esse item:</p>
+    <ol>
+        <li>Clique na mesa ou em uma janela do Finder para deixar o Finder em primeiro plano.</li>
+        <li>Escolha <strong>Editar → Mostrar Área de Transferência</strong> na barra de menus.</li>
+    </ol>
+    <p>Uma janela mostra o conteúdo, como um texto ou uma imagem. Itens anteriores não aparecem: o que você copiou antes foi substituído. A área de transferência fica na memória, não em um arquivo no disco – depois de reiniciar, ela está vazia.</p>
+
+    <h2 id="spotlight">2. O histórico da área de transferência no Spotlight (macOS 26 e posterior)</h2>
+    <p>Com o macOS 26 Tahoe, a Apple deu ao Spotlight um histórico da área de transferência. Ele vem desativado por padrão.</p>
+    <ol>
+        <li>Abra o Spotlight com <kbd>⌘</kbd> <kbd>Espaço</kbd>.</li>
+        <li>Pressione <kbd>⌘4</kbd> ou clique no botão da área de transferência à direita do campo de busca.</li>
+        <li>Na primeira vez, o macOS pergunta se você quer ativar o histórico – confirme.</li>
+        <li>Encontre o item, copie com o botão de copiar ou com <kbd>⌘C</kbd> e cole com <kbd>⌘V</kbd> onde precisar.</li>
+    </ol>
+    <p>Bom para a hora, com limites: os itens ficam guardados por alguns dias no máximo, dependendo do ajuste, não há como fixar, e colar exige dois passos (copiar, depois <kbd>⌘V</kbd>). Macs com macOS 15 ou anterior não têm esse recurso. Você pode limpar o histórico no menu à direita do campo de busca.</p>
+
+    <h2 id="clipboard-manager">3. Todos os itens com um gerenciador de área de transferência</h2>
+    <p>Um gerenciador de área de transferência (também chamado de clipboard manager, app de histórico ou área de transferência múltipla) lembra tudo o que você copia e traz de volta quando você quiser. Veja como funciona com o Clipsody, grátis e no macOS 13 e posterior:</p>
+    <ol>
+        <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Baixe o Clipsody</a> e arraste para <strong>Aplicativos</strong> (<a href="./#install">instalação em detalhes</a>).</li>
+        <li>Copie normalmente com <kbd>⌘C</kbd>. Cada item – texto, imagem ou arquivo – vai para o histórico.</li>
+        <li>Pressione <kbd>⌥⌘C</kbd>: aparece a lista de tudo o que você copiou. Digite uma palavra para filtrar; a busca encontra até texto em capturas de tela.</li>
+        <li><kbd>⏎</kbd> cola o item selecionado bem onde você estava; <kbd>⌥⏎</kbd> cola sem formatação. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros.</li>
+    </ol>
+    <p>Você decide por quanto tempo o histórico dura (de 1 a 365 dias) e quantos itens ele guarda (até 10.000). Itens fixados com <kbd>⌘P</kbd> ficam para sempre. Tudo fica no seu Mac.</p>
+
+    <h2 id="compare">As opções comparadas</h2>
+    <div class="table-scroll">
+        <table class="compare">
+            <thead>
+            <tr><td></td><th scope="col">Finder</th><th scope="col">Histórico do Spotlight</th><th scope="col">Clipsody</th></tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">Mostra</th><td>só o item atual</td><td>itens recentes</td><td>todos, até 10.000</td></tr>
+            <tr><th scope="row">Guardados por</th><td>até o próximo <kbd>⌘C</kbd></td><td>7 dias no máximo</td><td>de 1 a 365 dias</td></tr>
+            <tr><th scope="row">Colar</th><td><kbd>⌘V</kbd></td><td>copiar, depois <kbd>⌘V</kbd></td><td><kbd>⏎</kbd> direto</td></tr>
+            <tr><th scope="row">Fixar</th><td>não</td><td>não</td><td>sim</td></tr>
+            <tr><th scope="row">macOS</th><td>todos</td><td>26 e posterior, desativado por padrão</td><td>13 e posterior</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 id="shortcuts">Atalhos de teclado da área de transferência</h2>
+    <table class="keys">
+        <tbody>
+        <tr><td><kbd>⌘C</kbd></td><td>Copiar</td></tr>
+        <tr><td><kbd>⌘X</kbd></td><td>Recortar</td></tr>
+        <tr><td><kbd>⌘V</kbd></td><td>Colar</td></tr>
+        <tr><td><kbd>⌥⇧⌘V</kbd></td><td>Colar sem formatação (“Colar e Manter Estilo”, em muitos apps)</td></tr>
+        <tr><td><kbd>⇧⌘4</kbd>, segurando <kbd>⌃</kbd> ao selecionar</td><td>Captura de uma área direto para a área de transferência</td></tr>
+        <tr><td><kbd>⌘</kbd> <kbd>Espaço</kbd>, <kbd>⌘4</kbd></td><td>Histórico da área de transferência do Spotlight (macOS 26 e posterior)</td></tr>
+        <tr><td><kbd>⌥⌘C</kbd></td><td>Abrir o histórico no Clipsody</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="faq">Perguntas frequentes</h2>
+    <details><summary>Onde fica guardada a área de transferência no Mac?</summary>
+        <p>Na memória, não em um arquivo. Por isso ela fica vazia depois de reiniciar, e não existe uma pasta com os itens anteriores. Um histórico salvo só existe com o Spotlight (macOS 26 e posterior) ou com um gerenciador de área de transferência.</p></details>
+    <details><summary>Dá para recuperar o que estava na área de transferência antes de eu copiar outra coisa?</summary>
+        <p>Só se um histórico estava gravando: o histórico do Spotlight no macOS 26 e posterior, se ativado, ou um gerenciador de área de transferência como o Clipsody. Sem isso, o item anterior é substituído pela próxima cópia.</p></details>
+    <details><summary>Posso copiar várias coisas de uma vez?</summary>
+        <p>A área de transferência em si guarda um único item. Com um gerenciador de área de transferência, você simplesmente copia uma coisa depois da outra – cada item fica guardado – e depois cola os que precisar. No Clipsody, por exemplo, com <kbd>⌘1</kbd> a <kbd>⌘9</kbd>.</p></details>
+    <details><summary>Como limpo a área de transferência no Mac?</summary>
+        <p>Copie algo inofensivo, como um espaço – isso substitui o conteúdo atual. Limpe o histórico do Spotlight no menu à direita do campo de busca, e o histórico do Clipsody pelo ícone na barra de menus → <strong>Limpar Histórico…</strong>.</p></details>
+    <details><summary>iPhone e Mac compartilham a área de transferência?</summary>
+        <p>Sim, com a Área de Transferência Universal: com a mesma Conta Apple e com Bluetooth, Wi-Fi e Handoff ativados, você copia no iPhone e cola no Mac. Ela também transfere só o item atual, não um histórico.</p></details>
+
+    <div class="cta-box">
+        <h2>Nunca mais perca o que você copiou</h2>
+        <p>O Clipsody é grátis, open source e funciona no macOS 13 e posterior. Tudo fica no seu Mac.</p>
+        <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Baixar o Clipsody grátis</a>
+    </div>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – gerenciador de área de transferência para macOS</span>
+        <a href="./">Início</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Todas as versões</a>
+        <span>Licença: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Aviso legal (em alemão)</a>
+        <a href="../datenschutz.html">Política de privacidade (em alemão)</a>
+    </div>
+</footer>
+</body>
+</html>

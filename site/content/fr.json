@@ -1,0 +1,532 @@
+{
+  "lang": "fr",
+  "ogLocale": "fr_FR",
+  "name": "Français",
+  "guideFile": "historique-presse-papiers-mac.html",
+  "otherLanguages": "Langue",
+  "mainNav": "Navigation principale",
+  "home": {
+    "title": "Historique du presse-papiers Mac, gratuit | Clipsody",
+    "description": "Votre Mac ne garde que le dernier élément copié. Clipsody conserve tout – textes, images, fichiers – et le retrouve au clavier. Gratuit et open source.",
+    "ogTitle": "Clipsody – le presse-papiers qui a de la mémoire, pour Mac",
+    "ogDescription": "Tout ce que vous copiez reste à portée de main : textes, images et fichiers, à rechercher et à recoller au clavier. Gratuit, open source, 100 % local.",
+    "ogImageAlt": "Clipsody : historique du presse-papiers pour Mac",
+    "appDescription": "Gestionnaire de presse-papiers et historique du presse-papiers pour Mac : conserve chaque texte, image et fichier copié, à rechercher et à recoller au clavier.",
+    "nav": {
+      "features": "Fonctions",
+      "compare": "Comparatif",
+      "privacy": "Confidentialité",
+      "install": "Installation",
+      "faq": "FAQ"
+    },
+    "h1": "Le presse-papiers qui a de la mémoire, pour votre Mac",
+    "lead": "Votre Mac ne retient que le dernier élément copié – copiez autre chose, et le précédent disparaît. Clipsody garde tout : textes, images et fichiers. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> vous rend n’importe lequel, et <kbd>⏎</kbd> le colle là où vous étiez en train d’écrire.",
+    "download": "Télécharger gratuitement",
+    "source": "Code source sur GitHub",
+    "meta": "macOS 13 Ventura ou version ultérieure · Apple Silicon et Intel · Interface en 8 langues",
+    "badges": [
+      "Gratuit",
+      "Open source",
+      "Sans compte, sans pistage",
+      "Tout reste sur votre Mac"
+    ],
+    "hero": {
+      "placeholder": "Rechercher…",
+      "items": [
+        [
+          "b",
+          "Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !"
+        ],
+        [
+          "a",
+          "Image 4032×3024 (2,1 Mo)"
+        ],
+        [
+          "c",
+          "Devis_Martin.pdf"
+        ],
+        [
+          "e",
+          "https://example.com/reunions"
+        ],
+        [
+          "d",
+          "📌 IBAN : FR00 0000 0000 …"
+        ],
+        [
+          "b",
+          "git push origin main"
+        ]
+      ],
+      "textPreview": "Peux-tu vérifier la facture d’ici vendredi ?<br><br>Merci !<br>Anna",
+      "textInfo": "Texte · il y a 2 minutes · depuis Mail",
+      "imageInfo": "Image 4032×3024 · il y a 12 minutes · depuis Photos",
+      "fileName": "Devis_Martin.pdf",
+      "filePath": "~/Documents/Clients",
+      "fileMeta": "PDF · 248 Ko",
+      "fileInfo": "Fichier · il y a 1 heure · depuis le Finder",
+      "hint": "⏎ coller   ⌥⏎ sans mise en forme   ⌘P épingler   ⌘⌫ supprimer",
+      "labels": [
+        "Tout ce que vous avez copié : textes, images, fichiers, liens",
+        "Les images restent des images – sans perte, avec aperçu",
+        "Les fichiers sont recollés en tant que fichiers",
+        "La recherche trouve même le texte des captures d’écran"
+      ],
+      "caption": "L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran.",
+      "ocrSearch": "facture",
+      "ocrItems": [
+        [
+          "a",
+          "Image 2880×1800 (612 Ko) – « …<mark>Facture</mark> n° 2026-1043… »"
+        ],
+        [
+          "b",
+          "Peux-tu vérifier la <mark>facture</mark> d’ici vendredi ? ⏎ Merci !"
+        ],
+        [
+          "c",
+          "<mark>Facture</mark>_octobre.pdf"
+        ],
+        [
+          "d",
+          "IBAN pour la <mark>facture</mark> : FR00 0000 …"
+        ],
+        [
+          "e",
+          "https://example.com/<mark>facture</mark>/1043"
+        ]
+      ],
+      "ocrPreview": "Capture d’écran · texte reconnu<br><br><b><mark>Facture</mark> n° 2026-1043</b><br>Période : octobre 2026<br>Total : 1 240,00 €<br>Échéance : 15/11/2026",
+      "ocrInfo": "Aperçu · il y a 3 minutes · image 2880×1800 · texte reconnu"
+    },
+    "problem": {
+      "h2": "Copier, copier – et le premier a disparu",
+      "sub": "Le presse-papiers du Mac ne contient qu’un seul élément. Copiez deux choses d’affilée, et la première est perdue. Clipsody en fait un presse-papiers multiple avec un historique complet.",
+      "withoutTitle": "Sans Clipsody",
+      "without": [
+        "Seul le dernier élément copié est disponible.",
+        "Pour chaque bout de texte : retour à l’autre fenêtre, copier, revenir.",
+        "Ce que vous avez copié il y a une heure a disparu."
+      ],
+      "withTitle": "Avec Clipsody",
+      "with": [
+        "Tout ce que vous copiez dans une seule liste – jusqu’à 10 000 éléments. Vous choisissez combien de temps ils restent : d’un jour à un an.",
+        "Copiez d’abord tout, puis collez dans l’ordre : <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.",
+        "Tapez un mot, et ce que vous avez copié hier réapparaît."
+      ]
+    },
+    "features": {
+      "h2": "Léger. Rapide. Pensé pour le clavier.",
+      "sub": "Pas de lanceur, pas de workflows, pas de cent réglages – un gestionnaire de presse-papiers qui garde simplement la trace de ce que vous copiez.",
+      "cards": [
+        [
+          "⌨️",
+          "Un raccourci, partout",
+          "<kbd>⌥⌘C</kbd> ouvre l’historique du presse-papiers dans n’importe quelle app. Choisissez un élément avec les flèches ou tapez un mot, appuyez sur <kbd>⏎</kbd> – il est collé là où vous étiez."
+        ],
+        [
+          "📋",
+          "Copier plusieurs éléments, coller dans l’ordre",
+          "Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments."
+        ],
+        [
+          "🔎",
+          "Trouve aussi le texte des images",
+          "Les captures d’écran et images copiées sont lues sur votre Mac. Cherchez un mot qui figure dans l’image – et la voilà. <a href=\"#text-in-images\">Comment ça marche</a>"
+        ],
+        [
+          "🖼️",
+          "Textes, images, fichiers",
+          "Les images sont conservées sans perte, et les fichiers copiés sont recollés en tant que fichiers – pas sous forme de chemin."
+        ],
+        [
+          "✍️",
+          "Avec ou sans mise en forme",
+          "<kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur. <kbd>⌥⏎</kbd> colle uniquement le texte brut."
+        ],
+        [
+          "📌",
+          "Épinglez ce qui sert souvent",
+          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> garde un élément en haut de la liste, et il n’est jamais supprimé automatiquement."
+        ]
+      ]
+    },
+    "ocr": {
+      "h2": "La capture d’écran de la semaine dernière ? Cherchez simplement le texte qu’elle contient.",
+      "sub": "Clipsody lit le texte de chaque image que vous copiez – avec la reconnaissance de texte de macOS, directement sur votre Mac. Vous retrouvez ainsi vos captures d’écran par leur contenu.",
+      "dialogTitle": "Échec de la synchronisation",
+      "dialogText": "Code d’erreur 0x8007 – serveur injoignable.",
+      "query": "0x8007",
+      "result": "« Code d’erreur <mark>0x8007</mark> – serveur… »",
+      "recognised": "Texte reconnu",
+      "steps": [
+        [
+          "Une image dans le presse-papiers",
+          "<kbd>⇧⌃⌘4</kbd> capture une partie de l’écran et la place directement dans le presse-papiers. Ou copiez une image depuis n’importe quelle app."
+        ],
+        [
+          "Clipsody lit le texte",
+          "En arrière-plan et sur votre Mac – rien n’est envoyé. Le texte en anglais et en allemand est reconnu."
+        ],
+        [
+          "Retrouvée des jours plus tard",
+          "Appuyez sur <kbd>⌥⌘C</kbd>, tapez « 0x8007 » – voilà la capture. <kbd>⏎</kbd> la colle en tant qu’image, par exemple dans un ticket de support."
+        ]
+      ],
+      "note": "<strong>Bon à savoir :</strong> les captures d’écran que macOS enregistre seulement comme fichier sur le bureau n’arrivent jamais dans le presse-papiers. Ajoutez <kbd>⌃</kbd> au raccourci (<kbd>⇧⌃⌘3</kbd> pour tout l’écran, <kbd>⇧⌃⌘4</kbd> pour une zone)."
+    },
+    "uses": {
+      "h2": "À quoi sert un historique du presse-papiers",
+      "sub": "Partout où vous copiez plus d’une chose.",
+      "cards": [
+        [
+          "Remplir des formulaires",
+          "Récupérez nom, adresse et numéro de commande dans un e-mail et collez-les un par un dans le formulaire – sans changer dix fois de fenêtre."
+        ],
+        [
+          "Rédaction et recherche",
+          "Copiez citations, liens et paragraphes depuis plusieurs sources, puis assemblez-les plus tard."
+        ],
+        [
+          "Développement",
+          "Retrouvez les commandes, chemins et extraits de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse."
+        ],
+        [
+          "Support et bureautique",
+          "Réponses types, numéros de compte et signatures épinglés et prêts – collés en deux touches."
+        ]
+      ]
+    },
+    "compare": {
+      "h2": "Le Mac n’a-t-il pas déjà un historique du presse-papiers ?",
+      "sub": "Depuis macOS 26 Tahoe, Spotlight peut afficher les derniers éléments copiés. Pratique sur le moment – Clipsody est conçu pour tout ce qui doit durer plus de quelques heures.",
+      "head": [
+        "Clipsody",
+        "Historique Spotlight",
+        "Mac de base"
+      ],
+      "rows": [
+        [
+          "Éléments",
+          "tous, jusqu’à 10 000",
+          "les plus récents",
+          "seulement le dernier"
+        ],
+        [
+          "Conservés",
+          "de 1 à 365 jours, au choix",
+          "7 jours maximum",
+          "jusqu’au prochain <kbd>⌘C</kbd>"
+        ],
+        [
+          "Coller",
+          "<kbd>⏎</kbd> colle directement dans l’app précédente",
+          "copier, puis <kbd>⌘V</kbd> vous-même",
+          "<kbd>⌘V</kbd>"
+        ],
+        [
+          "Épingler",
+          "oui, <kbd>⌘P</kbd>",
+          "non",
+          "non"
+        ],
+        [
+          "Compatible",
+          "macOS 13 Ventura et ultérieur",
+          "macOS 26 Tahoe, désactivé par défaut",
+          "tous les Mac"
+        ]
+      ],
+      "more": "En savoir plus : <a href=\"{guide}\">Afficher l’historique du presse-papiers sur Mac – toutes les méthodes</a>"
+    },
+    "keys": {
+      "h2": "Tout au clavier",
+      "sub": "Pas besoin de la souris – mais vous pouvez l’utiliser.",
+      "rows": [
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Ouvrir ou fermer l’historique (personnalisable)"
+        ],
+        [
+          "Taper un mot",
+          "Filtrer la liste – trouve les textes, les noms d’app et le texte des images"
+        ],
+        [
+          "<kbd>↑</kbd> <kbd>↓</kbd>",
+          "Choisir un élément"
+        ],
+        [
+          "<kbd>⏎</kbd>",
+          "Coller avec la mise en forme"
+        ],
+        [
+          "<kbd>⌥⏎</kbd>",
+          "Coller uniquement le texte brut"
+        ],
+        [
+          "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
+          "Coller directement l’un des neuf premiers éléments"
+        ],
+        [
+          "<kbd>⌘P</kbd>",
+          "Épingler ou désépingler"
+        ],
+        [
+          "<kbd>⌘⌫</kbd>",
+          "Supprimer un élément"
+        ],
+        [
+          "<kbd>esc</kbd>",
+          "Fermer"
+        ]
+      ]
+    },
+    "privacy": {
+      "h2": "Votre presse-papiers vous appartient",
+      "sub": "Le presse-papiers voit passer des choses personnelles : mots de passe, adresses, messages. C’est pourquoi Clipsody protège votre vie privée dès la conception.",
+      "cards": [
+        [
+          "Rien ne quitte votre Mac",
+          "Pas de compte, pas de serveur, pas de statistiques. L’historique reste uniquement sur votre Mac et est exclu des sauvegardes. Clipsody ne se connecte à Internet que si vous l’autorisez – pour vérifier s’il existe une nouvelle version."
+        ],
+        [
+          "Les mots de passe restent dehors",
+          "Tout ce que les gestionnaires de mots de passe marquent comme masqué n’est jamais enregistré. 1Password, Bitwarden, KeePassXC et d’autres sont exclus d’office."
+        ],
+        [
+          "Supprimé, c’est supprimé",
+          "Les éléments supprimés sont écrasés dans la base de données, et son journal des modifications est vidé – après un plantage, au lancement suivant."
+        ],
+        [
+          "Images dans un bac à sable",
+          "Les données d’image non fiables sont traitées dans un processus auxiliaire isolé, sans accès aux fichiers ni au réseau, et non dans l’app elle-même."
+        ],
+        [
+          "Vérifiable",
+          "Le code source est ouvert. Inutile de faire confiance à qui que ce soit : vous pouvez le lire et compiler l’app vous-même."
+        ],
+        [
+          "Invisible lors du partage d’écran",
+          "La fenêtre est masquée sur les captures d’écran et lors du partage d’écran classique."
+        ]
+      ]
+    },
+    "install": {
+      "h2": "Installation",
+      "sub": "Clipsody est gratuit et n’est donc pas notarié par Apple. macOS pose une question au premier lancement – voici comment faire :",
+      "steps": [
+        "<a href=\"{download}\">Téléchargez Clipsody.dmg</a>, ouvrez-le et faites glisser <strong>Clipsody</strong> dans <strong>Applications</strong>.",
+        "Lancez Clipsody. macOS indique qu’il ne peut pas vérifier l’app – cliquez sur <strong>Terminé</strong>. Sous macOS 13 et 14, faites plutôt un clic droit sur Clipsody dans <strong>Applications</strong> → <strong>Ouvrir</strong> → <strong>Ouvrir</strong>, et passez l’étape 3.",
+        "Ouvrez <strong>Réglages Système → Confidentialité et sécurité</strong>, faites défiler vers le bas et choisissez <strong>Ouvrir quand même</strong> pour Clipsody (macOS 15 et ultérieur).",
+        "Pour que <kbd>⏎</kbd> colle directement, autorisez Clipsody dans <strong>Confidentialité et sécurité → Accessibilité</strong>. Sans cela, l’élément est seulement placé dans le presse-papiers et vous appuyez vous-même sur <kbd>⌘V</kbd>.",
+        "C’est prêt : appuyez sur <kbd>⌥⌘C</kbd>. L’icône de la barre des menus mène aux réglages, où vous pouvez aussi ouvrir Clipsody à la connexion."
+      ],
+      "verify": "<strong>Authentique ou pas ?</strong> Téléchargez Clipsody uniquement sur ce site ou sur GitHub. Chaque version indique la somme de contrôle SHA-256 du DMG et l’empreinte du certificat de signature. Vérifiez-les dans le Terminal :",
+      "fingerprint": "Empreinte du certificat (SHA-256) :"
+    },
+    "faq": {
+      "h2": "FAQ",
+      "items": [
+        [
+          "Comment voir ce que j’ai copié plus tôt sur un Mac ?",
+          "Par défaut, le Mac ne retient que le dernier élément copié ; dans le Finder, <strong>Édition → Afficher le presse-papiers</strong> affiche exactement celui-là. Depuis macOS 26, Spotlight peut afficher les derniers éléments copiés une fois la fonction activée. Pour un historique durable et consultable de tout ce que vous copiez, utilisez un gestionnaire de presse-papiers comme Clipsody : <kbd>⌥⌘C</kbd> affiche tout."
+        ],
+        [
+          "Comment copier plusieurs éléments et les coller l’un après l’autre ?",
+          "Avec Clipsody, vous copiez comme d’habitude avec <kbd>⌘C</kbd> – chaque élément reste dans l’historique. Pour coller, ouvrez la liste avec <kbd>⌥⌘C</kbd> et choisissez un élément avec <kbd>⏎</kbd>, ou collez directement l’un des neuf premiers avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>."
+        ],
+        [
+          "Clipsody est-il vraiment gratuit ?",
+          "Oui. Pas de publicité, pas d’abonnement, pas de version d’essai. Le code source est ouvert, sous licence GPLv3."
+        ],
+        [
+          "Pourquoi Clipsody a-t-il besoin de l’autorisation Accessibilité ?",
+          "Uniquement pour déclencher <kbd>⌘V</kbd> dans l’app d’où vous venez, une fois l’élément choisi. Clipsody ne s’en sert ni pour lire l’écran ni pour lire vos frappes. Tout fonctionne sans – vous collez simplement vous-même."
+        ],
+        [
+          "Combien de temps l’historique est-il conservé ?",
+          "Par défaut 7 jours et 1 000 éléments au maximum ; vous pouvez augmenter les deux dans les réglages, jusqu’à 365 jours et 10 000 éléments. Les éléments épinglés restent toujours."
+        ],
+        [
+          "Mes mots de passe sont-ils enregistrés ?",
+          "Non, si votre gestionnaire de mots de passe les marque comme masqués – c’est le cas des plus courants. Les gestionnaires de mots de passe connus sont en outre exclus. Une limite : Clipsody voit quelle app est au premier plan, pas qui a copié. Si une extension de navigateur copie un mot de passe sans ce marquage, il arrive dans l’historique – supprimez-le simplement avec <kbd>⌘⌫</kbd>."
+        ],
+        [
+          "Clipsody fonctionne-t-il sur mon Mac ?",
+          "macOS 13 Ventura ou version ultérieure, sur Apple Silicon et Intel."
+        ],
+        [
+          "Dans quelles langues Clipsody est-il disponible ?",
+          "Anglais, allemand, français, espagnol, italien, néerlandais, polonais et portugais du Brésil. Clipsody suit la langue de votre Mac ; vous pouvez en choisir une autre dans <strong>Réglages → Général → Langue</strong>."
+        ],
+        [
+          "Pourquoi macOS demande-t-il si Clipsody peut lire le presse-papiers ?",
+          "Les versions récentes de macOS demandent l’autorisation avant qu’une app lise ce que vous copiez dans d’autres apps. Sans cet accès, Clipsody ne peut pas tenir d’historique : choisissez Autoriser, ou autorisez Clipsody dans <strong>Réglages Système → Confidentialité et sécurité</strong>. Clipsody affiche l’état actuel dans <strong>Réglages → Général</strong>. Votre presse-papiers ne quitte jamais votre Mac pour autant."
+        ],
+        [
+          "Clipsody recherche-t-il des mises à jour ?",
+          "Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et le menu ouvre la page de téléchargement. Vous pouvez modifier ce choix dans <strong>Réglages → Général</strong> ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment."
+        ],
+        [
+          "Comment désinstaller Clipsody ?",
+          "<strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac."
+        ]
+      ]
+    }
+  },
+  "guide": {
+    "title": "Voir l’historique du presse-papiers sur Mac | Clipsody",
+    "description": "Comment retrouver ce que vous avez copié plus tôt sur Mac ? Finder, historique du presse-papiers Spotlight (macOS 26) et gestionnaires comparés pas à pas.",
+    "ogTitle": "Voir l’historique du presse-papiers sur Mac – toutes les méthodes",
+    "ogDescription": "Le Finder, l’historique du presse-papiers de Spotlight dans macOS 26 et les gestionnaires de presse-papiers comparés, pas à pas.",
+    "breadcrumbLabel": "Fil d’Ariane",
+    "crumb": "Guide",
+    "h1": "Afficher l’historique du presse-papiers sur Mac : toutes les méthodes",
+    "lead": "Vous avez copié quelque chose, puis autre chose – et maintenant il vous faut de nouveau le premier ? Voici ce que le Mac sait faire tout seul, comment fonctionne le nouvel historique de Spotlight, et quand un gestionnaire de presse-papiers vaut la peine.",
+    "updated": "Mis à jour en octobre 2026, de macOS 13 Ventura à macOS 27",
+    "summary": "<strong>En bref :</strong> le presse-papiers du Mac ne contient qu’<em>un seul</em> élément ; chaque <kbd>⌘C</kbd> remplace le précédent. Depuis macOS 26, Spotlight affiche les derniers éléments copiés une fois la fonction activée (<kbd>⌘</kbd> <kbd>Espace</kbd>, puis <kbd>⌘4</kbd>). Pour un historique durable et consultable sur toutes les versions de macOS, utilisez un gestionnaire de presse-papiers comme <a href=\"./\">Clipsody</a>.",
+    "finder": {
+      "h2": "1. Afficher le presse-papiers actuel dans le Finder",
+      "intro": "Le Finder montre ce qui se trouve dans le presse-papiers en ce moment – mais uniquement cet élément-là :",
+      "steps": [
+        "Cliquez sur le bureau ou sur une fenêtre du Finder pour que le Finder soit au premier plan.",
+        "Choisissez <strong>Édition → Afficher le presse-papiers</strong> dans la barre des menus."
+      ],
+      "after": "Une fenêtre affiche le contenu, par exemple un texte ou une image. Les éléments précédents n’y sont pas : ce que vous aviez copié avant a été remplacé. Le presse-papiers réside en mémoire, pas dans un fichier sur le disque – après un redémarrage, il est vide."
+    },
+    "spotlight": {
+      "h2": "2. L’historique du presse-papiers dans Spotlight (macOS 26 et ultérieur)",
+      "intro": "Avec macOS 26 Tahoe, Apple a doté Spotlight d’un historique du presse-papiers. Il est désactivé par défaut.",
+      "steps": [
+        "Ouvrez Spotlight avec <kbd>⌘</kbd> <kbd>Espace</kbd>.",
+        "Appuyez sur <kbd>⌘4</kbd>, ou cliquez sur le bouton Presse-papiers à droite du champ de recherche.",
+        "La première fois, macOS demande s’il faut activer l’historique – confirmez.",
+        "Trouvez l’élément, copiez-le avec le bouton de copie ou <kbd>⌘C</kbd>, puis collez-le avec <kbd>⌘V</kbd> là où vous en avez besoin."
+      ],
+      "after": "Pratique sur le moment, mais limité : les éléments sont conservés quelques jours au maximum selon le réglage, il n’est pas possible d’épingler, et coller demande deux étapes (copier, puis <kbd>⌘V</kbd>). Les Mac sous macOS 15 ou antérieur n’en disposent pas. Vous pouvez l’effacer depuis le menu à droite du champ de recherche."
+    },
+    "manager": {
+      "h2": "3. Tous les éléments avec un gestionnaire de presse-papiers",
+      "intro": "Un gestionnaire de presse-papiers (aussi appelé app d’historique du presse-papiers ou presse-papiers multiple) retient tout ce que vous copiez et vous le rend à la demande. Voici comment faire avec Clipsody, gratuit, sous macOS 13 et ultérieur :",
+      "steps": [
+        "<a href=\"{download}\">Téléchargez Clipsody</a> et faites-le glisser dans <strong>Applications</strong> (<a href=\"./#install\">installation détaillée</a>).",
+        "Copiez comme d’habitude avec <kbd>⌘C</kbd>. Chaque élément – texte, image ou fichier – rejoint l’historique.",
+        "Appuyez sur <kbd>⌥⌘C</kbd> : la liste de tout ce que vous avez copié apparaît. Tapez un mot pour la filtrer ; la recherche trouve aussi le texte des captures d’écran.",
+        "<kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers."
+      ],
+      "after": "Vous décidez combien de temps l’historique est conservé (de 1 à 365 jours) et combien d’éléments il contient (jusqu’à 10 000). Les éléments épinglés avec <kbd>⌘P</kbd> restent définitivement. Tout reste sur votre Mac."
+    },
+    "compare": {
+      "h2": "Les solutions comparées",
+      "head": [
+        "Finder",
+        "Historique Spotlight",
+        "Clipsody"
+      ],
+      "rows": [
+        [
+          "Affiche",
+          "seulement l’élément actuel",
+          "les éléments récents",
+          "tous, jusqu’à 10 000"
+        ],
+        [
+          "Conservés",
+          "jusqu’au prochain <kbd>⌘C</kbd>",
+          "7 jours maximum",
+          "de 1 à 365 jours"
+        ],
+        [
+          "Coller",
+          "<kbd>⌘V</kbd>",
+          "copier, puis <kbd>⌘V</kbd>",
+          "<kbd>⏎</kbd> directement"
+        ],
+        [
+          "Épingler",
+          "non",
+          "non",
+          "oui"
+        ],
+        [
+          "macOS",
+          "toutes versions",
+          "26 et ultérieur, désactivé par défaut",
+          "13 et ultérieur"
+        ]
+      ]
+    },
+    "shortcuts": {
+      "h2": "Raccourcis clavier du presse-papiers",
+      "rows": [
+        [
+          "<kbd>⌘C</kbd>",
+          "Copier"
+        ],
+        [
+          "<kbd>⌘X</kbd>",
+          "Couper"
+        ],
+        [
+          "<kbd>⌘V</kbd>",
+          "Coller"
+        ],
+        [
+          "<kbd>⌥⇧⌘V</kbd>",
+          "Coller sans mise en forme (« Coller et adapter le style », dans de nombreuses apps)"
+        ],
+        [
+          "<kbd>⇧⌘4</kbd>, maintenir <kbd>⌃</kbd> pendant la sélection",
+          "Capture d’une zone directement dans le presse-papiers"
+        ],
+        [
+          "<kbd>⌘</kbd> <kbd>Espace</kbd>, <kbd>⌘4</kbd>",
+          "Historique du presse-papiers de Spotlight (macOS 26 et ultérieur)"
+        ],
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Ouvrir l’historique dans Clipsody"
+        ]
+      ]
+    },
+    "faq": {
+      "h2": "FAQ",
+      "items": [
+        [
+          "Où le presse-papiers est-il stocké sur un Mac ?",
+          "En mémoire, pas dans un fichier. C’est pourquoi il est vide après un redémarrage, et aucun dossier ne contient les éléments précédents. Un historique enregistré n’existe qu’avec Spotlight (macOS 26 et ultérieur) ou un gestionnaire de presse-papiers."
+        ],
+        [
+          "Puis-je récupérer ce qui était dans le presse-papiers avant ma dernière copie ?",
+          "Seulement si un historique l’a enregistré : l’historique Spotlight sous macOS 26 et ultérieur, s’il est activé, ou un gestionnaire de presse-papiers comme Clipsody. Sans cela, l’élément précédent est remplacé par la copie suivante."
+        ],
+        [
+          "Puis-je copier plusieurs choses à la fois ?",
+          "Le presse-papiers lui-même ne contient qu’un seul élément. Avec un gestionnaire de presse-papiers, vous copiez simplement une chose après l’autre – chaque élément est conservé – puis vous collez ceux dont vous avez besoin. Dans Clipsody, par exemple, avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>."
+        ],
+        [
+          "Comment vider le presse-papiers sur un Mac ?",
+          "Copiez quelque chose d’anodin, par exemple une espace – cela remplace le contenu actuel. Effacez l’historique Spotlight depuis le menu à droite de son champ de recherche, et celui de Clipsody depuis l’icône de la barre des menus → <strong>Effacer l’historique…</strong>."
+        ],
+        [
+          "L’iPhone et le Mac partagent-ils un presse-papiers ?",
+          "Oui, avec le Presse-papiers universel : avec le même Compte Apple et le Bluetooth, le Wi-Fi et Handoff activés, vous copiez sur l’iPhone et collez sur le Mac. Lui aussi ne transfère que l’élément actuel, pas un historique."
+        ]
+      ]
+    },
+    "cta": {
+      "h2": "Ne perdez plus jamais ce que vous avez copié",
+      "text": "Clipsody est gratuit, open source et fonctionne sous macOS 13 et ultérieur. Tout reste sur votre Mac.",
+      "button": "Télécharger Clipsody gratuitement"
+    }
+  },
+  "footer": {
+    "tagline": "Clipsody – gestionnaire de presse-papiers pour macOS",
+    "guide": "Guide : l’historique du presse-papiers sur Mac",
+    "home": "Accueil",
+    "releases": "Toutes les versions",
+    "license": "Licence :",
+    "legal": "Mentions légales (en allemand)",
+    "privacyPolicy": "Politique de confidentialité (en allemand)"
+  }
+}

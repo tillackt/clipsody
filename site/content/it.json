@@ -1,0 +1,268 @@
+{
+  "lang": "it",
+  "ogLocale": "it_IT",
+  "name": "Italiano",
+  "guideFile": "cronologia-appunti-mac.html",
+  "otherLanguages": "Lingua",
+  "mainNav": "Principale",
+  "home": {
+    "title": "Cronologia appunti Mac gratis – Clipboard manager | Clipsody",
+    "description": "Il Mac ricorda solo l’ultima cosa che hai copiato. Clipsody le tiene tutte – testi, immagini, file – e le ritrovi dalla tastiera. Gratis e open source.",
+    "ogTitle": "Clipsody – gli appunti con la memoria per il tuo Mac",
+    "ogDescription": "Tutto ciò che copi resta a portata di mano: testi, immagini e file, da cercare e incollare di nuovo dalla tastiera. Gratis, open source, tutto in locale.",
+    "ogImageAlt": "Clipsody: cronologia degli appunti per Mac",
+    "appDescription": "Gestore degli appunti e cronologia appunti per Mac: conserva ogni testo, immagine e file che copi, da cercare e incollare di nuovo dalla tastiera.",
+    "nav": {"features": "Funzioni", "compare": "Confronto", "privacy": "Privacy", "install": "Installazione", "faq": "FAQ"},
+    "h1": "Gli appunti con la memoria per il tuo Mac",
+    "lead": "Il Mac tiene solo l’ultima cosa che hai copiato – copi qualcosa di nuovo e quella precedente sparisce. Clipsody conserva tutto: testi, immagini e file. Con <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> ritrovi qualsiasi elemento, e <kbd>⏎</kbd> lo incolla proprio dove stavi scrivendo.",
+    "download": "Scarica gratis",
+    "source": "Codice sorgente su GitHub",
+    "meta": "macOS 13 Ventura o successivo · Apple Silicon e Intel · Interfaccia in 8 lingue",
+    "badges": ["Gratis", "Open source", "Niente account, niente tracciamento", "Tutto resta sul tuo Mac"],
+    "hero": {
+      "placeholder": "Cerca …",
+      "items": [
+        ["b", "Puoi controllare la fattura entro venerdì? ⏎ Grazie!"],
+        ["a", "Immagine 4032×3024 (2,1 MB)"],
+        ["c", "Preventivo_Rossi.pdf"],
+        ["e", "https://example.com/riunioni"],
+        ["d", "📌 IBAN: IT00 0000 0000 …"],
+        ["b", "git push origin main"]
+      ],
+      "textPreview": "Puoi controllare la fattura entro venerdì?<br><br>Grazie!<br>Anna",
+      "textInfo": "Testo · 2 minuti fa · da Mail",
+      "imageInfo": "Immagine 4032×3024 · 12 minuti fa · da Foto",
+      "fileName": "Preventivo_Rossi.pdf",
+      "filePath": "~/Documenti/Clienti",
+      "fileMeta": "PDF · 248 KB",
+      "fileInfo": "File · 1 ora fa · dal Finder",
+      "hint": "⏎ incolla   ⌥⏎ senza formattazione   ⌘P fissa   ⌘⌫ elimina",
+      "labels": [
+        "Tutto ciò che hai copiato: testi, immagini, file, link",
+        "Le immagini restano immagini – senza perdita di qualità, con anteprima",
+        "I file vengono incollati di nuovo come file",
+        "La ricerca trova anche il testo negli screenshot"
+      ],
+      "caption": "La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot.",
+      "ocrSearch": "fattura",
+      "ocrItems": [
+        ["a", "Immagine 2880×1800 (612 KB) – “…<mark>Fattura</mark> n. 2026-1043…”"],
+        ["b", "Puoi controllare la <mark>fattura</mark> entro venerdì? ⏎ Grazie!"],
+        ["c", "<mark>Fattura</mark>_ottobre.pdf"],
+        ["d", "IBAN per la <mark>fattura</mark>: IT00 0000 …"],
+        ["e", "https://example.com/<mark>fattura</mark>/1043"]
+      ],
+      "ocrPreview": "Screenshot · testo riconosciuto<br><br><b><mark>Fattura</mark> n. 2026-1043</b><br>Periodo di riferimento: ottobre 2026<br>Totale: 1.240,00 €<br>Scadenza: 15 nov 2026",
+      "ocrInfo": "Anteprima · 3 minuti fa · immagine 2880×1800 · testo riconosciuto"
+    },
+    "problem": {
+      "h2": "Copi, copi – e la prima cosa è sparita",
+      "sub": "Gli appunti del Mac contengono esattamente un elemento. Copi due cose di seguito e la prima è persa. Clipsody li trasforma in appunti multipli con una cronologia completa.",
+      "withoutTitle": "Senza Clipsody",
+      "without": [
+        "C’è solo l’ultima cosa che hai copiato.",
+        "Per ogni pezzo di testo torni all’altra finestra, copi di nuovo, cambi di nuovo.",
+        "Quello che hai copiato un’ora fa non c’è più."
+      ],
+      "withTitle": "Con Clipsody",
+      "with": [
+        "Tutto ciò che hai copiato in un’unica lista – fino a 10.000 elementi. Decidi tu quanto restano: da un giorno a un anno.",
+        "Prima copi tutto, poi incolli una cosa dopo l’altra: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.",
+        "Scrivi una parola e quello che hai copiato ieri è di nuovo lì."
+      ]
+    },
+    "features": {
+      "h2": "Leggero. Veloce. Pensato per la tastiera.",
+      "sub": "Niente launcher, niente workflow, niente cento impostazioni – un clipboard manager che tiene semplicemente traccia di ciò che copi.",
+      "cards": [
+        ["⌨️", "Una scorciatoia, ovunque", "<kbd>⌥⌘C</kbd> apre la cronologia degli appunti in qualsiasi app. Scegli un elemento con i tasti freccia o scrivi una parola da cercare, premi <kbd>⏎</kbd> – e finisce proprio dove eri."],
+        ["📋", "Copia più cose, incollale in ordine", "Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta. Con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incolli direttamente i primi nove elementi."],
+        ["🔎", "Trova il testo anche nelle immagini", "Screenshot e immagini copiati vengono letti sul tuo Mac. Cerca una parola che compare nell’immagine – ed eccola lì. <a href=\"#text-in-images\">Come funziona</a>"],
+        ["🖼️", "Testi, immagini, file", "Le immagini vengono conservate senza perdita di qualità e i file copiati vengono incollati di nuovo come file – non come percorso."],
+        ["✍️", "Con o senza formattazione", "<kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser. <kbd>⌥⏎</kbd> incolla solo il testo semplice."],
+        ["📌", "Fissa ciò che usi spesso", "IBAN, indirizzo, frammenti di testo, comandi: con <kbd>⌘P</kbd> un elemento resta in cima e non viene mai eliminato automaticamente."]
+      ]
+    },
+    "ocr": {
+      "h2": "Lo screenshot della settimana scorsa? Cerca il testo che contiene.",
+      "sub": "Clipsody legge il testo di ogni immagine che copi – con il riconoscimento del testo di macOS, direttamente sul tuo Mac. Così trovi gli screenshot in base a ciò che c’è scritto.",
+      "dialogTitle": "Sincronizzazione non riuscita",
+      "dialogText": "Codice errore 0x8007 – server non raggiungibile.",
+      "query": "0x8007",
+      "result": "“Codice errore <mark>0x8007</mark> – server…”",
+      "recognised": "Testo riconosciuto",
+      "steps": [
+        ["Immagine negli appunti", "<kbd>⇧⌃⌘4</kbd> cattura una parte dello schermo e la mette subito negli appunti. Oppure copia un’immagine da qualsiasi app."],
+        ["Clipsody legge il testo", "In background e sul tuo Mac – non viene caricato nulla. Riconosce testo in inglese e in tedesco."],
+        ["Lo ritrovi giorni dopo", "Premi <kbd>⌥⌘C</kbd>, scrivi “0x8007” – ed ecco lo screenshot. <kbd>⏎</kbd> lo incolla come immagine, per esempio in un ticket di assistenza."]
+      ],
+      "note": "<strong>Buono a sapersi:</strong> gli screenshot che macOS salva solo come file sulla scrivania non arrivano mai negli appunti. Per farlo aggiungi <kbd>⌃</kbd> alla scorciatoia (<kbd>⇧⌃⌘3</kbd> per tutto lo schermo, <kbd>⇧⌃⌘4</kbd> per un’area)."
+    },
+    "uses": {
+      "h2": "A cosa serve una cronologia degli appunti",
+      "sub": "Ovunque copi più di una cosa.",
+      "cards": [
+        ["Compilare moduli", "Raccogli nome, indirizzo e numero d’ordine da un’email e incollali nel modulo uno alla volta – senza cambiare finestra dieci volte."],
+        ["Scrittura e ricerca", "Copia citazioni, link e paragrafi da più fonti e mettili insieme più tardi."],
+        ["Programmazione", "Ritrova comandi, percorsi e frammenti di codice copiati ore fa. Fissa i comandi che usi di continuo."],
+        ["Assistenza e lavoro d’ufficio", "Risposte standard, numeri di conto e firme fissati e sempre pronti – incollati con due tasti."]
+      ]
+    },
+    "compare": {
+      "h2": "Ma il Mac non ha già una cronologia degli appunti?",
+      "sub": "Da macOS 26 Tahoe, Spotlight può mostrare gli ultimi elementi copiati. Utile sul momento – Clipsody è fatto per tutto ciò che deve durare più di qualche ora.",
+      "head": ["Clipsody", "Cronologia di Spotlight", "Mac senza app"],
+      "rows": [
+        ["Elementi", "tutti, fino a 10.000", "quelli recenti", "solo l’ultimo"],
+        ["Conservati per", "da 1 a 365 giorni, a tua scelta", "al massimo 7 giorni", "fino al prossimo <kbd>⌘C</kbd>"],
+        ["Incollare", "<kbd>⏎</kbd> incolla direttamente nell’app precedente", "copia, poi <kbd>⌘V</kbd> a mano", "<kbd>⌘V</kbd>"],
+        ["Fissare", "sì, <kbd>⌘P</kbd>", "no", "no"],
+        ["Funziona su", "macOS 13 Ventura e successivi", "macOS 26 Tahoe, disattivata di default", "ogni Mac"]
+      ],
+      "more": "Approfondisci: <a href=\"{guide}\">Come vedere la cronologia degli appunti su Mac – tutti i modi</a>"
+    },
+    "keys": {
+      "h2": "Tutto dalla tastiera",
+      "sub": "Il mouse non ti serve – ma puoi usarlo.",
+      "rows": [
+        ["<kbd>⌥⌘C</kbd>", "Apri o chiudi la cronologia (personalizzabile)"],
+        ["Scrivi una parola da cercare", "Filtra la lista – trova testi, nomi di app e testo nelle immagini"],
+        ["<kbd>↑</kbd> <kbd>↓</kbd>", "Scegli un elemento"],
+        ["<kbd>⏎</kbd>", "Incolla con formattazione"],
+        ["<kbd>⌥⏎</kbd>", "Incolla solo testo semplice"],
+        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Incolla direttamente uno dei primi nove elementi"],
+        ["<kbd>⌘P</kbd>", "Fissa o sblocca"],
+        ["<kbd>⌘⌫</kbd>", "Elimina un elemento"],
+        ["<kbd>esc</kbd>", "Chiudi"]
+      ]
+    },
+    "privacy": {
+      "h2": "I tuoi appunti sono tuoi",
+      "sub": "Negli appunti finiscono cose personali: password, indirizzi, messaggi. Per questo Clipsody è privato fin dalla progettazione.",
+      "cards": [
+        ["Nulla lascia il tuo Mac", "Niente account, niente server, niente statistiche. La cronologia esiste solo sul tuo Mac ed è esclusa dai backup. Clipsody va online solo se glielo permetti – per chiedere se c’è una nuova versione."],
+        ["Le password restano fuori", "Ciò che i gestori di password segnano come nascosto non viene mai salvato. 1Password, Bitwarden, KeePassXC e altri sono esclusi fin dall’inizio."],
+        ["Eliminato vuol dire eliminato", "Gli elementi eliminati vengono sovrascritti nel database e il suo registro delle modifiche viene svuotato – dopo un crash, al prossimo avvio."],
+        ["Immagini in una sandbox", "I dati delle immagini non attendibili vengono elaborati in un processo di supporto isolato, senza accesso a file o rete, non nell’app stessa."],
+        ["Verificabile", "Il codice sorgente è aperto. Non devi fidarti di nessuno – puoi leggerlo e compilare l’app da te."],
+        ["Invisibile nella condivisione schermo", "La finestra non compare negli screenshot né nella classica condivisione dello schermo."]
+      ]
+    },
+    "install": {
+      "h2": "Installazione",
+      "sub": "Clipsody è gratuito e quindi non è autenticato da Apple. Al primo avvio macOS chiede conferma una volta sola – ecco come fare:",
+      "steps": [
+        "<a href=\"{download}\">Scarica Clipsody.dmg</a>, aprilo e trascina <strong>Clipsody</strong> in <strong>Applicazioni</strong>.",
+        "Avvia Clipsody. macOS dice che non può verificare l’app – fai clic su <strong>Fine</strong>. Su macOS 13 e 14 invece fai clic destro su Clipsody in <strong>Applicazioni</strong> → <strong>Apri</strong> → <strong>Apri</strong> e salta il passaggio 3.",
+        "Apri <strong>Impostazioni di Sistema → Privacy e sicurezza</strong>, scorri verso il basso e scegli <strong>Apri comunque</strong> per Clipsody (macOS 15 e successivi).",
+        "Perché <kbd>⏎</kbd> possa incollare direttamente, consenti Clipsody in <strong>Privacy e sicurezza → Accessibilità</strong>. Senza questo permesso l’elemento viene solo messo negli appunti e premi tu <kbd>⌘V</kbd>.",
+        "Fatto: premi <kbd>⌥⌘C</kbd>. Dall’icona nella barra dei menu arrivi alle impostazioni, dove puoi anche far partire Clipsody al login."
+      ],
+      "verify": "<strong>Originale o no?</strong> Scarica Clipsody solo da questo sito o da GitHub. Ogni release riporta il checksum SHA-256 del DMG e l’impronta del certificato di firma. Verificali nel Terminale:",
+      "fingerprint": "Impronta del certificato (SHA-256):"
+    },
+    "faq": {
+      "h2": "Domande frequenti",
+      "items": [
+        ["Come vedo su Mac cosa ho copiato prima?", "Di serie il Mac ricorda solo l’ultima cosa che hai copiato; nel Finder, <strong>Composizione → Mostra Appunti</strong> mostra esattamente quell’unico elemento. Da macOS 26, Spotlight può mostrare gli ultimi elementi copiati, se attivi la funzione. Per una cronologia duratura e ricercabile di tutto ciò che copi usa un gestore degli appunti come Clipsody: <kbd>⌥⌘C</kbd> ti mostra tutto."],
+        ["Come copio più cose e le incollo una dopo l’altra?", "Con Clipsody copi come sempre con <kbd>⌘C</kbd> – ogni elemento resta nella cronologia. Per incollare, apri la lista con <kbd>⌥⌘C</kbd> e scegli un elemento con <kbd>⏎</kbd>, oppure incolla direttamente uno dei primi nove con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd>."],
+        ["Clipsody è davvero gratis?", "Sì. Niente pubblicità, niente abbonamento, niente versione di prova. Il codice sorgente è aperto, con licenza GPLv3."],
+        ["Perché Clipsody ha bisogno del permesso di Accessibilità?", "Solo per attivare <kbd>⌘V</kbd> nell’app da cui arrivi, dopo che hai scelto un elemento. Clipsody non lo usa per leggere lo schermo o ciò che digiti. Funziona tutto anche senza – incolli semplicemente tu."],
+        ["Per quanto tempo viene conservata la cronologia?", "Di default 7 giorni e al massimo 1.000 elementi; puoi aumentare entrambi nelle impostazioni, fino a 365 giorni e 10.000 elementi. Gli elementi fissati restano sempre."],
+        ["Le mie password vengono salvate?", "No, se il tuo gestore di password le segna come nascoste – quelli più diffusi lo fanno. Anche i gestori di password noti sono esclusi. Un limite: Clipsody vede quale app è in primo piano, non chi ha copiato. Se un’estensione del browser copia una password senza quel contrassegno, finisce nella cronologia – eliminala semplicemente con <kbd>⌘⌫</kbd>."],
+        ["Clipsody funziona sul mio Mac?", "macOS 13 Ventura o successivo, su Apple Silicon e Intel."],
+        ["In quali lingue è disponibile Clipsody?", "Inglese, tedesco, francese, spagnolo, italiano, olandese, polacco e portoghese brasiliano. Clipsody segue la lingua del tuo Mac; puoi sceglierne un’altra in <strong>Impostazioni → Generale → Lingua</strong>."],
+        ["Perché macOS chiede se Clipsody può leggere gli appunti?", "Le versioni recenti di macOS chiedono il permesso prima che un’app legga ciò che copi in altre app. Senza questo accesso Clipsody non può tenere una cronologia: scegli Consenti, oppure consenti Clipsody in <strong>Impostazioni di Sistema → Privacy e sicurezza</strong>. Clipsody mostra lo stato attuale in <strong>Impostazioni → Generale</strong>. I tuoi appunti comunque non lasciano mai il Mac."],
+        ["Clipsody controlla gli aggiornamenti?", "Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e il menu apre la pagina di download. Puoi cambiarlo in <strong>Impostazioni → Generale</strong>; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento."],
+        ["Come disinstallo Clipsody?", "<strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."]
+      ]
+    }
+  },
+  "guide": {
+    "title": "Cronologia appunti Mac: come vederla, tutti i modi | Clipsody",
+    "description": "Come vedi su Mac cosa hai copiato prima? Finder, la cronologia appunti di Spotlight (macOS 26) e i gestori degli appunti a confronto, passo dopo passo.",
+    "ogTitle": "Come vedere la cronologia degli appunti su Mac – tutti i modi",
+    "ogDescription": "Finder, la cronologia appunti di Spotlight in macOS 26 e i gestori degli appunti a confronto, passo dopo passo.",
+    "breadcrumbLabel": "Percorso",
+    "crumb": "Guida",
+    "h1": "Come vedere la cronologia degli appunti su Mac: tutti i modi",
+    "lead": "Hai copiato qualcosa, poi qualcos’altro – e ora ti serve di nuovo la prima? Ecco cosa sa fare il Mac da solo, come funziona la nuova cronologia di Spotlight e quando conviene un gestore degli appunti.",
+    "updated": "Aggiornato a ottobre 2026, da macOS 13 Ventura a macOS 27",
+    "summary": "<strong>In breve:</strong> gli appunti del Mac contengono <em>un solo</em> elemento; ogni <kbd>⌘C</kbd> sostituisce il precedente. Da macOS 26, Spotlight mostra gli ultimi elementi copiati, se lo attivi (<kbd>⌘</kbd> <kbd>Spazio</kbd>, poi <kbd>⌘4</kbd>). Per una cronologia duratura e ricercabile su qualsiasi versione di macOS usa un gestore degli appunti come <a href=\"./\">Clipsody</a>.",
+    "finder": {
+      "h2": "1. Mostrare gli appunti attuali nel Finder",
+      "intro": "Il Finder mostra cosa c’è negli appunti in questo momento – ma solo quell’unico elemento:",
+      "steps": ["Fai clic sulla scrivania o su una finestra del Finder, così il Finder è in primo piano.", "Nella barra dei menu scegli <strong>Composizione → Mostra Appunti</strong>."],
+      "after": "Una finestra mostra il contenuto, per esempio un testo o un’immagine. Gli elementi precedenti non ci sono: ciò che hai copiato prima è stato sostituito. Gli appunti stanno in memoria, non in un file sul disco – dopo un riavvio sono vuoti."
+    },
+    "spotlight": {
+      "h2": "2. La cronologia degli appunti in Spotlight (macOS 26 e successivi)",
+      "intro": "Con macOS 26 Tahoe, Apple ha dato a Spotlight una cronologia degli appunti. Di default è disattivata.",
+      "steps": [
+        "Apri Spotlight con <kbd>⌘</kbd> <kbd>Spazio</kbd>.",
+        "Premi <kbd>⌘4</kbd> oppure fai clic sul pulsante Appunti a destra del campo di ricerca.",
+        "La prima volta macOS chiede se attivare la cronologia – conferma.",
+        "Trova l’elemento, copialo con il pulsante Copia o con <kbd>⌘C</kbd> e incollalo con <kbd>⌘V</kbd> dove ti serve."
+      ],
+      "after": "Utile sul momento, ma con dei limiti: a seconda dell’impostazione gli elementi restano al massimo qualche giorno, non si possono fissare e incollare richiede due passaggi (copiare, poi <kbd>⌘V</kbd>). I Mac con macOS 15 o precedente non ce l’hanno. Puoi svuotarla dal menu a destra del campo di ricerca."
+    },
+    "manager": {
+      "h2": "3. Ogni elemento con un gestore degli appunti",
+      "intro": "Un gestore degli appunti (detto anche clipboard manager, app per la cronologia degli appunti o appunti multipli) ricorda tutto ciò che copi e te lo restituisce quando serve. Ecco come funziona con Clipsody, gratis e su macOS 13 e successivi:",
+      "steps": [
+        "<a href=\"{download}\">Scarica Clipsody</a> e trascinalo in <strong>Applicazioni</strong> (<a href=\"./#install\">installazione in dettaglio</a>).",
+        "Copia come sempre con <kbd>⌘C</kbd>. Ogni elemento – testo, immagine o file – finisce nella cronologia.",
+        "Premi <kbd>⌥⌘C</kbd>: compare la lista di tutto ciò che hai copiato. Scrivi una parola per filtrarla; trova anche il testo negli screenshot.",
+        "<kbd>⏎</kbd> incolla l’elemento selezionato proprio dove eri; <kbd>⌥⏎</kbd> lo incolla senza formattazione. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove."
+      ],
+      "after": "Decidi tu quanto dura la cronologia (da 1 a 365 giorni) e quanti elementi contiene (fino a 10.000). Gli elementi fissati con <kbd>⌘P</kbd> restano per sempre. Tutto resta sul tuo Mac."
+    },
+    "compare": {
+      "h2": "Le opzioni a confronto",
+      "head": ["Finder", "Cronologia di Spotlight", "Clipsody"],
+      "rows": [
+        ["Mostra", "solo l’elemento attuale", "gli ultimi elementi", "tutti, fino a 10.000"],
+        ["Conservati per", "fino al prossimo <kbd>⌘C</kbd>", "al massimo 7 giorni", "da 1 a 365 giorni"],
+        ["Incollare", "<kbd>⌘V</kbd>", "copia, poi <kbd>⌘V</kbd>", "<kbd>⏎</kbd> direttamente"],
+        ["Fissare", "no", "no", "sì"],
+        ["macOS", "tutti", "26 e successivi, disattivata di default", "13 e successivi"]
+      ]
+    },
+    "shortcuts": {
+      "h2": "Scorciatoie da tastiera per gli appunti",
+      "rows": [
+        ["<kbd>⌘C</kbd>", "Copia"],
+        ["<kbd>⌘X</kbd>", "Taglia"],
+        ["<kbd>⌘V</kbd>", "Incolla"],
+        ["<kbd>⌥⇧⌘V</kbd>", "Incolla senza formattazione (“Incolla e mantieni stile”, in molte app)"],
+        ["<kbd>⇧⌘4</kbd>, tieni premuto <kbd>⌃</kbd> mentre selezioni", "Screenshot di un’area direttamente negli appunti"],
+        ["<kbd>⌘</kbd> <kbd>Spazio</kbd>, <kbd>⌘4</kbd>", "Cronologia appunti di Spotlight (macOS 26 e successivi)"],
+        ["<kbd>⌥⌘C</kbd>", "Apri la cronologia in Clipsody"]
+      ]
+    },
+    "faq": {
+      "h2": "Domande frequenti",
+      "items": [
+        ["Dove vengono salvati gli appunti su Mac?", "In memoria, non in un file. Per questo dopo un riavvio sono vuoti e non esiste una cartella con gli elementi precedenti. Una cronologia salvata esiste solo con Spotlight (macOS 26 e successivi) o con un gestore degli appunti."],
+        ["Posso recuperare ciò che era negli appunti prima di copiare altro?", "Solo se una cronologia stava registrando: quella di Spotlight su macOS 26 e successivi, se attivata, oppure un gestore degli appunti come Clipsody. Senza, l’elemento precedente viene sostituito dalla copia successiva."],
+        ["Posso copiare più cose insieme?", "Gli appunti di per sé contengono un solo elemento. Con un gestore degli appunti copi semplicemente una cosa dopo l’altra – ogni elemento viene conservato – e poi incolli quelli che ti servono. In Clipsody, per esempio, con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd>."],
+        ["Come svuoto gli appunti su Mac?", "Copia qualcosa di innocuo, per esempio uno spazio – sostituisce il contenuto attuale. La cronologia di Spotlight si svuota dal menu a destra del suo campo di ricerca, quella di Clipsody dall’icona nella barra dei menu → <strong>Cancella cronologia…</strong>."],
+        ["iPhone e Mac condividono gli appunti?", "Sì, con Appunti universali: con lo stesso Account Apple e Bluetooth, Wi-Fi e Handoff attivati, puoi copiare su iPhone e incollare sul Mac. Anche così viene trasferito solo l’elemento attuale, non una cronologia."]
+      ]
+    },
+    "cta": {
+      "h2": "Non perdere mai più nulla di ciò che copi",
+      "text": "Clipsody è gratis, open source e funziona su macOS 13 e successivi. Tutto resta sul tuo Mac.",
+      "button": "Scarica Clipsody gratis"
+    }
+  },
+  "footer": {
+    "tagline": "Clipsody – gestore degli appunti per macOS",
+    "guide": "Guida: cronologia degli appunti su Mac",
+    "home": "Home",
+    "releases": "Tutte le release",
+    "license": "Licenza:",
+    "legal": "Note legali (in tedesco)",
+    "privacyPolicy": "Informativa sulla privacy (in tedesco)"
+  }
+}

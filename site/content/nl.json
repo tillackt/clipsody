@@ -1,0 +1,268 @@
+{
+  "lang": "nl",
+  "ogLocale": "nl_NL",
+  "name": "Nederlands",
+  "guideFile": "klembordgeschiedenis-mac.html",
+  "otherLanguages": "Taal",
+  "mainNav": "Hoofdmenu",
+  "home": {
+    "title": "Gratis klembordbeheerder Mac – Klembordgeschiedenis | Clipsody",
+    "description": "Je Mac onthoudt alleen het laatste wat je hebt gekopieerd. Clipsody bewaart alles – tekst, afbeeldingen, bestanden – doorzoekbaar via je toetsenbord. Gratis.",
+    "ogTitle": "Clipsody – het klembord met een geheugen voor je Mac",
+    "ogDescription": "Alles wat je kopieert blijft binnen handbereik: tekst, afbeeldingen en bestanden, doorzoekbaar en terug te plakken via het toetsenbord. Gratis, open source, volledig lokaal.",
+    "ogImageAlt": "Clipsody: klembordgeschiedenis voor de Mac",
+    "appDescription": "Klembordbeheerder en klembordgeschiedenis voor de Mac: bewaart elke tekst, afbeelding en elk bestand dat je kopieert, doorzoekbaar en terug te plakken via het toetsenbord.",
+    "nav": {"features": "Functies", "compare": "Vergelijking", "privacy": "Privacy", "install": "Installatie", "faq": "FAQ"},
+    "h1": "Het klembord met een geheugen voor je Mac",
+    "lead": "Je Mac bewaart alleen het laatste wat je hebt gekopieerd – kopieer je iets nieuws, dan is het vorige weg. Clipsody bewaart alles: tekst, afbeeldingen en bestanden. Met <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> haal je alles terug, en <kbd>⏎</kbd> plakt het precies waar je aan het typen was.",
+    "download": "Gratis downloaden",
+    "source": "Broncode op GitHub",
+    "meta": "macOS 13 Ventura of nieuwer · Apple silicon en Intel · Interface in 8 talen",
+    "badges": ["Gratis", "Open source", "Geen account, geen tracking", "Alles blijft op je Mac"],
+    "hero": {
+      "placeholder": "Zoek …",
+      "items": [
+        ["b", "Wil je de factuur vóór vrijdag nakijken? ⏎ Bedankt!"],
+        ["a", "Afbeelding 4032×3024 (2,1 MB)"],
+        ["c", "Offerte_DeVries.pdf"],
+        ["e", "https://example.com/vergaderingen"],
+        ["d", "📌 IBAN: NL00 0000 0000 …"],
+        ["b", "git push origin main"]
+      ],
+      "textPreview": "Wil je de factuur vóór vrijdag nakijken?<br><br>Bedankt!<br>Anna",
+      "textInfo": "Tekst · 2 minuten geleden · uit Mail",
+      "imageInfo": "Afbeelding 4032×3024 · 12 minuten geleden · uit Foto's",
+      "fileName": "Offerte_DeVries.pdf",
+      "filePath": "~/Documenten/Klanten",
+      "fileMeta": "PDF · 248 KB",
+      "fileInfo": "Bestand · 1 uur geleden · uit Finder",
+      "hint": "⏎ plakken   ⌥⏎ zonder opmaak   ⌘P vastzetten   ⌘⌫ verwijderen",
+      "labels": [
+        "Alles wat je hebt gekopieerd: tekst, afbeeldingen, bestanden, links",
+        "Afbeeldingen blijven afbeeldingen – verliesvrij, met voorvertoning",
+        "Bestanden worden weer als bestanden geplakt",
+        "Zoeken vindt zelfs tekst in schermafbeeldingen"
+      ],
+      "caption": "De klembordgeschiedenis in Clipsody: alles wat je hebt gekopieerd, een afbeelding, een bestand en zoeken naar tekst in een schermafbeelding.",
+      "ocrSearch": "factuur",
+      "ocrItems": [
+        ["a", "Afbeelding 2880×1800 (612 KB) – “…<mark>Factuur</mark> nr. 2026-1043…”"],
+        ["b", "Wil je de <mark>factuur</mark> vóór vrijdag nakijken? ⏎ Bedankt!"],
+        ["c", "<mark>Factuur</mark>_oktober.pdf"],
+        ["d", "IBAN voor de <mark>factuur</mark>: NL00 0000 …"],
+        ["e", "https://example.com/<mark>factuur</mark>/1043"]
+      ],
+      "ocrPreview": "Schermafbeelding · tekst herkend<br><br><b><mark>Factuur</mark> nr. 2026-1043</b><br>Periode: oktober 2026<br>Totaal: € 1.240,00<br>Vervaldatum: 15 nov. 2026",
+      "ocrInfo": "Voorvertoning · 3 minuten geleden · afbeelding 2880×1800 · tekst herkend"
+    },
+    "problem": {
+      "h2": "Kopiëren, kopiëren – en het eerste is weg",
+      "sub": "Het klembord van de Mac bevat precies één item. Kopieer je twee dingen na elkaar, dan ben je het eerste kwijt. Clipsody maakt er een multi-klembord van met een volledige geschiedenis.",
+      "withoutTitle": "Zonder Clipsody",
+      "without": [
+        "Alleen het laatste wat je hebt gekopieerd is er nog.",
+        "Voor elk stukje tekst terug naar het andere venster, opnieuw kopiëren, weer wisselen.",
+        "Wat je een uur geleden hebt gekopieerd, is weg."
+      ],
+      "withTitle": "Met Clipsody",
+      "with": [
+        "Alles wat je hebt gekopieerd in één lijst – tot 10.000 items. Jij bepaalt hoe lang ze blijven: van één dag tot een jaar.",
+        "Eerst alles kopiëren, dan het een na het ander plakken: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.",
+        "Typ een woord en wat je gisteren kopieerde is terug."
+      ]
+    },
+    "features": {
+      "h2": "Licht. Snel. Toetsenbord eerst.",
+      "sub": "Geen launcher, geen workflows, geen honderd instellingen – een clipboard manager die gewoon bijhoudt wat je kopieert.",
+      "cards": [
+        ["⌨️", "Eén sneltoets, overal", "<kbd>⌥⌘C</kbd> opent je klembordgeschiedenis in elke app. Kies een item met de pijltjestoetsen of typ een zoekwoord, druk op <kbd>⏎</kbd> – en het item staat waar je was."],
+        ["📋", "Meerdere dingen kopiëren, op volgorde plakken", "Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een. Met <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plak je de eerste negen items direct."],
+        ["🔎", "Vindt ook tekst in afbeeldingen", "Gekopieerde schermafbeeldingen en afbeeldingen worden op je Mac gelezen. Zoek op een woord dat in de afbeelding staat – en daar is hij. <a href=\"#text-in-images\">Zo werkt het</a>"],
+        ["🖼️", "Tekst, afbeeldingen, bestanden", "Afbeeldingen worden verliesvrij bewaard en gekopieerde bestanden worden weer als bestand geplakt – niet als pad."],
+        ["✍️", "Met of zonder opmaak", "<kbd>⏎</kbd> behoudt vet, links en tabellen uit Word, Outlook of de browser. <kbd>⌥⏎</kbd> plakt alleen platte tekst."],
+        ["📌", "Zet vast wat je vaak gebruikt", "IBAN, adres, tekstfragmenten, commando's: met <kbd>⌘P</kbd> blijft een item bovenaan staan en wordt het nooit automatisch verwijderd."]
+      ]
+    },
+    "ocr": {
+      "h2": "Die schermafbeelding van vorige week? Zoek gewoon op de tekst erin.",
+      "sub": "Clipsody leest de tekst op elke afbeelding die je kopieert – met de tekstherkenning van macOS, gewoon op je Mac. Zo vind je schermafbeeldingen terug op wat erop staat.",
+      "dialogTitle": "Synchronisatie mislukt",
+      "dialogText": "Foutcode 0x8007 – server niet bereikbaar.",
+      "query": "0x8007",
+      "result": "“Foutcode <mark>0x8007</mark> – server…”",
+      "recognised": "Tekst herkend",
+      "steps": [
+        ["Afbeelding op het klembord", "<kbd>⇧⌃⌘4</kbd> legt een deel van het scherm vast en zet het direct op het klembord. Of kopieer een afbeelding uit een willekeurige app."],
+        ["Clipsody leest de tekst", "Op de achtergrond en op je Mac – er wordt niets geüpload. Engelse en Duitse tekst wordt herkend."],
+        ["Dagen later terugvinden", "Druk op <kbd>⌥⌘C</kbd>, typ ‘0x8007’ – daar is de schermafbeelding. <kbd>⏎</kbd> plakt hem als afbeelding, bijvoorbeeld in een supportticket."]
+      ],
+      "note": "<strong>Goed om te weten:</strong> schermafbeeldingen die macOS alleen als bestand op het bureaublad bewaart, komen nooit op het klembord. Voeg daarvoor <kbd>⌃</kbd> toe aan de sneltoets (<kbd>⇧⌃⌘3</kbd> voor het hele scherm, <kbd>⇧⌃⌘4</kbd> voor een gebied)."
+    },
+    "uses": {
+      "h2": "Waar een klembordgeschiedenis handig voor is",
+      "sub": "Overal waar je meer dan één ding kopieert.",
+      "cards": [
+        ["Formulieren invullen", "Verzamel naam, adres en bestelnummer uit een e-mail en plak ze een voor een in het formulier – zonder tien keer van venster te wisselen."],
+        ["Schrijven en onderzoek", "Kopieer citaten, links en alinea's uit meerdere bronnen en voeg ze later samen."],
+        ["Programmeren", "Vind commando's, paden en snippets terug die je uren geleden hebt gekopieerd. Zet de commando's die je steeds gebruikt vast."],
+        ["Support en kantoorwerk", "Standaardantwoorden, rekeningnummers en handtekeningen vastgezet en klaar voor gebruik – geplakt met twee toetsen."]
+      ]
+    },
+    "compare": {
+      "h2": "Heeft de Mac niet al een klembordgeschiedenis?",
+      "sub": "Sinds macOS 26 Tahoe kan Spotlight recent gekopieerde items tonen. Handig voor even – Clipsody is gemaakt voor alles wat langer dan een paar uur moet blijven.",
+      "head": ["Clipsody", "Spotlight-geschiedenis", "Standaard Mac"],
+      "rows": [
+        ["Items", "allemaal, tot 10.000", "recente", "alleen het laatste"],
+        ["Bewaard", "1 tot 365 dagen, naar keuze", "maximaal 7 dagen", "tot de volgende <kbd>⌘C</kbd>"],
+        ["Plakken", "<kbd>⏎</kbd> plakt direct in de vorige app", "kopiëren, dan zelf <kbd>⌘V</kbd>", "<kbd>⌘V</kbd>"],
+        ["Vastzetten", "ja, <kbd>⌘P</kbd>", "nee", "nee"],
+        ["Werkt op", "macOS 13 Ventura en nieuwer", "macOS 26 Tahoe, standaard uit", "elke Mac"]
+      ],
+      "more": "Meer: <a href=\"{guide}\">Je klembordgeschiedenis bekijken op een Mac – alle manieren</a>"
+    },
+    "keys": {
+      "h2": "Alles via het toetsenbord",
+      "sub": "Je hebt de muis niet nodig – maar het mag wel.",
+      "rows": [
+        ["<kbd>⌥⌘C</kbd>", "Geschiedenis openen of sluiten (instelbaar)"],
+        ["Zoekwoord typen", "De lijst filteren – vindt tekst, appnamen en tekst in afbeeldingen"],
+        ["<kbd>↑</kbd> <kbd>↓</kbd>", "Item kiezen"],
+        ["<kbd>⏎</kbd>", "Plakken met opmaak"],
+        ["<kbd>⌥⏎</kbd>", "Alleen platte tekst plakken"],
+        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Een van de eerste negen items direct plakken"],
+        ["<kbd>⌘P</kbd>", "Vastzetten of losmaken"],
+        ["<kbd>⌘⌫</kbd>", "Item verwijderen"],
+        ["<kbd>esc</kbd>", "Sluiten"]
+      ]
+    },
+    "privacy": {
+      "h2": "Je klembord is van jou",
+      "sub": "Er komen persoonlijke dingen op het klembord: wachtwoorden, adressen, berichten. Daarom is Clipsody privé vanaf het ontwerp.",
+      "cards": [
+        ["Niets verlaat je Mac", "Geen account, geen server, geen analytics. De geschiedenis staat alleen op je Mac en wordt uitgesloten van back-ups. Clipsody gaat alleen online als je dat toestaat – om te vragen of er een nieuwe versie is."],
+        ["Wachtwoorden blijven buiten", "Wat wachtwoordbeheerders als verborgen markeren, wordt nooit opgeslagen. 1Password, Bitwarden, KeePassXC en andere zijn standaard uitgesloten."],
+        ["Verwijderd is verwijderd", "Verwijderde items worden in de database overschreven en het wijzigingslogboek wordt geleegd – na een crash bij de volgende start."],
+        ["Afbeeldingen in een sandbox", "Niet-vertrouwde afbeeldingsgegevens worden verwerkt in een geïsoleerd hulpproces zonder toegang tot bestanden of netwerk, niet in de app zelf."],
+        ["Controleerbaar", "De broncode is openbaar. Je hoeft niemand te vertrouwen – je kunt hem lezen en de app zelf bouwen."],
+        ["Onzichtbaar bij scherm delen", "Het venster is onzichtbaar in schermafbeeldingen en bij klassiek scherm delen."]
+      ]
+    },
+    "install": {
+      "h2": "Installatie",
+      "sub": "Clipsody is gratis en daarom niet door Apple genotariseerd. macOS vraagt bij de eerste start één keer om bevestiging – zo werkt het:",
+      "steps": [
+        "<a href=\"{download}\">Download Clipsody.dmg</a>, open het en sleep <strong>Clipsody</strong> naar <strong>Apps</strong>.",
+        "Start Clipsody. macOS meldt dat de app niet kan worden gecontroleerd – klik op <strong>Gereed</strong>. Op macOS 13 en 14 klik je in plaats daarvan met de rechtermuisknop op Clipsody in <strong>Apps</strong> → <strong>Open</strong> → <strong>Open</strong> en sla je stap 3 over.",
+        "Open <strong>Systeeminstellingen → Privacy en beveiliging</strong>, scrol omlaag en kies <strong>Open toch</strong> voor Clipsody (macOS 15 en nieuwer).",
+        "Wil je dat <kbd>⏎</kbd> direct plakt, sta Clipsody dan toe onder <strong>Privacy en beveiliging → Toegankelijkheid</strong>. Zonder deze toestemming wordt het item alleen op het klembord gezet en druk je zelf op <kbd>⌘V</kbd>.",
+        "Klaar: druk op <kbd>⌥⌘C</kbd>. Via het symbool in de menubalk kom je bij de instellingen, waar je Clipsody ook bij het inloggen kunt laten starten."
+      ],
+      "verify": "<strong>Echt of niet?</strong> Download Clipsody alleen van deze site of van GitHub. Bij elke release staan de SHA-256-checksum van de DMG en de vingerafdruk van het ondertekeningscertificaat. Controleer ze in Terminal:",
+      "fingerprint": "Vingerafdruk certificaat (SHA-256):"
+    },
+    "faq": {
+      "h2": "Veelgestelde vragen",
+      "items": [
+        ["Hoe zie ik op een Mac wat ik eerder heb gekopieerd?", "Standaard onthoudt de Mac alleen het laatste wat je hebt gekopieerd; in Finder toont <strong>Wijzig → Toon klembord</strong> precies dat ene item. Sinds macOS 26 kan Spotlight recent gekopieerde items tonen zodra je de functie inschakelt. Voor een blijvende, doorzoekbare geschiedenis van alles wat je kopieert gebruik je een klembordbeheerder zoals Clipsody: <kbd>⌥⌘C</kbd> toont alles."],
+        ["Hoe kopieer ik meerdere dingen en plak ik ze na elkaar?", "Met Clipsody kopieer je gewoon zoals altijd met <kbd>⌘C</kbd> – elk item blijft in de geschiedenis. Om te plakken open je de lijst met <kbd>⌥⌘C</kbd> en kies je een item met <kbd>⏎</kbd>, of je plakt een van de eerste negen direct met <kbd>⌘1</kbd> tot <kbd>⌘9</kbd>."],
+        ["Is Clipsody echt gratis?", "Ja. Geen advertenties, geen abonnement, geen proefversie. De broncode is openbaar, onder de GPLv3."],
+        ["Waarom heeft Clipsody de toestemming voor Toegankelijkheid nodig?", "Alleen om <kbd>⌘V</kbd> te geven in de app waar je vandaan kwam, nadat je een item hebt gekozen. Clipsody gebruikt het niet om je scherm of je toetsaanslagen te lezen. Alles werkt ook zonder – je plakt dan zelf."],
+        ["Hoe lang wordt de geschiedenis bewaard?", "Standaard 7 dagen en maximaal 1.000 items; in de instellingen kun je beide verhogen, tot 365 dagen en 10.000 items. Vastgezette items blijven altijd."],
+        ["Worden mijn wachtwoorden opgeslagen?", "Nee, als je wachtwoordbeheerder ze als verborgen markeert – de gangbare doen dat. Bekende wachtwoordbeheerders zijn daarnaast uitgesloten. Eén beperking: Clipsody ziet welke app vooraan staat, niet wie er kopieerde. Kopieert een browserextensie een wachtwoord zonder die markering, dan komt het in de geschiedenis – verwijder het dan gewoon met <kbd>⌘⌫</kbd>."],
+        ["Werkt Clipsody op mijn Mac?", "macOS 13 Ventura of nieuwer, op Apple silicon en Intel."],
+        ["Welke talen spreekt Clipsody?", "Engels, Duits, Frans, Spaans, Italiaans, Nederlands, Pools en Braziliaans-Portugees. Clipsody volgt de taal van je Mac; onder <strong>Instellingen → Algemeen → Taal</strong> kun je een andere kiezen."],
+        ["Waarom vraagt macOS of Clipsody het klembord mag lezen?", "Nieuwere versies van macOS vragen toestemming voordat een app leest wat je in andere apps kopieert. Zonder deze toegang kan Clipsody geen geschiedenis bijhouden: kies Sta toe, of sta Clipsody toe onder <strong>Systeeminstellingen → Privacy en beveiliging</strong>. Clipsody toont de huidige status onder <strong>Instellingen → Algemeen</strong>. Je klembord verlaat je Mac nog steeds nooit."],
+        ["Zoekt Clipsody naar updates?", "Alleen als je dat toestaat: bij de eerste start vraagt Clipsody of het eenmaal per dag bij GitHub mag navragen of er een nieuwe versie is. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de versie van Clipsody. Is er een nieuwe versie, dan krijgt het symbool in de menubalk een stip en opent het menu de downloadpagina. Je kunt dit wijzigen onder <strong>Instellingen → Algemeen</strong>; daar en in het menubalkmenu kun je ook zelf op elk moment zoeken."],
+        ["Hoe verwijder ik Clipsody?", "<strong>Instellingen → Info → Verwijder Clipsody…</strong> wist de geschiedenis, afbeeldingen en instellingen, verwijdert het inlogonderdeel en de toestemming voor Toegankelijkheid en verplaatst de app naar de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens op je Mac staan."]
+      ]
+    }
+  },
+  "guide": {
+    "title": "Klembordgeschiedenis Mac bekijken – alle manieren | Clipsody",
+    "description": "Hoe zie je op een Mac wat je eerder hebt gekopieerd? Finder, de klembordgeschiedenis in Spotlight (macOS 26) en klembordbeheerders stap voor stap vergeleken.",
+    "ogTitle": "Klembordgeschiedenis bekijken op een Mac – alle manieren",
+    "ogDescription": "Finder, de klembordgeschiedenis in Spotlight in macOS 26 en klembordbeheerders stap voor stap vergeleken.",
+    "breadcrumbLabel": "Kruimelpad",
+    "crumb": "Handleiding",
+    "h1": "Je klembordgeschiedenis bekijken op een Mac: alle manieren",
+    "lead": "Je hebt iets gekopieerd, daarna iets anders – en nu heb je het eerste weer nodig? Dit kan de Mac zelf, zo werkt de nieuwe geschiedenis in Spotlight, en dan loont een klembordbeheerder.",
+    "updated": "Bijgewerkt in oktober 2026, macOS 13 Ventura tot macOS 27",
+    "summary": "<strong>Kort gezegd:</strong> het klembord van de Mac bevat maar <em>één</em> item; elke <kbd>⌘C</kbd> vervangt het vorige. Sinds macOS 26 toont Spotlight recent gekopieerde items zodra je het inschakelt (<kbd>⌘</kbd> <kbd>Spatie</kbd>, dan <kbd>⌘4</kbd>). Voor een blijvende, doorzoekbare geschiedenis op elke macOS-versie gebruik je een klembordbeheerder zoals <a href=\"./\">Clipsody</a>.",
+    "finder": {
+      "h2": "1. Het huidige klembord tonen in Finder",
+      "intro": "Finder toont wat er op dit moment op het klembord staat – maar alleen dat ene item:",
+      "steps": ["Klik op het bureaublad of op een Finder-venster, zodat Finder vooraan staat.", "Kies in de menubalk <strong>Wijzig → Toon klembord</strong>."],
+      "after": "Een venster toont de inhoud, zoals tekst of een afbeelding. Eerdere items staan er niet in: wat je daarvoor kopieerde, is vervangen. Het klembord staat in het geheugen, niet in een bestand op de schijf – na een herstart is het leeg."
+    },
+    "spotlight": {
+      "h2": "2. De klembordgeschiedenis in Spotlight (macOS 26 en nieuwer)",
+      "intro": "Met macOS 26 Tahoe heeft Apple Spotlight een klembordgeschiedenis gegeven. Die staat standaard uit.",
+      "steps": [
+        "Open Spotlight met <kbd>⌘</kbd> <kbd>Spatie</kbd>.",
+        "Druk op <kbd>⌘4</kbd> of klik op de klembordknop rechts van het zoekveld.",
+        "De eerste keer vraagt macOS of de geschiedenis moet worden ingeschakeld – bevestig dat.",
+        "Zoek het item, kopieer het met de kopieerknop of <kbd>⌘C</kbd> en plak het met <kbd>⌘V</kbd> waar je het nodig hebt."
+      ],
+      "after": "Handig voor even, maar met beperkingen: afhankelijk van de instelling blijven items hooguit een paar dagen bewaard, vastzetten kan niet en plakken gaat in twee stappen (kopiëren, dan <kbd>⌘V</kbd>). Macs met macOS 15 of ouder hebben het niet. Je kunt de geschiedenis wissen via het menu rechts van het zoekveld."
+    },
+    "manager": {
+      "h2": "3. Elk item met een klembordbeheerder",
+      "intro": "Een klembordbeheerder (ook clipboard manager, klembordgeschiedenis-app of multi-klembord genoemd) onthoudt alles wat je kopieert en haalt het terug wanneer je wilt. Zo werkt het met Clipsody, gratis en op macOS 13 en nieuwer:",
+      "steps": [
+        "<a href=\"{download}\">Download Clipsody</a> en sleep het naar <strong>Apps</strong> (<a href=\"./#install\">installatie in detail</a>).",
+        "Kopieer zoals altijd met <kbd>⌘C</kbd>. Elk item – tekst, afbeelding of bestand – komt in de geschiedenis.",
+        "Druk op <kbd>⌥⌘C</kbd>: de lijst met alles wat je hebt gekopieerd verschijnt. Typ een zoekwoord om te filteren; zo vind je ook tekst in schermafbeeldingen.",
+        "<kbd>⏎</kbd> plakt het geselecteerde item precies waar je was; <kbd>⌥⏎</kbd> plakt het zonder opmaak. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen direct."
+      ],
+      "after": "Jij bepaalt hoe lang de geschiedenis meegaat (1 tot 365 dagen) en hoeveel items erin passen (tot 10.000). Items die je met <kbd>⌘P</kbd> vastzet, blijven voorgoed. Alles blijft op je Mac."
+    },
+    "compare": {
+      "h2": "De opties vergeleken",
+      "head": ["Finder", "Spotlight-geschiedenis", "Clipsody"],
+      "rows": [
+        ["Toont", "alleen het huidige item", "recente items", "allemaal, tot 10.000"],
+        ["Bewaard", "tot de volgende <kbd>⌘C</kbd>", "maximaal 7 dagen", "1 tot 365 dagen"],
+        ["Plakken", "<kbd>⌘V</kbd>", "kopiëren, dan <kbd>⌘V</kbd>", "<kbd>⏎</kbd> direct"],
+        ["Vastzetten", "nee", "nee", "ja"],
+        ["macOS", "alle", "26 en nieuwer, standaard uit", "13 en nieuwer"]
+      ]
+    },
+    "shortcuts": {
+      "h2": "Toetscombinaties voor het klembord",
+      "rows": [
+        ["<kbd>⌘C</kbd>", "Kopieer"],
+        ["<kbd>⌘X</kbd>", "Knip"],
+        ["<kbd>⌘V</kbd>", "Plak"],
+        ["<kbd>⌥⇧⌘V</kbd>", "Plakken zonder opmaak (‘Plak met huidige stijl’, in veel apps)"],
+        ["<kbd>⇧⌘4</kbd>, houd <kbd>⌃</kbd> ingedrukt tijdens het selecteren", "Schermafbeelding van een gebied direct naar het klembord"],
+        ["<kbd>⌘</kbd> <kbd>Spatie</kbd>, <kbd>⌘4</kbd>", "Klembordgeschiedenis in Spotlight (macOS 26 en nieuwer)"],
+        ["<kbd>⌥⌘C</kbd>", "Geschiedenis openen in Clipsody"]
+      ]
+    },
+    "faq": {
+      "h2": "Veelgestelde vragen",
+      "items": [
+        ["Waar wordt het klembord op een Mac bewaard?", "In het geheugen, niet in een bestand. Daarom is het na een herstart leeg en is er geen map met eerdere items. Een bewaarde geschiedenis bestaat alleen met Spotlight (macOS 26 en nieuwer) of een klembordbeheerder."],
+        ["Kan ik terughalen wat er op het klembord stond voordat ik iets anders kopieerde?", "Alleen als er een geschiedenis meeliep: de Spotlight-geschiedenis op macOS 26 en nieuwer, als die aan staat, of een klembordbeheerder zoals Clipsody. Zonder wordt het vorige item vervangen door de volgende kopie."],
+        ["Kan ik meerdere dingen tegelijk kopiëren?", "Het klembord zelf bevat één item. Met een klembordbeheerder kopieer je gewoon het een na het ander – elk item blijft bewaard – en plak je daarna de items die je nodig hebt. In Clipsody bijvoorbeeld met <kbd>⌘1</kbd> tot <kbd>⌘9</kbd>."],
+        ["Hoe wis ik het klembord op een Mac?", "Kopieer iets onschuldigs, zoals een spatie – dat vervangt de huidige inhoud. De Spotlight-geschiedenis wis je via het menu rechts van het zoekveld, die van Clipsody via het symbool in de menubalk → <strong>Wis geschiedenis…</strong>."],
+        ["Delen iPhone en Mac een klembord?", "Ja, met Universeel klembord: met dezelfde Apple Account en Bluetooth, wifi en Handoff ingeschakeld kun je op je iPhone kopiëren en op je Mac plakken. Ook dat zet alleen het huidige item over, geen geschiedenis."]
+      ]
+    },
+    "cta": {
+      "h2": "Raak nooit meer iets kwijt dat je kopieerde",
+      "text": "Clipsody is gratis, open source en werkt op macOS 13 en nieuwer. Alles blijft op je Mac.",
+      "button": "Download Clipsody gratis"
+    }
+  },
+  "footer": {
+    "tagline": "Clipsody – klembordbeheerder voor macOS",
+    "guide": "Handleiding: klembordgeschiedenis op een Mac",
+    "home": "Home",
+    "releases": "Alle releases",
+    "license": "Licentie:",
+    "legal": "Juridische informatie (in het Duits)",
+    "privacyPolicy": "Privacyverklaring (in het Duits)"
+  }
+}

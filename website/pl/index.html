@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Darmowy menedżer schowka na Maca – historia schowka | Clipsody</title>
+    <meta name="description" content="Mac pamięta tylko ostatnią skopiowaną rzecz. Clipsody zachowuje całą historię schowka – teksty, obrazy, pliki – z wyszukiwaniem z klawiatury. Za darmo.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
+    <link rel="alternate" hreflang="en" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="alternate" hreflang="fr" href="https://tillackt.github.io/clipsody/fr/">
+    <link rel="alternate" hreflang="es" href="https://tillackt.github.io/clipsody/es/">
+    <link rel="alternate" hreflang="it" href="https://tillackt.github.io/clipsody/it/">
+    <link rel="alternate" hreflang="nl" href="https://tillackt.github.io/clipsody/nl/">
+    <link rel="alternate" hreflang="pl" href="https://tillackt.github.io/clipsody/pl/">
+    <link rel="alternate" hreflang="pt-BR" href="https://tillackt.github.io/clipsody/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
+    <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../assets/icon-180.png">
+    <link rel="stylesheet" href="../assets/style.css">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Clipsody">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="nl_NL">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:title" content="Clipsody – schowek z pamięcią dla twojego Maca">
+    <meta property="og:description" content="Wszystko, co skopiujesz, masz pod ręką: teksty, obrazy i pliki, do wyszukania i wklejenia z klawiatury. Darmowy, open source, w pełni lokalny.">
+    <meta property="og:url" content="https://tillackt.github.io/clipsody/pl/">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Clipsody",
+      "url": "https://tillackt.github.io/clipsody/pl/",
+      "description": "Menedżer schowka i historia schowka na Maca: zachowuje każdy skopiowany tekst, obraz i plik, z wyszukiwaniem i wklejaniem z klawiatury.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 13 or later",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "image": "https://tillackt.github.io/clipsody/assets/og-en.png",
+      "inLanguage": [
+        "de",
+        "en",
+        "fr",
+        "es",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "tillackt",
+        "url": "https://github.com/tillackt"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Jak na Macu zobaczyć, co skopiowałem wcześniej?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standardowo Mac pamięta tylko ostatnio skopiowaną rzecz; w Finderze Edycja → Pokaż schowek pokazuje dokładnie ten jeden element. Od macOS 26 Spotlight potrafi pokazać ostatnio skopiowane elementy, jeśli włączysz tę funkcję. Trwałą historię wszystkiego, co kopiujesz, z wyszukiwaniem da ci menedżer schowka, taki jak Clipsody: ⌥⌘C pokazuje wszystko."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak skopiować kilka rzeczy i wkleić je po kolei?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Z Clipsody kopiujesz jak zwykle przez ⌘C – każdy element zostaje w historii. Aby wkleić, otwórz listę przez ⌥⌘C i wybierz element klawiszem ⏎ albo wklej jeden z pierwszych dziewięciu od razu przez ⌘1 do ⌘9."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy Clipsody naprawdę jest darmowe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dlaczego Clipsody potrzebuje uprawnienia „Dostępność”?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tylko po to, by po wybraniu elementu wywołać ⌘V w aplikacji, z której przyszedłeś. Clipsody nie używa go do odczytywania ekranu ani naciśnięć klawiszy. Wszystko działa też bez niego – po prostu wklejasz sam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak długo przechowywana jest historia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Domyślnie 7 dni i maksymalnie 1000 wpisów; w ustawieniach możesz zwiększyć oba limity, do 365 dni i 10 000 wpisów. Przypięte wpisy zostają zawsze."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy moje hasła są zapisywane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie, jeśli menedżer haseł oznacza je jako ukryte – popularne menedżery to robią. Znane menedżery haseł są też wykluczone. Jedno ograniczenie: Clipsody widzi, która aplikacja jest na pierwszym planie, a nie kto skopiował. Jeśli rozszerzenie przeglądarki skopiuje hasło bez takiego oznaczenia, trafi ono do historii – wtedy po prostu usuń je przez ⌘⌫."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy Clipsody działa na moim Macu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "macOS 13 Ventura lub nowszy, na Apple Silicon i Intel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "W jakich językach mówi Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Po angielsku, niemiecku, francusku, hiszpańsku, włosku, niderlandzku, polsku i portugalsku (Brazylia). Clipsody używa języka twojego Maca; inny wybierzesz w Ustawienia → Ogólne → Język."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dlaczego macOS pyta, czy Clipsody może odczytywać schowek?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nowsze wersje macOS pytają, zanim aplikacja odczyta to, co kopiujesz w innych aplikacjach. Bez tego dostępu Clipsody nie może prowadzić historii: wybierz Zezwól albo zezwól Clipsody w Ustawienia systemowe → Prywatność i ochrona. Aktualny stan Clipsody pokazuje w Ustawienia → Ogólne. Twój schowek i tak nigdy nie opuszcza Maca."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy Clipsody sprawdza aktualizacje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a menu otwiera stronę pobierania. Zmienisz to w Ustawienia → Ogólne; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić sam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak odinstalować Clipsody?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ustawienia → Informacje → Odinstaluj Clipsody… usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli sam przeciągniesz aplikację do Kosza, te dane zostaną na twoim Macu."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<header class="top">
+    <div class="wrap">
+        <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
+        <nav aria-label="Główna">
+            <a href="#features">Funkcje</a>
+            <a href="#compare">Porównanie</a>
+            <a href="#privacy">Prywatność</a>
+            <a href="#install">Instalacja</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <details class="langs">
+            <summary title="Język"><span aria-hidden="true">🌐</span> Polski</summary>
+            <ul>
+                <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
+                <li><a href="../en/" hreflang="en" lang="en">English</a></li>
+                <li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li>
+                <li><a href="../es/" hreflang="es" lang="es">Español</a></li>
+                <li><a href="../it/" hreflang="it" lang="it">Italiano</a></li>
+                <li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+                <li><a href="../pl/" hreflang="pl" lang="pl" aria-current="page">Polski</a></li>
+                <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li>
+            </ul>
+        </details>
+    </div>
+</header>
+
+<main>
+    <div class="hero wrap">
+        <h1>Schowek z pamięcią dla twojego Maca</h1>
+        <p class="lead">Mac pamięta tylko to, co skopiowałeś ostatnio – skopiujesz coś nowego i poprzednia rzecz przepada. Clipsody zachowuje wszystko: teksty, obrazy i pliki. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> przywraca dowolny element, a <kbd>⏎</kbd> wkleja go dokładnie tam, gdzie pisałeś.</p>
+        <div class="cta">
+            <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Pobierz za darmo</a>
+            <a class="button secondary" href="https://github.com/tillackt/clipsody">Kod źródłowy na GitHubie</a>
+        </div>
+        <p class="meta">macOS 13 Ventura lub nowszy · Apple Silicon i Intel · Interfejs w 8 językach</p>
+        <div class="badges">
+            <span class="badge">Za darmo</span>
+            <span class="badge">Open source</span>
+            <span class="badge">Bez konta, bez śledzenia</span>
+            <span class="badge">Wszystko zostaje na twoim Macu</span>
+        </div>
+
+        <figure class="shot">
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Wszystko, co skopiowałeś: teksty, obrazy, pliki, linki</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Obraz 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Oferta_Kowalski.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/spotkania</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: PL00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Sprawdzisz do piątku, czy faktura się zgadza?<br><br>Dzięki!<br>Anna</div>
+                            <div class="info">Tekst · 2 minuty temu · z Mail</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P przypnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Obrazy zostają obrazami – bezstratnie, z podglądem</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Obraz 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Oferta_Kowalski.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/spotkania</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: PL00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <img class="photo" src="../assets/sample-photo.jpg" alt="" width="960" height="720" loading="lazy">
+                            <div class="info">Obraz 4032×3024 · 12 minut temu · ze Zdjęć</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P przypnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>Pliki wklejają się znów jako pliki</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Obraz 4032×3024 (2,1 MB)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Oferta_Kowalski.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/spotkania</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: PL00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Oferta_Kowalski.pdf</b><span>~/Dokumenty/Klienci</span><span>PDF · 248 KB</span></div>
+                            <div class="info">Plik · 1 godzinę temu · z Findera</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P przypnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>Wyszukiwanie znajduje nawet tekst na zrzutach ekranu</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">faktura</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Obraz 2880×1800 (612 KB) – „…<mark>Faktura</mark> nr 2026-1043…”</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy <mark>faktura</mark> się zgadza? ⏎ Dzięki!</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Faktura</mark>_pazdziernik.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t"><mark>Faktura</mark> – IBAN: PL00 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>faktura</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Zrzut ekranu · rozpoznano tekst<br><br><b><mark>Faktura</mark> nr 2026-1043</b><br>Okres rozliczeniowy: październik 2026<br>Do zapłaty: 1 240,00 zł<br>Termin płatności: 15.11.2026</div>
+                            <div class="info">Podgląd · 3 minuty temu · obraz 2880×1800 · rozpoznano tekst</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P przypnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
+            <figcaption class="caption">Historia schowka w Clipsody: wszystko, co skopiowałeś, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu.</figcaption>
+        </figure>
+    </div>
+
+    <section class="alt" id="problem">
+        <div class="wrap">
+            <h2>Kopiujesz, kopiujesz – i pierwszego już nie ma</h2>
+            <p class="sub">Schowek na Macu mieści dokładnie jeden element. Skopiuj dwie rzeczy po kolei, a pierwsza przepada. Clipsody zamienia go w wielokrotny schowek z pełną historią.</p>
+            <div class="grid two">
+                <div class="card"><h3>Bez Clipsody</h3>
+                    <ul class="plain">
+                        <li>Masz tylko to, co skopiowałeś ostatnio.</li>
+                        <li>Po każdy fragment tekstu wracasz do drugiego okna, kopiujesz, przełączasz się z powrotem.</li>
+                        <li>To, co skopiowałeś godzinę temu, zniknęło.</li>
+                    </ul></div>
+                <div class="card"><h3>Z Clipsody</h3>
+                    <ul class="plain">
+                        <li>Wszystko, co skopiowałeś, na jednej liście – do 10 000 elementów. Ty decydujesz, jak długo zostają: od jednego dnia do roku.</li>
+                        <li>Najpierw skopiuj wszystko, potem wklejaj po kolei: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.</li>
+                        <li>Wpisz słowo i wczorajszy fragment wraca.</li>
+                    </ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <h2>Lekki. Szybki. Klawiatura przede wszystkim.</h2>
+            <p class="sub">Bez launchera, bez workflowów, bez stu ustawień – menedżer schowka, który po prostu pamięta, co kopiujesz.</p>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Jeden skrót, wszędzie</h3>
+                    <p><kbd>⌥⌘C</kbd> otwiera historię schowka w każdej aplikacji. Wybierz element strzałkami albo wpisz szukane słowo, naciśnij <kbd>⏎</kbd> – i element ląduje tam, gdzie pisałeś.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Kopiuj kilka rzeczy, wklejaj po kolei</h3>
+                    <p>Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je jedno po drugim. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają pierwsze dziewięć elementów od razu.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Znajduje też tekst na obrazach</h3>
+                    <p>Skopiowane zrzuty ekranu i obrazy są odczytywane na twoim Macu. Wyszukaj słowo, które jest na obrazie – i już go masz. <a href="#text-in-images">Jak to działa</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Teksty, obrazy, pliki</h3>
+                    <p>Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Z formatowaniem lub bez</h3>
+                    <p><kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Przypnij to, czego często używasz</h3>
+                    <p>IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> trzyma element na górze listy i nigdy nie jest on usuwany automatycznie.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>Ten zrzut ekranu z zeszłego tygodnia? Po prostu wyszukaj tekst, który na nim był.</h2>
+            <p class="sub">Clipsody odczytuje tekst z każdego skopiowanego obrazu – dzięki rozpoznawaniu tekstu w macOS, bezpośrednio na twoim Macu. Zrzuty ekranu znajdziesz więc po tym, co na nich widać.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Synchronizacja nie powiodła się</b></p><p>Kod błędu 0x8007 – serwer nieosiągalny.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Obraz w schowku</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> zapisuje fragment ekranu prosto do schowka. Możesz też skopiować obraz z dowolnej aplikacji.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Rozpoznano tekst</span><p class="warn">⚠︎ <b><mark>Synchronizacja nie powiodła się</mark></b></p><p><mark>Kod błędu 0x8007 – serwer nieosiągalny.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>Clipsody odczytuje tekst</h3>
+                    <p>W tle i na twoim Macu – nic nie jest wysyłane. Rozpoznawany jest tekst po angielsku i po niemiecku.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>„Kod błędu <mark>0x8007</mark> – serwer…”</p></div></div>
+                    <h3><span class="step">3</span>Znajdź go po kilku dniach</h3>
+                    <p>Naciśnij <kbd>⌥⌘C</kbd>, wpisz „0x8007” – i jest zrzut ekranu. <kbd>⏎</kbd> wkleja go jako obraz, na przykład do zgłoszenia w supporcie.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Dobrze wiedzieć:</strong> zrzuty ekranu, które macOS zapisuje tylko jako plik na biurku, nigdy nie trafiają do schowka. Dodaj do skrótu <kbd>⌃</kbd> (<kbd>⇧⌃⌘3</kbd> dla całego ekranu, <kbd>⇧⌃⌘4</kbd> dla wybranego obszaru).</div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="wrap">
+            <h2>Do czego przydaje się historia schowka</h2>
+            <p class="sub">Wszędzie tam, gdzie kopiujesz więcej niż jedną rzecz.</p>
+            <div class="grid">
+                <div class="card"><h3>Wypełnianie formularzy</h3>
+                    <p>Zbierz z maila imię, adres i numer zamówienia i wklej je po kolei do formularza – bez dziesięciokrotnego przełączania okien.</p></div>
+                <div class="card"><h3>Pisanie i research</h3>
+                    <p>Kopiuj cytaty, linki i akapity z kilku źródeł i składaj je w całość później.</p></div>
+                <div class="card"><h3>Programowanie</h3>
+                    <p>Znajdź polecenia, ścieżki i fragmenty kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas.</p></div>
+                <div class="card"><h3>Support i praca biurowa</h3>
+                    <p>Gotowe odpowiedzi, numery kont i podpisy przypięte i pod ręką – wklejone dwoma klawiszami.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="compare">
+        <div class="wrap">
+            <h2>Czy Mac nie ma już historii schowka?</h2>
+            <p class="sub">Od macOS 26 Tahoe Spotlight potrafi pokazać ostatnio skopiowane elementy. To pomaga na chwilę – Clipsody jest stworzone do wszystkiego, co ma przetrwać dłużej niż kilka godzin.</p>
+            <div class="table-scroll">
+                <table class="compare">
+                    <thead>
+                    <tr><td></td><th scope="col">Clipsody</th><th scope="col">Historia w Spotlight</th><th scope="col">Zwykły Mac</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th scope="row">Elementy</th><td>wszystkie, do 10 000</td><td>ostatnie</td><td>tylko ostatni</td></tr>
+                    <tr><th scope="row">Przechowywanie</th><td>od 1 do 365 dni, do wyboru</td><td>maksymalnie 7 dni</td><td>do następnego <kbd>⌘C</kbd></td></tr>
+                    <tr><th scope="row">Wklejanie</th><td><kbd>⏎</kbd> wkleja prosto do poprzedniej aplikacji</td><td>skopiuj, potem sam <kbd>⌘V</kbd></td><td><kbd>⌘V</kbd></td></tr>
+                    <tr><th scope="row">Przypinanie</th><td>tak, <kbd>⌘P</kbd></td><td>nie</td><td>nie</td></tr>
+                    <tr><th scope="row">Działa na</th><td>macOS 13 Ventura i nowszych</td><td>macOS 26 Tahoe, domyślnie wyłączona</td><td>każdym Macu</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="more">Więcej: <a href="historia-schowka-mac.html">Jak zobaczyć historię schowka na Macu – wszystkie sposoby</a></p>
+        </div>
+    </section>
+
+    <section id="keys">
+        <div class="wrap">
+            <h2>Wszystko z klawiatury</h2>
+            <p class="sub">Mysz nie jest potrzebna – ale możesz jej używać.</p>
+            <table class="keys">
+                <tbody>
+                <tr><td><kbd>⌥⌘C</kbd></td><td>Otwórz lub zamknij historię (do zmiany)</td></tr>
+                <tr><td>Wpisz szukane słowo</td><td>Filtruj listę – znajduje tekst, nazwy aplikacji i tekst na obrazach</td></tr>
+                <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Wybierz element</td></tr>
+                <tr><td><kbd>⏎</kbd></td><td>Wklej z formatowaniem</td></tr>
+                <tr><td><kbd>⌥⏎</kbd></td><td>Wklej sam tekst</td></tr>
+                <tr><td><kbd>⌘1</kbd> … <kbd>⌘9</kbd></td><td>Wklej od razu jeden z pierwszych dziewięciu elementów</td></tr>
+                <tr><td><kbd>⌘P</kbd></td><td>Przypnij lub odepnij</td></tr>
+                <tr><td><kbd>⌘⌫</kbd></td><td>Usuń element</td></tr>
+                <tr><td><kbd>esc</kbd></td><td>Zamknij</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="alt" id="privacy">
+        <div class="wrap">
+            <h2>Twój schowek należy do ciebie</h2>
+            <p class="sub">W schowku lądują rzeczy osobiste: hasła, adresy, wiadomości. Dlatego Clipsody od podstaw dba o prywatność.</p>
+            <div class="grid">
+                <div class="card"><h3>Nic nie opuszcza twojego Maca</h3>
+                    <p>Bez konta, bez serwera, bez analityki. Historia jest przechowywana wyłącznie na twoim Macu i wyłączona z kopii zapasowych. Clipsody łączy się z internetem tylko wtedy, gdy na to pozwolisz – żeby sprawdzić, czy jest nowa wersja.</p></div>
+                <div class="card"><h3>Hasła zostają poza historią</h3>
+                    <p>To, co menedżery haseł oznaczają jako ukryte, nigdy nie jest zapisywane. 1Password, Bitwarden, KeePassXC i inne są wykluczone od razu.</p></div>
+                <div class="card"><h3>Usunięte znaczy usunięte</h3>
+                    <p>Usunięte wpisy są nadpisywane w bazie danych, a jej dziennik zmian jest opróżniany – po awarii przy następnym uruchomieniu.</p></div>
+                <div class="card"><h3>Obrazy w piaskownicy</h3>
+                    <p>Niezaufane dane obrazów są przetwarzane w odizolowanym procesie pomocniczym bez dostępu do plików i sieci, a nie w samej aplikacji.</p></div>
+                <div class="card"><h3>Do sprawdzenia</h3>
+                    <p>Kod źródłowy jest otwarty. Nie musisz nikomu ufać – możesz go przeczytać i samodzielnie zbudować aplikację.</p></div>
+                <div class="card"><h3>Niewidoczne przy udostępnianiu ekranu</h3>
+                    <p>Okno jest ukryte na zrzutach ekranu i podczas klasycznego udostępniania ekranu.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <div class="wrap">
+            <h2>Instalacja</h2>
+            <p class="sub">Clipsody jest darmowe, dlatego nie jest notaryzowane przez Apple. Przy pierwszym uruchomieniu macOS raz o to zapyta – oto co zrobić:</p>
+            <ol class="steps">
+                <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Pobierz Clipsody.dmg</a>, otwórz plik i przeciągnij <strong>Clipsody</strong> do folderu <strong>Aplikacje</strong>.</li>
+                <li>Uruchom Clipsody. macOS poinformuje, że nie może zweryfikować aplikacji – kliknij <strong>Gotowe</strong>. W macOS 13 i 14 zamiast tego kliknij Clipsody w folderze <strong>Aplikacje</strong> prawym przyciskiem → <strong>Otwórz</strong> → <strong>Otwórz</strong> i pomiń krok 3.</li>
+                <li>Otwórz <strong>Ustawienia systemowe → Prywatność i ochrona</strong>, przewiń w dół i przy Clipsody wybierz <strong>Otwórz mimo to</strong> (macOS 15 i nowsze).</li>
+                <li>Aby <kbd>⏎</kbd> wklejał bezpośrednio, zezwól Clipsody w <strong>Prywatność i ochrona → Dostępność</strong>. Bez tego element trafia tylko do schowka, a <kbd>⌘V</kbd> naciskasz sam.</li>
+                <li>Gotowe: naciśnij <kbd>⌥⌘C</kbd>. Ikona na pasku menu prowadzi do ustawień, gdzie możesz też włączyć uruchamianie Clipsody po zalogowaniu.</li>
+            </ol>
+            <div class="note" id="verify">
+                <strong>Oryginał czy nie?</strong> Pobieraj Clipsody tylko z tej strony albo z GitHuba. Przy każdym wydaniu podana jest suma kontrolna SHA-256 pliku DMG i odcisk certyfikatu podpisującego. Sprawdź je w Terminalu:
+                <pre><code>shasum -a 256 ~/Downloads/Clipsody.dmg
+codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app &amp;&amp; shasum -a 256 /tmp/clipsody-cert0</code></pre>
+                Odcisk certyfikatu (SHA-256): <code>4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt" id="faq">
+        <div class="wrap">
+            <h2>FAQ</h2>
+            <p class="sub">&nbsp;</p>
+            <details><summary>Jak na Macu zobaczyć, co skopiowałem wcześniej?</summary>
+                <p>Standardowo Mac pamięta tylko ostatnio skopiowaną rzecz; w Finderze <strong>Edycja → Pokaż schowek</strong> pokazuje dokładnie ten jeden element. Od macOS 26 Spotlight potrafi pokazać ostatnio skopiowane elementy, jeśli włączysz tę funkcję. Trwałą historię wszystkiego, co kopiujesz, z wyszukiwaniem da ci menedżer schowka, taki jak Clipsody: <kbd>⌥⌘C</kbd> pokazuje wszystko.</p></details>
+            <details><summary>Jak skopiować kilka rzeczy i wkleić je po kolei?</summary>
+                <p>Z Clipsody kopiujesz jak zwykle przez <kbd>⌘C</kbd> – każdy element zostaje w historii. Aby wkleić, otwórz listę przez <kbd>⌥⌘C</kbd> i wybierz element klawiszem <kbd>⏎</kbd> albo wklej jeden z pierwszych dziewięciu od razu przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>.</p></details>
+            <details><summary>Czy Clipsody naprawdę jest darmowe?</summary>
+                <p>Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3.</p></details>
+            <details><summary>Dlaczego Clipsody potrzebuje uprawnienia „Dostępność”?</summary>
+                <p>Tylko po to, by po wybraniu elementu wywołać <kbd>⌘V</kbd> w aplikacji, z której przyszedłeś. Clipsody nie używa go do odczytywania ekranu ani naciśnięć klawiszy. Wszystko działa też bez niego – po prostu wklejasz sam.</p></details>
+            <details><summary>Jak długo przechowywana jest historia?</summary>
+                <p>Domyślnie 7 dni i maksymalnie 1000 wpisów; w ustawieniach możesz zwiększyć oba limity, do 365 dni i 10 000 wpisów. Przypięte wpisy zostają zawsze.</p></details>
+            <details><summary>Czy moje hasła są zapisywane?</summary>
+                <p>Nie, jeśli menedżer haseł oznacza je jako ukryte – popularne menedżery to robią. Znane menedżery haseł są też wykluczone. Jedno ograniczenie: Clipsody widzi, która aplikacja jest na pierwszym planie, a nie kto skopiował. Jeśli rozszerzenie przeglądarki skopiuje hasło bez takiego oznaczenia, trafi ono do historii – wtedy po prostu usuń je przez <kbd>⌘⌫</kbd>.</p></details>
+            <details><summary>Czy Clipsody działa na moim Macu?</summary>
+                <p>macOS 13 Ventura lub nowszy, na Apple Silicon i Intel.</p></details>
+            <details><summary>W jakich językach mówi Clipsody?</summary>
+                <p>Po angielsku, niemiecku, francusku, hiszpańsku, włosku, niderlandzku, polsku i portugalsku (Brazylia). Clipsody używa języka twojego Maca; inny wybierzesz w <strong>Ustawienia → Ogólne → Język</strong>.</p></details>
+            <details><summary>Dlaczego macOS pyta, czy Clipsody może odczytywać schowek?</summary>
+                <p>Nowsze wersje macOS pytają, zanim aplikacja odczyta to, co kopiujesz w innych aplikacjach. Bez tego dostępu Clipsody nie może prowadzić historii: wybierz Zezwól albo zezwól Clipsody w <strong>Ustawienia systemowe → Prywatność i ochrona</strong>. Aktualny stan Clipsody pokazuje w <strong>Ustawienia → Ogólne</strong>. Twój schowek i tak nigdy nie opuszcza Maca.</p></details>
+            <details><summary>Czy Clipsody sprawdza aktualizacje?</summary>
+                <p>Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a menu otwiera stronę pobierania. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić sam.</p></details>
+            <details><summary>Jak odinstalować Clipsody?</summary>
+                <p><strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli sam przeciągniesz aplikację do Kosza, te dane zostaną na twoim Macu.</p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>Clipsody – menedżer schowka dla macOS</span>
+        <a href="historia-schowka-mac.html">Poradnik: historia schowka na Macu</a>
+        <a href="https://github.com/tillackt/clipsody">GitHub</a>
+        <a href="https://github.com/tillackt/clipsody/releases">Wszystkie wersje</a>
+        <span>Licencja: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></span>
+        <span class="spacer"></span>
+        <a href="../impressum.html">Nota prawna (po niemiecku)</a>
+        <a href="../datenschutz.html">Polityka prywatności (po niemiecku)</a>
+    </div>
+</footer>
+</body>
+</html>

@@ -5,9 +5,9 @@ name: Website
 on:
   push:
     branches: [main]
-    paths: ["website/**", ".github/workflows/website.yml", ".github/scripts/structured-data.py"]
+    paths: ["website/**", "site/**", ".github/workflows/website.yml"]
   pull_request:
-    paths: ["website/**", ".github/workflows/website.yml", ".github/scripts/structured-data.py"]
+    paths: ["website/**", "site/**", ".github/workflows/website.yml"]
   schedule:
     - cron: "41 4 * * 1"
   workflow_dispatch:
@@ -33,8 +33,8 @@ jobs:
       - name: Validate the HTML (html-validate, recommended rules)
         # Version pinned; rules in website/.htmlvalidate.json.
         run: npx --yes html-validate@11.17.0 website
-      - name: Check that the structured data matches the pages
-        run: python3 .github/scripts/structured-data.py --check
+      - name: Check that the pages match site/ (texts, structured data, sitemap)
+        run: python3 site/build.py --check
       - name: Check links and anchors (lychee)
         # Pinned by digest like the images in ci.yml. 429 (rate limited) counts as reachable, so the
         # weekly run does not fail on throttling; the DMG link is checked too. gnu.org (the licence

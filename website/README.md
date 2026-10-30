@@ -1,32 +1,38 @@
 # Website
 
-Static site without a build step, scripts, external fonts or tracking. It will be served from GitHub Pages at `https://tillackt.github.io/clipsody/`; canonical URLs, hreflang links, Open Graph tags and the sitemap use that address.
+Static site without scripts, external fonts or tracking, in the same 8 languages as the app. It will be served from GitHub Pages at `https://tillackt.github.io/clipsody/`; canonical URLs, hreflang links, Open Graph tags and the sitemap use that address.
 
-- `index.html`: German home page
-- `en/index.html`: English home page
-- `zwischenablage-verlauf-mac.html`, `en/clipboard-history-mac.html`: guides "how to see the clipboard history on a Mac" (DE/EN), aimed at people who search for the problem rather than for an app
-- `impressum.html`, `datenschutz.html`: legal notice and privacy policy (German, placeholders for now, `noindex`)
-- `404.html`: shown by GitHub Pages for unknown paths (`noindex`, root paths under `/clipsody/`)
-- `sitemap.xml`: all indexable pages with their language versions
-- `assets/`: stylesheet, logo, social preview images (`og-de.png`, `og-en.png`, 1200×630) and the Apple touch icon (`icon-180.png`)
+## How the pages are made
+
+The home page and the guide exist in every language and are generated:
+
+- `site/content/<lang>.json`: all texts of one language (`de`, `en`, `fr`, `es`, `it`, `nl`, `pl`, `pt-BR`). Every file has the same keys as `en.json`.
+- `site/build.py`: the HTML structure, the animated hero, the JSON-LD structured data (FAQ entries are the visible ones) and `sitemap.xml`.
+- `website/`: the generated output, committed, so the server needs no build step.
+
+After changing a text or the structure:
+
+```bash
+python3 site/build.py
+```
+
+CI (`website.yml`) runs `python3 site/build.py --check` and fails if `website/` is out of date. To add a language: add `site/content/<lang>.json` (copy `en.json`), add it to `LANGUAGES` in `site/build.py`, and build.
+
+German is at the root (`/`), the other languages in folders (`/en/`, `/fr/`, …, `/pt-br/`); English is `x-default`. Guides: `zwischenablage-verlauf-mac.html`, `en/clipboard-history-mac.html` and one per language (file name in each JSON's `guideFile`).
+
+Hand-written pages: `impressum.html`, `datenschutz.html` (German, placeholders for now, `noindex`) and `404.html` (`noindex`, root paths under `/clipsody/`). `assets/` holds the stylesheet, the logo, the social preview images (`og-de.png`, `og-en.png`, 1200×630), the Apple touch icon (`icon-180.png`) and `sample-photo.jpg`, the photo shown in the hero (generated with Codex's image model, no third-party rights).
 
 ## Search engines
 
-The pages target what people type when they lose a copied item: "Zwischenablage Verlauf Mac", "Mac mehrere Einträge kopieren", "Multi-Zwischenablage", "Clipboard Manager Mac kostenlos", "clipboard history mac", "copy multiple items mac". Each page has one H1, a title of about 60 characters and a description of about 155.
+The pages target what people type when they lose a copied item, in each language: "Zwischenablage Verlauf Mac", "Multi-Zwischenablage", "clipboard history mac", "copy multiple items mac", "historique presse-papiers mac", "historial portapapeles mac" and so on. Each page has one H1, a title of about 60 characters and a description of about 155.
 
-Structured data (JSON-LD) is generated from the pages: `SoftwareApplication` and `FAQPage` on the home pages, `Article`, `BreadcrumbList` and `FAQPage` on the guides. The FAQ answers are taken from the visible `<details>` blocks, so they never differ from the page. After changing a page or an FAQ entry:
-
-```bash
-python3 .github/scripts/structured-data.py
-```
-
-CI (`website.yml`) fails if the structured data is out of date. The preview images and the touch icon are rendered from the logo:
+The preview images and the touch icon are rendered from the logo:
 
 ```bash
 swift .github/scripts/website-images.swift
 ```
 
-When content changes, update `dateModified` in the script and `lastmod` in `sitemap.xml`.
+When content changes, update `MODIFIED` in `site/build.py` (used for `dateModified` and `lastmod`).
 
 ## Before publishing
 
@@ -44,10 +50,10 @@ When content changes, update `dateModified` in the script and `lastmod` in `site
 
 ## Publishing with your own domain
 
-GitHub Pages can serve this folder (repository settings → Pages, e.g. through a GitHub Action that publishes `website/`). A custom domain would need the absolute URLs above changed (pages, `sitemap.xml`, `.github/scripts/structured-data.py`) and redirects from the old address.
+GitHub Pages can serve this folder (repository settings → Pages, e.g. through a GitHub Action that publishes `website/`). A custom domain would need `SITE` in `site/build.py` changed (then rebuild) and redirects from the old address.
 
 View locally:
 
 ```bash
-python3 -m http.server 8765 --directory website
+python3 -m http.server 8765 --bind 127.0.0.1 --directory website
 ```
