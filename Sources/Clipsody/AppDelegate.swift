@@ -23,7 +23,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var recognition: TextRecognitionQueue!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        LegacyMigration.run()
         do {
             store = try Store()
         } catch {

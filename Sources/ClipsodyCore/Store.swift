@@ -32,30 +32,6 @@ public final class Store {
             .appendingPathComponent("Clipsody")
     }
 
-    /// Where the app kept its data before it was renamed from Clippboard to Clipsody.
-    public static var legacyDirectory: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("Clippboard")
-    }
-
-    /// Moves the data of the app's old name into `directory`, keeping history, images and
-    /// settings. Only when nothing exists at `directory` yet, so newer data is never overwritten.
-    /// Returns whether it moved anything.
-    @discardableResult
-    public static func adoptLegacyDirectory(_ legacy: URL = Store.legacyDirectory,
-                                            into directory: URL = Store.defaultDirectory) -> Bool {
-        let fileManager = FileManager.default
-        guard fileManager.fileExists(atPath: legacy.path), !fileManager.fileExists(atPath: directory.path) else { return false }
-        do {
-            // Same volume: a rename, so the folder keeps its 0700 mode and backup exclusion.
-            try fileManager.moveItem(at: legacy, to: directory)
-            return true
-        } catch {
-            logger.error("Could not move the old data folder: \(String(describing: error), privacy: .public)")
-            return false
-        }
-    }
-
     public init(directory: URL = Store.defaultDirectory) throws {
         self.directory = directory
         imagesDirectory = directory.appendingPathComponent("images")

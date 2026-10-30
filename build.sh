@@ -230,10 +230,6 @@ fi
 
 if [[ "${1:-}" == "install" ]]; then
     TARGET="/Applications/Clipsody.app"
-    # Earlier versions installed per user, and before that under the old name Clippboard; two
-    # copies would confuse Spotlight and the login item.
-    OLD_TARGETS=("$HOME/Applications/Clipsody.app" "$HOME/Applications/Clippboard.app" "/Applications/Clippboard.app")
-    LEGACY_BUNDLE_ID="local.thorsten.clippboard"
     # Checked before anything is quit or removed: a failed copy must not leave the user without an app.
     if [[ ! -w /Applications ]]; then
         echo "/Applications is not writable for $(whoami); install aborted, nothing changed" >&2
@@ -244,33 +240,22 @@ if [[ "${1:-}" == "install" ]]; then
     # ditto keeps bundle metadata (extended attributes, permissions) as code signing expects.
     ditto "$APP" "$STAGED"
     codesign --verify --strict --deep "$STAGED"
-    # The old Clippboard must be gone too: the new app moves its data folder at first launch.
     pkill -x Clipsody || true
-    pkill -x Clippboard || true
-    # Wait until the old instances are gone (at most 10 s), otherwise `open` fails with error -600.
+    # Wait until the old instance is gone (at most 10 s), otherwise `open` fails with error -600.
     for _ in $(seq 50); do
-        pgrep -x Clipsody >/dev/null || pgrep -x Clippboard >/dev/null || break
+        pgrep -x Clipsody >/dev/null || break
         sleep 0.2
     done
-    if pgrep -x Clipsody >/dev/null || pgrep -x Clippboard >/dev/null; then
+    if pgrep -x Clipsody >/dev/null; then
         rm -rf "$STAGED"
-        echo "Clipsody (or the old Clippboard) did not quit; install aborted" >&2
+        echo "Clipsody did not quit; install aborted" >&2
         exit 1
     fi
     # LaunchServices needs a moment after the process is gone.
     sleep 1
-    # Same volume: the swap is a rename, and the old per-user copy goes only once the new one is in place.
+    # Same volume: the swap is a rename.
     rm -rf "$TARGET"
     mv "$STAGED" "$TARGET"
-    for OLD in "${OLD_TARGETS[@]}"; do
-        if [[ -e "$OLD" ]]; then
-            rm -rf "$OLD"
-            echo "Removed $OLD"
-        fi
-    done
-    # Permissions granted to the old bundle ID are useless now (the new app asks again); a no-op
-    # when there are none.
-    tccutil reset All "$LEGACY_BUNDLE_ID" >/dev/null 2>&1 || true
     open "$TARGET"
     echo "Installed and started $TARGET"
 fi
