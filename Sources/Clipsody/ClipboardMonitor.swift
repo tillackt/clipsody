@@ -50,6 +50,9 @@ final class ClipboardMonitor {
         let changeCount = pasteboard.changeCount
         guard changeCount != lastChangeCount else { return }
         lastChangeCount = changeCount
+        // Denied in System Settings: macOS would block every read anyway (silently). The settings
+        // and the status menu say so; reading nothing here keeps the log quiet.
+        guard PasteboardAccess.state != .denied else { return }
 
         let config = config()
         let app = NSWorkspace.shared.frontmostApplication
