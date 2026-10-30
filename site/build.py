@@ -10,6 +10,7 @@ is committed: the site needs no build step on the server. After changing a text 
 
 Hand-written pages (impressum.html, datenschutz.html, 404.html) are not touched.
 """
+import hashlib
 import html
 import json
 import re
@@ -23,9 +24,12 @@ SITE = "https://tillackt.github.io/clipsody/"
 DOWNLOAD = "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg"
 REPO = "https://github.com/tillackt/clipsody"
 LICENSE = "https://www.gnu.org/licenses/gpl-3.0.html"
+PUBLISHED = "2026-10-30"
 MODIFIED = "2026-10-30"
 FINGERPRINT = "4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6"
 AUTHOR = {"@type": "Person", "name": "tillackt", "url": "https://github.com/tillackt"}
+# Pages in website/ that are written by hand; every other HTML file there belongs to the generator.
+HANDWRITTEN = {"404.html", "impressum.html", "datenschutz.html"}
 
 # Language code (hreflang, file name in site/content) → folder. German stays at the root, where the
 # site started; English is x-default.
@@ -57,6 +61,16 @@ def fill(fragment, code, c):
     return fragment.replace("{download}", DOWNLOAD).replace("{guide}", c["guideFile"])
 
 
+def attr(value):
+    """Plain text for an attribute value or <title>; the JSON texts for page content may hold HTML."""
+    return html.escape(value, quote=True)
+
+
+def stylesheet(code):
+    digest = hashlib.sha256((WEBSITE / "assets" / "style.css").read_bytes()).hexdigest()[:10]
+    return rel(code, f"assets/style.css?v={digest}")
+
+
 # ---------------------------------------------------------------------------------------------- head
 
 
@@ -73,26 +87,28 @@ def head(code, c, page, file, kind, all_content):
 <head>
 {I}<meta charset="utf-8">
 {I}<meta name="viewport" content="width=device-width, initial-scale=1">
-{I}<title>{title}</title>
-{I}<meta name="description" content="{description}">
+{I}<title>{attr(title)}</title>
+{I}<meta name="description" content="{attr(description)}">
 {I}<meta name="color-scheme" content="light dark">
 {I}<link rel="canonical" href="{url(code, file)}">
 {alternates}
 {I}<link rel="alternate" hreflang="x-default" href="{url(DEFAULT, file_for(DEFAULT, all_content[DEFAULT], kind))}">
 {I}<link rel="icon" href="{rel(code, 'assets/logo.svg')}" type="image/svg+xml">
 {I}<link rel="apple-touch-icon" href="{rel(code, 'assets/icon-180.png')}">
-{I}<link rel="stylesheet" href="{rel(code, 'assets/style.css')}">
+{I}<link rel="stylesheet" href="{stylesheet(code)}">
 {I}<meta property="og:type" content="{'website' if kind == 'home' else 'article'}">
 {I}<meta property="og:site_name" content="Clipsody">
 {I}<meta property="og:locale" content="{c['ogLocale']}">
 {og_alternates}
-{I}<meta property="og:title" content="{page['ogTitle']}">
-{I}<meta property="og:description" content="{page['ogDescription']}">
+{I}<meta property="og:title" content="{attr(page['ogTitle'])}">
+{I}<meta property="og:description" content="{attr(page['ogDescription'])}">
 {I}<meta property="og:url" content="{url(code, file)}">
 {I}<meta property="og:image" content="{SITE}assets/{og_image(code)}">
 {I}<meta property="og:image:width" content="1200">
 {I}<meta property="og:image:height" content="630">
+{I}<meta property="og:image:alt" content="{attr(page.get('ogImageAlt', page['ogTitle']))}">
 {I}<meta name="twitter:card" content="summary_large_image">
+{I}<meta name="twitter:image:alt" content="{attr(page.get('ogImageAlt', page['ogTitle']))}">
 {I}<script type="application/ld+json">
 {structured_data(code, c, page, file, kind)}
 {I}</script>
@@ -100,8 +116,8 @@ def head(code, c, page, file, kind, all_content):
 
 
 def og_image(code):
-    # German pages use the German preview image, all others the English one.
-    return "og-de.png" if code == "de" else "og-en.png"
+    """Rendered per language by .github/scripts/website-images.swift."""
+    return f"og-{code.lower()}.jpg"
 
 
 def file_for(code, c, kind):
@@ -118,14 +134,15 @@ def header(code, c, nav, kind, all_content):
         f'hreflang="{other}" lang="{other}"{" aria-current=\"page\"" if other == code else ""}>'
         f'{all_content[other]["name"]}</a></li>'
         for other in LANGUAGES)
-    return f"""<header class="top">
+    return f"""<a class="skip" href="#main">{c['skipLink']}</a>
+<header class="top">
 {I}<div class="wrap">
 {I*2}<a class="brand" href="./"><img src="{rel(code, 'assets/logo.svg')}" alt="" width="28" height="28">Clipsody</a>
 {I*2}<nav aria-label="{c['mainNav']}">
 {links}
 {I*2}</nav>
 {I*2}<details class="langs">
-{I*3}<summary title="{c['otherLanguages']}"><span aria-hidden="true">🌐</span> {c['name']}</summary>
+{I*3}<summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">{c['otherLanguages']}: </span>{c['name']}</summary>
 {I*3}<ul>
 {langs}
 {I*3}</ul>
@@ -177,7 +194,9 @@ def panel(search, entries, selected, preview, info, hint):
 
 def hero_figure(code, h):
     empty = f'<span class="placeholder">{h["placeholder"]}</span>'
-    photo = f'<img class="photo" src="{rel(code, "assets/sample-photo.jpg")}" alt="" width="960" height="720" loading="lazy">'
+    photo = (f'<picture><source srcset="{rel(code, "assets/sample-photo.avif")}" type="image/avif">'
+             f'<img class="photo" src="{rel(code, "assets/sample-photo.jpg")}" alt="" width="940" height="470" '
+             f'loading="lazy" decoding="async" fetchpriority="low"></picture>')
     file_card = (f'<div class="file"><span class="doc">PDF</span><b>{h["fileName"]}</b>'
                  f'<span>{h["filePath"]}</span><span>{h["fileMeta"]}</span></div>')
     scenes = [
@@ -187,14 +206,19 @@ def hero_figure(code, h):
         panel(f'<span class="typed">{h["ocrSearch"]}</span>', h["ocrItems"], 0,
               f'<div class="img">{h["ocrPreview"]}</div>', h["ocrInfo"], h["hint"]),
     ]
-    parts = [f'{I*2}<figure class="shot">', f'{I*3}<div class="scenes" aria-hidden="true">']
+    # The checkbox comes first so CSS can pause the scenes after it (WCAG 2.2.2, no script).
+    parts = [f'{I*2}<figure class="shot">',
+             f'{I*3}<input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">',
+             f'{I*3}<div class="scenes" aria-hidden="true">']
     for number, (label, scene) in enumerate(zip(h["labels"], scenes), start=1):
         parts += [f'{I*3}<div class="scene s{number}">',
                   f'{I*4}<p class="scene-label"><span class="step">{number}</span>{label}</p>',
                   scene, f'{I*3}</div>']
     parts += [f'{I*3}</div>',
               f'{I*3}<div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span>'
-              f'<span class="s3"></span><span class="s4"></span></div>',
+              f'<span class="s3"></span><span class="s4"></span>'
+              f'<label class="pause" for="pause-hero"><span class="when-running">⏸ {h["pause"]}</span>'
+              f'<span class="when-paused">▶ {h["resume"]}</span></label></div>',
               f'{I*3}<figcaption class="caption">{h["caption"]}</figcaption>',
               f'{I*2}</figure>']
     return "\n".join(parts)
@@ -224,12 +248,12 @@ def cards(items, with_icon=False):
     return f'{I*3}<div class="grid">\n' + "\n".join(rendered) + f'\n{I*3}</div>'
 
 
-def compare_table(head_cells, rows, indent=3):
+def compare_table(head_cells, rows, label, indent=3):
     pad = I * indent
     head_html = "".join(f'<th scope="col">{cell}</th>' for cell in head_cells)
     body = "\n".join(f'{pad}{I*2}<tr><th scope="row">{row[0]}</th>' + "".join(f"<td>{cell}</td>" for cell in row[1:]) + "</tr>"
                      for row in rows)
-    return f"""{pad}<div class="table-scroll">
+    return f"""{pad}<div class="table-scroll" tabindex="0" role="region" aria-label="{attr(text(label))}">
 {pad}{I}<table class="compare">
 {pad}{I*2}<thead>
 {pad}{I*2}<tr><td></td>{head_html}</tr>
@@ -243,7 +267,7 @@ def compare_table(head_cells, rows, indent=3):
 
 def keys_table(rows, indent=3):
     pad = I * indent
-    body = "\n".join(f"{pad}{I}<tr><td>{key}</td><td>{label}</td></tr>" for key, label in rows)
+    body = "\n".join(f'{pad}{I}<tr><th scope="row">{key}</th><td>{label}</td></tr>' for key, label in rows)
     return f"""{pad}<table class="keys">
 {pad}{I}<tbody>
 {body}
@@ -251,9 +275,10 @@ def keys_table(rows, indent=3):
 {pad}</table>"""
 
 
-def faq_list(items, indent=3):
+def faq_list(items, indent=3, fill_with=None):
     pad = I * indent
-    return "\n".join(f"{pad}<details><summary>{q}</summary>\n{pad}{I}<p>{a}</p></details>" for q, a in items)
+    return "\n".join(f"{pad}<details><summary>{q}</summary>\n{pad}{I}<p>{fill(a, *fill_with) if fill_with else a}</p></details>"
+                     for q, a in items)
 
 
 def mini_window(o, highlighted):
@@ -297,7 +322,8 @@ def home_page(code, c, all_content):
 {I*5}</ul></div>
 {I*3}</div>"""
     compare = p["compare"]
-    compare_body = compare_table(compare["head"], compare["rows"]) + \
+    compare_body = compare_table(compare["head"], compare["rows"], compare["h2"]) + \
+        f'\n{I*3}<p class="asof">{c["spotlightAsOf"]}</p>' + \
         f'\n{I*3}<p class="more">{fill(compare["more"], code, c)}</p>'
     install = p["install"]
     steps = "\n".join(f"{I*4}<li>{fill(step, code, c)}</li>" for step in install["steps"])
@@ -319,7 +345,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         ("keys", p["keys"]["h2"], p["keys"]["sub"], keys_table(p["keys"]["rows"])),
         ("privacy", p["privacy"]["h2"], p["privacy"]["sub"], cards(p["privacy"]["cards"])),
         ("install", install["h2"], install["sub"], install_body),
-        ("faq", p["faq"]["h2"], "&nbsp;", faq_list(p["faq"]["items"])),
+        ("faq", p["faq"]["h2"], None, faq_list(p["faq"]["items"], fill_with=(code, c))),
     ]
     rendered = "\n\n".join(section(sid, index % 2 == 0, h2, sub, body)
                            for index, (sid, h2, sub, body) in enumerate(sections))
@@ -327,7 +353,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
 <body>
 {header(code, c, nav, "home", all_content)}
 
-<main>
+<main id="main">
 {I}<div class="hero wrap">
 {I*2}<h1>{p['h1']}</h1>
 {I*2}<p class="lead">{p['lead']}</p>
@@ -368,7 +394,9 @@ def guide_page(code, c, all_content):
         b = g[key]
         blocks.append(f'{I}<h2 id="{block_id}">{b["h2"]}</h2>\n{I}<p>{fill(b["intro"], code, c)}</p>\n'
                       f'{steps(b["steps"])}\n{I}<p>{fill(b["after"], code, c)}</p>')
-    blocks.append(f'{I}<h2 id="compare">{g["compare"]["h2"]}</h2>\n' + compare_table(g["compare"]["head"], g["compare"]["rows"], 1))
+    blocks.append(f'{I}<h2 id="compare">{g["compare"]["h2"]}</h2>\n'
+                  + compare_table(g["compare"]["head"], g["compare"]["rows"], g["compare"]["h2"], 1)
+                  + f'\n{I}<p class="asof">{c["spotlightAsOf"]}</p>')
     blocks.append(f'{I}<h2 id="shortcuts">{g["shortcuts"]["h2"]}</h2>\n' + keys_table(g["shortcuts"]["rows"], 1))
     blocks.append(f'{I}<h2 id="faq">{g["faq"]["h2"]}</h2>\n' + faq_list(g["faq"]["items"], 1))
     cta = g["cta"]
@@ -377,8 +405,8 @@ def guide_page(code, c, all_content):
 <body>
 {header(code, c, nav, "guide", all_content)}
 
-<main class="article wrap">
-{I}<nav class="crumbs" aria-label="{g['breadcrumbLabel']}"><a href="./">Clipsody</a> › {g['crumb']}</nav>
+<main class="article wrap" id="main">
+{I}<nav class="crumbs" aria-label="{g['breadcrumbLabel']}"><a href="./">Clipsody</a> › <span aria-current="page">{g['crumb']}</span></nav>
 {I}<h1>{g['h1']}</h1>
 {I}<p class="lead">{g['lead']}</p>
 {I}<p class="updated">{g['updated']}</p>
@@ -429,6 +457,7 @@ def structured_data(code, c, page, file, kind):
             "headline": text(page["h1"]),
             "description": html.unescape(page["description"]),
             "inLanguage": code,
+            "datePublished": PUBLISHED,
             "dateModified": MODIFIED,
             "mainEntityOfPage": page_url,
             "image": SITE + "assets/" + og_image(code),
@@ -485,10 +514,22 @@ def outputs():
     return files
 
 
+def leftovers(names):
+    """Generated pages from earlier builds that the current content no longer produces."""
+    return sorted(str(path.relative_to(WEBSITE)) for path in WEBSITE.rglob("*.html")
+                  if str(path.relative_to(WEBSITE)) not in names and path.name not in HANDWRITTEN
+                  or (path.name in HANDWRITTEN and path.parent != WEBSITE))
+
+
 def main():
     check = "--check" in sys.argv[1:]
     stale = []
-    for name, content in outputs().items():
+    files = outputs()
+    for name in leftovers(files):
+        stale.append(name + " (no longer generated)")
+        if not check:
+            (WEBSITE / name).unlink()
+    for name, content in files.items():
         path = WEBSITE / name
         if not path.exists() or path.read_text(encoding="utf-8") != content:
             stale.append(name)

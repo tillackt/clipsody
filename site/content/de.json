@@ -5,29 +5,60 @@
   "guideFile": "zwischenablage-verlauf-mac.html",
   "otherLanguages": "Sprache",
   "mainNav": "Hauptnavigation",
+  "skipLink": "Zum Inhalt springen",
+  "spotlightAsOf": "Angaben zu Spotlight: Stand macOS 26.1, Oktober 2026.",
   "home": {
-    "title": "Zwischenablage-Verlauf für Mac: Clipboard Manager | Clipsody",
-    "description": "Der Mac merkt sich nur den letzten kopierten Eintrag. Clipsody speichert alle – Texte, Bilder, Dateien –, durchsuchbar per Tastatur. Kostenlos und Open Source.",
+    "title": "Clipboard Manager für Mac: Multi-Zwischenablage | Clipsody",
+    "description": "Der Mac merkt sich nur den letzten kopierten Eintrag. Clipsody speichert alle – Texte, Bilder, Dateien – mit Suche. Kostenlos und Open Source.",
     "ogTitle": "Clipsody – die Zwischenablage mit Gedächtnis für den Mac",
     "ogDescription": "Alles, was du kopierst, bleibt griffbereit: Texte, Bilder und Dateien, durchsuchbar und per Tastatur wieder eingefügt. Kostenlos, Open Source, komplett lokal.",
     "ogImageAlt": "Clipsody: Zwischenablage-Verlauf für den Mac",
     "appDescription": "Zwischenablage-Verlauf und Clipboard Manager für den Mac: merkt sich alle kopierten Texte, Bilder und Dateien, durchsuchbar und per Tastatur wieder eingefügt.",
-    "nav": {"features": "Funktionen", "compare": "Vergleich", "privacy": "Datenschutz", "install": "Installation", "faq": "Fragen"},
-    "h1": "Die Zwischenablage mit Gedächtnis für deinen Mac",
+    "nav": {
+      "features": "Funktionen",
+      "compare": "Vergleich",
+      "privacy": "Datenschutz",
+      "install": "Installation",
+      "faq": "Fragen"
+    },
+    "h1": "Der Zwischenablage-Manager für den Mac, der sich alles merkt",
     "lead": "Dein Mac merkt sich immer nur das, was du zuletzt kopiert hast – kopierst du etwas Neues, ist das Vorherige weg. Clipsody hebt alles auf: Texte, Bilder und Dateien. Mit <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> holst du jeden Eintrag zurück, und <kbd>⏎</kbd> fügt ihn dort ein, wo du gerade schreibst.",
     "download": "Kostenlos laden",
     "source": "Quellcode auf GitHub",
     "meta": "macOS 13 Ventura oder neuer · Apple Silicon und Intel · Oberfläche in 8 Sprachen",
-    "badges": ["Kostenlos", "Open Source", "Kein Konto, kein Tracking", "Alles bleibt auf deinem Mac"],
+    "badges": [
+      "Kostenlos",
+      "Open Source",
+      "Kein Konto, kein Tracking",
+      "Alles bleibt auf deinem Mac"
+    ],
     "hero": {
       "placeholder": "Suchen …",
       "items": [
-        ["b", "Bitte die Rechnung bis Freitag prüfen ⏎ Danke!"],
-        ["a", "Bild 4032×3024 (2,1 MB)"],
-        ["c", "Angebot_Müller.pdf"],
-        ["e", "https://example.com/termine"],
-        ["d", "📌 IBAN: DE00 0000 0000 …"],
-        ["b", "git push origin main"]
+        [
+          "b",
+          "Bitte die Rechnung bis Freitag prüfen ⏎ Danke!"
+        ],
+        [
+          "a",
+          "Bild 4032×3024 (2,1 MB)"
+        ],
+        [
+          "c",
+          "Angebot_Müller.pdf"
+        ],
+        [
+          "e",
+          "https://example.com/termine"
+        ],
+        [
+          "d",
+          "📌 IBAN: DE00 0000 0000 …"
+        ],
+        [
+          "b",
+          "git push origin main"
+        ]
       ],
       "textPreview": "Bitte die Rechnung bis Freitag prüfen.<br><br>Danke!<br>Anna",
       "textInfo": "Text · vor 2 Minuten · aus Mail",
@@ -46,17 +77,34 @@
       "caption": "So sieht der Verlauf in Clipsody aus: alle kopierten Einträge, ein Bild, eine Datei und die Suche nach Text in einem Screenshot.",
       "ocrSearch": "rechnung",
       "ocrItems": [
-        ["a", "Bild 2880×1800 (612 KB) – „…<mark>Rechnung</mark> Nr. 2026-1043…“"],
-        ["b", "Bitte die <mark>Rechnung</mark> bis Freitag prüfen ⏎ Danke!"],
-        ["c", "<mark>Rechnung</mark>_Oktober.pdf"],
-        ["d", "IBAN für die <mark>Rechnung</mark>: DE00 0000 …"],
-        ["e", "https://example.com/<mark>rechnung</mark>/1043"]
+        [
+          "a",
+          "Bild 2880×1800 (612 KB) – „…<mark>Rechnung</mark> Nr. 2026-1043…“"
+        ],
+        [
+          "b",
+          "Bitte die <mark>Rechnung</mark> bis Freitag prüfen ⏎ Danke!"
+        ],
+        [
+          "c",
+          "<mark>Rechnung</mark>_Oktober.pdf"
+        ],
+        [
+          "d",
+          "IBAN für die <mark>Rechnung</mark>: DE00 0000 …"
+        ],
+        [
+          "e",
+          "https://example.com/<mark>rechnung</mark>/1043"
+        ]
       ],
       "ocrPreview": "Screenshot · Text darauf erkannt<br><br><b><mark>Rechnung</mark> Nr. 2026-1043</b><br>Leistungszeitraum: Oktober 2026<br>Gesamtbetrag: 1.240,00 €<br>Zahlbar bis: 15.11.2026",
-      "ocrInfo": "Vorschau · vor 3 Minuten · Bild 2880×1800 · Text erkannt"
+      "ocrInfo": "Vorschau · vor 3 Minuten · Bild 2880×1800 · Text erkannt",
+      "pause": "Animation anhalten",
+      "resume": "Animation abspielen"
     },
     "problem": {
-      "h2": "Kopiert, kopiert – und das Erste ist weg",
+      "h2": "Mehrere Einträge kopieren – ohne dass das Erste verloren geht",
       "sub": "Die Zwischenablage des Mac hat Platz für genau einen Eintrag. Wer zwei Dinge nacheinander kopiert, verliert das erste. Clipsody macht daraus eine Multi-Zwischenablage mit Verlauf.",
       "withoutTitle": "Ohne Clipsody",
       "without": [
@@ -67,20 +115,44 @@
       "withTitle": "Mit Clipsody",
       "with": [
         "Alles, was du kopiert hast, in einer Liste – bis zu 10.000 Einträge. Wie lange sie bleiben, stellst du ein: von einem Tag bis zu einem Jahr.",
-        "Erst alles kopieren, dann nacheinander einfügen: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.",
+        "Erst alles kopieren, dann mit <kbd>⌥⌘C</kbd> die Liste öffnen und die Einträge nacheinander einfügen, die du brauchst.",
         "Ein Wort eingeben genügt, und der Eintrag von gestern ist wieder da."
       ]
     },
     "features": {
-      "h2": "Schlank. Schnell. Per Tastatur.",
+      "h2": "Was Clipsody kann",
       "sub": "Keine Startleiste, keine Workflows, keine hundert Einstellungen – ein Clipboard Manager, der einfach mitschreibt, was du kopierst.",
       "cards": [
-        ["⌨️", "Ein Kürzel, überall", "<kbd>⌥⌘C</kbd> öffnet den Zwischenablage-Verlauf in jeder App. Eintrag mit den Pfeiltasten wählen oder ein Suchwort eingeben, <kbd>⏎</kbd> drücken – der Eintrag landet dort, wo du warst."],
-        ["📋", "Mehrere Einträge nacheinander", "Erst Name, Adresse und Kundennummer kopieren, dann der Reihe nach einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein."],
-        ["🔎", "Findet auch Text in Bildern", "Kopierte Screenshots und Bilder werden auf deinem Mac gelesen. Such nach einem Wort, das auf dem Bild steht – und das Bild ist da. <a href=\"#text-in-images\">So geht’s</a>"],
-        ["🖼️", "Texte, Bilder, Dateien", "Bilder bleiben verlustfrei erhalten, kopierte Dateien werden wieder als Dateien eingefügt – nicht als Pfad."],
-        ["✍️", "Mit oder ohne Formatierung", "<kbd>⏎</kbd> behält Fett, Links und Tabellen aus Word, Outlook oder dem Browser. <kbd>⌥⏎</kbd> fügt nur den reinen Text ein."],
-        ["📌", "Anpinnen, was du oft brauchst", "IBAN, Adresse, Textbausteine, Befehle: Mit <kbd>⌘P</kbd> bleibt ein Eintrag oben und wird nie automatisch gelöscht."]
+        [
+          "⌨️",
+          "Ein Kürzel, überall",
+          "<kbd>⌥⌘C</kbd> öffnet den Zwischenablage-Verlauf in jeder App. Eintrag mit den Pfeiltasten wählen oder ein Suchwort eingeben, <kbd>⏎</kbd> drücken – der Eintrag landet dort, wo du warst."
+        ],
+        [
+          "📋",
+          "Mehrere Einträge kopieren, später einfügen",
+          "Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
+        ],
+        [
+          "🔎",
+          "Findet auch Text in Bildern",
+          "Kopierte Screenshots und Bilder werden auf deinem Mac gelesen. Such nach einem Wort, das auf dem Bild steht – und das Bild ist da. <a href=\"#text-in-images\">So geht’s</a>"
+        ],
+        [
+          "🖼️",
+          "Texte, Bilder, Dateien",
+          "Bilder bleiben verlustfrei erhalten, kopierte Dateien werden wieder als Dateien eingefügt – nicht als Pfad."
+        ],
+        [
+          "✍️",
+          "Mit oder ohne Formatierung",
+          "<kbd>⏎</kbd> behält Fett, Links und Tabellen aus Word, Outlook oder dem Browser. <kbd>⌥⏎</kbd> fügt nur den reinen Text ein."
+        ],
+        [
+          "📌",
+          "Anpinnen, was du oft brauchst",
+          "IBAN, Adresse, Textbausteine, Befehle: Mit <kbd>⌘P</kbd> bleibt ein Eintrag oben und wird nie automatisch gelöscht."
+        ]
       ]
     },
     "ocr": {
@@ -92,9 +164,18 @@
       "result": "„Fehlercode <mark>0x8007</mark> – Server…“",
       "recognised": "Text erkannt",
       "steps": [
-        ["Bild in die Zwischenablage", "<kbd>⇧⌃⌘4</kbd> nimmt einen Bildschirmausschnitt auf und legt ihn direkt in die Zwischenablage. Oder du kopierst ein Bild aus einer beliebigen App."],
-        ["Clipsody liest den Text", "Im Hintergrund und auf deinem Mac – nichts wird hochgeladen. Erkannt werden deutsche und englische Texte."],
-        ["Tage später wiederfinden", "<kbd>⌥⌘C</kbd> drücken, „0x8007“ eingeben – der Screenshot ist da. <kbd>⏎</kbd> fügt ihn als Bild ein, etwa in ein Support-Ticket."]
+        [
+          "Bild in die Zwischenablage",
+          "<kbd>⇧⌃⌘4</kbd> nimmt einen Bildschirmausschnitt auf und legt ihn direkt in die Zwischenablage. Oder du kopierst ein Bild aus einer beliebigen App."
+        ],
+        [
+          "Clipsody liest den Text",
+          "Im Hintergrund und auf deinem Mac – nichts wird hochgeladen. Erkannt werden deutsche und englische Texte."
+        ],
+        [
+          "Tage später wiederfinden",
+          "<kbd>⌥⌘C</kbd> drücken, „0x8007“ eingeben – der Screenshot ist da. <kbd>⏎</kbd> fügt ihn als Bild ein, etwa in ein Support-Ticket."
+        ]
       ],
       "note": "<strong>Gut zu wissen:</strong> Screenshots, die macOS nur als Datei auf dem Schreibtisch ablegt, landen nicht in der Zwischenablage. Nimm dafür <kbd>⌃</kbd> zur Tastenkombination dazu (<kbd>⇧⌃⌘3</kbd> für den ganzen Bildschirm, <kbd>⇧⌃⌘4</kbd> für einen Ausschnitt)."
     },
@@ -102,22 +183,63 @@
       "h2": "Wofür du eine Zwischenablage mit Verlauf brauchst",
       "sub": "Überall, wo du mehr als eine Sache kopierst.",
       "cards": [
-        ["Formulare ausfüllen", "Name, Anschrift, Bestellnummer aus einer Mail sammeln und nacheinander ins Formular einfügen – ohne zehnmal das Fenster zu wechseln."],
-        ["Schreiben und recherchieren", "Zitate, Links und Absätze aus mehreren Quellen kopieren und später in Ruhe zusammensetzen."],
-        ["Programmieren", "Befehle, Pfade und Code-Schnipsel wiederfinden, die du vor Stunden kopiert hast. Oft gebrauchte Befehle anpinnen."],
-        ["Support und Büro", "Textbausteine, Kontonummern und Signaturen angepinnt griffbereit – eingefügt mit zwei Tasten."]
+        [
+          "Formulare ausfüllen",
+          "Name, Anschrift, Bestellnummer aus einer Mail sammeln und nacheinander ins Formular einfügen – ohne zehnmal das Fenster zu wechseln."
+        ],
+        [
+          "Schreiben und recherchieren",
+          "Zitate, Links und Absätze aus mehreren Quellen kopieren und später in Ruhe zusammensetzen."
+        ],
+        [
+          "Programmieren",
+          "Befehle, Pfade und Code-Schnipsel wiederfinden, die du vor Stunden kopiert hast. Oft gebrauchte Befehle anpinnen."
+        ],
+        [
+          "Support und Büro",
+          "Textbausteine, Kontonummern und Signaturen angepinnt griffbereit – eingefügt in Sekunden."
+        ]
       ]
     },
     "compare": {
       "h2": "Hat der Mac nicht schon einen Verlauf?",
-      "sub": "Seit macOS 26 Tahoe kann Spotlight kopierte Inhalte zeigen. Das hilft für den Moment – Clipsody ist für alles gebaut, was länger als ein paar Stunden halten soll.",
-      "head": ["Clipsody", "Spotlight-Verlauf", "Mac ohne Zusatz"],
+      "sub": "Seit macOS 26 Tahoe kann Spotlight kopierte Inhalte zeigen. Das hilft für den Moment – Clipsody ist für alles gebaut, was länger als eine Woche halten soll.",
+      "head": [
+        "Clipsody",
+        "Spotlight-Verlauf",
+        "Mac ohne Zusatz"
+      ],
       "rows": [
-        ["Einträge", "alle, bis 10.000", "die der letzten Zeit", "nur der letzte"],
-        ["Aufbewahrung", "1 bis 365 Tage, frei wählbar", "höchstens 7 Tage", "bis zum nächsten <kbd>⌘C</kbd>"],
-        ["Einfügen", "<kbd>⏎</kbd> fügt direkt in die vorige App ein", "kopieren, dann selbst <kbd>⌘V</kbd>", "<kbd>⌘V</kbd>"],
-        ["Anpinnen", "ja, <kbd>⌘P</kbd>", "nein", "nein"],
-        ["Läuft ab", "macOS 13 Ventura", "macOS 26 Tahoe, ab Werk aus", "jedem Mac"]
+        [
+          "Einträge",
+          "alle, bis 10.000",
+          "die der letzten Zeit",
+          "nur der letzte"
+        ],
+        [
+          "Aufbewahrung",
+          "1 bis 365 Tage, frei wählbar",
+          "höchstens 7 Tage",
+          "bis zum nächsten <kbd>⌘C</kbd>"
+        ],
+        [
+          "Einfügen",
+          "<kbd>⏎</kbd> fügt direkt in die vorige App ein",
+          "kopieren, dann selbst <kbd>⌘V</kbd>",
+          "<kbd>⌘V</kbd>"
+        ],
+        [
+          "Anpinnen",
+          "ja, <kbd>⌘P</kbd>",
+          "nein",
+          "nein"
+        ],
+        [
+          "Läuft unter",
+          "macOS 13 Ventura und neuer",
+          "macOS 26 Tahoe und neuer, ab Werk aus",
+          "jedem Mac"
+        ]
       ],
       "more": "Mehr dazu: <a href=\"{guide}\">Zwischenablage-Verlauf auf dem Mac anzeigen – alle Wege</a>"
     },
@@ -125,32 +247,77 @@
       "h2": "Alles mit der Tastatur",
       "sub": "Die Maus brauchst du nicht – kannst sie aber benutzen.",
       "rows": [
-        ["<kbd>⌥⌘C</kbd>", "Verlauf öffnen oder schließen (frei wählbar)"],
-        ["Suchwort eingeben", "Liste filtern – findet Texte, App-Namen und Text auf Bildern"],
-        ["<kbd>↑</kbd> <kbd>↓</kbd>", "Eintrag wählen"],
-        ["<kbd>⏎</kbd>", "Einfügen, mit Formatierung"],
-        ["<kbd>⌥⏎</kbd>", "Einfügen, nur reiner Text"],
-        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Einen der ersten neun Einträge direkt einfügen"],
-        ["<kbd>⌘P</kbd>", "Anpinnen oder lösen"],
-        ["<kbd>⌘⌫</kbd>", "Eintrag löschen"],
-        ["<kbd>esc</kbd>", "Schließen"]
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Verlauf öffnen oder schließen (frei wählbar)"
+        ],
+        [
+          "Suchwort eingeben",
+          "Liste filtern – findet Texte, App-Namen und Text auf Bildern"
+        ],
+        [
+          "<kbd>↑</kbd> <kbd>↓</kbd>",
+          "Eintrag wählen"
+        ],
+        [
+          "<kbd>⏎</kbd>",
+          "Einfügen, mit Formatierung"
+        ],
+        [
+          "<kbd>⌥⏎</kbd>",
+          "Einfügen, nur reiner Text"
+        ],
+        [
+          "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
+          "Einen der ersten neun Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)"
+        ],
+        [
+          "<kbd>⌘P</kbd>",
+          "Anpinnen oder lösen"
+        ],
+        [
+          "<kbd>⌘⌫</kbd>",
+          "Eintrag löschen"
+        ],
+        [
+          "<kbd>esc</kbd>",
+          "Schließen"
+        ]
       ]
     },
     "privacy": {
       "h2": "Deine Zwischenablage gehört dir",
       "sub": "In einer Zwischenablage landet Persönliches: Passwörter, Adressen, Nachrichten. Deshalb ist Clipsody von Grund auf privat gebaut.",
       "cards": [
-        ["Nichts verlässt deinen Mac", "Kein Konto, kein Server, keine Statistik. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen. Ins Netz geht Clipsody nur, wenn du es erlaubst – um nach einer neuen Version zu fragen."],
-        ["Passwörter bleiben draußen", "Was Passwort-Manager als vertraulich markieren, wird nie gespeichert. 1Password, Bitwarden, KeePassXC &amp; Co. sind von Haus aus ausgenommen."],
-        ["Gelöscht heißt gelöscht", "Gelöschte Einträge werden in der Datenbank überschrieben und das Änderungsprotokoll geleert – auch nach einem Absturz beim nächsten Start."],
-        ["Bilder in der Sandbox", "Fremde Bilddaten werden in einem abgeschotteten Hilfsprozess ohne Datei- und Netzwerkzugriff verarbeitet, nicht in der App selbst."],
-        ["Prüfbar", "Der Quellcode ist offen. Du musst niemandem glauben – du kannst nachsehen und die App auch selbst bauen."],
-        ["Nicht im Bildschirm-Teilen", "Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet."]
+        [
+          "Deine Zwischenablage verlässt deinen Mac nicht",
+          "Kein Konto, kein Server, keine Statistik. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen. Ins Netz geht Clipsody nur, wenn du es erlaubst – um nach einer neuen Version zu fragen."
+        ],
+        [
+          "Passwörter bleiben draußen",
+          "Was Passwort-Manager als vertraulich markieren, wird nie gespeichert. 1Password, Bitwarden, KeePassXC &amp; Co. sind von Haus aus ausgenommen."
+        ],
+        [
+          "Gelöscht heißt gelöscht",
+          "Gelöschte Einträge werden in der Datenbank überschrieben und das Änderungsprotokoll geleert – auch nach einem Absturz beim nächsten Start. Bilddateien gelöschter Einträge werden entfernt."
+        ],
+        [
+          "Bilder in der Sandbox",
+          "Fremde Bilddaten werden in einem abgeschotteten Hilfsprozess ohne Datei- und Netzwerkzugriff verarbeitet, nicht in der App selbst."
+        ],
+        [
+          "Prüfbar",
+          "Der Quellcode ist offen. Du musst niemandem glauben – du kannst nachsehen und die App auch selbst bauen."
+        ],
+        [
+          "Außen vor bei klassischen Screenshots",
+          "Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet. Seit macOS 15 können moderne Aufnahme-Apps es trotzdem erfassen."
+        ]
       ]
     },
     "install": {
       "h2": "Installation",
-      "sub": "Clipsody ist kostenlos und deshalb nicht bei Apple notarisiert. Beim ersten Öffnen fragt macOS einmal nach – so geht's:",
+      "sub": "Clipsody ist nicht bei Apple notarisiert – dafür bräuchte es ein kostenpflichtiges Entwicklerkonto. Deshalb fragt macOS beim ersten Öffnen einmal nach – so geht's:",
       "steps": [
         "<a href=\"{download}\">Clipsody.dmg laden</a>, öffnen und <strong>Clipsody</strong> in den Ordner <strong>Programme</strong> ziehen.",
         "Clipsody starten. macOS meldet, dass die App nicht überprüft werden kann – auf <strong>Fertig</strong> klicken. Unter macOS 13 und 14 genügt stattdessen ein Rechtsklick auf Clipsody im Ordner <strong>Programme</strong> → <strong>Öffnen</strong> → <strong>Öffnen</strong>; Schritt 3 entfällt dann.",
@@ -164,17 +331,50 @@
     "faq": {
       "h2": "Häufige Fragen",
       "items": [
-        ["Wie sehe ich auf dem Mac, was ich vorher kopiert habe?", "Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag; im Finder zeigt <strong>Bearbeiten → Zwischenablage einblenden</strong> genau diesen einen. Seit macOS 26 kann Spotlight kopierte Inhalte der letzten Zeit zeigen, wenn du die Funktion einschaltest. Einen dauerhaften, durchsuchbaren Verlauf aller Einträge bekommst du mit einem Clipboard Manager wie Clipsody: <kbd>⌥⌘C</kbd> zeigt alles, was du kopiert hast."],
-        ["Wie kopiere ich mehrere Dinge und füge sie nacheinander ein?", "Mit Clipsody kopierst du einfach wie gewohnt mit <kbd>⌘C</kbd> – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit <kbd>⌥⌘C</kbd> die Liste und wählst den Eintrag mit <kbd>⏎</kbd>, oder du fügst mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> einen der ersten neun direkt ein."],
-        ["Ist Clipsody wirklich kostenlos?", "Ja. Keine Werbung, kein Abo, keine Testphase. Der Quellcode ist offen und steht unter der GPLv3."],
-        ["Warum braucht Clipsody die Berechtigung „Bedienungshilfen“?", "Nur, um nach der Auswahl <kbd>⌘V</kbd> in der App auszulösen, aus der du gekommen bist. Clipsody liest damit keine Bildschirminhalte und keine Tastatureingaben. Ohne die Berechtigung funktioniert alles – du fügst dann nur selbst ein."],
-        ["Wie lange wird der Verlauf gespeichert?", "Standardmäßig 7 Tage und höchstens 1.000 Einträge. Beides stellst du in den Einstellungen ein, bis zu 365 Tage und 10.000 Einträge. Angepinnte Einträge bleiben immer."],
-        ["Werden meine Passwörter gespeichert?", "Nein, wenn dein Passwort-Manager sie als vertraulich kennzeichnet – das tun die gängigen. Bekannte Passwort-Manager sind zusätzlich ausgenommen. Eine Grenze gibt es: Clipsody sieht, welche App vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung ein Passwort ohne diese Kennzeichnung, landet es im Verlauf – dann einfach mit <kbd>⌘⌫</kbd> löschen."],
-        ["Läuft Clipsody auf meinem Mac?", "Ab macOS 13 Ventura, auf Apple Silicon und Intel."],
-        ["In welchen Sprachen gibt es Clipsody?", "Deutsch, Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien). Clipsody folgt der Sprache deines Macs; unter <strong>Einstellungen → Allgemein → Sprache</strong> kannst du eine andere wählen."],
-        ["Warum fragt macOS, ob Clipsody die Zwischenablage lesen darf?", "Neuere macOS-Versionen fragen, bevor eine App liest, was du in anderen Apps kopierst. Ohne diesen Zugriff kann Clipsody keinen Verlauf führen: Wähle „Erlauben“ oder erlaube Clipsody unter <strong>Systemeinstellungen → Datenschutz &amp; Sicherheit</strong>. In Clipsody siehst du den Stand unter <strong>Einstellungen → Allgemein</strong>. Die Inhalte bleiben trotzdem nur auf deinem Mac."],
-        ["Sucht Clipsody nach Updates?", "Nur wenn du es erlaubst: Beim ersten Start fragt Clipsody, ob es einmal täglich bei GitHub nach einer neuen Version fragen darf. Gesendet wird dabei nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Gibt es eine neue Version, bekommt das Menüleisten-Symbol einen Punkt, und im Menü öffnest du die Download-Seite. Ändern kannst du das unter <strong>Einstellungen → Allgemein</strong>; dort und im Menüleisten-Menü kannst du auch jederzeit selbst suchen."],
-        ["Wie deinstalliere ich Clipsody?", "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac."]
+        [
+          "Wie sehe ich auf dem Mac, was ich vorher kopiert habe?",
+          "Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag. Ein Clipboard Manager wie Clipsody hebt alles auf, was du kopierst: <kbd>⌥⌘C</kbd> zeigt es, durchsuchbar. Alle Wege, auch Finder und den Spotlight-Verlauf von macOS 26: <a href=\"{guide}\">Zwischenablage-Verlauf am Mac anzeigen</a>."
+        ],
+        [
+          "Wie kopiere ich mehrere Dinge und füge sie nacheinander ein?",
+          "Mit Clipsody kopierst du einfach wie gewohnt mit <kbd>⌘C</kbd> – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit <kbd>⌥⌘C</kbd> die Liste und wählst den Eintrag mit <kbd>⏎</kbd>, oder du fügst mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> einen der ersten neun direkt ein. Ein eingefügter Eintrag rückt in der Liste nach oben."
+        ],
+        [
+          "Ist Clipsody wirklich kostenlos?",
+          "Ja. Keine Werbung, kein Abo, keine Testphase. Der Quellcode ist offen und steht unter der GPLv3."
+        ],
+        [
+          "Warum braucht Clipsody die Berechtigung „Bedienungshilfen“?",
+          "Nur, um nach der Auswahl <kbd>⌘V</kbd> in der App auszulösen, aus der du gekommen bist. Clipsody liest damit keine Bildschirminhalte und keine Tastatureingaben. Ohne die Berechtigung funktioniert alles – du fügst dann nur selbst ein."
+        ],
+        [
+          "Wie lange wird der Verlauf gespeichert?",
+          "Standardmäßig 7 Tage und höchstens 1.000 Einträge. Beides stellst du in den Einstellungen ein, bis zu 365 Tage und 10.000 Einträge. Angepinnte Einträge bleiben immer."
+        ],
+        [
+          "Werden meine Passwörter gespeichert?",
+          "Nein, wenn dein Passwort-Manager sie als vertraulich kennzeichnet – das tun die gängigen. Bekannte Passwort-Manager sind zusätzlich ausgenommen. Eine Grenze gibt es: Clipsody sieht, welche App vorne ist, nicht, wer kopiert hat. Kopiert eine Browser-Erweiterung ein Passwort ohne diese Kennzeichnung, landet es im Verlauf – dann einfach mit <kbd>⌘⌫</kbd> löschen."
+        ],
+        [
+          "Läuft Clipsody auf meinem Mac?",
+          "Ab macOS 13 Ventura, auf Apple Silicon und Intel."
+        ],
+        [
+          "In welchen Sprachen gibt es Clipsody?",
+          "Deutsch, Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch und Portugiesisch (Brasilien). Clipsody folgt der Sprache deines Macs; unter <strong>Einstellungen → Allgemein → Sprache</strong> kannst du eine andere wählen."
+        ],
+        [
+          "Warum fragt macOS, ob Clipsody die Zwischenablage lesen darf?",
+          "Neuere macOS-Versionen fragen, bevor eine App liest, was du in anderen Apps kopierst. Ohne diesen Zugriff kann Clipsody keinen Verlauf führen: Wähle „Erlauben“ oder erlaube Clipsody unter <strong>Systemeinstellungen → Datenschutz &amp; Sicherheit</strong>. In Clipsody siehst du den Stand unter <strong>Einstellungen → Allgemein</strong>. Die Inhalte bleiben trotzdem nur auf deinem Mac."
+        ],
+        [
+          "Sucht Clipsody nach Updates?",
+          "Nur wenn du es erlaubst: Beim ersten Start fragt Clipsody, ob es einmal täglich bei GitHub nach einer neuen Version fragen darf. Gesendet wird dabei nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Gibt es eine neue Version, bekommt das Menüleisten-Symbol einen Punkt, und im Menü öffnest du die Download-Seite. Ändern kannst du das unter <strong>Einstellungen → Allgemein</strong>; dort und im Menüleisten-Menü kannst du auch jederzeit selbst suchen."
+        ],
+        [
+          "Wie deinstalliere ich Clipsody?",
+          "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac."
+        ]
       ]
     }
   },
@@ -184,7 +384,7 @@
     "ogTitle": "Zwischenablage-Verlauf am Mac anzeigen – alle Wege",
     "ogDescription": "Finder, Spotlight-Verlauf in macOS 26 und Clipboard Manager im Vergleich – Schritt für Schritt.",
     "breadcrumbLabel": "Brotkrumen",
-    "crumb": "Ratgeber",
+    "crumb": "Zwischenablage-Verlauf",
     "h1": "Zwischenablage-Verlauf am Mac anzeigen: alle Wege",
     "lead": "Du hast etwas kopiert, danach etwas anderes – und brauchst jetzt wieder das Erste? Hier steht, was der Mac von sich aus kann, wie der neue Verlauf in Spotlight funktioniert und wann sich ein Clipboard Manager lohnt.",
     "updated": "Stand: Oktober 2026, macOS 13 Ventura bis macOS 27",
@@ -192,7 +392,10 @@
     "finder": {
       "h2": "1. Den aktuellen Inhalt im Finder anzeigen",
       "intro": "Der Finder zeigt, was gerade in der Zwischenablage liegt – aber nur diesen einen Eintrag:",
-      "steps": ["Klicke auf den Schreibtisch oder ein Finder-Fenster, damit der Finder vorne ist.", "Wähle in der Menüleiste <strong>Bearbeiten → Zwischenablage einblenden</strong>."],
+      "steps": [
+        "Klicke auf den Schreibtisch oder ein Finder-Fenster, damit der Finder vorne ist.",
+        "Wähle in der Menüleiste <strong>Bearbeiten → Zwischenablage einblenden</strong>."
+      ],
       "after": "Ein Fenster zeigt den Inhalt, etwa Text oder ein Bild. Frühere Einträge gibt es dort nicht: Was du davor kopiert hast, ist überschrieben. Die Zwischenablage liegt im Arbeitsspeicher, nicht als Datei auf der Festplatte – nach einem Neustart ist sie leer."
     },
     "spotlight": {
@@ -204,50 +407,115 @@
         "Beim ersten Mal fragt macOS, ob der Verlauf eingeschaltet werden soll – bestätigen.",
         "Suche den Eintrag, kopiere ihn mit dem Kopieren-Symbol oder <kbd>⌘C</kbd> und füge ihn mit <kbd>⌘V</kbd> dort ein, wo du ihn brauchst."
       ],
-      "after": "Gut für den Moment, mit Grenzen: Einträge bleiben je nach Einstellung höchstens einige Tage, es gibt kein Anpinnen, und du fügst in zwei Schritten ein (kopieren, dann <kbd>⌘V</kbd>). Auf Macs mit macOS 15 oder älter gibt es den Verlauf nicht. Löschen kannst du ihn über das Menü rechts neben dem Suchfeld."
+      "after": "Gut für den Moment, mit Grenzen: Je nach Einstellung bleiben Einträge 30 Minuten, 8 Stunden oder 7 Tage, es gibt kein Anpinnen, und du fügst in zwei Schritten ein (kopieren, dann <kbd>⌘V</kbd>). Auf Macs mit macOS 15 oder älter gibt es den Verlauf nicht. Löschen kannst du ihn über das Menü rechts neben dem Suchfeld."
     },
     "manager": {
       "h2": "3. Alle Einträge mit einem Clipboard Manager",
-      "intro": "Ein Clipboard Manager (auch Zwischenablage-Manager oder Multi-Zwischenablage) merkt sich jeden kopierten Eintrag und zeigt ihn auf Knopfdruck wieder an. So geht es mit Clipsody, kostenlos und ab macOS 13:",
+      "intro": "Ein Clipboard Manager (auch Zwischenablage-Manager oder Multi-Zwischenablage) merkt sich jeden kopierten Eintrag und zeigt ihn auf Knopfdruck wieder an. So geht es mit <a href=\"./\">Clipsody, dem kostenlosen Clipboard Manager für den Mac</a> (ab macOS 13):",
       "steps": [
         "<a href=\"{download}\">Clipsody laden</a> und in den Ordner <strong>Programme</strong> ziehen (<a href=\"./#install\">Installation im Detail</a>).",
         "Kopiere wie gewohnt mit <kbd>⌘C</kbd>. Jeder Eintrag – Text, Bild oder Datei – landet im Verlauf.",
         "Drücke <kbd>⌥⌘C</kbd>: Die Liste aller kopierten Einträge erscheint. Gib ein Suchwort ein, um sie zu filtern; das findet auch Text in Screenshots.",
-        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun direkt ein."
+        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge der Liste direkt ein."
       ],
       "after": "Wie lange der Verlauf hält (1 bis 365 Tage) und wie viele Einträge er fasst (bis 10.000), stellst du selbst ein. Mit <kbd>⌘P</kbd> angepinnte Einträge bleiben dauerhaft. Alles bleibt lokal auf deinem Mac."
     },
     "compare": {
       "h2": "Die Wege im Vergleich",
-      "head": ["Finder", "Spotlight-Verlauf", "Clipsody"],
+      "head": [
+        "Finder",
+        "Spotlight-Verlauf",
+        "Clipsody"
+      ],
       "rows": [
-        ["Zeigt", "nur den aktuellen Eintrag", "Einträge der letzten Zeit", "alle, bis 10.000"],
-        ["Aufbewahrung", "bis zum nächsten <kbd>⌘C</kbd>", "höchstens 7 Tage", "1 bis 365 Tage"],
-        ["Einfügen", "<kbd>⌘V</kbd>", "kopieren, dann <kbd>⌘V</kbd>", "<kbd>⏎</kbd> direkt"],
-        ["Anpinnen", "nein", "nein", "ja"],
-        ["macOS", "alle", "ab 26, ab Werk aus", "ab 13"]
+        [
+          "Zeigt",
+          "nur den aktuellen Eintrag",
+          "Einträge der letzten Zeit",
+          "alle, bis 10.000"
+        ],
+        [
+          "Aufbewahrung",
+          "bis zum nächsten <kbd>⌘C</kbd>",
+          "höchstens 7 Tage",
+          "1 bis 365 Tage"
+        ],
+        [
+          "Einfügen",
+          "<kbd>⌘V</kbd>",
+          "kopieren, dann <kbd>⌘V</kbd>",
+          "<kbd>⏎</kbd> direkt"
+        ],
+        [
+          "Anpinnen",
+          "nein",
+          "nein",
+          "ja"
+        ],
+        [
+          "macOS",
+          "alle",
+          "ab 26, ab Werk aus",
+          "ab 13"
+        ]
       ]
     },
     "shortcuts": {
       "h2": "Tastenkürzel rund um die Zwischenablage",
       "rows": [
-        ["<kbd>⌘C</kbd>", "Kopieren"],
-        ["<kbd>⌘X</kbd>", "Ausschneiden"],
-        ["<kbd>⌘V</kbd>", "Einfügen"],
-        ["<kbd>⌥⇧⌘V</kbd>", "Einfügen ohne Formatierung („Einsetzen und Stil anpassen“, in vielen Apps)"],
-        ["<kbd>⇧⌘4</kbd>, dann <kbd>⌃</kbd> beim Auswählen", "Bildschirmausschnitt direkt in die Zwischenablage"],
-        ["<kbd>⌘</kbd> <kbd>Leertaste</kbd>, <kbd>⌘4</kbd>", "Spotlight-Verlauf der Zwischenablage (macOS 26 und neuer)"],
-        ["<kbd>⌥⌘C</kbd>", "Verlauf in Clipsody öffnen"]
+        [
+          "<kbd>⌘C</kbd>",
+          "Kopieren"
+        ],
+        [
+          "<kbd>⌘X</kbd>",
+          "Ausschneiden"
+        ],
+        [
+          "<kbd>⌘V</kbd>",
+          "Einfügen"
+        ],
+        [
+          "<kbd>⌥⇧⌘V</kbd>",
+          "Einfügen ohne Formatierung („Einsetzen und Stil anpassen“, in vielen Apps)"
+        ],
+        [
+          "<kbd>⇧⌘4</kbd>, dann <kbd>⌃</kbd> beim Auswählen",
+          "Bildschirmausschnitt direkt in die Zwischenablage"
+        ],
+        [
+          "<kbd>⌘</kbd> <kbd>Leertaste</kbd>, <kbd>⌘4</kbd>",
+          "Spotlight-Verlauf der Zwischenablage (macOS 26 und neuer)"
+        ],
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Verlauf in Clipsody öffnen"
+        ]
       ]
     },
     "faq": {
       "h2": "Häufige Fragen",
       "items": [
-        ["Wo wird die Zwischenablage auf dem Mac gespeichert?", "Im Arbeitsspeicher, nicht als Datei. Deshalb ist sie nach einem Neustart leer, und es gibt keinen Ordner, in dem frühere Einträge liegen. Einen gespeicherten Verlauf legen erst Spotlight (ab macOS 26) oder ein Clipboard Manager an."],
-        ["Kann ich etwas wiederherstellen, das ich vor dem letzten Kopieren in der Zwischenablage hatte?", "Nur, wenn vorher ein Verlauf mitgeschrieben hat: der Spotlight-Verlauf ab macOS 26, falls eingeschaltet, oder ein Clipboard Manager wie Clipsody. Ohne Verlauf ist der vorige Eintrag mit dem nächsten Kopieren überschrieben."],
-        ["Kann ich mehrere Dinge gleichzeitig kopieren?", "Die Zwischenablage selbst fasst nur einen Eintrag. Mit einem Clipboard Manager kopierst du einfach nacheinander – jeder Eintrag bleibt erhalten – und fügst danach die gewünschten einzeln ein. In Clipsody zum Beispiel mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd>."],
-        ["Wie lösche ich die Zwischenablage auf dem Mac?", "Kopiere etwas Belangloses, zum Beispiel ein Leerzeichen – das ersetzt den aktuellen Inhalt. Den Spotlight-Verlauf leerst du über das Menü rechts neben dem Suchfeld, den Verlauf in Clipsody über das Menüleisten-Symbol → <strong>Historie löschen …</strong>."],
-        ["Teilen iPhone und Mac eine Zwischenablage?", "Ja, mit der „Universellen Zwischenablage“: Bei gleicher Apple-ID, eingeschaltetem Bluetooth, WLAN und Handoff kannst du auf dem iPhone kopieren und auf dem Mac einfügen. Auch sie überträgt nur den aktuellen Eintrag, keinen Verlauf."]
+        [
+          "Wo wird die Zwischenablage auf dem Mac gespeichert?",
+          "Im Arbeitsspeicher, nicht als Datei. Deshalb ist sie nach einem Neustart leer, und es gibt keinen Ordner, in dem frühere Einträge liegen. Einen gespeicherten Verlauf legen erst Spotlight (ab macOS 26) oder ein Clipboard Manager an."
+        ],
+        [
+          "Kann ich etwas wiederherstellen, das ich vor dem letzten Kopieren in der Zwischenablage hatte?",
+          "Nur, wenn vorher ein Verlauf mitgeschrieben hat: der Spotlight-Verlauf ab macOS 26, falls eingeschaltet, oder ein Clipboard Manager wie Clipsody. Ohne Verlauf ist der vorige Eintrag mit dem nächsten Kopieren überschrieben."
+        ],
+        [
+          "Kann ich mehrere Dinge gleichzeitig kopieren?",
+          "Die Zwischenablage selbst fasst nur einen Eintrag. Mit einem Clipboard Manager kopierst du einfach nacheinander – jeder Eintrag bleibt erhalten – und fügst danach die gewünschten einzeln ein. In Clipsody zum Beispiel mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd>."
+        ],
+        [
+          "Wie lösche ich die Zwischenablage auf dem Mac?",
+          "Kopiere etwas Belangloses, zum Beispiel ein Leerzeichen – das ersetzt den aktuellen Inhalt. Den Spotlight-Verlauf leerst du über das Menü rechts neben dem Suchfeld, den Verlauf in Clipsody über das Menüleisten-Symbol → <strong>Historie löschen …</strong>."
+        ],
+        [
+          "Teilen iPhone und Mac eine Zwischenablage?",
+          "Ja, mit der „Universellen Zwischenablage“: Bei gleicher Apple-ID, eingeschaltetem Bluetooth, WLAN und Handoff kannst du auf dem iPhone kopieren und auf dem Mac einfügen. Auch sie überträgt nur den aktuellen Eintrag, keinen Verlauf."
+        ]
       ]
     },
     "cta": {

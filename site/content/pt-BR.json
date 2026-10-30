@@ -5,15 +5,17 @@
   "guideFile": "historico-area-de-transferencia-mac.html",
   "otherLanguages": "Idioma",
   "mainNav": "Principal",
+  "skipLink": "Pular para o conteúdo",
+  "spotlightAsOf": "Informações sobre o Spotlight válidas para o macOS 26.1, outubro de 2026.",
   "home": {
-    "title": "Gerenciador de área de transferência Mac grátis | Clipsody",
+    "title": "Gerenciador de área de transferência grátis para Mac | Clipsody",
     "description": "Seu Mac só lembra o último item copiado. O Clipsody guarda o histórico da área de transferência: textos, imagens e arquivos, com busca pelo teclado. Grátis.",
     "ogTitle": "Clipsody – a área de transferência com memória para o seu Mac",
     "ogDescription": "Tudo o que você copia fica à mão: textos, imagens e arquivos, para buscar e colar de novo pelo teclado. Grátis, open source e 100% local.",
     "ogImageAlt": "Clipsody: histórico da área de transferência para Mac",
     "appDescription": "Gerenciador de área de transferência (clipboard) e histórico para Mac: guarda cada texto, imagem e arquivo que você copia, com busca e colagem pelo teclado.",
     "nav": {"features": "Recursos", "compare": "Comparação", "privacy": "Privacidade", "install": "Instalação", "faq": "Perguntas"},
-    "h1": "A área de transferência com memória para o seu Mac",
+    "h1": "O gerenciador de área de transferência para Mac que lembra de tudo",
     "lead": "Seu Mac só guarda o último item copiado – copiou outra coisa, o anterior já era. O Clipsody guarda tudo: textos, imagens e arquivos. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> traz qualquer um de volta, e <kbd>⏎</kbd> cola bem onde você estava digitando.",
     "download": "Baixar grátis",
     "source": "Código-fonte no GitHub",
@@ -53,10 +55,12 @@
         ["e", "https://example.com/<mark>fatura</mark>/1043"]
       ],
       "ocrPreview": "Captura de tela · texto reconhecido<br><br><b><mark>Fatura</mark> nº 2026-1043</b><br>Período: outubro de 2026<br>Total: R$ 1.240,00<br>Vencimento: 15/11/2026",
-      "ocrInfo": "Pré-visualização · há 3 minutos · imagem 2880×1800 · texto reconhecido"
+      "ocrInfo": "Pré-visualização · há 3 minutos · imagem 2880×1800 · texto reconhecido",
+      "pause": "Pausar animação",
+      "resume": "Reproduzir animação"
     },
     "problem": {
-      "h2": "Copia, copia – e o primeiro some",
+      "h2": "Copie vários itens – sem perder o primeiro",
       "sub": "A área de transferência do Mac guarda exatamente um item. Copie duas coisas seguidas e a primeira se perde. O Clipsody transforma ela em uma área de transferência múltipla, com histórico completo.",
       "withoutTitle": "Sem o Clipsody",
       "without": [
@@ -67,16 +71,16 @@
       "withTitle": "Com o Clipsody",
       "with": [
         "Tudo o que você copiou em uma lista – até 10.000 itens. Você decide por quanto tempo eles ficam: de um dia a um ano.",
-        "Copie tudo primeiro e depois cole um por um: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.",
+        "Copie tudo primeiro, depois abra a lista com <kbd>⌥⌘C</kbd> e cole os itens de que precisa, um depois do outro.",
         "Digite uma palavra e o item de ontem está de volta."
       ]
     },
     "features": {
-      "h2": "Leve. Rápido. Feito para o teclado.",
+      "h2": "O que o Clipsody faz",
       "sub": "Sem launcher, sem fluxos de trabalho, sem cem ajustes – um gerenciador de área de transferência que simplesmente guarda o que você copia.",
       "cards": [
         ["⌨️", "Um atalho, em qualquer lugar", "<kbd>⌥⌘C</kbd> abre o histórico da área de transferência em qualquer app. Escolha um item com as setas ou digite uma palavra, pressione <kbd>⏎</kbd> – e o item vai parar onde você estava."],
-        ["📋", "Copie vários itens, cole em sequência", "Copie primeiro nome, endereço e número do pedido, depois cole um por um. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens."],
+        ["📋", "Copie vários itens e cole quando precisar", "Copie primeiro nome, endereço e número do pedido, depois cole um por um a partir da lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens (fixados primeiro, depois os mais recentes)."],
         ["🔎", "Encontra texto até em imagens", "Capturas de tela e imagens copiadas são lidas no seu Mac. Busque uma palavra que aparece na imagem – e lá está ela. <a href=\"#text-in-images\">Como funciona</a>"],
         ["🖼️", "Textos, imagens, arquivos", "As imagens são guardadas sem perda, e arquivos copiados são colados de novo como arquivos – não como um caminho."],
         ["✍️", "Com ou sem formatação", "<kbd>⏎</kbd> mantém negrito, links e tabelas do Word, do Outlook ou do navegador. <kbd>⌥⏎</kbd> cola só o texto simples."],
@@ -105,19 +109,19 @@
         ["Preencher formulários", "Junte nome, endereço e número do pedido de um e-mail e cole tudo no formulário, um por um – sem trocar de janela dez vezes."],
         ["Escrita e pesquisa", "Copie citações, links e parágrafos de várias fontes e monte tudo depois."],
         ["Programação", "Encontre comandos, caminhos e trechos de código que você copiou horas atrás. Fixe os comandos que você usa o tempo todo."],
-        ["Suporte e escritório", "Respostas prontas, números de conta e assinaturas fixados e à mão – colados com duas teclas."]
+        ["Suporte e escritório", "Respostas prontas, números de conta e assinaturas fixados e à mão – colados em segundos."]
       ]
     },
     "compare": {
       "h2": "Mas o Mac já não tem um histórico da área de transferência?",
-      "sub": "Desde o macOS 26 Tahoe, o Spotlight pode mostrar os itens copiados recentemente. Isso ajuda na hora – o Clipsody foi feito para tudo o que precisa durar mais do que algumas horas.",
+      "sub": "Desde o macOS 26 Tahoe, o Spotlight pode mostrar os itens copiados recentemente. Isso ajuda na hora – o Clipsody foi feito para tudo o que precisa durar mais de uma semana.",
       "head": ["Clipsody", "Histórico do Spotlight", "Mac sem nada"],
       "rows": [
         ["Itens", "todos, até 10.000", "os recentes", "só o último"],
         ["Guardados por", "de 1 a 365 dias, você escolhe", "7 dias no máximo", "até o próximo <kbd>⌘C</kbd>"],
         ["Colar", "<kbd>⏎</kbd> cola direto no app anterior", "copiar e depois <kbd>⌘V</kbd> você mesmo", "<kbd>⌘V</kbd>"],
         ["Fixar", "sim, <kbd>⌘P</kbd>", "não", "não"],
-        ["Funciona no", "macOS 13 Ventura e posterior", "macOS 26 Tahoe, desativado por padrão", "qualquer Mac"]
+        ["Funciona no", "macOS 13 Ventura e posterior", "macOS 26 Tahoe e posterior, desativado por padrão", "qualquer Mac"]
       ],
       "more": "Mais: <a href=\"{guide}\">Como ver o histórico da área de transferência no Mac – todas as formas</a>"
     },
@@ -130,7 +134,7 @@
         ["<kbd>↑</kbd> <kbd>↓</kbd>", "Escolher um item"],
         ["<kbd>⏎</kbd>", "Colar com formatação"],
         ["<kbd>⌥⏎</kbd>", "Colar só o texto simples"],
-        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Colar direto um dos nove primeiros itens"],
+        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Colar direto um dos nove primeiros itens (fixados primeiro, depois os mais recentes)"],
         ["<kbd>⌘P</kbd>", "Fixar ou desafixar"],
         ["<kbd>⌘⌫</kbd>", "Apagar um item"],
         ["<kbd>esc</kbd>", "Fechar"]
@@ -140,17 +144,17 @@
       "h2": "Sua área de transferência é só sua",
       "sub": "Coisas pessoais vão parar na área de transferência: senhas, endereços, mensagens. Por isso, o Clipsody foi pensado para a privacidade desde o início.",
       "cards": [
-        ["Nada sai do seu Mac", "Sem conta, sem servidor, sem analytics. O histórico fica só no seu Mac e fora dos backups. O Clipsody só se conecta à internet se você permitir – para verificar se há uma nova versão."],
+        ["Sua área de transferência nunca sai do seu Mac", "Sem conta, sem servidor, sem analytics. O histórico fica só no seu Mac e fora dos backups. O Clipsody só se conecta à internet se você permitir – para verificar se há uma nova versão."],
         ["Senhas ficam de fora", "O que os gerenciadores de senhas marcam como oculto nunca é guardado. 1Password, Bitwarden, KeePassXC e outros já vêm excluídos."],
-        ["Apagado é apagado", "Itens apagados são sobrescritos no banco de dados e o registro de alterações dele é esvaziado – após uma falha, na próxima abertura."],
+        ["Apagado é apagado", "Itens apagados são sobrescritos no banco de dados e o registro de alterações dele é esvaziado – após uma falha, na próxima abertura. Os arquivos de imagem dos itens apagados são removidos."],
         ["Imagens em sandbox", "Dados de imagem não confiáveis são processados em um processo auxiliar isolado, sem acesso a arquivos ou à rede, e não no próprio app."],
         ["Verificável", "O código-fonte é aberto. Você não precisa confiar em ninguém – pode ler o código e compilar o app você mesmo."],
-        ["Oculto no compartilhamento de tela", "A janela fica oculta em capturas de tela e no compartilhamento de tela clássico."]
+        ["Fora das capturas de tela clássicas", "A janela fica oculta em capturas de tela e no compartilhamento de tela clássico. Desde o macOS 15, apps modernos de gravação de tela ainda conseguem capturá-la."]
       ]
     },
     "install": {
       "h2": "Instalação",
-      "sub": "O Clipsody é grátis e, por isso, não é notarizado pela Apple. O macOS pergunta uma vez na primeira abertura – veja como fazer:",
+      "sub": "O Clipsody não é notarizado pela Apple – para isso seria preciso uma conta de desenvolvedor paga. Por isso, o macOS pergunta uma vez na primeira abertura – veja como fazer:",
       "steps": [
         "<a href=\"{download}\">Baixe o Clipsody.dmg</a>, abra o arquivo e arraste o <strong>Clipsody</strong> para <strong>Aplicativos</strong>.",
         "Abra o Clipsody. O macOS avisa que não consegue verificar o app – clique em <strong>OK</strong>. No macOS 13 e 14, em vez disso, clique com o botão direito no Clipsody em <strong>Aplicativos</strong> → <strong>Abrir</strong> → <strong>Abrir</strong> e pule o passo 3.",
@@ -164,8 +168,8 @@
     "faq": {
       "h2": "Perguntas frequentes",
       "items": [
-        ["Como vejo no Mac o que copiei antes?", "Por padrão, o Mac só lembra o último item copiado; no Finder, <strong>Editar → Mostrar Área de Transferência</strong> mostra exatamente esse item. Desde o macOS 26, o Spotlight pode mostrar itens copiados recentemente depois que você ativa o recurso. Para um histórico duradouro e pesquisável de tudo o que você copia, use um gerenciador de área de transferência como o Clipsody: <kbd>⌥⌘C</kbd> mostra tudo."],
-        ["Como copio vários itens e colo um depois do outro?", "Com o Clipsody, você copia normalmente com <kbd>⌘C</kbd> – cada item fica no histórico. Para colar, abra a lista com <kbd>⌥⌘C</kbd> e escolha um item com <kbd>⏎</kbd>, ou cole direto um dos nove primeiros com <kbd>⌘1</kbd> a <kbd>⌘9</kbd>."],
+        ["Como vejo no Mac o que copiei antes?", "Por padrão, o Mac só lembra o último item copiado. Um gerenciador de área de transferência como o Clipsody guarda tudo o que você copia: <kbd>⌥⌘C</kbd> mostra tudo, com busca. Todas as formas, incluindo o Finder e o histórico do Spotlight no macOS 26: <a href=\"{guide}\">como ver o histórico da área de transferência no Mac</a>."],
+        ["Como copio vários itens e colo um depois do outro?", "Com o Clipsody, você copia normalmente com <kbd>⌘C</kbd> – cada item fica no histórico. Para colar, abra a lista com <kbd>⌥⌘C</kbd> e escolha um item com <kbd>⏎</kbd>, ou cole direto um dos nove primeiros com <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Um item colado sobe para o topo da lista."],
         ["O Clipsody é grátis mesmo?", "Sim. Sem anúncios, sem assinatura, sem período de teste. O código-fonte é aberto, sob a GPLv3."],
         ["Por que o Clipsody precisa da permissão de Acessibilidade?", "Só para acionar <kbd>⌘V</kbd> no app de onde você veio depois que você escolhe um item. O Clipsody não usa essa permissão para ler a tela nem o que você digita. Tudo funciona sem ela – você só cola por conta própria."],
         ["Por quanto tempo o histórico é guardado?", "Por padrão, 7 dias e no máximo 1.000 itens; nos ajustes você pode aumentar os dois, até 365 dias e 10.000 itens. Itens fixados ficam sempre."],
@@ -184,7 +188,7 @@
     "ogTitle": "Como ver o histórico da área de transferência no Mac",
     "ogDescription": "Finder, o histórico da área de transferência do Spotlight no macOS 26 e gerenciadores de área de transferência comparados, passo a passo.",
     "breadcrumbLabel": "Navegação estrutural",
-    "crumb": "Guia",
+    "crumb": "Histórico da área de transferência",
     "h1": "Como ver o histórico da área de transferência no Mac: todas as formas",
     "lead": "Você copiou uma coisa, depois outra – e agora precisa da primeira de novo? Veja o que o Mac faz sozinho, como funciona o novo histórico do Spotlight e quando vale a pena usar um gerenciador de área de transferência.",
     "updated": "Atualizado em outubro de 2026, do macOS 13 Ventura ao macOS 27",
@@ -204,16 +208,16 @@
         "Na primeira vez, o macOS pergunta se você quer ativar o histórico – confirme.",
         "Encontre o item, copie com o botão de copiar ou com <kbd>⌘C</kbd> e cole com <kbd>⌘V</kbd> onde precisar."
       ],
-      "after": "Bom para a hora, com limites: os itens ficam guardados por alguns dias no máximo, dependendo do ajuste, não há como fixar, e colar exige dois passos (copiar, depois <kbd>⌘V</kbd>). Macs com macOS 15 ou anterior não têm esse recurso. Você pode limpar o histórico no menu à direita do campo de busca."
+      "after": "Bom para a hora, com limites: dependendo do ajuste, os itens ficam guardados por 30 minutos, 8 horas ou 7 dias; não há como fixar, e colar exige dois passos (copiar, depois <kbd>⌘V</kbd>). Macs com macOS 15 ou anterior não têm esse recurso. Você pode limpar o histórico no menu à direita do campo de busca."
     },
     "manager": {
       "h2": "3. Todos os itens com um gerenciador de área de transferência",
-      "intro": "Um gerenciador de área de transferência (também chamado de clipboard manager, app de histórico ou área de transferência múltipla) lembra tudo o que você copia e traz de volta quando você quiser. Veja como funciona com o Clipsody, grátis e no macOS 13 e posterior:",
+      "intro": "Um gerenciador de área de transferência (também chamado de clipboard manager, app de histórico ou área de transferência múltipla) lembra tudo o que você copia e traz de volta quando você quiser. Veja como funciona com o <a href=\"./\">Clipsody, o gerenciador de área de transferência grátis para Mac</a> (macOS 13 e posterior):",
       "steps": [
         "<a href=\"{download}\">Baixe o Clipsody</a> e arraste para <strong>Aplicativos</strong> (<a href=\"./#install\">instalação em detalhes</a>).",
         "Copie normalmente com <kbd>⌘C</kbd>. Cada item – texto, imagem ou arquivo – vai para o histórico.",
         "Pressione <kbd>⌥⌘C</kbd>: aparece a lista de tudo o que você copiou. Digite uma palavra para filtrar; a busca encontra até texto em capturas de tela.",
-        "<kbd>⏎</kbd> cola o item selecionado bem onde você estava; <kbd>⌥⏎</kbd> cola sem formatação. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros."
+        "<kbd>⏎</kbd> cola o item selecionado bem onde você estava; <kbd>⌥⏎</kbd> cola sem formatação. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros itens da lista."
       ],
       "after": "Você decide por quanto tempo o histórico dura (de 1 a 365 dias) e quantos itens ele guarda (até 10.000). Itens fixados com <kbd>⌘P</kbd> ficam para sempre. Tudo fica no seu Mac."
     },

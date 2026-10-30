@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css?v=6b643dc4f3">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="en_US">
@@ -32,10 +32,12 @@
     <meta property="og:title" content="How to see clipboard history on a Mac – every way">
     <meta property="og:description" content="Finder, the Spotlight clipboard history in macOS 26 and clipboard managers compared, step by step.">
     <meta property="og:url" content="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
-    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.png">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="How to see clipboard history on a Mac – every way">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="How to see clipboard history on a Mac – every way">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,9 +47,10 @@
       "headline": "How to see your clipboard history on a Mac: every way",
       "description": "How do you see what you copied earlier on a Mac? Finder, the Spotlight clipboard history (macOS 26) and clipboard managers compared, step by step.",
       "inLanguage": "en",
+      "datePublished": "2026-10-30",
       "dateModified": "2026-10-30",
       "mainEntityOfPage": "https://tillackt.github.io/clipsody/en/clipboard-history-mac.html",
-      "image": "https://tillackt.github.io/clipsody/assets/og-en.png",
+      "image": "https://tillackt.github.io/clipsody/assets/og-en.jpg",
       "author": {
         "@type": "Person",
         "name": "tillackt",
@@ -66,7 +69,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Guide",
+          "name": "Clipboard history",
           "item": "https://tillackt.github.io/clipsody/en/clipboard-history-mac.html"
         }
       ]
@@ -121,6 +124,7 @@
     </script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="top">
     <div class="wrap">
         <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
@@ -130,7 +134,7 @@
             <a href="./#faq">FAQ</a>
         </nav>
         <details class="langs">
-            <summary title="Language"><span aria-hidden="true">🌐</span> English</summary>
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Language: </span>English</summary>
             <ul>
                 <li><a href="../zwischenablage-verlauf-mac.html" hreflang="de" lang="de">Deutsch</a></li>
                 <li><a href="../en/clipboard-history-mac.html" hreflang="en" lang="en" aria-current="page">English</a></li>
@@ -145,8 +149,8 @@
     </div>
 </header>
 
-<main class="article wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Clipsody</a> › Guide</nav>
+<main class="article wrap" id="main">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Clipsody</a> › <span aria-current="page">Clipboard history</span></nav>
     <h1>How to see your clipboard history on a Mac: every way</h1>
     <p class="lead">You copied something, then something else – and now you need the first one again? Here is what the Mac can do on its own, how the new Spotlight history works, and when a clipboard manager is worth it.</p>
     <p class="updated">Updated October 2026, macOS 13 Ventura to macOS 27</p>
@@ -169,20 +173,20 @@
         <li>The first time, macOS asks whether to turn the history on – confirm.</li>
         <li>Find the clip, copy it with the copy button or <kbd>⌘C</kbd>, and paste it with <kbd>⌘V</kbd> where you need it.</li>
     </ol>
-    <p>Good for the moment, with limits: clips are kept for a few days at most, depending on the setting, there is no pinning, and pasting takes two steps (copy, then <kbd>⌘V</kbd>). Macs on macOS 15 or earlier don’t have it. You can clear it from the menu to the right of the search field.</p>
+    <p>Good for the moment, with limits: depending on the setting, clips are kept for 30 minutes, 8 hours or 7 days; there is no pinning, and pasting takes two steps (copy, then <kbd>⌘V</kbd>). Macs on macOS 15 or earlier don’t have it. You can clear it from the menu to the right of the search field.</p>
 
     <h2 id="clipboard-manager">3. Every clip with a clipboard manager</h2>
-    <p>A clipboard manager (also called a clipboard history app or multi-clipboard) remembers everything you copy and brings it back on demand. Here is how it works with Clipsody, free and on macOS 13 and later:</p>
+    <p>A clipboard manager (also called a clipboard history app or multi-clipboard) remembers everything you copy and brings it back on demand. Here is how it works with <a href="./">Clipsody, the free clipboard manager for Mac</a> (macOS 13 and later):</p>
     <ol>
         <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download Clipsody</a> and drag it into <strong>Applications</strong> (<a href="./#install">installation in detail</a>).</li>
         <li>Copy as usual with <kbd>⌘C</kbd>. Every clip – text, image or file – goes into the history.</li>
         <li>Press <kbd>⌥⌘C</kbd>: the list of everything you copied appears. Enter a search word to filter it; this finds text in screenshots too.</li>
-        <li><kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine directly.</li>
+        <li><kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries of the list directly.</li>
     </ol>
     <p>You decide how long the history lasts (1 to 365 days) and how many clips it holds (up to 10,000). Clips pinned with <kbd>⌘P</kbd> stay for good. Everything stays on your Mac.</p>
 
     <h2 id="compare">The options compared</h2>
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="The options compared">
         <table class="compare">
             <thead>
             <tr><td></td><th scope="col">Finder</th><th scope="col">Spotlight history</th><th scope="col">Clipsody</th></tr>
@@ -196,17 +200,18 @@
             </tbody>
         </table>
     </div>
+    <p class="asof">Spotlight details as of macOS 26.1, October 2026.</p>
 
     <h2 id="shortcuts">Clipboard keyboard shortcuts</h2>
     <table class="keys">
         <tbody>
-        <tr><td><kbd>⌘C</kbd></td><td>Copy</td></tr>
-        <tr><td><kbd>⌘X</kbd></td><td>Cut</td></tr>
-        <tr><td><kbd>⌘V</kbd></td><td>Paste</td></tr>
-        <tr><td><kbd>⌥⇧⌘V</kbd></td><td>Paste without formatting (“Paste and Match Style”, in many apps)</td></tr>
-        <tr><td><kbd>⇧⌘4</kbd>, hold <kbd>⌃</kbd> while selecting</td><td>Screenshot of an area straight to the clipboard</td></tr>
-        <tr><td><kbd>⌘</kbd> <kbd>Space</kbd>, <kbd>⌘4</kbd></td><td>Spotlight clipboard history (macOS 26 and later)</td></tr>
-        <tr><td><kbd>⌥⌘C</kbd></td><td>Open the history in Clipsody</td></tr>
+        <tr><th scope="row"><kbd>⌘C</kbd></th><td>Copy</td></tr>
+        <tr><th scope="row"><kbd>⌘X</kbd></th><td>Cut</td></tr>
+        <tr><th scope="row"><kbd>⌘V</kbd></th><td>Paste</td></tr>
+        <tr><th scope="row"><kbd>⌥⇧⌘V</kbd></th><td>Paste without formatting (“Paste and Match Style”, in many apps)</td></tr>
+        <tr><th scope="row"><kbd>⇧⌘4</kbd>, hold <kbd>⌃</kbd> while selecting</th><td>Screenshot of an area straight to the clipboard</td></tr>
+        <tr><th scope="row"><kbd>⌘</kbd> <kbd>Space</kbd>, <kbd>⌘4</kbd></th><td>Spotlight clipboard history (macOS 26 and later)</td></tr>
+        <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Open the history in Clipsody</td></tr>
         </tbody>
     </table>
 

@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/clipboard-history-mac.html">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css?v=6b643dc4f3">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="fr_FR">
@@ -32,10 +32,12 @@
     <meta property="og:title" content="Voir l’historique du presse-papiers sur Mac – toutes les méthodes">
     <meta property="og:description" content="Le Finder, l’historique du presse-papiers de Spotlight dans macOS 26 et les gestionnaires de presse-papiers comparés, pas à pas.">
     <meta property="og:url" content="https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html">
-    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-en.png">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-fr.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Voir l’historique du presse-papiers sur Mac – toutes les méthodes">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Voir l’historique du presse-papiers sur Mac – toutes les méthodes">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,9 +47,10 @@
       "headline": "Afficher l’historique du presse-papiers sur Mac : toutes les méthodes",
       "description": "Comment retrouver ce que vous avez copié plus tôt sur Mac ? Finder, historique du presse-papiers Spotlight (macOS 26) et gestionnaires comparés pas à pas.",
       "inLanguage": "fr",
+      "datePublished": "2026-10-30",
       "dateModified": "2026-10-30",
       "mainEntityOfPage": "https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html",
-      "image": "https://tillackt.github.io/clipsody/assets/og-en.png",
+      "image": "https://tillackt.github.io/clipsody/assets/og-fr.jpg",
       "author": {
         "@type": "Person",
         "name": "tillackt",
@@ -66,7 +69,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Guide",
+          "name": "Historique du presse-papiers",
           "item": "https://tillackt.github.io/clipsody/fr/historique-presse-papiers-mac.html"
         }
       ]
@@ -121,6 +124,7 @@
     </script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
     <div class="wrap">
         <a class="brand" href="./"><img src="../assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
@@ -130,7 +134,7 @@
             <a href="./#faq">FAQ</a>
         </nav>
         <details class="langs">
-            <summary title="Langue"><span aria-hidden="true">🌐</span> Français</summary>
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Langue: </span>Français</summary>
             <ul>
                 <li><a href="../zwischenablage-verlauf-mac.html" hreflang="de" lang="de">Deutsch</a></li>
                 <li><a href="../en/clipboard-history-mac.html" hreflang="en" lang="en">English</a></li>
@@ -145,8 +149,8 @@
     </div>
 </header>
 
-<main class="article wrap">
-    <nav class="crumbs" aria-label="Fil d’Ariane"><a href="./">Clipsody</a> › Guide</nav>
+<main class="article wrap" id="main">
+    <nav class="crumbs" aria-label="Fil d’Ariane"><a href="./">Clipsody</a> › <span aria-current="page">Historique du presse-papiers</span></nav>
     <h1>Afficher l’historique du presse-papiers sur Mac : toutes les méthodes</h1>
     <p class="lead">Vous avez copié quelque chose, puis autre chose – et maintenant il vous faut de nouveau le premier ? Voici ce que le Mac sait faire tout seul, comment fonctionne le nouvel historique de Spotlight, et quand un gestionnaire de presse-papiers vaut la peine.</p>
     <p class="updated">Mis à jour en octobre 2026, de macOS 13 Ventura à macOS 27</p>
@@ -169,20 +173,20 @@
         <li>La première fois, macOS demande s’il faut activer l’historique – confirmez.</li>
         <li>Trouvez l’élément, copiez-le avec le bouton de copie ou <kbd>⌘C</kbd>, puis collez-le avec <kbd>⌘V</kbd> là où vous en avez besoin.</li>
     </ol>
-    <p>Pratique sur le moment, mais limité : les éléments sont conservés quelques jours au maximum selon le réglage, il n’est pas possible d’épingler, et coller demande deux étapes (copier, puis <kbd>⌘V</kbd>). Les Mac sous macOS 15 ou antérieur n’en disposent pas. Vous pouvez l’effacer depuis le menu à droite du champ de recherche.</p>
+    <p>Pratique sur le moment, mais limité : selon le réglage, les éléments sont conservés 30 minutes, 8 heures ou 7 jours ; il n’est pas possible d’épingler, et coller demande deux étapes (copier, puis <kbd>⌘V</kbd>). Les Mac sous macOS 15 ou antérieur n’en disposent pas. Vous pouvez l’effacer depuis le menu à droite du champ de recherche.</p>
 
     <h2 id="clipboard-manager">3. Tous les éléments avec un gestionnaire de presse-papiers</h2>
-    <p>Un gestionnaire de presse-papiers (aussi appelé app d’historique du presse-papiers ou presse-papiers multiple) retient tout ce que vous copiez et vous le rend à la demande. Voici comment faire avec Clipsody, gratuit, sous macOS 13 et ultérieur :</p>
+    <p>Un gestionnaire de presse-papiers (aussi appelé app d’historique du presse-papiers ou presse-papiers multiple) retient tout ce que vous copiez et vous le rend à la demande. Voici comment faire avec <a href="./">Clipsody, le gestionnaire de presse-papiers gratuit pour Mac</a> (macOS 13 et ultérieur) :</p>
     <ol>
         <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Téléchargez Clipsody</a> et faites-le glisser dans <strong>Applications</strong> (<a href="./#install">installation détaillée</a>).</li>
         <li>Copiez comme d’habitude avec <kbd>⌘C</kbd>. Chaque élément – texte, image ou fichier – rejoint l’historique.</li>
         <li>Appuyez sur <kbd>⌥⌘C</kbd> : la liste de tout ce que vous avez copié apparaît. Tapez un mot pour la filtrer ; la recherche trouve aussi le texte des captures d’écran.</li>
-        <li><kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers.</li>
+        <li><kbd>⏎</kbd> colle l’élément sélectionné là où vous étiez ; <kbd>⌥⏎</kbd> le colle sans mise en forme. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments de la liste.</li>
     </ol>
     <p>Vous décidez combien de temps l’historique est conservé (de 1 à 365 jours) et combien d’éléments il contient (jusqu’à 10 000). Les éléments épinglés avec <kbd>⌘P</kbd> restent définitivement. Tout reste sur votre Mac.</p>
 
     <h2 id="compare">Les solutions comparées</h2>
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Les solutions comparées">
         <table class="compare">
             <thead>
             <tr><td></td><th scope="col">Finder</th><th scope="col">Historique Spotlight</th><th scope="col">Clipsody</th></tr>
@@ -196,17 +200,18 @@
             </tbody>
         </table>
     </div>
+    <p class="asof">Informations sur Spotlight à jour pour macOS 26.1, octobre 2026.</p>
 
     <h2 id="shortcuts">Raccourcis clavier du presse-papiers</h2>
     <table class="keys">
         <tbody>
-        <tr><td><kbd>⌘C</kbd></td><td>Copier</td></tr>
-        <tr><td><kbd>⌘X</kbd></td><td>Couper</td></tr>
-        <tr><td><kbd>⌘V</kbd></td><td>Coller</td></tr>
-        <tr><td><kbd>⌥⇧⌘V</kbd></td><td>Coller sans mise en forme (« Coller et adapter le style », dans de nombreuses apps)</td></tr>
-        <tr><td><kbd>⇧⌘4</kbd>, maintenir <kbd>⌃</kbd> pendant la sélection</td><td>Capture d’une zone directement dans le presse-papiers</td></tr>
-        <tr><td><kbd>⌘</kbd> <kbd>Espace</kbd>, <kbd>⌘4</kbd></td><td>Historique du presse-papiers de Spotlight (macOS 26 et ultérieur)</td></tr>
-        <tr><td><kbd>⌥⌘C</kbd></td><td>Ouvrir l’historique dans Clipsody</td></tr>
+        <tr><th scope="row"><kbd>⌘C</kbd></th><td>Copier</td></tr>
+        <tr><th scope="row"><kbd>⌘X</kbd></th><td>Couper</td></tr>
+        <tr><th scope="row"><kbd>⌘V</kbd></th><td>Coller</td></tr>
+        <tr><th scope="row"><kbd>⌥⇧⌘V</kbd></th><td>Coller sans mise en forme (« Coller et adapter le style », dans de nombreuses apps)</td></tr>
+        <tr><th scope="row"><kbd>⇧⌘4</kbd>, maintenir <kbd>⌃</kbd> pendant la sélection</th><td>Capture d’une zone directement dans le presse-papiers</td></tr>
+        <tr><th scope="row"><kbd>⌘</kbd> <kbd>Espace</kbd>, <kbd>⌘4</kbd></th><td>Historique du presse-papiers de Spotlight (macOS 26 et ultérieur)</td></tr>
+        <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Ouvrir l’historique dans Clipsody</td></tr>
         </tbody>
     </table>
 

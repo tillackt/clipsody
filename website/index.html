@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zwischenablage-Verlauf für Mac: Clipboard Manager | Clipsody</title>
-    <meta name="description" content="Der Mac merkt sich nur den letzten kopierten Eintrag. Clipsody speichert alle – Texte, Bilder, Dateien –, durchsuchbar per Tastatur. Kostenlos und Open Source.">
+    <title>Clipboard Manager für Mac: Multi-Zwischenablage | Clipsody</title>
+    <meta name="description" content="Der Mac merkt sich nur den letzten kopierten Eintrag. Clipsody speichert alle – Texte, Bilder, Dateien – mit Suche. Kostenlos und Open Source.">
     <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="https://tillackt.github.io/clipsody/">
     <link rel="alternate" hreflang="de" href="https://tillackt.github.io/clipsody/">
@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/icon-180.png">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css?v=6b643dc4f3">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="de_DE">
@@ -32,10 +32,12 @@
     <meta property="og:title" content="Clipsody – die Zwischenablage mit Gedächtnis für den Mac">
     <meta property="og:description" content="Alles, was du kopierst, bleibt griffbereit: Texte, Bilder und Dateien, durchsuchbar und per Tastatur wieder eingefügt. Kostenlos, Open Source, komplett lokal.">
     <meta property="og:url" content="https://tillackt.github.io/clipsody/">
-    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-de.png">
+    <meta property="og:image" content="https://tillackt.github.io/clipsody/assets/og-de.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Clipsody: Zwischenablage-Verlauf für den Mac">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="Clipsody: Zwischenablage-Verlauf für den Mac">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +57,7 @@
       "isAccessibleForFree": true,
       "downloadUrl": "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg",
       "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-      "image": "https://tillackt.github.io/clipsody/assets/og-de.png",
+      "image": "https://tillackt.github.io/clipsody/assets/og-de.jpg",
       "inLanguage": [
         "de",
         "en",
@@ -80,7 +82,7 @@
           "name": "Wie sehe ich auf dem Mac, was ich vorher kopiert habe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag; im Finder zeigt Bearbeiten → Zwischenablage einblenden genau diesen einen. Seit macOS 26 kann Spotlight kopierte Inhalte der letzten Zeit zeigen, wenn du die Funktion einschaltest. Einen dauerhaften, durchsuchbaren Verlauf aller Einträge bekommst du mit einem Clipboard Manager wie Clipsody: ⌥⌘C zeigt alles, was du kopiert hast."
+            "text": "Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag. Ein Clipboard Manager wie Clipsody hebt alles auf, was du kopierst: ⌥⌘C zeigt es, durchsuchbar. Alle Wege, auch Finder und den Spotlight-Verlauf von macOS 26: Zwischenablage-Verlauf am Mac anzeigen."
           }
         },
         {
@@ -88,7 +90,7 @@
           "name": "Wie kopiere ich mehrere Dinge und füge sie nacheinander ein?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mit Clipsody kopierst du einfach wie gewohnt mit ⌘C – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit ⌥⌘C die Liste und wählst den Eintrag mit ⏎, oder du fügst mit ⌘1 bis ⌘9 einen der ersten neun direkt ein."
+            "text": "Mit Clipsody kopierst du einfach wie gewohnt mit ⌘C – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit ⌥⌘C die Liste und wählst den Eintrag mit ⏎, oder du fügst mit ⌘1 bis ⌘9 einen der ersten neun direkt ein. Ein eingefügter Eintrag rückt in der Liste nach oben."
           }
         },
         {
@@ -170,6 +172,7 @@
     </script>
 </head>
 <body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
 <header class="top">
     <div class="wrap">
         <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="28" height="28">Clipsody</a>
@@ -181,7 +184,7 @@
             <a href="#faq">Fragen</a>
         </nav>
         <details class="langs">
-            <summary title="Sprache"><span aria-hidden="true">🌐</span> Deutsch</summary>
+            <summary><span aria-hidden="true">🌐</span> <span class="visually-hidden">Sprache: </span>Deutsch</summary>
             <ul>
                 <li><a href="./" hreflang="de" lang="de" aria-current="page">Deutsch</a></li>
                 <li><a href="en/" hreflang="en" lang="en">English</a></li>
@@ -196,9 +199,9 @@
     </div>
 </header>
 
-<main>
+<main id="main">
     <div class="hero wrap">
-        <h1>Die Zwischenablage mit Gedächtnis für deinen Mac</h1>
+        <h1>Der Zwischenablage-Manager für den Mac, der sich alles merkt</h1>
         <p class="lead">Dein Mac merkt sich immer nur das, was du zuletzt kopiert hast – kopierst du etwas Neues, ist das Vorherige weg. Clipsody hebt alles auf: Texte, Bilder und Dateien. Mit <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> holst du jeden Eintrag zurück, und <kbd>⏎</kbd> fügt ihn dort ein, wo du gerade schreibst.</p>
         <div class="cta">
             <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Kostenlos laden</a>
@@ -213,6 +216,7 @@
         </div>
 
         <figure class="shot">
+            <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
             <div class="scenes" aria-hidden="true">
             <div class="scene s1">
                 <p class="scene-label"><span class="step">1</span>Alles, was du kopiert hast: Texte, Bilder, Dateien, Links</p>
@@ -249,7 +253,7 @@
                             <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
                         </ul>
                         <div class="preview">
-                            <img class="photo" src="assets/sample-photo.jpg" alt="" width="960" height="720" loading="lazy">
+                            <picture><source srcset="assets/sample-photo.avif" type="image/avif"><img class="photo" src="assets/sample-photo.jpg" alt="" width="940" height="470" loading="lazy" decoding="async" fetchpriority="low"></picture>
                             <div class="info">Bild 4032×3024 · vor 12 Minuten · aus Fotos</div>
                             <div class="hint">⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P anpinnen   ⌘⌫ löschen</div>
                         </div>
@@ -298,14 +302,14 @@
                 </div>
             </div>
             </div>
-            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
+            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><label class="pause" for="pause-hero"><span class="when-running">⏸ Animation anhalten</span><span class="when-paused">▶ Animation abspielen</span></label></div>
             <figcaption class="caption">So sieht der Verlauf in Clipsody aus: alle kopierten Einträge, ein Bild, eine Datei und die Suche nach Text in einem Screenshot.</figcaption>
         </figure>
     </div>
 
     <section class="alt" id="problem">
         <div class="wrap">
-            <h2>Kopiert, kopiert – und das Erste ist weg</h2>
+            <h2>Mehrere Einträge kopieren – ohne dass das Erste verloren geht</h2>
             <p class="sub">Die Zwischenablage des Mac hat Platz für genau einen Eintrag. Wer zwei Dinge nacheinander kopiert, verliert das erste. Clipsody macht daraus eine Multi-Zwischenablage mit Verlauf.</p>
             <div class="grid two">
                 <div class="card"><h3>Ohne Clipsody</h3>
@@ -317,7 +321,7 @@
                 <div class="card"><h3>Mit Clipsody</h3>
                     <ul class="plain">
                         <li>Alles, was du kopiert hast, in einer Liste – bis zu 10.000 Einträge. Wie lange sie bleiben, stellst du ein: von einem Tag bis zu einem Jahr.</li>
-                        <li>Erst alles kopieren, dann nacheinander einfügen: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.</li>
+                        <li>Erst alles kopieren, dann mit <kbd>⌥⌘C</kbd> die Liste öffnen und die Einträge nacheinander einfügen, die du brauchst.</li>
                         <li>Ein Wort eingeben genügt, und der Eintrag von gestern ist wieder da.</li>
                     </ul></div>
             </div>
@@ -326,13 +330,13 @@
 
     <section id="features">
         <div class="wrap">
-            <h2>Schlank. Schnell. Per Tastatur.</h2>
+            <h2>Was Clipsody kann</h2>
             <p class="sub">Keine Startleiste, keine Workflows, keine hundert Einstellungen – ein Clipboard Manager, der einfach mitschreibt, was du kopierst.</p>
             <div class="grid">
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>Ein Kürzel, überall</h3>
                     <p><kbd>⌥⌘C</kbd> öffnet den Zwischenablage-Verlauf in jeder App. Eintrag mit den Pfeiltasten wählen oder ein Suchwort eingeben, <kbd>⏎</kbd> drücken – der Eintrag landet dort, wo du warst.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Mehrere Einträge nacheinander</h3>
-                    <p>Erst Name, Adresse und Kundennummer kopieren, dann der Reihe nach einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Mehrere Einträge kopieren, später einfügen</h3>
+                    <p>Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun Einträge direkt ein (angepinnte zuerst, dann die neuesten).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Findet auch Text in Bildern</h3>
                     <p>Kopierte Screenshots und Bilder werden auf deinem Mac gelesen. Such nach einem Wort, das auf dem Bild steht – und das Bild ist da. <a href="#text-in-images">So geht’s</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Texte, Bilder, Dateien</h3>
@@ -382,7 +386,7 @@
                 <div class="card"><h3>Programmieren</h3>
                     <p>Befehle, Pfade und Code-Schnipsel wiederfinden, die du vor Stunden kopiert hast. Oft gebrauchte Befehle anpinnen.</p></div>
                 <div class="card"><h3>Support und Büro</h3>
-                    <p>Textbausteine, Kontonummern und Signaturen angepinnt griffbereit – eingefügt mit zwei Tasten.</p></div>
+                    <p>Textbausteine, Kontonummern und Signaturen angepinnt griffbereit – eingefügt in Sekunden.</p></div>
             </div>
         </div>
     </section>
@@ -390,8 +394,8 @@
     <section class="alt" id="compare">
         <div class="wrap">
             <h2>Hat der Mac nicht schon einen Verlauf?</h2>
-            <p class="sub">Seit macOS 26 Tahoe kann Spotlight kopierte Inhalte zeigen. Das hilft für den Moment – Clipsody ist für alles gebaut, was länger als ein paar Stunden halten soll.</p>
-            <div class="table-scroll">
+            <p class="sub">Seit macOS 26 Tahoe kann Spotlight kopierte Inhalte zeigen. Das hilft für den Moment – Clipsody ist für alles gebaut, was länger als eine Woche halten soll.</p>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Hat der Mac nicht schon einen Verlauf?">
                 <table class="compare">
                     <thead>
                     <tr><td></td><th scope="col">Clipsody</th><th scope="col">Spotlight-Verlauf</th><th scope="col">Mac ohne Zusatz</th></tr>
@@ -401,10 +405,11 @@
                     <tr><th scope="row">Aufbewahrung</th><td>1 bis 365 Tage, frei wählbar</td><td>höchstens 7 Tage</td><td>bis zum nächsten <kbd>⌘C</kbd></td></tr>
                     <tr><th scope="row">Einfügen</th><td><kbd>⏎</kbd> fügt direkt in die vorige App ein</td><td>kopieren, dann selbst <kbd>⌘V</kbd></td><td><kbd>⌘V</kbd></td></tr>
                     <tr><th scope="row">Anpinnen</th><td>ja, <kbd>⌘P</kbd></td><td>nein</td><td>nein</td></tr>
-                    <tr><th scope="row">Läuft ab</th><td>macOS 13 Ventura</td><td>macOS 26 Tahoe, ab Werk aus</td><td>jedem Mac</td></tr>
+                    <tr><th scope="row">Läuft unter</th><td>macOS 13 Ventura und neuer</td><td>macOS 26 Tahoe und neuer, ab Werk aus</td><td>jedem Mac</td></tr>
                     </tbody>
                 </table>
             </div>
+            <p class="asof">Angaben zu Spotlight: Stand macOS 26.1, Oktober 2026.</p>
             <p class="more">Mehr dazu: <a href="zwischenablage-verlauf-mac.html">Zwischenablage-Verlauf auf dem Mac anzeigen – alle Wege</a></p>
         </div>
     </section>
@@ -415,15 +420,15 @@
             <p class="sub">Die Maus brauchst du nicht – kannst sie aber benutzen.</p>
             <table class="keys">
                 <tbody>
-                <tr><td><kbd>⌥⌘C</kbd></td><td>Verlauf öffnen oder schließen (frei wählbar)</td></tr>
-                <tr><td>Suchwort eingeben</td><td>Liste filtern – findet Texte, App-Namen und Text auf Bildern</td></tr>
-                <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Eintrag wählen</td></tr>
-                <tr><td><kbd>⏎</kbd></td><td>Einfügen, mit Formatierung</td></tr>
-                <tr><td><kbd>⌥⏎</kbd></td><td>Einfügen, nur reiner Text</td></tr>
-                <tr><td><kbd>⌘1</kbd> … <kbd>⌘9</kbd></td><td>Einen der ersten neun Einträge direkt einfügen</td></tr>
-                <tr><td><kbd>⌘P</kbd></td><td>Anpinnen oder lösen</td></tr>
-                <tr><td><kbd>⌘⌫</kbd></td><td>Eintrag löschen</td></tr>
-                <tr><td><kbd>esc</kbd></td><td>Schließen</td></tr>
+                <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Verlauf öffnen oder schließen (frei wählbar)</td></tr>
+                <tr><th scope="row">Suchwort eingeben</th><td>Liste filtern – findet Texte, App-Namen und Text auf Bildern</td></tr>
+                <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Eintrag wählen</td></tr>
+                <tr><th scope="row"><kbd>⏎</kbd></th><td>Einfügen, mit Formatierung</td></tr>
+                <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Einfügen, nur reiner Text</td></tr>
+                <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Einen der ersten neun Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)</td></tr>
+                <tr><th scope="row"><kbd>⌘P</kbd></th><td>Anpinnen oder lösen</td></tr>
+                <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Eintrag löschen</td></tr>
+                <tr><th scope="row"><kbd>esc</kbd></th><td>Schließen</td></tr>
                 </tbody>
             </table>
         </div>
@@ -434,18 +439,18 @@
             <h2>Deine Zwischenablage gehört dir</h2>
             <p class="sub">In einer Zwischenablage landet Persönliches: Passwörter, Adressen, Nachrichten. Deshalb ist Clipsody von Grund auf privat gebaut.</p>
             <div class="grid">
-                <div class="card"><h3>Nichts verlässt deinen Mac</h3>
+                <div class="card"><h3>Deine Zwischenablage verlässt deinen Mac nicht</h3>
                     <p>Kein Konto, kein Server, keine Statistik. Der Verlauf liegt nur auf deinem Mac und ist von Backups ausgenommen. Ins Netz geht Clipsody nur, wenn du es erlaubst – um nach einer neuen Version zu fragen.</p></div>
                 <div class="card"><h3>Passwörter bleiben draußen</h3>
                     <p>Was Passwort-Manager als vertraulich markieren, wird nie gespeichert. 1Password, Bitwarden, KeePassXC &amp; Co. sind von Haus aus ausgenommen.</p></div>
                 <div class="card"><h3>Gelöscht heißt gelöscht</h3>
-                    <p>Gelöschte Einträge werden in der Datenbank überschrieben und das Änderungsprotokoll geleert – auch nach einem Absturz beim nächsten Start.</p></div>
+                    <p>Gelöschte Einträge werden in der Datenbank überschrieben und das Änderungsprotokoll geleert – auch nach einem Absturz beim nächsten Start. Bilddateien gelöschter Einträge werden entfernt.</p></div>
                 <div class="card"><h3>Bilder in der Sandbox</h3>
                     <p>Fremde Bilddaten werden in einem abgeschotteten Hilfsprozess ohne Datei- und Netzwerkzugriff verarbeitet, nicht in der App selbst.</p></div>
                 <div class="card"><h3>Prüfbar</h3>
                     <p>Der Quellcode ist offen. Du musst niemandem glauben – du kannst nachsehen und die App auch selbst bauen.</p></div>
-                <div class="card"><h3>Nicht im Bildschirm-Teilen</h3>
-                    <p>Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet.</p></div>
+                <div class="card"><h3>Außen vor bei klassischen Screenshots</h3>
+                    <p>Das Fenster ist bei Screenshots und klassischer Bildschirmfreigabe ausgeblendet. Seit macOS 15 können moderne Aufnahme-Apps es trotzdem erfassen.</p></div>
             </div>
         </div>
     </section>
@@ -453,7 +458,7 @@
     <section id="install">
         <div class="wrap">
             <h2>Installation</h2>
-            <p class="sub">Clipsody ist kostenlos und deshalb nicht bei Apple notarisiert. Beim ersten Öffnen fragt macOS einmal nach – so geht's:</p>
+            <p class="sub">Clipsody ist nicht bei Apple notarisiert – dafür bräuchte es ein kostenpflichtiges Entwicklerkonto. Deshalb fragt macOS beim ersten Öffnen einmal nach – so geht's:</p>
             <ol class="steps">
                 <li><a href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Clipsody.dmg laden</a>, öffnen und <strong>Clipsody</strong> in den Ordner <strong>Programme</strong> ziehen.</li>
                 <li>Clipsody starten. macOS meldet, dass die App nicht überprüft werden kann – auf <strong>Fertig</strong> klicken. Unter macOS 13 und 14 genügt stattdessen ein Rechtsklick auf Clipsody im Ordner <strong>Programme</strong> → <strong>Öffnen</strong> → <strong>Öffnen</strong>; Schritt 3 entfällt dann.</li>
@@ -473,11 +478,10 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
     <section class="alt" id="faq">
         <div class="wrap">
             <h2>Häufige Fragen</h2>
-            <p class="sub">&nbsp;</p>
             <details><summary>Wie sehe ich auf dem Mac, was ich vorher kopiert habe?</summary>
-                <p>Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag; im Finder zeigt <strong>Bearbeiten → Zwischenablage einblenden</strong> genau diesen einen. Seit macOS 26 kann Spotlight kopierte Inhalte der letzten Zeit zeigen, wenn du die Funktion einschaltest. Einen dauerhaften, durchsuchbaren Verlauf aller Einträge bekommst du mit einem Clipboard Manager wie Clipsody: <kbd>⌥⌘C</kbd> zeigt alles, was du kopiert hast.</p></details>
+                <p>Von Haus aus merkt sich der Mac nur den zuletzt kopierten Eintrag. Ein Clipboard Manager wie Clipsody hebt alles auf, was du kopierst: <kbd>⌥⌘C</kbd> zeigt es, durchsuchbar. Alle Wege, auch Finder und den Spotlight-Verlauf von macOS 26: <a href="zwischenablage-verlauf-mac.html">Zwischenablage-Verlauf am Mac anzeigen</a>.</p></details>
             <details><summary>Wie kopiere ich mehrere Dinge und füge sie nacheinander ein?</summary>
-                <p>Mit Clipsody kopierst du einfach wie gewohnt mit <kbd>⌘C</kbd> – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit <kbd>⌥⌘C</kbd> die Liste und wählst den Eintrag mit <kbd>⏎</kbd>, oder du fügst mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> einen der ersten neun direkt ein.</p></details>
+                <p>Mit Clipsody kopierst du einfach wie gewohnt mit <kbd>⌘C</kbd> – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit <kbd>⌥⌘C</kbd> die Liste und wählst den Eintrag mit <kbd>⏎</kbd>, oder du fügst mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> einen der ersten neun direkt ein. Ein eingefügter Eintrag rückt in der Liste nach oben.</p></details>
             <details><summary>Ist Clipsody wirklich kostenlos?</summary>
                 <p>Ja. Keine Werbung, kein Abo, keine Testphase. Der Quellcode ist offen und steht unter der GPLv3.</p></details>
             <details><summary>Warum braucht Clipsody die Berechtigung „Bedienungshilfen“?</summary>
