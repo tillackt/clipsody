@@ -253,7 +253,7 @@ def compare_table(head_cells, rows, label, indent=3):
     head_html = "".join(f'<th scope="col">{cell}</th>' for cell in head_cells)
     body = "\n".join(f'{pad}{I*2}<tr><th scope="row">{row[0]}</th>' + "".join(f"<td>{cell}</td>" for cell in row[1:]) + "</tr>"
                      for row in rows)
-    return f"""{pad}<div class="table-scroll" tabindex="0" role="region" aria-label="{attr(text(label))}">
+    return f"""{pad}<section class="table-scroll" tabindex="0" aria-label="{attr(text(label))}">
 {pad}{I}<table class="compare">
 {pad}{I*2}<thead>
 {pad}{I*2}<tr><td></td>{head_html}</tr>
@@ -262,7 +262,7 @@ def compare_table(head_cells, rows, label, indent=3):
 {body}
 {pad}{I*2}</tbody>
 {pad}{I}</table>
-{pad}</div>"""
+{pad}</section>"""
 
 
 def keys_table(rows, indent=3):
