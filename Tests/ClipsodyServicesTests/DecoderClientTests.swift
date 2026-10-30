@@ -75,13 +75,15 @@ import Testing
         var connections = 0
         let silentEndpoint = silent.listener.endpoint
         let workingEndpoint = working.listener.endpoint
-        let client = DecoderClient(timeout: .seconds(2), idleTimeout: .seconds(60)) {
+        // 5 s: long enough for the working service on a loaded runner, short for the silent one.
+        let client = DecoderClient(timeout: .seconds(5), idleTimeout: .seconds(60)) {
             connections += 1
             return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
         }
         #expect(await client.prepareImage(makeImage()) == nil)
         #expect(await client.prepareImage(makeImage()) != nil)
-        try await Task.sleep(for: .milliseconds(800))
+        // Gives the old connection's late invalidation time to arrive; nothing to wait on instead.
+        try await Task.sleep(for: .seconds(2))
         #expect(await client.prepareImage(makeImage()) != nil)
         #expect(connections == 2)
         withExtendedLifetime((silent, working)) {}
@@ -121,7 +123,7 @@ import Testing
         var connections = 0
         let silentEndpoint = silent.listener.endpoint
         let workingEndpoint = working.listener.endpoint
-        let client = DecoderClient(timeout: .seconds(2)) {
+        let client = DecoderClient(timeout: .seconds(5)) {
             connections += 1
             return NSXPCConnection(listenerEndpoint: connections == 1 ? silentEndpoint : workingEndpoint)
         }

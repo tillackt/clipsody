@@ -11,9 +11,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     let store: Store
     let decoder: DecoderClient
     /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
-    let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
+    private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
-    var targetApp: NSRunningApplication?
+    private var targetApp: NSRunningApplication?
 
     let panel: KeyPanel
     let search = NSTextField()
@@ -122,7 +122,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         hide()
     }
 
-    func positionOnActiveScreen() {
+    private func positionOnActiveScreen() {
         let mouse = NSEvent.mouseLocation
         let screen = NSScreen.screens.first { NSMouseInRect(mouse, $0.frame, false) } ?? NSScreen.main
         guard let visible = screen?.visibleFrame else { return }
@@ -136,7 +136,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     // MARK: - Actions
 
-    func pasteSelected(withFormatting: Bool = true) {
+    private func pasteSelected(withFormatting: Bool = true) {
         paste(at: table.selectedRow, withFormatting: withFormatting)
     }
 
@@ -147,7 +147,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         onPaste(item, targetApp, withFormatting)
     }
 
-    func togglePinSelected() {
+    private func togglePinSelected() {
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
@@ -159,7 +159,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         showItems(selecting: item.id)
     }
 
-    func deleteSelected() {
+    private func deleteSelected() {
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
@@ -217,7 +217,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     // MARK: - Filtering
 
-    func showItems(selecting id: Int64? = nil) {
+    private func showItems(selecting id: Int64? = nil) {
         table.reloadData()
         emptyLabel.isHidden = !items.isEmpty
         select(list.row(selecting: id))
@@ -243,7 +243,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         return true
     }
 
-    func reloadItems() {
+    private func reloadItems() {
         list.load(store.items(), query: search.stringValue)
     }
 }

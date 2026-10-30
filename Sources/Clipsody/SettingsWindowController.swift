@@ -88,7 +88,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
 
     // MARK: - Values
 
-    func refreshValues() {
+    private func refreshValues() {
         hotKeyRecorder.hotkey = config.hotkey
         retentionField.integerValue = config.retentionDays
         retentionStepper.integerValue = config.retentionDays
@@ -99,7 +99,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
         refreshSystemState()
     }
 
-    func refreshSystemState() {
+    private func refreshSystemState() {
         switch SMAppService.mainApp.status {
         case .enabled:
             launchAtLogin.state = .on
@@ -209,7 +209,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
         }
     }
 
-    func addIgnoredApp() {
+    private func addIgnoredApp() {
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.application]
         panel.directoryURL = URL(fileURLWithPath: "/Applications")
