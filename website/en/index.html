@@ -178,9 +178,9 @@
 <main>
     <div class="hero wrap">
         <h1>The clipboard with a memory for your Mac</h1>
-        <p class="lead">Normally every <kbd>⌘C</kbd> replaces what you copied before. Clipsody keeps all your recent
-            clips – text, images and files. Press <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd>, type, hit <kbd>⏎</kbd>, and it
-            lands right where you were typing.</p>
+        <p class="lead">Your Mac only keeps the last thing you copied – copy something new and the previous one is
+            gone. Clipsody keeps everything: text, images and files. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> brings any of
+            it back, and <kbd>⏎</kbd> pastes it right where you were typing.</p>
         <div class="cta">
             <a class="button" href="https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg">Download for free</a>
             <a class="button secondary" href="https://github.com/tillackt/clipsody">Source on GitHub</a>
@@ -194,28 +194,97 @@
         </div>
 
         <figure class="shot">
-            <div class="panel" aria-hidden="true">
-                <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
-                <div class="body">
-                    <ul>
-                        <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
-                        <li><span class="ico b"></span><span class="t">Please check the <mark>invoice</mark> by Friday ⏎ Thanks!</span><span class="k">⌘2</span></li>
-                        <li><span class="ico c"></span><span class="t"><mark>Invoice</mark>_October.pdf</span><span class="k">⌘3</span></li>
-                        <li><span class="ico d"></span><span class="t">IBAN for the <mark>invoice</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
-                        <li><span class="ico e"></span><span class="t">https://example.com/<mark>invoice</mark>/1043</span><span class="k">⌘5</span></li>
-                    </ul>
-                    <div class="preview">
-                        <div class="img">Screenshot · text recognised<br><br>
+            <div class="scenes" aria-hidden="true">
+            <div class="scene s1">
+                <p class="scene-label"><span class="step">1</span>Everything you copied: text, images, files, links</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Please check the invoice by Friday.<br><br>Thanks!<br>Anna</div>
+                            <div class="info">Text · 2 minutes ago · from Mail</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s2">
+                <p class="scene-label"><span class="step">2</span>Images stay images – lossless, with a preview</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="photo"><span class="sun"></span></div>
+                            <div class="info">Image 4032×3024 · 12 minutes ago · from Photos</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s3">
+                <p class="scene-label"><span class="step">3</span>Files are pasted as files again</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
+                            <li><span class="ico a"></span><span class="t">Image 4032×3024 (2.1 MB)</span><span class="k">⌘2</span></li>
+                            <li class="sel"><span class="ico c"></span><span class="t">Quote_Miller.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/meetings</span><span class="k">⌘4</span></li>
+                            <li><span class="ico d"></span><span class="t">📌 IBAN: DE00 0000 0000 …</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">git push origin main</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="file"><span class="doc">PDF</span><b>Quote_Miller.pdf</b><span>~/Documents/Clients</span><span>PDF · 248 KB</span></div>
+                            <div class="info">File · 1 hour ago · from Finder</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s4">
+                <p class="scene-label"><span class="step">4</span>Search even finds text in screenshots</p>
+                <div class="panel">
+                    <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Please check the <mark>invoice</mark> by Friday ⏎ Thanks!</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t"><mark>Invoice</mark>_October.pdf</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN for the <mark>invoice</mark>: DE00 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">https://example.com/<mark>invoice</mark>/1043</span><span class="k">⌘5</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Screenshot · text recognised<br><br>
                             <b><mark>Invoice</mark> no. 2026-1043</b><br>
                             Service period: October 2026<br>
                             Total: €1,240.00<br>
                             Due: 15 Nov 2026</div>
-                        <div class="info">Preview · 3 minutes ago · image 2880×1800 · text recognised</div>
-                        <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                            <div class="info">Preview · 3 minutes ago · image 2880×1800 · text recognised</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <figcaption class="caption">The clipboard history in Clipsody: search also finds text that only appears in a screenshot.</figcaption>
+            </div>
+            <div class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
+            <figcaption class="caption">The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.</figcaption>
         </figure>
     </div>
 
@@ -233,9 +302,9 @@
                     </ul></div>
                 <div class="card"><h3>With Clipsody</h3>
                     <ul class="plain">
-                        <li>All your recent clips in one list – up to 10,000, for as long as you like.</li>
+                        <li>Everything you copied in one list – up to 10,000 clips. You decide how long they stay: from one day to a year.</li>
                         <li>Copy everything first, then paste one after the other: <kbd>⌥⌘C</kbd>, <kbd>⌘1</kbd> … <kbd>⌘9</kbd>.</li>
-                        <li>Type a word, and yesterday’s clip is back.</li>
+                        <li>Enter a word, and yesterday’s clip is back.</li>
                     </ul></div>
             </div>
         </div>
@@ -248,11 +317,11 @@
                 what you copy.</p>
             <div class="grid">
                 <div class="card"><div class="icon" aria-hidden="true">⌨️</div><h3>One shortcut, everywhere</h3>
-                    <p><kbd>⌥⌘C</kbd> opens your clipboard history in any app. Arrow keys, <kbd>⏎</kbd>, done – the clip lands where you were.</p></div>
+                    <p><kbd>⌥⌘C</kbd> opens your clipboard history in any app. Pick a clip with the arrow keys or enter a search word, press <kbd>⏎</kbd> – the clip lands where you were.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📋</div><h3>Copy multiple items, paste in order</h3>
                     <p>Copy name, address and order number first, then paste them one by one. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine clips directly.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Finds text in images too</h3>
-                    <p>Screenshots are read on your Mac with macOS text recognition. Type a word from the error message, and the screenshot is there.</p></div>
+                    <p>Copied screenshots and images are read on your Mac. Search for a word that appears in the image – and there it is. <a href="#text-in-images">How it works</a></p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Text, images, files</h3>
                     <p>Images are kept lossless, and copied files are pasted as files again – not as a path.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>With or without formatting</h3>
@@ -263,7 +332,32 @@
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="text-in-images">
+        <div class="wrap">
+            <h2>That screenshot from last week? Just search for the text on it.</h2>
+            <p class="sub">Clipsody reads the text on every image you copy – with macOS text recognition, right on your Mac. So you find screenshots by what they say.</p>
+            <div class="grid ocr">
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><p class="warn">⚠︎ <b>Sync failed</b></p><p>Error code 0x8007 – server not reachable.</p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">1</span>Image on the clipboard</h3>
+                    <p><kbd>⇧⌃⌘4</kbd> captures part of the screen and puts it straight on the clipboard. Or copy an image from any app.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-window"><span class="lights"><i></i><i></i><i></i></span><span class="scan">Text recognised</span><p class="warn">⚠︎ <b><mark>Sync failed</mark></b></p><p><mark>Error code 0x8007 – server not reachable.</mark></p><span class="ok">OK</span></div></div>
+                    <h3><span class="step">2</span>Clipsody reads the text</h3>
+                    <p>In the background and on your Mac – nothing is uploaded. English and German text is recognised.</p>
+                </div>
+                <div class="card ocr-step">
+                    <div class="visual" aria-hidden="true"><div class="mini-search"><p class="q">0x8007<span class="caret"></span></p><p class="hit"><span class="ico a"></span>“Error code <mark>0x8007</mark> – server…”</p></div></div>
+                    <h3><span class="step">3</span>Find it days later</h3>
+                    <p>Press <kbd>⌥⌘C</kbd>, enter “0x8007” – there is the screenshot. <kbd>⏎</kbd> pastes it as an image, say into a support ticket.</p>
+                </div>
+            </div>
+            <div class="note"><strong>Good to know:</strong> screenshots that macOS only saves as a file on the desktop never reach the clipboard. Add <kbd>⌃</kbd> to the shortcut for that (<kbd>⇧⌃⌘3</kbd> for the whole screen, <kbd>⇧⌃⌘4</kbd> for an area).</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>What a clipboard history is good for</h2>
             <p class="sub">Anywhere you copy more than one thing.</p>
@@ -280,7 +374,7 @@
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>Doesn’t the Mac have a clipboard history already?</h2>
             <p class="sub">Since macOS 26 Tahoe, Spotlight can show recent clips. That helps for the moment – Clipsody is
@@ -291,7 +385,7 @@
                     <tr><td></td><th scope="col">Clipsody</th><th scope="col">Spotlight history</th><th scope="col">Plain Mac</th></tr>
                     </thead>
                     <tbody>
-                    <tr><th scope="row">Items</th><td>all recent ones, up to 10,000</td><td>recent ones</td><td>only the last</td></tr>
+                    <tr><th scope="row">Items</th><td>all of them, up to 10,000</td><td>recent ones</td><td>only the last</td></tr>
                     <tr><th scope="row">Kept for</th><td>1 to 365 days, your choice</td><td>7 days at most</td><td>until the next <kbd>⌘C</kbd></td></tr>
                     <tr><th scope="row">Pasting</th><td><kbd>⏎</kbd> pastes straight into the previous app</td><td>copy, then <kbd>⌘V</kbd> yourself</td><td><kbd>⌘V</kbd></td></tr>
                     <tr><th scope="row">Pinning</th><td>yes, <kbd>⌘P</kbd></td><td>no</td><td>no</td></tr>
@@ -303,14 +397,14 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>All from the keyboard</h2>
             <p class="sub">You don’t need the mouse – but you can use it.</p>
             <table class="keys">
                 <tbody>
                 <tr><td><kbd>⌥⌘C</kbd></td><td>Open or close the history (configurable)</td></tr>
-                <tr><td>Type</td><td>Filter – in text, app names and text in images</td></tr>
+                <tr><td>Enter a search word</td><td>Filter the list – finds text, app names and text in images</td></tr>
                 <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Choose a clip</td></tr>
                 <tr><td><kbd>⏎</kbd></td><td>Paste with formatting</td></tr>
                 <tr><td><kbd>⌥⏎</kbd></td><td>Paste plain text only</td></tr>
@@ -323,7 +417,7 @@
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Your clipboard is yours</h2>
             <p class="sub">Personal things end up on the clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
@@ -344,7 +438,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Install</h2>
             <p class="sub">Clipsody is free and therefore not notarised by Apple. macOS asks once on first launch – here’s how:</p>
@@ -364,7 +458,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <p class="sub">&nbsp;</p>
