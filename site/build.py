@@ -23,6 +23,9 @@ WEBSITE = ROOT / "website"
 SITE = "https://tillackt.github.io/clipsody/"
 DOWNLOAD = "https://github.com/tillackt/clipsody/releases/latest/download/Clipsody.dmg"
 REPO = "https://github.com/tillackt/clipsody"
+ISSUES = REPO + "/issues"
+SECURITY_REPORT = REPO + "/security/advisories/new"
+SUPPORT_FILE = "support.html"
 LICENSE = "https://www.gnu.org/licenses/gpl-3.0.html"
 PUBLISHED = "2026-10-30"
 MODIFIED = "2026-10-30"
@@ -58,7 +61,8 @@ def text(fragment):
 
 
 def fill(fragment, code, c):
-    return fragment.replace("{download}", DOWNLOAD).replace("{guide}", c["guideFile"])
+    return (fragment.replace("{download}", DOWNLOAD).replace("{guide}", c["guideFile"])
+            .replace("{issues}", ISSUES).replace("{security}", SECURITY_REPORT))
 
 
 def attr(value):
@@ -96,7 +100,7 @@ def head(code, c, page, file, kind, all_content):
 {I}<link rel="icon" href="{rel(code, 'assets/logo.svg')}" type="image/svg+xml">
 {I}<link rel="apple-touch-icon" href="{rel(code, 'assets/icon-180.png')}">
 {I}<link rel="stylesheet" href="{stylesheet(code)}">
-{I}<meta property="og:type" content="{'website' if kind == 'home' else 'article'}">
+{I}<meta property="og:type" content="{'article' if kind == 'guide' else 'website'}">
 {I}<meta property="og:site_name" content="Clipsody">
 {I}<meta property="og:locale" content="{c['ogLocale']}">
 {og_alternates}
@@ -121,7 +125,7 @@ def og_image(code):
 
 
 def file_for(code, c, kind):
-    return "" if kind == "home" else c["guideFile"]
+    return {"home": "", "guide": c["guideFile"], "support": SUPPORT_FILE}[kind]
 
 
 # -------------------------------------------------------------------------------------------- header
@@ -159,6 +163,7 @@ def footer(code, c, kind):
 {I}<div class="wrap">
 {I*2}<span>{f['tagline']}</span>
 {extra}
+{I*2}<a href="{SUPPORT_FILE}">{f['support']}</a>
 {I*2}<a href="{REPO}">GitHub</a>
 {I*2}<a href="{REPO}/releases">{f['releases']}</a>
 {I*2}<span>{f['license']} <a href="{LICENSE}">GPLv3</a></span>
@@ -306,7 +311,7 @@ def ocr_body(o):
 def home_page(code, c, all_content):
     p = c["home"]
     nav = [("#features", p["nav"]["features"]), ("#compare", p["nav"]["compare"]), ("#privacy", p["nav"]["privacy"]),
-           ("#install", p["nav"]["install"]), ("#faq", p["nav"]["faq"])]
+           ("#install", p["nav"]["install"]), ("#faq", p["nav"]["faq"]), (SUPPORT_FILE, p["nav"]["support"])]
     badges = "\n".join(f'{I*3}<span class="badge">{badge}</span>' for badge in p["badges"])
     problem = p["problem"]
     without = "\n".join(f"{I*6}<li>{item}</li>" for item in problem["without"])
@@ -384,7 +389,8 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
 def guide_page(code, c, all_content):
     g = c["guide"]
     nav_labels = c["home"]["nav"]
-    nav = [("./#features", nav_labels["features"]), ("./#install", nav_labels["install"]), ("./#faq", nav_labels["faq"])]
+    nav = [("./#features", nav_labels["features"]), ("./#install", nav_labels["install"]), ("./#faq", nav_labels["faq"]),
+           (SUPPORT_FILE, nav_labels["support"])]
 
     def steps(items):
         return f"{I}<ol>\n" + "\n".join(f"{I*2}<li>{fill(item, code, c)}</li>" for item in items) + f"\n{I}</ol>"
@@ -428,14 +434,89 @@ def guide_page(code, c, all_content):
 """
 
 
+# ------------------------------------------------------------------------------------------- support
+
+
+def support_page(code, c, all_content):
+    """A form that opens GitHub's issue form with the entries filled in (field ids of
+    .github/ISSUE_TEMPLATE/*.yml as query parameters). No script and no server: the browser sends a
+    GET request to GitHub, and the visitor submits the issue there with their own account."""
+    s = c["support"]
+    nav_labels = c["home"]["nav"]
+    nav = [("./#features", nav_labels["features"]), ("./#install", nav_labels["install"]), ("./#faq", nav_labels["faq"]),
+           (SUPPORT_FILE, nav_labels["support"])]
+    check = "\n".join(f"{I*2}<li>{fill(item, code, c)}</li>" for item in s["check"])
+    include = "\n".join(f"{I*2}<li>{fill(item, code, c)}</li>" for item in s["include"])
+    return f"""{head(code, c, s, SUPPORT_FILE, "support", all_content)}
+<body>
+{header(code, c, nav, "support", all_content)}
+
+<main class="article wrap" id="main">
+{I}<nav class="crumbs" aria-label="{s['breadcrumbLabel']}"><a href="./">Clipsody</a> › <span aria-current="page">{s['crumb']}</span></nav>
+{I}<h1>{s['h1']}</h1>
+{I}<p class="lead">{s['lead']}</p>
+
+{I}<h2 id="check">{s['checkTitle']}</h2>
+{I}<ul>
+{check}
+{I}</ul>
+
+{I}<h2 id="report">{s['formTitle']}</h2>
+{I}<p>{s['formIntro']}</p>
+{I}<form class="support-form" method="get" action="{ISSUES}/new">
+{I*2}<label for="issue-title">{s['titleLabel']}</label>
+{I*2}<input id="issue-title" name="title" type="text" maxlength="120" placeholder="{attr(s['titlePlaceholder'])}">
+{I*2}<label for="issue-description">{s['descriptionLabel']}</label>
+{I*2}<textarea id="issue-description" name="description" rows="6" maxlength="4000" placeholder="{attr(s['descriptionPlaceholder'])}"></textarea>
+{I*2}<div class="pair">
+{I*3}<div>
+{I*4}<label for="issue-version">{s['versionLabel']}</label>
+{I*4}<input id="issue-version" name="clipsody-version" type="text" maxlength="80" aria-describedby="issue-version-hint">
+{I*4}<p class="hint" id="issue-version-hint">{s['versionHint']}</p>
+{I*3}</div>
+{I*3}<div>
+{I*4}<label for="issue-macos">{s['macosLabel']}</label>
+{I*4}<input id="issue-macos" name="macos-version" type="text" maxlength="80" aria-describedby="issue-macos-hint">
+{I*4}<p class="hint" id="issue-macos-hint">{s['macosHint']}</p>
+{I*3}</div>
+{I*2}</div>
+{I*2}<p class="note">{s['publicNote']}</p>
+{I*2}<div class="cta">
+{I*3}<button class="button" type="submit" name="template" value="bug_report.yml">{s['bugButton']}</button>
+{I*3}<button class="button secondary" type="submit" name="template" value="feature_request.yml">{s['ideaButton']}</button>
+{I*2}</div>
+{I}</form>
+
+{I}<h2 id="details">{s['includeTitle']}</h2>
+{I}<ul>
+{include}
+{I}</ul>
+
+{I}<h2 id="security">{s['securityTitle']}</h2>
+{I}<p>{fill(s['securityText'], code, c)}</p>
+</main>
+
+{footer(code, c, "support")}
+</body>
+</html>
+"""
+
+
 # ----------------------------------------------------------------------------------- structured data
 
 
 def structured_data(code, c, page, file, kind):
     page_url = url(code, file)
-    faq_items = page["faq"]["items"]
     items = []
-    if kind == "home":
+    if kind == "support":
+        items.append({
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Clipsody", "item": url(code)},
+                {"@type": "ListItem", "position": 2, "name": page["crumb"], "item": page_url},
+            ],
+        })
+    elif kind == "home":
         items.append({
             "@type": "SoftwareApplication",
             "name": "Clipsody",
@@ -470,11 +551,12 @@ def structured_data(code, c, page, file, kind):
                 {"@type": "ListItem", "position": 2, "name": page["crumb"], "item": page_url},
             ],
         })
-    items.append({
-        "@type": "FAQPage",
-        "mainEntity": [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
-                       for q, a in faq_items],
-    })
+    if "faq" in page:
+        items.append({
+            "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
+                           for q, a in page["faq"]["items"]],
+        })
     data = json.dumps({"@context": "https://schema.org", "@graph": items}, ensure_ascii=False, indent=2)
     # "</" inside the JSON would end the script element early.
     return data.replace("</", "<\\/")
@@ -485,7 +567,7 @@ def structured_data(code, c, page, file, kind):
 
 def sitemap(all_content):
     entries = []
-    for kind in ("home", "guide"):
+    for kind in ("home", "guide", "support"):
         alternates = "\n".join(
             f'    <xhtml:link rel="alternate" hreflang="{code}" href="{url(code, file_for(code, all_content[code], kind))}"/>'
             for code in LANGUAGES)
@@ -511,6 +593,7 @@ def outputs():
     for code, c in all_content.items():
         files[LANGUAGES[code] + "index.html"] = home_page(code, c, all_content)
         files[LANGUAGES[code] + c["guideFile"]] = guide_page(code, c, all_content)
+        files[LANGUAGES[code] + SUPPORT_FILE] = support_page(code, c, all_content)
     return files
 
 

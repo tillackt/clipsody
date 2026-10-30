@@ -14,7 +14,7 @@
     "ogDescription": "Wszystko, co skopiujesz, masz pod ręką: teksty, obrazy i pliki, do wyszukania i wklejenia z klawiatury. Darmowy, open source, w pełni lokalny.",
     "ogImageAlt": "Clipsody: historia schowka na Maca",
     "appDescription": "Menedżer schowka i historia schowka na Maca: zachowuje każdy skopiowany tekst, obraz i plik, z wyszukiwaniem i wklejaniem z klawiatury.",
-    "nav": {"features": "Funkcje", "compare": "Porównanie", "privacy": "Prywatność", "install": "Instalacja", "faq": "FAQ"},
+    "nav": {"features": "Funkcje", "compare": "Porównanie", "privacy": "Prywatność", "install": "Instalacja", "faq": "FAQ", "support": "Pomoc"},
     "h1": "Menedżer schowka na Maca, który pamięta wszystko",
     "lead": "Mac pamięta tylko ostatnio skopiowaną rzecz – skopiujesz coś nowego i poprzednia przepada. Clipsody zachowuje wszystko: teksty, obrazy i pliki. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> przywraca dowolny element, a <kbd>⏎</kbd> wkleja go dokładnie tam, gdzie właśnie piszesz.",
     "download": "Pobierz za darmo",
@@ -260,6 +260,44 @@
       "button": "Pobierz Clipsody za darmo"
     }
   },
+  "support": {
+    "title": "Pomoc Clipsody – zgłoś problem albo zaproponuj pomysł",
+    "description": "Coś nie działa w Clipsody albo masz pomysł? Najpierw sprawdź odpowiedzi, potem zgłoś to na GitHubie – formularz podpowie, czego potrzebujemy.",
+    "ogTitle": "Pomoc Clipsody",
+    "ogDescription": "Zgłoś problem albo zaproponuj pomysł – formularz przygotuje dla ciebie zgłoszenie na GitHubie.",
+    "breadcrumbLabel": "Ścieżka nawigacji",
+    "crumb": "Pomoc",
+    "h1": "Pomoc",
+    "lead": "Clipsody to darmowy projekt open source. Problemy i pomysły zbieramy publicznie na GitHubie, więc każdy widzi, co już wiadomo i nad czym trwają prace.",
+    "checkTitle": "Najpierw sprawdź",
+    "check": [
+      "Odpowiedzi na wiele pytań znajdziesz w <a href=\"./#faq\">FAQ</a>, a wskazówki do instalacji w sekcji <a href=\"./#install\">Instalacja</a>.",
+      "Czy masz najnowszą wersję Clipsody? Ikona na pasku menu → <strong>Sprawdź aktualizacje…</strong>",
+      "Może ktoś już to zgłosił: <a href=\"{issues}\">znane problemy na GitHubie</a>."
+    ],
+    "formTitle": "Zgłoś problem albo zaproponuj pomysł",
+    "formIntro": "Wypełnij, co możesz. Przycisk otworzy GitHuba z twoimi wpisami; tam uzupełnisz szczegóły i wyślesz zgłoszenie. Potrzebne jest darmowe konto na GitHubie.",
+    "titleLabel": "Krótkie podsumowanie",
+    "titlePlaceholder": "np. Obrazy z Safari nie są zapisywane",
+    "descriptionLabel": "Co się dzieje albo czego potrzebujesz?",
+    "descriptionPlaceholder": "Jakie kroki prowadzą do problemu, czego się spodziewasz i co dzieje się zamiast tego?",
+    "versionLabel": "Wersja Clipsody",
+    "versionHint": "Ustawienia → Informacje → Wersja",
+    "macosLabel": "Wersja macOS",
+    "macosHint": "Menu Apple → Ten Mac",
+    "bugButton": "Zgłoś problem na GitHubie",
+    "ideaButton": "Zaproponuj pomysł na GitHubie",
+    "publicNote": "<strong>Zgłoszenia są publiczne.</strong> Nie wpisuj haseł ani innych prywatnych treści ze schowka. Zrzuty ekranu pomagają, ale sprawdź, co na nich widać.",
+    "includeTitle": "Co pomaga nam najbardziej",
+    "include": [
+      "Wersja Clipsody (Ustawienia → Informacje) i wersja macOS.",
+      "Kroki prowadzące do problemu – jak najdokładniej.",
+      "Czego się spodziewasz i co dzieje się zamiast tego.",
+      "Przy awariach lub problemach z wklejaniem: log. Polecenie do Terminala GitHub pokazuje w formularzu."
+    ],
+    "securityTitle": "Problem z bezpieczeństwem?",
+    "securityText": "Nie zgłaszaj go publicznie. Skorzystaj zamiast tego z <a href=\"{security}\">prywatnego zgłoszenia na GitHubie</a> – widzi je tylko deweloper."
+  },
   "footer": {
     "tagline": "Clipsody – menedżer schowka dla macOS",
     "guide": "Poradnik: historia schowka na Macu",
@@ -267,6 +305,7 @@
     "releases": "Wszystkie wersje",
     "license": "Licencja:",
     "legal": "Nota prawna (po niemiecku)",
-    "privacyPolicy": "Polityka prywatności (po niemiecku)"
+    "privacyPolicy": "Polityka prywatności (po niemiecku)",
+    "support": "Pomoc"
   }
 }

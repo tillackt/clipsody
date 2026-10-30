@@ -19,7 +19,8 @@
       "compare": "Compare",
       "privacy": "Privacy",
       "install": "Install",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "support": "Support"
     },
     "h1": "The clipboard manager for Mac that remembers everything",
     "lead": "Your Mac only keeps the last thing you copied – copy something new and the previous one is gone. Clipsody keeps everything: text, images and files. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> brings any of it back, and <kbd>⏎</kbd> pastes it right where you were typing.",
@@ -524,6 +525,44 @@
       "button": "Download Clipsody for free"
     }
   },
+  "support": {
+    "title": "Clipsody Support – Report a Problem or Suggest an Idea",
+    "description": "Something not working in Clipsody, or an idea for it? Check the answers first, then report it on GitHub – this form fills in what we need to know.",
+    "ogTitle": "Clipsody support",
+    "ogDescription": "Report a problem or suggest an idea – the form prepares a GitHub issue for you.",
+    "breadcrumbLabel": "Breadcrumb",
+    "crumb": "Support",
+    "h1": "Support",
+    "lead": "Clipsody is a free open-source project. Problems and ideas are collected publicly on GitHub, so everyone can see what is known and what is being worked on.",
+    "checkTitle": "Check first",
+    "check": [
+      "Many questions are answered in the <a href=\"./#faq\">FAQ</a>, installation in <a href=\"./#install\">Install</a>.",
+      "Is your Clipsody up to date? Menu bar icon → <strong>Check for Updates…</strong>",
+      "Maybe someone has already reported it: <a href=\"{issues}\">known issues on GitHub</a>."
+    ],
+    "formTitle": "Report a problem or suggest an idea",
+    "formIntro": "Fill in what you can. The button opens GitHub with your entries filled in; there you can add details and send it. You need a free GitHub account.",
+    "titleLabel": "Short summary",
+    "titlePlaceholder": "e.g. Images from Safari are not saved",
+    "descriptionLabel": "What happened, or what would you like?",
+    "descriptionPlaceholder": "What did you do, what did you expect, and what happened instead?",
+    "versionLabel": "Clipsody version",
+    "versionHint": "Settings → Info → Version",
+    "macosLabel": "macOS version",
+    "macosHint": "Apple menu → About This Mac",
+    "bugButton": "Report a problem on GitHub",
+    "ideaButton": "Suggest an idea on GitHub",
+    "publicNote": "<strong>Issues are public.</strong> Please do not include passwords or other private clipboard contents. Screenshots help, but check what they show.",
+    "includeTitle": "What helps us most",
+    "include": [
+      "The Clipsody version (Settings → Info) and your macOS version.",
+      "The steps that lead to the problem, as exactly as possible.",
+      "What you expected and what happened instead.",
+      "For crashes or paste problems: the log. GitHub shows the Terminal command for it in the form."
+    ],
+    "securityTitle": "Found a security problem?",
+    "securityText": "Please do not report it publicly. Use the <a href=\"{security}\">private report on GitHub</a> instead; it is only visible to the developer."
+  },
   "footer": {
     "tagline": "Clipsody – clipboard manager for macOS",
     "guide": "Guide: clipboard history on a Mac",
@@ -531,6 +570,7 @@
     "releases": "All releases",
     "license": "License:",
     "legal": "Legal notice (German)",
-    "privacyPolicy": "Privacy policy (German)"
+    "privacyPolicy": "Privacy policy (German)",
+    "support": "Support"
   }
 }

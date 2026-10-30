@@ -19,7 +19,8 @@
       "compare": "Vergleich",
       "privacy": "Datenschutz",
       "install": "Installation",
-      "faq": "Fragen"
+      "faq": "Fragen",
+      "support": "Support"
     },
     "h1": "Der Zwischenablage-Manager für den Mac, der sich alles merkt",
     "lead": "Dein Mac merkt sich immer nur das, was du zuletzt kopiert hast – kopierst du etwas Neues, ist das Vorherige weg. Clipsody hebt alles auf: Texte, Bilder und Dateien. Mit <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> holst du jeden Eintrag zurück, und <kbd>⏎</kbd> fügt ihn dort ein, wo du gerade schreibst.",
@@ -524,6 +525,44 @@
       "button": "Clipsody kostenlos laden"
     }
   },
+  "support": {
+    "title": "Clipsody-Support – Problem melden oder Idee vorschlagen",
+    "description": "Etwas funktioniert in Clipsody nicht, oder du hast eine Idee? Erst die Antworten prüfen, dann auf GitHub melden – das Formular fragt ab, was wir brauchen.",
+    "ogTitle": "Clipsody-Support",
+    "ogDescription": "Problem melden oder Idee vorschlagen – das Formular bereitet ein GitHub-Issue für dich vor.",
+    "breadcrumbLabel": "Brotkrumen",
+    "crumb": "Support",
+    "h1": "Support",
+    "lead": "Clipsody ist ein kostenloses Open-Source-Projekt. Probleme und Ideen werden öffentlich auf GitHub gesammelt – so sieht jeder, was bekannt ist und woran gearbeitet wird.",
+    "checkTitle": "Erst kurz prüfen",
+    "check": [
+      "Viele Fragen beantworten die <a href=\"./#faq\">Häufigen Fragen</a>, die Installation erklärt <a href=\"./#install\">Installation</a>.",
+      "Ist dein Clipsody aktuell? Menüleisten-Symbol → <strong>Nach Updates suchen …</strong>",
+      "Vielleicht hat es schon jemand gemeldet: <a href=\"{issues}\">bekannte Probleme auf GitHub</a>."
+    ],
+    "formTitle": "Problem melden oder Idee vorschlagen",
+    "formIntro": "Füll aus, was du weißt. Der Button öffnet GitHub mit deinen Angaben; dort kannst du noch ergänzen und absenden. Du brauchst ein kostenloses GitHub-Konto.",
+    "titleLabel": "Kurz zusammengefasst",
+    "titlePlaceholder": "z. B. Bilder aus Safari werden nicht gespeichert",
+    "descriptionLabel": "Was ist passiert, oder was wünschst du dir?",
+    "descriptionPlaceholder": "Was hast du gemacht, was hast du erwartet, und was ist stattdessen passiert?",
+    "versionLabel": "Clipsody-Version",
+    "versionHint": "Einstellungen → Info → Version",
+    "macosLabel": "macOS-Version",
+    "macosHint": "Apple-Menü → Über diesen Mac",
+    "bugButton": "Problem auf GitHub melden",
+    "ideaButton": "Idee auf GitHub vorschlagen",
+    "publicNote": "<strong>Issues sind öffentlich.</strong> Bitte keine Passwörter oder andere private Inhalte aus der Zwischenablage angeben. Screenshots helfen – prüf vorher, was darauf zu sehen ist.",
+    "includeTitle": "Was uns am meisten hilft",
+    "include": [
+      "Die Clipsody-Version (Einstellungen → Info) und deine macOS-Version.",
+      "Die Schritte, die zum Problem führen – so genau wie möglich.",
+      "Was du erwartet hast und was stattdessen passiert ist.",
+      "Bei Abstürzen oder Problemen beim Einfügen: das Protokoll. Den Terminal-Befehl dafür zeigt GitHub im Formular."
+    ],
+    "securityTitle": "Eine Sicherheitslücke gefunden?",
+    "securityText": "Bitte nicht öffentlich melden, sondern über die <a href=\"{security}\">vertrauliche Meldung auf GitHub</a> – die sieht nur der Entwickler."
+  },
   "footer": {
     "tagline": "Clipsody – Zwischenablage-Verlauf für macOS",
     "guide": "Ratgeber: Zwischenablage-Verlauf am Mac",
@@ -531,6 +570,7 @@
     "releases": "Alle Versionen",
     "license": "Lizenz:",
     "legal": "Impressum",
-    "privacyPolicy": "Datenschutz"
+    "privacyPolicy": "Datenschutz",
+    "support": "Support"
   }
 }

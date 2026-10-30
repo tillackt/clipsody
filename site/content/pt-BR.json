@@ -14,7 +14,7 @@
     "ogDescription": "Tudo o que você copia fica à mão: textos, imagens e arquivos, para buscar e colar de novo pelo teclado. Grátis, open source e 100% local.",
     "ogImageAlt": "Clipsody: histórico da área de transferência para Mac",
     "appDescription": "Gerenciador de área de transferência (clipboard) e histórico para Mac: guarda cada texto, imagem e arquivo que você copia, com busca e colagem pelo teclado.",
-    "nav": {"features": "Recursos", "compare": "Comparação", "privacy": "Privacidade", "install": "Instalação", "faq": "Perguntas"},
+    "nav": {"features": "Recursos", "compare": "Comparação", "privacy": "Privacidade", "install": "Instalação", "faq": "Perguntas", "support": "Suporte"},
     "h1": "O gerenciador de área de transferência para Mac que lembra de tudo",
     "lead": "Seu Mac só guarda o último item copiado – copiou outra coisa, o anterior já era. O Clipsody guarda tudo: textos, imagens e arquivos. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> traz qualquer um de volta, e <kbd>⏎</kbd> cola bem onde você estava digitando.",
     "download": "Baixar grátis",
@@ -260,6 +260,44 @@
       "button": "Baixar o Clipsody grátis"
     }
   },
+  "support": {
+    "title": "Suporte do Clipsody – relate um problema ou sugira uma ideia",
+    "description": "Algo não funciona no Clipsody ou você tem uma ideia? Confira primeiro as respostas e depois relate no GitHub – o formulário pede o que precisamos saber.",
+    "ogTitle": "Suporte do Clipsody",
+    "ogDescription": "Relate um problema ou sugira uma ideia – o formulário prepara uma issue no GitHub para você.",
+    "breadcrumbLabel": "Trilha de navegação",
+    "crumb": "Suporte",
+    "h1": "Suporte",
+    "lead": "O Clipsody é um projeto grátis e open source. Problemas e ideias ficam reunidos publicamente no GitHub, assim todo mundo vê o que já se sabe e no que estamos trabalhando.",
+    "checkTitle": "Confira antes",
+    "check": [
+      "Muitas dúvidas já têm resposta nas <a href=\"./#faq\">Perguntas frequentes</a>, e a instalação está explicada em <a href=\"./#install\">Instalação</a>.",
+      "Seu Clipsody está atualizado? Ícone na barra de menus → <strong>Verificar Atualizações…</strong>",
+      "Talvez alguém já tenha relatado: <a href=\"{issues}\">problemas conhecidos no GitHub</a>."
+    ],
+    "formTitle": "Relate um problema ou sugira uma ideia",
+    "formIntro": "Preencha o que puder. O botão abre o GitHub com seus dados já preenchidos; lá você pode acrescentar detalhes e enviar. É preciso ter uma conta gratuita no GitHub.",
+    "titleLabel": "Resumo curto",
+    "titlePlaceholder": "ex.: Imagens do Safari não são salvas",
+    "descriptionLabel": "O que aconteceu, ou o que você gostaria?",
+    "descriptionPlaceholder": "O que você fez, o que esperava e o que aconteceu em vez disso?",
+    "versionLabel": "Versão do Clipsody",
+    "versionHint": "Ajustes → Informações → Versão",
+    "macosLabel": "Versão do macOS",
+    "macosHint": "Menu Apple → Sobre Este Mac",
+    "bugButton": "Relatar um problema no GitHub",
+    "ideaButton": "Sugerir uma ideia no GitHub",
+    "publicNote": "<strong>As issues são públicas.</strong> Não inclua senhas nem outros conteúdos privados da área de transferência. Capturas de tela ajudam, mas confira o que elas mostram.",
+    "includeTitle": "O que mais nos ajuda",
+    "include": [
+      "A versão do Clipsody (Ajustes → Informações) e a sua versão do macOS.",
+      "Os passos que levam ao problema, com o máximo de detalhe.",
+      "O que você esperava e o que aconteceu em vez disso.",
+      "Em travamentos ou problemas ao colar: o log. O GitHub mostra no formulário o comando do Terminal para isso."
+    ],
+    "securityTitle": "Encontrou um problema de segurança?",
+    "securityText": "Não relate publicamente. Use o <a href=\"{security}\">relato privado no GitHub</a>; só o desenvolvedor pode ver."
+  },
   "footer": {
     "tagline": "Clipsody – gerenciador de área de transferência para macOS",
     "guide": "Guia: histórico da área de transferência no Mac",
@@ -267,6 +305,7 @@
     "releases": "Todas as versões",
     "license": "Licença:",
     "legal": "Aviso legal (em alemão)",
-    "privacyPolicy": "Política de privacidade (em alemão)"
+    "privacyPolicy": "Política de privacidade (em alemão)",
+    "support": "Suporte"
   }
 }

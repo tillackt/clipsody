@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem
+    url: https://github.com/tillackt/clipsody/security/advisories/new
+    about: Report vulnerabilities privately, not as a public issue (see SECURITY.md).
+  - name: Help and installation
+    url: https://tillackt.github.io/clipsody/en/#faq
+    about: Installation steps and answers to common questions.

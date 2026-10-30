@@ -19,7 +19,8 @@
       "compare": "Vergelijking",
       "privacy": "Privacy",
       "install": "Installatie",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "support": "Support"
     },
     "h1": "De klembordbeheerder voor je Mac die alles onthoudt",
     "lead": "Je Mac bewaart alleen het laatste wat je hebt gekopieerd – kopieer je iets nieuws, dan is het vorige weg. Clipsody bewaart alles: tekst, afbeeldingen en bestanden. Met <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> haal je alles terug, en <kbd>⏎</kbd> plakt het precies waar je aan het typen was.",
@@ -524,6 +525,44 @@
       "button": "Download Clipsody gratis"
     }
   },
+  "support": {
+    "title": "Clipsody-support – meld een probleem of stel een idee voor",
+    "description": "Werkt iets niet in Clipsody, of heb je een idee? Bekijk eerst de antwoorden en meld het dan op GitHub – het formulier vraagt wat we moeten weten.",
+    "ogTitle": "Clipsody-support",
+    "ogDescription": "Meld een probleem of stel een idee voor – het formulier zet een GitHub-issue voor je klaar.",
+    "breadcrumbLabel": "Kruimelpad",
+    "crumb": "Support",
+    "h1": "Support",
+    "lead": "Clipsody is gratis en open source. Problemen en ideeën worden openbaar op GitHub verzameld, zodat iedereen kan zien wat al bekend is en waaraan wordt gewerkt.",
+    "checkTitle": "Controleer eerst",
+    "check": [
+      "Veel vragen worden beantwoord in de <a href=\"./#faq\">FAQ</a>, de installatie staat bij <a href=\"./#install\">Installatie</a>.",
+      "Is je Clipsody up-to-date? Symbool in de menubalk → <strong>Zoek naar updates…</strong>",
+      "Misschien heeft iemand het al gemeld: <a href=\"{issues}\">bekende problemen op GitHub</a>."
+    ],
+    "formTitle": "Meld een probleem of stel een idee voor",
+    "formIntro": "Vul in wat je weet. De knop opent GitHub met je gegevens al ingevuld; daar kun je nog details toevoegen en het versturen. Je hebt een gratis GitHub-account nodig.",
+    "titleLabel": "Korte samenvatting",
+    "titlePlaceholder": "bijv. Afbeeldingen uit Safari worden niet bewaard",
+    "descriptionLabel": "Wat is er gebeurd, of wat zou je willen?",
+    "descriptionPlaceholder": "Wat deed je, wat verwachtte je en wat gebeurde er in plaats daarvan?",
+    "versionLabel": "Clipsody-versie",
+    "versionHint": "Instellingen → Info → Versie",
+    "macosLabel": "macOS-versie",
+    "macosHint": "Apple-menu → Over deze Mac",
+    "bugButton": "Meld een probleem op GitHub",
+    "ideaButton": "Stel een idee voor op GitHub",
+    "publicNote": "<strong>Issues zijn openbaar.</strong> Zet er geen wachtwoorden of andere privé-inhoud van je klembord in. Screenshots helpen, maar controleer eerst wat erop staat.",
+    "includeTitle": "Wat ons het meest helpt",
+    "include": [
+      "De Clipsody-versie (Instellingen → Info) en je macOS-versie.",
+      "De stappen die tot het probleem leiden, zo precies mogelijk.",
+      "Wat je verwachtte en wat er in plaats daarvan gebeurde.",
+      "Bij crashes of problemen met plakken: het logboek. Het Terminal-commando daarvoor laat GitHub in het formulier zien."
+    ],
+    "securityTitle": "Een beveiligingsprobleem gevonden?",
+    "securityText": "Meld het alsjeblieft niet openbaar, maar gebruik de <a href=\"{security}\">vertrouwelijke melding op GitHub</a> – alleen de ontwikkelaar kan die zien."
+  },
   "footer": {
     "tagline": "Clipsody – klembordbeheerder voor macOS",
     "guide": "Handleiding: klembordgeschiedenis op een Mac",
@@ -531,6 +570,7 @@
     "releases": "Alle releases",
     "license": "Licentie:",
     "legal": "Juridische informatie (in het Duits)",
-    "privacyPolicy": "Privacyverklaring (in het Duits)"
+    "privacyPolicy": "Privacyverklaring (in het Duits)",
+    "support": "Support"
   }
 }

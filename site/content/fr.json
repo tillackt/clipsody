@@ -19,7 +19,8 @@
       "compare": "Comparatif",
       "privacy": "Confidentialité",
       "install": "Installation",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "support": "Assistance"
     },
     "h1": "Le gestionnaire de presse-papiers pour Mac qui retient tout",
     "lead": "Votre Mac ne retient que le dernier élément copié – copiez autre chose, et le précédent disparaît. Clipsody garde tout : textes, images et fichiers. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> vous rend n’importe lequel, et <kbd>⏎</kbd> le colle là où vous étiez en train d’écrire.",
@@ -524,6 +525,44 @@
       "button": "Télécharger Clipsody gratuitement"
     }
   },
+  "support": {
+    "title": "Assistance Clipsody – signaler un problème, proposer une idée",
+    "description": "Un souci avec Clipsody ou une idée ? Consultez d’abord les réponses, puis signalez-le sur GitHub – ce formulaire réunit ce qu’il nous faut savoir.",
+    "ogTitle": "Assistance Clipsody",
+    "ogDescription": "Signalez un problème ou proposez une idée – le formulaire vous prépare un ticket sur GitHub.",
+    "breadcrumbLabel": "Fil d’Ariane",
+    "crumb": "Assistance",
+    "h1": "Assistance",
+    "lead": "Clipsody est un projet open source gratuit. Les problèmes et les idées sont rassemblés publiquement sur GitHub : chacun peut voir ce qui est déjà connu et ce qui est en cours.",
+    "checkTitle": "À vérifier d’abord",
+    "check": [
+      "Beaucoup de questions trouvent leur réponse dans la <a href=\"./#faq\">FAQ</a>, et l’installation est expliquée sous <a href=\"./#install\">Installation</a>.",
+      "Votre Clipsody est-il à jour ? Icône de la barre des menus → <strong>Rechercher des mises à jour…</strong>",
+      "Quelqu’un l’a peut-être déjà signalé : <a href=\"{issues}\">problèmes connus sur GitHub</a>."
+    ],
+    "formTitle": "Signaler un problème ou proposer une idée",
+    "formIntro": "Remplissez ce que vous pouvez. Le bouton ouvre GitHub avec vos indications déjà saisies ; vous pourrez y ajouter des détails, puis l’envoyer. Il vous faut un compte GitHub gratuit.",
+    "titleLabel": "Résumé en quelques mots",
+    "titlePlaceholder": "p. ex. Les images copiées depuis Safari ne sont pas enregistrées",
+    "descriptionLabel": "Que s’est-il passé, ou que souhaitez-vous ?",
+    "descriptionPlaceholder": "Qu’avez-vous fait, à quoi vous attendiez-vous, et que s’est-il passé à la place ?",
+    "versionLabel": "Version de Clipsody",
+    "versionHint": "Réglages → Infos → Version",
+    "macosLabel": "Version de macOS",
+    "macosHint": "Menu Pomme → À propos de ce Mac",
+    "bugButton": "Signaler un problème sur GitHub",
+    "ideaButton": "Proposer une idée sur GitHub",
+    "publicNote": "<strong>Les tickets sont publics.</strong> N’y mettez ni mots de passe ni autre contenu privé du presse-papiers. Les captures d’écran aident, mais vérifiez ce qu’elles montrent.",
+    "includeTitle": "Ce qui nous aide le plus",
+    "include": [
+      "La version de Clipsody (Réglages → Infos) et votre version de macOS.",
+      "Les étapes qui mènent au problème, aussi précisément que possible.",
+      "Ce que vous attendiez et ce qui s’est passé à la place.",
+      "En cas de plantage ou de problème de collage : le journal. Le formulaire GitHub indique la commande à saisir dans le Terminal."
+    ],
+    "securityTitle": "Vous avez trouvé une faille de sécurité ?",
+    "securityText": "Ne la signalez pas publiquement. Utilisez plutôt le <a href=\"{security}\">signalement privé sur GitHub</a> ; seul le développeur peut le voir."
+  },
   "footer": {
     "tagline": "Clipsody – gestionnaire de presse-papiers pour macOS",
     "guide": "Guide : l’historique du presse-papiers sur Mac",
@@ -531,6 +570,7 @@
     "releases": "Toutes les versions",
     "license": "Licence :",
     "legal": "Mentions légales (en allemand)",
-    "privacyPolicy": "Politique de confidentialité (en allemand)"
+    "privacyPolicy": "Politique de confidentialité (en allemand)",
+    "support": "Assistance"
   }
 }

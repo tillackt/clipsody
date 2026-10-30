@@ -14,7 +14,7 @@
     "ogDescription": "Todo lo que copias queda a mano: textos, imágenes y archivos, para buscarlos y volver a pegarlos con el teclado. Gratis, open source y 100 % local.",
     "ogImageAlt": "Clipsody: historial del portapapeles para Mac",
     "appDescription": "Gestor de portapapeles e historial del portapapeles para Mac: guarda cada texto, imagen y archivo que copias, para buscarlo y volver a pegarlo con el teclado.",
-    "nav": {"features": "Funciones", "compare": "Comparativa", "privacy": "Privacidad", "install": "Instalación", "faq": "Preguntas"},
+    "nav": {"features": "Funciones", "compare": "Comparativa", "privacy": "Privacidad", "install": "Instalación", "faq": "Preguntas", "support": "Soporte"},
     "h1": "El gestor de portapapeles para Mac que lo recuerda todo",
     "lead": "Tu Mac solo guarda lo último que copiaste: copias algo nuevo y lo anterior desaparece. Clipsody lo guarda todo: textos, imágenes y archivos. Con <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> recuperas cualquier elemento y <kbd>⏎</kbd> lo pega justo donde estabas escribiendo.",
     "download": "Descargar gratis",
@@ -260,6 +260,44 @@
       "button": "Descargar Clipsody gratis"
     }
   },
+  "support": {
+    "title": "Soporte de Clipsody: informa de un problema o propón una idea",
+    "description": "¿Algo no funciona en Clipsody o tienes una idea? Mira primero las respuestas y luego cuéntanoslo en GitHub: este formulario recoge lo que necesitamos.",
+    "ogTitle": "Soporte de Clipsody",
+    "ogDescription": "Informa de un problema o propón una idea: el formulario te prepara una incidencia en GitHub.",
+    "breadcrumbLabel": "Ruta de navegación",
+    "crumb": "Soporte",
+    "h1": "Soporte",
+    "lead": "Clipsody es un proyecto open source gratuito. Los problemas y las ideas se recogen públicamente en GitHub, así todo el mundo ve qué se conoce ya y en qué se está trabajando.",
+    "checkTitle": "Antes de nada",
+    "check": [
+      "Muchas dudas ya tienen respuesta en las <a href=\"./#faq\">Preguntas frecuentes</a>, y la instalación se explica en <a href=\"./#install\">Instalación</a>.",
+      "¿Tienes Clipsody actualizado? Icono de la barra de menús → <strong>Buscar actualizaciones…</strong>",
+      "Puede que alguien ya lo haya comunicado: <a href=\"{issues}\">incidencias conocidas en GitHub</a>."
+    ],
+    "formTitle": "Informa de un problema o propón una idea",
+    "formIntro": "Rellena lo que puedas. El botón abre GitHub con tus datos ya completados; allí puedes añadir detalles y enviarlo. Necesitas una cuenta gratuita de GitHub.",
+    "titleLabel": "Resumen breve",
+    "titlePlaceholder": "p. ej., No se guardan las imágenes de Safari",
+    "descriptionLabel": "¿Qué pasó o qué te gustaría?",
+    "descriptionPlaceholder": "¿Qué hiciste, qué esperabas y qué pasó en su lugar?",
+    "versionLabel": "Versión de Clipsody",
+    "versionHint": "Ajustes → Información → Versión",
+    "macosLabel": "Versión de macOS",
+    "macosHint": "Menú Apple → Acerca de este Mac",
+    "bugButton": "Informar de un problema en GitHub",
+    "ideaButton": "Proponer una idea en GitHub",
+    "publicNote": "<strong>Las incidencias son públicas.</strong> No incluyas contraseñas ni otros contenidos privados del portapapeles. Las capturas de pantalla ayudan, pero revisa lo que muestran.",
+    "includeTitle": "Lo que más nos ayuda",
+    "include": [
+      "La versión de Clipsody (Ajustes → Información) y tu versión de macOS.",
+      "Los pasos que llevan al problema, con la mayor precisión posible.",
+      "Qué esperabas y qué pasó en su lugar.",
+      "Si la app se cierra inesperadamente o falla al pegar: el registro. GitHub te muestra en el formulario el comando de Terminal para obtenerlo."
+    ],
+    "securityTitle": "¿Encontraste un problema de seguridad?",
+    "securityText": "No lo publiques. Usa en su lugar el <a href=\"{security}\">aviso privado en GitHub</a>; solo lo ve el desarrollador."
+  },
   "footer": {
     "tagline": "Clipsody: gestor de portapapeles para macOS",
     "guide": "Guía: el historial del portapapeles en el Mac",
@@ -267,6 +305,7 @@
     "releases": "Todas las versiones",
     "license": "Licencia:",
     "legal": "Aviso legal (en alemán)",
-    "privacyPolicy": "Política de privacidad (en alemán)"
+    "privacyPolicy": "Política de privacidad (en alemán)",
+    "support": "Soporte"
   }
 }

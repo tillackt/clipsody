@@ -19,7 +19,8 @@
       "compare": "Confronto",
       "privacy": "Privacy",
       "install": "Installazione",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "support": "Supporto"
     },
     "h1": "Il gestore degli appunti per Mac che ricorda tutto",
     "lead": "Il Mac tiene solo l’ultima cosa che hai copiato – copi qualcosa di nuovo e quella precedente sparisce. Clipsody conserva tutto: testi, immagini e file. Con <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> ritrovi qualsiasi elemento, e <kbd>⏎</kbd> lo incolla proprio dove stavi scrivendo.",
@@ -524,6 +525,44 @@
       "button": "Scarica Clipsody gratis"
     }
   },
+  "support": {
+    "title": "Supporto Clipsody – segnala un problema o proponi un’idea",
+    "description": "Qualcosa non va in Clipsody o hai un’idea? Prima controlla le risposte, poi segnalalo su GitHub: il modulo ti chiede ciò che ci serve sapere.",
+    "ogTitle": "Supporto Clipsody",
+    "ogDescription": "Segnala un problema o proponi un’idea – il modulo prepara per te una issue su GitHub.",
+    "breadcrumbLabel": "Percorso di navigazione",
+    "crumb": "Supporto",
+    "h1": "Supporto",
+    "lead": "Clipsody è un progetto gratuito e open source. Problemi e idee vengono raccolti pubblicamente su GitHub, così tutti vedono cosa è già noto e su cosa si sta lavorando.",
+    "checkTitle": "Prima controlla",
+    "check": [
+      "Molte domande trovano risposta nelle <a href=\"./#faq\">FAQ</a>, l’installazione è spiegata in <a href=\"./#install\">Installazione</a>.",
+      "Il tuo Clipsody è aggiornato? Icona nella barra dei menu → <strong>Controlla aggiornamenti…</strong>",
+      "Forse qualcuno l’ha già segnalato: <a href=\"{issues}\">problemi noti su GitHub</a>."
+    ],
+    "formTitle": "Segnala un problema o proponi un’idea",
+    "formIntro": "Compila quello che sai. Il pulsante apre GitHub con i tuoi dati già inseriti; lì puoi aggiungere dettagli e inviare. Ti serve un account GitHub gratuito.",
+    "titleLabel": "Breve riepilogo",
+    "titlePlaceholder": "es. Le immagini da Safari non vengono salvate",
+    "descriptionLabel": "Cosa è successo, o cosa vorresti?",
+    "descriptionPlaceholder": "Cosa hai fatto, cosa ti aspettavi e cosa è successo invece?",
+    "versionLabel": "Versione di Clipsody",
+    "versionHint": "Impostazioni → Info → Versione",
+    "macosLabel": "Versione di macOS",
+    "macosHint": "Menu Apple → Informazioni su questo Mac",
+    "bugButton": "Segnala un problema su GitHub",
+    "ideaButton": "Proponi un’idea su GitHub",
+    "publicNote": "<strong>Le issue sono pubbliche.</strong> Non inserire password o altri contenuti privati degli appunti. Gli screenshot aiutano, ma controlla prima cosa mostrano.",
+    "includeTitle": "Cosa ci aiuta di più",
+    "include": [
+      "La versione di Clipsody (Impostazioni → Info) e la tua versione di macOS.",
+      "I passaggi che portano al problema, il più precisi possibile.",
+      "Cosa ti aspettavi e cosa è successo invece.",
+      "Per crash o problemi nell’incollare: il log. Il comando da usare nel Terminale te lo mostra GitHub nel modulo."
+    ],
+    "securityTitle": "Hai trovato un problema di sicurezza?",
+    "securityText": "Non segnalarlo pubblicamente. Usa invece la <a href=\"{security}\">segnalazione privata su GitHub</a>: la vede solo lo sviluppatore."
+  },
   "footer": {
     "tagline": "Clipsody – gestore degli appunti per macOS",
     "guide": "Guida: cronologia degli appunti su Mac",
@@ -531,6 +570,7 @@
     "releases": "Tutte le release",
     "license": "Licenza:",
     "legal": "Note legali (in tedesco)",
-    "privacyPolicy": "Informativa sulla privacy (in tedesco)"
+    "privacyPolicy": "Informativa sulla privacy (in tedesco)",
+    "support": "Supporto"
   }
 }

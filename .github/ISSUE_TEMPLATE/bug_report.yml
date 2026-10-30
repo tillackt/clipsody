@@ -1,0 +1,54 @@
+name: Bug report
+description: Something in Clipsody does not work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time! Issues are public: please do not paste passwords or other private clipboard contents.
+        Security problems go to a [private report](https://github.com/tillackt/clipsody/security/advisories/new) instead.
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Copy an image in Safari
+        2. Press ⌥⌘C
+        3. …
+  - type: input
+    id: clipsody-version
+    attributes:
+      label: Clipsody version
+      description: Settings → Info → Version, e.g. "Version 1.2.0 (Build 126, 1544a90)"
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      description: Apple menu → About This Mac, e.g. "macOS 26.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: mac
+    attributes:
+      label: Mac
+      options:
+        - Apple Silicon (M1 or later)
+        - Intel
+        - I don't know
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log (optional)
+      description: |
+        Helps with crashes and paste problems. In Terminal, run the command below right after the problem happened and paste the output.
+        `log show --last 10m --predicate 'subsystem == "io.github.tillackt.clipsody"'`
+      render: text

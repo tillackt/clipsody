@@ -4,7 +4,7 @@ Static site without scripts, external fonts or tracking, in the same 8 languages
 
 ## How the pages are made
 
-The home page and the guide exist in every language and are generated:
+The home page, the guide and the support page exist in every language and are generated:
 
 - `site/content/<lang>.json`: all texts of one language (`de`, `en`, `fr`, `es`, `it`, `nl`, `pl`, `pt-BR`). Every file has the same keys as `en.json`.
 - `site/build.py`: the HTML structure, the animated hero, the JSON-LD structured data (FAQ entries are the visible ones) and `sitemap.xml`.
@@ -19,6 +19,8 @@ python3 site/build.py
 CI (`website.yml`) runs `python3 site/build.py --check` and fails if `website/` is out of date. To add a language: add `site/content/<lang>.json` (copy `en.json`), add it to `LANGUAGES` in `site/build.py`, and build.
 
 German is at the root (`/`), the other languages in folders (`/en/`, `/fr/`, …, `/pt-br/`); English is `x-default`. Guides: `zwischenablage-verlauf-mac.html`, `en/clipboard-history-mac.html` and one per language (file name in each JSON's `guideFile`).
+
+The support page (`support.html`) has a form without script or server: it sends a GET request to GitHub's issue form (`.github/ISSUE_TEMPLATE/`), with the entries as query parameters named after the form fields' `id`s (`title`, `description`, `clipsody-version`, `macos-version`); the visitor submits the issue on GitHub. Keep the field ids in the templates and the form in `site/build.py` in step.
 
 Hand-written pages: `impressum.html`, `datenschutz.html` (German, placeholders for now, `noindex`) and `404.html` (`noindex`, root paths under `/clipsody/`). `assets/` holds the stylesheet, the logo, the social preview images (`og-de.png`, `og-en.png`, 1200×630), the Apple touch icon (`icon-180.png`) and `sample-photo.jpg`, the photo shown in the hero (generated with Codex's image model, no third-party rights).
 
