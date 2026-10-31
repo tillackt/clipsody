@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=eb4e1244d1">
+    <link rel="stylesheet" href="../assets/style.css?v=22b4e74e63">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="pl_PL">
@@ -352,7 +352,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Z formatowaniem lub bez</h3>
                     <p><kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Przypnij to, czego często używasz</h3>
-                    <p>IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. Przypięte elementy nigdy nie są usuwane automatycznie.</p></div>
+                    <p>IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. <a href="#pinned">Jak to działa</a></p></div>
             </div>
         </div>
     </section>
@@ -382,7 +382,53 @@
         </div>
     </section>
 
-    <section id="uses">
+    <section id="pinned">
+        <div class="wrap">
+            <h2>Przypięte: to, czego potrzebujesz wciąż na nowo, zawsze pod ręką</h2>
+            <p class="sub">Adres e-mail, adres pocztowy, numer telefonu, IBAN: to, co ciągle wpisujesz, przypinasz raz. Trafia na osobną listę, oddzieloną od historii, i wklejasz to dwoma klawiszami.</p>
+            <div class="pinned-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historia</span><span class="on">Przypięte · 6</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">anna.kowalska@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Anna Kowalska ⏎ ul. Przykładowa 12 ⏎ 00-001 Warszawa</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+48 22 000 00 00</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: PL00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Pozdrawiam ⏎ Anna Kowalska</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Anna Kowalska<br>ul. Przykładowa 12<br>00-001 Warszawa</div>
+                            <div class="info">Przypięte · Tekst · 3 wiersze</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Przypnij raz</h3><p>Wybierz element w historii i naciśnij <kbd>⌘P</kbd>. Trafi na listę „Przypięte” i zostanie tam, dopóki go nie odepniesz.</p></li>
+                    <li><h3><span class="step">2</span>Jedno → obok</h3><p><kbd>⌥⌘C</kbd>, potem <kbd>→</kbd>: widzisz już tylko przypięte elementy. <kbd>←</kbd> lub <kbd>⇥</kbd> wracają do historii.</p></li>
+                    <li><h3><span class="step">3</span>Wklejone w kilka sekund</h3><p><kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć. Albo wpisz słowo, np. „iban”, i naciśnij <kbd>⏎</kbd>.</p></li>
+                </ol>
+            </div>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">📝</div><h3>Formularze i zamówienia</h3>
+                    <p>E-mail, adres, telefon, numer klienta lub członkowski: wklejaj pole po polu zamiast za każdym razem wpisywać.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✉️</div><h3>E-maile i wsparcie</h3>
+                    <p>Podpisy, odpowiedzi na częste pytania, link do kalendarza albo opis dojazdu.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🏦</div><h3>Faktury i urzędy</h3>
+                    <p>IBAN, NIP, numery spraw i sygnatury: bez literówek, bo skopiowałeś je tylko raz.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Programowanie i IT</h3>
+                    <p>Długie polecenia, adresy serwerów, dane testowe i ścieżki, których potrzebujesz codziennie.</p></div>
+            </div>
+            <div class="note">Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na Twoim Macu. Hasła i tak należą do menedżera haseł.</div>
+        </div>
+    </section>
+
+    <section class="alt" id="uses">
         <div class="wrap">
             <h2>Do czego przydaje się historia schowka</h2>
             <p class="sub">Wszędzie tam, gdzie kopiujesz więcej niż jedną rzecz.</p>
@@ -399,7 +445,7 @@
         </div>
     </section>
 
-    <section class="alt" id="compare">
+    <section id="compare">
         <div class="wrap">
             <h2>Czy Mac nie ma już historii schowka?</h2>
             <p class="sub">Od macOS 26 Tahoe Spotlight potrafi pokazać ostatnio skopiowane elementy. To pomaga na chwilę – Clipsody jest stworzone do wszystkiego, co ma przetrwać dłużej niż tydzień.</p>
@@ -422,7 +468,7 @@
         </div>
     </section>
 
-    <section id="keys">
+    <section class="alt" id="keys">
         <div class="wrap">
             <h2>Wszystko z klawiatury</h2>
             <p class="sub">Mysz nie jest potrzebna – ale możesz jej używać.</p>
@@ -443,7 +489,7 @@
         </div>
     </section>
 
-    <section class="alt" id="privacy">
+    <section id="privacy">
         <div class="wrap">
             <h2>Twój schowek należy do ciebie</h2>
             <p class="sub">W schowku lądują rzeczy osobiste: hasła, adresy, wiadomości. Dlatego Clipsody od podstaw dba o prywatność.</p>
@@ -464,7 +510,7 @@
         </div>
     </section>
 
-    <section id="install">
+    <section class="alt" id="install">
         <div class="wrap">
             <h2>Instalacja</h2>
             <p class="sub">Clipsody nie jest notaryzowane przez Apple – do tego potrzebne jest płatne konto dewelopera. Dlatego przy pierwszym uruchomieniu macOS raz o to zapyta – oto co zrobić:</p>
@@ -484,7 +530,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section class="alt" id="faq">
+    <section id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>Jak na Macu zobaczyć, co skopiowałem wcześniej?</summary>

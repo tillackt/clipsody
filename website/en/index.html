@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=eb4e1244d1">
+    <link rel="stylesheet" href="../assets/style.css?v=22b4e74e63">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="en_US">
@@ -352,7 +352,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>With or without formatting</h3>
                     <p><kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Pin what you use often</h3>
-                    <p>IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to its own Pinned list, one <kbd>→</kbd> away from the history. Pinned clips are never deleted automatically.</p></div>
+                    <p>IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to its own Pinned list, one <kbd>→</kbd> away from the history. <a href="#pinned">How it works</a></p></div>
             </div>
         </div>
     </section>
@@ -382,7 +382,53 @@
         </div>
     </section>
 
-    <section id="uses">
+    <section id="pinned">
+        <div class="wrap">
+            <h2>Pinned: the things you need again and again, always at hand</h2>
+            <p class="sub">Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with two keys.</p>
+            <div class="pinned-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>History</span><span class="on">Pinned · 6</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">jane.doe@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Jane Doe ⏎ 12 Sample Street ⏎ London N1 7GU</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+44 20 7946 0000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: GB00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Kind regards ⏎ Jane Doe</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Jane Doe<br>12 Sample Street<br>London N1 7GU</div>
+                            <div class="info">Pinned · Text · 3 lines</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Pin it once</h3><p>Select a clip in the history and press <kbd>⌘P</kbd>. It moves to the Pinned list and stays there until you unpin it.</p></li>
+                    <li><h3><span class="step">2</span>One → away</h3><p><kbd>⌥⌘C</kbd>, then <kbd>→</kbd>: now you see only your pinned clips. <kbd>←</kbd> or <kbd>⇥</kbd> take you back to the history.</p></li>
+                    <li><h3><span class="step">3</span>Pasted in seconds</h3><p><kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine directly. Or type a word like “iban” and press <kbd>⏎</kbd>.</p></li>
+                </ol>
+            </div>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">📝</div><h3>Forms and orders</h3>
+                    <p>Email, address, phone number, customer or membership number: paste field by field instead of typing them every time.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✉️</div><h3>Email and support</h3>
+                    <p>Signatures, answers to common questions, the link to your calendar or the directions to your office.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🏦</div><h3>Invoices and paperwork</h3>
+                    <p>IBAN, VAT number, tax ID, reference numbers: no typos, because you copied them only once.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Development and IT</h3>
+                    <p>Long commands, server addresses, test data and paths you need every day.</p></div>
+            </div>
+            <div class="note">Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager.</div>
+        </div>
+    </section>
+
+    <section class="alt" id="uses">
         <div class="wrap">
             <h2>What a clipboard history is good for</h2>
             <p class="sub">Anywhere you copy more than one thing.</p>
@@ -399,7 +445,7 @@
         </div>
     </section>
 
-    <section class="alt" id="compare">
+    <section id="compare">
         <div class="wrap">
             <h2>Doesn’t the Mac have a clipboard history already?</h2>
             <p class="sub">Since macOS 26 Tahoe, Spotlight can show recent clips. That helps for the moment – Clipsody is built for everything that should last longer than a week.</p>
@@ -422,7 +468,7 @@
         </div>
     </section>
 
-    <section id="keys">
+    <section class="alt" id="keys">
         <div class="wrap">
             <h2>All from the keyboard</h2>
             <p class="sub">You don’t need the mouse – but you can use it.</p>
@@ -443,7 +489,7 @@
         </div>
     </section>
 
-    <section class="alt" id="privacy">
+    <section id="privacy">
         <div class="wrap">
             <h2>Your clipboard is yours</h2>
             <p class="sub">Personal things end up on the clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
@@ -464,7 +510,7 @@
         </div>
     </section>
 
-    <section id="install">
+    <section class="alt" id="install">
         <div class="wrap">
             <h2>Install</h2>
             <p class="sub">Clipsody is not notarised by Apple – that needs a paid developer account. So macOS asks once on first launch – here’s how:</p>
@@ -484,7 +530,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section class="alt" id="faq">
+    <section id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>How do I see what I copied earlier on a Mac?</summary>

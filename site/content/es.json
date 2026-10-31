@@ -155,7 +155,7 @@
         [
           "📌",
           "Fija lo que usas a menudo",
-          "IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a su propia lista «Fijados», a un <kbd>→</kbd> del historial. Los elementos fijados nunca se eliminan automáticamente."
+          "IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a su propia lista «Fijados», a un <kbd>→</kbd> del historial. <a href=\"#pinned\">Cómo funciona</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Fijados: lo que necesitas una y otra vez, siempre a mano",
+      "sub": "Correo electrónico, dirección, teléfono, IBAN: lo que escribes una y otra vez, lo fijas una sola vez. Pasa a una lista propia, separada del historial, y se pega con dos teclas.",
+      "tabs": [
+        "Historial",
+        "Fijados · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "lucia.garcia@example.com"
+        ],
+        [
+          "a",
+          "Lucía García ⏎ Calle Ejemplo 12 ⏎ 28001 Madrid"
+        ],
+        [
+          "c",
+          "+34 910 000 000"
+        ],
+        [
+          "d",
+          "IBAN: ES00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Un saludo ⏎ Lucía García"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Lucía García<br>Calle Ejemplo 12<br>28001 Madrid",
+      "info": "Fijado · Texto · 3 líneas",
+      "hint": "⏎ pegar   ⌥⏎ sin formato   ⌘P soltar   ⌘⌫ eliminar",
+      "steps": [
+        [
+          "Fíjalo una vez",
+          "Selecciona un elemento del historial y pulsa <kbd>⌘P</kbd>. Pasa a la lista «Fijados» y se queda ahí hasta que lo sueltes."
+        ],
+        [
+          "A un → de distancia",
+          "<kbd>⌥⌘C</kbd> y luego <kbd>→</kbd>: ya solo ves tus elementos fijados. <kbd>←</kbd> o <kbd>⇥</kbd> te devuelven al historial."
+        ],
+        [
+          "Pegado en segundos",
+          "<kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros. O escribe una palabra como «iban» y pulsa <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formularios y pedidos",
+          "Correo, dirección, teléfono, número de cliente o de socio: pega campo a campo en lugar de escribirlo todo cada vez."
+        ],
+        [
+          "✉️",
+          "Correo y soporte",
+          "Firmas, respuestas a preguntas frecuentes, el enlace a tu calendario o cómo llegar a tu oficina."
+        ],
+        [
+          "🏦",
+          "Facturas y trámites",
+          "IBAN, NIF, número de expediente o de referencia: sin erratas, porque solo los copiaste una vez."
+        ],
+        [
+          "💻",
+          "Desarrollo e IT",
+          "Comandos largos, direcciones de servidores, datos de prueba y rutas que usas a diario."
+        ]
+      ],
+      "note": "Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas."
     }
   },
   "guide": {

@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=eb4e1244d1">
+    <link rel="stylesheet" href="../assets/style.css?v=22b4e74e63">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="fr_FR">
@@ -352,7 +352,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Avec ou sans mise en forme</h3>
                     <p><kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur. <kbd>⌥⏎</kbd> colle uniquement le texte brut.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Épinglez ce qui sert souvent</h3>
-                    <p>IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans sa propre liste « Épinglés », à un <kbd>→</kbd> de l’historique. Les éléments épinglés ne sont jamais supprimés automatiquement.</p></div>
+                    <p>IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans sa propre liste « Épinglés », à un <kbd>→</kbd> de l’historique. <a href="#pinned">Comment ça marche</a></p></div>
             </div>
         </div>
     </section>
@@ -382,7 +382,53 @@
         </div>
     </section>
 
-    <section id="uses">
+    <section id="pinned">
+        <div class="wrap">
+            <h2>Épinglés : ce dont vous avez sans cesse besoin, toujours sous la main</h2>
+            <p class="sub">Adresse e-mail, adresse postale, numéro de téléphone, IBAN : ce que vous retapez sans arrêt, vous l’épinglez une fois. Il rejoint une liste à part, séparée de l’historique, et se colle en deux touches.</p>
+            <div class="pinned-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historique</span><span class="on">Épinglés · 6</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">marie.dupont@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Marie Dupont ⏎ 12 rue de l’Exemple ⏎ 75011 Paris</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+33 1 23 45 67 89</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN : FR00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Cordialement ⏎ Marie Dupont</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Marie Dupont<br>12 rue de l’Exemple<br>75011 Paris</div>
+                            <div class="info">Épinglé · Texte · 3 lignes</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Épinglez une fois</h3><p>Sélectionnez un élément dans l’historique et appuyez sur <kbd>⌘P</kbd>. Il passe dans la liste « Épinglés » et y reste jusqu’à ce que vous le désépingliez.</p></li>
+                    <li><h3><span class="step">2</span>À un → de distance</h3><p><kbd>⌥⌘C</kbd>, puis <kbd>→</kbd> : vous ne voyez plus que vos éléments épinglés. <kbd>←</kbd> ou <kbd>⇥</kbd> ramènent à l’historique.</p></li>
+                    <li><h3><span class="step">3</span>Collé en quelques secondes</h3><p><kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers. Ou tapez un mot comme « iban » et appuyez sur <kbd>⏎</kbd>.</p></li>
+                </ol>
+            </div>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">📝</div><h3>Formulaires et commandes</h3>
+                    <p>E-mail, adresse, téléphone, numéro de client ou d’adhérent : collez champ par champ au lieu de tout retaper.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✉️</div><h3>E-mails et support</h3>
+                    <p>Signatures, réponses aux questions fréquentes, lien vers votre agenda ou plan d’accès.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🏦</div><h3>Factures et démarches</h3>
+                    <p>IBAN, numéro de TVA, numéro fiscal, références de dossier : sans faute de frappe, puisque vous ne les avez copiés qu’une fois.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Développement et IT</h3>
+                    <p>Longues commandes, adresses de serveurs, données de test et chemins dont vous avez besoin chaque jour.</p></div>
+            </div>
+            <div class="note">Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe.</div>
+        </div>
+    </section>
+
+    <section class="alt" id="uses">
         <div class="wrap">
             <h2>À quoi sert un historique du presse-papiers</h2>
             <p class="sub">Partout où vous copiez plus d’une chose.</p>
@@ -399,7 +445,7 @@
         </div>
     </section>
 
-    <section class="alt" id="compare">
+    <section id="compare">
         <div class="wrap">
             <h2>Le Mac n’a-t-il pas déjà un historique du presse-papiers ?</h2>
             <p class="sub">Depuis macOS 26 Tahoe, Spotlight peut afficher les derniers éléments copiés. Pratique sur le moment – Clipsody est conçu pour tout ce qui doit durer plus d’une semaine.</p>
@@ -422,7 +468,7 @@
         </div>
     </section>
 
-    <section id="keys">
+    <section class="alt" id="keys">
         <div class="wrap">
             <h2>Tout au clavier</h2>
             <p class="sub">Pas besoin de la souris – mais vous pouvez l’utiliser.</p>
@@ -443,7 +489,7 @@
         </div>
     </section>
 
-    <section class="alt" id="privacy">
+    <section id="privacy">
         <div class="wrap">
             <h2>Votre presse-papiers vous appartient</h2>
             <p class="sub">Le presse-papiers voit passer des choses personnelles : mots de passe, adresses, messages. C’est pourquoi Clipsody protège votre vie privée dès la conception.</p>
@@ -464,7 +510,7 @@
         </div>
     </section>
 
-    <section id="install">
+    <section class="alt" id="install">
         <div class="wrap">
             <h2>Installation</h2>
             <p class="sub">Clipsody n’est pas notarié par Apple – il faudrait pour cela un compte développeur payant. macOS pose donc une question au premier lancement – voici comment faire :</p>
@@ -484,7 +530,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section class="alt" id="faq">
+    <section id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>Comment voir ce que j’ai copié plus tôt sur un Mac ?</summary>

@@ -155,7 +155,7 @@
         [
           "📌",
           "Anpinnen, was du oft brauchst",
-          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in die eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. Angepinnte Einträge werden nie automatisch gelöscht."
+          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in die eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Angepinnt: Was du immer wieder brauchst, liegt griffbereit",
+      "sub": "E-Mail-Adresse, Anschrift, Telefonnummer, IBAN: Was du sonst ständig neu eintippst, pinnst du einmal an. Es liegt dann in einer eigenen Liste, getrennt vom Verlauf, und ist mit zwei Tasten eingefügt.",
+      "tabs": [
+        "Historie",
+        "Angepinnt · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "max.mustermann@example.com"
+        ],
+        [
+          "a",
+          "Max Mustermann ⏎ Musterstraße 12 ⏎ 10115 Berlin"
+        ],
+        [
+          "c",
+          "+49 30 1234567"
+        ],
+        [
+          "d",
+          "IBAN: DE00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Mit freundlichen Grüßen ⏎ Max Mustermann"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Max Mustermann<br>Musterstraße 12<br>10115 Berlin",
+      "info": "Angepinnt · Text · 3 Zeilen",
+      "hint": "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P lösen   ⌘⌫ löschen",
+      "steps": [
+        [
+          "Einmal anpinnen",
+          "Eintrag im Verlauf auswählen und <kbd>⌘P</kbd> drücken. Er wandert in die Liste „Angepinnt“ und bleibt dort, bis du ihn wieder löst."
+        ],
+        [
+          "Mit → hinüber",
+          "<kbd>⌥⌘C</kbd>, dann <kbd>→</kbd>: Schon siehst du nur deine angepinnten Einträge. <kbd>←</kbd> oder <kbd>⇥</kbd> führen zurück zum Verlauf."
+        ],
+        [
+          "In Sekunden eingefügt",
+          "<kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun direkt ein. Oder du tippst ein Suchwort wie „iban“ und drückst <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formulare und Bestellungen",
+          "E-Mail-Adresse, Anschrift, Telefonnummer, Kunden- oder Mitgliedsnummer: Feld für Feld einfügen statt jedes Mal neu tippen."
+        ],
+        [
+          "✉️",
+          "E-Mails und Support",
+          "Signaturen, Antworten auf häufige Fragen, der Link zu deinem Kalender oder die Anfahrtsbeschreibung."
+        ],
+        [
+          "🏦",
+          "Rechnungen und Ämter",
+          "IBAN, USt-IdNr., Steuernummer, Aktenzeichen: ohne Tippfehler, weil du sie nur einmal kopiert hast."
+        ],
+        [
+          "💻",
+          "Entwicklung und IT",
+          "Lange Befehle, Server-Adressen, Testdaten und Pfade, die du jeden Tag brauchst."
+        ]
+      ],
+      "note": "Angepinnte Einträge bleiben: Sie werden nie automatisch gelöscht, zählen nicht zur Obergrenze des Verlaufs und bleiben auch, wenn du den Verlauf löschst. Wie alles in Clipsody liegen sie nur auf deinem Mac. Passwörter gehören trotzdem in einen Passwort-Manager."
     }
   },
   "guide": {

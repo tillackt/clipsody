@@ -155,7 +155,7 @@
         [
           "📌",
           "Épinglez ce qui sert souvent",
-          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans sa propre liste « Épinglés », à un <kbd>→</kbd> de l’historique. Les éléments épinglés ne sont jamais supprimés automatiquement."
+          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans sa propre liste « Épinglés », à un <kbd>→</kbd> de l’historique. <a href=\"#pinned\">Comment ça marche</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Épinglés : ce dont vous avez sans cesse besoin, toujours sous la main",
+      "sub": "Adresse e-mail, adresse postale, numéro de téléphone, IBAN : ce que vous retapez sans arrêt, vous l’épinglez une fois. Il rejoint une liste à part, séparée de l’historique, et se colle en deux touches.",
+      "tabs": [
+        "Historique",
+        "Épinglés · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "marie.dupont@example.com"
+        ],
+        [
+          "a",
+          "Marie Dupont ⏎ 12 rue de l’Exemple ⏎ 75011 Paris"
+        ],
+        [
+          "c",
+          "+33 1 23 45 67 89"
+        ],
+        [
+          "d",
+          "IBAN : FR00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Cordialement ⏎ Marie Dupont"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Marie Dupont<br>12 rue de l’Exemple<br>75011 Paris",
+      "info": "Épinglé · Texte · 3 lignes",
+      "hint": "⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ supprimer",
+      "steps": [
+        [
+          "Épinglez une fois",
+          "Sélectionnez un élément dans l’historique et appuyez sur <kbd>⌘P</kbd>. Il passe dans la liste « Épinglés » et y reste jusqu’à ce que vous le désépingliez."
+        ],
+        [
+          "À un → de distance",
+          "<kbd>⌥⌘C</kbd>, puis <kbd>→</kbd> : vous ne voyez plus que vos éléments épinglés. <kbd>←</kbd> ou <kbd>⇥</kbd> ramènent à l’historique."
+        ],
+        [
+          "Collé en quelques secondes",
+          "<kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers. Ou tapez un mot comme « iban » et appuyez sur <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formulaires et commandes",
+          "E-mail, adresse, téléphone, numéro de client ou d’adhérent : collez champ par champ au lieu de tout retaper."
+        ],
+        [
+          "✉️",
+          "E-mails et support",
+          "Signatures, réponses aux questions fréquentes, lien vers votre agenda ou plan d’accès."
+        ],
+        [
+          "🏦",
+          "Factures et démarches",
+          "IBAN, numéro de TVA, numéro fiscal, références de dossier : sans faute de frappe, puisque vous ne les avez copiés qu’une fois."
+        ],
+        [
+          "💻",
+          "Développement et IT",
+          "Longues commandes, adresses de serveurs, données de test et chemins dont vous avez besoin chaque jour."
+        ]
+      ],
+      "note": "Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe."
     }
   },
   "guide": {

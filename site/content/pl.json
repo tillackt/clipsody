@@ -155,7 +155,7 @@
         [
           "📌",
           "Przypnij to, czego często używasz",
-          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. Przypięte elementy nigdy nie są usuwane automatycznie."
+          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. <a href=\"#pinned\">Jak to działa</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Przypięte: to, czego potrzebujesz wciąż na nowo, zawsze pod ręką",
+      "sub": "Adres e-mail, adres pocztowy, numer telefonu, IBAN: to, co ciągle wpisujesz, przypinasz raz. Trafia na osobną listę, oddzieloną od historii, i wklejasz to dwoma klawiszami.",
+      "tabs": [
+        "Historia",
+        "Przypięte · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "anna.kowalska@example.com"
+        ],
+        [
+          "a",
+          "Anna Kowalska ⏎ ul. Przykładowa 12 ⏎ 00-001 Warszawa"
+        ],
+        [
+          "c",
+          "+48 22 000 00 00"
+        ],
+        [
+          "d",
+          "IBAN: PL00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Pozdrawiam ⏎ Anna Kowalska"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Anna Kowalska<br>ul. Przykładowa 12<br>00-001 Warszawa",
+      "info": "Przypięte · Tekst · 3 wiersze",
+      "hint": "⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń",
+      "steps": [
+        [
+          "Przypnij raz",
+          "Wybierz element w historii i naciśnij <kbd>⌘P</kbd>. Trafi na listę „Przypięte” i zostanie tam, dopóki go nie odepniesz."
+        ],
+        [
+          "Jedno → obok",
+          "<kbd>⌥⌘C</kbd>, potem <kbd>→</kbd>: widzisz już tylko przypięte elementy. <kbd>←</kbd> lub <kbd>⇥</kbd> wracają do historii."
+        ],
+        [
+          "Wklejone w kilka sekund",
+          "<kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć. Albo wpisz słowo, np. „iban”, i naciśnij <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formularze i zamówienia",
+          "E-mail, adres, telefon, numer klienta lub członkowski: wklejaj pole po polu zamiast za każdym razem wpisywać."
+        ],
+        [
+          "✉️",
+          "E-maile i wsparcie",
+          "Podpisy, odpowiedzi na częste pytania, link do kalendarza albo opis dojazdu."
+        ],
+        [
+          "🏦",
+          "Faktury i urzędy",
+          "IBAN, NIP, numery spraw i sygnatury: bez literówek, bo skopiowałeś je tylko raz."
+        ],
+        [
+          "💻",
+          "Programowanie i IT",
+          "Długie polecenia, adresy serwerów, dane testowe i ścieżki, których potrzebujesz codziennie."
+        ]
+      ],
+      "note": "Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na Twoim Macu. Hasła i tak należą do menedżera haseł."
     }
   },
   "guide": {

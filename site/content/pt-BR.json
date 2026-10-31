@@ -155,7 +155,7 @@
         [
           "📌",
           "Fixe o que você usa sempre",
-          "Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para a lista própria “Fixados”, a um <kbd>→</kbd> do histórico. Itens fixados nunca são apagados automaticamente."
+          "Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para a lista própria “Fixados”, a um <kbd>→</kbd> do histórico. <a href=\"#pinned\">Como funciona</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Ajustes → Informações → Desinstalar o Clipsody…</strong> apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de Acessibilidade e move o app para o Lixo. Se você só arrastar o app para o Lixo, esses dados ficam no seu Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Fixados: o que você usa sempre, sempre à mão",
+      "sub": "E-mail, endereço, telefone, chave Pix: o que você digita toda hora, você fixa uma vez. Vai para uma lista própria, separada do histórico, e é colado com duas teclas.",
+      "tabs": [
+        "Histórico",
+        "Fixados · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "ana.souza@example.com"
+        ],
+        [
+          "a",
+          "Ana Souza ⏎ Rua Exemplo, 12 ⏎ 01000-000 São Paulo"
+        ],
+        [
+          "c",
+          "+55 11 0000-0000"
+        ],
+        [
+          "d",
+          "Chave Pix: 00.000.000/0001-00"
+        ],
+        [
+          "e",
+          "Atenciosamente ⏎ Ana Souza"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Ana Souza<br>Rua Exemplo, 12<br>01000-000 São Paulo",
+      "info": "Fixado · Texto · 3 linhas",
+      "hint": "⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ apagar",
+      "steps": [
+        [
+          "Fixe uma vez",
+          "Selecione um item no histórico e pressione <kbd>⌘P</kbd>. Ele vai para a lista “Fixados” e fica lá até você desafixar."
+        ],
+        [
+          "A um → de distância",
+          "<kbd>⌥⌘C</kbd> e depois <kbd>→</kbd>: você vê só os itens fixados. <kbd>←</kbd> ou <kbd>⇥</kbd> voltam ao histórico."
+        ],
+        [
+          "Colado em segundos",
+          "<kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros. Ou digite uma palavra como “pix” e pressione <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formulários e pedidos",
+          "E-mail, endereço, telefone, número de cliente ou de sócio: cole campo por campo em vez de digitar tudo de novo."
+        ],
+        [
+          "✉️",
+          "E-mail e suporte",
+          "Assinaturas, respostas a perguntas frequentes, o link da sua agenda ou como chegar ao escritório."
+        ],
+        [
+          "🏦",
+          "Notas e burocracia",
+          "Chave Pix, CNPJ, números de protocolo: sem erros de digitação, porque você copiou só uma vez."
+        ],
+        [
+          "💻",
+          "Desenvolvimento e TI",
+          "Comandos longos, endereços de servidores, dados de teste e caminhos que você usa todo dia."
+        ]
+      ],
+      "note": "Itens fixados ficam: nunca são apagados automaticamente, não contam no limite do histórico e continuam lá mesmo se você limpar o histórico. Como tudo no Clipsody, ficam no seu Mac. Senhas, mesmo assim, devem ficar num gerenciador de senhas."
     }
   },
   "guide": {

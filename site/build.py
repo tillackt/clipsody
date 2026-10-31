@@ -183,14 +183,14 @@ def footer(code, c, kind):
 # ---------------------------------------------------------------------------------------------- home
 
 
-def panel(search, tabs, entries, selected, preview, info, hint):
+def panel(search, tabs, entries, selected, preview, info, hint, active_tab=0):
     rows = "\n".join(
         f'{I*7}<li{" class=\"sel\"" if index == selected else ""}><span class="ico {icon}"></span>'
         f'<span class="t">{label}</span><span class="k">⌘{index + 1}</span></li>'
         for index, (icon, label) in enumerate(entries))
     return f"""{I*4}<div class="panel">
 {I*5}<div class="search">{search}<span class="caret"></span></div>
-{I*5}<div class="tabs"><span class="on">{tabs[0]}</span><span>{tabs[1]}</span></div>
+{I*5}<div class="tabs">{"".join(f'<span class="on">{tab}</span>' if index == active_tab else f"<span>{tab}</span>" for index, tab in enumerate(tabs))}</div>
 {I*5}<div class="body">
 {I*6}<ul>
 {rows}
@@ -316,6 +316,25 @@ def ocr_body(o):
     return f'{I*3}<div class="grid ocr">\n{steps}\n{I*3}</div>\n{I*3}<div class="note">{o["note"]}</div>'
 
 
+def pinned_body(code, p):
+    """The pinned list: the panel on its second tab, three steps, ideas what to pin, and a note."""
+    mock = panel(f'<span class="placeholder">{p["hero"]["placeholder"]}</span>', p["pinned"]["tabs"],
+                 p["pinned"]["items"], 1, f'<div class="img">{p["pinned"]["preview"]}</div>',
+                 p["pinned"]["info"], p["pinned"]["hint"], active_tab=1)
+    steps = "\n".join(f'{I*5}<li><h3><span class="step">{number}</span>{title}</h3><p>{body}</p></li>'
+                      for number, (title, body) in enumerate(p["pinned"]["steps"], start=1))
+    return f"""{I*3}<div class="pinned-demo">
+{I*4}<div class="pinned-shot" aria-hidden="true">
+{mock}
+{I*4}</div>
+{I*4}<ol class="pinned-steps">
+{steps}
+{I*4}</ol>
+{I*3}</div>
+{cards(p["pinned"]["cards"], with_icon=True)}
+{I*3}<div class="note">{p["pinned"]["note"]}</div>"""
+
+
 def home_page(code, c, all_content):
     p = c["home"]
     nav = [("#features", p["nav"]["features"]), ("#compare", p["nav"]["compare"]), ("#privacy", p["nav"]["privacy"]),
@@ -353,6 +372,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         ("problem", problem["h2"], problem["sub"], problem_body),
         ("features", p["features"]["h2"], p["features"]["sub"], cards(p["features"]["cards"], with_icon=True)),
         ("text-in-images", p["ocr"]["h2"], p["ocr"]["sub"], ocr_body(p["ocr"])),
+        ("pinned", p["pinned"]["h2"], p["pinned"]["sub"], pinned_body(code, p)),
         ("uses", p["uses"]["h2"], p["uses"]["sub"], cards(p["uses"]["cards"])),
         ("compare", compare["h2"], compare["sub"], compare_body),
         ("keys", p["keys"]["h2"], p["keys"]["sub"], keys_table(p["keys"]["rows"])),

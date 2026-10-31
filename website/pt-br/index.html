@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=eb4e1244d1">
+    <link rel="stylesheet" href="../assets/style.css?v=22b4e74e63">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="pt_BR">
@@ -352,7 +352,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Com ou sem formatação</h3>
                     <p><kbd>⏎</kbd> mantém negrito, links e tabelas do Word, do Outlook ou do navegador. <kbd>⌥⏎</kbd> cola só o texto simples.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fixe o que você usa sempre</h3>
-                    <p>Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para a lista própria “Fixados”, a um <kbd>→</kbd> do histórico. Itens fixados nunca são apagados automaticamente.</p></div>
+                    <p>Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para a lista própria “Fixados”, a um <kbd>→</kbd> do histórico. <a href="#pinned">Como funciona</a></p></div>
             </div>
         </div>
     </section>
@@ -382,7 +382,53 @@
         </div>
     </section>
 
-    <section id="uses">
+    <section id="pinned">
+        <div class="wrap">
+            <h2>Fixados: o que você usa sempre, sempre à mão</h2>
+            <p class="sub">E-mail, endereço, telefone, chave Pix: o que você digita toda hora, você fixa uma vez. Vai para uma lista própria, separada do histórico, e é colado com duas teclas.</p>
+            <div class="pinned-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Histórico</span><span class="on">Fixados · 6</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">ana.souza@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Ana Souza ⏎ Rua Exemplo, 12 ⏎ 01000-000 São Paulo</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+55 11 0000-0000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">Chave Pix: 00.000.000/0001-00</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Atenciosamente ⏎ Ana Souza</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Ana Souza<br>Rua Exemplo, 12<br>01000-000 São Paulo</div>
+                            <div class="info">Fixado · Texto · 3 linhas</div>
+                            <div class="hint">⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ apagar</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Fixe uma vez</h3><p>Selecione um item no histórico e pressione <kbd>⌘P</kbd>. Ele vai para a lista “Fixados” e fica lá até você desafixar.</p></li>
+                    <li><h3><span class="step">2</span>A um → de distância</h3><p><kbd>⌥⌘C</kbd> e depois <kbd>→</kbd>: você vê só os itens fixados. <kbd>←</kbd> ou <kbd>⇥</kbd> voltam ao histórico.</p></li>
+                    <li><h3><span class="step">3</span>Colado em segundos</h3><p><kbd>⌘1</kbd> a <kbd>⌘9</kbd> colam direto os nove primeiros. Ou digite uma palavra como “pix” e pressione <kbd>⏎</kbd>.</p></li>
+                </ol>
+            </div>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">📝</div><h3>Formulários e pedidos</h3>
+                    <p>E-mail, endereço, telefone, número de cliente ou de sócio: cole campo por campo em vez de digitar tudo de novo.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✉️</div><h3>E-mail e suporte</h3>
+                    <p>Assinaturas, respostas a perguntas frequentes, o link da sua agenda ou como chegar ao escritório.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🏦</div><h3>Notas e burocracia</h3>
+                    <p>Chave Pix, CNPJ, números de protocolo: sem erros de digitação, porque você copiou só uma vez.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Desenvolvimento e TI</h3>
+                    <p>Comandos longos, endereços de servidores, dados de teste e caminhos que você usa todo dia.</p></div>
+            </div>
+            <div class="note">Itens fixados ficam: nunca são apagados automaticamente, não contam no limite do histórico e continuam lá mesmo se você limpar o histórico. Como tudo no Clipsody, ficam no seu Mac. Senhas, mesmo assim, devem ficar num gerenciador de senhas.</div>
+        </div>
+    </section>
+
+    <section class="alt" id="uses">
         <div class="wrap">
             <h2>Para que serve um histórico da área de transferência</h2>
             <p class="sub">Para qualquer situação em que você copia mais de uma coisa.</p>
@@ -399,7 +445,7 @@
         </div>
     </section>
 
-    <section class="alt" id="compare">
+    <section id="compare">
         <div class="wrap">
             <h2>Mas o Mac já não tem um histórico da área de transferência?</h2>
             <p class="sub">Desde o macOS 26 Tahoe, o Spotlight pode mostrar os itens copiados recentemente. Isso ajuda na hora – o Clipsody foi feito para tudo o que precisa durar mais de uma semana.</p>
@@ -422,7 +468,7 @@
         </div>
     </section>
 
-    <section id="keys">
+    <section class="alt" id="keys">
         <div class="wrap">
             <h2>Tudo pelo teclado</h2>
             <p class="sub">Você não precisa do mouse – mas pode usar, se quiser.</p>
@@ -443,7 +489,7 @@
         </div>
     </section>
 
-    <section class="alt" id="privacy">
+    <section id="privacy">
         <div class="wrap">
             <h2>Sua área de transferência é só sua</h2>
             <p class="sub">Coisas pessoais vão parar na área de transferência: senhas, endereços, mensagens. Por isso, o Clipsody foi pensado para a privacidade desde o início.</p>
@@ -464,7 +510,7 @@
         </div>
     </section>
 
-    <section id="install">
+    <section class="alt" id="install">
         <div class="wrap">
             <h2>Instalação</h2>
             <p class="sub">O Clipsody não é notarizado pela Apple – para isso seria preciso uma conta de desenvolvedor paga. Por isso, o macOS pergunta uma vez na primeira abertura – veja como fazer:</p>
@@ -484,7 +530,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section class="alt" id="faq">
+    <section id="faq">
         <div class="wrap">
             <h2>Perguntas frequentes</h2>
             <details><summary>Como vejo no Mac o que copiei antes?</summary>

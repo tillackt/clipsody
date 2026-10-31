@@ -155,7 +155,7 @@
         [
           "📌",
           "Fissa ciò che usi spesso",
-          "IBAN, indirizzo, frammenti di testo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. Gli elementi fissati non vengono mai eliminati automaticamente."
+          "IBAN, indirizzo, frammenti di testo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. <a href=\"#pinned\">Come funziona</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Fissati: ciò che ti serve sempre, sempre a portata di mano",
+      "sub": "Email, indirizzo, numero di telefono, IBAN: ciò che riscrivi in continuazione lo fissi una volta sola. Finisce in una lista a parte, separata dalla cronologia, e si incolla con due tasti.",
+      "tabs": [
+        "Cronologia",
+        "Fissati · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "giulia.rossi@example.com"
+        ],
+        [
+          "a",
+          "Giulia Rossi ⏎ Via Esempio 12 ⏎ 00100 Roma"
+        ],
+        [
+          "c",
+          "+39 06 0000 0000"
+        ],
+        [
+          "d",
+          "IBAN: IT00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Cordiali saluti ⏎ Giulia Rossi"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Giulia Rossi<br>Via Esempio 12<br>00100 Roma",
+      "info": "Fissato · Testo · 3 righe",
+      "hint": "⏎ incolla   ⌥⏎ senza formattazione   ⌘P sblocca   ⌘⌫ elimina",
+      "steps": [
+        [
+          "Fissalo una volta",
+          "Seleziona un elemento nella cronologia e premi <kbd>⌘P</kbd>. Passa nella lista «Fissati» e ci resta finché non lo sblocchi."
+        ],
+        [
+          "A un → di distanza",
+          "<kbd>⌥⌘C</kbd>, poi <kbd>→</kbd>: vedi solo i tuoi elementi fissati. <kbd>←</kbd> o <kbd>⇥</kbd> riportano alla cronologia."
+        ],
+        [
+          "Incollato in pochi secondi",
+          "Da <kbd>⌘1</kbd> a <kbd>⌘9</kbd> incolli direttamente i primi nove. Oppure scrivi una parola come «iban» e premi <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Moduli e ordini",
+          "Email, indirizzo, telefono, numero cliente o tessera: incolla campo per campo invece di riscrivere tutto ogni volta."
+        ],
+        [
+          "✉️",
+          "Email e assistenza",
+          "Firme, risposte alle domande frequenti, il link al tuo calendario o le indicazioni per raggiungerti."
+        ],
+        [
+          "🏦",
+          "Fatture e pratiche",
+          "IBAN, partita IVA, codice fiscale, numeri di pratica: senza errori di battitura, perché li hai copiati una volta sola."
+        ],
+        [
+          "💻",
+          "Sviluppo e IT",
+          "Comandi lunghi, indirizzi di server, dati di test e percorsi che usi ogni giorno."
+        ]
+      ],
+      "note": "Gli elementi fissati restano: non vengono mai eliminati automaticamente, non contano nel limite della cronologia e restano anche se cancelli la cronologia. Come tutto in Clipsody, rimangono sul tuo Mac. Le password, comunque, vanno in un gestore di password."
     }
   },
   "guide": {

@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=eb4e1244d1">
+    <link rel="stylesheet" href="../assets/style.css?v=22b4e74e63">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="es_ES">
@@ -352,7 +352,7 @@
                 <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Con o sin formato</h3>
                     <p><kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador. <kbd>⌥⏎</kbd> pega solo texto sin formato.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fija lo que usas a menudo</h3>
-                    <p>IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a su propia lista «Fijados», a un <kbd>→</kbd> del historial. Los elementos fijados nunca se eliminan automáticamente.</p></div>
+                    <p>IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a su propia lista «Fijados», a un <kbd>→</kbd> del historial. <a href="#pinned">Cómo funciona</a></p></div>
             </div>
         </div>
     </section>
@@ -382,7 +382,53 @@
         </div>
     </section>
 
-    <section id="uses">
+    <section id="pinned">
+        <div class="wrap">
+            <h2>Fijados: lo que necesitas una y otra vez, siempre a mano</h2>
+            <p class="sub">Correo electrónico, dirección, teléfono, IBAN: lo que escribes una y otra vez, lo fijas una sola vez. Pasa a una lista propia, separada del historial, y se pega con dos teclas.</p>
+            <div class="pinned-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historial</span><span class="on">Fijados · 6</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">lucia.garcia@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Lucía García ⏎ Calle Ejemplo 12 ⏎ 28001 Madrid</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+34 910 000 000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: ES00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Un saludo ⏎ Lucía García</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Lucía García<br>Calle Ejemplo 12<br>28001 Madrid</div>
+                            <div class="info">Fijado · Texto · 3 líneas</div>
+                            <div class="hint">⏎ pegar   ⌥⏎ sin formato   ⌘P soltar   ⌘⌫ eliminar</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Fíjalo una vez</h3><p>Selecciona un elemento del historial y pulsa <kbd>⌘P</kbd>. Pasa a la lista «Fijados» y se queda ahí hasta que lo sueltes.</p></li>
+                    <li><h3><span class="step">2</span>A un → de distancia</h3><p><kbd>⌥⌘C</kbd> y luego <kbd>→</kbd>: ya solo ves tus elementos fijados. <kbd>←</kbd> o <kbd>⇥</kbd> te devuelven al historial.</p></li>
+                    <li><h3><span class="step">3</span>Pegado en segundos</h3><p><kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros. O escribe una palabra como «iban» y pulsa <kbd>⏎</kbd>.</p></li>
+                </ol>
+            </div>
+            <div class="grid">
+                <div class="card"><div class="icon" aria-hidden="true">📝</div><h3>Formularios y pedidos</h3>
+                    <p>Correo, dirección, teléfono, número de cliente o de socio: pega campo a campo en lugar de escribirlo todo cada vez.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">✉️</div><h3>Correo y soporte</h3>
+                    <p>Firmas, respuestas a preguntas frecuentes, el enlace a tu calendario o cómo llegar a tu oficina.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🏦</div><h3>Facturas y trámites</h3>
+                    <p>IBAN, NIF, número de expediente o de referencia: sin erratas, porque solo los copiaste una vez.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Desarrollo e IT</h3>
+                    <p>Comandos largos, direcciones de servidores, datos de prueba y rutas que usas a diario.</p></div>
+            </div>
+            <div class="note">Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas.</div>
+        </div>
+    </section>
+
+    <section class="alt" id="uses">
         <div class="wrap">
             <h2>Para qué sirve un historial del portapapeles</h2>
             <p class="sub">Para cualquier momento en que copies más de una cosa.</p>
@@ -399,7 +445,7 @@
         </div>
     </section>
 
-    <section class="alt" id="compare">
+    <section id="compare">
         <div class="wrap">
             <h2>¿El Mac no tiene ya un historial del portapapeles?</h2>
             <p class="sub">Desde macOS 26 Tahoe, Spotlight puede mostrar lo copiado recientemente. Sirve para salir del paso; Clipsody está pensado para todo lo que deba durar más de una semana.</p>
@@ -422,7 +468,7 @@
         </div>
     </section>
 
-    <section id="keys">
+    <section class="alt" id="keys">
         <div class="wrap">
             <h2>Todo con el teclado</h2>
             <p class="sub">No necesitas el ratón, aunque puedes usarlo.</p>
@@ -443,7 +489,7 @@
         </div>
     </section>
 
-    <section class="alt" id="privacy">
+    <section id="privacy">
         <div class="wrap">
             <h2>Tu portapapeles es tuyo</h2>
             <p class="sub">Al portapapeles llegan cosas personales: contraseñas, direcciones, mensajes. Por eso Clipsody se ha diseñado pensando en la privacidad.</p>
@@ -464,7 +510,7 @@
         </div>
     </section>
 
-    <section id="install">
+    <section class="alt" id="install">
         <div class="wrap">
             <h2>Instalación</h2>
             <p class="sub">Clipsody no está notarizado por Apple: para eso hace falta una cuenta de desarrollador de pago. Por eso macOS pregunta una vez en el primer arranque; así se hace:</p>
@@ -484,7 +530,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section class="alt" id="faq">
+    <section id="faq">
         <div class="wrap">
             <h2>Preguntas frecuentes</h2>
             <details><summary>¿Cómo veo lo que copié antes en un Mac?</summary>

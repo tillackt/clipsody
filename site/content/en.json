@@ -155,7 +155,7 @@
         [
           "📌",
           "Pin what you use often",
-          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to its own Pinned list, one <kbd>→</kbd> away from the history. Pinned clips are never deleted automatically."
+          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to its own Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
         ]
       ]
     },
@@ -384,6 +384,80 @@
           "<strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Pinned: the things you need again and again, always at hand",
+      "sub": "Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with two keys.",
+      "tabs": [
+        "History",
+        "Pinned · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "jane.doe@example.com"
+        ],
+        [
+          "a",
+          "Jane Doe ⏎ 12 Sample Street ⏎ London N1 7GU"
+        ],
+        [
+          "c",
+          "+44 20 7946 0000"
+        ],
+        [
+          "d",
+          "IBAN: GB00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Kind regards ⏎ Jane Doe"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Jane Doe<br>12 Sample Street<br>London N1 7GU",
+      "info": "Pinned · Text · 3 lines",
+      "hint": "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete",
+      "steps": [
+        [
+          "Pin it once",
+          "Select a clip in the history and press <kbd>⌘P</kbd>. It moves to the Pinned list and stays there until you unpin it."
+        ],
+        [
+          "One → away",
+          "<kbd>⌥⌘C</kbd>, then <kbd>→</kbd>: now you see only your pinned clips. <kbd>←</kbd> or <kbd>⇥</kbd> take you back to the history."
+        ],
+        [
+          "Pasted in seconds",
+          "<kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine directly. Or type a word like “iban” and press <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Forms and orders",
+          "Email, address, phone number, customer or membership number: paste field by field instead of typing them every time."
+        ],
+        [
+          "✉️",
+          "Email and support",
+          "Signatures, answers to common questions, the link to your calendar or the directions to your office."
+        ],
+        [
+          "🏦",
+          "Invoices and paperwork",
+          "IBAN, VAT number, tax ID, reference numbers: no typos, because you copied them only once."
+        ],
+        [
+          "💻",
+          "Development and IT",
+          "Long commands, server addresses, test data and paths you need every day."
+        ]
+      ],
+      "note": "Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager."
     }
   },
   "guide": {
