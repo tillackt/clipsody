@@ -6148,7 +6148,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "⏎ pegar   ⌥⏎ sin formato   ⌘P soltar   ⌘⌫ eliminar"
+            "value": "⏎ pegar   ⌥⏎ sin formato   ⌘P dejar de fijar   ⌘⌫ eliminar"
           }
         },
         "fr": {
@@ -6179,6 +6179,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ apagar"
+          }
+        }
+      }
+    },
+    "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ remove from history": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P lösen   ⌘⌫ aus der Historie nehmen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ pegar   ⌥⏎ sin formato   ⌘P dejar de fijar   ⌘⌫ quitar del historial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ retirer de l’historique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ incolla   ⌥⏎ senza formattazione   ⌘P sblocca   ⌘⌫ togli dalla cronologia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ plakken   ⌥⏎ zonder opmaak   ⌘P losmaken   ⌘⌫ uit geschiedenis halen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń z historii"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ tirar do histórico"
           }
         }
       }

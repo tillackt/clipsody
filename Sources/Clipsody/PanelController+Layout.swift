@@ -1,4 +1,5 @@
 import AppKit
+import ClipsodyCore
 
 /// Builds the panel window and its views.
 extension PanelController {
@@ -80,9 +81,6 @@ extension PanelController {
         sections.setLabel(pinnedCount > 0 ? String(localized: "Pinned · \(pinnedCount)") : String(localized: "Pinned"),
                           forSegment: 1)
         sections.selectedSegment = list.section == .pinned ? 1 : 0
-        hintLabel.stringValue = list.section == .pinned
-            ? String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete")
-            : String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete")
         emptyLabel.isHidden = !items.isEmpty
         guard items.isEmpty else { return }
         let elsewhere = query.isEmpty ? 0 : list.matchCount(in: list.section.other)
@@ -92,6 +90,16 @@ extension PanelController {
         case (.pinned, false) where query.isEmpty:
             emptyLabel.stringValue = String(localized: "Nothing pinned yet. Pin entries in the history with ⌘P.")
         default: emptyLabel.stringValue = String(localized: "No entries")
+        }
+    }
+
+    /// What ⌘P and ⌘⌫ do with the selected entry: a pinned entry in the history is unpinned, and
+    /// ⌘⌫ only takes it out of the history.
+    func updateHint(for item: ClipItem?) {
+        hintLabel.stringValue = switch (list.section, item?.pinned == true) {
+        case (.pinned, _): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete")
+        case (.history, true): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ remove from history")
+        case (.history, false): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete")
         }
     }
 

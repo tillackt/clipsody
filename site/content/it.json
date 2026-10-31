@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Fissa o sblocca: sposta l’elemento nell’altra lista"
+          "Fissa o sblocca un elemento. Gli elementi fissati sono in «Fissati»; se ne copi o incolli uno di nuovo, compare anche nella cronologia"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Elimina un elemento"
+          "Elimina un elemento. Un elemento fissato nella cronologia esce solo dalla cronologia"
         ],
         [
           "<kbd>esc</kbd>",
@@ -386,8 +386,8 @@
       ]
     },
     "pinned": {
-      "h2": "Fissati: ciò che ti serve sempre, sempre a portata di mano",
-      "sub": "Email, indirizzo, numero di telefono, IBAN: ciò che riscrivi in continuazione lo fissi una volta sola. Finisce in una lista a parte, separata dalla cronologia, e si incolla con due tasti.",
+      "h2": "Fissati: ciò che ti serve di continuo, sempre a portata di mano",
+      "sub": "Email, indirizzo, numero di telefono, IBAN: ciò che riscrivi in continuazione lo fissi una volta sola. Finisce in una lista a parte, separata dalla cronologia, e si incolla con pochi tasti.",
       "tabs": [
         "Cronologia",
         "Fissati · 6"

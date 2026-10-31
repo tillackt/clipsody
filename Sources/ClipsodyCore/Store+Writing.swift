@@ -49,22 +49,43 @@ extension Store {
         return stored
     }
 
-    /// Moves an item to the top of the history. Returns false if it could not be stored.
+    /// Moves an item to the top of the history, also a pinned one: what was pasted was on the clipboard.
+    /// Returns false if it could not be stored.
     @discardableResult
     public func touch(_ item: ClipItem) -> Bool {
-        run("UPDATE items SET ts = ? WHERE id = ?") { stmt in
+        // max(): if the clock went back after pinning, the pin time lies ahead and must still be passed.
+        run("UPDATE items SET ts = max(?, CASE WHEN pinned != 0 THEN (pinned + 1) / 1000.0 ELSE 0 END) WHERE id = ?") { stmt in
             sqlite3_bind_double(stmt, 1, Date().timeIntervalSince1970)
             sqlite3_bind_int64(stmt, 2, item.id)
         }
     }
 
-    /// Stores the pin time (seconds since 1970) in `pinned`, so the pinned list shows the latest pin
-    /// first; entries pinned before that hold 1 and follow. Returns false if the change could not be stored.
+    /// Stores the pin time (milliseconds since 1970) in `pinned`. The pinned list shows the latest pin
+    /// first; a pin within the same millisecond as the last one gets that value + 1, so the order never
+    /// ties. The value also lies after the entry's last copy (`ts`), so a pinned entry leaves the
+    /// history until it is copied again. Returns false if the change could not be stored.
     @discardableResult
     public func setPinned(_ pinned: Bool, for item: ClipItem, at date: Date = Date()) -> Bool {
-        run("UPDATE items SET pinned = ? WHERE id = ?") { stmt in
-            sqlite3_bind_int64(stmt, 1, pinned ? max(1, Int64(date.timeIntervalSince1970)) : 0)
+        guard pinned else {
+            return run("UPDATE items SET pinned = 0 WHERE id = ?") { stmt in sqlite3_bind_int64(stmt, 1, item.id) }
+        }
+        let sql = """
+            UPDATE items SET pinned = max(?, CAST(ts * 1000 AS INTEGER) + 1,
+                                          (SELECT ifnull(max(pinned), 0) + 1 FROM items))
+            WHERE id = ?
+            """
+        return run(sql) { stmt in
+            sqlite3_bind_int64(stmt, 1, Int64((date.timeIntervalSince1970 * 1000).rounded(.up)))
             sqlite3_bind_int64(stmt, 2, item.id)
+        }
+    }
+
+    /// Takes a pinned entry out of the history list again; it stays pinned. Returns false if the
+    /// change could not be stored.
+    @discardableResult
+    public func removeFromHistory(_ item: ClipItem) -> Bool {
+        run("UPDATE items SET ts = min(ts, (pinned - 1) / 1000.0) WHERE id = ? AND pinned != 0") { stmt in
+            sqlite3_bind_int64(stmt, 1, item.id)
         }
     }
 
@@ -90,6 +111,8 @@ extension Store {
 
     private func upsert(_ row: Row, app: String?, appPath: String?, date: Date) -> Bool {
         // On a duplicate keep the newest timestamp and the app (and formatting) of the latest copy.
+        // A pinned entry copied again must come after its pin time to show in the history, also when
+        // the clock went back since.
         let sql = """
             INSERT INTO items(kind, text, image_file, hash, app, app_path, ts, rich, rich_type, width, height, byte_size)
             VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -98,7 +121,7 @@ extension Store {
                 app_path = CASE WHEN excluded.ts > ts THEN excluded.app_path ELSE app_path END,
                 rich = CASE WHEN excluded.ts > ts THEN excluded.rich ELSE rich END,
                 rich_type = CASE WHEN excluded.ts > ts THEN excluded.rich_type ELSE rich_type END,
-                ts = MAX(ts, excluded.ts)
+                ts = MAX(ts, excluded.ts, CASE WHEN pinned != 0 THEN (pinned + 1) / 1000.0 ELSE 0 END)
             """
         return run(sql) { stmt in
             sqlite3_bind_int(stmt, 1, Int32(row.kind.rawValue))

@@ -155,7 +155,7 @@
         [
           "📌",
           "Épinglez ce qui sert souvent",
-          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans sa propre liste « Épinglés », à un <kbd>→</kbd> de l’historique. <a href=\"#pinned\">Comment ça marche</a>"
+          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans une liste à part, « Épinglés », à un <kbd>→</kbd> de l’historique. <a href=\"#pinned\">Comment ça marche</a>"
         ]
       ]
     },
@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Épingler ou désépingler : déplace l’élément dans l’autre liste"
+          "Épingler ou désépingler un élément. Les éléments épinglés sont dans « Épinglés » ; copié ou collé à nouveau, un élément apparaît aussi dans l’historique"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Supprimer un élément"
+          "Supprimer un élément. Un élément épinglé dans l’historique quitte seulement l’historique"
         ],
         [
           "<kbd>esc</kbd>",
@@ -387,7 +387,7 @@
     },
     "pinned": {
       "h2": "Épinglés : ce dont vous avez sans cesse besoin, toujours sous la main",
-      "sub": "Adresse e-mail, adresse postale, numéro de téléphone, IBAN : ce que vous retapez sans arrêt, vous l’épinglez une fois. Il rejoint une liste à part, séparée de l’historique, et se colle en deux touches.",
+      "sub": "Adresse e-mail, adresse postale, numéro de téléphone, IBAN : ce que vous retapez sans arrêt, vous l’épinglez une fois. Il rejoint une liste à part, séparée de l’historique, et se colle en quelques touches.",
       "tabs": [
         "Historique",
         "Épinglés · 6"
@@ -403,7 +403,7 @@
         ],
         [
           "c",
-          "+33 1 23 45 67 89"
+          "+33 1 99 00 00 00"
         ],
         [
           "d",
@@ -444,7 +444,7 @@
         [
           "✉️",
           "E-mails et support",
-          "Signatures, réponses aux questions fréquentes, lien vers votre agenda ou plan d’accès."
+          "Signatures, réponses aux questions fréquentes, le lien vers votre agenda ou le plan d’accès."
         ],
         [
           "🏦",

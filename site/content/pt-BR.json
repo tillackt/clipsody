@@ -155,7 +155,7 @@
         [
           "📌",
           "Fixe o que você usa sempre",
-          "Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para a lista própria “Fixados”, a um <kbd>→</kbd> do histórico. <a href=\"#pinned\">Como funciona</a>"
+          "Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para uma lista à parte, “Fixados”, a um <kbd>→</kbd> do histórico. <a href=\"#pinned\">Como funciona</a>"
         ]
       ]
     },
@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Fixar ou desafixar: move o item para a outra lista"
+          "Fixar ou desafixar um item. Os fixados ficam em “Fixados”; copiado ou colado de novo, o item aparece também no histórico"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Apagar um item"
+          "Apagar um item. Um item fixado no histórico só sai do histórico"
         ],
         [
           "<kbd>esc</kbd>",
@@ -386,8 +386,8 @@
       ]
     },
     "pinned": {
-      "h2": "Fixados: o que você usa sempre, sempre à mão",
-      "sub": "E-mail, endereço, telefone, chave Pix: o que você digita toda hora, você fixa uma vez. Vai para uma lista própria, separada do histórico, e é colado com duas teclas.",
+      "h2": "Fixados: o que você usa toda hora, sempre à mão",
+      "sub": "E-mail, endereço, telefone, chave Pix: o que você digita toda hora, você fixa uma vez. Vai para uma lista própria, separada do histórico, e é colado com poucas teclas.",
       "tabs": [
         "Histórico",
         "Fixados · 6"

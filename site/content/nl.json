@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Vastzetten of losmaken: verplaatst het item naar de andere lijst"
+          "Item vastzetten of losmaken. Vastgezette items staan in ‘Vastgezet’; kopieer of plak je er een opnieuw, dan staat het ook in de geschiedenis"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Item verwijderen"
+          "Item verwijderen. Een vastgezet item in de geschiedenis verdwijnt alleen uit de geschiedenis"
         ],
         [
           "<kbd>esc</kbd>",
@@ -387,7 +387,7 @@
     },
     "pinned": {
       "h2": "Vastgezet: wat je steeds weer nodig hebt, altijd binnen handbereik",
-      "sub": "E-mailadres, adres, telefoonnummer, IBAN: wat je steeds opnieuw typt, zet je één keer vast. Het komt in een eigen lijst, los van de geschiedenis, en is met twee toetsen geplakt.",
+      "sub": "E-mailadres, adres, telefoonnummer, IBAN: wat je steeds opnieuw typt, zet je één keer vast. Het komt in een eigen lijst, los van de geschiedenis, en is met een paar toetsen geplakt.",
       "tabs": [
         "Geschiedenis",
         "Vastgezet · 6"
@@ -448,7 +448,7 @@
         ],
         [
           "🏦",
-          "Facturen en instanties",
+          "Facturen en administratie",
           "IBAN, btw-nummer, KvK-nummer, dossiernummers: zonder typfouten, omdat je ze maar één keer hebt gekopieerd."
         ],
         [
@@ -457,7 +457,7 @@
           "Lange commando’s, serveradressen, testdata en paden die je elke dag nodig hebt."
         ]
       ],
-      "note": "Vastgezette items blijven: ze worden nooit automatisch verwijderd, tellen niet mee voor de limiet van de geschiedenis en blijven ook als je de geschiedenis wist. Zoals alles in Clipsody blijven ze op je Mac. Wachtwoorden horen wel in een wachtwoordbeheerder."
+      "note": "Vastgezette items blijven: ze worden nooit automatisch verwijderd, tellen niet mee voor de limiet van de geschiedenis en blijven ook als je de geschiedenis wist. Zoals alles in Clipsody blijven ze op je Mac. Wachtwoorden horen nog steeds thuis in een wachtwoordbeheerder."
     }
   },
   "guide": {

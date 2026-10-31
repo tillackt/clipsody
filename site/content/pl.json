@@ -155,7 +155,7 @@
         [
           "📌",
           "Przypnij to, czego często używasz",
-          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. <a href=\"#pinned\">Jak to działa</a>"
+          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, tuż obok historii – wystarczy <kbd>→</kbd>. <a href=\"#pinned\">Jak to działa</a>"
         ]
       ]
     },
@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Przypnij lub odepnij: przenosi element na drugą listę"
+          "Przypnij lub odepnij element. Przypięte są na liście „Przypięte”; skopiowany lub wklejony ponownie pojawia się też w historii"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Usuń element"
+          "Usuń element. Przypięty element w historii znika tylko z historii"
         ],
         [
           "<kbd>esc</kbd>",
@@ -387,7 +387,7 @@
     },
     "pinned": {
       "h2": "Przypięte: to, czego potrzebujesz wciąż na nowo, zawsze pod ręką",
-      "sub": "Adres e-mail, adres pocztowy, numer telefonu, IBAN: to, co ciągle wpisujesz, przypinasz raz. Trafia na osobną listę, oddzieloną od historii, i wklejasz to dwoma klawiszami.",
+      "sub": "Adres e-mail, adres pocztowy, numer telefonu, IBAN: to, co ciągle wpisujesz, przypinasz raz. Trafia na osobną listę, oddzieloną od historii, i wklejasz to kilkoma klawiszami.",
       "tabs": [
         "Historia",
         "Przypięte · 6"
@@ -419,7 +419,7 @@
         ]
       ],
       "preview": "Anna Kowalska<br>ul. Przykładowa 12<br>00-001 Warszawa",
-      "info": "Przypięte · Tekst · 3 wiersze",
+      "info": "Przypięty · Tekst · 3 linie",
       "hint": "⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń",
       "steps": [
         [
@@ -427,7 +427,7 @@
           "Wybierz element w historii i naciśnij <kbd>⌘P</kbd>. Trafi na listę „Przypięte” i zostanie tam, dopóki go nie odepniesz."
         ],
         [
-          "Jedno → obok",
+          "Strzałką w prawo",
           "<kbd>⌥⌘C</kbd>, potem <kbd>→</kbd>: widzisz już tylko przypięte elementy. <kbd>←</kbd> lub <kbd>⇥</kbd> wracają do historii."
         ],
         [
@@ -449,7 +449,7 @@
         [
           "🏦",
           "Faktury i urzędy",
-          "IBAN, NIP, numery spraw i sygnatury: bez literówek, bo skopiowałeś je tylko raz."
+          "IBAN, NIP, numery spraw i sygnatury: bez literówek, bo kopiujesz je tylko raz."
         ],
         [
           "💻",
@@ -457,7 +457,7 @@
           "Długie polecenia, adresy serwerów, dane testowe i ścieżki, których potrzebujesz codziennie."
         ]
       ],
-      "note": "Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na Twoim Macu. Hasła i tak należą do menedżera haseł."
+      "note": "Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na twoim Macu. Hasła i tak należą do menedżera haseł."
     }
   },
   "guide": {

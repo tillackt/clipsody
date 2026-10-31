@@ -155,7 +155,7 @@
         [
           "📌",
           "Pin what you use often",
-          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to its own Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
+          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
         ]
       ]
     },
@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Pin or unpin: moves the clip to the other list"
+          "Pin or unpin a clip. Pinned clips are in the Pinned list; one copied or pasted again also shows in the history"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Delete a clip"
+          "Delete a clip. A pinned clip in the history only leaves the history"
         ],
         [
           "<kbd>esc</kbd>",
@@ -387,7 +387,7 @@
     },
     "pinned": {
       "h2": "Pinned: the things you need again and again, always at hand",
-      "sub": "Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with two keys.",
+      "sub": "Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with a few keys.",
       "tabs": [
         "History",
         "Pinned · 6"

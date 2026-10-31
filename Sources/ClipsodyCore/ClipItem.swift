@@ -24,6 +24,8 @@ public struct ClipItem: Equatable, Sendable {
     public let appPath: String?
     public let date: Date
     public let pinned: Bool
+    /// Whether the entry belongs in the history list: unpinned, or pinned and copied again since.
+    public let inHistory: Bool
     /// Text recognised in an image; nil until recognition ran.
     public var recognizedText: String?
     /// Whether formatted text (RTF/HTML) was stored alongside the plain text.
@@ -31,7 +33,7 @@ public struct ClipItem: Equatable, Sendable {
 
     public init(id: Int64, kind: Kind, text: String, textByteCount: Int? = nil, filePaths: [String] = [],
                 imageFile: String? = nil, imageWidth: Int = 0, imageHeight: Int = 0, byteSize: Int64 = 0,
-                app: String? = nil, appPath: String? = nil, date: Date, pinned: Bool = false,
+                app: String? = nil, appPath: String? = nil, date: Date, pinned: Bool = false, inHistory: Bool? = nil,
                 recognizedText: String? = nil, hasRichText: Bool = false) {
         self.id = id
         self.kind = kind
@@ -46,6 +48,7 @@ public struct ClipItem: Equatable, Sendable {
         self.appPath = appPath
         self.date = date
         self.pinned = pinned
+        self.inHistory = inHistory ?? !pinned
         self.recognizedText = recognizedText
         self.hasRichText = hasRichText
     }

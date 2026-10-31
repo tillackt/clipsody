@@ -8,10 +8,14 @@ public struct HistoryList {
 
         public var other: Section { self == .history ? .pinned : .history }
 
-        func contains(_ item: ClipItem) -> Bool { item.pinned == (self == .pinned) }
+        func contains(_ item: ClipItem) -> Bool { self == .pinned ? item.pinned : item.inHistory }
     }
 
+    /// Everything loaded, in store order (pinned first, latest pin first, then by date).
     public private(set) var allItems: [ClipItem] = []
+    /// The entries of each section in list order: the history by date, with pinned entries copied
+    /// again among them; the pinned list in store order.
+    private var sectionItems: [Section: [ClipItem]] = [:]
     /// The entries of `section` matching `query`, in list order.
     public private(set) var items: [ClipItem] = []
     public private(set) var query = SearchQuery("")
@@ -26,6 +30,7 @@ public struct HistoryList {
     public mutating func load(_ items: [ClipItem], query text: String) {
         allItems = items
         searchIndex = nil
+        splitSections()
         filter(text)
     }
 
@@ -41,7 +46,7 @@ public struct HistoryList {
 
     /// All entries in `section`, whatever the search.
     public func count(in section: Section) -> Int {
-        allItems.reduce(0) { $0 + (section.contains($1) ? 1 : 0) }
+        sectionItems[section]?.count ?? 0
     }
 
     /// Entries in `section` matching the search, e.g. to point to hits in the section not shown.
@@ -54,9 +59,27 @@ public struct HistoryList {
     }
 
     private mutating func matching(in section: Section) -> [ClipItem] {
-        if query.isEmpty { return allItems.filter(section.contains) }
+        let candidates = sectionItems[section] ?? []
+        if query.isEmpty { return candidates }
         let index = searchIndex ?? buildSearchIndex()
-        return allItems.filter { section.contains($0) && query.matches(foldedText: index[$0.id] ?? "") }
+        return candidates.filter { query.matches(foldedText: index[$0.id] ?? "") }
+    }
+
+    private mutating func splitSections() {
+        sectionItems[.pinned] = allItems.filter(Section.pinned.contains)
+        // The store lists pinned entries first; those copied again are merged into the unpinned
+        // ones (already newest first) by date, so they show where they were last copied.
+        var copiedAgain = allItems.filter { $0.pinned && $0.inHistory }.sorted { $0.date > $1.date }[...]
+        var history: [ClipItem] = []
+        history.reserveCapacity(allItems.count)
+        for item in allItems where !item.pinned {
+            while let next = copiedAgain.first, next.date > item.date {
+                history.append(next)
+                copiedAgain.removeFirst()
+            }
+            history.append(item)
+        }
+        sectionItems[.history] = history + copiedAgain
     }
 
     /// The row of the entry with `id`, or the first row if it is no longer listed.
@@ -72,6 +95,7 @@ public struct HistoryList {
 
     public mutating func remove(id: Int64) {
         allItems.removeAll { $0.id == id }
+        for section in [Section.history, .pinned] { sectionItems[section]?.removeAll { $0.id == id } }
         items.removeAll { $0.id == id }
     }
 
@@ -81,6 +105,11 @@ public struct HistoryList {
             allItems[index].recognizedText = text
             // Without an index there is nothing to patch; it is built from allItems when needed.
             searchIndex?[allItems[index].id] = SearchQuery.fold(ItemPresentation.searchText(for: allItems[index]))
+        }
+        for section in [Section.history, .pinned] {
+            for index in (sectionItems[section] ?? []).indices where sectionItems[section]?[index].imageFile == file {
+                sectionItems[section]?[index].recognizedText = text
+            }
         }
         applyQuery()
     }

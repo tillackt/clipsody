@@ -155,7 +155,7 @@
         [
           "📌",
           "Anpinnen, was du oft brauchst",
-          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in die eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
+          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in eine eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
         ]
       ]
     },
@@ -281,11 +281,11 @@
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Anpinnen oder lösen: verschiebt den Eintrag in die andere Liste"
+          "Eintrag anpinnen oder lösen. Angepinnte Einträge stehen in „Angepinnt“; kopierst oder fügst du einen erneut ein, steht er auch im Verlauf"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Eintrag löschen"
+          "Eintrag löschen. Ein angepinnter Eintrag im Verlauf verschwindet nur aus dem Verlauf"
         ],
         [
           "<kbd>esc</kbd>",
@@ -387,7 +387,7 @@
     },
     "pinned": {
       "h2": "Angepinnt: Was du immer wieder brauchst, liegt griffbereit",
-      "sub": "E-Mail-Adresse, Anschrift, Telefonnummer, IBAN: Was du sonst ständig neu eintippst, pinnst du einmal an. Es liegt dann in einer eigenen Liste, getrennt vom Verlauf, und ist mit zwei Tasten eingefügt.",
+      "sub": "E-Mail-Adresse, Anschrift, Telefonnummer, IBAN: Was du sonst ständig neu eintippst, pinnst du einmal an. Es liegt dann in einer eigenen Liste, getrennt vom Verlauf, und ist mit wenigen Tasten eingefügt.",
       "tabs": [
         "Historie",
         "Angepinnt · 6"
@@ -403,7 +403,7 @@
         ],
         [
           "c",
-          "+49 30 1234567"
+          "+49 30 0000000"
         ],
         [
           "d",

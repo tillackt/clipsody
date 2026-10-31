@@ -34,6 +34,23 @@ import Testing
         #expect(ids(list.items) == [1])
     }
 
+    @Test func pinnedEntryCopiedAgainShowsInBothListsByDate() {
+        let now = Date()
+        let copiedAgain = ClipItem(id: 1, kind: .text, text: "Gruß", date: now.addingTimeInterval(-60),
+                                   pinned: true, inHistory: true)
+        let onlyPinned = ClipItem(id: 2, kind: .text, text: "IBAN", date: now, pinned: true)
+        let newer = ClipItem(id: 3, kind: .text, text: "neu", date: now)
+        let older = ClipItem(id: 4, kind: .text, text: "alt", date: now.addingTimeInterval(-120))
+        var list = HistoryList()
+        // Store order: pinned first, then the rest by date.
+        list.load([onlyPinned, copiedAgain, newer, older], query: "")
+        #expect(ids(list.items) == [3, 1, 4])
+        #expect(list.count(in: .history) == 3)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [2, 1])
+    }
+
     @Test func searchCountsHitsInTheOtherSection() {
         var list = HistoryList()
         list.load([pinned(1, "Mit freundlichen Grüßen"), text(2, "Grüße aus Berlin"), text(3, "egal")], query: "grüß")

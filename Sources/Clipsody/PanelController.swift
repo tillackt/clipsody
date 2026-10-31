@@ -149,7 +149,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         onPaste(item, targetApp, withFormatting)
     }
 
-    /// Moves the selected entry to the other list; the selection stays in this one, on its neighbour.
+    /// Pins or unpins the selected entry. If it leaves the list shown, the selection moves to its neighbour.
     private func togglePinSelected() {
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
@@ -160,13 +160,17 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
             return
         }
         reloadItems()
-        showItems(selecting: neighbour?.id)
+        // Unpinning in the history keeps the entry there; otherwise it moves to the other list.
+        showItems(selecting: items.contains { $0.id == item.id } ? item.id : neighbour?.id)
     }
 
     func show(_ section: HistoryList.Section) {
         guard section != list.section else { return }
         list.show(section)
         showItems()
+        // The focus stays in the search field, so VoiceOver would not notice the list changing.
+        NSAccessibility.post(element: table, notification: .announcementRequested,
+                             userInfo: [.announcement: sections.label(forSegment: sections.selectedSegment) ?? ""])
     }
 
     @objc func sectionClicked() {
@@ -176,8 +180,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     /// → at the end of the search text opens the pinned entries, ← at its start the history;
     /// anywhere else the arrows move the cursor as usual.
     private func switchSection(by key: Selector, in textView: NSTextView) -> Bool {
+        // A pending dead key or input method composition gets the arrows, not the tabs.
         let cursor = textView.selectedRange()
-        guard cursor.length == 0 else { return false }
+        guard cursor.length == 0, !textView.hasMarkedText() else { return false }
         if key == #selector(NSResponder.moveRight(_:)), cursor.location == textView.string.utf16.count,
            list.section == .history {
             show(.pinned)
@@ -196,6 +201,16 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         let item = items[row]
         // Keep the selection on the neighbour that moves into this row.
         let neighbour = list.neighbour(ofRow: row)
+        // A pinned entry in the history only leaves the history; deleting it is up to the pinned list.
+        if list.section == .history && item.pinned {
+            guard store.removeFromHistory(item) else {
+                NSSound.beep()
+                return
+            }
+            reloadItems()
+            showItems(selecting: neighbour?.id)
+            return
+        }
         guard store.delete(item) else {
             NSSound.beep()
             return
