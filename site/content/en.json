@@ -54,7 +54,7 @@
         ],
         [
           "d",
-          "📌 IBAN: DE00 0000 0000 …"
+          "IBAN: DE00 0000 0000 …"
         ],
         [
           "b",
@@ -101,7 +101,11 @@
       ],
       "ocrPreview": "Screenshot · text recognised<br><br><b><mark>Invoice</mark> no. 2026-1043</b><br>Service period: October 2026<br>Total: €1,240.00<br>Due: 15 Nov 2026",
       "ocrInfo": "Preview · 3 minutes ago · image 2880×1800 · text recognised",
-      "pause": "Pause animation"
+      "pause": "Pause animation",
+      "tabs": [
+        "History",
+        "Pinned · 3"
+      ]
     },
     "problem": {
       "h2": "Copy multiple items – without losing the first one",
@@ -131,7 +135,7 @@
         [
           "📋",
           "Copy multiple items, paste them when you need them",
-          "Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
+          "Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (of the history or the pinned list, whichever is open)."
         ],
         [
           "🔎",
@@ -151,7 +155,7 @@
         [
           "📌",
           "Pin what you use often",
-          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> keeps a clip at the top, and it is never deleted automatically."
+          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
         ]
       ]
     },
@@ -260,6 +264,10 @@
           "Choose a clip"
         ],
         [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Switch between the history and the pinned clips"
+        ],
+        [
           "<kbd>⏎</kbd>",
           "Paste with formatting"
         ],
@@ -269,15 +277,15 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Paste one of the first nine entries shown directly (pinned first, then the newest)"
+          "Paste one of the first nine entries shown directly (of the history or the pinned list, whichever is open)"
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Pin or unpin"
+          "Pin or unpin a clip. Pinned clips are in the Pinned list; one copied or pasted again also shows in the history"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Delete a clip"
+          "Delete a clip. A pinned clip in the history only leaves the history"
         ],
         [
           "<kbd>esc</kbd>",
@@ -376,6 +384,80 @@
           "<strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Pinned: the things you need again and again, always at hand",
+      "sub": "Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with a few keys.",
+      "tabs": [
+        "History",
+        "Pinned · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "jane.doe@example.com"
+        ],
+        [
+          "a",
+          "Jane Doe ⏎ 12 Sample Street ⏎ London N1 7GU"
+        ],
+        [
+          "c",
+          "+44 20 7946 0000"
+        ],
+        [
+          "d",
+          "IBAN: GB00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Kind regards ⏎ Jane Doe"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Jane Doe<br>12 Sample Street<br>London N1 7GU",
+      "info": "Pinned · Text · 3 lines",
+      "hint": "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete",
+      "steps": [
+        [
+          "Pin it once",
+          "Select a clip in the history and press <kbd>⌘P</kbd>. It moves to the Pinned list and stays there until you unpin it."
+        ],
+        [
+          "One → away",
+          "<kbd>⌥⌘C</kbd>, then <kbd>→</kbd>: now you see only your pinned clips. <kbd>←</kbd> or <kbd>⇥</kbd> take you back to the history."
+        ],
+        [
+          "Pasted in seconds",
+          "<kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine directly. Or type a word like “iban” and press <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Forms and orders",
+          "Email, address, phone number, customer or membership number: paste field by field instead of typing them every time."
+        ],
+        [
+          "✉️",
+          "Email and support",
+          "Signatures, answers to common questions, the link to your calendar or the directions to your office."
+        ],
+        [
+          "🏦",
+          "Invoices and paperwork",
+          "IBAN, VAT number, tax ID, reference numbers: no typos, because you copied them only once."
+        ],
+        [
+          "💻",
+          "Development and IT",
+          "Long commands, server addresses, test data and paths you need every day."
+        ]
+      ],
+      "note": "Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager."
     }
   },
   "guide": {
@@ -416,7 +498,7 @@
         "<a href=\"{download}\">Download Clipsody</a> and drag it into <strong>Applications</strong> (<a href=\"./#install\">installation in detail</a>).",
         "Copy as usual with <kbd>⌘C</kbd>. Every clip – text, image or file – goes into the history.",
         "Press <kbd>⌥⌘C</kbd>: the list of everything you copied appears. Enter a search word to filter it; this finds text in screenshots too.",
-        "<kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (pinned first, then the newest)."
+        "<kbd>⏎</kbd> pastes the selected clip right where you were; <kbd>⌥⏎</kbd> pastes it without formatting. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (of the history or the pinned list, whichever is open)."
       ],
       "after": "You decide how long the history lasts (1 to 365 days) and how many clips it holds (up to 10,000). Clips pinned with <kbd>⌘P</kbd> stay for good. Everything stays on your Mac."
     },

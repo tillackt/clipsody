@@ -1,4 +1,5 @@
 import AppKit
+import ClipsodyCore
 
 /// Builds the panel window and its views.
 extension PanelController {
@@ -30,6 +31,7 @@ extension PanelController {
         background.heightAnchor.constraint(equalToConstant: 460).isActive = true
 
         configureSearch()
+        configureSections()
         let tableScroll = makeTable()
         configurePreview()
         let topSeparator = NSBox()
@@ -37,7 +39,7 @@ extension PanelController {
         let sideSeparator = NSBox()
         sideSeparator.boxType = .separator
 
-        let views: [NSView] = [search, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage,
+        let views: [NSView] = [search, sections, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage,
                                infoLabel, hintLabel, emptyLabel]
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +58,49 @@ extension PanelController {
         search.delegate = self
         search.cell?.isScrollable = true
         search.cell?.wraps = false
+    }
+
+    private func configureSections() {
+        sections.segmentCount = 2
+        sections.trackingMode = .selectOne
+        sections.segmentStyle = .automatic
+        sections.controlSize = .small
+        sections.selectedSegment = 0
+        // The search field keeps the keyboard focus; the arrows and ⇥ switch from there.
+        sections.refusesFirstResponder = true
+        sections.target = self
+        sections.action = #selector(sectionClicked)
+        sections.setAccessibilityLabel(String(localized: "List"))
+        sections.toolTip = String(localized: "Switch with → and ← or ⇥")
+    }
+
+    /// Tab titles with the number of pinned entries, the hint line, and what an empty list says.
+    func updateSectionLabels() {
+        let pinnedCount = list.count(in: .pinned)
+        sections.setLabel(String(localized: "History"), forSegment: 0)
+        sections.setLabel(pinnedCount > 0 ? String(localized: "Pinned · \(pinnedCount)") : String(localized: "Pinned"),
+                          forSegment: 1)
+        sections.selectedSegment = list.section == .pinned ? 1 : 0
+        emptyLabel.isHidden = !items.isEmpty
+        guard items.isEmpty else { return }
+        let elsewhere = query.isEmpty ? 0 : list.matchCount(in: list.section.other)
+        switch (list.section, elsewhere > 0) {
+        case (.history, true): emptyLabel.stringValue = String(localized: "No matches here – \(elsewhere) in Pinned (→)")
+        case (.pinned, true): emptyLabel.stringValue = String(localized: "No matches here – \(elsewhere) in History (←)")
+        case (.pinned, false) where query.isEmpty:
+            emptyLabel.stringValue = String(localized: "Nothing pinned yet. Pin entries in the history with ⌘P.")
+        default: emptyLabel.stringValue = String(localized: "No entries")
+        }
+    }
+
+    /// What ⌘P and ⌘⌫ do with the selected entry: a pinned entry in the history is unpinned, and
+    /// ⌘⌫ only takes it out of the history.
+    func updateHint(for item: ClipItem?) {
+        hintLabel.stringValue = switch (list.section, item?.pinned == true) {
+        case (.pinned, _): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete")
+        case (.history, true): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ remove from history")
+        case (.history, false): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete")
+        }
     }
 
     /// The list of entries, inside the scroll view that is returned.
@@ -79,7 +124,12 @@ extension PanelController {
         tableScroll.documentView = table
         tableScroll.hasVerticalScroller = true
         tableScroll.drawsBackground = false
-        emptyLabel.textColor = .tertiaryLabelColor
+        // Secondary rather than tertiary: the text may say where the hits are.
+        emptyLabel.textColor = .secondaryLabelColor
+        emptyLabel.alignment = .center
+        emptyLabel.maximumNumberOfLines = 3
+        emptyLabel.lineBreakMode = .byWordWrapping
+        emptyLabel.preferredMaxLayoutWidth = 300
         emptyLabel.isHidden = true
         return tableScroll
     }
@@ -115,7 +165,10 @@ extension PanelController {
             search.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20),
             search.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20),
 
-            topSeparator.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 12),
+            sections.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 10),
+            sections.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 18),
+
+            topSeparator.topAnchor.constraint(equalTo: sections.bottomAnchor, constant: 8),
             topSeparator.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             topSeparator.trailingAnchor.constraint(equalTo: background.trailingAnchor),
 
@@ -126,6 +179,7 @@ extension PanelController {
 
             emptyLabel.centerXAnchor.constraint(equalTo: tableScroll.centerXAnchor),
             emptyLabel.centerYAnchor.constraint(equalTo: tableScroll.centerYAnchor),
+            emptyLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
 
             sideSeparator.topAnchor.constraint(equalTo: topSeparator.bottomAnchor),
             sideSeparator.bottomAnchor.constraint(equalTo: background.bottomAnchor),

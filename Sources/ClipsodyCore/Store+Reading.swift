@@ -3,8 +3,8 @@ import SQLite3
 
 /// Reading entries and resolving image files.
 extension Store {
-    /// All entries, pinned first. Without a limit pinned entries cannot push others out of view;
-    /// `prune` keeps the total bounded.
+    /// All entries: pinned ones first (latest pin first), then the rest by date. Without a limit pinned
+    /// entries cannot push others out of view; `prune` keeps the total bounded.
     public func items(limit: Int? = nil) -> [ClipItem] {
         var result: [ClipItem] = []
         // Texts are loaded only up to listTextPrefix: opening the panel must not read and decode
@@ -13,7 +13,8 @@ extension Store {
             SELECT id, kind,
                    CASE WHEN kind = 0 AND length(CAST(text AS BLOB)) > ? THEN substr(text, 1, ?) ELSE text END,
                    image_file, app, app_path,
-                   ts, pinned, ocr_text, rich_type, width, height, byte_size, length(CAST(text AS BLOB))
+                   ts, pinned, ocr_text, rich_type, width, height, byte_size, length(CAST(text AS BLOB)),
+                   pinned = 0 OR ts * 1000 > pinned
             FROM items ORDER BY pinned DESC, ts DESC LIMIT ?
             """
         query(sql, bind: { stmt in
@@ -40,7 +41,8 @@ extension Store {
                 app: Self.string(stmt, 4),
                 appPath: Self.string(stmt, 5),
                 date: Date(timeIntervalSince1970: sqlite3_column_double(stmt, 6)),
-                pinned: sqlite3_column_int(stmt, 7) != 0,
+                pinned: sqlite3_column_int64(stmt, 7) != 0,
+                inHistory: sqlite3_column_int(stmt, 14) != 0,
                 recognizedText: Self.string(stmt, 8),
                 hasRichText: Self.string(stmt, 9) != nil
             ))

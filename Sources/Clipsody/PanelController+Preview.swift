@@ -6,6 +6,7 @@ import ClipsodyServices
 extension PanelController {
     func updatePreview() {
         let row = table.selectedRow
+        updateHint(for: items.indices.contains(row) ? items[row] : nil)
         guard items.indices.contains(row) else {
             previewTextScroll.isHidden = true
             previewImage.isHidden = true

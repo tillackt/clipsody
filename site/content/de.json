@@ -54,7 +54,7 @@
         ],
         [
           "d",
-          "📌 IBAN: DE00 0000 0000 …"
+          "IBAN: DE00 0000 0000 …"
         ],
         [
           "b",
@@ -101,7 +101,11 @@
       ],
       "ocrPreview": "Screenshot · Text darauf erkannt<br><br><b><mark>Rechnung</mark> Nr. 2026-1043</b><br>Leistungszeitraum: Oktober 2026<br>Gesamtbetrag: 1.240,00 €<br>Zahlbar bis: 15.11.2026",
       "ocrInfo": "Vorschau · vor 3 Minuten · Bild 2880×1800 · Text erkannt",
-      "pause": "Animation anhalten"
+      "pause": "Animation anhalten",
+      "tabs": [
+        "Historie",
+        "Angepinnt · 3"
+      ]
     },
     "problem": {
       "h2": "Mehrere Einträge kopieren – ohne dass das Erste verloren geht",
@@ -131,7 +135,7 @@
         [
           "📋",
           "Mehrere Einträge kopieren, später einfügen",
-          "Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
+          "Erst Name, Adresse und Kundennummer kopieren, dann einzeln aus der Liste einfügen. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (aus dem Verlauf oder aus „Angepinnt“, je nachdem, was offen ist)."
         ],
         [
           "🔎",
@@ -151,7 +155,7 @@
         [
           "📌",
           "Anpinnen, was du oft brauchst",
-          "IBAN, Adresse, Textbausteine, Befehle: Mit <kbd>⌘P</kbd> bleibt ein Eintrag oben und wird nie automatisch gelöscht."
+          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in eine eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
         ]
       ]
     },
@@ -260,6 +264,10 @@
           "Eintrag wählen"
         ],
         [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Zwischen Verlauf und angepinnten Einträgen wechseln"
+        ],
+        [
           "<kbd>⏎</kbd>",
           "Einfügen, mit Formatierung"
         ],
@@ -269,15 +277,15 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Einen der ersten neun angezeigten Einträge direkt einfügen (angepinnte zuerst, dann die neuesten)"
+          "Einen der ersten neun angezeigten Einträge direkt einfügen (aus dem Verlauf oder aus „Angepinnt“, je nachdem, was offen ist)"
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Anpinnen oder lösen"
+          "Eintrag anpinnen oder lösen. Angepinnte Einträge stehen in „Angepinnt“; kopierst oder fügst du einen erneut ein, steht er auch im Verlauf"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Eintrag löschen"
+          "Eintrag löschen. Ein angepinnter Eintrag im Verlauf verschwindet nur aus dem Verlauf"
         ],
         [
           "<kbd>esc</kbd>",
@@ -376,6 +384,80 @@
           "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Angepinnt: Was du immer wieder brauchst, liegt griffbereit",
+      "sub": "E-Mail-Adresse, Anschrift, Telefonnummer, IBAN: Was du sonst ständig neu eintippst, pinnst du einmal an. Es liegt dann in einer eigenen Liste, getrennt vom Verlauf, und ist mit wenigen Tasten eingefügt.",
+      "tabs": [
+        "Historie",
+        "Angepinnt · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "max.mustermann@example.com"
+        ],
+        [
+          "a",
+          "Max Mustermann ⏎ Musterstraße 12 ⏎ 10115 Berlin"
+        ],
+        [
+          "c",
+          "+49 30 0000000"
+        ],
+        [
+          "d",
+          "IBAN: DE00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Mit freundlichen Grüßen ⏎ Max Mustermann"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Max Mustermann<br>Musterstraße 12<br>10115 Berlin",
+      "info": "Angepinnt · Text · 3 Zeilen",
+      "hint": "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P lösen   ⌘⌫ löschen",
+      "steps": [
+        [
+          "Einmal anpinnen",
+          "Eintrag im Verlauf auswählen und <kbd>⌘P</kbd> drücken. Er wandert in die Liste „Angepinnt“ und bleibt dort, bis du ihn wieder löst."
+        ],
+        [
+          "Mit → hinüber",
+          "<kbd>⌥⌘C</kbd>, dann <kbd>→</kbd>: Schon siehst du nur deine angepinnten Einträge. <kbd>←</kbd> oder <kbd>⇥</kbd> führen zurück zum Verlauf."
+        ],
+        [
+          "In Sekunden eingefügt",
+          "<kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun direkt ein. Oder du tippst ein Suchwort wie „iban“ und drückst <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formulare und Bestellungen",
+          "E-Mail-Adresse, Anschrift, Telefonnummer, Kunden- oder Mitgliedsnummer: Feld für Feld einfügen statt jedes Mal neu tippen."
+        ],
+        [
+          "✉️",
+          "E-Mails und Support",
+          "Signaturen, Antworten auf häufige Fragen, der Link zu deinem Kalender oder die Anfahrtsbeschreibung."
+        ],
+        [
+          "🏦",
+          "Rechnungen und Ämter",
+          "IBAN, USt-IdNr., Steuernummer, Aktenzeichen: ohne Tippfehler, weil du sie nur einmal kopiert hast."
+        ],
+        [
+          "💻",
+          "Entwicklung und IT",
+          "Lange Befehle, Server-Adressen, Testdaten und Pfade, die du jeden Tag brauchst."
+        ]
+      ],
+      "note": "Angepinnte Einträge bleiben: Sie werden nie automatisch gelöscht, zählen nicht zur Obergrenze des Verlaufs und bleiben auch, wenn du den Verlauf löschst. Wie alles in Clipsody liegen sie nur auf deinem Mac. Passwörter gehören trotzdem in einen Passwort-Manager."
     }
   },
   "guide": {
@@ -416,7 +498,7 @@
         "<a href=\"{download}\">Clipsody laden</a> und in den Ordner <strong>Programme</strong> ziehen (<a href=\"./#install\">Installation im Detail</a>).",
         "Kopiere wie gewohnt mit <kbd>⌘C</kbd>. Jeder Eintrag – Text, Bild oder Datei – landet im Verlauf.",
         "Drücke <kbd>⌥⌘C</kbd>: Die Liste aller kopierten Einträge erscheint. Gib ein Suchwort ein, um sie zu filtern; das findet auch Text in Screenshots.",
-        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (angepinnte zuerst, dann die neuesten)."
+        "<kbd>⏎</kbd> fügt den gewählten Eintrag direkt dort ein, wo du warst; <kbd>⌥⏎</kbd> ohne Formatierung. <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> fügen die ersten neun angezeigten Einträge direkt ein (aus dem Verlauf oder aus „Angepinnt“, je nachdem, was offen ist)."
       ],
       "after": "Wie lange der Verlauf hält (1 bis 365 Tage) und wie viele Einträge er fasst (bis 10.000), stellst du selbst ein. Mit <kbd>⌘P</kbd> angepinnte Einträge bleiben dauerhaft. Alles bleibt lokal auf deinem Mac."
     },

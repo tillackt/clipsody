@@ -13,7 +13,7 @@ import Testing
     }
 
     @Test func newDatabaseIsAtLatestSchemaVersion() {
-        #expect(store.schemaVersion == 3)
+        #expect(store.schemaVersion == 4)
     }
 
     @Test func imageFileLookupsUseAnIndex() {
@@ -139,6 +139,96 @@ import Testing
         #expect(store.items().first?.text == "entry 0")
     }
 
+    @Test func latestPinComesFirstAndUnpinningReturnsToDateOrder() throws {
+        for index in 0..<3 {
+            store.addText("entry \(index)", app: nil, appPath: nil, date: Date(timeIntervalSince1970: Double(index)))
+        }
+        let items = store.items()
+        let entry = { (text: String) in try #require(items.first { $0.text == text }) }
+        store.setPinned(true, for: try entry("entry 2"), at: Date(timeIntervalSince1970: 1_000))
+        store.setPinned(true, for: try entry("entry 0"), at: Date(timeIntervalSince1970: 2_000))
+        #expect(store.items().map(\.text) == ["entry 0", "entry 2", "entry 1"])
+        #expect(store.items().map(\.pinned) == [true, true, false])
+
+        store.setPinned(false, for: try entry("entry 0"))
+        #expect(store.items().map(\.text) == ["entry 2", "entry 1", "entry 0"])
+    }
+
+    @Test func pinsAtTheSameMomentKeepTheirOrder() throws {
+        for index in 0..<3 {
+            store.addText("entry \(index)", app: nil, appPath: nil, date: Date(timeIntervalSince1970: Double(index)))
+        }
+        let items = store.items()
+        let entry = { (text: String) in try #require(items.first { $0.text == text }) }
+        let moment = Date(timeIntervalSince1970: 5_000)
+        // Pinned in this order at the same moment; the copy dates would sort them the other way.
+        store.setPinned(true, for: try entry("entry 2"), at: moment)
+        store.setPinned(true, for: try entry("entry 0"), at: moment)
+        store.setPinned(true, for: try entry("entry 1"), at: moment)
+        store.touch(try entry("entry 2"))
+        #expect(store.items().map(\.text) == ["entry 1", "entry 0", "entry 2"])
+        #expect(try #require(store.items().last).inHistory)
+    }
+
+    @Test func pinnedEntryReturnsToHistoryWhenCopiedOrPastedAgain() throws {
+        let start = Date().addingTimeInterval(-60) // in the past, so the paste below happens later
+        store.addText("signature", app: nil, appPath: nil, date: start)
+        store.addText("other", app: nil, appPath: nil, date: start.addingTimeInterval(1))
+        let signature = { try #require(self.store.items().first { $0.text == "signature" }) }
+        store.setPinned(true, for: try signature(), at: start.addingTimeInterval(2))
+        #expect(try signature().pinned)
+        #expect(try !signature().inHistory)
+
+        // Copying it again brings it into the history, and it stays pinned.
+        store.addText("signature", app: nil, appPath: nil, date: start.addingTimeInterval(3))
+        #expect(try signature().inHistory)
+        #expect(try signature().pinned)
+
+        // Clearing the history takes it out of the history too, and keeps the pin.
+        store.clear()
+        #expect(try !signature().inHistory)
+        #expect(try signature().pinned)
+        store.addText("signature", app: nil, appPath: nil, date: start.addingTimeInterval(4))
+        #expect(try signature().inHistory)
+
+        // Removing it from the history keeps the pin.
+        store.removeFromHistory(try signature())
+        #expect(try !signature().inHistory)
+        #expect(try signature().pinned)
+
+        // Pasting it (from the pinned list) brings it back: it was on the clipboard.
+        store.touch(try signature())
+        #expect(try signature().inHistory)
+        #expect(try signature().pinned)
+
+        // Unpinned, it is a normal history entry again.
+        store.setPinned(false, for: try signature())
+        #expect(try signature().inHistory)
+        #expect(try !signature().pinned)
+    }
+
+    @Test func copyAfterTheClockWentBackStillReachesTheHistory() throws {
+        store.addText("signature", app: nil, appPath: nil, date: Date().addingTimeInterval(-60))
+        let signature = { try #require(self.store.items().first { $0.text == "signature" }) }
+        // Pinned while the clock was an hour ahead.
+        store.setPinned(true, for: try signature(), at: Date().addingTimeInterval(3_600))
+        store.addText("signature", app: nil, appPath: nil)
+        #expect(try signature().inHistory)
+        store.removeFromHistory(try signature())
+        store.touch(try signature())
+        #expect(try signature().inHistory)
+    }
+
+    @Test func oldPinValuesAreConvertedOnEveryOpen() throws {
+        store.addText("signature", app: nil, appPath: nil, date: Date().addingTimeInterval(-60))
+        // What version 1.2.0 writes when it pins in a database this version already migrated.
+        try store.execute("UPDATE items SET pinned = 1")
+        let reopened = try Store(directory: directory.url)
+        let signature = try #require(reopened.items().first)
+        #expect(signature.pinned)
+        #expect(!signature.inHistory)
+    }
+
     @Test func listHoldsTheBeginningOfLongTextsAndPasteGetsAll() throws {
         let long = String(repeating: "ä", count: Store.listTextPrefix * 2 + 10) // > 4 bytes per prefix character
         store.addText(long, app: nil, appPath: nil)
@@ -168,12 +258,14 @@ import Testing
 
         let store = try Store(directory: directory.url)
 
-        #expect(store.schemaVersion == 3)
+        #expect(store.schemaVersion == 4)
         let items = store.items(limit: 10)
         let image = try #require(items.first { $0.kind == .image })
         #expect(image.text.isEmpty)
         #expect(image.imageWidth == 946 && image.imageHeight == 858)
         #expect(image.pinned)
+        // Pinned before the pinned list existed: it stays out of the history.
+        #expect(!image.inHistory)
         let files = try #require(items.first { $0.kind == .files })
         #expect(files.filePaths == ["/tmp/a", "/tmp/b"])
         #expect(items.first { $0.kind == .text }?.text == "plain text")
@@ -192,7 +284,7 @@ import Testing
 
         let store = try Store(directory: directory.url)
 
-        #expect(store.schemaVersion == 3)
+        #expect(store.schemaVersion == 4)
         #expect(sqliteValue(path, "SELECT count(*) FROM sqlite_master WHERE name = 'items_image_file'") == "1")
         #expect(store.items(limit: 10).first?.text == "kept")
     }

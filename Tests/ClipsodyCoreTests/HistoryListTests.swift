@@ -11,7 +11,62 @@ import Testing
         ClipItem(id: id, kind: .image, text: "", imageFile: file, date: Date())
     }
 
+    func pinned(_ id: Int64, _ text: String) -> ClipItem {
+        ClipItem(id: id, kind: .text, text: text, date: Date(), pinned: true)
+    }
+
     func ids(_ items: [ClipItem]) -> [Int64] { items.map(\.id) }
+
+    @Test func historyAndPinnedAreSeparateLists() {
+        var list = HistoryList()
+        list.load([pinned(1, "Gruß"), text(2, "a"), pinned(3, "Adresse"), text(4, "b")], query: "")
+        #expect(list.section == .history)
+        #expect(ids(list.items) == [2, 4])
+        #expect(list.count(in: .pinned) == 2)
+        #expect(list.count(in: .history) == 2)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [1, 3])
+        #expect(list.section.other == .history)
+
+        // A reload keeps the section.
+        list.load([pinned(1, "Gruß"), text(2, "a")], query: "")
+        #expect(ids(list.items) == [1])
+    }
+
+    @Test func pinnedEntryCopiedAgainShowsInBothListsByDate() {
+        let now = Date()
+        let copiedAgain = ClipItem(id: 1, kind: .text, text: "Gruß", date: now.addingTimeInterval(-60),
+                                   pinned: true, inHistory: true)
+        let onlyPinned = ClipItem(id: 2, kind: .text, text: "IBAN", date: now, pinned: true)
+        let newer = ClipItem(id: 3, kind: .text, text: "neu", date: now)
+        let older = ClipItem(id: 4, kind: .text, text: "alt", date: now.addingTimeInterval(-120))
+        var list = HistoryList()
+        // Store order: pinned first, then the rest by date.
+        list.load([onlyPinned, copiedAgain, newer, older], query: "")
+        #expect(ids(list.items) == [3, 1, 4])
+        #expect(list.count(in: .history) == 3)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [2, 1])
+    }
+
+    @Test func searchCountsHitsInTheOtherSection() {
+        var list = HistoryList()
+        list.load([pinned(1, "Mit freundlichen Grüßen"), text(2, "Grüße aus Berlin"), text(3, "egal")], query: "grüß")
+        #expect(ids(list.items) == [2])
+        #expect(list.matchCount(in: .pinned) == 1)
+
+        list.filter("freundlich")
+        #expect(list.items.isEmpty)
+        #expect(list.matchCount(in: .pinned) == 1)
+        // The pinned count in the tab title ignores the search.
+        #expect(list.count(in: .pinned) == 1)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [1])
+        #expect(list.matchCount(in: .history) == 0)
+    }
 
     @Test func filterMatchesAllTermsAndEmptyQueryListsEverything() {
         var list = HistoryList()

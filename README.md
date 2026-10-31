@@ -13,11 +13,12 @@ Lean clipboard history for macOS. A native Swift/AppKit app without dependencies
 | ⌥⌘C | Open/close the history |
 | Type | Filter (several words must all match; also searches app names and text in images) |
 | ↑ / ↓, Page ↑/↓ | Select an entry |
+| → / ← or ⇥ | Switch between the history and the pinned entries (→ / ← at the end / start of the search text) |
 | ⏎ or double-click | Paste into the active app, with formatting (bold, links, tables from Word, Outlook, the browser …) |
 | ⌥⏎ | Paste plain text only, without formatting |
-| ⌘1 … ⌘9 | Paste the n-th entry directly |
-| ⌘P | Pin/unpin an entry: it stays on top and is never deleted automatically |
-| ⌘⌫ | Delete an entry |
+| ⌘1 … ⌘9 | Paste the n-th entry of the list shown directly |
+| ⌘P | Pin/unpin an entry: pinned entries move to their own list and are never deleted automatically; copied or pasted again, they also show in the history |
+| ⌘⌫ | Delete an entry (a pinned entry in the history only leaves the history) |
 | Esc | Close |
 
 On the right is a preview (full text or image), below it the app, age and size. Search terms are highlighted in the list and the preview.

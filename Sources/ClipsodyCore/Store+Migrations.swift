@@ -9,6 +9,7 @@ extension Store {
         { try $0.migrateToV1() },
         { try $0.migrateToV2() },
         { try $0.migrateToV3() },
+        { try $0.migrateToV4() },
     ]
 
     var schemaVersion: Int {
@@ -25,6 +26,8 @@ extension Store {
                 try execute("PRAGMA user_version = \(index + 1)")
             }
         }
+        // Version 1.2.0 opens newer databases too and still pins with 1.
+        try normalizePinTimes()
     }
 
     /// Initial schema. Also adopts databases created before versioning, which may lack later columns.
@@ -102,6 +105,21 @@ extension Store {
     /// of them scans the whole table.
     private func migrateToV3() throws {
         try execute("CREATE INDEX IF NOT EXISTS items_image_file ON items(image_file)")
+    }
+
+    /// `pinned` holds the pin time in milliseconds, compared with `ts` to tell whether a pinned entry
+    /// was copied again since. Entries pinned before held 1: they get a pin time just after their last
+    /// copy, which keeps them out of the history and in the order they had. Seconds from test builds
+    /// of the pinned list become milliseconds.
+    private func migrateToV4() throws {
+        try normalizePinTimes()
+    }
+
+    func normalizePinTimes() throws {
+        try execute("""
+            UPDATE items SET pinned = (CAST(ts AS INTEGER) + 1) * 1000 WHERE pinned = 1;
+            UPDATE items SET pinned = pinned * 1000 WHERE pinned > 1 AND pinned < 100000000000;
+            """)
     }
 
     /// Lets the file shrink again after pruning (otherwise it stays at its largest size).

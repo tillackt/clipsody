@@ -18,8 +18,9 @@ extension Store {
         wipeDeletedContent()
     }
 
-    /// Deletes everything except pinned entries.
+    /// Deletes everything except pinned entries, and takes pinned entries out of the history.
     public func clear() {
+        run("UPDATE items SET ts = min(ts, (pinned - 1) / 1000.0) WHERE pinned != 0") { _ in }
         if (deleteWhere("pinned = 0") { _ in } ?? 0) > 0 || hasUnwipedDeletions { wipeDeletedContent() }
     }
 

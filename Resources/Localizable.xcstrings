@@ -3101,6 +3101,52 @@
         }
       }
     },
+    "List": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liste"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liste"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elenco"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lijst"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
+          }
+        }
+      }
+    },
     "Location:": {
       "localizations": {
         "de": {
@@ -3235,6 +3281,144 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nenhum item"
+          }
+        }
+      }
+    },
+    "No matches here – %lld in History (←)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Treffer hier – %lld in der Historie (←)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin resultados aquí – %lld en el historial (←)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun résultat ici – %lld dans l’historique (←)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun risultato qui – %lld nella cronologia (←)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hier geen resultaten – %lld in de geschiedenis (←)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak wyników tutaj – %lld w historii (←)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum resultado aqui – %lld no histórico (←)"
+          }
+        }
+      }
+    },
+    "No matches here – %lld in Pinned (→)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Treffer hier – %lld in Angepinnt (→)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin resultados aquí – %lld en Fijados (→)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun résultat ici – %lld dans Épinglés (→)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun risultato qui – %lld in Fissati (→)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hier geen resultaten – %lld in Vastgezet (→)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak wyników tutaj – %lld w Przypiętych (→)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum resultado aqui – %lld em Fixados (→)"
+          }
+        }
+      }
+    },
+    "Nothing pinned yet. Pin entries in the history with ⌘P.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nichts angepinnt. Pinne Einträge in der Historie mit ⌘P an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay nada fijado. Fija entradas del historial con ⌘P."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien d’épinglé pour l’instant. Épingle des entrées de l’historique avec ⌘P."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora niente di fissato. Fissa le voci della cronologia con ⌘P."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog niets vastgezet. Zet items in de geschiedenis vast met ⌘P."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nic jeszcze nie przypięto. Przypnij wpisy z historii za pomocą ⌘P."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada fixado ainda. Fixe itens do histórico com ⌘P."
           }
         }
       }
@@ -3787,6 +3971,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Os itens fixados são mantidos."
+          }
+        }
+      }
+    },
+    "Pinned · %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angepinnt · %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fijados · %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Épinglés · %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fissati · %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vastgezet · %lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przypięte · %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixados · %lld"
           }
         }
       }
@@ -4707,6 +4937,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abre o Clipsody quando você inicia sessão no Mac. O conteúdo copiado só é adicionado ao histórico enquanto o app está aberto."
+          }
+        }
+      }
+    },
+    "Switch with → and ← or ⇥": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wechseln mit → und ← oder ⇥"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia con → y ← o ⇥"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changer avec → et ← ou ⇥"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia con → e ← o ⇥"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wisselen met → en ← of ⇥"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przełączaj za pomocą → i ← lub ⇥"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alterne com → e ← ou ⇥"
           }
         }
       }
@@ -5857,6 +6133,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "⏎ colar   ⌥⏎ sem formatação   ⌘P fixar   ⌘⌫ apagar"
+          }
+        }
+      }
+    },
+    "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P lösen   ⌘⌫ löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ pegar   ⌥⏎ sin formato   ⌘P dejar de fijar   ⌘⌫ eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ supprimer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ incolla   ⌥⏎ senza formattazione   ⌘P sblocca   ⌘⌫ elimina"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ plakken   ⌥⏎ zonder opmaak   ⌘P losmaken   ⌘⌫ verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ apagar"
+          }
+        }
+      }
+    },
+    "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ remove from history": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ einfügen   ⌥⏎ ohne Formatierung   ⌘P lösen   ⌘⌫ aus der Historie nehmen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ pegar   ⌥⏎ sin formato   ⌘P dejar de fijar   ⌘⌫ quitar del historial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ retirer de l’historique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ incolla   ⌥⏎ senza formattazione   ⌘P sblocca   ⌘⌫ togli dalla cronologia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ plakken   ⌥⏎ zonder opmaak   ⌘P losmaken   ⌘⌫ uit geschiedenis halen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń z historii"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ colar   ⌥⏎ sem formatação   ⌘P desafixar   ⌘⌫ tirar do histórico"
           }
         }
       }

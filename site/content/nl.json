@@ -54,7 +54,7 @@
         ],
         [
           "d",
-          "📌 IBAN: NL00 0000 0000 …"
+          "IBAN: NL00 0000 0000 …"
         ],
         [
           "b",
@@ -101,7 +101,11 @@
       ],
       "ocrPreview": "Schermafbeelding · tekst herkend<br><br><b><mark>Factuur</mark> nr. 2026-1043</b><br>Periode: oktober 2026<br>Totaal: € 1.240,00<br>Vervaldatum: 15 nov. 2026",
       "ocrInfo": "Voorvertoning · 3 minuten geleden · afbeelding 2880×1800 · tekst herkend",
-      "pause": "Animatie pauzeren"
+      "pause": "Animatie pauzeren",
+      "tabs": [
+        "Geschiedenis",
+        "Vastgezet · 3"
+      ]
     },
     "problem": {
       "h2": "Meerdere items kopiëren – zonder het eerste kwijt te raken",
@@ -131,7 +135,7 @@
         [
           "📋",
           "Meerdere items kopiëren, plakken wanneer je ze nodig hebt",
-          "Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (eerst vastgezette, dan de nieuwste)."
+          "Kopieer eerst naam, adres en bestelnummer en plak ze daarna een voor een uit de lijst. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (uit de geschiedenis of uit Vastgezet, afhankelijk van welke lijst open is)."
         ],
         [
           "🔎",
@@ -151,7 +155,7 @@
         [
           "📌",
           "Zet vast wat je vaak gebruikt",
-          "IBAN, adres, tekstfragmenten, commando's: met <kbd>⌘P</kbd> blijft een item bovenaan staan en wordt het nooit automatisch verwijderd."
+          "IBAN, adres, tekstfragmenten, commando's: <kbd>⌘P</kbd> zet een item in een eigen lijst ‘Vastgezet’, één <kbd>→</kbd> naast de geschiedenis. <a href=\"#pinned\">Zo werkt het</a>"
         ]
       ]
     },
@@ -260,6 +264,10 @@
           "Item kiezen"
         ],
         [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Wisselen tussen de geschiedenis en de vastgezette items"
+        ],
+        [
           "<kbd>⏎</kbd>",
           "Plakken met opmaak"
         ],
@@ -269,15 +277,15 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Een van de eerste negen getoonde items direct plakken (eerst vastgezette, dan de nieuwste)"
+          "Een van de eerste negen getoonde items direct plakken (uit de geschiedenis of uit Vastgezet, afhankelijk van welke lijst open is)"
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Vastzetten of losmaken"
+          "Item vastzetten of losmaken. Vastgezette items staan in ‘Vastgezet’; kopieer of plak je er een opnieuw, dan staat het ook in de geschiedenis"
         ],
         [
           "<kbd>⌘⌫</kbd>",
-          "Item verwijderen"
+          "Item verwijderen. Een vastgezet item in de geschiedenis verdwijnt alleen uit de geschiedenis"
         ],
         [
           "<kbd>esc</kbd>",
@@ -376,6 +384,80 @@
           "<strong>Instellingen → Info → Verwijder Clipsody…</strong> wist de geschiedenis, afbeeldingen en instellingen, verwijdert het inlogonderdeel en de toestemming voor Toegankelijkheid en verplaatst de app naar de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens op je Mac staan."
         ]
       ]
+    },
+    "pinned": {
+      "h2": "Vastgezet: wat je steeds weer nodig hebt, altijd binnen handbereik",
+      "sub": "E-mailadres, adres, telefoonnummer, IBAN: wat je steeds opnieuw typt, zet je één keer vast. Het komt in een eigen lijst, los van de geschiedenis, en is met een paar toetsen geplakt.",
+      "tabs": [
+        "Geschiedenis",
+        "Vastgezet · 6"
+      ],
+      "items": [
+        [
+          "b",
+          "sanne.devries@example.com"
+        ],
+        [
+          "a",
+          "Sanne de Vries ⏎ Voorbeeldstraat 12 ⏎ 1011 AB Amsterdam"
+        ],
+        [
+          "c",
+          "+31 20 000 0000"
+        ],
+        [
+          "d",
+          "IBAN: NL00 0000 0000 …"
+        ],
+        [
+          "e",
+          "Met vriendelijke groet ⏎ Sanne de Vries"
+        ],
+        [
+          "b",
+          "ssh deploy@staging.example.com"
+        ]
+      ],
+      "preview": "Sanne de Vries<br>Voorbeeldstraat 12<br>1011 AB Amsterdam",
+      "info": "Vastgezet · Tekst · 3 regels",
+      "hint": "⏎ plakken   ⌥⏎ zonder opmaak   ⌘P losmaken   ⌘⌫ verwijderen",
+      "steps": [
+        [
+          "Eén keer vastzetten",
+          "Kies een item in de geschiedenis en druk op <kbd>⌘P</kbd>. Het gaat naar de lijst ‘Vastgezet’ en blijft daar tot je het losmaakt."
+        ],
+        [
+          "Eén → verderop",
+          "<kbd>⌥⌘C</kbd>, dan <kbd>→</kbd>: je ziet alleen nog je vastgezette items. <kbd>←</kbd> of <kbd>⇥</kbd> brengen je terug naar de geschiedenis."
+        ],
+        [
+          "In seconden geplakt",
+          "<kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen direct. Of typ een woord als ‘iban’ en druk op <kbd>⏎</kbd>."
+        ]
+      ],
+      "cards": [
+        [
+          "📝",
+          "Formulieren en bestellingen",
+          "E-mail, adres, telefoonnummer, klant- of lidnummer: veld voor veld plakken in plaats van alles steeds opnieuw te typen."
+        ],
+        [
+          "✉️",
+          "E-mail en support",
+          "Handtekeningen, antwoorden op veelgestelde vragen, de link naar je agenda of de routebeschrijving."
+        ],
+        [
+          "🏦",
+          "Facturen en administratie",
+          "IBAN, btw-nummer, KvK-nummer, dossiernummers: zonder typfouten, omdat je ze maar één keer hebt gekopieerd."
+        ],
+        [
+          "💻",
+          "Ontwikkeling en IT",
+          "Lange commando’s, serveradressen, testdata en paden die je elke dag nodig hebt."
+        ]
+      ],
+      "note": "Vastgezette items blijven: ze worden nooit automatisch verwijderd, tellen niet mee voor de limiet van de geschiedenis en blijven ook als je de geschiedenis wist. Zoals alles in Clipsody blijven ze op je Mac. Wachtwoorden horen nog steeds thuis in een wachtwoordbeheerder."
     }
   },
   "guide": {
@@ -416,7 +498,7 @@
         "<a href=\"{download}\">Download Clipsody</a> en sleep het naar <strong>Apps</strong> (<a href=\"./#install\">installatie in detail</a>).",
         "Kopieer zoals altijd met <kbd>⌘C</kbd>. Elk item – tekst, afbeelding of bestand – komt in de geschiedenis.",
         "Druk op <kbd>⌥⌘C</kbd>: de lijst met alles wat je hebt gekopieerd verschijnt. Typ een zoekwoord om te filteren; zo vind je ook tekst in schermafbeeldingen.",
-        "<kbd>⏎</kbd> plakt het geselecteerde item precies waar je was; <kbd>⌥⏎</kbd> plakt het zonder opmaak. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (eerst vastgezette, dan de nieuwste)."
+        "<kbd>⏎</kbd> plakt het geselecteerde item precies waar je was; <kbd>⌥⏎</kbd> plakt het zonder opmaak. <kbd>⌘1</kbd> tot <kbd>⌘9</kbd> plakken de eerste negen getoonde items direct (uit de geschiedenis of uit Vastgezet, afhankelijk van welke lijst open is)."
       ],
       "after": "Jij bepaalt hoe lang de geschiedenis meegaat (1 tot 365 dagen) en hoeveel items erin passen (tot 10.000). Items die je met <kbd>⌘P</kbd> vastzet, blijven voorgoed. Alles blijft op je Mac."
     },

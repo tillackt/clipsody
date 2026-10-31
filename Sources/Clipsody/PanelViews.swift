@@ -25,6 +25,7 @@ final class EmphasizedRowView: NSTableRowView {
 final class ClipRowView: NSTableCellView {
     let icon = NSImageView()
     let title = NSTextField(labelWithString: "")
+    /// Marks a pinned entry that shows up in the history because it was copied again.
     let pin = NSImageView(image: NSImage(systemSymbolName: "pin.fill", accessibilityDescription: String(localized: "Pinned"))!)
     let shortcut = NSTextField(labelWithString: "")
     private var plainTitle = ""
