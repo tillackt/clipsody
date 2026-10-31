@@ -58,11 +58,12 @@ extension Store {
         }
     }
 
-    /// Returns false if the change could not be stored.
+    /// Stores the pin time (seconds since 1970) in `pinned`, so the pinned list shows the latest pin
+    /// first; entries pinned before that hold 1 and follow. Returns false if the change could not be stored.
     @discardableResult
-    public func setPinned(_ pinned: Bool, for item: ClipItem) -> Bool {
+    public func setPinned(_ pinned: Bool, for item: ClipItem, at date: Date = Date()) -> Bool {
         run("UPDATE items SET pinned = ? WHERE id = ?") { stmt in
-            sqlite3_bind_int(stmt, 1, pinned ? 1 : 0)
+            sqlite3_bind_int64(stmt, 1, pinned ? max(1, Int64(date.timeIntervalSince1970)) : 0)
             sqlite3_bind_int64(stmt, 2, item.id)
         }
     }

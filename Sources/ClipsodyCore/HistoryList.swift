@@ -1,11 +1,21 @@
 import Foundation
 
-/// The entries the panel lists: everything loaded, and the part matching the current search.
+/// The entries the panel lists: everything loaded, and the part of the current section matching the search.
 public struct HistoryList {
+    /// The panel shows the history and the pinned entries as two separate lists.
+    public enum Section: Sendable {
+        case history, pinned
+
+        public var other: Section { self == .history ? .pinned : .history }
+
+        func contains(_ item: ClipItem) -> Bool { item.pinned == (self == .pinned) }
+    }
+
     public private(set) var allItems: [ClipItem] = []
-    /// The entries matching `query`, in list order.
+    /// The entries of `section` matching `query`, in list order.
     public private(set) var items: [ClipItem] = []
     public private(set) var query = SearchQuery("")
+    public private(set) var section = Section.history
     /// Folded search text per item id, built on the first search after a load instead of on every
     /// keystroke; nil until then, since most openings never search.
     private(set) var searchIndex: [Int64: String]?
@@ -24,13 +34,29 @@ public struct HistoryList {
         applyQuery()
     }
 
+    public mutating func show(_ section: Section) {
+        self.section = section
+        applyQuery()
+    }
+
+    /// All entries in `section`, whatever the search.
+    public func count(in section: Section) -> Int {
+        allItems.reduce(0) { $0 + (section.contains($1) ? 1 : 0) }
+    }
+
+    /// Entries in `section` matching the search, e.g. to point to hits in the section not shown.
+    public mutating func matchCount(in section: Section) -> Int {
+        matching(in: section).count
+    }
+
     private mutating func applyQuery() {
-        if query.isEmpty {
-            items = allItems
-        } else {
-            let index = searchIndex ?? buildSearchIndex()
-            items = allItems.filter { query.matches(foldedText: index[$0.id] ?? "") }
-        }
+        items = matching(in: section)
+    }
+
+    private mutating func matching(in section: Section) -> [ClipItem] {
+        if query.isEmpty { return allItems.filter(section.contains) }
+        let index = searchIndex ?? buildSearchIndex()
+        return allItems.filter { section.contains($0) && query.matches(foldedText: index[$0.id] ?? "") }
     }
 
     /// The row of the entry with `id`, or the first row if it is no longer listed.

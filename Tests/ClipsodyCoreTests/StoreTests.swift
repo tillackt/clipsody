@@ -139,6 +139,21 @@ import Testing
         #expect(store.items().first?.text == "entry 0")
     }
 
+    @Test func latestPinComesFirstAndUnpinningReturnsToDateOrder() throws {
+        for index in 0..<3 {
+            store.addText("entry \(index)", app: nil, appPath: nil, date: Date(timeIntervalSince1970: Double(index)))
+        }
+        let items = store.items()
+        let entry = { (text: String) in try #require(items.first { $0.text == text }) }
+        store.setPinned(true, for: try entry("entry 2"), at: Date(timeIntervalSince1970: 1_000))
+        store.setPinned(true, for: try entry("entry 0"), at: Date(timeIntervalSince1970: 2_000))
+        #expect(store.items().map(\.text) == ["entry 0", "entry 2", "entry 1"])
+        #expect(store.items().map(\.pinned) == [true, true, false])
+
+        store.setPinned(false, for: try entry("entry 0"))
+        #expect(store.items().map(\.text) == ["entry 2", "entry 1", "entry 0"])
+    }
+
     @Test func listHoldsTheBeginningOfLongTextsAndPasteGetsAll() throws {
         let long = String(repeating: "ä", count: Store.listTextPrefix * 2 + 10) // > 4 bytes per prefix character
         store.addText(long, app: nil, appPath: nil)

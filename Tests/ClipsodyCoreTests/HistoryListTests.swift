@@ -11,7 +11,45 @@ import Testing
         ClipItem(id: id, kind: .image, text: "", imageFile: file, date: Date())
     }
 
+    func pinned(_ id: Int64, _ text: String) -> ClipItem {
+        ClipItem(id: id, kind: .text, text: text, date: Date(), pinned: true)
+    }
+
     func ids(_ items: [ClipItem]) -> [Int64] { items.map(\.id) }
+
+    @Test func historyAndPinnedAreSeparateLists() {
+        var list = HistoryList()
+        list.load([pinned(1, "Gruß"), text(2, "a"), pinned(3, "Adresse"), text(4, "b")], query: "")
+        #expect(list.section == .history)
+        #expect(ids(list.items) == [2, 4])
+        #expect(list.count(in: .pinned) == 2)
+        #expect(list.count(in: .history) == 2)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [1, 3])
+        #expect(list.section.other == .history)
+
+        // A reload keeps the section.
+        list.load([pinned(1, "Gruß"), text(2, "a")], query: "")
+        #expect(ids(list.items) == [1])
+    }
+
+    @Test func searchCountsHitsInTheOtherSection() {
+        var list = HistoryList()
+        list.load([pinned(1, "Mit freundlichen Grüßen"), text(2, "Grüße aus Berlin"), text(3, "egal")], query: "grüß")
+        #expect(ids(list.items) == [2])
+        #expect(list.matchCount(in: .pinned) == 1)
+
+        list.filter("freundlich")
+        #expect(list.items.isEmpty)
+        #expect(list.matchCount(in: .pinned) == 1)
+        // The pinned count in the tab title ignores the search.
+        #expect(list.count(in: .pinned) == 1)
+
+        list.show(.pinned)
+        #expect(ids(list.items) == [1])
+        #expect(list.matchCount(in: .history) == 0)
+    }
 
     @Test func filterMatchesAllTermsAndEmptyQueryListsEverything() {
         var list = HistoryList()

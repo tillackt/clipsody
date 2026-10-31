@@ -17,6 +17,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     let panel: KeyPanel
     let search = NSTextField()
+    /// Switches between the history and the pinned entries (→ / ← at the edge of the search text, or ⇥).
+    let sections = NSSegmentedControl()
     let table = NSTableView()
     let previewTextScroll = NSTextView.scrollableTextView()
     // scrollableTextView() always creates an NSTextView as its document view.
@@ -24,7 +26,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     var previewText: NSTextView { previewTextScroll.documentView as! NSTextView }
     let previewImage = NSImageView()
     let infoLabel = NSTextField(labelWithString: "")
-    let hintLabel = NSTextField(labelWithString: String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P pin   ⌘⌫ delete"))
+    let hintLabel = NSTextField(labelWithString: "")
     let emptyLabel = NSTextField(labelWithString: String(localized: "No entries"))
 
     var list = HistoryList()
@@ -147,16 +149,45 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         onPaste(item, targetApp, withFormatting)
     }
 
+    /// Moves the selected entry to the other list; the selection stays in this one, on its neighbour.
     private func togglePinSelected() {
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
+        let neighbour = list.neighbour(ofRow: row)
         guard store.setPinned(!item.pinned, for: item) else {
             NSSound.beep()
             return
         }
         reloadItems()
-        showItems(selecting: item.id)
+        showItems(selecting: neighbour?.id)
+    }
+
+    func show(_ section: HistoryList.Section) {
+        guard section != list.section else { return }
+        list.show(section)
+        showItems()
+    }
+
+    @objc func sectionClicked() {
+        show(sections.selectedSegment == 1 ? .pinned : .history)
+    }
+
+    /// → at the end of the search text opens the pinned entries, ← at its start the history;
+    /// anywhere else the arrows move the cursor as usual.
+    private func switchSection(by key: Selector, in textView: NSTextView) -> Bool {
+        let cursor = textView.selectedRange()
+        guard cursor.length == 0 else { return false }
+        if key == #selector(NSResponder.moveRight(_:)), cursor.location == textView.string.utf16.count,
+           list.section == .history {
+            show(.pinned)
+            return true
+        }
+        if key == #selector(NSResponder.moveLeft(_:)), cursor.location == 0, list.section == .pinned {
+            show(.history)
+            return true
+        }
+        return false
     }
 
     private func deleteSelected() {
@@ -217,9 +248,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     // MARK: - Filtering
 
-    private func showItems(selecting id: Int64? = nil) {
+    func showItems(selecting id: Int64? = nil) {
         table.reloadData()
-        emptyLabel.isHidden = !items.isEmpty
+        updateSectionLabels()
         select(list.row(selecting: id))
     }
 
@@ -230,6 +261,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     func control(_ control: NSControl, textView: NSTextView, doCommandBy selector: Selector) -> Bool {
         switch selector {
+        case #selector(NSResponder.moveLeft(_:)), #selector(NSResponder.moveRight(_:)):
+            return switchSection(by: selector, in: textView)
+        case #selector(NSResponder.insertTab(_:)), #selector(NSResponder.insertBacktab(_:)): show(list.section.other)
         case #selector(NSResponder.moveUp(_:)): move(by: -1)
         case #selector(NSResponder.moveDown(_:)): move(by: 1)
         case #selector(NSResponder.scrollPageUp(_:)), #selector(NSResponder.pageUp(_:)): move(by: -10)

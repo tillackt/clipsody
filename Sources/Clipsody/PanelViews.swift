@@ -25,7 +25,6 @@ final class EmphasizedRowView: NSTableRowView {
 final class ClipRowView: NSTableCellView {
     let icon = NSImageView()
     let title = NSTextField(labelWithString: "")
-    let pin = NSImageView(image: NSImage(systemSymbolName: "pin.fill", accessibilityDescription: String(localized: "Pinned"))!)
     let shortcut = NSTextField(labelWithString: "")
     private var plainTitle = ""
     private var highlights: [NSRange] = []
@@ -63,11 +62,8 @@ final class ClipRowView: NSTableCellView {
         shortcut.font = .systemFont(ofSize: 12)
         shortcut.textColor = .secondaryLabelColor
         shortcut.setContentHuggingPriority(.required, for: .horizontal)
-        pin.contentTintColor = .secondaryLabelColor
-        pin.symbolConfiguration = .init(pointSize: 11, weight: .regular)
-        pin.setContentHuggingPriority(.required, for: .horizontal)
 
-        for view in [icon, title, pin, shortcut] {
+        for view in [icon, title, shortcut] {
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
         }
@@ -78,9 +74,7 @@ final class ClipRowView: NSTableCellView {
             icon.heightAnchor.constraint(equalToConstant: 22),
             title.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 8),
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
-            pin.leadingAnchor.constraint(greaterThanOrEqualTo: title.trailingAnchor, constant: 6),
-            pin.centerYAnchor.constraint(equalTo: centerYAnchor),
-            shortcut.leadingAnchor.constraint(equalTo: pin.trailingAnchor, constant: 6),
+            shortcut.leadingAnchor.constraint(greaterThanOrEqualTo: title.trailingAnchor, constant: 6),
             shortcut.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             shortcut.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
@@ -93,7 +87,6 @@ final class ClipRowView: NSTableCellView {
         didSet {
             let emphasized = backgroundStyle == .emphasized
             shortcut.textColor = emphasized ? .alternateSelectedControlTextColor : .secondaryLabelColor
-            pin.contentTintColor = emphasized ? .alternateSelectedControlTextColor : .secondaryLabelColor
             renderTitle()
         }
     }

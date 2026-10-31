@@ -53,8 +53,11 @@ import Testing
         }
     }
 
-    /// Texts with a number that is not a count, so they need no plural forms.
-    static let numbersWithoutPlural: Set = ["Image %lld×%lld"]
+    /// Texts with a number that is not a count of a noun in the text, so they need no plural forms.
+    static let numbersWithoutPlural: Set = [
+        "Image %lld×%lld", "Pinned · %lld",
+        "No matches here – %lld in History (←)", "No matches here – %lld in Pinned (→)",
+    ]
 
     /// A count text needs plural forms in every language, English included ("1 files" otherwise),
     /// with at least "one" and "other", and Polish with all four of its forms.

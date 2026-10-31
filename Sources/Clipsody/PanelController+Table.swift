@@ -22,7 +22,6 @@ extension PanelController {
         let text = ItemPresentation.title(for: item, query: query)
         cell.setTitle(text, highlights: query.ranges(in: text))
         cell.icon.image = icon(for: item)
-        cell.pin.isHidden = !item.pinned
         cell.shortcut.stringValue = row < 9 ? "⌘\(row + 1)" : ""
         return cell
     }
