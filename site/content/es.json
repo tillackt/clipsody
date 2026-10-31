@@ -14,22 +14,52 @@
     "ogDescription": "Todo lo que copias queda a mano: textos, imágenes y archivos, para buscarlos y volver a pegarlos con el teclado. Gratis, open source y 100 % local.",
     "ogImageAlt": "Clipsody: historial del portapapeles para Mac",
     "appDescription": "Gestor de portapapeles e historial del portapapeles para Mac: guarda cada texto, imagen y archivo que copias, para buscarlo y volver a pegarlo con el teclado.",
-    "nav": {"features": "Funciones", "compare": "Comparativa", "privacy": "Privacidad", "install": "Instalación", "faq": "Preguntas", "support": "Soporte"},
+    "nav": {
+      "features": "Funciones",
+      "compare": "Comparativa",
+      "privacy": "Privacidad",
+      "install": "Instalación",
+      "faq": "Preguntas",
+      "support": "Soporte"
+    },
     "h1": "El gestor de portapapeles para Mac que lo recuerda todo",
     "lead": "Tu Mac solo guarda lo último que copiaste: copias algo nuevo y lo anterior desaparece. Clipsody lo guarda todo: textos, imágenes y archivos. Con <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> recuperas cualquier elemento y <kbd>⏎</kbd> lo pega justo donde estabas escribiendo.",
     "download": "Descargar gratis",
     "source": "Código fuente en GitHub",
     "meta": "macOS 13 Ventura o posterior · Apple Silicon e Intel · Interfaz en 8 idiomas",
-    "badges": ["Gratis", "Open source", "Sin cuenta ni rastreo", "Todo se queda en tu Mac"],
+    "badges": [
+      "Gratis",
+      "Open source",
+      "Sin cuenta ni rastreo",
+      "Todo se queda en tu Mac"
+    ],
     "hero": {
       "placeholder": "Buscar…",
       "items": [
-        ["b", "Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!"],
-        ["a", "Imagen 4032×3024 (2,1 MB)"],
-        ["c", "Presupuesto_García.pdf"],
-        ["e", "https://example.com/reuniones"],
-        ["d", "📌 IBAN: ES00 0000 0000 …"],
-        ["b", "git push origin main"]
+        [
+          "b",
+          "Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!"
+        ],
+        [
+          "a",
+          "Imagen 4032×3024 (2,1 MB)"
+        ],
+        [
+          "c",
+          "Presupuesto_García.pdf"
+        ],
+        [
+          "e",
+          "https://example.com/reuniones"
+        ],
+        [
+          "d",
+          "IBAN: ES00 0000 0000 …"
+        ],
+        [
+          "b",
+          "git push origin main"
+        ]
       ],
       "textPreview": "Revisa la factura antes del viernes, por favor.<br><br>¡Gracias!<br>Anna",
       "textInfo": "Texto · hace 2 minutos · de Mail",
@@ -48,15 +78,34 @@
       "caption": "El historial del portapapeles de Clipsody: todo lo que has copiado, una imagen, un archivo y la búsqueda de un texto en una captura de pantalla.",
       "ocrSearch": "factura",
       "ocrItems": [
-        ["a", "Imagen 2880×1800 (612 KB) – «…<mark>Factura</mark> n.º 2026-1043…»"],
-        ["b", "Revisa la <mark>factura</mark> antes del viernes, por favor ⏎ ¡Gracias!"],
-        ["c", "<mark>Factura</mark>_octubre.pdf"],
-        ["d", "IBAN para la <mark>factura</mark>: ES00 0000 …"],
-        ["e", "https://example.com/<mark>factura</mark>/1043"]
+        [
+          "a",
+          "Imagen 2880×1800 (612 KB) – «…<mark>Factura</mark> n.º 2026-1043…»"
+        ],
+        [
+          "b",
+          "Revisa la <mark>factura</mark> antes del viernes, por favor ⏎ ¡Gracias!"
+        ],
+        [
+          "c",
+          "<mark>Factura</mark>_octubre.pdf"
+        ],
+        [
+          "d",
+          "IBAN para la <mark>factura</mark>: ES00 0000 …"
+        ],
+        [
+          "e",
+          "https://example.com/<mark>factura</mark>/1043"
+        ]
       ],
       "ocrPreview": "Captura de pantalla · texto reconocido<br><br><b><mark>Factura</mark> n.º 2026-1043</b><br>Periodo: octubre de 2026<br>Total: 1.240,00 €<br>Vencimiento: 15/11/2026",
       "ocrInfo": "Vista Previa · hace 3 minutos · imagen 2880×1800 · texto reconocido",
-      "pause": "Pausar la animación"
+      "pause": "Pausar la animación",
+      "tabs": [
+        "Historial",
+        "Fijados · 3"
+      ]
     },
     "problem": {
       "h2": "Copia varios elementos sin perder el primero",
@@ -78,12 +127,36 @@
       "h2": "Lo que hace Clipsody",
       "sub": "Sin lanzador, sin flujos de trabajo, sin cien ajustes: un gestor de portapapeles que simplemente recuerda lo que copias.",
       "cards": [
-        ["⌨️", "Un atajo, en todas partes", "<kbd>⌥⌘C</kbd> abre el historial del portapapeles en cualquier app. Elige un elemento con las flechas o escribe una palabra, pulsa <kbd>⏎</kbd> y se pega donde estabas."],
-        ["📋", "Copia varios elementos y pégalos cuando los necesites", "Copia primero el nombre, la dirección y el número de pedido, y luego pégalos uno a uno desde la lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros elementos mostrados (primero los fijados, luego los más recientes)."],
-        ["🔎", "Encuentra también texto en imágenes", "Las capturas de pantalla e imágenes que copias se leen en tu Mac. Busca una palabra que aparezca en la imagen y ahí la tienes. <a href=\"#text-in-images\">Cómo funciona</a>"],
-        ["🖼️", "Textos, imágenes, archivos", "Las imágenes se guardan sin pérdida y los archivos copiados se vuelven a pegar como archivos, no como una ruta."],
-        ["✍️", "Con o sin formato", "<kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador. <kbd>⌥⏎</kbd> pega solo texto sin formato."],
-        ["📌", "Fija lo que usas a menudo", "IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> mantiene un elemento arriba del todo y nunca se elimina automáticamente."]
+        [
+          "⌨️",
+          "Un atajo, en todas partes",
+          "<kbd>⌥⌘C</kbd> abre el historial del portapapeles en cualquier app. Elige un elemento con las flechas o escribe una palabra, pulsa <kbd>⏎</kbd> y se pega donde estabas."
+        ],
+        [
+          "📋",
+          "Copia varios elementos y pégalos cuando los necesites",
+          "Copia primero el nombre, la dirección y el número de pedido, y luego pégalos uno a uno desde la lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros elementos mostrados (del historial o de los fijados, según la lista abierta)."
+        ],
+        [
+          "🔎",
+          "Encuentra también texto en imágenes",
+          "Las capturas de pantalla e imágenes que copias se leen en tu Mac. Busca una palabra que aparezca en la imagen y ahí la tienes. <a href=\"#text-in-images\">Cómo funciona</a>"
+        ],
+        [
+          "🖼️",
+          "Textos, imágenes, archivos",
+          "Las imágenes se guardan sin pérdida y los archivos copiados se vuelven a pegar como archivos, no como una ruta."
+        ],
+        [
+          "✍️",
+          "Con o sin formato",
+          "<kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador. <kbd>⌥⏎</kbd> pega solo texto sin formato."
+        ],
+        [
+          "📌",
+          "Fija lo que usas a menudo",
+          "IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a su propia lista «Fijados», a un <kbd>→</kbd> del historial. Los elementos fijados nunca se eliminan automáticamente."
+        ]
       ]
     },
     "ocr": {
@@ -95,9 +168,18 @@
       "result": "«Código de error <mark>0x8007</mark>: no se puede…»",
       "recognised": "Texto reconocido",
       "steps": [
-        ["Una imagen en el portapapeles", "<kbd>⇧⌃⌘4</kbd> captura una parte de la pantalla y la copia directamente al portapapeles. O copia una imagen desde cualquier app."],
-        ["Clipsody lee el texto", "En segundo plano y en tu Mac: no se sube nada. Reconoce texto en inglés y en alemán."],
-        ["La encuentras días después", "Pulsa <kbd>⌥⌘C</kbd>, escribe «0x8007» y ahí está la captura. <kbd>⏎</kbd> la pega como imagen, por ejemplo en un ticket de soporte."]
+        [
+          "Una imagen en el portapapeles",
+          "<kbd>⇧⌃⌘4</kbd> captura una parte de la pantalla y la copia directamente al portapapeles. O copia una imagen desde cualquier app."
+        ],
+        [
+          "Clipsody lee el texto",
+          "En segundo plano y en tu Mac: no se sube nada. Reconoce texto en inglés y en alemán."
+        ],
+        [
+          "La encuentras días después",
+          "Pulsa <kbd>⌥⌘C</kbd>, escribe «0x8007» y ahí está la captura. <kbd>⏎</kbd> la pega como imagen, por ejemplo en un ticket de soporte."
+        ]
       ],
       "note": "<strong>Conviene saberlo:</strong> las capturas de pantalla que macOS solo guarda como archivo en el escritorio nunca llegan al portapapeles. Para ello, añade <kbd>⌃</kbd> al atajo (<kbd>⇧⌃⌘3</kbd> para toda la pantalla, <kbd>⇧⌃⌘4</kbd> para una zona)."
     },
@@ -105,22 +187,63 @@
       "h2": "Para qué sirve un historial del portapapeles",
       "sub": "Para cualquier momento en que copies más de una cosa.",
       "cards": [
-        ["Rellenar formularios", "Recoge el nombre, la dirección y el número de pedido de un correo y pégalos en el formulario uno a uno, sin cambiar de ventana diez veces."],
-        ["Escribir e investigar", "Copia citas, enlaces y párrafos de varias fuentes y júntalos más tarde."],
-        ["Programar", "Encuentra comandos, rutas y fragmentos de código que copiaste hace horas. Fija los comandos que usas constantemente."],
-        ["Soporte y oficina", "Respuestas predefinidas, números de cuenta y firmas fijados y siempre a mano: pegados en segundos."]
+        [
+          "Rellenar formularios",
+          "Recoge el nombre, la dirección y el número de pedido de un correo y pégalos en el formulario uno a uno, sin cambiar de ventana diez veces."
+        ],
+        [
+          "Escribir e investigar",
+          "Copia citas, enlaces y párrafos de varias fuentes y júntalos más tarde."
+        ],
+        [
+          "Programar",
+          "Encuentra comandos, rutas y fragmentos de código que copiaste hace horas. Fija los comandos que usas constantemente."
+        ],
+        [
+          "Soporte y oficina",
+          "Respuestas predefinidas, números de cuenta y firmas fijados y siempre a mano: pegados en segundos."
+        ]
       ]
     },
     "compare": {
       "h2": "¿El Mac no tiene ya un historial del portapapeles?",
       "sub": "Desde macOS 26 Tahoe, Spotlight puede mostrar lo copiado recientemente. Sirve para salir del paso; Clipsody está pensado para todo lo que deba durar más de una semana.",
-      "head": ["Clipsody", "Historial de Spotlight", "Mac sin más"],
+      "head": [
+        "Clipsody",
+        "Historial de Spotlight",
+        "Mac sin más"
+      ],
       "rows": [
-        ["Elementos", "todos, hasta 10.000", "los recientes", "solo el último"],
-        ["Se guardan", "de 1 a 365 días, a tu elección", "7 días como máximo", "hasta el siguiente <kbd>⌘C</kbd>"],
-        ["Pegar", "<kbd>⏎</kbd> pega directamente en la app anterior", "copiar y luego <kbd>⌘V</kbd> tú mismo", "<kbd>⌘V</kbd>"],
-        ["Fijar", "sí, <kbd>⌘P</kbd>", "no", "no"],
-        ["Funciona en", "macOS 13 Ventura y posterior", "macOS 26 Tahoe y posterior, desactivado por defecto", "cualquier Mac"]
+        [
+          "Elementos",
+          "todos, hasta 10.000",
+          "los recientes",
+          "solo el último"
+        ],
+        [
+          "Se guardan",
+          "de 1 a 365 días, a tu elección",
+          "7 días como máximo",
+          "hasta el siguiente <kbd>⌘C</kbd>"
+        ],
+        [
+          "Pegar",
+          "<kbd>⏎</kbd> pega directamente en la app anterior",
+          "copiar y luego <kbd>⌘V</kbd> tú mismo",
+          "<kbd>⌘V</kbd>"
+        ],
+        [
+          "Fijar",
+          "sí, <kbd>⌘P</kbd>",
+          "no",
+          "no"
+        ],
+        [
+          "Funciona en",
+          "macOS 13 Ventura y posterior",
+          "macOS 26 Tahoe y posterior, desactivado por defecto",
+          "cualquier Mac"
+        ]
       ],
       "more": "Más información: <a href=\"{guide}\">Cómo ver el historial del portapapeles en el Mac: todas las formas</a>"
     },
@@ -128,27 +251,76 @@
       "h2": "Todo con el teclado",
       "sub": "No necesitas el ratón, aunque puedes usarlo.",
       "rows": [
-        ["<kbd>⌥⌘C</kbd>", "Abrir o cerrar el historial (configurable)"],
-        ["Escribir una palabra", "Filtrar la lista: encuentra textos, nombres de apps y texto en imágenes"],
-        ["<kbd>↑</kbd> <kbd>↓</kbd>", "Elegir un elemento"],
-        ["<kbd>⏎</kbd>", "Pegar con formato"],
-        ["<kbd>⌥⏎</kbd>", "Pegar solo texto sin formato"],
-        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Pegar directamente uno de los nueve primeros elementos mostrados (primero los fijados, luego los más recientes)"],
-        ["<kbd>⌘P</kbd>", "Fijar o dejar de fijar"],
-        ["<kbd>⌘⌫</kbd>", "Eliminar un elemento"],
-        ["<kbd>esc</kbd>", "Cerrar"]
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Abrir o cerrar el historial (configurable)"
+        ],
+        [
+          "Escribir una palabra",
+          "Filtrar la lista: encuentra textos, nombres de apps y texto en imágenes"
+        ],
+        [
+          "<kbd>↑</kbd> <kbd>↓</kbd>",
+          "Elegir un elemento"
+        ],
+        [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Cambiar entre el historial y los elementos fijados"
+        ],
+        [
+          "<kbd>⏎</kbd>",
+          "Pegar con formato"
+        ],
+        [
+          "<kbd>⌥⏎</kbd>",
+          "Pegar solo texto sin formato"
+        ],
+        [
+          "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
+          "Pegar directamente uno de los nueve primeros elementos mostrados (del historial o de los fijados, según la lista abierta)"
+        ],
+        [
+          "<kbd>⌘P</kbd>",
+          "Fijar o dejar de fijar: mueve el elemento a la otra lista"
+        ],
+        [
+          "<kbd>⌘⌫</kbd>",
+          "Eliminar un elemento"
+        ],
+        [
+          "<kbd>esc</kbd>",
+          "Cerrar"
+        ]
       ]
     },
     "privacy": {
       "h2": "Tu portapapeles es tuyo",
       "sub": "Al portapapeles llegan cosas personales: contraseñas, direcciones, mensajes. Por eso Clipsody se ha diseñado pensando en la privacidad.",
       "cards": [
-        ["Tu portapapeles nunca sale de tu Mac", "Sin cuenta, sin servidor, sin analíticas. El historial solo existe en tu Mac y queda excluido de las copias de seguridad. Clipsody solo se conecta a internet si lo permites, para comprobar si hay una versión nueva."],
-        ["Las contraseñas se quedan fuera", "Lo que los gestores de contraseñas marcan como oculto nunca se guarda. 1Password, Bitwarden, KeePassXC y otros quedan excluidos de serie."],
-        ["Eliminado es eliminado", "Los elementos eliminados se sobrescriben en la base de datos y se vacía su registro de cambios; incluso tras un fallo, en el siguiente inicio. Los archivos de imagen de los elementos eliminados se borran."],
-        ["Imágenes en un sandbox", "Los datos de imagen no fiables se procesan en un proceso auxiliar aislado, sin acceso a archivos ni a la red, no en la propia app."],
-        ["Verificable", "El código fuente es abierto. No tienes que fiarte de nadie: puedes leerlo y compilar la app tú mismo."],
-        ["Fuera de las capturas de pantalla clásicas", "La ventana no aparece en las capturas de pantalla ni al compartir pantalla de forma clásica. Desde macOS 15, las apps modernas de grabación de pantalla sí pueden capturarla."]
+        [
+          "Tu portapapeles nunca sale de tu Mac",
+          "Sin cuenta, sin servidor, sin analíticas. El historial solo existe en tu Mac y queda excluido de las copias de seguridad. Clipsody solo se conecta a internet si lo permites, para comprobar si hay una versión nueva."
+        ],
+        [
+          "Las contraseñas se quedan fuera",
+          "Lo que los gestores de contraseñas marcan como oculto nunca se guarda. 1Password, Bitwarden, KeePassXC y otros quedan excluidos de serie."
+        ],
+        [
+          "Eliminado es eliminado",
+          "Los elementos eliminados se sobrescriben en la base de datos y se vacía su registro de cambios; incluso tras un fallo, en el siguiente inicio. Los archivos de imagen de los elementos eliminados se borran."
+        ],
+        [
+          "Imágenes en un sandbox",
+          "Los datos de imagen no fiables se procesan en un proceso auxiliar aislado, sin acceso a archivos ni a la red, no en la propia app."
+        ],
+        [
+          "Verificable",
+          "El código fuente es abierto. No tienes que fiarte de nadie: puedes leerlo y compilar la app tú mismo."
+        ],
+        [
+          "Fuera de las capturas de pantalla clásicas",
+          "La ventana no aparece en las capturas de pantalla ni al compartir pantalla de forma clásica. Desde macOS 15, las apps modernas de grabación de pantalla sí pueden capturarla."
+        ]
       ]
     },
     "install": {
@@ -167,17 +339,50 @@
     "faq": {
       "h2": "Preguntas frecuentes",
       "items": [
-        ["¿Cómo veo lo que copié antes en un Mac?", "De serie, el Mac solo recuerda lo último que copiaste. Un gestor de portapapeles como Clipsody guarda todo lo que copias: <kbd>⌥⌘C</kbd> lo muestra todo, con búsqueda. Todas las formas, incluidos el Finder y el historial de Spotlight de macOS 26: <a href=\"{guide}\">cómo ver el historial del portapapeles en Mac</a>."],
-        ["¿Cómo copio varios elementos y los pego uno tras otro?", "Con Clipsody copias como siempre con <kbd>⌘C</kbd> y cada elemento se queda en el historial. Para pegar, abre la lista con <kbd>⌥⌘C</kbd> y elige un elemento con <kbd>⏎</kbd>, o pega directamente uno de los nueve primeros con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Un elemento pegado sube al principio de la lista."],
-        ["¿Clipsody es realmente gratis?", "Sí. Sin anuncios, sin suscripción, sin periodo de prueba. El código fuente es abierto, bajo licencia GPLv3."],
-        ["¿Por qué necesita Clipsody el permiso de Accesibilidad?", "Solo para lanzar <kbd>⌘V</kbd> en la app de la que venías después de elegir un elemento. Clipsody no lo usa para leer la pantalla ni lo que tecleas. Todo funciona sin él; simplemente pegas tú."],
-        ["¿Cuánto tiempo se guarda el historial?", "Por defecto, 7 días y como máximo 1000 elementos; puedes aumentar ambos en los ajustes, hasta 365 días y 10.000 elementos. Los elementos fijados se quedan siempre."],
-        ["¿Se guardan mis contraseñas?", "No, si tu gestor de contraseñas las marca como ocultas, y los más habituales lo hacen. Además, los gestores de contraseñas conocidos quedan excluidos. Un límite: Clipsody ve qué app está en primer plano, no quién copió. Si una extensión del navegador copia una contraseña sin esa marca, acaba en el historial; elimínala con <kbd>⌘⌫</kbd>."],
-        ["¿Funciona Clipsody en mi Mac?", "macOS 13 Ventura o posterior, en Apple Silicon e Intel."],
-        ["¿En qué idiomas está Clipsody?", "Inglés, alemán, francés, español, italiano, neerlandés, polaco y portugués de Brasil. Clipsody sigue el idioma de tu Mac; puedes elegir otro en <strong>Ajustes → General → Idioma</strong>."],
-        ["¿Por qué macOS pregunta si Clipsody puede leer el portapapeles?", "Las versiones recientes de macOS preguntan antes de que una app lea lo que copias en otras apps. Sin este acceso, Clipsody no puede guardar un historial: elige Permitir o permite Clipsody en <strong>Ajustes del Sistema → Privacidad y seguridad</strong>. Clipsody muestra el estado actual en <strong>Ajustes → General</strong>. Tu portapapeles nunca sale de tu Mac."],
-        ["¿Busca Clipsody actualizaciones?", "Solo si lo permites: en el primer arranque, Clipsody te pregunta si puede consultar a GitHub una vez al día si hay una versión nueva. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Si hay una versión nueva, el icono de la barra de menús muestra un punto y el menú abre la página de descarga. Puedes cambiarlo en <strong>Ajustes → General</strong>; ahí y en el menú de la barra de menús también puedes comprobarlo tú mismo en cualquier momento."],
-        ["¿Cómo desinstalo Clipsody?", "<strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac."]
+        [
+          "¿Cómo veo lo que copié antes en un Mac?",
+          "De serie, el Mac solo recuerda lo último que copiaste. Un gestor de portapapeles como Clipsody guarda todo lo que copias: <kbd>⌥⌘C</kbd> lo muestra todo, con búsqueda. Todas las formas, incluidos el Finder y el historial de Spotlight de macOS 26: <a href=\"{guide}\">cómo ver el historial del portapapeles en Mac</a>."
+        ],
+        [
+          "¿Cómo copio varios elementos y los pego uno tras otro?",
+          "Con Clipsody copias como siempre con <kbd>⌘C</kbd> y cada elemento se queda en el historial. Para pegar, abre la lista con <kbd>⌥⌘C</kbd> y elige un elemento con <kbd>⏎</kbd>, o pega directamente uno de los nueve primeros con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Un elemento pegado sube al principio de la lista."
+        ],
+        [
+          "¿Clipsody es realmente gratis?",
+          "Sí. Sin anuncios, sin suscripción, sin periodo de prueba. El código fuente es abierto, bajo licencia GPLv3."
+        ],
+        [
+          "¿Por qué necesita Clipsody el permiso de Accesibilidad?",
+          "Solo para lanzar <kbd>⌘V</kbd> en la app de la que venías después de elegir un elemento. Clipsody no lo usa para leer la pantalla ni lo que tecleas. Todo funciona sin él; simplemente pegas tú."
+        ],
+        [
+          "¿Cuánto tiempo se guarda el historial?",
+          "Por defecto, 7 días y como máximo 1000 elementos; puedes aumentar ambos en los ajustes, hasta 365 días y 10.000 elementos. Los elementos fijados se quedan siempre."
+        ],
+        [
+          "¿Se guardan mis contraseñas?",
+          "No, si tu gestor de contraseñas las marca como ocultas, y los más habituales lo hacen. Además, los gestores de contraseñas conocidos quedan excluidos. Un límite: Clipsody ve qué app está en primer plano, no quién copió. Si una extensión del navegador copia una contraseña sin esa marca, acaba en el historial; elimínala con <kbd>⌘⌫</kbd>."
+        ],
+        [
+          "¿Funciona Clipsody en mi Mac?",
+          "macOS 13 Ventura o posterior, en Apple Silicon e Intel."
+        ],
+        [
+          "¿En qué idiomas está Clipsody?",
+          "Inglés, alemán, francés, español, italiano, neerlandés, polaco y portugués de Brasil. Clipsody sigue el idioma de tu Mac; puedes elegir otro en <strong>Ajustes → General → Idioma</strong>."
+        ],
+        [
+          "¿Por qué macOS pregunta si Clipsody puede leer el portapapeles?",
+          "Las versiones recientes de macOS preguntan antes de que una app lea lo que copias en otras apps. Sin este acceso, Clipsody no puede guardar un historial: elige Permitir o permite Clipsody en <strong>Ajustes del Sistema → Privacidad y seguridad</strong>. Clipsody muestra el estado actual en <strong>Ajustes → General</strong>. Tu portapapeles nunca sale de tu Mac."
+        ],
+        [
+          "¿Busca Clipsody actualizaciones?",
+          "Solo si lo permites: en el primer arranque, Clipsody te pregunta si puede consultar a GitHub una vez al día si hay una versión nueva. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Si hay una versión nueva, el icono de la barra de menús muestra un punto y el menú abre la página de descarga. Puedes cambiarlo en <strong>Ajustes → General</strong>; ahí y en el menú de la barra de menús también puedes comprobarlo tú mismo en cualquier momento."
+        ],
+        [
+          "¿Cómo desinstalo Clipsody?",
+          "<strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac."
+        ]
       ]
     }
   },
@@ -195,7 +400,10 @@
     "finder": {
       "h2": "1. Ver el portapapeles actual en el Finder",
       "intro": "El Finder muestra lo que hay ahora mismo en el portapapeles, pero solo ese elemento:",
-      "steps": ["Haz clic en el escritorio o en una ventana del Finder para que el Finder quede en primer plano.", "Elige <strong>Edición → Mostrar portapapeles</strong> en la barra de menús."],
+      "steps": [
+        "Haz clic en el escritorio o en una ventana del Finder para que el Finder quede en primer plano.",
+        "Elige <strong>Edición → Mostrar portapapeles</strong> en la barra de menús."
+      ],
       "after": "Una ventana muestra el contenido, por ejemplo un texto o una imagen. Lo copiado antes no aparece: ha sido sustituido. El portapapeles está en la memoria, no en un archivo del disco; tras reiniciar, está vacío."
     },
     "spotlight": {
@@ -216,41 +424,106 @@
         "<a href=\"{download}\">Descarga Clipsody</a> y arrástralo a <strong>Aplicaciones</strong> (<a href=\"./#install\">instalación en detalle</a>).",
         "Copia como siempre con <kbd>⌘C</kbd>. Cada elemento –texto, imagen o archivo– pasa al historial.",
         "Pulsa <kbd>⌥⌘C</kbd>: aparece la lista de todo lo que has copiado. Escribe una palabra para filtrarla; también encuentra texto en capturas de pantalla.",
-        "<kbd>⏎</kbd> pega el elemento seleccionado justo donde estabas; <kbd>⌥⏎</kbd> lo pega sin formato. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros elementos mostrados (primero los fijados, luego los más recientes)."
+        "<kbd>⏎</kbd> pega el elemento seleccionado justo donde estabas; <kbd>⌥⏎</kbd> lo pega sin formato. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros elementos mostrados (del historial o de los fijados, según la lista abierta)."
       ],
       "after": "Tú decides cuánto dura el historial (de 1 a 365 días) y cuántos elementos guarda (hasta 10.000). Los elementos fijados con <kbd>⌘P</kbd> se quedan para siempre. Todo se queda en tu Mac."
     },
     "compare": {
       "h2": "Las opciones, comparadas",
-      "head": ["Finder", "Historial de Spotlight", "Clipsody"],
+      "head": [
+        "Finder",
+        "Historial de Spotlight",
+        "Clipsody"
+      ],
       "rows": [
-        ["Muestra", "solo el elemento actual", "lo copiado recientemente", "todo, hasta 10.000"],
-        ["Se guarda", "hasta el siguiente <kbd>⌘C</kbd>", "7 días como máximo", "de 1 a 365 días"],
-        ["Pegar", "<kbd>⌘V</kbd>", "copiar y luego <kbd>⌘V</kbd>", "<kbd>⏎</kbd> directamente"],
-        ["Fijar", "no", "no", "sí"],
-        ["macOS", "todas", "26 y posterior, desactivado por defecto", "13 y posterior"]
+        [
+          "Muestra",
+          "solo el elemento actual",
+          "lo copiado recientemente",
+          "todo, hasta 10.000"
+        ],
+        [
+          "Se guarda",
+          "hasta el siguiente <kbd>⌘C</kbd>",
+          "7 días como máximo",
+          "de 1 a 365 días"
+        ],
+        [
+          "Pegar",
+          "<kbd>⌘V</kbd>",
+          "copiar y luego <kbd>⌘V</kbd>",
+          "<kbd>⏎</kbd> directamente"
+        ],
+        [
+          "Fijar",
+          "no",
+          "no",
+          "sí"
+        ],
+        [
+          "macOS",
+          "todas",
+          "26 y posterior, desactivado por defecto",
+          "13 y posterior"
+        ]
       ]
     },
     "shortcuts": {
       "h2": "Atajos de teclado del portapapeles",
       "rows": [
-        ["<kbd>⌘C</kbd>", "Copiar"],
-        ["<kbd>⌘X</kbd>", "Cortar"],
-        ["<kbd>⌘V</kbd>", "Pegar"],
-        ["<kbd>⌥⇧⌘V</kbd>", "Pegar sin formato («Pegar con el mismo estilo», en muchas apps)"],
-        ["<kbd>⇧⌘4</kbd>, mantener <kbd>⌃</kbd> al seleccionar", "Captura de una zona directamente al portapapeles"],
-        ["<kbd>⌘</kbd> <kbd>Espacio</kbd>, <kbd>⌘4</kbd>", "Historial del portapapeles de Spotlight (macOS 26 y posterior)"],
-        ["<kbd>⌥⌘C</kbd>", "Abrir el historial en Clipsody"]
+        [
+          "<kbd>⌘C</kbd>",
+          "Copiar"
+        ],
+        [
+          "<kbd>⌘X</kbd>",
+          "Cortar"
+        ],
+        [
+          "<kbd>⌘V</kbd>",
+          "Pegar"
+        ],
+        [
+          "<kbd>⌥⇧⌘V</kbd>",
+          "Pegar sin formato («Pegar con el mismo estilo», en muchas apps)"
+        ],
+        [
+          "<kbd>⇧⌘4</kbd>, mantener <kbd>⌃</kbd> al seleccionar",
+          "Captura de una zona directamente al portapapeles"
+        ],
+        [
+          "<kbd>⌘</kbd> <kbd>Espacio</kbd>, <kbd>⌘4</kbd>",
+          "Historial del portapapeles de Spotlight (macOS 26 y posterior)"
+        ],
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Abrir el historial en Clipsody"
+        ]
       ]
     },
     "faq": {
       "h2": "Preguntas frecuentes",
       "items": [
-        ["¿Dónde se guarda el portapapeles en un Mac?", "En la memoria, no en un archivo. Por eso está vacío tras reiniciar y no hay ninguna carpeta con lo copiado antes. Un historial guardado solo existe con Spotlight (macOS 26 y posterior) o con un gestor de portapapeles."],
-        ["¿Puedo recuperar lo que había en el portapapeles antes de copiar otra cosa?", "Solo si un historial lo estaba registrando: el historial de Spotlight en macOS 26 y posterior, si está activado, o un gestor de portapapeles como Clipsody. Sin ninguno, lo anterior queda sustituido por la siguiente copia."],
-        ["¿Puedo copiar varias cosas a la vez?", "El portapapeles en sí guarda un solo elemento. Con un gestor de portapapeles copias una cosa tras otra –cada una se conserva– y luego pegas las que necesites. En Clipsody, por ejemplo, con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>."],
-        ["¿Cómo borro el portapapeles en un Mac?", "Copia algo inofensivo, como un espacio: sustituye el contenido actual. El historial de Spotlight se borra desde el menú a la derecha de su campo de búsqueda, y el de Clipsody desde el icono de la barra de menús → <strong>Borrar historial…</strong>."],
-        ["¿El iPhone y el Mac comparten portapapeles?", "Sí, con el Portapapeles Universal: con la misma Cuenta de Apple y Bluetooth, Wi-Fi y Handoff activados, copias en el iPhone y pegas en el Mac. También transfiere solo el elemento actual, no un historial."]
+        [
+          "¿Dónde se guarda el portapapeles en un Mac?",
+          "En la memoria, no en un archivo. Por eso está vacío tras reiniciar y no hay ninguna carpeta con lo copiado antes. Un historial guardado solo existe con Spotlight (macOS 26 y posterior) o con un gestor de portapapeles."
+        ],
+        [
+          "¿Puedo recuperar lo que había en el portapapeles antes de copiar otra cosa?",
+          "Solo si un historial lo estaba registrando: el historial de Spotlight en macOS 26 y posterior, si está activado, o un gestor de portapapeles como Clipsody. Sin ninguno, lo anterior queda sustituido por la siguiente copia."
+        ],
+        [
+          "¿Puedo copiar varias cosas a la vez?",
+          "El portapapeles en sí guarda un solo elemento. Con un gestor de portapapeles copias una cosa tras otra –cada una se conserva– y luego pegas las que necesites. En Clipsody, por ejemplo, con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>."
+        ],
+        [
+          "¿Cómo borro el portapapeles en un Mac?",
+          "Copia algo inofensivo, como un espacio: sustituye el contenido actual. El historial de Spotlight se borra desde el menú a la derecha de su campo de búsqueda, y el de Clipsody desde el icono de la barra de menús → <strong>Borrar historial…</strong>."
+        ],
+        [
+          "¿El iPhone y el Mac comparten portapapeles?",
+          "Sí, con el Portapapeles Universal: con la misma Cuenta de Apple y Bluetooth, Wi-Fi y Handoff activados, copias en el iPhone y pegas en el Mac. También transfiere solo el elemento actual, no un historial."
+        ]
       ]
     },
     "cta": {

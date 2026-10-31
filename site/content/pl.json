@@ -14,22 +14,52 @@
     "ogDescription": "Wszystko, co skopiujesz, masz pod ręką: teksty, obrazy i pliki, do wyszukania i wklejenia z klawiatury. Darmowy, open source, w pełni lokalny.",
     "ogImageAlt": "Clipsody: historia schowka na Maca",
     "appDescription": "Menedżer schowka i historia schowka na Maca: zachowuje każdy skopiowany tekst, obraz i plik, z wyszukiwaniem i wklejaniem z klawiatury.",
-    "nav": {"features": "Funkcje", "compare": "Porównanie", "privacy": "Prywatność", "install": "Instalacja", "faq": "FAQ", "support": "Pomoc"},
+    "nav": {
+      "features": "Funkcje",
+      "compare": "Porównanie",
+      "privacy": "Prywatność",
+      "install": "Instalacja",
+      "faq": "FAQ",
+      "support": "Pomoc"
+    },
     "h1": "Menedżer schowka na Maca, który pamięta wszystko",
     "lead": "Mac pamięta tylko ostatnio skopiowaną rzecz – skopiujesz coś nowego i poprzednia przepada. Clipsody zachowuje wszystko: teksty, obrazy i pliki. <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>C</kbd> przywraca dowolny element, a <kbd>⏎</kbd> wkleja go dokładnie tam, gdzie właśnie piszesz.",
     "download": "Pobierz za darmo",
     "source": "Kod źródłowy na GitHubie",
     "meta": "macOS 13 Ventura lub nowszy · Apple Silicon i Intel · Interfejs w 8 językach",
-    "badges": ["Za darmo", "Open source", "Bez konta, bez śledzenia", "Wszystko zostaje na twoim Macu"],
+    "badges": [
+      "Za darmo",
+      "Open source",
+      "Bez konta, bez śledzenia",
+      "Wszystko zostaje na twoim Macu"
+    ],
     "hero": {
       "placeholder": "Szukaj …",
       "items": [
-        ["b", "Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!"],
-        ["a", "Obraz 4032×3024 (2,1 MB)"],
-        ["c", "Oferta_Kowalski.pdf"],
-        ["e", "https://example.com/spotkania"],
-        ["d", "📌 IBAN: PL00 0000 0000 …"],
-        ["b", "git push origin main"]
+        [
+          "b",
+          "Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!"
+        ],
+        [
+          "a",
+          "Obraz 4032×3024 (2,1 MB)"
+        ],
+        [
+          "c",
+          "Oferta_Kowalski.pdf"
+        ],
+        [
+          "e",
+          "https://example.com/spotkania"
+        ],
+        [
+          "d",
+          "IBAN: PL00 0000 0000 …"
+        ],
+        [
+          "b",
+          "git push origin main"
+        ]
       ],
       "textPreview": "Sprawdzisz do piątku, czy faktura się zgadza?<br><br>Dzięki!<br>Anna",
       "textInfo": "Tekst · 2 minuty temu · z Mail",
@@ -48,15 +78,34 @@
       "caption": "Historia schowka w Clipsody: wszystkie skopiowane elementy, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu.",
       "ocrSearch": "faktura",
       "ocrItems": [
-        ["a", "Obraz 2880×1800 (612 KB) – „…<mark>Faktura</mark> nr 2026-1043…”"],
-        ["b", "Sprawdzisz do piątku, czy <mark>faktura</mark> się zgadza? ⏎ Dzięki!"],
-        ["c", "<mark>Faktura</mark>_pazdziernik.pdf"],
-        ["d", "<mark>Faktura</mark> – IBAN: PL00 0000 …"],
-        ["e", "https://example.com/<mark>faktura</mark>/1043"]
+        [
+          "a",
+          "Obraz 2880×1800 (612 KB) – „…<mark>Faktura</mark> nr 2026-1043…”"
+        ],
+        [
+          "b",
+          "Sprawdzisz do piątku, czy <mark>faktura</mark> się zgadza? ⏎ Dzięki!"
+        ],
+        [
+          "c",
+          "<mark>Faktura</mark>_pazdziernik.pdf"
+        ],
+        [
+          "d",
+          "<mark>Faktura</mark> – IBAN: PL00 0000 …"
+        ],
+        [
+          "e",
+          "https://example.com/<mark>faktura</mark>/1043"
+        ]
       ],
       "ocrPreview": "Zrzut ekranu · rozpoznano tekst<br><br><b><mark>Faktura</mark> nr 2026-1043</b><br>Okres rozliczeniowy: październik 2026<br>Do zapłaty: 1 240,00 zł<br>Termin płatności: 15.11.2026",
       "ocrInfo": "Podgląd · 3 minuty temu · obraz 2880×1800 · rozpoznano tekst",
-      "pause": "Zatrzymaj animację"
+      "pause": "Zatrzymaj animację",
+      "tabs": [
+        "Historia",
+        "Przypięte · 3"
+      ]
     },
     "problem": {
       "h2": "Kopiuj kilka rzeczy naraz – i nie trać pierwszej",
@@ -78,12 +127,36 @@
       "h2": "Co potrafi Clipsody",
       "sub": "Bez launchera, bez workflowów, bez stu ustawień – menedżer schowka, który po prostu pamięta, co kopiujesz.",
       "cards": [
-        ["⌨️", "Jeden skrót, wszędzie", "<kbd>⌥⌘C</kbd> otwiera historię schowka w każdej aplikacji. Wybierz element strzałkami albo wpisz szukane słowo, naciśnij <kbd>⏎</kbd> – i element ląduje tam, gdzie właśnie piszesz."],
-        ["📋", "Kopiuj kilka rzeczy, wklejaj, kiedy potrzebujesz", "Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je po kolei z listy. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (najpierw przypięte, potem najnowsze)."],
-        ["🔎", "Znajduje też tekst na obrazach", "Skopiowane zrzuty ekranu i obrazy są odczytywane na twoim Macu. Wyszukaj słowo, które jest na obrazie – i już go masz. <a href=\"#text-in-images\">Jak to działa</a>"],
-        ["🖼️", "Teksty, obrazy, pliki", "Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka."],
-        ["✍️", "Z formatowaniem lub bez", "<kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst."],
-        ["📌", "Przypnij to, czego często używasz", "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> trzyma element na górze listy i nigdy nie jest on usuwany automatycznie."]
+        [
+          "⌨️",
+          "Jeden skrót, wszędzie",
+          "<kbd>⌥⌘C</kbd> otwiera historię schowka w każdej aplikacji. Wybierz element strzałkami albo wpisz szukane słowo, naciśnij <kbd>⏎</kbd> – i element ląduje tam, gdzie właśnie piszesz."
+        ],
+        [
+          "📋",
+          "Kopiuj kilka rzeczy, wklejaj, kiedy potrzebujesz",
+          "Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je po kolei z listy. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (z historii lub z przypiętych, zależnie od otwartej listy)."
+        ],
+        [
+          "🔎",
+          "Znajduje też tekst na obrazach",
+          "Skopiowane zrzuty ekranu i obrazy są odczytywane na twoim Macu. Wyszukaj słowo, które jest na obrazie – i już go masz. <a href=\"#text-in-images\">Jak to działa</a>"
+        ],
+        [
+          "🖼️",
+          "Teksty, obrazy, pliki",
+          "Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka."
+        ],
+        [
+          "✍️",
+          "Z formatowaniem lub bez",
+          "<kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst."
+        ],
+        [
+          "📌",
+          "Przypnij to, czego często używasz",
+          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, jedno <kbd>→</kbd> od historii. Przypięte elementy nigdy nie są usuwane automatycznie."
+        ]
       ]
     },
     "ocr": {
@@ -95,9 +168,18 @@
       "result": "„Kod błędu <mark>0x8007</mark> – serwer…”",
       "recognised": "Rozpoznano tekst",
       "steps": [
-        ["Obraz w schowku", "<kbd>⇧⌃⌘4</kbd> zapisuje fragment ekranu prosto do schowka. Możesz też skopiować obraz z dowolnej aplikacji."],
-        ["Clipsody odczytuje tekst", "W tle i na twoim Macu – nic nie jest wysyłane. Rozpoznawany jest tekst po angielsku i po niemiecku."],
-        ["Znajdź go po kilku dniach", "Naciśnij <kbd>⌥⌘C</kbd>, wpisz „0x8007” – i jest zrzut ekranu. <kbd>⏎</kbd> wkleja go jako obraz, na przykład do zgłoszenia w supporcie."]
+        [
+          "Obraz w schowku",
+          "<kbd>⇧⌃⌘4</kbd> zapisuje fragment ekranu prosto do schowka. Możesz też skopiować obraz z dowolnej aplikacji."
+        ],
+        [
+          "Clipsody odczytuje tekst",
+          "W tle i na twoim Macu – nic nie jest wysyłane. Rozpoznawany jest tekst po angielsku i po niemiecku."
+        ],
+        [
+          "Znajdź go po kilku dniach",
+          "Naciśnij <kbd>⌥⌘C</kbd>, wpisz „0x8007” – i jest zrzut ekranu. <kbd>⏎</kbd> wkleja go jako obraz, na przykład do zgłoszenia w supporcie."
+        ]
       ],
       "note": "<strong>Dobrze wiedzieć:</strong> zrzuty ekranu, które macOS zapisuje tylko jako plik na biurku, nigdy nie trafiają do schowka. Dodaj do skrótu <kbd>⌃</kbd> (<kbd>⇧⌃⌘3</kbd> dla całego ekranu, <kbd>⇧⌃⌘4</kbd> dla wybranego obszaru)."
     },
@@ -105,22 +187,63 @@
       "h2": "Do czego przydaje się historia schowka",
       "sub": "Wszędzie tam, gdzie kopiujesz więcej niż jedną rzecz.",
       "cards": [
-        ["Wypełnianie formularzy", "Zbierz z maila imię, adres i numer zamówienia i wklej je po kolei do formularza – bez dziesięciokrotnego przełączania okien."],
-        ["Pisanie i research", "Kopiuj cytaty, linki i akapity z kilku źródeł i składaj je w całość później."],
-        ["Programowanie", "Znajdź polecenia, ścieżki i fragmenty kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas."],
-        ["Support i praca biurowa", "Gotowe odpowiedzi, numery kont i podpisy przypięte i pod ręką – wklejone w kilka sekund."]
+        [
+          "Wypełnianie formularzy",
+          "Zbierz z maila imię, adres i numer zamówienia i wklej je po kolei do formularza – bez dziesięciokrotnego przełączania okien."
+        ],
+        [
+          "Pisanie i research",
+          "Kopiuj cytaty, linki i akapity z kilku źródeł i składaj je w całość później."
+        ],
+        [
+          "Programowanie",
+          "Znajdź polecenia, ścieżki i fragmenty kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas."
+        ],
+        [
+          "Support i praca biurowa",
+          "Gotowe odpowiedzi, numery kont i podpisy przypięte i pod ręką – wklejone w kilka sekund."
+        ]
       ]
     },
     "compare": {
       "h2": "Czy Mac nie ma już historii schowka?",
       "sub": "Od macOS 26 Tahoe Spotlight potrafi pokazać ostatnio skopiowane elementy. To pomaga na chwilę – Clipsody jest stworzone do wszystkiego, co ma przetrwać dłużej niż tydzień.",
-      "head": ["Clipsody", "Historia w Spotlight", "Zwykły Mac"],
+      "head": [
+        "Clipsody",
+        "Historia w Spotlight",
+        "Zwykły Mac"
+      ],
       "rows": [
-        ["Elementy", "wszystkie, do 10 000", "ostatnie", "tylko ostatni"],
-        ["Przechowywanie", "od 1 do 365 dni, do wyboru", "maksymalnie 7 dni", "do następnego <kbd>⌘C</kbd>"],
-        ["Wklejanie", "<kbd>⏎</kbd> wkleja prosto do poprzedniej aplikacji", "skopiuj, potem ręcznie <kbd>⌘V</kbd>", "<kbd>⌘V</kbd>"],
-        ["Przypinanie", "tak, <kbd>⌘P</kbd>", "nie", "nie"],
-        ["Działa na", "macOS 13 Ventura i nowszych", "macOS 26 Tahoe i nowszych, domyślnie wyłączona", "każdym Macu"]
+        [
+          "Elementy",
+          "wszystkie, do 10 000",
+          "ostatnie",
+          "tylko ostatni"
+        ],
+        [
+          "Przechowywanie",
+          "od 1 do 365 dni, do wyboru",
+          "maksymalnie 7 dni",
+          "do następnego <kbd>⌘C</kbd>"
+        ],
+        [
+          "Wklejanie",
+          "<kbd>⏎</kbd> wkleja prosto do poprzedniej aplikacji",
+          "skopiuj, potem ręcznie <kbd>⌘V</kbd>",
+          "<kbd>⌘V</kbd>"
+        ],
+        [
+          "Przypinanie",
+          "tak, <kbd>⌘P</kbd>",
+          "nie",
+          "nie"
+        ],
+        [
+          "Działa na",
+          "macOS 13 Ventura i nowszych",
+          "macOS 26 Tahoe i nowszych, domyślnie wyłączona",
+          "każdym Macu"
+        ]
       ],
       "more": "Więcej: <a href=\"{guide}\">Jak zobaczyć historię schowka na Macu – wszystkie sposoby</a>"
     },
@@ -128,27 +251,76 @@
       "h2": "Wszystko z klawiatury",
       "sub": "Mysz nie jest potrzebna – ale możesz jej używać.",
       "rows": [
-        ["<kbd>⌥⌘C</kbd>", "Otwórz lub zamknij historię (do zmiany)"],
-        ["Wpisz szukane słowo", "Filtruj listę – znajduje tekst, nazwy aplikacji i tekst na obrazach"],
-        ["<kbd>↑</kbd> <kbd>↓</kbd>", "Wybierz element"],
-        ["<kbd>⏎</kbd>", "Wklej z formatowaniem"],
-        ["<kbd>⌥⏎</kbd>", "Wklej sam tekst"],
-        ["<kbd>⌘1</kbd> … <kbd>⌘9</kbd>", "Wklej od razu jeden z pierwszych dziewięciu widocznych elementów (najpierw przypięte, potem najnowsze)"],
-        ["<kbd>⌘P</kbd>", "Przypnij lub odepnij"],
-        ["<kbd>⌘⌫</kbd>", "Usuń element"],
-        ["<kbd>esc</kbd>", "Zamknij"]
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Otwórz lub zamknij historię (do zmiany)"
+        ],
+        [
+          "Wpisz szukane słowo",
+          "Filtruj listę – znajduje tekst, nazwy aplikacji i tekst na obrazach"
+        ],
+        [
+          "<kbd>↑</kbd> <kbd>↓</kbd>",
+          "Wybierz element"
+        ],
+        [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Przełączanie między historią a przypiętymi elementami"
+        ],
+        [
+          "<kbd>⏎</kbd>",
+          "Wklej z formatowaniem"
+        ],
+        [
+          "<kbd>⌥⏎</kbd>",
+          "Wklej sam tekst"
+        ],
+        [
+          "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
+          "Wklej od razu jeden z pierwszych dziewięciu widocznych elementów (z historii lub z przypiętych, zależnie od otwartej listy)"
+        ],
+        [
+          "<kbd>⌘P</kbd>",
+          "Przypnij lub odepnij: przenosi element na drugą listę"
+        ],
+        [
+          "<kbd>⌘⌫</kbd>",
+          "Usuń element"
+        ],
+        [
+          "<kbd>esc</kbd>",
+          "Zamknij"
+        ]
       ]
     },
     "privacy": {
       "h2": "Twój schowek należy do ciebie",
       "sub": "W schowku lądują rzeczy osobiste: hasła, adresy, wiadomości. Dlatego Clipsody od podstaw dba o prywatność.",
       "cards": [
-        ["Twój schowek nigdy nie opuszcza twojego Maca", "Bez konta, bez serwera, bez analityki. Historia jest przechowywana wyłącznie na twoim Macu i wyłączona z kopii zapasowych. Clipsody łączy się z internetem tylko wtedy, gdy na to pozwolisz – żeby sprawdzić, czy jest nowa wersja."],
-        ["Hasła zostają poza historią", "To, co menedżery haseł oznaczają jako ukryte, nigdy nie jest zapisywane. 1Password, Bitwarden, KeePassXC i inne są wykluczone od razu."],
-        ["Usunięte znaczy usunięte", "Usunięte elementy są nadpisywane w bazie danych, a jej dziennik zmian jest opróżniany – także po awarii, przy następnym uruchomieniu. Pliki obrazów usuniętych elementów też są kasowane."],
-        ["Obrazy w piaskownicy", "Niezaufane dane obrazów są przetwarzane w odizolowanym procesie pomocniczym bez dostępu do plików i sieci, a nie w samej aplikacji."],
-        ["Do sprawdzenia", "Kod źródłowy jest otwarty. Nie musisz nikomu ufać – możesz go przeczytać i samodzielnie zbudować aplikację."],
-        ["Niewidoczne na klasycznych zrzutach ekranu", "Okno jest ukryte na zrzutach ekranu i podczas klasycznego udostępniania ekranu. Od macOS 15 nowoczesne aplikacje do nagrywania ekranu mogą je jednak przechwycić."]
+        [
+          "Twój schowek nigdy nie opuszcza twojego Maca",
+          "Bez konta, bez serwera, bez analityki. Historia jest przechowywana wyłącznie na twoim Macu i wyłączona z kopii zapasowych. Clipsody łączy się z internetem tylko wtedy, gdy na to pozwolisz – żeby sprawdzić, czy jest nowa wersja."
+        ],
+        [
+          "Hasła zostają poza historią",
+          "To, co menedżery haseł oznaczają jako ukryte, nigdy nie jest zapisywane. 1Password, Bitwarden, KeePassXC i inne są wykluczone od razu."
+        ],
+        [
+          "Usunięte znaczy usunięte",
+          "Usunięte elementy są nadpisywane w bazie danych, a jej dziennik zmian jest opróżniany – także po awarii, przy następnym uruchomieniu. Pliki obrazów usuniętych elementów też są kasowane."
+        ],
+        [
+          "Obrazy w piaskownicy",
+          "Niezaufane dane obrazów są przetwarzane w odizolowanym procesie pomocniczym bez dostępu do plików i sieci, a nie w samej aplikacji."
+        ],
+        [
+          "Do sprawdzenia",
+          "Kod źródłowy jest otwarty. Nie musisz nikomu ufać – możesz go przeczytać i samodzielnie zbudować aplikację."
+        ],
+        [
+          "Niewidoczne na klasycznych zrzutach ekranu",
+          "Okno jest ukryte na zrzutach ekranu i podczas klasycznego udostępniania ekranu. Od macOS 15 nowoczesne aplikacje do nagrywania ekranu mogą je jednak przechwycić."
+        ]
       ]
     },
     "install": {
@@ -167,17 +339,50 @@
     "faq": {
       "h2": "FAQ",
       "items": [
-        ["Jak na Macu zobaczyć, co skopiowałem wcześniej?", "Standardowo Mac pamięta tylko ostatnio skopiowaną rzecz. Menedżer schowka, taki jak Clipsody, zachowuje wszystko, co kopiujesz: <kbd>⌥⌘C</kbd> pokazuje całość, z wyszukiwaniem. Wszystkie sposoby, także Finder i historię w Spotlight z macOS 26, znajdziesz tutaj: <a href=\"{guide}\">jak zobaczyć historię schowka na Macu</a>."],
-        ["Jak skopiować kilka rzeczy i wkleić je po kolei?", "Z Clipsody kopiujesz jak zwykle przez <kbd>⌘C</kbd> – każdy element zostaje w historii. Aby wkleić, otwórz listę przez <kbd>⌥⌘C</kbd> i wybierz element klawiszem <kbd>⏎</kbd> albo wklej jeden z pierwszych dziewięciu od razu przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>. Wklejony element przesuwa się na górę listy."],
-        ["Czy Clipsody naprawdę jest darmowe?", "Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3."],
-        ["Dlaczego Clipsody potrzebuje uprawnienia „Dostępność”?", "Tylko po to, by po wybraniu elementu wywołać <kbd>⌘V</kbd> w aplikacji, w której pracujesz. Clipsody nie używa go do odczytywania ekranu ani naciśnięć klawiszy. Wszystko działa też bez niego – po prostu wklejasz ręcznie."],
-        ["Jak długo przechowywana jest historia?", "Domyślnie 7 dni i maksymalnie 1000 wpisów; w ustawieniach możesz zwiększyć oba limity, do 365 dni i 10 000 wpisów. Przypięte wpisy zostają zawsze."],
-        ["Czy moje hasła są zapisywane?", "Nie, jeśli menedżer haseł oznacza je jako ukryte – popularne menedżery to robią. Znane menedżery haseł są też wykluczone. Jedno ograniczenie: Clipsody widzi, która aplikacja jest na pierwszym planie, a nie kto skopiował. Jeśli rozszerzenie przeglądarki skopiuje hasło bez takiego oznaczenia, trafi ono do historii – wtedy po prostu usuń je przez <kbd>⌘⌫</kbd>."],
-        ["Czy Clipsody działa na moim Macu?", "macOS 13 Ventura lub nowszy, na Apple Silicon i Intel."],
-        ["W jakich językach mówi Clipsody?", "Po angielsku, niemiecku, francusku, hiszpańsku, włosku, niderlandzku, polsku i portugalsku (Brazylia). Clipsody używa języka twojego Maca; inny wybierzesz w <strong>Ustawienia → Ogólne → Język</strong>."],
-        ["Dlaczego macOS pyta, czy Clipsody może odczytywać schowek?", "Nowsze wersje macOS pytają, zanim aplikacja odczyta to, co kopiujesz w innych aplikacjach. Bez tego dostępu Clipsody nie może prowadzić historii: wybierz Zezwól albo zezwól Clipsody w <strong>Ustawienia systemowe → Prywatność i ochrona</strong>. Aktualny stan Clipsody pokazuje w <strong>Ustawienia → Ogólne</strong>. Twój schowek i tak nigdy nie opuszcza Maca."],
-        ["Czy Clipsody sprawdza aktualizacje?", "Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a menu otwiera stronę pobierania. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić ręcznie."],
-        ["Jak odinstalować Clipsody?", "<strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu."]
+        [
+          "Jak na Macu zobaczyć, co skopiowałem wcześniej?",
+          "Standardowo Mac pamięta tylko ostatnio skopiowaną rzecz. Menedżer schowka, taki jak Clipsody, zachowuje wszystko, co kopiujesz: <kbd>⌥⌘C</kbd> pokazuje całość, z wyszukiwaniem. Wszystkie sposoby, także Finder i historię w Spotlight z macOS 26, znajdziesz tutaj: <a href=\"{guide}\">jak zobaczyć historię schowka na Macu</a>."
+        ],
+        [
+          "Jak skopiować kilka rzeczy i wkleić je po kolei?",
+          "Z Clipsody kopiujesz jak zwykle przez <kbd>⌘C</kbd> – każdy element zostaje w historii. Aby wkleić, otwórz listę przez <kbd>⌥⌘C</kbd> i wybierz element klawiszem <kbd>⏎</kbd> albo wklej jeden z pierwszych dziewięciu od razu przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>. Wklejony element przesuwa się na górę listy."
+        ],
+        [
+          "Czy Clipsody naprawdę jest darmowe?",
+          "Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3."
+        ],
+        [
+          "Dlaczego Clipsody potrzebuje uprawnienia „Dostępność”?",
+          "Tylko po to, by po wybraniu elementu wywołać <kbd>⌘V</kbd> w aplikacji, w której pracujesz. Clipsody nie używa go do odczytywania ekranu ani naciśnięć klawiszy. Wszystko działa też bez niego – po prostu wklejasz ręcznie."
+        ],
+        [
+          "Jak długo przechowywana jest historia?",
+          "Domyślnie 7 dni i maksymalnie 1000 wpisów; w ustawieniach możesz zwiększyć oba limity, do 365 dni i 10 000 wpisów. Przypięte wpisy zostają zawsze."
+        ],
+        [
+          "Czy moje hasła są zapisywane?",
+          "Nie, jeśli menedżer haseł oznacza je jako ukryte – popularne menedżery to robią. Znane menedżery haseł są też wykluczone. Jedno ograniczenie: Clipsody widzi, która aplikacja jest na pierwszym planie, a nie kto skopiował. Jeśli rozszerzenie przeglądarki skopiuje hasło bez takiego oznaczenia, trafi ono do historii – wtedy po prostu usuń je przez <kbd>⌘⌫</kbd>."
+        ],
+        [
+          "Czy Clipsody działa na moim Macu?",
+          "macOS 13 Ventura lub nowszy, na Apple Silicon i Intel."
+        ],
+        [
+          "W jakich językach mówi Clipsody?",
+          "Po angielsku, niemiecku, francusku, hiszpańsku, włosku, niderlandzku, polsku i portugalsku (Brazylia). Clipsody używa języka twojego Maca; inny wybierzesz w <strong>Ustawienia → Ogólne → Język</strong>."
+        ],
+        [
+          "Dlaczego macOS pyta, czy Clipsody może odczytywać schowek?",
+          "Nowsze wersje macOS pytają, zanim aplikacja odczyta to, co kopiujesz w innych aplikacjach. Bez tego dostępu Clipsody nie może prowadzić historii: wybierz Zezwól albo zezwól Clipsody w <strong>Ustawienia systemowe → Prywatność i ochrona</strong>. Aktualny stan Clipsody pokazuje w <strong>Ustawienia → Ogólne</strong>. Twój schowek i tak nigdy nie opuszcza Maca."
+        ],
+        [
+          "Czy Clipsody sprawdza aktualizacje?",
+          "Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a menu otwiera stronę pobierania. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić ręcznie."
+        ],
+        [
+          "Jak odinstalować Clipsody?",
+          "<strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu."
+        ]
       ]
     }
   },
@@ -195,7 +400,10 @@
     "finder": {
       "h2": "1. Pokaż bieżący schowek w Finderze",
       "intro": "Finder pokazuje, co jest teraz w schowku – ale tylko ten jeden element:",
-      "steps": ["Kliknij biurko albo okno Findera, aby Finder był na pierwszym planie.", "Na pasku menu wybierz <strong>Edycja → Pokaż schowek</strong>."],
+      "steps": [
+        "Kliknij biurko albo okno Findera, aby Finder był na pierwszym planie.",
+        "Na pasku menu wybierz <strong>Edycja → Pokaż schowek</strong>."
+      ],
       "after": "W oknie zobaczysz zawartość, na przykład tekst lub obraz. Wcześniejszych elementów tam nie ma: wcześniej skopiowana zawartość została zastąpiona. Schowek jest przechowywany w pamięci, a nie w pliku na dysku – po ponownym uruchomieniu jest pusty."
     },
     "spotlight": {
@@ -216,41 +424,106 @@
         "<a href=\"{download}\">Pobierz Clipsody</a> i przeciągnij do folderu <strong>Aplikacje</strong> (<a href=\"./#install\">instalacja krok po kroku</a>).",
         "Kopiuj jak zwykle przez <kbd>⌘C</kbd>. Każdy element – tekst, obraz czy plik – trafia do historii.",
         "Naciśnij <kbd>⌥⌘C</kbd>: pojawi się lista wszystkich skopiowanych elementów. Wpisz szukane słowo, aby ją przefiltrować; znajdziesz tak również tekst na zrzutach ekranu.",
-        "<kbd>⏎</kbd> wkleja wybrany element dokładnie tam, gdzie stoi kursor; <kbd>⌥⏎</kbd> wkleja go bez formatowania. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (najpierw przypięte, potem najnowsze)."
+        "<kbd>⏎</kbd> wkleja wybrany element dokładnie tam, gdzie stoi kursor; <kbd>⌥⏎</kbd> wkleja go bez formatowania. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (z historii lub z przypiętych, zależnie od otwartej listy)."
       ],
       "after": "Ty decydujesz, jak długo trwa historia (od 1 do 365 dni) i ile elementów mieści (do 10 000). Elementy przypięte przez <kbd>⌘P</kbd> zostają na stałe. Wszystko zostaje na twoim Macu."
     },
     "compare": {
       "h2": "Porównanie możliwości",
-      "head": ["Finder", "Historia w Spotlight", "Clipsody"],
+      "head": [
+        "Finder",
+        "Historia w Spotlight",
+        "Clipsody"
+      ],
       "rows": [
-        ["Pokazuje", "tylko bieżący element", "ostatnie elementy", "wszystkie, do 10 000"],
-        ["Przechowywanie", "do następnego <kbd>⌘C</kbd>", "maksymalnie 7 dni", "od 1 do 365 dni"],
-        ["Wklejanie", "<kbd>⌘V</kbd>", "skopiuj, potem <kbd>⌘V</kbd>", "<kbd>⏎</kbd> bezpośrednio"],
-        ["Przypinanie", "nie", "nie", "tak"],
-        ["macOS", "wszystkie", "26 i nowsze, domyślnie wyłączona", "13 i nowsze"]
+        [
+          "Pokazuje",
+          "tylko bieżący element",
+          "ostatnie elementy",
+          "wszystkie, do 10 000"
+        ],
+        [
+          "Przechowywanie",
+          "do następnego <kbd>⌘C</kbd>",
+          "maksymalnie 7 dni",
+          "od 1 do 365 dni"
+        ],
+        [
+          "Wklejanie",
+          "<kbd>⌘V</kbd>",
+          "skopiuj, potem <kbd>⌘V</kbd>",
+          "<kbd>⏎</kbd> bezpośrednio"
+        ],
+        [
+          "Przypinanie",
+          "nie",
+          "nie",
+          "tak"
+        ],
+        [
+          "macOS",
+          "wszystkie",
+          "26 i nowsze, domyślnie wyłączona",
+          "13 i nowsze"
+        ]
       ]
     },
     "shortcuts": {
       "h2": "Skróty klawiszowe schowka",
       "rows": [
-        ["<kbd>⌘C</kbd>", "Kopiuj"],
-        ["<kbd>⌘X</kbd>", "Wytnij"],
-        ["<kbd>⌘V</kbd>", "Wklej"],
-        ["<kbd>⌥⇧⌘V</kbd>", "Wklej bez formatowania („Wklej i dopasuj styl”, w wielu aplikacjach)"],
-        ["<kbd>⇧⌘4</kbd>, przy zaznaczaniu przytrzymaj <kbd>⌃</kbd>", "Zrzut obszaru ekranu prosto do schowka"],
-        ["<kbd>⌘</kbd> <kbd>Spacja</kbd>, <kbd>⌘4</kbd>", "Historia schowka w Spotlight (macOS 26 i nowsze)"],
-        ["<kbd>⌥⌘C</kbd>", "Otwórz historię w Clipsody"]
+        [
+          "<kbd>⌘C</kbd>",
+          "Kopiuj"
+        ],
+        [
+          "<kbd>⌘X</kbd>",
+          "Wytnij"
+        ],
+        [
+          "<kbd>⌘V</kbd>",
+          "Wklej"
+        ],
+        [
+          "<kbd>⌥⇧⌘V</kbd>",
+          "Wklej bez formatowania („Wklej i dopasuj styl”, w wielu aplikacjach)"
+        ],
+        [
+          "<kbd>⇧⌘4</kbd>, przy zaznaczaniu przytrzymaj <kbd>⌃</kbd>",
+          "Zrzut obszaru ekranu prosto do schowka"
+        ],
+        [
+          "<kbd>⌘</kbd> <kbd>Spacja</kbd>, <kbd>⌘4</kbd>",
+          "Historia schowka w Spotlight (macOS 26 i nowsze)"
+        ],
+        [
+          "<kbd>⌥⌘C</kbd>",
+          "Otwórz historię w Clipsody"
+        ]
       ]
     },
     "faq": {
       "h2": "FAQ",
       "items": [
-        ["Gdzie na Macu jest przechowywany schowek?", "W pamięci, a nie w pliku. Dlatego po ponownym uruchomieniu jest pusty i nie ma folderu z wcześniejszymi elementami. Zapisana historia istnieje tylko w Spotlight (macOS 26 i nowsze) albo w menedżerze schowka."],
-        ["Czy mogę odzyskać to, co było w schowku, zanim skopiowałem coś innego?", "Tylko jeśli historia była zapisywana: historia w Spotlight w macOS 26 i nowszych, jeśli jest włączona, albo menedżer schowka, taki jak Clipsody. Bez tego poprzedni element zostaje zastąpiony przy następnym kopiowaniu."],
-        ["Czy mogę skopiować kilka rzeczy naraz?", "Sam schowek mieści jeden element. Z menedżerem schowka po prostu kopiujesz jedną rzecz po drugiej – każdy element zostaje zachowany – a potem wklejasz te, których potrzebujesz. W Clipsody na przykład przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>."],
-        ["Jak wyczyścić schowek na Macu?", "Skopiuj coś nieszkodliwego, na przykład spację – zastąpi bieżącą zawartość. Historię w Spotlight wyczyścisz w menu po prawej stronie pola wyszukiwania, a historię Clipsody przez ikonę na pasku menu → <strong>Wyczyść historię…</strong>."],
-        ["Czy iPhone i Mac mają wspólny schowek?", "Tak, dzięki funkcji Uniwersalny schowek: przy tym samym Koncie Apple i włączonych Bluetooth, Wi-Fi i Handoff możesz skopiować coś na iPhonie i wkleić na Macu. Przenosi ona jednak tylko bieżący element, a nie historię."]
+        [
+          "Gdzie na Macu jest przechowywany schowek?",
+          "W pamięci, a nie w pliku. Dlatego po ponownym uruchomieniu jest pusty i nie ma folderu z wcześniejszymi elementami. Zapisana historia istnieje tylko w Spotlight (macOS 26 i nowsze) albo w menedżerze schowka."
+        ],
+        [
+          "Czy mogę odzyskać to, co było w schowku, zanim skopiowałem coś innego?",
+          "Tylko jeśli historia była zapisywana: historia w Spotlight w macOS 26 i nowszych, jeśli jest włączona, albo menedżer schowka, taki jak Clipsody. Bez tego poprzedni element zostaje zastąpiony przy następnym kopiowaniu."
+        ],
+        [
+          "Czy mogę skopiować kilka rzeczy naraz?",
+          "Sam schowek mieści jeden element. Z menedżerem schowka po prostu kopiujesz jedną rzecz po drugiej – każdy element zostaje zachowany – a potem wklejasz te, których potrzebujesz. W Clipsody na przykład przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>."
+        ],
+        [
+          "Jak wyczyścić schowek na Macu?",
+          "Skopiuj coś nieszkodliwego, na przykład spację – zastąpi bieżącą zawartość. Historię w Spotlight wyczyścisz w menu po prawej stronie pola wyszukiwania, a historię Clipsody przez ikonę na pasku menu → <strong>Wyczyść historię…</strong>."
+        ],
+        [
+          "Czy iPhone i Mac mają wspólny schowek?",
+          "Tak, dzięki funkcji Uniwersalny schowek: przy tym samym Koncie Apple i włączonych Bluetooth, Wi-Fi i Handoff możesz skopiować coś na iPhonie i wkleić na Macu. Przenosi ona jednak tylko bieżący element, a nie historię."
+        ]
       ]
     },
     "cta": {

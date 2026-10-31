@@ -123,7 +123,10 @@ header.top nav a:hover { color: var(--text); text-decoration: none; }
     background: var(--panel); border: 1px solid var(--panel-line); border-radius: 16px;
     box-shadow: var(--shadow); overflow: hidden; text-align: left;
 }
-.panel .search { padding: 18px 22px; font-size: 22px; font-weight: 300; border-bottom: 1px solid var(--panel-line); }
+.panel .search { padding: 18px 22px 10px; font-size: 22px; font-weight: 300; }
+.panel .tabs { display: flex; gap: 2px; padding: 0 20px 10px; border-bottom: 1px solid var(--panel-line); font-size: 13px; }
+.panel .tabs span { padding: 3px 10px; border-radius: 6px; background: var(--card); color: var(--muted); }
+.panel .tabs .on { background: var(--selection); color: #fff; }
 .panel .search .typed { color: var(--text); }
 .panel .search .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--accent); vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) 12; }
 @keyframes blink { 50% { opacity: 0; } }

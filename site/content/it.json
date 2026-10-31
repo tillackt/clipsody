@@ -54,7 +54,7 @@
         ],
         [
           "d",
-          "📌 IBAN: IT00 0000 0000 …"
+          "IBAN: IT00 0000 0000 …"
         ],
         [
           "b",
@@ -101,7 +101,11 @@
       ],
       "ocrPreview": "Screenshot · testo riconosciuto<br><br><b><mark>Fattura</mark> n. 2026-1043</b><br>Periodo di riferimento: ottobre 2026<br>Totale: 1.240,00 €<br>Scadenza: 15 nov 2026",
       "ocrInfo": "Anteprima · 3 minuti fa · immagine 2880×1800 · testo riconosciuto",
-      "pause": "Metti in pausa l’animazione"
+      "pause": "Metti in pausa l’animazione",
+      "tabs": [
+        "Cronologia",
+        "Fissati · 3"
+      ]
     },
     "problem": {
       "h2": "Copia più elementi – senza perdere il primo",
@@ -131,7 +135,7 @@
         [
           "📋",
           "Copia più elementi, incollali quando servono",
-          "Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti)."
+          "Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (della cronologia o dei fissati, a seconda della lista aperta)."
         ],
         [
           "🔎",
@@ -151,7 +155,7 @@
         [
           "📌",
           "Fissa ciò che usi spesso",
-          "IBAN, indirizzo, frammenti di testo, comandi: con <kbd>⌘P</kbd> un elemento resta in cima e non viene mai eliminato automaticamente."
+          "IBAN, indirizzo, frammenti di testo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. Gli elementi fissati non vengono mai eliminati automaticamente."
         ]
       ]
     },
@@ -260,6 +264,10 @@
           "Scegli un elemento"
         ],
         [
+          "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
+          "Passare dalla cronologia agli elementi fissati e viceversa"
+        ],
+        [
           "<kbd>⏎</kbd>",
           "Incolla con formattazione"
         ],
@@ -269,11 +277,11 @@
         ],
         [
           "<kbd>⌘1</kbd> … <kbd>⌘9</kbd>",
-          "Incolla direttamente uno dei primi nove elementi mostrati (prima quelli fissati, poi i più recenti)"
+          "Incolla direttamente uno dei primi nove elementi mostrati (della cronologia o dei fissati, a seconda della lista aperta)"
         ],
         [
           "<kbd>⌘P</kbd>",
-          "Fissa o sblocca"
+          "Fissa o sblocca: sposta l’elemento nell’altra lista"
         ],
         [
           "<kbd>⌘⌫</kbd>",
@@ -416,7 +424,7 @@
         "<a href=\"{download}\">Scarica Clipsody</a> e trascinalo in <strong>Applicazioni</strong> (<a href=\"./#install\">installazione in dettaglio</a>).",
         "Copia come sempre con <kbd>⌘C</kbd>. Ogni elemento – testo, immagine o file – finisce nella cronologia.",
         "Premi <kbd>⌥⌘C</kbd>: compare la lista di tutto ciò che hai copiato. Scrivi una parola per filtrarla; trova anche il testo negli screenshot.",
-        "<kbd>⏎</kbd> incolla l’elemento selezionato proprio dove eri; <kbd>⌥⏎</kbd> lo incolla senza formattazione. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (prima quelli fissati, poi i più recenti)."
+        "<kbd>⏎</kbd> incolla l’elemento selezionato proprio dove eri; <kbd>⌥⏎</kbd> lo incolla senza formattazione. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (della cronologia o dei fissati, a seconda della lista aperta)."
       ],
       "after": "Decidi tu quanto dura la cronologia (da 1 a 365 giorni) e quanti elementi contiene (fino a 10.000). Gli elementi fissati con <kbd>⌘P</kbd> restano per sempre. Tutto resta sul tuo Mac."
     },

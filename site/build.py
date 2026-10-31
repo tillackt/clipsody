@@ -28,7 +28,7 @@ SECURITY_REPORT = REPO + "/security/advisories/new"
 SUPPORT_FILE = "support.html"
 LICENSE = "https://www.gnu.org/licenses/gpl-3.0.html"
 PUBLISHED = "2026-10-30"
-MODIFIED = "2026-10-30"
+MODIFIED = "2026-10-31"
 # Google Search Console ownership check for the URL-prefix property SITE; it must stay on the root page.
 GOOGLE_VERIFICATION = "y6zX0t01dTgn0AWu55aDK8R_I-DVpHvraNc1cH3KIgc"
 FINGERPRINT = "4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6"
@@ -183,13 +183,14 @@ def footer(code, c, kind):
 # ---------------------------------------------------------------------------------------------- home
 
 
-def panel(search, entries, selected, preview, info, hint):
+def panel(search, tabs, entries, selected, preview, info, hint):
     rows = "\n".join(
         f'{I*7}<li{" class=\"sel\"" if index == selected else ""}><span class="ico {icon}"></span>'
         f'<span class="t">{label}</span><span class="k">⌘{index + 1}</span></li>'
         for index, (icon, label) in enumerate(entries))
     return f"""{I*4}<div class="panel">
 {I*5}<div class="search">{search}<span class="caret"></span></div>
+{I*5}<div class="tabs"><span class="on">{tabs[0]}</span><span>{tabs[1]}</span></div>
 {I*5}<div class="body">
 {I*6}<ul>
 {rows}
@@ -211,10 +212,10 @@ def hero_figure(code, h):
     file_card = (f'<div class="file"><span class="doc">PDF</span><b>{h["fileName"]}</b>'
                  f'<span>{h["filePath"]}</span><span>{h["fileMeta"]}</span></div>')
     scenes = [
-        panel(empty, h["items"], 0, f'<div class="img">{h["textPreview"]}</div>', h["textInfo"], h["hint"]),
-        panel(empty, h["items"], 1, photo, h["imageInfo"], h["hint"]),
-        panel(empty, h["items"], 2, file_card, h["fileInfo"], h["hint"]),
-        panel(f'<span class="typed">{h["ocrSearch"]}</span>', h["ocrItems"], 0,
+        panel(empty, h["tabs"], h["items"], 0, f'<div class="img">{h["textPreview"]}</div>', h["textInfo"], h["hint"]),
+        panel(empty, h["tabs"], h["items"], 1, photo, h["imageInfo"], h["hint"]),
+        panel(empty, h["tabs"], h["items"], 2, file_card, h["fileInfo"], h["hint"]),
+        panel(f'<span class="typed">{h["ocrSearch"]}</span>', h["tabs"], h["ocrItems"], 0,
               f'<div class="img">{h["ocrPreview"]}</div>', h["ocrInfo"], h["hint"]),
     ]
     parts = [f'{I*2}<figure class="shot">', f'{I*3}<div class="scenes" aria-hidden="true">']
