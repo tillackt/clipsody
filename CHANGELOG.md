@@ -2,6 +2,13 @@
 
 All notable changes, newest first. Versions follow [Semantic Versioning](https://semver.org) (see the README, "Versioning"). `./build.sh release` takes the section of the version it builds into the release notes, so every release needs one.
 
+## 1.3.0 – 2026-11-01
+
+- **Pinned entries get their own list.** Text snippets, addresses or commands you pin with ⌘P no longer crowd the history. Two tabs under the search field, History and Pinned, switch with → at the end of the search text and ← at its start, or with ⇥. ⌘1–⌘9 paste from the list shown, and the latest pin comes first.
+- **Pinned entries you use show up in the history too.** Copy or paste a pinned entry and it also appears in the history at that moment, marked with a pin; in the history, ⌘⌫ only takes it out of the history.
+- **The search tells you where the hits are:** with nothing found in the list shown but matches in the other one, the panel says how many and which arrow leads there.
+- Entries pinned before keep their pin and stay out of the history.
+
 ## 1.2.0 – 2026-10-30
 
 - **Find out about new versions – only if you want to.** At the first launch Clipsody asks whether it may check for updates automatically; the default is no. If you agree, it asks GitHub once a day for the latest version number. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. A new version puts a dot on the menu bar icon and adds a menu item that opens the release page; Clipsody downloads and installs nothing itself.
