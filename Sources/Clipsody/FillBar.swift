@@ -259,6 +259,13 @@ final class FillBar {
             }
             guard let self, generation == opening else { return }
             nextPending = false
+            guard NSEvent.modifierFlags.isDisjoint(with: [.option, .command, .control, .shift]) else {
+                NSSound.beep()
+                status.stringValue = String(localized: "Release ⌥ and ⌘ to paste the next value.")
+                status.textColor = .systemOrange
+                resize()
+                return
+            }
             // Chosen only now: a click meanwhile may have used the value that was next before.
             if let next = snippet?.fields.indices.first(where: { !used.contains($0) }) { paste(next) }
         }

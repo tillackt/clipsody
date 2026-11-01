@@ -6021,6 +6021,52 @@
         }
       }
     },
+    "Release ⌥ and ⌘ to paste the next value.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lass ⌥ und ⌘ los, um den nächsten Wert einzufügen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta ⌥ y ⌘ para pegar el siguiente valor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez ⌥ et ⌘ pour coller la valeur suivante."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rilascia ⌥ e ⌘ per incollare il valore successivo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laat ⌥ en ⌘ los om de volgende waarde te plakken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puść ⌥ i ⌘, aby wkleić następną wartość."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solte ⌥ e ⌘ para colar o próximo valor."
+          }
+        }
+      }
+    },
     "Remove Field": {
       "localizations": {
         "de": {

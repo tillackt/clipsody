@@ -356,7 +356,7 @@
         ],
         [
           "Clipsody peut-il remplir des formulaires ?",
-          "Oui, avec les extraits : vous enregistrez une fois ce que vous saisissez sans cesse, par exemple votre adresse avec nom, rue, code postal et ville. Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd>, puis une petite barre avec ces valeurs apparaît : cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante. Vous décidez quelle valeur va dans quel champ ; Clipsody ne remplit jamais rien à l’aveugle."
+          "Oui, avec les extraits : vous enregistrez une fois ce que vous saisissez sans cesse, par exemple votre adresse avec nom, rue, code postal et ville. Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd>, et une petite barre avec ces valeurs apparaît : cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante. Vous décidez quelle valeur va dans quel champ ; Clipsody ne remplit jamais rien à l’aveugle."
         ],
         [
           "Clipsody est-il vraiment gratuit ?",

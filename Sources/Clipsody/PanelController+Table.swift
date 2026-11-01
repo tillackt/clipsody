@@ -34,6 +34,14 @@ extension PanelController {
         return cell
     }
 
+    /// The second click of a double click on "New Snippet" lands on whatever row moved there.
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        // clickCount exists only on mouse events (VoiceOver may select rows too).
+        guard snippetCreatedByClick, let event = NSApp.currentEvent,
+              [.leftMouseDown, .leftMouseUp, .leftMouseDragged].contains(event.type) else { return true }
+        return event.clickCount <= 1
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
         updatePreview()
     }

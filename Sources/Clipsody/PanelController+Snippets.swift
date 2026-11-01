@@ -36,8 +36,11 @@ extension PanelController {
 
     /// A single click on the "New Snippet" row creates one; on a snippet it only selects it.
     @objc func rowClicked() {
-        guard tab == .snippets, table.clickedRow == snippetRows.count, NSApp.currentEvent?.clickCount ?? 1 == 1 else { return }
+        guard NSApp.currentEvent?.clickCount ?? 1 == 1 else { return }
+        snippetCreatedByClick = false
+        guard tab == .snippets, table.clickedRow == snippetRows.count else { return }
         newSnippet()
+        snippetCreatedByClick = true
     }
 
     var selectedSnippet: Snippet? {

@@ -40,6 +40,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     var snippetRows: [Snippet] = []
     /// The snippet a first ⌘⌫ asked about; a second one deletes it.
     var pendingSnippetDeletion: UUID?
+    /// Set when a click on "New Snippet" created one; the rest of that double click is ignored.
+    var snippetCreatedByClick = false
     /// The history entries of the tab shown; none in the snippets tab.
     var items: [ClipItem] { tab == .snippets ? [] : list.items }
     var query: SearchQuery { list.query }
@@ -171,7 +173,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
             useSnippet(at: row)
             return
         }
-        guard items.indices.contains(row) else { return }
+        guard items.indices.contains(row) else {
+            NSSound.beep()
+            return
+        }
         let item = items[row]
         hide()
         onPaste(item, targetApp, withFormatting)
@@ -239,9 +244,11 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     }
 
     @objc func rowDoubleClicked() {
+        // A double click on the empty space below the rows does nothing (and does not beep).
+        guard table.clickedRow >= 0 else { return }
         // The first click of a double click on "New Snippet" already created one.
-        if tab == .snippets, NSApp.currentEvent?.clickCount ?? 0 > 1,
-           !snippetRows.indices.contains(table.clickedRow) || snippetRows[table.clickedRow].filledFields.isEmpty { return }
+        if tab == .snippets, NSApp.currentEvent?.clickCount ?? 0 > 1, snippetCreatedByClick
+            || !snippetRows.indices.contains(table.clickedRow) || snippetRows[table.clickedRow].filledFields.isEmpty { return }
         paste(at: table.clickedRow)
     }
 
