@@ -183,9 +183,29 @@ def footer(code, c, kind):
 # ---------------------------------------------------------------------------------------------- home
 
 
+# App-style icons for the panel pictures: own simple drawings (white strokes, 24 × 24), not Apple's
+# icons, which may not be used on other websites. The colour comes from the stylesheet (.ico.<kind>).
+ICON_PATHS = {
+    "mail": '<rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="m4 7 8 6 8-6"/>',
+    "photos": '<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 17 5-5 4 4 2.5-2.5L20 18"/>',
+    "files": '<path d="M3.5 8V6.5A1.5 1.5 0 0 1 5 5h4l2 2h8a1.5 1.5 0 0 1 1.5 1.5V17a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17Z"/>',
+    "browser": '<circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/>',
+    "notes": '<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/>',
+    "terminal": '<path d="m6 8 4 4-4 4M12.5 16.5H18"/>',
+    "contacts": '<circle cx="12" cy="9" r="3.5"/><path d="M5.5 19c.8-3.4 3.4-5.2 6.5-5.2s5.7 1.8 6.5 5.2"/>',
+    "set": '<rect x="7" y="7" width="12" height="12" rx="2"/><path d="M5 15V6.5A1.5 1.5 0 0 1 6.5 5H15"/>',
+    "text": '<path d="M6 7h12M6 11h12M6 15h7"/>',
+}
+
+
+def app_icon(kind):
+    return (f'<span class="ico {kind}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" '
+            f'stroke-linecap="round" stroke-linejoin="round">{ICON_PATHS[kind]}</svg></span>')
+
+
 def panel(search, tabs, entries, selected, preview, info, hint, active_tab=0, extra_row=""):
     rows = "\n".join(
-        f'{I*7}<li{" class=\"sel\"" if index == selected else ""}><span class="ico {icon}"></span>'
+        f'{I*7}<li{" class=\"sel\"" if index == selected else ""}>{app_icon(icon)}'
         f'<span class="t">{label}</span><span class="k">⌘{index + 1}</span></li>'
         for index, (icon, label) in enumerate(entries)) + extra_row
     return f"""{I*4}<div class="panel">
@@ -219,7 +239,7 @@ def snippet_editor_panel(p):
               f'<span class="btn">{e["delete"]}</span><span class="btn">{e["fillIn"]}</span></span></p></div>')
     new_row = f'\n{I*7}<li class="new"><span class="plus">+</span><span class="t">{e["newSnippet"]}</span><span class="k">⌘N</span></li>'
     return panel(f'<span class="placeholder">{p["hero"]["placeholder"]}</span>', e["tabs"],
-                 [["d", s["name"]], ["b", e["signature"]]], 0, editor, e["info"], e["hint"], active_tab=2,
+                 [["set", s["name"]], ["text", e["signature"]]], 0, editor, e["info"], e["hint"], active_tab=2,
                  extra_row=new_row)
 
 
@@ -328,7 +348,7 @@ def mini_window(o, highlighted):
 def ocr_body(o):
     visuals = [mini_window(o, False), mini_window(o, True),
                f'<div class="mini-search"><p class="q">{o["query"]}<span class="caret"></span></p>'
-               f'<p class="hit"><span class="ico a"></span>{o["result"]}</p></div>']
+               f'<p class="hit">{app_icon("photos")}{o["result"]}</p></div>']
     steps = "\n".join(
         f"""{I*4}<div class="card ocr-step">
 {I*5}<div class="visual" aria-hidden="true">{visual}</div>

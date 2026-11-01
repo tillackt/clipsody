@@ -37,27 +37,27 @@
       "placeholder": "Buscar…",
       "items": [
         [
-          "b",
+          "mail",
           "Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!"
         ],
         [
-          "a",
+          "photos",
           "Imagen 4032×3024 (2,1 MB)"
         ],
         [
-          "c",
+          "files",
           "Presupuesto_García.pdf"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/reuniones"
         ],
         [
-          "d",
+          "notes",
           "IBAN: ES00 0000 0000 …"
         ],
         [
-          "b",
+          "terminal",
           "git push origin main"
         ]
       ],
@@ -81,23 +81,23 @@
       "ocrSearch": "factura",
       "ocrItems": [
         [
-          "a",
+          "photos",
           "Imagen 2880×1800 (612 KB) – «…<mark>Factura</mark> n.º 2026-1043…»"
         ],
         [
-          "b",
+          "mail",
           "Revisa la <mark>factura</mark> antes del viernes, por favor ⏎ ¡Gracias!"
         ],
         [
-          "c",
+          "files",
           "<mark>Factura</mark>_octubre.pdf"
         ],
         [
-          "d",
+          "notes",
           "IBAN para la <mark>factura</mark>: ES00 0000 …"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/<mark>factura</mark>/1043"
         ]
       ],
@@ -406,27 +406,27 @@
       ],
       "items": [
         [
-          "b",
+          "mail",
           "lucia.garcia@example.com"
         ],
         [
-          "a",
+          "contacts",
           "Lucía García ⏎ Calle Ejemplo 12 ⏎ 28001 Madrid"
         ],
         [
-          "c",
+          "contacts",
           "+34 910 000 000"
         ],
         [
-          "d",
+          "notes",
           "IBAN: ES00 0000 0000 …"
         ],
         [
-          "e",
+          "mail",
           "Un saludo ⏎ Lucía García"
         ],
         [
-          "b",
+          "terminal",
           "ssh deploy@staging.example.com"
         ]
       ],
