@@ -2,6 +2,12 @@
 
 All notable changes, newest first. Versions follow [Semantic Versioning](https://semver.org) (see the README, "Versioning"). `./build.sh release` takes the section of the version it builds into the release notes, so every release needs one.
 
+## 1.5.0 – 2026-11-01
+
+- **Snippets: texts you write yourself, and forms filled in for you.** A third tab next to History and Pinned holds snippets you name and write yourself – a signature, a standard reply, or several fields such as name, street, postcode and city. Create one with "New Snippet" (⌘N); every change is saved right away.
+- **A single text is pasted with ⏎. Several fields open the fill bar** at the top of the screen, which leaves the focus in your form: click into a field, then on the value, press ⌥⌘V for the next one, or drag a value into the field. If a button or label has the focus instead of a text field, nothing is pasted. Esc closes the bar.
+- **Snippets are kept apart from the history:** they are not added to it, they are included in Time Machine backups (the history is not), and Settings → History can export and import them, e.g. for a new Mac.
+
 ## 1.4.0 – 2026-11-01
 
 - **Clipsody updates itself.** When a new version is available, "Install and Restart" downloads it from GitHub, checks that it carries the Clipsody signature (the same certificate as every release) and is exactly the announced, newer version, replaces the app and restarts. Your history, settings and permissions stay. If any check fails, nothing changes; if Clipsody cannot write its folder, it points to the release page. Nothing is downloaded unless you click Install.
