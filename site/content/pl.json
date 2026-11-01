@@ -73,9 +73,11 @@
         "Wszystko, co kopiujesz: teksty, obrazy, pliki, linki",
         "Obrazy zostają obrazami – bezstratnie, z podglądem",
         "Pliki wklejają się znów jako pliki",
-        "Wyszukiwanie znajduje nawet tekst na zrzutach ekranu"
+        "Wyszukiwanie znajduje nawet tekst na zrzutach ekranu",
+        "Przypięte: to, co chcesz zachować, na osobnej liście",
+        "Fragmenty tekstu: pisz sam, wypełniaj formularze"
       ],
-      "caption": "Historia schowka w Clipsody: wszystkie skopiowane elementy, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu.",
+      "caption": "Historia schowka w Clipsody: wszystkie skopiowane elementy, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu. A także przypięte elementy i fragmenty tekstu.",
       "ocrSearch": "faktura",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Zatrzymaj animację",
       "tabs": [
         "Historia",
-        "Przypięte · 3"
+        "Przypięte · 6",
+        "Fragmenty tekstu · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Teksty, obrazy, pliki",
-          "Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka."
-        ],
-        [
-          "✍️",
-          "Z formatowaniem lub bez",
-          "<kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst."
+          "Teksty, obrazy, pliki – tak jak skopiowane",
+          "Obrazy zostają bezstratne, pliki wklejają się jako pliki. <kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki; <kbd>⌥⏎</kbd> wkleja sam czysty tekst."
         ],
         [
           "📌",
           "Przypnij to, czego często używasz",
-          "IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, tuż obok historii – wystarczy <kbd>→</kbd>. <a href=\"#pinned\">Jak to działa</a>"
+          "IBAN, adres, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, tuż obok historii – wystarczy <kbd>→</kbd>. <a href=\"#pinned\">Jak to działa</a>"
+        ],
+        [
+          "🧩",
+          "Fragmenty tekstu i formularze",
+          "Zapisz raz adres, dane firmy albo podpis – i wypełniaj formularze pole po polu. <a href=\"#snippets\">Jak to działa</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Programowanie",
-          "Znajdź polecenia, ścieżki i fragmenty kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas."
+          "Znajdź polecenia, ścieżki i kawałki kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas."
         ],
         [
           "Support i praca biurowa",
-          "Gotowe odpowiedzi, numery kont i podpisy przypięte i pod ręką – wklejone w kilka sekund."
+          "Podpisy, gotowe odpowiedzi i numery kont jako fragmenty tekstu – wklejone w kilka sekund."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Przełączanie między historią a przypiętymi elementami"
+          "Przełączanie między historią, przypiętymi i fragmentami tekstu"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Usuń element. Przypięty element w historii znika tylko z historii"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Utwórz nowy fragment tekstu"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Z Clipsody kopiujesz jak zwykle przez <kbd>⌘C</kbd> – każdy element zostaje w historii. Aby wkleić, otwórz listę przez <kbd>⌥⌘C</kbd> i wybierz element klawiszem <kbd>⏎</kbd> albo wklej jeden z pierwszych dziewięciu od razu przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>. Wklejony element przesuwa się na górę listy."
         ],
         [
+          "Czy Clipsody potrafi wypełniać formularze?",
+          "Tak, za pomocą fragmentów tekstu: zapisujesz raz to, co ciągle wpisujesz, na przykład adres z imieniem i nazwiskiem, ulicą, kodem pocztowym i miastem. Wybierz fragment tekstu i naciśnij <kbd>⏎</kbd>, a pojawi się mały pasek z tymi wartościami: kliknij w pole, a potem w wartość – albo <kbd>⌥⌘V</kbd>, aby wkleić następną. To ty decydujesz, która wartość trafia do którego pola; Clipsody niczego nie wypełnia na ślepo."
+        ],
+        [
           "Czy Clipsody naprawdę jest darmowe?",
           "Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Jak odinstalować Clipsody?",
-          "<strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu."
+          "<strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy, fragmenty tekstu i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu. Jeśli chcesz zachować fragmenty tekstu, najpierw wyeksportuj je w <strong>Ustawienia → Historia</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "Adres e-mail, adres pocztowy, numer telefonu, IBAN: to, co ciągle wpisujesz, przypinasz raz. Trafia na osobną listę, oddzieloną od historii, i wklejasz to kilkoma klawiszami.",
       "tabs": [
         "Historia",
-        "Przypięte · 6"
+        "Przypięte · 6",
+        "Fragmenty tekstu · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Długie polecenia, adresy serwerów, dane testowe i ścieżki, których potrzebujesz codziennie."
         ]
       ],
-      "note": "Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na twoim Macu. Hasła i tak należą do menedżera haseł."
+      "note": "Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na twoim Macu. Hasła i tak należą do menedżera haseł. Teksty, które piszesz sam, albo całe formularze? Do tego służą <a href=\"#snippets\">fragmenty tekstu</a>."
+    },
+    "snippets": {
+      "h2": "Fragmenty tekstu: wypełniaj formularze bez pisania",
+      "sub": "Zapisz raz to, co ciągle wpisujesz – adres, dane firmy, podpis. Clipsody wklei to tam, gdzie potrzebujesz: jeden tekst naraz albo cały formularz pole po polu.",
+      "name": "Mój adres",
+      "values": [
+        [
+          "Imię i nazwisko",
+          "Anna Kowalska"
+        ],
+        [
+          "Ulica",
+          "ul. Przykładowa 12"
+        ],
+        [
+          "Kod pocztowy",
+          "00-001"
+        ],
+        [
+          "Miasto",
+          "Warszawa"
+        ]
+      ],
+      "hint": "Kliknij w pole, a potem w wartość (albo ⌥⌘V, aby wkleić następną), lub przeciągnij wartość do pola.",
+      "form": "Adres dostawy",
+      "steps": [
+        [
+          "Utwórz raz",
+          "Na karcie „Fragmenty tekstu” wybierz „Nowy fragment tekstu” (<kbd>⌘N</kbd>), nadaj mu nazwę i wypełnij pola – każde, jeśli chcesz, z etykietą, np. „Kod pocztowy”."
+        ],
+        [
+          "Otwórz pasek wypełniania",
+          "Wybierz fragment i naciśnij <kbd>⏎</kbd>: u góry ekranu pojawi się pasek z twoimi wartościami. Formularz zachowuje fokus."
+        ],
+        [
+          "Pole po polu",
+          "Kliknij w pole, a potem w wartość – albo <kbd>⌥⌘V</kbd>, aby wkleić następną, lub przeciągnij wartość do pola. Jeśli zamiast pola tekstowego aktywny jest przycisk lub etykieta, Clipsody nic nie wkleja."
+        ]
+      ],
+      "note": "Fragment z jednym tekstem, np. podpis albo gotowa odpowiedź, wkleja się od razu klawiszem <kbd>⏎</kbd>. Fragmenty tekstu zostają na twoim Macu, w przeciwieństwie do historii trafiają do kopii Time Machine i można je eksportować i importować w ustawieniach.",
+      "editor": {
+        "tabs": [
+          "Historia",
+          "Przypięte · 6",
+          "Fragmenty tekstu · 2"
+        ],
+        "signature": "Podpis",
+        "newSnippet": "Nowy fragment tekstu",
+        "labelHeader": "Etykieta (opcjonalnie)",
+        "textHeader": "Tekst",
+        "addField": "Dodaj pole",
+        "delete": "Usuń…",
+        "fillIn": "Wypełnij ⏎",
+        "info": "Zmiany są zapisywane od razu.",
+        "hint": "⏎ wypełnij   ⌘N nowy fragment   ⌘⌫ usuń"
+      }
     }
   },
   "guide": {

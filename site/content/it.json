@@ -73,9 +73,11 @@
         "Tutto ciò che hai copiato: testi, immagini, file, link",
         "Le immagini restano immagini – senza perdita di qualità, con anteprima",
         "I file vengono incollati di nuovo come file",
-        "La ricerca trova anche il testo negli screenshot"
+        "La ricerca trova anche il testo negli screenshot",
+        "Fissati: ciò che vuoi tenere, in una lista a parte",
+        "Frammenti: scrivili tu, compila i moduli"
       ],
-      "caption": "La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot.",
+      "caption": "La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot. E poi gli elementi fissati e i frammenti.",
       "ocrSearch": "fattura",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Metti in pausa l’animazione",
       "tabs": [
         "Cronologia",
-        "Fissati · 3"
+        "Fissati · 6",
+        "Frammenti · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Testi, immagini, file",
-          "Le immagini vengono conservate senza perdita di qualità e i file copiati vengono incollati di nuovo come file – non come percorso."
-        ],
-        [
-          "✍️",
-          "Con o senza formattazione",
-          "<kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser. <kbd>⌥⏎</kbd> incolla solo il testo semplice."
+          "Testi, immagini, file – così come copiati",
+          "Le immagini restano senza perdita, i file vengono incollati come file. <kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser; <kbd>⌥⏎</kbd> incolla solo il testo semplice."
         ],
         [
           "📌",
           "Fissa ciò che usi spesso",
-          "IBAN, indirizzo, frammenti di testo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. <a href=\"#pinned\">Come funziona</a>"
+          "IBAN, indirizzo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. <a href=\"#pinned\">Come funziona</a>"
+        ],
+        [
+          "🧩",
+          "Frammenti e moduli",
+          "Salva una volta indirizzo, dati aziendali o firma – e compila i moduli campo per campo. <a href=\"#snippets\">Come funziona</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Programmazione",
-          "Ritrova comandi, percorsi e frammenti di codice copiati ore fa. Fissa i comandi che usi di continuo."
+          "Ritrova comandi, percorsi e pezzi di codice copiati ore fa. Fissa i comandi che usi di continuo."
         ],
         [
           "Assistenza e lavoro d’ufficio",
-          "Risposte standard, numeri di conto e firme fissati e sempre pronti – incollati in pochi secondi."
+          "Firme, risposte standard e numeri di conto come frammenti – incollati in pochi secondi."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Passare dalla cronologia agli elementi fissati e viceversa"
+          "Passare tra cronologia, fissati e frammenti"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Elimina un elemento. Un elemento fissato nella cronologia esce solo dalla cronologia"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Creare un nuovo frammento"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Con Clipsody copi come sempre con <kbd>⌘C</kbd> – ogni elemento resta nella cronologia. Per incollare, apri la lista con <kbd>⌥⌘C</kbd> e scegli un elemento con <kbd>⏎</kbd>, oppure incolla direttamente uno dei primi nove con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd>. Un elemento incollato sale in cima alla lista."
         ],
         [
+          "Clipsody può compilare moduli?",
+          "Sì, con i frammenti: salvi una volta ciò che digiti di continuo, ad esempio il tuo indirizzo con nome, via, CAP e città. Seleziona il frammento e premi <kbd>⏎</kbd>, e compare una piccola barra con questi valori: clicca in un campo, poi sul valore – oppure <kbd>⌥⌘V</kbd> per il successivo. Decidi tu quale valore va in quale campo; Clipsody non compila mai nulla alla cieca."
+        ],
+        [
           "Clipsody è davvero gratis?",
           "Sì. Niente pubblicità, niente abbonamento, niente versione di prova. Il codice sorgente è aperto, con licenza GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Come disinstallo Clipsody?",
-          "<strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
+          "<strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini, frammenti e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac. Per conservare i frammenti, esportali prima in <strong>Impostazioni → Cronologia</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "Email, indirizzo, numero di telefono, IBAN: ciò che riscrivi in continuazione lo fissi una volta sola. Finisce in una lista a parte, separata dalla cronologia, e si incolla con pochi tasti.",
       "tabs": [
         "Cronologia",
-        "Fissati · 6"
+        "Fissati · 6",
+        "Frammenti · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Comandi lunghi, indirizzi di server, dati di test e percorsi che usi ogni giorno."
         ]
       ],
-      "note": "Gli elementi fissati restano: non vengono mai eliminati automaticamente, non contano nel limite della cronologia e restano anche se cancelli la cronologia. Come tutto in Clipsody, rimangono sul tuo Mac. Le password, comunque, vanno in un gestore di password."
+      "note": "Gli elementi fissati restano: non vengono mai eliminati automaticamente, non contano nel limite della cronologia e restano anche se cancelli la cronologia. Come tutto in Clipsody, rimangono sul tuo Mac. Le password, comunque, vanno in un gestore di password. Testi che scrivi tu o moduli interi? Per questo ci sono i <a href=\"#snippets\">frammenti</a>."
+    },
+    "snippets": {
+      "h2": "Frammenti: compilare moduli senza digitare",
+      "sub": "Scrivi una volta ciò che digiti di continuo – il tuo indirizzo, i dati aziendali, una firma. Clipsody lo incolla dove ti serve: un testo in un colpo solo o un intero modulo campo per campo.",
+      "name": "Il mio indirizzo",
+      "values": [
+        [
+          "Nome",
+          "Giulia Rossi"
+        ],
+        [
+          "Via",
+          "Via Esempio 12"
+        ],
+        [
+          "CAP",
+          "00100"
+        ],
+        [
+          "Città",
+          "Roma"
+        ]
+      ],
+      "hint": "Clicca in un campo, poi sul valore (oppure ⌥⌘V per il successivo), o trascina il valore nel campo.",
+      "form": "Indirizzo di consegna",
+      "steps": [
+        [
+          "Crealo una volta",
+          "Nella scheda «Frammenti» scegli «Nuovo frammento» (<kbd>⌘N</kbd>), dagli un nome e compila i campi – ognuno, se vuoi, con un’etichetta come «CAP»."
+        ],
+        [
+          "Apri la barra di compilazione",
+          "Seleziona il frammento e premi <kbd>⏎</kbd>: in alto sullo schermo compare una barra con i tuoi valori. Non toglie il focus al tuo modulo."
+        ],
+        [
+          "Campo per campo",
+          "Clicca in un campo, poi sul valore – oppure <kbd>⌥⌘V</kbd> per il successivo, o trascina il valore nel campo. Se invece di un campo di testo ha il focus un pulsante o un’etichetta, Clipsody non incolla nulla."
+        ]
+      ],
+      "note": "Un frammento con un solo testo, come una firma o una risposta standard, viene incollato direttamente con <kbd>⏎</kbd>. I frammenti restano sul tuo Mac, a differenza della cronologia sono inclusi nei backup di Time Machine e si possono esportare e importare nelle impostazioni.",
+      "editor": {
+        "tabs": [
+          "Cronologia",
+          "Fissati · 6",
+          "Frammenti · 2"
+        ],
+        "signature": "Firma",
+        "newSnippet": "Nuovo frammento",
+        "labelHeader": "Etichetta (facoltativa)",
+        "textHeader": "Testo",
+        "addField": "Aggiungi campo",
+        "delete": "Elimina…",
+        "fillIn": "Compila ⏎",
+        "info": "Le modifiche vengono salvate subito.",
+        "hint": "⏎ compila   ⌘N nuovo frammento   ⌘⌫ elimina"
+      }
     }
   },
   "guide": {

@@ -124,7 +124,7 @@ header.top nav a:hover { color: var(--text); text-decoration: none; }
     box-shadow: var(--shadow); overflow: hidden; text-align: left;
 }
 .panel .search { padding: 18px 22px 10px; font-size: 22px; font-weight: 300; }
-.panel .tabs { display: flex; gap: 2px; padding: 0 20px 10px; border-bottom: 1px solid var(--panel-line); font-size: 13px; }
+.panel .tabs { display: flex; flex-wrap: wrap; gap: 2px; padding: 0 20px 10px; border-bottom: 1px solid var(--panel-line); font-size: 13px; }
 .panel .tabs span { padding: 3px 10px; border-radius: 6px; background: var(--card); color: var(--muted); }
 .panel .tabs .on { background: var(--selection); color: #fff; }
 .panel .search .typed { color: var(--text); }
@@ -164,6 +164,8 @@ section h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.015em; margin
 section p.sub { text-align: center; color: var(--muted); max-width: 680px; margin: 0 auto 40px; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+/* Six feature cards: three per row on wide screens, so no row is left half empty. */
+#features .grid { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
 .card h3 { margin: 0 0 6px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 15px; }
@@ -209,13 +211,15 @@ footer .spacer { flex: 1; }
     table.keys th { white-space: normal; width: 42%; }
 }
 
-/* Hero: four scenes of the panel that take turns (CSS only; reduced motion shows the first). */
+/* Hero: six scenes of the panel that take turns, 6 s each (CSS only; reduced motion shows the first). */
 .scenes { display: grid; }
-.scene { grid-area: 1 / 1; opacity: 0; animation: scene 24s infinite; }
+.scene { grid-area: 1 / 1; opacity: 0; animation: scene 36s infinite; }
 .scene.s2 { animation-delay: 6s; }
 .scene.s3 { animation-delay: 12s; }
 .scene.s4 { animation-delay: 18s; }
-@keyframes scene { 0% { opacity: 0; } 3% { opacity: 1; } 23% { opacity: 1; } 26% { opacity: 0; } 100% { opacity: 0; } }
+.scene.s5 { animation-delay: 24s; }
+.scene.s6 { animation-delay: 30s; }
+@keyframes scene { 0% { opacity: 0; } 2% { opacity: 1; } 15.5% { opacity: 1; } 17.5% { opacity: 0; } 100% { opacity: 0; } }
 .scene-label { margin: 0 0 14px; font-weight: 600; font-size: 16px; }
 .step {
     display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-right: 10px;
@@ -223,11 +227,13 @@ footer .spacer { flex: 1; }
 }
 .controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 18px; }
 .dots { display: flex; gap: 8px; }
-.dots > span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.25; animation: dot 24s infinite; }
+.dots > span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.25; animation: dot 36s infinite; }
 .dots .s2 { animation-delay: 6s; }
 .dots .s3 { animation-delay: 12s; }
 .dots .s4 { animation-delay: 18s; }
-@keyframes dot { 0%, 25% { opacity: 1; } 25.1%, 100% { opacity: 0.25; } }
+.dots .s5 { animation-delay: 24s; }
+.dots .s6 { animation-delay: 30s; }
+@keyframes dot { 0%, 16.66% { opacity: 1; } 16.7%, 100% { opacity: 0.25; } }
 .controls .pause {
     font-size: 13px; color: var(--muted); cursor: pointer; border: 1px solid var(--line);
     border-radius: 999px; padding: 2px 10px;
@@ -271,6 +277,52 @@ footer .spacer { flex: 1; }
 @media (max-width: 820px) { .pinned-demo { grid-template-columns: minmax(0, 1fr); } }
 /* More specific than the general phone rule for .panel .body, so it needs its own. */
 @media (max-width: 720px) { .pinned-demo .panel .body { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
+
+/* Snippets: the editor in the panel's third tab */
+.panel li.new { color: var(--accent); }
+.panel li.new .plus { width: 20px; text-align: center; font-size: 17px; line-height: 1; }
+.panel .editor { flex: 1; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.panel .editor p { margin: 0; }
+.panel .editor .name { padding: 6px 9px; border-radius: 7px; background: var(--card); border: 1px solid var(--panel-line); font-weight: 600; }
+.panel .editor .row { display: grid; grid-template-columns: 30% minmax(0, 1fr) auto; gap: 6px; align-items: center; }
+.panel .editor .row .icons { display: flex; gap: 6px; padding: 0; border: none; background: none; color: var(--muted); font-style: normal; }
+.panel .editor .row .icons i { font-style: normal; font-size: 11px; }
+.panel .editor .row .icons i.off { opacity: 0.35; }
+.panel .editor .row span {
+    padding: 4px 8px; border-radius: 6px; background: var(--card); border: 1px solid var(--panel-line);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.panel .editor .row.head span { background: none; border: none; padding: 0 2px; font-size: 11px; color: var(--muted); }
+.panel .editor .foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: auto; padding-top: 8px; font-size: 12px; }
+.panel .editor .add { color: var(--muted); }
+.panel .editor .buttons { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.pinned-demo.editor-demo .panel .body { grid-template-columns: 38% 62%; }
+@media (max-width: 720px) { .pinned-demo.editor-demo .panel .body { grid-template-columns: minmax(0, 1fr); } }
+.panel .editor .btn { padding: 3px 9px; border-radius: 6px; background: var(--card); border: 1px solid var(--panel-line); white-space: nowrap; }
+
+/* Snippets: the fill bar floating above a form */
+.snippets-shot { display: grid; gap: 14px; }
+.fillbar {
+    background: var(--panel); border: 1px solid var(--panel-line); border-radius: 12px; box-shadow: var(--shadow);
+    padding: 10px 12px; font-size: 13px;
+}
+.fillbar p { margin: 0; }
+.fillbar .name { display: flex; justify-content: space-between; font-weight: 600; color: var(--muted); font-size: 12px; }
+.fillbar .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.fillbar .chip { padding: 4px 10px; border-radius: 7px; background: var(--card); border: 1px solid var(--panel-line); }
+.fillbar .chip.used { color: var(--muted); }
+.fillbar .label, .mini-form .label { color: var(--muted); }
+.fillbar .hint { font-size: 11px; color: var(--muted); }
+.mini-form {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 13px;
+    margin: 0 18px;
+}
+.mini-form .title { margin: 0 0 8px; font-weight: 600; }
+.mini-form .field { display: grid; grid-template-columns: 38% 1fr; align-items: center; gap: 8px; margin-top: 6px; }
+.mini-form .input { min-height: 26px; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); }
+.mini-form .input.focus { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }
+.mini-form .caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: -2px; }
+@media (max-width: 720px) { .mini-form { margin: 0; } }
 
 /* Text recognition: three steps with small drawings */
 .grid.ocr { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }

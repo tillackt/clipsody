@@ -183,11 +183,11 @@ def footer(code, c, kind):
 # ---------------------------------------------------------------------------------------------- home
 
 
-def panel(search, tabs, entries, selected, preview, info, hint, active_tab=0):
+def panel(search, tabs, entries, selected, preview, info, hint, active_tab=0, extra_row=""):
     rows = "\n".join(
         f'{I*7}<li{" class=\"sel\"" if index == selected else ""}><span class="ico {icon}"></span>'
         f'<span class="t">{label}</span><span class="k">⌘{index + 1}</span></li>'
-        for index, (icon, label) in enumerate(entries))
+        for index, (icon, label) in enumerate(entries)) + extra_row
     return f"""{I*4}<div class="panel">
 {I*5}<div class="search">{search}<span class="caret"></span></div>
 {I*5}<div class="tabs">{"".join(f'<span class="on">{tab}</span>' if index == active_tab else f"<span>{tab}</span>" for index, tab in enumerate(tabs))}</div>
@@ -204,7 +204,27 @@ def panel(search, tabs, entries, selected, preview, info, hint, active_tab=0):
 {I*4}</div>"""
 
 
-def hero_figure(code, h):
+def snippet_editor_panel(p):
+    """The panel on its snippets tab: the list ending in "New Snippet", and the editor of a snippet."""
+    s = p["snippets"]
+    e = s["editor"]
+    last = len(s["values"]) - 1
+    rows = "".join(f'<p class="row"><span class="label">{label}</span><span class="text">{value}</span>'
+                   f'<span class="icons"><i{" class=\"off\"" if index == 0 else ""}>∧</i>'
+                   f'<i{" class=\"off\"" if index == last else ""}>∨</i><i>✕</i></span></p>'
+                   for index, (label, value) in enumerate(s["values"]))
+    editor = (f'<div class="editor"><p class="name">{s["name"]}</p>'
+              f'<p class="row head"><span>{e["labelHeader"]}</span><span>{e["textHeader"]}</span><span></span></p>{rows}'
+              f'<p class="foot"><span class="add">+ {e["addField"]}</span><span class="buttons">'
+              f'<span class="btn">{e["delete"]}</span><span class="btn">{e["fillIn"]}</span></span></p></div>')
+    new_row = f'\n{I*7}<li class="new"><span class="plus">+</span><span class="t">{e["newSnippet"]}</span><span class="k">⌘N</span></li>'
+    return panel(f'<span class="placeholder">{p["hero"]["placeholder"]}</span>', e["tabs"],
+                 [["d", s["name"]], ["b", e["signature"]]], 0, editor, e["info"], e["hint"], active_tab=2,
+                 extra_row=new_row)
+
+
+def hero_figure(code, p):
+    h = p["hero"]
     empty = f'<span class="placeholder">{h["placeholder"]}</span>'
     photo = (f'<picture><source srcset="{rel(code, "assets/sample-photo.avif")}" type="image/avif">'
              f'<img class="photo" src="{rel(code, "assets/sample-photo.jpg")}" alt="" width="940" height="470" '
@@ -217,6 +237,9 @@ def hero_figure(code, h):
         panel(empty, h["tabs"], h["items"], 2, file_card, h["fileInfo"], h["hint"]),
         panel(f'<span class="typed">{h["ocrSearch"]}</span>', h["tabs"], h["ocrItems"], 0,
               f'<div class="img">{h["ocrPreview"]}</div>', h["ocrInfo"], h["hint"]),
+        panel(empty, p["pinned"]["tabs"], p["pinned"]["items"], 1, f'<div class="img">{p["pinned"]["preview"]}</div>',
+              p["pinned"]["info"], p["pinned"]["hint"], active_tab=1),
+        snippet_editor_panel(p),
     ]
     parts = [f'{I*2}<figure class="shot">', f'{I*3}<div class="scenes" aria-hidden="true">']
     for number, (label, scene) in enumerate(zip(h["labels"], scenes), start=1):
@@ -227,8 +250,8 @@ def hero_figure(code, h):
     # shows where the control is; CSS pauses the figure with :has().
     parts += [f'{I*3}</div>',
               f'{I*3}<div class="controls">',
-              f'{I*4}<span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span>'
-              f'<span class="s3"></span><span class="s4"></span></span>',
+              f'{I*4}<span class="dots" aria-hidden="true">'
+              + "".join(f'<span class="s{number}"></span>' for number in range(1, len(scenes) + 1)) + '</span>',
               f'{I*4}<input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">',
               f'{I*4}<label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>{h["pause"]}</label>',
               f'{I*3}</div>',
@@ -335,6 +358,41 @@ def pinned_body(code, p):
 {I*3}<div class="note">{p["pinned"]["note"]}</div>"""
 
 
+def snippets_body(p):
+    """Snippets: the fill bar above a form (two fields done, the cursor in the third), three steps, a note."""
+    s = p["snippets"]
+    chips = "".join(
+        f'<span class="chip{" used" if index < 2 else ""}">{"✓ " if index < 2 else ""}'
+        f'<span class="label">{label}:</span> {value}</span>'
+        for index, (label, value) in enumerate(s["values"]))
+    fields = "".join(
+        f'<div class="field"><span class="label">{label}</span>'
+        f'<span class="input{" focus" if index == 2 else ""}">{value if index < 2 else ""}'
+        f'{"<span class=\"caret\"></span>" if index == 2 else ""}</span></div>'
+        for index, (label, value) in enumerate(s["values"]))
+    steps = "\n".join(f'{I*5}<li><h3><span class="step">{number}</span>{title}</h3><p>{body}</p></li>'
+                      for number, (title, body) in enumerate(s["steps"], start=1))
+    first, rest = steps.split("\n", 1)
+    return f"""{I*3}<div class="pinned-demo editor-demo">
+{I*4}<div class="pinned-shot" aria-hidden="true">
+{snippet_editor_panel(p)}
+{I*4}</div>
+{I*4}<ol class="pinned-steps">
+{first}
+{I*4}</ol>
+{I*3}</div>
+{I*3}<div class="pinned-demo">
+{I*4}<div class="snippets-shot" aria-hidden="true">
+{I*5}<div class="fillbar"><p class="name">{s["name"]}<span class="close">✕</span></p><p class="chips">{chips}</p><p class="hint">{s["hint"]}</p></div>
+{I*5}<div class="mini-form"><p class="title">{s["form"]}</p>{fields}</div>
+{I*4}</div>
+{I*4}<ol class="pinned-steps" start="2">
+{rest}
+{I*4}</ol>
+{I*3}</div>
+{I*3}<div class="note">{s["note"]}</div>"""
+
+
 def home_page(code, c, all_content):
     p = c["home"]
     nav = [("#features", p["nav"]["features"]), ("#compare", p["nav"]["compare"]), ("#privacy", p["nav"]["privacy"]),
@@ -373,6 +431,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         ("features", p["features"]["h2"], p["features"]["sub"], cards(p["features"]["cards"], with_icon=True)),
         ("text-in-images", p["ocr"]["h2"], p["ocr"]["sub"], ocr_body(p["ocr"])),
         ("pinned", p["pinned"]["h2"], p["pinned"]["sub"], pinned_body(code, p)),
+        ("snippets", p["snippets"]["h2"], p["snippets"]["sub"], snippets_body(p)),
         ("uses", p["uses"]["h2"], p["uses"]["sub"], cards(p["uses"]["cards"])),
         ("compare", compare["h2"], compare["sub"], compare_body),
         ("keys", p["keys"]["h2"], p["keys"]["sub"], keys_table(p["keys"]["rows"])),
@@ -399,7 +458,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
 {badges}
 {I*2}</div>
 
-{hero_figure(code, p['hero'])}
+{hero_figure(code, p)}
 {I}</div>
 
 {rendered}

@@ -73,9 +73,11 @@
         "Alles, was du kopiert hast: Texte, Bilder, Dateien, Links",
         "Bilder bleiben Bilder – verlustfrei, mit Vorschau",
         "Dateien werden wieder als Dateien eingefügt",
-        "Die Suche findet sogar Text in Screenshots"
+        "Die Suche findet sogar Text in Screenshots",
+        "Angepinnt: was du behalten willst, in eigener Liste",
+        "Textbausteine: selbst schreiben, Formulare ausfüllen"
       ],
-      "caption": "So sieht der Verlauf in Clipsody aus: alle kopierten Einträge, ein Bild, eine Datei und die Suche nach Text in einem Screenshot.",
+      "caption": "So sieht Clipsody aus: der Verlauf mit allen kopierten Einträgen, ein Bild, eine Datei, die Suche nach Text in einem Screenshot, dazu angepinnte Einträge und Textbausteine.",
       "ocrSearch": "rechnung",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Animation anhalten",
       "tabs": [
         "Historie",
-        "Angepinnt · 3"
+        "Angepinnt · 6",
+        "Textbausteine · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Texte, Bilder, Dateien",
-          "Bilder bleiben verlustfrei erhalten, kopierte Dateien werden wieder als Dateien eingefügt – nicht als Pfad."
-        ],
-        [
-          "✍️",
-          "Mit oder ohne Formatierung",
-          "<kbd>⏎</kbd> behält Fett, Links und Tabellen aus Word, Outlook oder dem Browser. <kbd>⌥⏎</kbd> fügt nur den reinen Text ein."
+          "Texte, Bilder, Dateien – wie kopiert",
+          "Bilder bleiben verlustfrei, Dateien werden als Dateien eingefügt. <kbd>⏎</kbd> behält Fett, Links und Tabellen aus Word, Outlook oder dem Browser, <kbd>⌥⏎</kbd> fügt nur den reinen Text ein."
         ],
         [
           "📌",
           "Anpinnen, was du oft brauchst",
-          "IBAN, Adresse, Textbausteine, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in eine eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
+          "IBAN, Adresse, Befehle: <kbd>⌘P</kbd> legt einen Eintrag in eine eigene Liste „Angepinnt“, ein <kbd>→</kbd> neben dem Verlauf. <a href=\"#pinned\">So geht’s</a>"
+        ],
+        [
+          "🧩",
+          "Textbausteine und Formulare",
+          "Anschrift, Firmendaten, Signatur einmal anlegen – und Formulare Feld für Feld ausfüllen. <a href=\"#snippets\">So geht’s</a>"
         ]
       ]
     },
@@ -201,7 +204,7 @@
         ],
         [
           "Support und Büro",
-          "Textbausteine, Kontonummern und Signaturen angepinnt griffbereit – eingefügt in Sekunden."
+          "Signaturen, Standardantworten und Kontonummern als Textbausteine – eingefügt in Sekunden."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Zwischen Verlauf und angepinnten Einträgen wechseln"
+          "Zwischen Historie, Angepinnt und Textbausteinen wechseln"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Eintrag löschen. Ein angepinnter Eintrag im Verlauf verschwindet nur aus dem Verlauf"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Neuen Textbaustein anlegen"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Mit Clipsody kopierst du einfach wie gewohnt mit <kbd>⌘C</kbd> – jeder Eintrag bleibt im Verlauf. Zum Einfügen öffnest du mit <kbd>⌥⌘C</kbd> die Liste und wählst den Eintrag mit <kbd>⏎</kbd>, oder du fügst mit <kbd>⌘1</kbd> bis <kbd>⌘9</kbd> einen der ersten neun direkt ein. Ein eingefügter Eintrag rückt in der Liste nach oben."
         ],
         [
+          "Kann Clipsody Formulare ausfüllen?",
+          "Ja, mit Textbausteinen: Du legst einmal an, was du immer wieder eingibst, zum Beispiel deine Anschrift mit Name, Straße, PLZ und Ort. Wähle den Textbaustein aus und drücke <kbd>⏎</kbd>, dann erscheint eine kleine Leiste mit diesen Werten: ins Feld klicken, dann auf den Wert – oder <kbd>⌥⌘V</kbd> für den nächsten. Du bestimmst, welcher Wert in welches Feld kommt; Clipsody füllt nichts blind aus."
+        ],
+        [
           "Ist Clipsody wirklich kostenlos?",
           "Ja. Keine Werbung, kein Abo, keine Testphase. Der Quellcode ist offen und steht unter der GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Wie deinstalliere ich Clipsody?",
-          "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac."
+          "<strong>Einstellungen → Info → Clipsody deinstallieren …</strong> löscht Verlauf, Bilder, Textbausteine und Einstellungen, entfernt den Autostart und die Berechtigung „Bedienungshilfen“ und legt die App in den Papierkorb. Ziehst du die App nur selbst in den Papierkorb, bleiben diese Daten auf dem Mac. Willst du deine Textbausteine behalten, exportiere sie vorher unter <strong>Einstellungen → Historie</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "E-Mail-Adresse, Anschrift, Telefonnummer, IBAN: Was du sonst ständig neu eintippst, pinnst du einmal an. Es liegt dann in einer eigenen Liste, getrennt vom Verlauf, und ist mit wenigen Tasten eingefügt.",
       "tabs": [
         "Historie",
-        "Angepinnt · 6"
+        "Angepinnt · 6",
+        "Textbausteine · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Lange Befehle, Server-Adressen, Testdaten und Pfade, die du jeden Tag brauchst."
         ]
       ],
-      "note": "Angepinnte Einträge bleiben: Sie werden nie automatisch gelöscht, zählen nicht zur Obergrenze des Verlaufs und bleiben auch, wenn du den Verlauf löschst. Wie alles in Clipsody liegen sie nur auf deinem Mac. Passwörter gehören trotzdem in einen Passwort-Manager."
+      "note": "Angepinnte Einträge bleiben: Sie werden nie automatisch gelöscht, zählen nicht zur Obergrenze des Verlaufs und bleiben auch, wenn du den Verlauf löschst. Wie alles in Clipsody liegen sie nur auf deinem Mac. Passwörter gehören trotzdem in einen Passwort-Manager. Selbst geschriebene Texte und ganze Formulare? Dafür gibt es <a href=\"#snippets\">Textbausteine</a>."
+    },
+    "snippets": {
+      "h2": "Textbausteine: Formulare ausfüllen, ohne zu tippen",
+      "sub": "Schreib einmal auf, was du immer wieder eingibst – deine Anschrift, die Firmendaten, eine Signatur. Clipsody fügt es ein, wo du es brauchst: einen Text auf einmal oder ein ganzes Formular Feld für Feld.",
+      "name": "Meine Anschrift",
+      "values": [
+        [
+          "Name",
+          "Max Mustermann"
+        ],
+        [
+          "Straße",
+          "Musterstraße 12"
+        ],
+        [
+          "PLZ",
+          "10115"
+        ],
+        [
+          "Ort",
+          "Berlin"
+        ]
+      ],
+      "hint": "Klicke in ein Feld, dann auf den Wert (oder ⌥⌘V für den nächsten) – oder ziehe den Wert ins Feld.",
+      "form": "Lieferadresse",
+      "steps": [
+        [
+          "Einmal anlegen",
+          "Im Reiter „Textbausteine“ „Neuer Textbaustein“ wählen (<kbd>⌘N</kbd>), einen Namen vergeben und die Felder ausfüllen – jedes auf Wunsch mit einer Bezeichnung wie „PLZ“."
+        ],
+        [
+          "Ausfüll-Leiste öffnen",
+          "Textbaustein auswählen und <kbd>⏎</kbd> drücken: Oben am Bildschirm erscheint eine Leiste mit deinen Werten. Sie nimmt deinem Formular nicht den Fokus weg."
+        ],
+        [
+          "Feld für Feld",
+          "Ins Feld klicken, dann auf den Wert – oder <kbd>⌥⌘V</kbd> für den nächsten, oder den Wert ins Feld ziehen. Hat statt eines Eingabefelds etwa ein Knopf oder ein Text den Fokus, fügt Clipsody nichts ein."
+        ]
+      ],
+      "note": "Ein Textbaustein mit nur einem Text, etwa eine Signatur oder Standardantwort, wird mit <kbd>⏎</kbd> direkt eingefügt. Textbausteine liegen nur auf deinem Mac, sind anders als der Verlauf in Time-Machine-Backups enthalten und lassen sich in den Einstellungen exportieren und importieren.",
+      "editor": {
+        "tabs": [
+          "Historie",
+          "Angepinnt · 6",
+          "Textbausteine · 2"
+        ],
+        "signature": "Signatur",
+        "newSnippet": "Neuer Textbaustein",
+        "labelHeader": "Bezeichnung (optional)",
+        "textHeader": "Text",
+        "addField": "Feld hinzufügen",
+        "delete": "Löschen …",
+        "fillIn": "Ausfüllen ⏎",
+        "info": "Änderungen werden sofort gespeichert.",
+        "hint": "⏎ ausfüllen   ⌘N neuer Textbaustein   ⌘⌫ löschen"
+      }
     }
   },
   "guide": {

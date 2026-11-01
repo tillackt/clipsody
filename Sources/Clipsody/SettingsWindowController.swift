@@ -9,6 +9,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     NSTableViewDataSource, NSTableViewDelegate {
     var config: Config
     let dataDirectory: URL
+    let snippets: SnippetStore
     let onChange: (Config) -> Void
     let onCheckForUpdates: () -> Void
     let onUninstall: () -> Void
@@ -30,11 +31,12 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
     let tabs = NSTabViewController()
     static let selectedTabKey = "SettingsSelectedTab"
 
-    init(config: Config, dataDirectory: URL, onRecordingHotKey: @escaping (Bool) -> Void,
+    init(config: Config, dataDirectory: URL, snippets: SnippetStore, onRecordingHotKey: @escaping (Bool) -> Void,
          onChange: @escaping (Config) -> Void, onCheckForUpdates: @escaping () -> Void,
          onUninstall: @escaping () -> Void) {
         self.config = config
         self.dataDirectory = dataDirectory
+        self.snippets = snippets
         self.onChange = onChange
         self.onCheckForUpdates = onCheckForUpdates
         self.onUninstall = onUninstall
@@ -261,8 +263,9 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate,
         alert.alertStyle = .critical
         alert.messageText = String(localized: "Uninstall Clipsody?")
         alert.informativeText = String(localized: """
-            The history including pinned entries, all images and the settings are deleted for good, \
-            and Clipsody moves to the Trash. This cannot be undone.
+            The history including pinned entries, your snippets, all images and the settings are deleted \
+            for good, and Clipsody moves to the Trash. Export your snippets first if you want to keep them. \
+            This cannot be undone.
             """)
         alert.addButton(withTitle: String(localized: "Uninstall"))
         alert.buttons.first?.hasDestructiveAction = true

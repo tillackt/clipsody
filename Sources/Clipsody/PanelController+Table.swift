@@ -4,7 +4,7 @@ import ClipsodyCore
 /// The list of entries.
 extension PanelController {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        items.count
+        rowCount
     }
 
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
@@ -18,6 +18,13 @@ extension PanelController {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let id = NSUserInterfaceItemIdentifier("clip")
         let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ClipRowView ?? ClipRowView(identifier: id)
+        if tab == .snippets {
+            if snippetRows.indices.contains(row) { configure(cell, for: snippetRows[row], row: row) } else {
+                configureNewSnippetRow(cell)
+            }
+            return cell
+        }
+        cell.icon.contentTintColor = nil
         let item = items[row]
         let text = ItemPresentation.title(for: item, query: query)
         cell.setTitle(text, highlights: query.ranges(in: text))

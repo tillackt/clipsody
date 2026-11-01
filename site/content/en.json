@@ -73,9 +73,11 @@
         "Everything you copied: text, images, files, links",
         "Images stay images – lossless, with a preview",
         "Files are pasted as files again",
-        "Search even finds text in screenshots"
+        "Search even finds text in screenshots",
+        "Pinned: what you want to keep, in its own list",
+        "Snippets: write them yourself, fill in forms"
       ],
-      "caption": "The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.",
+      "caption": "Clipsody: the clipboard history with everything you copied, an image, a file and searching for text in a screenshot, plus pinned clips and snippets.",
       "ocrSearch": "invoice",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Pause animation",
       "tabs": [
         "History",
-        "Pinned · 3"
+        "Pinned · 6",
+        "Snippets · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Text, images, files",
-          "Images are kept lossless, and copied files are pasted as files again – not as a path."
-        ],
-        [
-          "✍️",
-          "With or without formatting",
-          "<kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only."
+          "Text, images, files – as copied",
+          "Images stay lossless, files are pasted as files. <kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser; <kbd>⌥⏎</kbd> pastes plain text only."
         ],
         [
           "📌",
           "Pin what you use often",
-          "IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
+          "IBAN, address, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href=\"#pinned\">How it works</a>"
+        ],
+        [
+          "🧩",
+          "Snippets and forms",
+          "Set up your address, company details or signature once – and fill in forms field by field. <a href=\"#snippets\">How it works</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Coding",
-          "Find commands, paths and snippets you copied hours ago. Pin the commands you use all the time."
+          "Find commands, paths and bits of code you copied hours ago. Pin the commands you use all the time."
         ],
         [
           "Support and office work",
-          "Canned replies, account numbers and signatures pinned and ready – pasted in seconds."
+          "Signatures, canned replies and account numbers as snippets – pasted in seconds."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Switch between the history and the pinned clips"
+          "Switch between History, Pinned and Snippets"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Delete a clip. A pinned clip in the history only leaves the history"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Create a new snippet"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "With Clipsody you just copy as usual with <kbd>⌘C</kbd> – every clip stays in the history. To paste, open the list with <kbd>⌥⌘C</kbd> and pick a clip with <kbd>⏎</kbd>, or paste one of the first nine directly with <kbd>⌘1</kbd> to <kbd>⌘9</kbd>. A pasted clip moves to the top of the list."
         ],
         [
+          "Can Clipsody fill in forms?",
+          "Yes, with snippets: you set up once what you keep typing, for example your address with name, street, postcode and city. Select the snippet and press <kbd>⏎</kbd>, and a small bar with these values appears: click into a field, then on the value – or press <kbd>⌥⌘V</kbd> for the next one. You decide which value goes into which field; Clipsody never fills anything in blindly."
+        ],
+        [
           "Is Clipsody really free?",
           "Yes. No ads, no subscription, no trial. The source is open, under the GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "How do I uninstall Clipsody?",
-          "<strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
+          "<strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images, snippets and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac. To keep your snippets, export them first under <strong>Settings → History</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "Email address, postal address, phone number, IBAN: whatever you keep typing, you pin once. It then sits in its own list, apart from the history, and is pasted with a few keys.",
       "tabs": [
         "History",
-        "Pinned · 6"
+        "Pinned · 6",
+        "Snippets · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Long commands, server addresses, test data and paths you need every day."
         ]
       ],
-      "note": "Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager."
+      "note": "Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager. Texts you write yourself, or whole forms? That is what <a href=\"#snippets\">snippets</a> are for."
+    },
+    "snippets": {
+      "h2": "Snippets: fill in forms without typing",
+      "sub": "Write down once what you keep typing – your address, your company details, a signature. Clipsody pastes it wherever you need it: one text at once, or a whole form field by field.",
+      "name": "My address",
+      "values": [
+        [
+          "Name",
+          "Jane Doe"
+        ],
+        [
+          "Street",
+          "12 Sample Street"
+        ],
+        [
+          "Postcode",
+          "N1 7GU"
+        ],
+        [
+          "City",
+          "London"
+        ]
+      ],
+      "hint": "Click into a field, then on the value (or ⌥⌘V for the next one), or drag the value into the field.",
+      "form": "Delivery address",
+      "steps": [
+        [
+          "Set it up once",
+          "In the Snippets tab, choose New Snippet (<kbd>⌘N</kbd>), give it a name and fill in the fields – each with a label such as “Postcode” if you like."
+        ],
+        [
+          "Open the fill bar",
+          "Select the snippet and press <kbd>⏎</kbd>: a bar with your values appears at the top of the screen. It doesn’t take the focus away from your form."
+        ],
+        [
+          "Field by field",
+          "Click into a field, then on the value – or press <kbd>⌥⌘V</kbd> for the next one, or drag the value into the field. If a button or a label has the focus instead of a text field, Clipsody pastes nothing."
+        ]
+      ],
+      "note": "A snippet with a single text, such as a signature or a canned reply, is pasted directly with <kbd>⏎</kbd>. Snippets stay on your Mac, are included in Time Machine backups unlike the history, and can be exported and imported in the settings.",
+      "editor": {
+        "tabs": [
+          "History",
+          "Pinned · 6",
+          "Snippets · 2"
+        ],
+        "signature": "Signature",
+        "newSnippet": "New Snippet",
+        "labelHeader": "Label (optional)",
+        "textHeader": "Text",
+        "addField": "Add Field",
+        "delete": "Delete…",
+        "fillIn": "Fill In ⏎",
+        "info": "Changes are saved right away.",
+        "hint": "⏎ fill in   ⌘N new snippet   ⌘⌫ delete"
+      }
     }
   },
   "guide": {

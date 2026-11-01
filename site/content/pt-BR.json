@@ -73,9 +73,11 @@
         "Tudo o que você copiou: textos, imagens, arquivos, links",
         "Imagens continuam imagens – sem perda, com pré-visualização",
         "Arquivos são colados de novo como arquivos",
-        "A busca encontra até texto em capturas de tela"
+        "A busca encontra até texto em capturas de tela",
+        "Fixados: o que você quer guardar, numa lista própria",
+        "Trechos: escreva você mesmo, preencha formulários"
       ],
-      "caption": "O histórico da área de transferência no Clipsody: tudo o que você copiou, uma imagem, um arquivo e a busca por texto em uma captura de tela.",
+      "caption": "O histórico da área de transferência no Clipsody: tudo o que você copiou, uma imagem, um arquivo e a busca por texto em uma captura de tela. E ainda os itens fixados e os trechos.",
       "ocrSearch": "fatura",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Pausar animação",
       "tabs": [
         "Histórico",
-        "Fixados · 3"
+        "Fixados · 6",
+        "Trechos · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Textos, imagens, arquivos",
-          "As imagens são guardadas sem perda, e arquivos copiados são colados de novo como arquivos – não como um caminho."
-        ],
-        [
-          "✍️",
-          "Com ou sem formatação",
-          "<kbd>⏎</kbd> mantém negrito, links e tabelas do Word, do Outlook ou do navegador. <kbd>⌥⏎</kbd> cola só o texto simples."
+          "Textos, imagens, arquivos – como copiados",
+          "As imagens ficam sem perda, e arquivos são colados como arquivos. <kbd>⏎</kbd> mantém negrito, links e tabelas do Word, do Outlook ou do navegador; <kbd>⌥⏎</kbd> cola só o texto simples."
         ],
         [
           "📌",
           "Fixe o que você usa sempre",
-          "Chave Pix, endereço, trechos de texto, comandos: <kbd>⌘P</kbd> leva um item para uma lista à parte, “Fixados”, a um <kbd>→</kbd> do histórico. <a href=\"#pinned\">Como funciona</a>"
+          "Chave Pix, endereço, comandos: <kbd>⌘P</kbd> leva um item para uma lista à parte, “Fixados”, a um <kbd>→</kbd> do histórico. <a href=\"#pinned\">Como funciona</a>"
+        ],
+        [
+          "🧩",
+          "Trechos e formulários",
+          "Salve uma vez seu endereço, os dados da empresa ou uma assinatura – e preencha formulários campo por campo. <a href=\"#snippets\">Como funciona</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Programação",
-          "Encontre comandos, caminhos e trechos de código que você copiou horas atrás. Fixe os comandos que você usa o tempo todo."
+          "Encontre comandos, caminhos e pedaços de código que você copiou horas atrás. Fixe os comandos que você usa o tempo todo."
         ],
         [
           "Suporte e escritório",
-          "Respostas prontas, números de conta e assinaturas fixados e à mão – colados em segundos."
+          "Assinaturas, respostas prontas e números de conta como trechos – colados em segundos."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Alternar entre o histórico e os itens fixados"
+          "Alternar entre histórico, fixados e trechos"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Apagar um item. Um item fixado no histórico só sai do histórico"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Criar um novo trecho"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Com o Clipsody, você copia normalmente com <kbd>⌘C</kbd> – cada item fica no histórico. Para colar, abra a lista com <kbd>⌥⌘C</kbd> e escolha um item com <kbd>⏎</kbd>, ou cole direto um dos nove primeiros com <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Um item colado sobe para o topo da lista."
         ],
         [
+          "O Clipsody consegue preencher formulários?",
+          "Sim, com os trechos: você salva uma vez o que digita toda hora, por exemplo seu endereço com nome, rua, CEP e cidade. Selecione o trecho e pressione <kbd>⏎</kbd>, e aparece uma pequena barra com esses valores: clique em um campo e depois no valor – ou <kbd>⌥⌘V</kbd> para o próximo. Você decide qual valor vai em qual campo; o Clipsody nunca preenche nada às cegas."
+        ],
+        [
           "O Clipsody é grátis mesmo?",
           "Sim. Sem anúncios, sem assinatura, sem período de teste. O código-fonte é aberto, sob a GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Como desinstalo o Clipsody?",
-          "<strong>Ajustes → Informações → Desinstalar o Clipsody…</strong> apaga o histórico, as imagens e os ajustes, remove o item de início de sessão e a permissão de Acessibilidade e move o app para o Lixo. Se você só arrastar o app para o Lixo, esses dados ficam no seu Mac."
+          "<strong>Ajustes → Informações → Desinstalar o Clipsody…</strong> apaga o histórico, as imagens, os trechos e os ajustes, remove o item de início de sessão e a permissão de Acessibilidade e move o app para o Lixo. Se você só arrastar o app para o Lixo, esses dados ficam no seu Mac. Para manter seus trechos, exporte-os antes em <strong>Ajustes → Histórico</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "E-mail, endereço, telefone, chave Pix: o que você digita toda hora, você fixa uma vez. Vai para uma lista própria, separada do histórico, e é colado com poucas teclas.",
       "tabs": [
         "Histórico",
-        "Fixados · 6"
+        "Fixados · 6",
+        "Trechos · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Comandos longos, endereços de servidores, dados de teste e caminhos que você usa todo dia."
         ]
       ],
-      "note": "Itens fixados ficam: nunca são apagados automaticamente, não contam no limite do histórico e continuam lá mesmo se você limpar o histórico. Como tudo no Clipsody, ficam no seu Mac. Senhas, mesmo assim, devem ficar num gerenciador de senhas."
+      "note": "Itens fixados ficam: nunca são apagados automaticamente, não contam no limite do histórico e continuam lá mesmo se você limpar o histórico. Como tudo no Clipsody, ficam no seu Mac. Senhas, mesmo assim, devem ficar num gerenciador de senhas. Textos que você mesmo escreve, ou formulários inteiros? Para isso existem os <a href=\"#snippets\">trechos</a>."
+    },
+    "snippets": {
+      "h2": "Trechos: preencha formulários sem digitar",
+      "sub": "Escreva uma vez o que você digita toda hora – seu endereço, os dados da empresa, uma assinatura. O Clipsody cola onde você precisar: um texto de uma vez ou um formulário inteiro campo por campo.",
+      "name": "Meu endereço",
+      "values": [
+        [
+          "Nome",
+          "Ana Souza"
+        ],
+        [
+          "Rua",
+          "Rua Exemplo, 12"
+        ],
+        [
+          "CEP",
+          "01000-000"
+        ],
+        [
+          "Cidade",
+          "São Paulo"
+        ]
+      ],
+      "hint": "Clique em um campo e depois no valor (ou ⌥⌘V para o próximo), ou arraste o valor para o campo.",
+      "form": "Endereço de entrega",
+      "steps": [
+        [
+          "Crie uma vez",
+          "Na aba “Trechos”, escolha “Novo trecho” (<kbd>⌘N</kbd>), dê um nome e preencha os campos – cada um, se quiser, com um rótulo como “CEP”."
+        ],
+        [
+          "Abra a barra de preenchimento",
+          "Selecione o trecho e pressione <kbd>⏎</kbd>: aparece no topo da tela uma barra com seus valores. Ela não tira o foco do seu formulário."
+        ],
+        [
+          "Campo por campo",
+          "Clique em um campo e depois no valor – ou <kbd>⌥⌘V</kbd> para o próximo, ou arraste o valor para o campo. Se um botão ou rótulo estiver em foco em vez de um campo de texto, o Clipsody não cola nada."
+        ]
+      ],
+      "note": "Um trecho com um único texto, como uma assinatura ou resposta pronta, é colado direto com <kbd>⏎</kbd>. Os trechos ficam no seu Mac, entram nos backups do Time Machine, ao contrário do histórico, e podem ser exportados e importados nos ajustes.",
+      "editor": {
+        "tabs": [
+          "Histórico",
+          "Fixados · 6",
+          "Trechos · 2"
+        ],
+        "signature": "Assinatura",
+        "newSnippet": "Novo trecho",
+        "labelHeader": "Rótulo (opcional)",
+        "textHeader": "Texto",
+        "addField": "Adicionar campo",
+        "delete": "Apagar…",
+        "fillIn": "Preencher ⏎",
+        "info": "As alterações são salvas na hora.",
+        "hint": "⏎ preencher   ⌘N novo trecho   ⌘⌫ apagar"
+      }
     }
   },
   "guide": {

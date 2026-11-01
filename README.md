@@ -13,18 +13,20 @@ Lean clipboard history for macOS. A native Swift/AppKit app without dependencies
 | ⌥⌘C | Open/close the history |
 | Type | Filter (several words must all match; also searches app names and text in images) |
 | ↑ / ↓, Page ↑/↓ | Select an entry |
-| → / ← or ⇥ | Switch between the history and the pinned entries (→ / ← at the end / start of the search text) |
+| → / ← or ⇥ | Switch between History, Pinned and Snippets (→ / ← at the end / start of the search text) |
 | ⏎ or double-click | Paste into the active app, with formatting (bold, links, tables from Word, Outlook, the browser …) |
 | ⌥⏎ | Paste plain text only, without formatting |
 | ⌘1 … ⌘9 | Paste the n-th entry of the list shown directly |
 | ⌘P | Pin/unpin an entry: pinned entries move to their own list and are never deleted automatically; copied or pasted again, they also show in the history |
-| ⌘⌫ | Delete an entry (a pinned entry in the history only leaves the history) |
+| ⌘⌫ | Delete an entry (a pinned entry in the history only leaves the history; a snippet after pressing twice) |
+| ⌘N | New snippet |
 | Esc | Close |
 
 On the right is a preview (full text or image), below it the app, age and size. Search terms are highlighted in the list and the preview.
 
 - **Images** are stored losslessly as PNG. Their text is read locally with macOS text recognition (Vision), so screenshots can be found by their content.
 - **Files** from the Finder are pasted back as files, not as paths. If a file has been moved or deleted since, the app beeps.
+- **Snippets** (third tab) are texts you write and name yourself: one text (a signature, a standard reply) is pasted with ⏎; several fields (name, street, postcode …, each with an optional label) open the **fill bar**. It floats at the top of the screen without taking the focus: click into a form field, then on the value, or press ⌥⌘V for the next one. If the focused element is clearly not a text field (a label, a button), nothing is pasted. Snippet texts are not added to the history. Settings → History → **Export… / Import…** saves them to a file or adds those from one.
 
 ## Project
 
@@ -180,9 +182,11 @@ Everything is in `~/Library/Application Support/Clipsody/` (Settings → **Info*
 - `images/`: images as PNG, plus scaled-down previews
 - `config.json`: the settings
 
+Snippets are kept apart in `~/Library/Application Support/Clipsody Snippets/Snippets.json`: unlike the history, they are included in Time Machine backups.
+
 ## Uninstall
 
-Settings → **Info** → **Uninstall Clipsody…**. This deletes the history, images, `config.json`, the app's preferences, caches and saved window state, removes launch at login and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays behind: macOS does not tell an app that it is being deleted.
+Settings → **Info** → **Uninstall Clipsody…**. This deletes the history, images, snippets, `config.json`, the app's preferences, caches and saved window state, removes launch at login and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays behind: macOS does not tell an app that it is being deleted.
 
 Only the empty shell of the image helper's sandbox folder remains (`~/Library/Containers/io.github.tillackt.clipsody.decoder`, a macOS management file, no user data). Since macOS 14 only the system may delete containers; in the Finder it can be moved to the Trash after confirming. If more than that remains there, the app reports it.
 

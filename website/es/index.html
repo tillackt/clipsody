@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=2217717643">
+    <link rel="stylesheet" href="../assets/style.css?v=4b49edc3d0">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="es_ES">
@@ -95,6 +95,14 @@
         },
         {
           "@type": "Question",
+          "name": "¿Puede Clipsody rellenar formularios?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, con los fragmentos: guardas una vez lo que tecleas una y otra vez, por ejemplo tu dirección con nombre, calle, código postal y ciudad. Selecciona el fragmento y pulsa ⏎, y aparece una pequeña barra con esos valores: haz clic en un campo y luego en el valor, o pulsa ⌥⌘V para el siguiente. Tú decides qué valor va en cada campo; Clipsody nunca rellena nada a ciegas."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "¿Clipsody es realmente gratis?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -162,7 +170,7 @@
           "name": "¿Cómo desinstalo Clipsody?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ajustes → Información → Desinstalar Clipsody… elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac."
+            "text": "Ajustes → Información → Desinstalar Clipsody… elimina el historial, las imágenes, los fragmentos y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac. Para conservar tus fragmentos, expórtalos antes en Ajustes → Historial."
           }
         }
       ]
@@ -222,7 +230,7 @@
                 <p class="scene-label"><span class="step">1</span>Todo lo que has copiado: textos, imágenes, archivos, enlaces</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 3</span></div>
+                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 6</span><span>Fragmentos · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico b"></span><span class="t">Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!</span><span class="k">⌘1</span></li>
@@ -244,7 +252,7 @@
                 <p class="scene-label"><span class="step">2</span>Las imágenes siguen siendo imágenes: sin pérdida y con vista previa</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 3</span></div>
+                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 6</span><span>Fragmentos · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!</span><span class="k">⌘1</span></li>
@@ -266,7 +274,7 @@
                 <p class="scene-label"><span class="step">3</span>Los archivos se vuelven a pegar como archivos</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 3</span></div>
+                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 6</span><span>Fragmentos · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Revisa la factura antes del viernes, por favor ⏎ ¡Gracias!</span><span class="k">⌘1</span></li>
@@ -288,7 +296,7 @@
                 <p class="scene-label"><span class="step">4</span>La búsqueda encuentra incluso texto en capturas de pantalla</p>
                 <div class="panel">
                     <div class="search"><span class="typed">factura</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 3</span></div>
+                    <div class="tabs"><span class="on">Historial</span><span>Fijados · 6</span><span>Fragmentos · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico a"></span><span class="t">Imagen 2880×1800 (612 KB) – «…<mark>Factura</mark> n.º 2026-1043…»</span><span class="k">⌘1</span></li>
@@ -305,13 +313,54 @@
                     </div>
                 </div>
             </div>
+            <div class="scene s5">
+                <p class="scene-label"><span class="step">5</span>Fijados: lo que quieres conservar, en su propia lista</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historial</span><span class="on">Fijados · 6</span><span>Fragmentos · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">lucia.garcia@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Lucía García ⏎ Calle Ejemplo 12 ⏎ 28001 Madrid</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+34 910 000 000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: ES00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Un saludo ⏎ Lucía García</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Lucía García<br>Calle Ejemplo 12<br>28001 Madrid</div>
+                            <div class="info">Fijado · Texto · 3 líneas</div>
+                            <div class="hint">⏎ pegar   ⌥⏎ sin formato   ⌘P dejar de fijar   ⌘⌫ eliminar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s6">
+                <p class="scene-label"><span class="step">6</span>Fragmentos: escríbelos tú, rellena formularios</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historial</span><span>Fijados · 6</span><span class="on">Fragmentos · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mi dirección</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Firma</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nuevo fragmento</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mi dirección</p><p class="row head"><span>Etiqueta (opcional)</span><span>Texto</span><span></span></p><p class="row"><span class="label">Nombre</span><span class="text">Lucía García</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Calle</span><span class="text">Calle Ejemplo 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Código postal</span><span class="text">28001</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ciudad</span><span class="text">Madrid</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Añadir campo</span><span class="buttons"><span class="btn">Eliminar…</span><span class="btn">Rellenar ⏎</span></span></p></div>
+                            <div class="info">Los cambios se guardan al instante.</div>
+                            <div class="hint">⏎ rellenar   ⌘N nuevo fragmento   ⌘⌫ eliminar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="controls">
-                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></span>
                 <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
                 <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pausar la animación</label>
             </div>
-            <figcaption class="caption">El historial del portapapeles de Clipsody: todo lo que has copiado, una imagen, un archivo y la búsqueda de un texto en una captura de pantalla.</figcaption>
+            <figcaption class="caption">El historial del portapapeles de Clipsody: todo lo que has copiado, una imagen, un archivo y la búsqueda de un texto en una captura de pantalla. Además, los elementos fijados y los fragmentos.</figcaption>
         </figure>
     </div>
 
@@ -347,12 +396,12 @@
                     <p>Copia primero el nombre, la dirección y el número de pedido, y luego pégalos uno a uno desde la lista. <kbd>⌘1</kbd> a <kbd>⌘9</kbd> pegan directamente los nueve primeros elementos mostrados (del historial o de los fijados, según la lista abierta).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Encuentra también texto en imágenes</h3>
                     <p>Las capturas de pantalla e imágenes que copias se leen en tu Mac. Busca una palabra que aparezca en la imagen y ahí la tienes. <a href="#text-in-images">Cómo funciona</a></p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textos, imágenes, archivos</h3>
-                    <p>Las imágenes se guardan sin pérdida y los archivos copiados se vuelven a pegar como archivos, no como una ruta.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Con o sin formato</h3>
-                    <p><kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador. <kbd>⌥⏎</kbd> pega solo texto sin formato.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textos, imágenes, archivos, tal cual</h3>
+                    <p>Las imágenes se guardan sin pérdida y los archivos se pegan como archivos. <kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador; <kbd>⌥⏎</kbd> pega solo texto sin formato.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fija lo que usas a menudo</h3>
-                    <p>IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a una lista aparte, «Fijados», a un <kbd>→</kbd> del historial. <a href="#pinned">Cómo funciona</a></p></div>
+                    <p>IBAN, dirección, comandos: <kbd>⌘P</kbd> lleva un elemento a una lista aparte, «Fijados», a un <kbd>→</kbd> del historial. <a href="#pinned">Cómo funciona</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🧩</div><h3>Fragmentos y formularios</h3>
+                    <p>Guarda una vez tu dirección, los datos de tu empresa o una firma, y rellena formularios campo a campo. <a href="#snippets">Cómo funciona</a></p></div>
             </div>
         </div>
     </section>
@@ -390,7 +439,7 @@
                 <div class="pinned-shot" aria-hidden="true">
                 <div class="panel">
                     <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
-                    <div class="tabs"><span>Historial</span><span class="on">Fijados · 6</span></div>
+                    <div class="tabs"><span>Historial</span><span class="on">Fijados · 6</span><span>Fragmentos · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">lucia.garcia@example.com</span><span class="k">⌘1</span></li>
@@ -424,11 +473,52 @@
                 <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Desarrollo e IT</h3>
                     <p>Comandos largos, direcciones de servidores, datos de prueba y rutas que usas a diario.</p></div>
             </div>
-            <div class="note">Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas.</div>
+            <div class="note">Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas. ¿Textos que escribes tú mismo o formularios enteros? Para eso están los <a href="#snippets">fragmentos</a>.</div>
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="snippets">
+        <div class="wrap">
+            <h2>Fragmentos: rellenar formularios sin teclear</h2>
+            <p class="sub">Escribe una vez lo que tecleas una y otra vez: tu dirección, los datos de tu empresa, una firma. Clipsody lo pega donde lo necesites: un texto de una vez o todo un formulario campo a campo.</p>
+            <div class="pinned-demo editor-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Buscar…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historial</span><span>Fijados · 6</span><span class="on">Fragmentos · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mi dirección</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Firma</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nuevo fragmento</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mi dirección</p><p class="row head"><span>Etiqueta (opcional)</span><span>Texto</span><span></span></p><p class="row"><span class="label">Nombre</span><span class="text">Lucía García</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Calle</span><span class="text">Calle Ejemplo 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Código postal</span><span class="text">28001</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ciudad</span><span class="text">Madrid</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Añadir campo</span><span class="buttons"><span class="btn">Eliminar…</span><span class="btn">Rellenar ⏎</span></span></p></div>
+                            <div class="info">Los cambios se guardan al instante.</div>
+                            <div class="hint">⏎ rellenar   ⌘N nuevo fragmento   ⌘⌫ eliminar</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Créalo una vez</h3><p>En la pestaña «Fragmentos», elige «Nuevo fragmento» (<kbd>⌘N</kbd>), ponle un nombre y rellena los campos, cada uno con una etiqueta como «Código postal» si quieres.</p></li>
+                </ol>
+            </div>
+            <div class="pinned-demo">
+                <div class="snippets-shot" aria-hidden="true">
+                    <div class="fillbar"><p class="name">Mi dirección<span class="close">✕</span></p><p class="chips"><span class="chip used">✓ <span class="label">Nombre:</span> Lucía García</span><span class="chip used">✓ <span class="label">Calle:</span> Calle Ejemplo 12</span><span class="chip"><span class="label">Código postal:</span> 28001</span><span class="chip"><span class="label">Ciudad:</span> Madrid</span></p><p class="hint">Haz clic en un campo y luego en el valor (o ⌥⌘V para el siguiente), o arrastra el valor al campo.</p></div>
+                    <div class="mini-form"><p class="title">Dirección de envío</p><div class="field"><span class="label">Nombre</span><span class="input">Lucía García</span></div><div class="field"><span class="label">Calle</span><span class="input">Calle Ejemplo 12</span></div><div class="field"><span class="label">Código postal</span><span class="input focus"><span class="caret"></span></span></div><div class="field"><span class="label">Ciudad</span><span class="input"></span></div></div>
+                </div>
+                <ol class="pinned-steps" start="2">
+                    <li><h3><span class="step">2</span>Abre la barra de relleno</h3><p>Selecciona el fragmento y pulsa <kbd>⏎</kbd>: arriba en la pantalla aparece una barra con tus valores. No le quita el foco a tu formulario.</p></li>
+                    <li><h3><span class="step">3</span>Campo a campo</h3><p>Haz clic en un campo y luego en el valor, o pulsa <kbd>⌥⌘V</kbd> para el siguiente, o arrastra el valor al campo. Si en lugar de un campo de texto tiene el foco un botón o una etiqueta, Clipsody no pega nada.</p></li>
+                </ol>
+            </div>
+            <div class="note">Un fragmento con un solo texto, como una firma o una respuesta predefinida, se pega directamente con <kbd>⏎</kbd>. Los fragmentos se quedan en tu Mac; a diferencia del historial, se incluyen en las copias de Time Machine y se pueden exportar e importar en los ajustes.</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>Para qué sirve un historial del portapapeles</h2>
             <p class="sub">Para cualquier momento en que copies más de una cosa.</p>
@@ -438,14 +528,14 @@
                 <div class="card"><h3>Escribir e investigar</h3>
                     <p>Copia citas, enlaces y párrafos de varias fuentes y júntalos más tarde.</p></div>
                 <div class="card"><h3>Programar</h3>
-                    <p>Encuentra comandos, rutas y fragmentos de código que copiaste hace horas. Fija los comandos que usas constantemente.</p></div>
+                    <p>Encuentra comandos, rutas y trozos de código que copiaste hace horas. Fija los comandos que usas constantemente.</p></div>
                 <div class="card"><h3>Soporte y oficina</h3>
-                    <p>Respuestas predefinidas, números de cuenta y firmas fijados y siempre a mano: pegados en segundos.</p></div>
+                    <p>Firmas, respuestas predefinidas y números de cuenta como fragmentos: pegados en segundos.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>¿El Mac no tiene ya un historial del portapapeles?</h2>
             <p class="sub">Desde macOS 26 Tahoe, Spotlight puede mostrar lo copiado recientemente. Sirve para salir del paso; Clipsody está pensado para todo lo que deba durar más de una semana.</p>
@@ -468,7 +558,7 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>Todo con el teclado</h2>
             <p class="sub">No necesitas el ratón, aunque puedes usarlo.</p>
@@ -477,19 +567,20 @@
                 <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Abrir o cerrar el historial (configurable)</td></tr>
                 <tr><th scope="row">Escribir una palabra</th><td>Filtrar la lista: encuentra textos, nombres de apps y texto en imágenes</td></tr>
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Elegir un elemento</td></tr>
-                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Cambiar entre el historial y los elementos fijados</td></tr>
+                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Cambiar entre el historial, los fijados y los fragmentos</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Pegar con formato</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Pegar solo texto sin formato</td></tr>
                 <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Pegar directamente uno de los nueve primeros elementos mostrados (del historial o de los fijados, según la lista abierta)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fijar o dejar de fijar un elemento. Los fijados están en «Fijados»; si copias o pegas uno de nuevo, aparece también en el historial</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Eliminar un elemento. Un elemento fijado en el historial solo sale del historial</td></tr>
+                <tr><th scope="row"><kbd>⌘N</kbd></th><td>Crear un fragmento nuevo</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Cerrar</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Tu portapapeles es tuyo</h2>
             <p class="sub">Al portapapeles llegan cosas personales: contraseñas, direcciones, mensajes. Por eso Clipsody se ha diseñado pensando en la privacidad.</p>
@@ -510,7 +601,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Instalación</h2>
             <p class="sub">Clipsody no está notarizado por Apple: para eso hace falta una cuenta de desarrollador de pago. Por eso macOS pregunta una vez en el primer arranque; así se hace:</p>
@@ -530,13 +621,15 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>Preguntas frecuentes</h2>
             <details><summary>¿Cómo veo lo que copié antes en un Mac?</summary>
                 <p>De serie, el Mac solo recuerda lo último que copiaste. Un gestor de portapapeles como Clipsody guarda todo lo que copias: <kbd>⌥⌘C</kbd> lo muestra todo, con búsqueda. Todas las formas, incluidos el Finder y el historial de Spotlight de macOS 26: <a href="historial-portapapeles-mac.html">cómo ver el historial del portapapeles en Mac</a>.</p></details>
             <details><summary>¿Cómo copio varios elementos y los pego uno tras otro?</summary>
                 <p>Con Clipsody copias como siempre con <kbd>⌘C</kbd> y cada elemento se queda en el historial. Para pegar, abre la lista con <kbd>⌥⌘C</kbd> y elige un elemento con <kbd>⏎</kbd>, o pega directamente uno de los nueve primeros con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Un elemento pegado sube al principio de la lista.</p></details>
+            <details><summary>¿Puede Clipsody rellenar formularios?</summary>
+                <p>Sí, con los fragmentos: guardas una vez lo que tecleas una y otra vez, por ejemplo tu dirección con nombre, calle, código postal y ciudad. Selecciona el fragmento y pulsa <kbd>⏎</kbd>, y aparece una pequeña barra con esos valores: haz clic en un campo y luego en el valor, o pulsa <kbd>⌥⌘V</kbd> para el siguiente. Tú decides qué valor va en cada campo; Clipsody nunca rellena nada a ciegas.</p></details>
             <details><summary>¿Clipsody es realmente gratis?</summary>
                 <p>Sí. Sin anuncios, sin suscripción, sin periodo de prueba. El código fuente es abierto, bajo licencia GPLv3.</p></details>
             <details><summary>¿Por qué necesita Clipsody el permiso de Accesibilidad?</summary>
@@ -554,7 +647,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
             <details><summary>¿Busca Clipsody actualizaciones?</summary>
                 <p>Solo si lo permites: en el primer arranque, Clipsody te pregunta si puede consultar a GitHub una vez al día si hay una versión nueva. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Si hay una versión nueva, el icono de la barra de menús muestra un punto y puedes instalarla desde el menú: Clipsody la descarga desde GitHub, comprueba su firma y se reinicia. Puedes cambiarlo en <strong>Ajustes → General</strong>; ahí y en el menú de la barra de menús también puedes comprobarlo tú mismo en cualquier momento.</p></details>
             <details><summary>¿Cómo desinstalo Clipsody?</summary>
-                <p><strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac.</p></details>
+                <p><strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes, los fragmentos y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac. Para conservar tus fragmentos, expórtalos antes en <strong>Ajustes → Historial</strong>.</p></details>
         </div>
     </section>
 </main>

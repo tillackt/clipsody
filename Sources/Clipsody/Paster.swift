@@ -101,6 +101,15 @@ final class Paster {
         return true
     }
 
+    /// Pastes a plain text (a snippet) into `target`; Clipsody itself as target only copies it.
+    /// True only if ⌘V goes out; without a target or the Accessibility permission the text is just copied.
+    func pasteText(_ text: String, into target: NSRunningApplication?) -> Bool {
+        let target = target?.processIdentifier == ProcessInfo.processInfo.processIdentifier ? nil : target
+        let sendsKeystroke = Self.isTrusted(prompt: false) && target.map { !$0.isTerminated } == true
+        let written = paste(ClipItem(id: 0, kind: .text, text: text, date: Date()), imageURL: nil, rich: nil, into: target)
+        return written && sendsKeystroke
+    }
+
     private static func isFrontmost(_ app: NSRunningApplication) -> Bool {
         NSWorkspace.shared.frontmostApplication?.processIdentifier == app.processIdentifier
     }

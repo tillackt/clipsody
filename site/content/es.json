@@ -73,9 +73,11 @@
         "Todo lo que has copiado: textos, imágenes, archivos, enlaces",
         "Las imágenes siguen siendo imágenes: sin pérdida y con vista previa",
         "Los archivos se vuelven a pegar como archivos",
-        "La búsqueda encuentra incluso texto en capturas de pantalla"
+        "La búsqueda encuentra incluso texto en capturas de pantalla",
+        "Fijados: lo que quieres conservar, en su propia lista",
+        "Fragmentos: escríbelos tú, rellena formularios"
       ],
-      "caption": "El historial del portapapeles de Clipsody: todo lo que has copiado, una imagen, un archivo y la búsqueda de un texto en una captura de pantalla.",
+      "caption": "El historial del portapapeles de Clipsody: todo lo que has copiado, una imagen, un archivo y la búsqueda de un texto en una captura de pantalla. Además, los elementos fijados y los fragmentos.",
       "ocrSearch": "factura",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Pausar la animación",
       "tabs": [
         "Historial",
-        "Fijados · 3"
+        "Fijados · 6",
+        "Fragmentos · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Textos, imágenes, archivos",
-          "Las imágenes se guardan sin pérdida y los archivos copiados se vuelven a pegar como archivos, no como una ruta."
-        ],
-        [
-          "✍️",
-          "Con o sin formato",
-          "<kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador. <kbd>⌥⏎</kbd> pega solo texto sin formato."
+          "Textos, imágenes, archivos, tal cual",
+          "Las imágenes se guardan sin pérdida y los archivos se pegan como archivos. <kbd>⏎</kbd> conserva negritas, enlaces y tablas de Word, Outlook o el navegador; <kbd>⌥⏎</kbd> pega solo texto sin formato."
         ],
         [
           "📌",
           "Fija lo que usas a menudo",
-          "IBAN, dirección, fragmentos, comandos: <kbd>⌘P</kbd> lleva un elemento a una lista aparte, «Fijados», a un <kbd>→</kbd> del historial. <a href=\"#pinned\">Cómo funciona</a>"
+          "IBAN, dirección, comandos: <kbd>⌘P</kbd> lleva un elemento a una lista aparte, «Fijados», a un <kbd>→</kbd> del historial. <a href=\"#pinned\">Cómo funciona</a>"
+        ],
+        [
+          "🧩",
+          "Fragmentos y formularios",
+          "Guarda una vez tu dirección, los datos de tu empresa o una firma, y rellena formularios campo a campo. <a href=\"#snippets\">Cómo funciona</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Programar",
-          "Encuentra comandos, rutas y fragmentos de código que copiaste hace horas. Fija los comandos que usas constantemente."
+          "Encuentra comandos, rutas y trozos de código que copiaste hace horas. Fija los comandos que usas constantemente."
         ],
         [
           "Soporte y oficina",
-          "Respuestas predefinidas, números de cuenta y firmas fijados y siempre a mano: pegados en segundos."
+          "Firmas, respuestas predefinidas y números de cuenta como fragmentos: pegados en segundos."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Cambiar entre el historial y los elementos fijados"
+          "Cambiar entre el historial, los fijados y los fragmentos"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Eliminar un elemento. Un elemento fijado en el historial solo sale del historial"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Crear un fragmento nuevo"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Con Clipsody copias como siempre con <kbd>⌘C</kbd> y cada elemento se queda en el historial. Para pegar, abre la lista con <kbd>⌥⌘C</kbd> y elige un elemento con <kbd>⏎</kbd>, o pega directamente uno de los nueve primeros con <kbd>⌘1</kbd> a <kbd>⌘9</kbd>. Un elemento pegado sube al principio de la lista."
         ],
         [
+          "¿Puede Clipsody rellenar formularios?",
+          "Sí, con los fragmentos: guardas una vez lo que tecleas una y otra vez, por ejemplo tu dirección con nombre, calle, código postal y ciudad. Selecciona el fragmento y pulsa <kbd>⏎</kbd>, y aparece una pequeña barra con esos valores: haz clic en un campo y luego en el valor, o pulsa <kbd>⌥⌘V</kbd> para el siguiente. Tú decides qué valor va en cada campo; Clipsody nunca rellena nada a ciegas."
+        ],
+        [
           "¿Clipsody es realmente gratis?",
           "Sí. Sin anuncios, sin suscripción, sin periodo de prueba. El código fuente es abierto, bajo licencia GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "¿Cómo desinstalo Clipsody?",
-          "<strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac."
+          "<strong>Ajustes → Información → Desinstalar Clipsody…</strong> elimina el historial, las imágenes, los fragmentos y los ajustes, quita el ítem de inicio y el permiso de Accesibilidad y mueve la app a la Papelera. Si solo arrastras tú la app a la Papelera, estos datos se quedan en tu Mac. Para conservar tus fragmentos, expórtalos antes en <strong>Ajustes → Historial</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "Correo electrónico, dirección, teléfono, IBAN: lo que escribes una y otra vez, lo fijas una sola vez. Pasa a una lista propia, separada del historial, y se pega con unas pocas teclas.",
       "tabs": [
         "Historial",
-        "Fijados · 6"
+        "Fijados · 6",
+        "Fragmentos · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Comandos largos, direcciones de servidores, datos de prueba y rutas que usas a diario."
         ]
       ],
-      "note": "Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas."
+      "note": "Los elementos fijados se quedan: nunca se eliminan automáticamente, no cuentan para el límite del historial y se conservan aunque borres el historial. Como todo en Clipsody, permanecen en tu Mac. Las contraseñas, de todos modos, van en un gestor de contraseñas. ¿Textos que escribes tú mismo o formularios enteros? Para eso están los <a href=\"#snippets\">fragmentos</a>."
+    },
+    "snippets": {
+      "h2": "Fragmentos: rellenar formularios sin teclear",
+      "sub": "Escribe una vez lo que tecleas una y otra vez: tu dirección, los datos de tu empresa, una firma. Clipsody lo pega donde lo necesites: un texto de una vez o todo un formulario campo a campo.",
+      "name": "Mi dirección",
+      "values": [
+        [
+          "Nombre",
+          "Lucía García"
+        ],
+        [
+          "Calle",
+          "Calle Ejemplo 12"
+        ],
+        [
+          "Código postal",
+          "28001"
+        ],
+        [
+          "Ciudad",
+          "Madrid"
+        ]
+      ],
+      "hint": "Haz clic en un campo y luego en el valor (o ⌥⌘V para el siguiente), o arrastra el valor al campo.",
+      "form": "Dirección de envío",
+      "steps": [
+        [
+          "Créalo una vez",
+          "En la pestaña «Fragmentos», elige «Nuevo fragmento» (<kbd>⌘N</kbd>), ponle un nombre y rellena los campos, cada uno con una etiqueta como «Código postal» si quieres."
+        ],
+        [
+          "Abre la barra de relleno",
+          "Selecciona el fragmento y pulsa <kbd>⏎</kbd>: arriba en la pantalla aparece una barra con tus valores. No le quita el foco a tu formulario."
+        ],
+        [
+          "Campo a campo",
+          "Haz clic en un campo y luego en el valor, o pulsa <kbd>⌥⌘V</kbd> para el siguiente, o arrastra el valor al campo. Si en lugar de un campo de texto tiene el foco un botón o una etiqueta, Clipsody no pega nada."
+        ]
+      ],
+      "note": "Un fragmento con un solo texto, como una firma o una respuesta predefinida, se pega directamente con <kbd>⏎</kbd>. Los fragmentos se quedan en tu Mac; a diferencia del historial, se incluyen en las copias de Time Machine y se pueden exportar e importar en los ajustes.",
+      "editor": {
+        "tabs": [
+          "Historial",
+          "Fijados · 6",
+          "Fragmentos · 2"
+        ],
+        "signature": "Firma",
+        "newSnippet": "Nuevo fragmento",
+        "labelHeader": "Etiqueta (opcional)",
+        "textHeader": "Texto",
+        "addField": "Añadir campo",
+        "delete": "Eliminar…",
+        "fillIn": "Rellenar ⏎",
+        "info": "Los cambios se guardan al instante.",
+        "hint": "⏎ rellenar   ⌘N nuevo fragmento   ⌘⌫ eliminar"
+      }
     }
   },
   "guide": {

@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=2217717643">
+    <link rel="stylesheet" href="../assets/style.css?v=4b49edc3d0">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="pl_PL">
@@ -95,6 +95,14 @@
         },
         {
           "@type": "Question",
+          "name": "Czy Clipsody potrafi wypełniać formularze?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak, za pomocą fragmentów tekstu: zapisujesz raz to, co ciągle wpisujesz, na przykład adres z imieniem i nazwiskiem, ulicą, kodem pocztowym i miastem. Wybierz fragment tekstu i naciśnij ⏎, a pojawi się mały pasek z tymi wartościami: kliknij w pole, a potem w wartość – albo ⌥⌘V, aby wkleić następną. To ty decydujesz, która wartość trafia do którego pola; Clipsody niczego nie wypełnia na ślepo."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Czy Clipsody naprawdę jest darmowe?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -162,7 +170,7 @@
           "name": "Jak odinstalować Clipsody?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ustawienia → Informacje → Odinstaluj Clipsody… usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu."
+            "text": "Ustawienia → Informacje → Odinstaluj Clipsody… usuwa historię, obrazy, fragmenty tekstu i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu. Jeśli chcesz zachować fragmenty tekstu, najpierw wyeksportuj je w Ustawienia → Historia."
           }
         }
       ]
@@ -222,7 +230,7 @@
                 <p class="scene-label"><span class="step">1</span>Wszystko, co kopiujesz: teksty, obrazy, pliki, linki</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 3</span></div>
+                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
@@ -244,7 +252,7 @@
                 <p class="scene-label"><span class="step">2</span>Obrazy zostają obrazami – bezstratnie, z podglądem</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 3</span></div>
+                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
@@ -266,7 +274,7 @@
                 <p class="scene-label"><span class="step">3</span>Pliki wklejają się znów jako pliki</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 3</span></div>
+                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Sprawdzisz do piątku, czy faktura się zgadza? ⏎ Dzięki!</span><span class="k">⌘1</span></li>
@@ -288,7 +296,7 @@
                 <p class="scene-label"><span class="step">4</span>Wyszukiwanie znajduje nawet tekst na zrzutach ekranu</p>
                 <div class="panel">
                     <div class="search"><span class="typed">faktura</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 3</span></div>
+                    <div class="tabs"><span class="on">Historia</span><span>Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico a"></span><span class="t">Obraz 2880×1800 (612 KB) – „…<mark>Faktura</mark> nr 2026-1043…”</span><span class="k">⌘1</span></li>
@@ -305,13 +313,54 @@
                     </div>
                 </div>
             </div>
+            <div class="scene s5">
+                <p class="scene-label"><span class="step">5</span>Przypięte: to, co chcesz zachować, na osobnej liście</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historia</span><span class="on">Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">anna.kowalska@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Anna Kowalska ⏎ ul. Przykładowa 12 ⏎ 00-001 Warszawa</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+48 22 000 00 00</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: PL00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Pozdrawiam ⏎ Anna Kowalska</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Anna Kowalska<br>ul. Przykładowa 12<br>00-001 Warszawa</div>
+                            <div class="info">Przypięty · Tekst · 3 linie</div>
+                            <div class="hint">⏎ wklej   ⌥⏎ bez formatowania   ⌘P odepnij   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s6">
+                <p class="scene-label"><span class="step">6</span>Fragmenty tekstu: pisz sam, wypełniaj formularze</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historia</span><span>Przypięte · 6</span><span class="on">Fragmenty tekstu · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mój adres</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Podpis</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nowy fragment tekstu</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mój adres</p><p class="row head"><span>Etykieta (opcjonalnie)</span><span>Tekst</span><span></span></p><p class="row"><span class="label">Imię i nazwisko</span><span class="text">Anna Kowalska</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ulica</span><span class="text">ul. Przykładowa 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Kod pocztowy</span><span class="text">00-001</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Miasto</span><span class="text">Warszawa</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Dodaj pole</span><span class="buttons"><span class="btn">Usuń…</span><span class="btn">Wypełnij ⏎</span></span></p></div>
+                            <div class="info">Zmiany są zapisywane od razu.</div>
+                            <div class="hint">⏎ wypełnij   ⌘N nowy fragment   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="controls">
-                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></span>
                 <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
                 <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Zatrzymaj animację</label>
             </div>
-            <figcaption class="caption">Historia schowka w Clipsody: wszystkie skopiowane elementy, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu.</figcaption>
+            <figcaption class="caption">Historia schowka w Clipsody: wszystkie skopiowane elementy, obraz, plik i wyszukiwanie tekstu na zrzucie ekranu. A także przypięte elementy i fragmenty tekstu.</figcaption>
         </figure>
     </div>
 
@@ -347,12 +396,12 @@
                     <p>Najpierw skopiuj imię, adres i numer zamówienia, potem wklejaj je po kolei z listy. <kbd>⌘1</kbd> do <kbd>⌘9</kbd> wklejają od razu pierwsze dziewięć widocznych elementów (z historii lub z przypiętych, zależnie od otwartej listy).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Znajduje też tekst na obrazach</h3>
                     <p>Skopiowane zrzuty ekranu i obrazy są odczytywane na twoim Macu. Wyszukaj słowo, które jest na obrazie – i już go masz. <a href="#text-in-images">Jak to działa</a></p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Teksty, obrazy, pliki</h3>
-                    <p>Obrazy są przechowywane bezstratnie, a skopiowane pliki wklejają się znów jako pliki – nie jako ścieżka.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Z formatowaniem lub bez</h3>
-                    <p><kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki. <kbd>⌥⏎</kbd> wkleja sam czysty tekst.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Teksty, obrazy, pliki – tak jak skopiowane</h3>
+                    <p>Obrazy zostają bezstratne, pliki wklejają się jako pliki. <kbd>⏎</kbd> zachowuje pogrubienia, linki i tabele z Worda, Outlooka czy przeglądarki; <kbd>⌥⏎</kbd> wkleja sam czysty tekst.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Przypnij to, czego często używasz</h3>
-                    <p>IBAN, adres, fragmenty tekstu, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, tuż obok historii – wystarczy <kbd>→</kbd>. <a href="#pinned">Jak to działa</a></p></div>
+                    <p>IBAN, adres, polecenia: <kbd>⌘P</kbd> przenosi element na osobną listę „Przypięte”, tuż obok historii – wystarczy <kbd>→</kbd>. <a href="#pinned">Jak to działa</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🧩</div><h3>Fragmenty tekstu i formularze</h3>
+                    <p>Zapisz raz adres, dane firmy albo podpis – i wypełniaj formularze pole po polu. <a href="#snippets">Jak to działa</a></p></div>
             </div>
         </div>
     </section>
@@ -390,7 +439,7 @@
                 <div class="pinned-shot" aria-hidden="true">
                 <div class="panel">
                     <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
-                    <div class="tabs"><span>Historia</span><span class="on">Przypięte · 6</span></div>
+                    <div class="tabs"><span>Historia</span><span class="on">Przypięte · 6</span><span>Fragmenty tekstu · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">anna.kowalska@example.com</span><span class="k">⌘1</span></li>
@@ -424,11 +473,52 @@
                 <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Programowanie i IT</h3>
                     <p>Długie polecenia, adresy serwerów, dane testowe i ścieżki, których potrzebujesz codziennie.</p></div>
             </div>
-            <div class="note">Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na twoim Macu. Hasła i tak należą do menedżera haseł.</div>
+            <div class="note">Przypięte elementy zostają: nigdy nie są usuwane automatycznie, nie wliczają się do limitu historii i zostają nawet po wyczyszczeniu historii. Jak wszystko w Clipsody, pozostają na twoim Macu. Hasła i tak należą do menedżera haseł. Teksty, które piszesz sam, albo całe formularze? Do tego służą <a href="#snippets">fragmenty tekstu</a>.</div>
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="snippets">
+        <div class="wrap">
+            <h2>Fragmenty tekstu: wypełniaj formularze bez pisania</h2>
+            <p class="sub">Zapisz raz to, co ciągle wpisujesz – adres, dane firmy, podpis. Clipsody wklei to tam, gdzie potrzebujesz: jeden tekst naraz albo cały formularz pole po polu.</p>
+            <div class="pinned-demo editor-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Szukaj …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historia</span><span>Przypięte · 6</span><span class="on">Fragmenty tekstu · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mój adres</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Podpis</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nowy fragment tekstu</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mój adres</p><p class="row head"><span>Etykieta (opcjonalnie)</span><span>Tekst</span><span></span></p><p class="row"><span class="label">Imię i nazwisko</span><span class="text">Anna Kowalska</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ulica</span><span class="text">ul. Przykładowa 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Kod pocztowy</span><span class="text">00-001</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Miasto</span><span class="text">Warszawa</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Dodaj pole</span><span class="buttons"><span class="btn">Usuń…</span><span class="btn">Wypełnij ⏎</span></span></p></div>
+                            <div class="info">Zmiany są zapisywane od razu.</div>
+                            <div class="hint">⏎ wypełnij   ⌘N nowy fragment   ⌘⌫ usuń</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Utwórz raz</h3><p>Na karcie „Fragmenty tekstu” wybierz „Nowy fragment tekstu” (<kbd>⌘N</kbd>), nadaj mu nazwę i wypełnij pola – każde, jeśli chcesz, z etykietą, np. „Kod pocztowy”.</p></li>
+                </ol>
+            </div>
+            <div class="pinned-demo">
+                <div class="snippets-shot" aria-hidden="true">
+                    <div class="fillbar"><p class="name">Mój adres<span class="close">✕</span></p><p class="chips"><span class="chip used">✓ <span class="label">Imię i nazwisko:</span> Anna Kowalska</span><span class="chip used">✓ <span class="label">Ulica:</span> ul. Przykładowa 12</span><span class="chip"><span class="label">Kod pocztowy:</span> 00-001</span><span class="chip"><span class="label">Miasto:</span> Warszawa</span></p><p class="hint">Kliknij w pole, a potem w wartość (albo ⌥⌘V, aby wkleić następną), lub przeciągnij wartość do pola.</p></div>
+                    <div class="mini-form"><p class="title">Adres dostawy</p><div class="field"><span class="label">Imię i nazwisko</span><span class="input">Anna Kowalska</span></div><div class="field"><span class="label">Ulica</span><span class="input">ul. Przykładowa 12</span></div><div class="field"><span class="label">Kod pocztowy</span><span class="input focus"><span class="caret"></span></span></div><div class="field"><span class="label">Miasto</span><span class="input"></span></div></div>
+                </div>
+                <ol class="pinned-steps" start="2">
+                    <li><h3><span class="step">2</span>Otwórz pasek wypełniania</h3><p>Wybierz fragment i naciśnij <kbd>⏎</kbd>: u góry ekranu pojawi się pasek z twoimi wartościami. Formularz zachowuje fokus.</p></li>
+                    <li><h3><span class="step">3</span>Pole po polu</h3><p>Kliknij w pole, a potem w wartość – albo <kbd>⌥⌘V</kbd>, aby wkleić następną, lub przeciągnij wartość do pola. Jeśli zamiast pola tekstowego aktywny jest przycisk lub etykieta, Clipsody nic nie wkleja.</p></li>
+                </ol>
+            </div>
+            <div class="note">Fragment z jednym tekstem, np. podpis albo gotowa odpowiedź, wkleja się od razu klawiszem <kbd>⏎</kbd>. Fragmenty tekstu zostają na twoim Macu, w przeciwieństwie do historii trafiają do kopii Time Machine i można je eksportować i importować w ustawieniach.</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>Do czego przydaje się historia schowka</h2>
             <p class="sub">Wszędzie tam, gdzie kopiujesz więcej niż jedną rzecz.</p>
@@ -438,14 +528,14 @@
                 <div class="card"><h3>Pisanie i research</h3>
                     <p>Kopiuj cytaty, linki i akapity z kilku źródeł i składaj je w całość później.</p></div>
                 <div class="card"><h3>Programowanie</h3>
-                    <p>Znajdź polecenia, ścieżki i fragmenty kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas.</p></div>
+                    <p>Znajdź polecenia, ścieżki i kawałki kodu skopiowane kilka godzin temu. Przypnij polecenia, których używasz cały czas.</p></div>
                 <div class="card"><h3>Support i praca biurowa</h3>
-                    <p>Gotowe odpowiedzi, numery kont i podpisy przypięte i pod ręką – wklejone w kilka sekund.</p></div>
+                    <p>Podpisy, gotowe odpowiedzi i numery kont jako fragmenty tekstu – wklejone w kilka sekund.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>Czy Mac nie ma już historii schowka?</h2>
             <p class="sub">Od macOS 26 Tahoe Spotlight potrafi pokazać ostatnio skopiowane elementy. To pomaga na chwilę – Clipsody jest stworzone do wszystkiego, co ma przetrwać dłużej niż tydzień.</p>
@@ -468,7 +558,7 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>Wszystko z klawiatury</h2>
             <p class="sub">Mysz nie jest potrzebna – ale możesz jej używać.</p>
@@ -477,19 +567,20 @@
                 <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Otwórz lub zamknij historię (do zmiany)</td></tr>
                 <tr><th scope="row">Wpisz szukane słowo</th><td>Filtruj listę – znajduje tekst, nazwy aplikacji i tekst na obrazach</td></tr>
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Wybierz element</td></tr>
-                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Przełączanie między historią a przypiętymi elementami</td></tr>
+                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Przełączanie między historią, przypiętymi i fragmentami tekstu</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Wklej z formatowaniem</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Wklej sam tekst</td></tr>
                 <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Wklej od razu jeden z pierwszych dziewięciu widocznych elementów (z historii lub z przypiętych, zależnie od otwartej listy)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Przypnij lub odepnij element. Przypięte są na liście „Przypięte”; skopiowany lub wklejony ponownie pojawia się też w historii</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Usuń element. Przypięty element w historii znika tylko z historii</td></tr>
+                <tr><th scope="row"><kbd>⌘N</kbd></th><td>Utwórz nowy fragment tekstu</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Zamknij</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Twój schowek należy do ciebie</h2>
             <p class="sub">W schowku lądują rzeczy osobiste: hasła, adresy, wiadomości. Dlatego Clipsody od podstaw dba o prywatność.</p>
@@ -510,7 +601,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Instalacja</h2>
             <p class="sub">Clipsody nie jest notaryzowane przez Apple – do tego potrzebne jest płatne konto dewelopera. Dlatego przy pierwszym uruchomieniu macOS raz o to zapyta – oto co zrobić:</p>
@@ -530,13 +621,15 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>Jak na Macu zobaczyć, co skopiowałem wcześniej?</summary>
                 <p>Standardowo Mac pamięta tylko ostatnio skopiowaną rzecz. Menedżer schowka, taki jak Clipsody, zachowuje wszystko, co kopiujesz: <kbd>⌥⌘C</kbd> pokazuje całość, z wyszukiwaniem. Wszystkie sposoby, także Finder i historię w Spotlight z macOS 26, znajdziesz tutaj: <a href="historia-schowka-mac.html">jak zobaczyć historię schowka na Macu</a>.</p></details>
             <details><summary>Jak skopiować kilka rzeczy i wkleić je po kolei?</summary>
                 <p>Z Clipsody kopiujesz jak zwykle przez <kbd>⌘C</kbd> – każdy element zostaje w historii. Aby wkleić, otwórz listę przez <kbd>⌥⌘C</kbd> i wybierz element klawiszem <kbd>⏎</kbd> albo wklej jeden z pierwszych dziewięciu od razu przez <kbd>⌘1</kbd> do <kbd>⌘9</kbd>. Wklejony element przesuwa się na górę listy.</p></details>
+            <details><summary>Czy Clipsody potrafi wypełniać formularze?</summary>
+                <p>Tak, za pomocą fragmentów tekstu: zapisujesz raz to, co ciągle wpisujesz, na przykład adres z imieniem i nazwiskiem, ulicą, kodem pocztowym i miastem. Wybierz fragment tekstu i naciśnij <kbd>⏎</kbd>, a pojawi się mały pasek z tymi wartościami: kliknij w pole, a potem w wartość – albo <kbd>⌥⌘V</kbd>, aby wkleić następną. To ty decydujesz, która wartość trafia do którego pola; Clipsody niczego nie wypełnia na ślepo.</p></details>
             <details><summary>Czy Clipsody naprawdę jest darmowe?</summary>
                 <p>Tak. Bez reklam, bez abonamentu, bez wersji próbnej. Kod źródłowy jest otwarty, na licencji GPLv3.</p></details>
             <details><summary>Dlaczego Clipsody potrzebuje uprawnienia „Dostępność”?</summary>
@@ -554,7 +647,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
             <details><summary>Czy Clipsody sprawdza aktualizacje?</summary>
                 <p>Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a z menu możesz ją zainstalować: Clipsody pobiera ją z GitHuba, sprawdza podpis i uruchamia się ponownie. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić ręcznie.</p></details>
             <details><summary>Jak odinstalować Clipsody?</summary>
-                <p><strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu.</p></details>
+                <p><strong>Ustawienia → Informacje → Odinstaluj Clipsody…</strong> usuwa historię, obrazy, fragmenty tekstu i ustawienia, usuwa element logowania i uprawnienie „Dostępność” oraz przenosi aplikację do Kosza. Jeśli przeciągniesz aplikację do Kosza samodzielnie, te dane zostaną na twoim Macu. Jeśli chcesz zachować fragmenty tekstu, najpierw wyeksportuj je w <strong>Ustawienia → Historia</strong>.</p></details>
         </div>
     </section>
 </main>
