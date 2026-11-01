@@ -163,6 +163,8 @@ cp "$BIN_DIR/Clipsody" "$APP/Contents/MacOS/Clipsody"
 # Local symbols are not needed at runtime and only enlarge the download.
 strip -x "$APP/Contents/MacOS/Clipsody"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
+# Rendered from website/assets/logo.svg by .github/scripts/app-artwork.swift.
+cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 # One <language>.lproj per translation; English is the source language and the fallback.
 xcrun xcstringstool compile Resources/Localizable.xcstrings --output-directory "$APP/Contents/Resources" \
     --serialization-format binary
@@ -229,7 +231,18 @@ echo "Built and verified $APP (signed as \"$SIGN_AS\")"
 if [[ "${1:-}" == "release" ]]; then
     RELEASE_TMP="$(mktemp -d)"
     MOUNT="$RELEASE_TMP/mnt"
-    trap 'hdiutil detach -quiet "$MOUNT" 2>/dev/null || true; rm -rf "$RELEASE_TMP"' EXIT
+    # Deletes the scratch files only once nothing of them is mounted any more: removing the backing
+    # file of a mounted (writable) image would leave a broken volume behind.
+    release_cleanup() {
+        if mount | grep -q " on $MOUNT "; then
+            if ! hdiutil detach -quiet "$MOUNT" && ! hdiutil detach -quiet -force "$MOUNT"; then
+                echo "$MOUNT is still mounted; left $RELEASE_TMP in place" >&2
+                return
+            fi
+        fi
+        rm -rf "$RELEASE_TMP"
+    }
+    trap release_cleanup EXIT
     mkdir "$RELEASE_TMP/dmg" "$RELEASE_TMP/cert" "$MOUNT"
 
     # Only the published certificate may sign a release.
@@ -240,13 +253,24 @@ if [[ "${1:-}" == "release" ]]; then
         exit 1
     fi
 
-    # Disk image to download: the app plus a link to /Applications to drag it onto.
+    # Disk image to download: the app plus a link to /Applications to drag it onto, in a window with
+    # an arrow between the two (layout recorded by .github/scripts/dmg-layout.sh) and the app icon
+    # as the volume icon.
     DMG="build/Clipsody.dmg"
     ditto "$APP" "$RELEASE_TMP/dmg/Clipsody.app"
     ln -s /Applications "$RELEASE_TMP/dmg/Applications"
+    mkdir "$RELEASE_TMP/dmg/.background"
+    cp Resources/dmg/background.png "$RELEASE_TMP/dmg/.background/background.png"
+    cp Resources/dmg/DS_Store "$RELEASE_TMP/dmg/.DS_Store"
+    cp Resources/AppIcon.icns "$RELEASE_TMP/dmg/.VolumeIcon.icns"
+    # The custom-icon flag must sit on the volume root, so the image is made writable first.
+    hdiutil create -quiet -volname Clipsody -srcfolder "$RELEASE_TMP/dmg" -fs HFS+ -format UDRW "$RELEASE_TMP/rw.dmg"
+    hdiutil attach -quiet -nobrowse -noautoopen -mountpoint "$MOUNT" "$RELEASE_TMP/rw.dmg"
+    xcrun SetFile -a C "$MOUNT"
+    hdiutil detach -quiet "$MOUNT"
     rm -f "$DMG"
     # ULFO (LZFSE) opens on every supported macOS (13+) and is smaller than zlib.
-    hdiutil create -quiet -volname Clipsody -srcfolder "$RELEASE_TMP/dmg" -fs HFS+ -format ULFO "$DMG"
+    hdiutil convert -quiet "$RELEASE_TMP/rw.dmg" -format ULFO -o "$DMG"
     # Signed like the app, so a tampered image shows up in `codesign --verify`.
     codesign --force --sign "$SIGN_AS" --identifier "$BUNDLE_ID.dmg" "$DMG"
     codesign --verify --strict "$DMG"

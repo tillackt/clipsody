@@ -377,7 +377,7 @@
         ],
         [
           "O Clipsody verifica atualizações?",
-          "Só se você permitir: na primeira abertura, o Clipsody pergunta se pode consultar o GitHub uma vez por dia em busca de uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Se houver uma nova versão, o ícone na barra de menus ganha um ponto, e o menu abre a página de download. Você pode mudar isso em <strong>Ajustes → Geral</strong>; lá e no menu da barra de menus você também pode verificar quando quiser."
+          "Só se você permitir: na primeira abertura, o Clipsody pergunta se pode consultar o GitHub uma vez por dia em busca de uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Se houver uma nova versão, o ícone na barra de menus ganha um ponto, e você pode instalá-la pelo menu: o Clipsody a baixa do GitHub, verifica a assinatura e reinicia. Você pode mudar isso em <strong>Ajustes → Geral</strong>; lá e no menu da barra de menus você também pode verificar quando quiser."
         ],
         [
           "Como desinstalo o Clipsody?",

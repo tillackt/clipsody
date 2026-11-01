@@ -377,7 +377,7 @@
         ],
         [
           "Czy Clipsody sprawdza aktualizacje?",
-          "Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a menu otwiera stronę pobierania. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić ręcznie."
+          "Tylko jeśli na to pozwolisz: przy pierwszym uruchomieniu Clipsody pyta, czy może raz dziennie sprawdzać na GitHubie, czy jest nowa wersja. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Gdy pojawi się nowa wersja, ikona na pasku menu dostaje kropkę, a z menu możesz ją zainstalować: Clipsody pobiera ją z GitHuba, sprawdza podpis i uruchamia się ponownie. Zmienisz to w <strong>Ustawienia → Ogólne</strong>; tam i w menu na pasku menu możesz też w każdej chwili sprawdzić ręcznie."
         ],
         [
           "Jak odinstalować Clipsody?",

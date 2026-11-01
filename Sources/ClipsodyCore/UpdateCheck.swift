@@ -29,11 +29,24 @@ public enum UpdateCheck {
     public static let latestReleaseURL = URL(string: "https://api.github.com/repos/tillackt/clipsody/releases/latest")!
     /// How often the automatic check runs.
     public static let interval: TimeInterval = 24 * 60 * 60
+    /// The app an update must contain.
+    public static let bundleIdentifier = "io.github.tillackt.clipsody"
+    /// SHA-256 of the certificate every release is signed with (build.sh, RELEASE_CERT_SHA256; also on
+    /// the website). An update signed with anything else is not installed.
+    public static let signingCertificateSHA256 = "4d175a00dff7276c393a30bc11f2c9ec29cd17da08946cfada661e16b1f9a9d6"
 
     public struct Release: Equatable, Sendable {
         public let version: SemanticVersion
         public var pageURL: URL {
             URL(string: "https://github.com/tillackt/clipsody/releases/tag/v\(version)")!
+        }
+        /// The disk image of exactly this version (not "latest", which may have moved on meanwhile).
+        public var diskImageURL: URL {
+            URL(string: "https://github.com/tillackt/clipsody/releases/download/v\(version)/Clipsody.dmg")!
+        }
+        /// "<sha256>  Clipsody.dmg", written by `./build.sh release`.
+        public var checksumURL: URL {
+            URL(string: "https://github.com/tillackt/clipsody/releases/download/v\(version)/Clipsody.dmg.sha256")!
         }
 
         public init(version: SemanticVersion) {
@@ -54,6 +67,14 @@ public enum UpdateCheck {
     public static func isNewer(_ release: Release, than currentVersion: String) -> Bool {
         guard let current = SemanticVersion(currentVersion) else { return false }
         return release.version > current
+    }
+
+    /// The SHA-256 in a checksum file ("<64 hex digits>  Clipsody.dmg"), lowercased; nil for anything else.
+    public static func checksum(fromFile data: Data) -> String? {
+        guard data.count <= 1_024, let text = String(data: data, encoding: .utf8),
+              let first = text.split(whereSeparator: \.isWhitespace).first,
+              first.wholeMatch(of: /[0-9a-fA-F]{64}/) != nil else { return nil }
+        return first.lowercased()
     }
 
     /// Whether the automatic check is due. A last check in the future (clock changed) counts as due.

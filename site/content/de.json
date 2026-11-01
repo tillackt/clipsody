@@ -377,7 +377,7 @@
         ],
         [
           "Sucht Clipsody nach Updates?",
-          "Nur wenn du es erlaubst: Beim ersten Start fragt Clipsody, ob es einmal täglich bei GitHub nach einer neuen Version fragen darf. Gesendet wird dabei nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Gibt es eine neue Version, bekommt das Menüleisten-Symbol einen Punkt, und im Menü öffnest du die Download-Seite. Ändern kannst du das unter <strong>Einstellungen → Allgemein</strong>; dort und im Menüleisten-Menü kannst du auch jederzeit selbst suchen."
+          "Nur wenn du es erlaubst: Beim ersten Start fragt Clipsody, ob es einmal täglich bei GitHub nach einer neuen Version fragen darf. Gesendet wird dabei nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Gibt es eine neue Version, bekommt das Menüleisten-Symbol einen Punkt, und über das Menü installierst du sie: Clipsody lädt sie von GitHub, prüft die Signatur und startet neu. Ändern kannst du das unter <strong>Einstellungen → Allgemein</strong>; dort und im Menüleisten-Menü kannst du auch jederzeit selbst suchen."
         ],
         [
           "Wie deinstalliere ich Clipsody?",

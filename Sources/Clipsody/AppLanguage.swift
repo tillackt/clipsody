@@ -43,12 +43,21 @@ enum AppLanguage {
     }
 
     /// Starts a new instance once this one has quit; two instances would fight over the hotkey.
-    static func relaunch() {
+    /// Returns false (after showing the error) if the helper could not be started; this one keeps running.
+    @discardableResult
+    static func relaunch() -> Bool {
         // Right after the process is gone, LaunchServices may still refuse to open the app (-600);
-        // retried for a few seconds, or the user would be left without a running Clipsody.
+        // retried for a few seconds, or the user would be left without a running Clipsody. -n: while
+        // LaunchServices still lists the old instance, a plain `open` only "activates" it and reports
+        // success without starting anything; the old process is gone by then, so -n cannot double it.
         let script = """
             while /bin/kill -0 \(ProcessInfo.processInfo.processIdentifier) 2>/dev/null; do sleep 0.1; done
-            for _ in 1 2 3 4 5 6 7 8 9 10; do sleep 0.5; /usr/bin/open "$0" && exit 0; done
+            for _ in 1 2 3 4 5 6 7 8 9 10; do
+                sleep 0.5
+                # Opened by hand in the meantime: one instance is enough.
+                /usr/bin/pgrep -qx Clipsody && exit 0
+                /usr/bin/open -n "$0" && exit 0
+            done
             exit 1
             """
         let process = Process()
@@ -57,8 +66,10 @@ enum AppLanguage {
         do {
             try process.run()
             NSApp.terminate(nil)
+            return true
         } catch {
             NSAlert(error: error).runModal()
+            return false
         }
     }
 }

@@ -377,7 +377,7 @@
         ],
         [
           "Clipsody recherche-t-il des mises à jour ?",
-          "Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et le menu ouvre la page de téléchargement. Vous pouvez modifier ce choix dans <strong>Réglages → Général</strong> ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment."
+          "Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et vous pouvez l’installer depuis le menu : Clipsody la télécharge depuis GitHub, vérifie sa signature et redémarre. Vous pouvez modifier ce choix dans <strong>Réglages → Général</strong> ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment."
         ],
         [
           "Comment désinstaller Clipsody ?",

@@ -377,7 +377,7 @@
         ],
         [
           "Zoekt Clipsody naar updates?",
-          "Alleen als je dat toestaat: bij de eerste start vraagt Clipsody of het eenmaal per dag bij GitHub mag navragen of er een nieuwe versie is. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de versie van Clipsody. Is er een nieuwe versie, dan krijgt het symbool in de menubalk een stip en opent het menu de downloadpagina. Je kunt dit wijzigen onder <strong>Instellingen → Algemeen</strong>; daar en in het menubalkmenu kun je ook zelf op elk moment zoeken."
+          "Alleen als je dat toestaat: bij de eerste start vraagt Clipsody of het eenmaal per dag bij GitHub mag navragen of er een nieuwe versie is. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de versie van Clipsody. Is er een nieuwe versie, dan krijgt het symbool in de menubalk een stip en via het menu installeer je die: Clipsody downloadt hem van GitHub, controleert de handtekening en start opnieuw. Je kunt dit wijzigen onder <strong>Instellingen → Algemeen</strong>; daar en in het menubalkmenu kun je ook zelf op elk moment zoeken."
         ],
         [
           "Hoe verwijder ik Clipsody?",
