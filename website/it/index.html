@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=2217717643">
+    <link rel="stylesheet" href="../assets/style.css?v=4b49edc3d0">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="it_IT">
@@ -95,6 +95,14 @@
         },
         {
           "@type": "Question",
+          "name": "Clipsody può compilare moduli?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì, con i frammenti: salvi una volta ciò che digiti di continuo, ad esempio il tuo indirizzo con nome, via, CAP e città. Seleziona il frammento e premi ⏎, e compare una piccola barra con questi valori: clicca in un campo, poi sul valore – oppure ⌥⌘V per il successivo. Decidi tu quale valore va in quale campo; Clipsody non compila mai nulla alla cieca."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Clipsody è davvero gratis?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -162,7 +170,7 @@
           "name": "Come disinstallo Clipsody?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Impostazioni → Info → Disinstalla Clipsody… elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac."
+            "text": "Impostazioni → Info → Disinstalla Clipsody… elimina cronologia, immagini, frammenti e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac. Per conservare i frammenti, esportali prima in Impostazioni → Cronologia."
           }
         }
       ]
@@ -222,7 +230,7 @@
                 <p class="scene-label"><span class="step">1</span>Tutto ciò che hai copiato: testi, immagini, file, link</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 3</span></div>
+                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 6</span><span>Frammenti · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
@@ -244,7 +252,7 @@
                 <p class="scene-label"><span class="step">2</span>Le immagini restano immagini – senza perdita di qualità, con anteprima</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 3</span></div>
+                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 6</span><span>Frammenti · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
@@ -266,7 +274,7 @@
                 <p class="scene-label"><span class="step">3</span>I file vengono incollati di nuovo come file</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 3</span></div>
+                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 6</span><span>Frammenti · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Puoi controllare la fattura entro venerdì? ⏎ Grazie!</span><span class="k">⌘1</span></li>
@@ -288,7 +296,7 @@
                 <p class="scene-label"><span class="step">4</span>La ricerca trova anche il testo negli screenshot</p>
                 <div class="panel">
                     <div class="search"><span class="typed">fattura</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 3</span></div>
+                    <div class="tabs"><span class="on">Cronologia</span><span>Fissati · 6</span><span>Frammenti · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico a"></span><span class="t">Immagine 2880×1800 (612 KB) – “…<mark>Fattura</mark> n. 2026-1043…”</span><span class="k">⌘1</span></li>
@@ -305,13 +313,54 @@
                     </div>
                 </div>
             </div>
+            <div class="scene s5">
+                <p class="scene-label"><span class="step">5</span>Fissati: ciò che vuoi tenere, in una lista a parte</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Cronologia</span><span class="on">Fissati · 6</span><span>Frammenti · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">giulia.rossi@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Giulia Rossi ⏎ Via Esempio 12 ⏎ 00100 Roma</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+39 06 0000 0000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: IT00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Cordiali saluti ⏎ Giulia Rossi</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Giulia Rossi<br>Via Esempio 12<br>00100 Roma</div>
+                            <div class="info">Fissato · Testo · 3 righe</div>
+                            <div class="hint">⏎ incolla   ⌥⏎ senza formattazione   ⌘P sblocca   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s6">
+                <p class="scene-label"><span class="step">6</span>Frammenti: scrivili tu, compila i moduli</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Cronologia</span><span>Fissati · 6</span><span class="on">Frammenti · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Il mio indirizzo</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Firma</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nuovo frammento</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Il mio indirizzo</p><p class="row head"><span>Etichetta (facoltativa)</span><span>Testo</span><span></span></p><p class="row"><span class="label">Nome</span><span class="text">Giulia Rossi</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Via</span><span class="text">Via Esempio 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">CAP</span><span class="text">00100</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Città</span><span class="text">Roma</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Aggiungi campo</span><span class="buttons"><span class="btn">Elimina…</span><span class="btn">Compila ⏎</span></span></p></div>
+                            <div class="info">Le modifiche vengono salvate subito.</div>
+                            <div class="hint">⏎ compila   ⌘N nuovo frammento   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="controls">
-                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></span>
                 <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
                 <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Metti in pausa l’animazione</label>
             </div>
-            <figcaption class="caption">La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot.</figcaption>
+            <figcaption class="caption">La cronologia degli appunti in Clipsody: tutto ciò che hai copiato, un’immagine, un file e la ricerca di un testo in uno screenshot. E poi gli elementi fissati e i frammenti.</figcaption>
         </figure>
     </div>
 
@@ -347,12 +396,12 @@
                     <p>Prima copi nome, indirizzo e numero d’ordine, poi li incolli uno alla volta dalla lista. <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd> incollano direttamente i primi nove elementi mostrati (della cronologia o dei fissati, a seconda della lista aperta).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trova il testo anche nelle immagini</h3>
                     <p>Screenshot e immagini copiati vengono letti sul tuo Mac. Cerca una parola che compare nell’immagine – ed eccola lì. <a href="#text-in-images">Come funziona</a></p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Testi, immagini, file</h3>
-                    <p>Le immagini vengono conservate senza perdita di qualità e i file copiati vengono incollati di nuovo come file – non come percorso.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Con o senza formattazione</h3>
-                    <p><kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser. <kbd>⌥⏎</kbd> incolla solo il testo semplice.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Testi, immagini, file – così come copiati</h3>
+                    <p>Le immagini restano senza perdita, i file vengono incollati come file. <kbd>⏎</kbd> mantiene grassetto, link e tabelle da Word, Outlook o dal browser; <kbd>⌥⏎</kbd> incolla solo il testo semplice.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Fissa ciò che usi spesso</h3>
-                    <p>IBAN, indirizzo, frammenti di testo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. <a href="#pinned">Come funziona</a></p></div>
+                    <p>IBAN, indirizzo, comandi: <kbd>⌘P</kbd> sposta un elemento nella lista «Fissati», a un <kbd>→</kbd> dalla cronologia. <a href="#pinned">Come funziona</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🧩</div><h3>Frammenti e moduli</h3>
+                    <p>Salva una volta indirizzo, dati aziendali o firma – e compila i moduli campo per campo. <a href="#snippets">Come funziona</a></p></div>
             </div>
         </div>
     </section>
@@ -390,7 +439,7 @@
                 <div class="pinned-shot" aria-hidden="true">
                 <div class="panel">
                     <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
-                    <div class="tabs"><span>Cronologia</span><span class="on">Fissati · 6</span></div>
+                    <div class="tabs"><span>Cronologia</span><span class="on">Fissati · 6</span><span>Frammenti · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">giulia.rossi@example.com</span><span class="k">⌘1</span></li>
@@ -424,11 +473,52 @@
                 <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Sviluppo e IT</h3>
                     <p>Comandi lunghi, indirizzi di server, dati di test e percorsi che usi ogni giorno.</p></div>
             </div>
-            <div class="note">Gli elementi fissati restano: non vengono mai eliminati automaticamente, non contano nel limite della cronologia e restano anche se cancelli la cronologia. Come tutto in Clipsody, rimangono sul tuo Mac. Le password, comunque, vanno in un gestore di password.</div>
+            <div class="note">Gli elementi fissati restano: non vengono mai eliminati automaticamente, non contano nel limite della cronologia e restano anche se cancelli la cronologia. Come tutto in Clipsody, rimangono sul tuo Mac. Le password, comunque, vanno in un gestore di password. Testi che scrivi tu o moduli interi? Per questo ci sono i <a href="#snippets">frammenti</a>.</div>
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="snippets">
+        <div class="wrap">
+            <h2>Frammenti: compilare moduli senza digitare</h2>
+            <p class="sub">Scrivi una volta ciò che digiti di continuo – il tuo indirizzo, i dati aziendali, una firma. Clipsody lo incolla dove ti serve: un testo in un colpo solo o un intero modulo campo per campo.</p>
+            <div class="pinned-demo editor-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Cerca …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Cronologia</span><span>Fissati · 6</span><span class="on">Frammenti · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Il mio indirizzo</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Firma</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nuovo frammento</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Il mio indirizzo</p><p class="row head"><span>Etichetta (facoltativa)</span><span>Testo</span><span></span></p><p class="row"><span class="label">Nome</span><span class="text">Giulia Rossi</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Via</span><span class="text">Via Esempio 12</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">CAP</span><span class="text">00100</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Città</span><span class="text">Roma</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Aggiungi campo</span><span class="buttons"><span class="btn">Elimina…</span><span class="btn">Compila ⏎</span></span></p></div>
+                            <div class="info">Le modifiche vengono salvate subito.</div>
+                            <div class="hint">⏎ compila   ⌘N nuovo frammento   ⌘⌫ elimina</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Crealo una volta</h3><p>Nella scheda «Frammenti» scegli «Nuovo frammento» (<kbd>⌘N</kbd>), dagli un nome e compila i campi – ognuno, se vuoi, con un’etichetta come «CAP».</p></li>
+                </ol>
+            </div>
+            <div class="pinned-demo">
+                <div class="snippets-shot" aria-hidden="true">
+                    <div class="fillbar"><p class="name">Il mio indirizzo<span class="close">✕</span></p><p class="chips"><span class="chip used">✓ <span class="label">Nome:</span> Giulia Rossi</span><span class="chip used">✓ <span class="label">Via:</span> Via Esempio 12</span><span class="chip"><span class="label">CAP:</span> 00100</span><span class="chip"><span class="label">Città:</span> Roma</span></p><p class="hint">Clicca in un campo, poi sul valore (oppure ⌥⌘V per il successivo), o trascina il valore nel campo.</p></div>
+                    <div class="mini-form"><p class="title">Indirizzo di consegna</p><div class="field"><span class="label">Nome</span><span class="input">Giulia Rossi</span></div><div class="field"><span class="label">Via</span><span class="input">Via Esempio 12</span></div><div class="field"><span class="label">CAP</span><span class="input focus"><span class="caret"></span></span></div><div class="field"><span class="label">Città</span><span class="input"></span></div></div>
+                </div>
+                <ol class="pinned-steps" start="2">
+                    <li><h3><span class="step">2</span>Apri la barra di compilazione</h3><p>Seleziona il frammento e premi <kbd>⏎</kbd>: in alto sullo schermo compare una barra con i tuoi valori. Non toglie il focus al tuo modulo.</p></li>
+                    <li><h3><span class="step">3</span>Campo per campo</h3><p>Clicca in un campo, poi sul valore – oppure <kbd>⌥⌘V</kbd> per il successivo, o trascina il valore nel campo. Se invece di un campo di testo ha il focus un pulsante o un’etichetta, Clipsody non incolla nulla.</p></li>
+                </ol>
+            </div>
+            <div class="note">Un frammento con un solo testo, come una firma o una risposta standard, viene incollato direttamente con <kbd>⏎</kbd>. I frammenti restano sul tuo Mac, a differenza della cronologia sono inclusi nei backup di Time Machine e si possono esportare e importare nelle impostazioni.</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>A cosa serve una cronologia degli appunti</h2>
             <p class="sub">Ovunque copi più di una cosa.</p>
@@ -438,14 +528,14 @@
                 <div class="card"><h3>Scrittura e ricerca</h3>
                     <p>Copia citazioni, link e paragrafi da più fonti e mettili insieme più tardi.</p></div>
                 <div class="card"><h3>Programmazione</h3>
-                    <p>Ritrova comandi, percorsi e frammenti di codice copiati ore fa. Fissa i comandi che usi di continuo.</p></div>
+                    <p>Ritrova comandi, percorsi e pezzi di codice copiati ore fa. Fissa i comandi che usi di continuo.</p></div>
                 <div class="card"><h3>Assistenza e lavoro d’ufficio</h3>
-                    <p>Risposte standard, numeri di conto e firme fissati e sempre pronti – incollati in pochi secondi.</p></div>
+                    <p>Firme, risposte standard e numeri di conto come frammenti – incollati in pochi secondi.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>Ma il Mac non ha già una cronologia degli appunti?</h2>
             <p class="sub">Da macOS 26 Tahoe, Spotlight può mostrare gli ultimi elementi copiati. Utile sul momento – Clipsody è fatto per tutto ciò che deve durare più di una settimana.</p>
@@ -468,7 +558,7 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>Tutto dalla tastiera</h2>
             <p class="sub">Il mouse non ti serve – ma puoi usarlo.</p>
@@ -477,19 +567,20 @@
                 <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Apri o chiudi la cronologia (personalizzabile)</td></tr>
                 <tr><th scope="row">Scrivi una parola da cercare</th><td>Filtra la lista – trova testi, nomi di app e testo nelle immagini</td></tr>
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Scegli un elemento</td></tr>
-                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Passare dalla cronologia agli elementi fissati e viceversa</td></tr>
+                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Passare tra cronologia, fissati e frammenti</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Incolla con formattazione</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Incolla solo testo semplice</td></tr>
                 <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Incolla direttamente uno dei primi nove elementi mostrati (della cronologia o dei fissati, a seconda della lista aperta)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Fissa o sblocca un elemento. Gli elementi fissati sono in «Fissati»; se ne copi o incolli uno di nuovo, compare anche nella cronologia</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Elimina un elemento. Un elemento fissato nella cronologia esce solo dalla cronologia</td></tr>
+                <tr><th scope="row"><kbd>⌘N</kbd></th><td>Creare un nuovo frammento</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Chiudi</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>I tuoi appunti sono tuoi</h2>
             <p class="sub">Negli appunti finiscono cose personali: password, indirizzi, messaggi. Per questo Clipsody è privato fin dalla progettazione.</p>
@@ -510,7 +601,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Installazione</h2>
             <p class="sub">Clipsody non è autenticato da Apple – servirebbe un account sviluppatore a pagamento. Per questo macOS chiede conferma una volta sola al primo avvio – ecco come fare:</p>
@@ -530,13 +621,15 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>Domande frequenti</h2>
             <details><summary>Come vedo su Mac cosa ho copiato prima?</summary>
                 <p>Di serie il Mac ricorda solo l’ultima cosa che hai copiato. Un gestore degli appunti come Clipsody conserva tutto ciò che copi: <kbd>⌥⌘C</kbd> ti mostra tutto, con la ricerca. Tutti i modi, compresi il Finder e la cronologia di Spotlight di macOS 26: <a href="cronologia-appunti-mac.html">come vedere la cronologia degli appunti sul Mac</a>.</p></details>
             <details><summary>Come copio più cose e le incollo una dopo l’altra?</summary>
                 <p>Con Clipsody copi come sempre con <kbd>⌘C</kbd> – ogni elemento resta nella cronologia. Per incollare, apri la lista con <kbd>⌥⌘C</kbd> e scegli un elemento con <kbd>⏎</kbd>, oppure incolla direttamente uno dei primi nove con <kbd>⌘1</kbd> fino a <kbd>⌘9</kbd>. Un elemento incollato sale in cima alla lista.</p></details>
+            <details><summary>Clipsody può compilare moduli?</summary>
+                <p>Sì, con i frammenti: salvi una volta ciò che digiti di continuo, ad esempio il tuo indirizzo con nome, via, CAP e città. Seleziona il frammento e premi <kbd>⏎</kbd>, e compare una piccola barra con questi valori: clicca in un campo, poi sul valore – oppure <kbd>⌥⌘V</kbd> per il successivo. Decidi tu quale valore va in quale campo; Clipsody non compila mai nulla alla cieca.</p></details>
             <details><summary>Clipsody è davvero gratis?</summary>
                 <p>Sì. Niente pubblicità, niente abbonamento, niente versione di prova. Il codice sorgente è aperto, con licenza GPLv3.</p></details>
             <details><summary>Perché Clipsody ha bisogno del permesso di Accessibilità?</summary>
@@ -554,7 +647,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
             <details><summary>Clipsody controlla gli aggiornamenti?</summary>
                 <p>Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e puoi installarla dal menu: Clipsody la scarica da GitHub, ne verifica la firma e si riavvia. Puoi cambiarlo in <strong>Impostazioni → Generale</strong>; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento.</p></details>
             <details><summary>Come disinstallo Clipsody?</summary>
-                <p><strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac.</p></details>
+                <p><strong>Impostazioni → Info → Disinstalla Clipsody…</strong> elimina cronologia, immagini, frammenti e impostazioni, rimuove l’elemento di login e il permesso di Accessibilità e sposta l’app nel Cestino. Se trascini tu l’app nel Cestino, questi dati restano sul Mac. Per conservare i frammenti, esportali prima in <strong>Impostazioni → Cronologia</strong>.</p></details>
         </div>
     </section>
 </main>

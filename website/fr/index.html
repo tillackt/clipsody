@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=2217717643">
+    <link rel="stylesheet" href="../assets/style.css?v=4b49edc3d0">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="fr_FR">
@@ -95,6 +95,14 @@
         },
         {
           "@type": "Question",
+          "name": "Clipsody peut-il remplir des formulaires ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, avec les extraits : vous enregistrez une fois ce que vous saisissez sans cesse, par exemple votre adresse avec nom, rue, code postal et ville. Sélectionnez l’extrait et appuyez sur ⏎, et une petite barre avec ces valeurs apparaît : cliquez dans un champ, puis sur la valeur – ou ⌥⌘V pour la suivante. Vous décidez quelle valeur va dans quel champ ; Clipsody ne remplit jamais rien à l’aveugle."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Clipsody est-il vraiment gratuit ?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -162,7 +170,7 @@
           "name": "Comment désinstaller Clipsody ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Réglages → Infos → Désinstaller Clipsody… supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac."
+            "text": "Réglages → Infos → Désinstaller Clipsody… supprime l’historique, les images, les extraits et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac. Pour garder vos extraits, exportez-les d’abord dans Réglages → Historique."
           }
         }
       ]
@@ -222,7 +230,7 @@
                 <p class="scene-label"><span class="step">1</span>Tout ce que vous avez copié : textes, images, fichiers, liens</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 3</span></div>
+                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 6</span><span>Extraits · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
@@ -244,7 +252,7 @@
                 <p class="scene-label"><span class="step">2</span>Les images restent des images – sans perte, avec aperçu</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 3</span></div>
+                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 6</span><span>Extraits · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
@@ -266,7 +274,7 @@
                 <p class="scene-label"><span class="step">3</span>Les fichiers sont recollés en tant que fichiers</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 3</span></div>
+                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 6</span><span>Extraits · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !</span><span class="k">⌘1</span></li>
@@ -288,7 +296,7 @@
                 <p class="scene-label"><span class="step">4</span>La recherche trouve même le texte des captures d’écran</p>
                 <div class="panel">
                     <div class="search"><span class="typed">facture</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 3</span></div>
+                    <div class="tabs"><span class="on">Historique</span><span>Épinglés · 6</span><span>Extraits · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 Ko) – « …<mark>Facture</mark> n° 2026-1043… »</span><span class="k">⌘1</span></li>
@@ -305,13 +313,54 @@
                     </div>
                 </div>
             </div>
+            <div class="scene s5">
+                <p class="scene-label"><span class="step">5</span>Épinglés : ce que vous gardez, dans une liste à part</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historique</span><span class="on">Épinglés · 6</span><span>Extraits · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">marie.dupont@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Marie Dupont ⏎ 12 rue de l’Exemple ⏎ 75011 Paris</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+33 1 99 00 00 00</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN : FR00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Cordialement ⏎ Marie Dupont</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Marie Dupont<br>12 rue de l’Exemple<br>75011 Paris</div>
+                            <div class="info">Épinglé · Texte · 3 lignes</div>
+                            <div class="hint">⏎ coller   ⌥⏎ sans mise en forme   ⌘P désépingler   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s6">
+                <p class="scene-label"><span class="step">6</span>Extraits : rédigez-les, remplissez des formulaires</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historique</span><span>Épinglés · 6</span><span class="on">Extraits · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mon adresse</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Signature</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nouvel extrait</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mon adresse</p><p class="row head"><span>Libellé (facultatif)</span><span>Texte</span><span></span></p><p class="row"><span class="label">Nom</span><span class="text">Marie Dupont</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Rue</span><span class="text">12 rue de l’Exemple</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Code postal</span><span class="text">75011</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ville</span><span class="text">Paris</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Ajouter un champ</span><span class="buttons"><span class="btn">Supprimer…</span><span class="btn">Remplir ⏎</span></span></p></div>
+                            <div class="info">Les modifications sont enregistrées immédiatement.</div>
+                            <div class="hint">⏎ remplir   ⌘N nouvel extrait   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="controls">
-                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></span>
                 <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
                 <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Mettre l’animation en pause</label>
             </div>
-            <figcaption class="caption">L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran.</figcaption>
+            <figcaption class="caption">L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran. Puis les éléments épinglés et les extraits.</figcaption>
         </figure>
     </div>
 
@@ -347,12 +396,12 @@
                     <p>Copiez d’abord le nom, l’adresse et le numéro de commande, puis collez-les un par un depuis la liste. <kbd>⌘1</kbd> à <kbd>⌘9</kbd> collent directement les neuf premiers éléments affichés (de l’historique ou des épinglés, selon la liste ouverte).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Trouve aussi le texte des images</h3>
                     <p>Les captures d’écran et images copiées sont lues sur votre Mac. Cherchez un mot qui figure dans l’image – et la voilà. <a href="#text-in-images">Comment ça marche</a></p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textes, images, fichiers</h3>
-                    <p>Les images sont conservées sans perte, et les fichiers copiés sont recollés en tant que fichiers – pas sous forme de chemin.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>Avec ou sans mise en forme</h3>
-                    <p><kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur. <kbd>⌥⏎</kbd> colle uniquement le texte brut.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Textes, images, fichiers – tels quels</h3>
+                    <p>Les images restent sans perte, les fichiers sont collés en tant que fichiers. <kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur ; <kbd>⌥⏎</kbd> colle uniquement le texte brut.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Épinglez ce qui sert souvent</h3>
-                    <p>IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans une liste à part, « Épinglés », à un <kbd>→</kbd> de l’historique. <a href="#pinned">Comment ça marche</a></p></div>
+                    <p>IBAN, adresse, commandes : <kbd>⌘P</kbd> range un élément dans une liste à part, « Épinglés », à un <kbd>→</kbd> de l’historique. <a href="#pinned">Comment ça marche</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🧩</div><h3>Extraits et formulaires</h3>
+                    <p>Enregistrez une fois votre adresse, les données de votre entreprise ou une signature – et remplissez les formulaires champ par champ. <a href="#snippets">Comment ça marche</a></p></div>
             </div>
         </div>
     </section>
@@ -390,7 +439,7 @@
                 <div class="pinned-shot" aria-hidden="true">
                 <div class="panel">
                     <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
-                    <div class="tabs"><span>Historique</span><span class="on">Épinglés · 6</span></div>
+                    <div class="tabs"><span>Historique</span><span class="on">Épinglés · 6</span><span>Extraits · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">marie.dupont@example.com</span><span class="k">⌘1</span></li>
@@ -424,11 +473,52 @@
                 <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Développement et IT</h3>
                     <p>Longues commandes, adresses de serveurs, données de test et chemins dont vous avez besoin chaque jour.</p></div>
             </div>
-            <div class="note">Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe.</div>
+            <div class="note">Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe. Des textes que vous écrivez vous-même, ou des formulaires entiers ? C’est le rôle des <a href="#snippets">extraits</a>.</div>
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="snippets">
+        <div class="wrap">
+            <h2>Extraits : remplir des formulaires sans taper</h2>
+            <p class="sub">Notez une fois ce que vous saisissez sans cesse – votre adresse, les données de votre entreprise, une signature. Clipsody le colle là où vous en avez besoin : un texte d’un coup, ou tout un formulaire champ par champ.</p>
+            <div class="pinned-demo editor-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Rechercher…</span><span class="caret"></span></div>
+                    <div class="tabs"><span>Historique</span><span>Épinglés · 6</span><span class="on">Extraits · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">Mon adresse</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Signature</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">Nouvel extrait</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">Mon adresse</p><p class="row head"><span>Libellé (facultatif)</span><span>Texte</span><span></span></p><p class="row"><span class="label">Nom</span><span class="text">Marie Dupont</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Rue</span><span class="text">12 rue de l’Exemple</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Code postal</span><span class="text">75011</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Ville</span><span class="text">Paris</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Ajouter un champ</span><span class="buttons"><span class="btn">Supprimer…</span><span class="btn">Remplir ⏎</span></span></p></div>
+                            <div class="info">Les modifications sont enregistrées immédiatement.</div>
+                            <div class="hint">⏎ remplir   ⌘N nouvel extrait   ⌘⌫ supprimer</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Créer une fois</h3><p>Dans l’onglet « Extraits », choisissez « Nouvel extrait » (<kbd>⌘N</kbd>), donnez-lui un nom et remplissez les champs – chacun avec un libellé comme « Code postal » si vous voulez.</p></li>
+                </ol>
+            </div>
+            <div class="pinned-demo">
+                <div class="snippets-shot" aria-hidden="true">
+                    <div class="fillbar"><p class="name">Mon adresse<span class="close">✕</span></p><p class="chips"><span class="chip used">✓ <span class="label">Nom:</span> Marie Dupont</span><span class="chip used">✓ <span class="label">Rue:</span> 12 rue de l’Exemple</span><span class="chip"><span class="label">Code postal:</span> 75011</span><span class="chip"><span class="label">Ville:</span> Paris</span></p><p class="hint">Cliquez dans un champ, puis sur la valeur (ou ⌥⌘V pour la suivante), ou faites glisser la valeur dans le champ.</p></div>
+                    <div class="mini-form"><p class="title">Adresse de livraison</p><div class="field"><span class="label">Nom</span><span class="input">Marie Dupont</span></div><div class="field"><span class="label">Rue</span><span class="input">12 rue de l’Exemple</span></div><div class="field"><span class="label">Code postal</span><span class="input focus"><span class="caret"></span></span></div><div class="field"><span class="label">Ville</span><span class="input"></span></div></div>
+                </div>
+                <ol class="pinned-steps" start="2">
+                    <li><h3><span class="step">2</span>Ouvrir la barre de remplissage</h3><p>Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd> : une barre avec vos valeurs apparaît en haut de l’écran. Elle ne retire pas le focus à votre formulaire.</p></li>
+                    <li><h3><span class="step">3</span>Champ par champ</h3><p>Cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante, ou faites glisser la valeur dans le champ. Si un bouton ou un libellé a le focus au lieu d’un champ de saisie, Clipsody ne colle rien.</p></li>
+                </ol>
+            </div>
+            <div class="note">Un extrait avec un seul texte, comme une signature ou une réponse type, est collé directement avec <kbd>⏎</kbd>. Les extraits restent sur votre Mac, sont inclus dans les sauvegardes Time Machine contrairement à l’historique, et s’exportent et s’importent dans les réglages.</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>À quoi sert un historique du presse-papiers</h2>
             <p class="sub">Partout où vous copiez plus d’une chose.</p>
@@ -438,14 +528,14 @@
                 <div class="card"><h3>Rédaction et recherche</h3>
                     <p>Copiez citations, liens et paragraphes depuis plusieurs sources, puis assemblez-les plus tard.</p></div>
                 <div class="card"><h3>Développement</h3>
-                    <p>Retrouvez les commandes, chemins et extraits de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse.</p></div>
+                    <p>Retrouvez les commandes, chemins et bouts de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse.</p></div>
                 <div class="card"><h3>Support et bureautique</h3>
-                    <p>Réponses types, numéros de compte et signatures épinglés et à portée de main – collés en quelques secondes.</p></div>
+                    <p>Signatures, réponses types et numéros de compte en extraits – collés en quelques secondes.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>Le Mac n’a-t-il pas déjà un historique du presse-papiers ?</h2>
             <p class="sub">Depuis macOS 26 Tahoe, Spotlight peut afficher les derniers éléments copiés. Pratique sur le moment – Clipsody est conçu pour tout ce qui doit durer plus d’une semaine.</p>
@@ -468,7 +558,7 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>Tout au clavier</h2>
             <p class="sub">Pas besoin de la souris – mais vous pouvez l’utiliser.</p>
@@ -477,19 +567,20 @@
                 <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Ouvrir ou fermer l’historique (personnalisable)</td></tr>
                 <tr><th scope="row">Taper un mot</th><td>Filtrer la liste – trouve les textes, les noms d’app et le texte des images</td></tr>
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choisir un élément</td></tr>
-                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Passer de l’historique aux éléments épinglés et inversement</td></tr>
+                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Passer de l’historique aux épinglés et aux extraits</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Coller avec la mise en forme</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Coller uniquement le texte brut</td></tr>
                 <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Coller directement l’un des neuf premiers éléments affichés (de l’historique ou des épinglés, selon la liste ouverte)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Épingler ou désépingler un élément. Les éléments épinglés sont dans « Épinglés » ; copié ou collé à nouveau, un élément apparaît aussi dans l’historique</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Supprimer un élément. Un élément épinglé dans l’historique quitte seulement l’historique</td></tr>
+                <tr><th scope="row"><kbd>⌘N</kbd></th><td>Créer un nouvel extrait</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Fermer</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Votre presse-papiers vous appartient</h2>
             <p class="sub">Le presse-papiers voit passer des choses personnelles : mots de passe, adresses, messages. C’est pourquoi Clipsody protège votre vie privée dès la conception.</p>
@@ -510,7 +601,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Installation</h2>
             <p class="sub">Clipsody n’est pas notarié par Apple – il faudrait pour cela un compte développeur payant. macOS pose donc une question au premier lancement – voici comment faire :</p>
@@ -530,13 +621,15 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>Comment voir ce que j’ai copié plus tôt sur un Mac ?</summary>
                 <p>Par défaut, le Mac ne retient que le dernier élément copié. Un gestionnaire de presse-papiers comme Clipsody conserve tout ce que vous copiez : <kbd>⌥⌘C</kbd> affiche tout, avec recherche. Toutes les méthodes, y compris le Finder et l’historique Spotlight de macOS 26 : <a href="historique-presse-papiers-mac.html">voir l’historique du presse-papiers sur Mac</a>.</p></details>
             <details><summary>Comment copier plusieurs éléments et les coller l’un après l’autre ?</summary>
                 <p>Avec Clipsody, vous copiez comme d’habitude avec <kbd>⌘C</kbd> – chaque élément reste dans l’historique. Pour coller, ouvrez la liste avec <kbd>⌥⌘C</kbd> et choisissez un élément avec <kbd>⏎</kbd>, ou collez directement l’un des neuf premiers avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>. Un élément collé remonte en haut de la liste.</p></details>
+            <details><summary>Clipsody peut-il remplir des formulaires ?</summary>
+                <p>Oui, avec les extraits : vous enregistrez une fois ce que vous saisissez sans cesse, par exemple votre adresse avec nom, rue, code postal et ville. Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd>, et une petite barre avec ces valeurs apparaît : cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante. Vous décidez quelle valeur va dans quel champ ; Clipsody ne remplit jamais rien à l’aveugle.</p></details>
             <details><summary>Clipsody est-il vraiment gratuit ?</summary>
                 <p>Oui. Pas de publicité, pas d’abonnement, pas de version d’essai. Le code source est ouvert, sous licence GPLv3.</p></details>
             <details><summary>Pourquoi Clipsody a-t-il besoin de l’autorisation Accessibilité ?</summary>
@@ -554,7 +647,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
             <details><summary>Clipsody recherche-t-il des mises à jour ?</summary>
                 <p>Seulement si vous l’autorisez : au premier lancement, Clipsody vous demande s’il peut interroger GitHub une fois par jour pour savoir s’il existe une nouvelle version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Si une nouvelle version est disponible, l’icône de la barre des menus affiche un point, et vous pouvez l’installer depuis le menu : Clipsody la télécharge depuis GitHub, vérifie sa signature et redémarre. Vous pouvez modifier ce choix dans <strong>Réglages → Général</strong> ; là et dans le menu de la barre des menus, vous pouvez aussi lancer la recherche vous-même à tout moment.</p></details>
             <details><summary>Comment désinstaller Clipsody ?</summary>
-                <p><strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac.</p></details>
+                <p><strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images, les extraits et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac. Pour garder vos extraits, exportez-les d’abord dans <strong>Réglages → Historique</strong>.</p></details>
         </div>
     </section>
 </main>

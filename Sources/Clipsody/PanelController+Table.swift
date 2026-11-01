@@ -4,7 +4,7 @@ import ClipsodyCore
 /// The list of entries.
 extension PanelController {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        items.count
+        rowCount
     }
 
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
@@ -18,6 +18,13 @@ extension PanelController {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let id = NSUserInterfaceItemIdentifier("clip")
         let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ClipRowView ?? ClipRowView(identifier: id)
+        if tab == .snippets {
+            if snippetRows.indices.contains(row) { configure(cell, for: snippetRows[row], row: row) } else {
+                configureNewSnippetRow(cell)
+            }
+            return cell
+        }
+        cell.icon.contentTintColor = nil
         let item = items[row]
         let text = ItemPresentation.title(for: item, query: query)
         cell.setTitle(text, highlights: query.ranges(in: text))
@@ -25,6 +32,14 @@ extension PanelController {
         cell.pin.isHidden = !(item.pinned && list.section == .history)
         cell.shortcut.stringValue = row < 9 ? "⌘\(row + 1)" : ""
         return cell
+    }
+
+    /// The second click of a double click on "New Snippet" lands on whatever row moved there.
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        // clickCount exists only on mouse events (VoiceOver may select rows too).
+        guard snippetCreatedByClick, let event = NSApp.currentEvent,
+              [.leftMouseDown, .leftMouseUp, .leftMouseDragged].contains(event.type) else { return true }
+        return event.clickCount <= 1
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {

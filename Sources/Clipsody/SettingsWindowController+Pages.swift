@@ -54,9 +54,10 @@ extension SettingsWindowController {
         let updatesStack = NSStackView(views: [checkForUpdates, checkNowButton])
         updatesStack.spacing = 12
         page.row(String(localized: "Updates:"), updatesStack, alignWith: checkForUpdates, help: String(localized: """
-            Asks GitHub for the number of the latest version and tells you when there is a new one; you \
-            download it from the release page. Nothing from your clipboard is sent; GitHub sees your IP address \
-            and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now.
+            Asks GitHub for the number of the latest version and tells you when there is a new one; Install \
+            and Restart then downloads and installs it. Nothing from your clipboard is sent; GitHub sees your \
+            IP address and the Clipsody version. Without this, Clipsody uses no network unless you click \
+            Check Now or Install.
             """))
 
         // Only macOS versions with pasteboard privacy (15.4 and later) have something to show here.
@@ -114,6 +115,13 @@ extension SettingsWindowController {
         page.row(String(localized: "Images:"), keepImages, alignWith: keepImages, help: String(localized: """
             Copied images such as screenshots are saved as PNG and can be pasted again. \
             When this is off, Clipsody only remembers text and file paths.
+            """))
+
+        let snippetsStack = snippetsRow()
+        page.row(String(localized: "Snippets:"), snippetsStack, alignWith: snippetsStack.arrangedSubviews[0],
+                 help: String(localized: """
+            Saves your snippets to a file, or adds those from such a file (nothing is overwritten), e.g. to \
+            move them to another Mac. Unlike the history, snippets are included in Time Machine backups.
             """))
         return page
     }

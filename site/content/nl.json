@@ -73,9 +73,11 @@
         "Alles wat je hebt gekopieerd: tekst, afbeeldingen, bestanden, links",
         "Afbeeldingen blijven afbeeldingen – verliesvrij, met voorvertoning",
         "Bestanden worden weer als bestanden geplakt",
-        "Zoeken vindt zelfs tekst in schermafbeeldingen"
+        "Zoeken vindt zelfs tekst in schermafbeeldingen",
+        "Vastgezet: wat je wilt bewaren, in een eigen lijst",
+        "Tekstfragmenten: zelf schrijven, formulieren invullen"
       ],
-      "caption": "De klembordgeschiedenis in Clipsody: alles wat je hebt gekopieerd, een afbeelding, een bestand en zoeken naar tekst in een schermafbeelding.",
+      "caption": "De klembordgeschiedenis in Clipsody: alles wat je hebt gekopieerd, een afbeelding, een bestand en zoeken naar tekst in een schermafbeelding. En daarna vastgezette items en tekstfragmenten.",
       "ocrSearch": "factuur",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Animatie pauzeren",
       "tabs": [
         "Geschiedenis",
-        "Vastgezet · 3"
+        "Vastgezet · 6",
+        "Tekstfragmenten · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Tekst, afbeeldingen, bestanden",
-          "Afbeeldingen worden verliesvrij bewaard en gekopieerde bestanden worden weer als bestand geplakt – niet als pad."
-        ],
-        [
-          "✍️",
-          "Met of zonder opmaak",
-          "<kbd>⏎</kbd> behoudt vet, links en tabellen uit Word, Outlook of de browser. <kbd>⌥⏎</kbd> plakt alleen platte tekst."
+          "Tekst, afbeeldingen, bestanden – zoals gekopieerd",
+          "Afbeeldingen blijven verliesvrij, bestanden worden als bestand geplakt. <kbd>⏎</kbd> behoudt vet, links en tabellen uit Word, Outlook of de browser; <kbd>⌥⏎</kbd> plakt alleen platte tekst."
         ],
         [
           "📌",
           "Zet vast wat je vaak gebruikt",
-          "IBAN, adres, tekstfragmenten, commando's: <kbd>⌘P</kbd> zet een item in een eigen lijst ‘Vastgezet’, één <kbd>→</kbd> naast de geschiedenis. <a href=\"#pinned\">Zo werkt het</a>"
+          "IBAN, adres, commando's: <kbd>⌘P</kbd> zet een item in een eigen lijst ‘Vastgezet’, één <kbd>→</kbd> naast de geschiedenis. <a href=\"#pinned\">Zo werkt het</a>"
+        ],
+        [
+          "🧩",
+          "Tekstfragmenten en formulieren",
+          "Leg je adres, bedrijfsgegevens of handtekening één keer vast – en vul formulieren veld voor veld in. <a href=\"#snippets\">Zo werkt het</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Programmeren",
-          "Vind commando's, paden en snippets terug die je uren geleden hebt gekopieerd. Zet de commando's die je steeds gebruikt vast."
+          "Vind commando's, paden en stukjes code terug die je uren geleden hebt gekopieerd. Zet de commando's die je steeds gebruikt vast."
         ],
         [
           "Support en kantoorwerk",
-          "Standaardantwoorden, rekeningnummers en handtekeningen vastgezet en klaar voor gebruik – geplakt in een paar seconden."
+          "Handtekeningen, standaardantwoorden en rekeningnummers als tekstfragmenten – geplakt in een paar seconden."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Wisselen tussen de geschiedenis en de vastgezette items"
+          "Wisselen tussen geschiedenis, vastgezet en tekstfragmenten"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Item verwijderen. Een vastgezet item in de geschiedenis verdwijnt alleen uit de geschiedenis"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Nieuw tekstfragment maken"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Met Clipsody kopieer je gewoon zoals altijd met <kbd>⌘C</kbd> – elk item blijft in de geschiedenis. Om te plakken open je de lijst met <kbd>⌥⌘C</kbd> en kies je een item met <kbd>⏎</kbd>, of je plakt een van de eerste negen direct met <kbd>⌘1</kbd> tot <kbd>⌘9</kbd>. Een geplakt item schuift naar boven in de lijst."
         ],
         [
+          "Kan Clipsody formulieren invullen?",
+          "Ja, met tekstfragmenten: je legt één keer vast wat je steeds weer typt, bijvoorbeeld je adres met naam, straat, postcode en plaats. Selecteer het tekstfragment en druk op <kbd>⏎</kbd>, dan verschijnt een kleine balk met die waarden: klik in een veld en dan op de waarde – of druk op <kbd>⌥⌘V</kbd> voor de volgende. Jij bepaalt welke waarde in welk veld komt; Clipsody vult nooit blind iets in."
+        ],
+        [
           "Is Clipsody echt gratis?",
           "Ja. Geen advertenties, geen abonnement, geen proefversie. De broncode is openbaar, onder de GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Hoe verwijder ik Clipsody?",
-          "<strong>Instellingen → Info → Verwijder Clipsody…</strong> wist de geschiedenis, afbeeldingen en instellingen, verwijdert het inlogonderdeel en de toestemming voor Toegankelijkheid en verplaatst de app naar de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens op je Mac staan."
+          "<strong>Instellingen → Info → Verwijder Clipsody…</strong> wist de geschiedenis, afbeeldingen, tekstfragmenten en instellingen, verwijdert het inlogonderdeel en de toestemming voor Toegankelijkheid en verplaatst de app naar de prullenmand. Sleep je de app zelf naar de prullenmand, dan blijven deze gegevens op je Mac staan. Wil je je tekstfragmenten houden, exporteer ze dan eerst via <strong>Instellingen → Geschiedenis</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "E-mailadres, adres, telefoonnummer, IBAN: wat je steeds opnieuw typt, zet je één keer vast. Het komt in een eigen lijst, los van de geschiedenis, en is met een paar toetsen geplakt.",
       "tabs": [
         "Geschiedenis",
-        "Vastgezet · 6"
+        "Vastgezet · 6",
+        "Tekstfragmenten · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Lange commando’s, serveradressen, testdata en paden die je elke dag nodig hebt."
         ]
       ],
-      "note": "Vastgezette items blijven: ze worden nooit automatisch verwijderd, tellen niet mee voor de limiet van de geschiedenis en blijven ook als je de geschiedenis wist. Zoals alles in Clipsody blijven ze op je Mac. Wachtwoorden horen nog steeds thuis in een wachtwoordbeheerder."
+      "note": "Vastgezette items blijven: ze worden nooit automatisch verwijderd, tellen niet mee voor de limiet van de geschiedenis en blijven ook als je de geschiedenis wist. Zoals alles in Clipsody blijven ze op je Mac. Wachtwoorden horen nog steeds thuis in een wachtwoordbeheerder. Teksten die je zelf schrijft, of hele formulieren? Daarvoor zijn er <a href=\"#snippets\">tekstfragmenten</a>."
+    },
+    "snippets": {
+      "h2": "Tekstfragmenten: formulieren invullen zonder te typen",
+      "sub": "Schrijf één keer op wat je steeds weer typt – je adres, je bedrijfsgegevens, een handtekening. Clipsody plakt het waar je het nodig hebt: één tekst in één keer, of een heel formulier veld voor veld.",
+      "name": "Mijn adres",
+      "values": [
+        [
+          "Naam",
+          "Sanne de Vries"
+        ],
+        [
+          "Straat",
+          "Voorbeeldstraat 12"
+        ],
+        [
+          "Postcode",
+          "1011 AB"
+        ],
+        [
+          "Plaats",
+          "Amsterdam"
+        ]
+      ],
+      "hint": "Klik in een veld en dan op de waarde (of ⌥⌘V voor de volgende), of sleep de waarde naar het veld.",
+      "form": "Afleveradres",
+      "steps": [
+        [
+          "Eén keer aanmaken",
+          "Kies in het tabblad ‘Tekstfragmenten’ ‘Nieuw tekstfragment’ (<kbd>⌘N</kbd>), geef het een naam en vul de velden in – elk desgewenst met een label zoals ‘Postcode’."
+        ],
+        [
+          "Invulbalk openen",
+          "Selecteer het tekstfragment en druk op <kbd>⏎</kbd>: bovenaan het scherm verschijnt een balk met je waarden. Je formulier houdt de focus."
+        ],
+        [
+          "Veld voor veld",
+          "Klik in een veld en dan op de waarde – of druk op <kbd>⌥⌘V</kbd> voor de volgende, of sleep de waarde naar het veld. Heeft in plaats van een invoerveld een knop of label de focus, dan plakt Clipsody niets."
+        ]
+      ],
+      "note": "Een tekstfragment met één tekst, zoals een handtekening of standaardantwoord, wordt met <kbd>⏎</kbd> direct geplakt. Tekstfragmenten blijven op je Mac, zitten anders dan de geschiedenis in Time Machine-reservekopieën en je kunt ze in de instellingen exporteren en importeren.",
+      "editor": {
+        "tabs": [
+          "Geschiedenis",
+          "Vastgezet · 6",
+          "Tekstfragmenten · 2"
+        ],
+        "signature": "Handtekening",
+        "newSnippet": "Nieuw tekstfragment",
+        "labelHeader": "Label (optioneel)",
+        "textHeader": "Tekst",
+        "addField": "Veld toevoegen",
+        "delete": "Verwijderen…",
+        "fillIn": "Invullen ⏎",
+        "info": "Wijzigingen worden meteen bewaard.",
+        "hint": "⏎ invullen   ⌘N nieuw tekstfragment   ⌘⌫ verwijderen"
+      }
     }
   },
   "guide": {

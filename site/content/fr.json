@@ -73,9 +73,11 @@
         "Tout ce que vous avez copié : textes, images, fichiers, liens",
         "Les images restent des images – sans perte, avec aperçu",
         "Les fichiers sont recollés en tant que fichiers",
-        "La recherche trouve même le texte des captures d’écran"
+        "La recherche trouve même le texte des captures d’écran",
+        "Épinglés : ce que vous gardez, dans une liste à part",
+        "Extraits : rédigez-les, remplissez des formulaires"
       ],
-      "caption": "L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran.",
+      "caption": "L’historique du presse-papiers de Clipsody : tout ce que vous avez copié, une image, un fichier, et la recherche d’un texte dans une capture d’écran. Puis les éléments épinglés et les extraits.",
       "ocrSearch": "facture",
       "ocrItems": [
         [
@@ -104,7 +106,8 @@
       "pause": "Mettre l’animation en pause",
       "tabs": [
         "Historique",
-        "Épinglés · 3"
+        "Épinglés · 6",
+        "Extraits · 2"
       ]
     },
     "problem": {
@@ -144,18 +147,18 @@
         ],
         [
           "🖼️",
-          "Textes, images, fichiers",
-          "Les images sont conservées sans perte, et les fichiers copiés sont recollés en tant que fichiers – pas sous forme de chemin."
-        ],
-        [
-          "✍️",
-          "Avec ou sans mise en forme",
-          "<kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur. <kbd>⌥⏎</kbd> colle uniquement le texte brut."
+          "Textes, images, fichiers – tels quels",
+          "Les images restent sans perte, les fichiers sont collés en tant que fichiers. <kbd>⏎</kbd> conserve le gras, les liens et les tableaux de Word, Outlook ou du navigateur ; <kbd>⌥⏎</kbd> colle uniquement le texte brut."
         ],
         [
           "📌",
           "Épinglez ce qui sert souvent",
-          "IBAN, adresse, extraits, commandes : <kbd>⌘P</kbd> range un élément dans une liste à part, « Épinglés », à un <kbd>→</kbd> de l’historique. <a href=\"#pinned\">Comment ça marche</a>"
+          "IBAN, adresse, commandes : <kbd>⌘P</kbd> range un élément dans une liste à part, « Épinglés », à un <kbd>→</kbd> de l’historique. <a href=\"#pinned\">Comment ça marche</a>"
+        ],
+        [
+          "🧩",
+          "Extraits et formulaires",
+          "Enregistrez une fois votre adresse, les données de votre entreprise ou une signature – et remplissez les formulaires champ par champ. <a href=\"#snippets\">Comment ça marche</a>"
         ]
       ]
     },
@@ -197,11 +200,11 @@
         ],
         [
           "Développement",
-          "Retrouvez les commandes, chemins et extraits de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse."
+          "Retrouvez les commandes, chemins et bouts de code copiés il y a des heures. Épinglez les commandes que vous utilisez sans cesse."
         ],
         [
           "Support et bureautique",
-          "Réponses types, numéros de compte et signatures épinglés et à portée de main – collés en quelques secondes."
+          "Signatures, réponses types et numéros de compte en extraits – collés en quelques secondes."
         ]
       ]
     },
@@ -265,7 +268,7 @@
         ],
         [
           "<kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd>",
-          "Passer de l’historique aux éléments épinglés et inversement"
+          "Passer de l’historique aux épinglés et aux extraits"
         ],
         [
           "<kbd>⏎</kbd>",
@@ -286,6 +289,10 @@
         [
           "<kbd>⌘⌫</kbd>",
           "Supprimer un élément. Un élément épinglé dans l’historique quitte seulement l’historique"
+        ],
+        [
+          "<kbd>⌘N</kbd>",
+          "Créer un nouvel extrait"
         ],
         [
           "<kbd>esc</kbd>",
@@ -348,6 +355,10 @@
           "Avec Clipsody, vous copiez comme d’habitude avec <kbd>⌘C</kbd> – chaque élément reste dans l’historique. Pour coller, ouvrez la liste avec <kbd>⌥⌘C</kbd> et choisissez un élément avec <kbd>⏎</kbd>, ou collez directement l’un des neuf premiers avec <kbd>⌘1</kbd> à <kbd>⌘9</kbd>. Un élément collé remonte en haut de la liste."
         ],
         [
+          "Clipsody peut-il remplir des formulaires ?",
+          "Oui, avec les extraits : vous enregistrez une fois ce que vous saisissez sans cesse, par exemple votre adresse avec nom, rue, code postal et ville. Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd>, et une petite barre avec ces valeurs apparaît : cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante. Vous décidez quelle valeur va dans quel champ ; Clipsody ne remplit jamais rien à l’aveugle."
+        ],
+        [
           "Clipsody est-il vraiment gratuit ?",
           "Oui. Pas de publicité, pas d’abonnement, pas de version d’essai. Le code source est ouvert, sous licence GPLv3."
         ],
@@ -381,7 +392,7 @@
         ],
         [
           "Comment désinstaller Clipsody ?",
-          "<strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac."
+          "<strong>Réglages → Infos → Désinstaller Clipsody…</strong> supprime l’historique, les images, les extraits et les réglages, retire l’élément d’ouverture et l’autorisation Accessibilité, puis place l’app dans la Corbeille. Si vous glissez vous-même l’app dans la Corbeille, ces données restent sur votre Mac. Pour garder vos extraits, exportez-les d’abord dans <strong>Réglages → Historique</strong>."
         ]
       ]
     },
@@ -390,7 +401,8 @@
       "sub": "Adresse e-mail, adresse postale, numéro de téléphone, IBAN : ce que vous retapez sans arrêt, vous l’épinglez une fois. Il rejoint une liste à part, séparée de l’historique, et se colle en quelques touches.",
       "tabs": [
         "Historique",
-        "Épinglés · 6"
+        "Épinglés · 6",
+        "Extraits · 2"
       ],
       "items": [
         [
@@ -457,7 +469,63 @@
           "Longues commandes, adresses de serveurs, données de test et chemins dont vous avez besoin chaque jour."
         ]
       ],
-      "note": "Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe."
+      "note": "Les éléments épinglés restent : ils ne sont jamais supprimés automatiquement, ne comptent pas dans la limite de l’historique et survivent à l’effacement de l’historique. Comme tout dans Clipsody, ils restent sur votre Mac. Les mots de passe ont toutefois leur place dans un gestionnaire de mots de passe. Des textes que vous écrivez vous-même, ou des formulaires entiers ? C’est le rôle des <a href=\"#snippets\">extraits</a>."
+    },
+    "snippets": {
+      "h2": "Extraits : remplir des formulaires sans taper",
+      "sub": "Notez une fois ce que vous saisissez sans cesse – votre adresse, les données de votre entreprise, une signature. Clipsody le colle là où vous en avez besoin : un texte d’un coup, ou tout un formulaire champ par champ.",
+      "name": "Mon adresse",
+      "values": [
+        [
+          "Nom",
+          "Marie Dupont"
+        ],
+        [
+          "Rue",
+          "12 rue de l’Exemple"
+        ],
+        [
+          "Code postal",
+          "75011"
+        ],
+        [
+          "Ville",
+          "Paris"
+        ]
+      ],
+      "hint": "Cliquez dans un champ, puis sur la valeur (ou ⌥⌘V pour la suivante), ou faites glisser la valeur dans le champ.",
+      "form": "Adresse de livraison",
+      "steps": [
+        [
+          "Créer une fois",
+          "Dans l’onglet « Extraits », choisissez « Nouvel extrait » (<kbd>⌘N</kbd>), donnez-lui un nom et remplissez les champs – chacun avec un libellé comme « Code postal » si vous voulez."
+        ],
+        [
+          "Ouvrir la barre de remplissage",
+          "Sélectionnez l’extrait et appuyez sur <kbd>⏎</kbd> : une barre avec vos valeurs apparaît en haut de l’écran. Elle ne retire pas le focus à votre formulaire."
+        ],
+        [
+          "Champ par champ",
+          "Cliquez dans un champ, puis sur la valeur – ou <kbd>⌥⌘V</kbd> pour la suivante, ou faites glisser la valeur dans le champ. Si un bouton ou un libellé a le focus au lieu d’un champ de saisie, Clipsody ne colle rien."
+        ]
+      ],
+      "note": "Un extrait avec un seul texte, comme une signature ou une réponse type, est collé directement avec <kbd>⏎</kbd>. Les extraits restent sur votre Mac, sont inclus dans les sauvegardes Time Machine contrairement à l’historique, et s’exportent et s’importent dans les réglages.",
+      "editor": {
+        "tabs": [
+          "Historique",
+          "Épinglés · 6",
+          "Extraits · 2"
+        ],
+        "signature": "Signature",
+        "newSnippet": "Nouvel extrait",
+        "labelHeader": "Libellé (facultatif)",
+        "textHeader": "Texte",
+        "addField": "Ajouter un champ",
+        "delete": "Supprimer…",
+        "fillIn": "Remplir ⏎",
+        "info": "Les modifications sont enregistrées immédiatement.",
+        "hint": "⏎ remplir   ⌘N nouvel extrait   ⌘⌫ supprimer"
+      }
     }
   },
   "guide": {

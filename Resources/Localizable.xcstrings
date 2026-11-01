@@ -847,6 +847,212 @@
         }
       }
     },
+    "%lld snippets added. Existing snippets were not changed.": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Textbaustein hinzugefügt. Vorhandene wurden nicht geändert."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Textbausteine hinzugefügt. Vorhandene wurden nicht geändert."
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld snippet added. Existing snippets were not changed."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld snippets added. Existing snippets were not changed."
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se ha añadido %lld fragmento. Los existentes no se han modificado."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se han añadido %lld fragmentos. Los existentes no se han modificado."
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extrait ajouté. Les extraits existants n’ont pas été modifiés."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extraits ajoutés. Les extraits existants n’ont pas été modifiés."
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld frammento aggiunto. Quelli esistenti non sono stati modificati."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld frammenti aggiunti. Quelli esistenti non sono stati modificati."
+                }
+              }
+            }
+          }
+        },
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tekstfragment toegevoegd. Bestaande zijn niet gewijzigd."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tekstfragmenten toegevoegd. Bestaande zijn niet gewijzigd."
+                }
+              }
+            }
+          }
+        },
+        "pl": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Dodano %lld fragmenty tekstu. Istniejące nie zostały zmienione."
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Dodano %lld fragmentów tekstu. Istniejące nie zostały zmienione."
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Dodano %lld fragment tekstu. Istniejące nie zostały zmienione."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Dodano %lld fragmentu tekstu. Istniejące nie zostały zmienione."
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld trecho adicionado. Os existentes não foram alterados."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld trechos adicionados. Os existentes não foram alterados."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Add Field": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feld hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir campo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un champ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi campo"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veld toevoegen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dodaj pole"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar campo"
+          }
+        }
+      }
+    },
     "Add app": {
       "localizations": {
         "de": {
@@ -889,6 +1095,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adicionar app"
+          }
+        }
+      }
+    },
+    "All fields pasted.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Felder eingefügt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los campos pegados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les champs ont été collés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti i campi incollati."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle velden geplakt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie pola wklejone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os campos colados."
+          }
+        }
+      }
+    },
+    "All snippets in the file were already there; nothing was added.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Textbausteine der Datei waren schon vorhanden; nichts wurde hinzugefügt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los fragmentos del archivo ya existían; no se ha añadido nada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les extraits du fichier existaient déjà ; rien n’a été ajouté."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti i frammenti del file c’erano già; non è stato aggiunto nulla."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle tekstfragmenten uit het bestand waren er al; er is niets toegevoegd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie fragmenty tekstu z pliku już istniały; nic nie dodano."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os trechos do arquivo já existiam; nada foi adicionado."
           }
         }
       }
@@ -939,48 +1237,48 @@
         }
       }
     },
-    "Asks GitHub for the number of the latest version and tells you when there is a new one; you download it from the release page. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now.": {
+    "Asks GitHub for the number of the latest version and tells you when there is a new one; Install and Restart then downloads and installs it. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. Without this, Clipsody uses no network unless you click Check Now or Install.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragt bei GitHub die Nummer der neuesten Version ab und sagt dir, wenn es eine neue gibt; laden kannst du sie dann von der Release-Seite. Aus deiner Zwischenablage wird nichts gesendet; GitHub sieht deine IP-Adresse und die Clipsody-Version. Ohne diese Option nutzt Clipsody kein Netzwerk, außer du klickst auf „Jetzt suchen“."
+            "value": "Fragt GitHub nach der Nummer der neuesten Version und meldet, wenn es eine neue gibt; „Installieren und neu starten“ lädt und installiert sie dann. Gesendet wird nichts aus deiner Zwischenablage; GitHub sieht deine IP-Adresse und die Clipsody-Version. Ohne diese Option nutzt Clipsody kein Netzwerk, außer du klickst auf „Jetzt suchen“ oder „Installieren“."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pregunta a GitHub el número de la última versión y te avisa cuando hay una nueva; la descargas desde la página de la versión. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Sin esta opción, Clipsody no usa la red salvo que hagas clic en «Buscar ahora»."
+            "value": "Pregunta a GitHub el número de la última versión y te avisa cuando hay una nueva; «Instalar y reiniciar» la descarga e instala. No se envía nada de tu portapapeles; GitHub ve tu dirección IP y la versión de Clipsody. Sin esta opción, Clipsody no usa la red salvo que pulses «Comprobar ahora» o «Instalar»."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demande à GitHub le numéro de la dernière version et vous prévient lorsqu’une nouvelle est disponible ; vous la téléchargez depuis la page de la version. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Sans cette option, Clipsody n’utilise pas le réseau, sauf si vous cliquez sur « Rechercher »."
+            "value": "Demande à GitHub le numéro de la dernière version et vous prévient quand une nouvelle est disponible ; « Installer et redémarrer » la télécharge et l’installe. Rien de votre presse-papiers n’est envoyé ; GitHub voit votre adresse IP et la version de Clipsody. Sans cette option, Clipsody n’utilise pas le réseau, sauf si vous cliquez sur « Vérifier maintenant » ou « Installer »."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chiede a GitHub il numero dell’ultima versione e ti avvisa quando ce n’è una nuova; la scarichi dalla pagina della versione. Nulla dei tuoi appunti viene inviato; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Senza questa opzione Clipsody non usa la rete, a meno che tu non faccia clic su «Controlla ora»."
+            "value": "Chiede a GitHub il numero dell’ultima versione e ti avvisa quando ce n’è una nuova; «Installa e riavvia» la scarica e la installa. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Senza questa opzione Clipsody non usa la rete, a meno che tu non clicchi su «Controlla ora» o «Installa»."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vraagt GitHub naar het nummer van de nieuwste versie en laat je weten wanneer er een nieuwe is; je downloadt die via de releasepagina. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de Clipsody-versie. Zonder deze optie gebruikt Clipsody geen netwerk, tenzij je op ‘Zoek nu’ klikt."
+            "value": "Vraagt GitHub naar het nummer van de nieuwste versie en meldt wanneer er een nieuwe is; ‘Installeren en opnieuw starten’ downloadt en installeert die dan. Er wordt niets van je klembord verstuurd; GitHub ziet je IP-adres en de versie van Clipsody. Zonder deze optie gebruikt Clipsody geen netwerk, tenzij je op ‘Nu controleren’ of ‘Installeren’ klikt."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pyta GitHub o numer najnowszej wersji i informuje, gdy pojawi się nowa; pobierasz ją ze strony wydania. Nic ze schowka nie jest wysyłane; GitHub widzi Twój adres IP i wersję Clipsody. Bez tej opcji Clipsody nie korzysta z sieci, chyba że klikniesz „Sprawdź teraz”."
+            "value": "Pyta GitHuba o numer najnowszej wersji i informuje, gdy jest nowa; „Zainstaluj i uruchom ponownie” pobiera ją i instaluje. Nic ze schowka nie jest wysyłane; GitHub widzi twój adres IP i wersję Clipsody. Bez tej opcji Clipsody nie korzysta z sieci, chyba że klikniesz „Sprawdź teraz” lub „Zainstaluj”."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pergunta ao GitHub o número da versão mais recente e avisa quando há uma nova; você baixa pela página da versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Sem esta opção, o Clipsody não usa a rede, a não ser que você clique em “Verificar agora”."
+            "value": "Pergunta ao GitHub o número da versão mais recente e avisa quando há uma nova; “Instalar e reiniciar” a baixa e instala. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Sem esta opção, o Clipsody não usa a rede, a menos que você clique em “Verificar agora” ou “Instalar”."
           }
         }
       }
@@ -1165,6 +1463,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "Changes are saved right away.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Änderungen werden sofort gespeichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los cambios se guardan al instante."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les modifications sont enregistrées immédiatement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le modifiche vengono salvate subito."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wijzigingen worden meteen bewaard."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zmiany są zapisywane od razu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As alterações são salvas na hora."
           }
         }
       }
@@ -1445,6 +1789,52 @@
         }
       }
     },
+    "Choose a file exported from Clipsody’s snippets.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle eine Datei, die aus den Clipsody-Textbausteinen exportiert wurde."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige un archivo exportado desde los fragmentos de Clipsody."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez un fichier exporté depuis les extraits de Clipsody."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli un file esportato dai frammenti di Clipsody."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kies een bestand dat uit de tekstfragmenten van Clipsody is geëxporteerd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz plik wyeksportowany z fragmentów tekstu Clipsody."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha um arquivo exportado dos trechos do Clipsody."
+          }
+        }
+      }
+    },
     "Choose an app whose copies should not be saved": {
       "localizations": {
         "de": {
@@ -1625,6 +2015,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Limpar todo o histórico?"
+          }
+        }
+      }
+    },
+    "Click into a field, then on the value (or ⌥⌘V for the next one), or drag the value into the field.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klicke in ein Feld, dann auf den Wert (oder ⌥⌘V für den nächsten) – oder ziehe den Wert ins Feld."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz clic en un campo y luego en el valor (o ⌥⌘V para el siguiente), o arrastra el valor al campo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cliquez dans un champ, puis sur la valeur (ou ⌥⌘V pour la suivante), ou faites glisser la valeur dans le champ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clicca in un campo, poi sul valore (oppure ⌥⌘V per il successivo), o trascina il valore nel campo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klik in een veld en dan op de waarde (of ⌥⌘V voor de volgende), of sleep de waarde naar het veld."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kliknij w pole, a potem w wartość (albo ⌥⌘V, aby wkleić następną), lub przeciągnij wartość do pola."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clique em um campo e depois no valor (ou ⌥⌘V para o próximo), ou arraste o valor para o campo."
+          }
+        }
+      }
+    },
+    "Click into a field, then on the value, or drag the value into the field.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klicke in ein Feld, dann auf den Wert – oder ziehe den Wert ins Feld."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz clic en un campo y luego en el valor, o arrastra el valor al campo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cliquez dans un champ, puis sur la valeur, ou faites glisser la valeur dans le champ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clicca in un campo, poi sul valore, oppure trascina il valore nel campo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klik in een veld en dan op de waarde, of sleep de waarde naar het veld."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kliknij w pole, a potem w wartość, albo przeciągnij wartość do pola."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clique em um campo e depois no valor, ou arraste o valor para o campo."
           }
         }
       }
@@ -1901,6 +2383,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O Clipsody %@ está instalado."
+          }
+        }
+      }
+    },
+    "Clipsody Snippets": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody-Textbausteine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmentos de Clipsody"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits Clipsody"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammenti Clipsody"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody-tekstfragmenten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmenty tekstu Clipsody"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos do Clipsody"
           }
         }
       }
@@ -2227,6 +2755,52 @@
         }
       }
     },
+    "Close": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schließen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sluiten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zamknij"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fechar"
+          }
+        }
+      }
+    },
     "Copied images such as screenshots are saved as PNG and can be pasted again. When this is off, Clipsody only remembers text and file paths.": {
       "localizations": {
         "de": {
@@ -2457,6 +3031,52 @@
         }
       }
     },
+    "Delete…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijderen…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar…"
+          }
+        }
+      }
+    },
     "Don’t Check": {
       "localizations": {
         "de": {
@@ -2591,6 +3211,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Editar"
+          }
+        }
+      }
+    },
+    "Export…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportieren …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esporta…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporteren…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksportuj…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar…"
+          }
+        }
+      }
+    },
+    "Fill In ⏎": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausfüllen ⏎"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rellenar ⏎"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplir ⏎"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compila ⏎"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invullen ⏎"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wypełnij ⏎"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preencher ⏎"
           }
         }
       }
@@ -3009,6 +3721,52 @@
         }
       }
     },
+    "Import…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importieren …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importeren…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importuj…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar…"
+          }
+        }
+      }
+    },
     "Info": {
       "localizations": {
         "de": {
@@ -3285,6 +4043,98 @@
         }
       }
     },
+    "Label (optional)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bezeichnung (optional)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiqueta (opcional)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Libellé (facultatif)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etichetta (facoltativa)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label (optioneel)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etykieta (opcjonalnie)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rótulo (opcional)"
+          }
+        }
+      }
+    },
+    "Label of field %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bezeichnung von Feld %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiqueta del campo %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Libellé du champ %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etichetta del campo %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label van veld %lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etykieta pola %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rótulo do campo %lld"
+          }
+        }
+      }
+    },
     "Language:": {
       "localizations": {
         "de": {
@@ -3515,6 +4365,190 @@
         }
       }
     },
+    "Move Down": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach unten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bajar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descendre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sposta giù"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omlaag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przenieś w dół"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover para baixo"
+          }
+        }
+      }
+    },
+    "Move Up": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach oben"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monter"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sposta su"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omhoog"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przenieś w górę"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover para cima"
+          }
+        }
+      }
+    },
+    "Name, e.g. My address": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name, z. B. Meine Anschrift"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre, p. ej. Mi dirección"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom, p. ex. Mon adresse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome, ad es. Il mio indirizzo"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naam, bijv. Mijn adres"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazwa, np. Mój adres"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome, por ex. Meu endereço"
+          }
+        }
+      }
+    },
+    "New Snippet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer Textbaustein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo fragmento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvel extrait"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo frammento"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nieuw tekstfragment"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nowy fragment tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo trecho"
+          }
+        }
+      }
+    },
     "Newer versions of macOS ask before an app reads what you copy in other apps. Clipsody needs this to keep a history: when asked, choose Allow, or allow Clipsody under System Settings → Privacy & Security. While access is denied, nothing new is added to the history.": {
       "localizations": {
         "de": {
@@ -3699,6 +4733,98 @@
         }
       }
     },
+    "No snippet matches.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Textbaustein passt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún fragmento coincide."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun extrait ne correspond."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun frammento corrisponde."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen tekstfragment komt overeen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Żaden fragment tekstu nie pasuje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum trecho corresponde."
+          }
+        }
+      }
+    },
+    "No text field selected – nothing was pasted. Click into a field first.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Eingabefeld ausgewählt – nichts eingefügt. Klicke zuerst in ein Feld."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay ningún campo de texto seleccionado; no se ha pegado nada. Haz clic primero en un campo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun champ de saisie sélectionné – rien n’a été collé. Cliquez d’abord dans un champ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun campo di testo selezionato – non è stato incollato nulla. Clicca prima in un campo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen invoerveld geselecteerd – er is niets geplakt. Klik eerst in een veld."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie wybrano pola tekstowego – nic nie wklejono. Najpierw kliknij w pole."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum campo de texto selecionado – nada foi colado. Clique primeiro em um campo."
+          }
+        }
+      }
+    },
     "Nothing pinned yet. Pin entries in the history with ⌘P.": {
       "localizations": {
         "de": {
@@ -3879,6 +5005,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uma vez por dia, o Clipsody pode perguntar ao GitHub se há uma nova versão. Nada da sua área de transferência é enviado; o GitHub vê seu endereço IP e a versão do Clipsody. Você pode mudar isso a qualquer momento em Ajustes → Geral."
+          }
+        }
+      }
+    },
+    "Only copied, not pasted: Clipsody needs the Accessibility permission, or no app is in front. Press ⌘V.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur kopiert, nicht eingefügt: Clipsody braucht die Berechtigung „Bedienungshilfen“, oder keine App ist im Vordergrund. Drücke ⌘V."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo copiado, no pegado: Clipsody necesita el permiso de Accesibilidad o no hay ninguna app delante. Pulsa ⌘V."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seulement copié, pas collé : Clipsody a besoin de l’autorisation Accessibilité, ou aucune app n’est au premier plan. Appuyez sur ⌘V."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo copiato, non incollato: Clipsody ha bisogno del permesso Accessibilità, oppure nessuna app è in primo piano. Premi ⌘V."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alleen gekopieerd, niet geplakt: Clipsody heeft de toestemming voor Toegankelijkheid nodig, of er is geen app op de voorgrond. Druk op ⌘V."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tylko skopiowano, nie wklejono: Clipsody potrzebuje uprawnienia Dostępność albo żadna aplikacja nie jest na wierzchu. Naciśnij ⌘V."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Só copiado, não colado: o Clipsody precisa da permissão de Acessibilidade, ou nenhum app está em primeiro plano. Pressione ⌘V."
           }
         }
       }
@@ -4251,6 +5423,98 @@
         }
       }
     },
+    "Paste ⏎": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einfügen ⏎"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar ⏎"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coller ⏎"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incolla ⏎"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plakken ⏎"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wklej ⏎"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colar ⏎"
+          }
+        }
+      }
+    },
+    "Pasted": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eingefügt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incollato"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geplakt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wklejono"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colado"
+          }
+        }
+      }
+    },
     "Pinned": {
       "localizations": {
         "de": {
@@ -4527,6 +5791,52 @@
         }
       }
     },
+    "Press ⌘⌫ again to delete “%@”.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drücke ⌘⌫ noch einmal, um „%@“ zu löschen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsa ⌘⌫ otra vez para eliminar «%@»."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez à nouveau sur ⌘⌫ pour supprimer « %@ »."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Premi di nuovo ⌘⌫ per eliminare «%@»."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druk nogmaals op ⌘⌫ om ‘%@’ te verwijderen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naciśnij ponownie ⌘⌫, aby usunąć „%@”."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pressione ⌘⌫ de novo para apagar “%@”."
+          }
+        }
+      }
+    },
     "Privacy": {
       "localizations": {
         "de": {
@@ -4711,6 +6021,98 @@
         }
       }
     },
+    "Release ⌥ and ⌘ to paste the next value.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lass ⌥ und ⌘ los, um den nächsten Wert einzufügen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta ⌥ y ⌘ para pegar el siguiente valor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez ⌥ et ⌘ pour coller la valeur suivante."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rilascia ⌥ e ⌘ per incollare il valore successivo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laat ⌥ en ⌘ los om de volgende waarde te plakken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puść ⌥ i ⌘, aby wkleić następną wartość."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solte ⌥ e ⌘ para colar o próximo valor."
+          }
+        }
+      }
+    },
+    "Remove Field": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feld entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar campo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le champ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi campo"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veld verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń pole"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remover campo"
+          }
+        }
+      }
+    },
     "Remove selected app": {
       "localizations": {
         "de": {
@@ -4845,6 +6247,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Salvar imagens"
+          }
+        }
+      }
+    },
+    "Saves your snippets to a file, or adds those from such a file (nothing is overwritten), e.g. to move them to another Mac. Unlike the history, snippets are included in Time Machine backups.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichert deine Textbausteine in eine Datei oder fügt die aus einer solchen Datei hinzu (nichts wird überschrieben), z. B. für einen neuen Mac. Anders als die Historie sind Textbausteine in Time-Machine-Backups enthalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda tus fragmentos en un archivo o añade los de un archivo así (no se sobrescribe nada), por ejemplo para pasarlos a otro Mac. A diferencia del historial, los fragmentos se incluyen en las copias de Time Machine."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistre vos extraits dans un fichier ou ajoute ceux d’un tel fichier (rien n’est écrasé), par exemple pour les transférer sur un autre Mac. Contrairement à l’historique, les extraits sont inclus dans les sauvegardes Time Machine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva i tuoi frammenti in un file o aggiunge quelli di un file simile (nulla viene sovrascritto), ad esempio per spostarli su un altro Mac. A differenza della cronologia, i frammenti sono inclusi nei backup di Time Machine."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewaart je tekstfragmenten in een bestand of voegt die uit zo’n bestand toe (er wordt niets overschreven), bijv. om ze naar een andere Mac te verhuizen. Anders dan de geschiedenis zitten tekstfragmenten in Time Machine-reservekopieën."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapisuje fragmenty tekstu do pliku albo dodaje te z takiego pliku (nic nie jest nadpisywane), np. aby przenieść je na innego Maca. W przeciwieństwie do historii fragmenty tekstu trafiają do kopii Time Machine."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva seus trechos em um arquivo ou adiciona os de um arquivo assim (nada é sobrescrito), por exemplo para levá-los a outro Mac. Diferente do histórico, os trechos entram nos backups do Time Machine."
           }
         }
       }
@@ -5171,6 +6619,374 @@
         }
       }
     },
+    "Snippet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbaustein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extrait"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammento"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragment"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragment tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trecho"
+          }
+        }
+      }
+    },
+    "Snippet name": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name des Textbausteins"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del fragmento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom de l’extrait"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome del frammento"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naam van het tekstfragment"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazwa fragmentu tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do trecho"
+          }
+        }
+      }
+    },
+    "Snippets": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmentos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammenti"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmenty tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos"
+          }
+        }
+      }
+    },
+    "Snippets are texts you paste often, or several fields to fill in a form.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine sind Texte, die du oft einfügst, oder mehrere Felder zum Ausfüllen eines Formulars."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los fragmentos son textos que pegas a menudo o varios campos para rellenar un formulario."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les extraits sont des textes que vous collez souvent, ou plusieurs champs pour remplir un formulaire."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I frammenti sono testi che incolli spesso, oppure più campi per compilare un modulo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten zijn teksten die je vaak plakt, of meerdere velden om een formulier in te vullen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmenty tekstu to teksty, które często wklejasz, albo kilka pól do wypełnienia formularza."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos são textos que você cola com frequência ou vários campos para preencher um formulário."
+          }
+        }
+      }
+    },
+    "Snippets could not be saved; changes may be lost.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine konnten nicht gespeichert werden; Änderungen gehen womöglich verloren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se han podido guardar los fragmentos; los cambios podrían perderse."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les extraits n’ont pas pu être enregistrés ; des modifications pourraient être perdues."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile salvare i frammenti; le modifiche potrebbero andare perse."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten konden niet worden bewaard; wijzigingen kunnen verloren gaan."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się zapisać fragmentów tekstu; zmiany mogą zostać utracone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível salvar os trechos; as alterações podem se perder."
+          }
+        }
+      }
+    },
+    "Snippets imported": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine importiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmentos importados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits importés"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammenti importati"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten geïmporteerd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaimportowano fragmenty tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos importados"
+          }
+        }
+      }
+    },
+    "Snippets · %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine · %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmentos · %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits · %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammenti · %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten · %lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmenty tekstu · %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos · %lld"
+          }
+        }
+      }
+    },
+    "Snippets:": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmentos:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits :"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammenti:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstfragmenten:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmenty tekstu:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trechos:"
+          }
+        }
+      }
+    },
     "Space": {
       "localizations": {
         "de": {
@@ -5443,6 +7259,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sistema (%@)"
+          }
+        }
+      }
+    },
+    "Text": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Testo"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "Text of field %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text von Feld %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto del campo %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texte du champ %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Testo del campo %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst van veld %lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst pola %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto do campo %lld"
           }
         }
       }
@@ -5723,48 +7631,94 @@
         }
       }
     },
-    "The history including pinned entries, all images and the settings are deleted for good, and Clipsody moves to the Trash. This cannot be undone.": {
+    "The file could not be imported.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Historie samt angepinnter Einträge, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clipsody wandert in den Papierkorb. Das lässt sich nicht rückgängig machen."
+            "value": "Die Datei konnte nicht importiert werden."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El historial, incluidos los elementos fijados, todas las imágenes y los ajustes se eliminan definitivamente, y Clipsody pasa a la Papelera. No se puede deshacer."
+            "value": "No se ha podido importar el archivo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’historique, y compris les éléments épinglés, toutes les images et les réglages sont définitivement supprimés, et Clipsody est placé dans la Corbeille. Cette action est irréversible."
+            "value": "Le fichier n’a pas pu être importé."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "La cronologia, compresi gli elementi fissati, tutte le immagini e le impostazioni vengono eliminate definitivamente e Clipsody viene spostato nel Cestino. L’operazione non può essere annullata."
+            "value": "Non è stato possibile importare il file."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De geschiedenis inclusief vastgezette items, alle afbeeldingen en de instellingen worden definitief verwijderd, en Clipsody gaat naar de Prullenmand. Dit kan niet ongedaan worden gemaakt."
+            "value": "Het bestand kon niet worden geïmporteerd."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Historia wraz z przypiętymi elementami, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clipsody trafi do Kosza. Tej operacji nie można cofnąć."
+            "value": "Nie udało się zaimportować pliku."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clipsody vai para o Lixo. Não é possível desfazer."
+            "value": "Não foi possível importar o arquivo."
+          }
+        }
+      }
+    },
+    "The history including pinned entries, your snippets, all images and the settings are deleted for good, and Clipsody moves to the Trash. Export your snippets first if you want to keep them. This cannot be undone.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Historie samt angepinnter Einträge, deine Textbausteine, alle Bilder und die Einstellungen werden endgültig gelöscht, und Clipsody wandert in den Papierkorb. Exportiere deine Textbausteine vorher, wenn du sie behalten willst. Das lässt sich nicht rückgängig machen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El historial con los elementos fijados, tus fragmentos, todas las imágenes y los ajustes se eliminan definitivamente, y Clipsody va a la Papelera. Exporta antes tus fragmentos si quieres conservarlos. Esto no se puede deshacer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’historique avec les éléments épinglés, vos extraits, toutes les images et les réglages sont supprimés définitivement, et Clipsody est placé dans la Corbeille. Exportez d’abord vos extraits si vous voulez les garder. Cette action est irréversible."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La cronologia con gli elementi fissati, i tuoi frammenti, tutte le immagini e le impostazioni vengono eliminati definitivamente e Clipsody finisce nel Cestino. Esporta prima i tuoi frammenti se vuoi conservarli. L’operazione non si può annullare."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De geschiedenis met vastgezette items, je tekstfragmenten, alle afbeeldingen en de instellingen worden definitief verwijderd en Clipsody gaat naar de prullenmand. Exporteer eerst je tekstfragmenten als je ze wilt bewaren. Dit kan niet ongedaan worden gemaakt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historia wraz z przypiętymi elementami, twoje fragmenty tekstu, wszystkie obrazy i ustawienia zostaną trwale usunięte, a Clipsody trafi do kosza. Jeśli chcesz zachować fragmenty tekstu, najpierw je wyeksportuj. Tego nie można cofnąć."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O histórico com os itens fixados, seus trechos, todas as imagens e os ajustes são apagados para sempre, e o Clipsody vai para o Lixo. Exporte seus trechos antes se quiser mantê-los. Isso não pode ser desfeito."
           }
         }
       }
@@ -5903,6 +7857,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O atalho %@ já está sendo usado por outro app."
+          }
+        }
+      }
+    },
+    "The snippets could not be exported.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Textbausteine konnten nicht exportiert werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se han podido exportar los fragmentos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les extraits n’ont pas pu être exportés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile esportare i frammenti."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De tekstfragmenten konden niet worden geëxporteerd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się wyeksportować fragmentów tekstu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível exportar os trechos."
           }
         }
       }
@@ -6179,6 +8179,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "App desconhecido"
+          }
+        }
+      }
+    },
+    "Untitled snippet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbaustein ohne Namen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragmento sin nombre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extrait sans nom"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frammento senza nome"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naamloos tekstfragment"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fragment tekstu bez nazwy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trecho sem nome"
           }
         }
       }
@@ -6551,6 +8597,52 @@
         }
       }
     },
+    "e.g. Postcode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z. B. PLZ"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "p. ej. Código postal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "p. ex. Code postal"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ad es. CAP"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bijv. Postcode"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "np. Kod pocztowy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "por ex. CEP"
+          }
+        }
+      }
+    },
     "macOS rejected the shortcut %@. Please choose a combination with ⌘ or ⌃.": {
       "localizations": {
         "de": {
@@ -6731,6 +8823,144 @@
           "stringUnit": {
             "state": "translated",
             "value": "com formatação"
+          }
+        }
+      }
+    },
+    "⏎ fill in   ⌘N new snippet   ⌘⌫ delete": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ ausfüllen   ⌘N neuer Textbaustein   ⌘⌫ löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ rellenar   ⌘N nuevo fragmento   ⌘⌫ eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ remplir   ⌘N nouvel extrait   ⌘⌫ supprimer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ compila   ⌘N nuovo frammento   ⌘⌫ elimina"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ invullen   ⌘N nieuw tekstfragment   ⌘⌫ verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ wypełnij   ⌘N nowy fragment   ⌘⌫ usuń"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ preencher   ⌘N novo trecho   ⌘⌫ apagar"
+          }
+        }
+      }
+    },
+    "⏎ new snippet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ neuer Textbaustein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ nuevo fragmento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ nouvel extrait"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ nuovo frammento"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ nieuw tekstfragment"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ nowy fragment tekstu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ novo trecho"
+          }
+        }
+      }
+    },
+    "⏎ paste   ⌘N new snippet   ⌘⌫ delete": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ einfügen   ⌘N neuer Textbaustein   ⌘⌫ löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ pegar   ⌘N nuevo fragmento   ⌘⌫ eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ coller   ⌘N nouvel extrait   ⌘⌫ supprimer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ incolla   ⌘N nuovo frammento   ⌘⌫ elimina"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ plakken   ⌘N nieuw tekstfragment   ⌘⌫ verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ wklej   ⌘N nowy fragment   ⌘⌫ usuń"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ colar   ⌘N novo trecho   ⌘⌫ apagar"
           }
         }
       }

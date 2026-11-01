@@ -57,6 +57,7 @@ import Testing
     static let numbersWithoutPlural: Set = [
         "Image %lld×%lld", "Pinned · %lld",
         "No matches here – %lld in History (←)", "No matches here – %lld in Pinned (→)",
+        "Snippets · %lld", "Label of field %lld", "Text of field %lld",
     ]
 
     /// A count text needs plural forms in every language, English included ("1 files" otherwise),

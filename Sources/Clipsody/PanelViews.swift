@@ -30,18 +30,22 @@ final class ClipRowView: NSTableCellView {
     let shortcut = NSTextField(labelWithString: "")
     private var plainTitle = ""
     private var highlights: [NSRange] = []
+    /// The "New Snippet" row: in the accent colour, like a link.
+    private var accent = false
 
     /// Title with search matches marked; colours follow the row's selection state.
-    func setTitle(_ text: String, highlights: [NSRange]) {
+    func setTitle(_ text: String, highlights: [NSRange], accent: Bool = false) {
         plainTitle = text
         self.highlights = highlights
+        self.accent = accent
         renderTitle()
     }
 
     private func renderTitle() {
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineBreakMode = .byTruncatingTail
-        let base: NSColor = backgroundStyle == .emphasized ? .alternateSelectedControlTextColor : .labelColor
+        let base: NSColor = backgroundStyle == .emphasized ? .alternateSelectedControlTextColor
+            : (accent ? .controlAccentColor : .labelColor)
         let string = NSMutableAttributedString(string: plainTitle, attributes: [
             .font: NSFont.systemFont(ofSize: 14), .foregroundColor: base, .paragraphStyle: paragraph,
         ])

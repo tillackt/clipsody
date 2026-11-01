@@ -25,6 +25,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var pruneTimer: Timer?
     private var images: ImageQueue!
     private let updates = UpdateController()
+    private let snippets = SnippetStore()
+    private lazy var fillBar = FillBar { [unowned self] text in
+        pasteText(text, into: NSWorkspace.shared.frontmostApplication)
+    }
     private var recognition: TextRecognitionQueue!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -59,9 +63,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             recognition.start()
         }
         monitor = ClipboardMonitor(store: store, images: images) { [unowned self] in config }
-        panel = PanelController(store: store, decoder: decoder) { [unowned self] item, target, formatted in
-            paste(item, into: target, withFormatting: formatted)
-        }
+        panel = makePanel()
         monitor.onChange = { [unowned self] in
             panel.reloadIfVisible()
         }
@@ -149,6 +151,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         store.touch(item)
     }
 
+    private func makePanel() -> PanelController {
+        PanelController(store: store, decoder: decoder, snippets: snippets, fillBar: fillBar,
+                        onPaste: { [unowned self] in paste($0, into: $1, withFormatting: $2) },
+                        onPasteText: { [unowned self] in pasteText($0, into: $1) })
+    }
+
+    /// Pastes the text of a snippet. Unlike history entries it is not added to the history: snippets
+    /// have their own tab, and a filled-in form would otherwise leave every field there.
+    @discardableResult
+    private func pasteText(_ text: String, into target: NSRunningApplication?) -> Bool {
+        guard paster.pasteText(text, into: target) else { return false }
+        monitor.ignoreCurrentContents()
+        return true
+    }
+
     // MARK: - Settings
 
     private func prune() {
@@ -166,6 +183,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             settings = SettingsWindowController(
                 config: config,
                 dataDirectory: store.directory,
+                snippets: snippets,
                 onRecordingHotKey: { [unowned self] recording in
                     if recording { hotKeys.suspend() } else { hotKeys.resume() }
                 },
@@ -201,7 +219,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         recognition.stop()
         hotKeys.suspend()
         panel.hide()
-        let failed = Uninstaller.run(dataDirectory: store.directory)
+        fillBar.close()
+        let failed = Uninstaller.run(dataDirectory: store.directory, snippetsDirectory: snippets.directory)
         if !failed.isEmpty {
             alert(String(localized: "Clipsody could not remove these items; please delete them yourself:") + "\n\n"
                 + failed.joined(separator: "\n"))
@@ -274,28 +293,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @objc private func openPasteboardSettings() {
         PasteboardAccess.openSystemSettings()
-    }
-
-    /// Agent apps have no visible menu bar, but text fields need the Edit actions for ⌘C/⌘V/⌘A.
-    private func buildMainMenu() {
-        let mainMenu = NSMenu()
-        let appItem = NSMenuItem()
-        appItem.submenu = NSMenu()
-        appItem.submenu?.addItem(withTitle: String(localized: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
-        mainMenu.addItem(appItem)
-
-        let editItem = NSMenuItem()
-        let edit = NSMenu(title: String(localized: "Edit"))
-        edit.addItem(withTitle: String(localized: "Undo"), action: Selector(("undo:")), keyEquivalent: "z")
-        let redo = edit.addItem(withTitle: String(localized: "Redo"), action: Selector(("redo:")), keyEquivalent: "z")
-        redo.keyEquivalentModifierMask = [.command, .shift]
-        edit.addItem(withTitle: String(localized: "Cut"), action: #selector(NSText.cut(_:)), keyEquivalent: "x")
-        edit.addItem(withTitle: String(localized: "Copy"), action: #selector(NSText.copy(_:)), keyEquivalent: "c")
-        edit.addItem(withTitle: String(localized: "Paste"), action: #selector(NSText.paste(_:)), keyEquivalent: "v")
-        edit.addItem(withTitle: String(localized: "Select All"), action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
-        editItem.submenu = edit
-        mainMenu.addItem(editItem)
-        NSApp.mainMenu = mainMenu
     }
 
     // MARK: - Alerts

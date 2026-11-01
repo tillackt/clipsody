@@ -39,8 +39,8 @@ extension PanelController {
         let sideSeparator = NSBox()
         sideSeparator.boxType = .separator
 
-        let views: [NSView] = [search, sections, topSeparator, tableScroll, sideSeparator, previewTextScroll, previewImage,
-                               infoLabel, hintLabel, emptyLabel]
+        let views: [NSView] = [search, sections, topSeparator, tableScroll, sideSeparator,
+                               previewTextScroll, previewImage, editor, infoLabel, hintLabel, emptyLabel]
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
             background.addSubview(view)
@@ -61,7 +61,7 @@ extension PanelController {
     }
 
     private func configureSections() {
-        sections.segmentCount = 2
+        sections.segmentCount = 3
         sections.trackingMode = .selectOne
         sections.segmentStyle = .automatic
         sections.controlSize = .small
@@ -74,15 +74,24 @@ extension PanelController {
         sections.toolTip = String(localized: "Switch with → and ← or ⇥")
     }
 
-    /// Tab titles with the number of pinned entries, the hint line, and what an empty list says.
+    /// Tab titles with the number of pinned entries and snippets, and what an empty list says.
     func updateSectionLabels() {
         let pinnedCount = list.count(in: .pinned)
+        let snippetCount = snippets.snippets.count
         sections.setLabel(String(localized: "History"), forSegment: 0)
         sections.setLabel(pinnedCount > 0 ? String(localized: "Pinned · \(pinnedCount)") : String(localized: "Pinned"),
                           forSegment: 1)
-        sections.selectedSegment = list.section == .pinned ? 1 : 0
-        emptyLabel.isHidden = !items.isEmpty
-        guard items.isEmpty else { return }
+        sections.setLabel(snippetCount > 0 ? String(localized: "Snippets · \(snippetCount)") : String(localized: "Snippets"),
+                          forSegment: 2)
+        sections.selectedSegment = tab.rawValue
+        let listed = tab == .snippets ? snippetRows.count : rowCount
+        // In the snippets tab the "New Snippet" row stays, so only a search without hits says so.
+        emptyLabel.isHidden = listed > 0 || (tab == .snippets && query.isEmpty)
+        guard listed == 0 else { return }
+        if tab == .snippets {
+            emptyLabel.stringValue = String(localized: "No snippet matches.")
+            return
+        }
         let elsewhere = query.isEmpty ? 0 : list.matchCount(in: list.section.other)
         switch (list.section, elsewhere > 0) {
         case (.history, true): emptyLabel.stringValue = String(localized: "No matches here – \(elsewhere) in Pinned (→)")
@@ -96,6 +105,16 @@ extension PanelController {
     /// What ⌘P and ⌘⌫ do with the selected entry: a pinned entry in the history is unpinned, and
     /// ⌘⌫ only takes it out of the history.
     func updateHint(for item: ClipItem?) {
+        if isNewSnippetRowSelected {
+            hintLabel.stringValue = String(localized: "⏎ new snippet")
+            return
+        }
+        if tab == .snippets {
+            hintLabel.stringValue = selectedSnippet?.isSet == true
+                ? String(localized: "⏎ fill in   ⌘N new snippet   ⌘⌫ delete")
+                : String(localized: "⏎ paste   ⌘N new snippet   ⌘⌫ delete")
+            return
+        }
         hintLabel.stringValue = switch (list.section, item?.pinned == true) {
         case (.pinned, _): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete")
         case (.history, true): String(localized: "⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ remove from history")
@@ -118,6 +137,7 @@ extension PanelController {
         table.dataSource = self
         table.delegate = self
         table.target = self
+        table.action = #selector(rowClicked)
         table.doubleAction = #selector(rowDoubleClicked)
 
         let tableScroll = NSScrollView()
@@ -189,6 +209,12 @@ extension PanelController {
             previewTextScroll.leadingAnchor.constraint(equalTo: sideSeparator.trailingAnchor, constant: 10),
             previewTextScroll.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -12),
             previewTextScroll.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -8),
+
+            // The snippet editor takes the preview's place in the third tab.
+            editor.topAnchor.constraint(equalTo: previewTextScroll.topAnchor),
+            editor.leadingAnchor.constraint(equalTo: previewTextScroll.leadingAnchor),
+            editor.trailingAnchor.constraint(equalTo: previewTextScroll.trailingAnchor),
+            editor.bottomAnchor.constraint(equalTo: previewTextScroll.bottomAnchor),
 
             previewImage.topAnchor.constraint(equalTo: previewTextScroll.topAnchor),
             previewImage.leadingAnchor.constraint(equalTo: previewTextScroll.leadingAnchor),

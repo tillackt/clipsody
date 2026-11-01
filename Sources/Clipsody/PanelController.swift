@@ -10,15 +10,20 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     NSTableViewDataSource, NSTableViewDelegate {
     let store: Store
     let decoder: DecoderClient
+    let snippets: SnippetStore
+    let fillBar: FillBar
     /// Item, target app, and whether to paste with formatting (default; ⌥⏎ pastes plain text).
     private let onPaste: (ClipItem, NSRunningApplication?, Bool) -> Void
+    /// Pastes the text of a snippet into the target app.
+    let onPasteText: (String, NSRunningApplication?) -> Void
     /// The app that was frontmost when the panel opened; the paste goes there.
-    private var targetApp: NSRunningApplication?
+    private(set) var targetApp: NSRunningApplication?
 
     let panel: KeyPanel
     let search = NSTextField()
-    /// Switches between the history and the pinned entries (→ / ← at the edge of the search text, or ⇥).
+    /// Switches between history, pinned entries and snippets (→ / ← at the edge of the search text, or ⇥).
     let sections = NSSegmentedControl()
+    let editor = SnippetEditor()
     let table = NSTableView()
     let previewTextScroll = NSTextView.scrollableTextView()
     // scrollableTextView() always creates an NSTextView as its document view.
@@ -30,7 +35,15 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     let emptyLabel = NSTextField(labelWithString: String(localized: "No entries"))
 
     var list = HistoryList()
-    var items: [ClipItem] { list.items }
+    var tab = PanelTab.history
+    /// The snippets matching the search, shown in the third tab.
+    var snippetRows: [Snippet] = []
+    /// The snippet a first ⌘⌫ asked about; a second one deletes it.
+    var pendingSnippetDeletion: UUID?
+    /// Set when a click on "New Snippet" created one; the rest of that double click is ignored.
+    var snippetCreatedByClick = false
+    /// The history entries of the tab shown; none in the snippets tab.
+    var items: [ClipItem] { tab == .snippets ? [] : list.items }
     var query: SearchQuery { list.query }
     let iconCache = NSCache<NSString, NSImage>()
     let previewCache: NSCache<NSString, NSImage> = {
@@ -52,10 +65,15 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     var isVisible: Bool { panel.isVisible }
 
-    init(store: Store, decoder: DecoderClient, onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void) {
+    init(store: Store, decoder: DecoderClient, snippets: SnippetStore, fillBar: FillBar,
+         onPaste: @escaping (ClipItem, NSRunningApplication?, Bool) -> Void,
+         onPasteText: @escaping (String, NSRunningApplication?) -> Void) {
         self.store = store
         self.decoder = decoder
+        self.snippets = snippets
+        self.fillBar = fillBar
         self.onPaste = onPaste
+        self.onPasteText = onPasteText
         panel = KeyPanel(
             contentRect: NSRect(x: 0, y: 0, width: 820, height: 460),
             styleMask: [.nonactivatingPanel, .titled, .fullSizeContentView],
@@ -65,6 +83,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         super.init()
         configurePanel()
         buildLayout()
+        setUpSnippetEditor()
     }
 
     // MARK: - Show / hide
@@ -78,6 +97,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         let frontmost = NSWorkspace.shared.frontmostApplication
         targetApp = frontmost?.processIdentifier == ProcessInfo.processInfo.processIdentifier ? nil : frontmost
         search.stringValue = ""
+        fillBar.close()
         reloadItems()
         showItems()
         positionOnActiveScreen()
@@ -92,6 +112,9 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         previewTask?.cancel()
         previewedItem = nil
         list = HistoryList()
+        tab = .history
+        snippetRows = []
+        pendingSnippetDeletion = nil
         // Single deletes are wiped from disk in one go when the panel closes.
         store.flushDeletions()
         previewCache.removeAllObjects()
@@ -105,6 +128,8 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         guard isVisible else { return }
         let selected = selectedItem?.id
         reloadItems()
+        // The snippets tab (possibly with a field being edited) does not depend on the history.
+        guard tab != .snippets else { return }
         showItems(selecting: selected)
     }
 
@@ -113,6 +138,7 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         guard isVisible else { return }
         let selected = selectedItem?.id
         list.setRecognizedText(text, forImageFile: file)
+        guard tab != .snippets else { return }
         showItems(selecting: selected)
     }
 
@@ -138,19 +164,30 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
 
     // MARK: - Actions
 
-    private func pasteSelected(withFormatting: Bool = true) {
+    func pasteSelected(withFormatting: Bool = true) {
         paste(at: table.selectedRow, withFormatting: withFormatting)
     }
 
     func paste(at row: Int, withFormatting: Bool = true) {
-        guard items.indices.contains(row) else { return }
+        if tab == .snippets {
+            useSnippet(at: row)
+            return
+        }
+        guard items.indices.contains(row) else {
+            NSSound.beep()
+            return
+        }
         let item = items[row]
         hide()
         onPaste(item, targetApp, withFormatting)
     }
 
     /// Pins or unpins the selected entry. If it leaves the list shown, the selection moves to its neighbour.
-    private func togglePinSelected() {
+    func togglePinSelected() {
+        guard tab != .snippets else {
+            NSSound.beep()
+            return
+        }
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
@@ -164,9 +201,10 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         showItems(selecting: items.contains { $0.id == item.id } ? item.id : neighbour?.id)
     }
 
-    func show(_ section: HistoryList.Section) {
-        guard section != list.section else { return }
-        list.show(section)
+    func show(_ newTab: PanelTab) {
+        guard newTab != tab else { return }
+        tab = newTab
+        if let section = newTab.section { list.show(section) } else { filterSnippets() }
         showItems()
         // The focus stays in the search field, so VoiceOver would not notice the list changing.
         NSAccessibility.post(element: table, notification: .announcementRequested,
@@ -174,28 +212,14 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     }
 
     @objc func sectionClicked() {
-        show(sections.selectedSegment == 1 ? .pinned : .history)
+        show(PanelTab(rawValue: sections.selectedSegment) ?? .history)
     }
 
-    /// → at the end of the search text opens the pinned entries, ← at its start the history;
-    /// anywhere else the arrows move the cursor as usual.
-    private func switchSection(by key: Selector, in textView: NSTextView) -> Bool {
-        // A pending dead key or input method composition gets the arrows, not the tabs.
-        let cursor = textView.selectedRange()
-        guard cursor.length == 0, !textView.hasMarkedText() else { return false }
-        if key == #selector(NSResponder.moveRight(_:)), cursor.location == textView.string.utf16.count,
-           list.section == .history {
-            show(.pinned)
-            return true
+    func deleteSelected() {
+        if tab == .snippets {
+            requestDeleteSnippet(at: table.selectedRow)
+            return
         }
-        if key == #selector(NSResponder.moveLeft(_:)), cursor.location == 0, list.section == .pinned {
-            show(.history)
-            return true
-        }
-        return false
-    }
-
-    private func deleteSelected() {
         let row = table.selectedRow
         guard items.indices.contains(row) else { return }
         let item = items[row]
@@ -220,17 +244,22 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
     }
 
     @objc func rowDoubleClicked() {
+        // A double click on the empty space below the rows does nothing (and does not beep).
+        guard table.clickedRow >= 0 else { return }
+        // The first click of a double click on "New Snippet" already created one.
+        if tab == .snippets, NSApp.currentEvent?.clickCount ?? 0 > 1, snippetCreatedByClick
+            || !snippetRows.indices.contains(table.clickedRow) || snippetRows[table.clickedRow].filledFields.isEmpty { return }
         paste(at: table.clickedRow)
     }
 
     func move(by delta: Int) {
-        guard !items.isEmpty else { return }
+        guard rowCount > 0 else { return }
         let current = table.selectedRow < 0 ? 0 : table.selectedRow
-        select(max(0, min(items.count - 1, current + delta)))
+        select(max(0, min(rowCount - 1, current + delta)))
     }
 
     func select(_ row: Int) {
-        if items.indices.contains(row) {
+        if (0..<rowCount).contains(row) {
             table.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
             table.scrollRowToVisible(row)
         }
@@ -239,57 +268,18 @@ final class PanelController: NSObject, NSWindowDelegate, NSTextFieldDelegate,
         updatePreview()
     }
 
-    func handleKeyEquivalent(_ event: NSEvent) -> Bool {
-        // Only the four modifier keys count, so Caps Lock does not break the shortcuts.
-        let flags = event.modifierFlags.intersection([.command, .option, .control, .shift])
-        guard flags == .command else { return false }
-        // ⌘⌫ deletes the selected entry
-        if event.keyCode == UInt16(kVK_Delete) {
-            deleteSelected()
-            return true
-        }
-        // ⌘P pins or unpins the selected entry
-        if event.keyCode == UInt16(kVK_ANSI_P) {
-            togglePinSelected()
-            return true
-        }
-        // ⌘1 … ⌘9 paste the n-th visible entry
-        if let chars = event.charactersIgnoringModifiers, let digit = Int(chars), (1...9).contains(digit) {
-            paste(at: digit - 1)
-            return true
-        }
-        return false
-    }
-
     // MARK: - Filtering
 
-    func showItems(selecting id: Int64? = nil) {
+    func showItems(selecting id: Int64? = nil, snippet snippetID: UUID? = nil) {
         table.reloadData()
         updateSectionLabels()
-        select(list.row(selecting: id))
+        select(tab == .snippets ? snippetRow(selecting: snippetID) : list.row(selecting: id))
     }
 
     func controlTextDidChange(_ notification: Notification) {
         list.filter(search.stringValue)
+        filterSnippets()
         showItems()
-    }
-
-    func control(_ control: NSControl, textView: NSTextView, doCommandBy selector: Selector) -> Bool {
-        switch selector {
-        case #selector(NSResponder.moveLeft(_:)), #selector(NSResponder.moveRight(_:)):
-            return switchSection(by: selector, in: textView)
-        case #selector(NSResponder.insertTab(_:)), #selector(NSResponder.insertBacktab(_:)): show(list.section.other)
-        case #selector(NSResponder.moveUp(_:)): move(by: -1)
-        case #selector(NSResponder.moveDown(_:)): move(by: 1)
-        case #selector(NSResponder.scrollPageUp(_:)), #selector(NSResponder.pageUp(_:)): move(by: -10)
-        case #selector(NSResponder.scrollPageDown(_:)), #selector(NSResponder.pageDown(_:)): move(by: 10)
-        case #selector(NSResponder.insertNewline(_:)): pasteSelected()
-        // ⌥⏎ arrives as "insert newline ignoring field editor" and pastes plain text
-        case #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)): pasteSelected(withFormatting: false)
-        case #selector(NSResponder.cancelOperation(_:)): hide()
-        default: return false
-        }
-        return true
     }
 
     private func reloadItems() {

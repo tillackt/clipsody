@@ -2,7 +2,7 @@ import AppKit
 import ClipsodyCore
 import ServiceManagement
 
-/// Removes Clipsody from this Mac: history, settings, login item, privacy permissions, the
+/// Removes Clipsody from this Mac: history, snippets, settings, login item, privacy permissions, the
 /// contents of the decoder service's sandbox container, and finally the app itself (to the Trash).
 /// macOS does not tell an app that it is dragged to the Trash, so this is the only way to leave
 /// nothing behind.
@@ -22,7 +22,7 @@ enum Uninstaller {
 
     /// Paths that could not be removed; the caller shows them, the app quits either way.
     /// Does nothing outside a real app bundle (see `bundleID`).
-    static func run(dataDirectory: URL) -> [String] {
+    static func run(dataDirectory: URL, snippetsDirectory: URL) -> [String] {
         guard let bundleID else { return [] }
         let fileManager = FileManager.default
         let library = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Library")
@@ -57,6 +57,7 @@ enum Uninstaller {
 
         let leftovers = [
             dataDirectory,
+            snippetsDirectory,
             library.appendingPathComponent("Preferences/\(bundleID).plist"),
             library.appendingPathComponent("Application Scripts/\(bundleID).decoder"),
             library.appendingPathComponent("Caches/\(bundleID)"),

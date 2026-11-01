@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tillackt.github.io/clipsody/en/">
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/icon-180.png">
-    <link rel="stylesheet" href="../assets/style.css?v=2217717643">
+    <link rel="stylesheet" href="../assets/style.css?v=4b49edc3d0">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Clipsody">
     <meta property="og:locale" content="en_US">
@@ -95,6 +95,14 @@
         },
         {
           "@type": "Question",
+          "name": "Can Clipsody fill in forms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with snippets: you set up once what you keep typing, for example your address with name, street, postcode and city. Select the snippet and press ⏎, and a small bar with these values appears: click into a field, then on the value – or press ⌥⌘V for the next one. You decide which value goes into which field; Clipsody never fills anything in blindly."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Is Clipsody really free?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -162,7 +170,7 @@
           "name": "How do I uninstall Clipsody?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Settings → Info → Uninstall Clipsody… deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac."
+            "text": "Settings → Info → Uninstall Clipsody… deletes the history, images, snippets and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac. To keep your snippets, export them first under Settings → History."
           }
         }
       ]
@@ -222,7 +230,7 @@
                 <p class="scene-label"><span class="step">1</span>Everything you copied: text, images, files, links</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">History</span><span>Pinned · 3</span></div>
+                    <div class="tabs"><span class="on">History</span><span>Pinned · 6</span><span>Snippets · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
@@ -244,7 +252,7 @@
                 <p class="scene-label"><span class="step">2</span>Images stay images – lossless, with a preview</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">History</span><span>Pinned · 3</span></div>
+                    <div class="tabs"><span class="on">History</span><span>Pinned · 6</span><span>Snippets · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
@@ -266,7 +274,7 @@
                 <p class="scene-label"><span class="step">3</span>Files are pasted as files again</p>
                 <div class="panel">
                     <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">History</span><span>Pinned · 3</span></div>
+                    <div class="tabs"><span class="on">History</span><span>Pinned · 6</span><span>Snippets · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">Please check the invoice by Friday ⏎ Thanks!</span><span class="k">⌘1</span></li>
@@ -288,7 +296,7 @@
                 <p class="scene-label"><span class="step">4</span>Search even finds text in screenshots</p>
                 <div class="panel">
                     <div class="search"><span class="typed">invoice</span><span class="caret"></span></div>
-                    <div class="tabs"><span class="on">History</span><span>Pinned · 3</span></div>
+                    <div class="tabs"><span class="on">History</span><span>Pinned · 6</span><span>Snippets · 2</span></div>
                     <div class="body">
                         <ul>
                             <li class="sel"><span class="ico a"></span><span class="t">Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”</span><span class="k">⌘1</span></li>
@@ -305,13 +313,54 @@
                     </div>
                 </div>
             </div>
+            <div class="scene s5">
+                <p class="scene-label"><span class="step">5</span>Pinned: what you want to keep, in its own list</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>History</span><span class="on">Pinned · 6</span><span>Snippets · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li><span class="ico b"></span><span class="t">jane.doe@example.com</span><span class="k">⌘1</span></li>
+                            <li class="sel"><span class="ico a"></span><span class="t">Jane Doe ⏎ 12 Sample Street ⏎ London N1 7GU</span><span class="k">⌘2</span></li>
+                            <li><span class="ico c"></span><span class="t">+44 20 7946 0000</span><span class="k">⌘3</span></li>
+                            <li><span class="ico d"></span><span class="t">IBAN: GB00 0000 0000 …</span><span class="k">⌘4</span></li>
+                            <li><span class="ico e"></span><span class="t">Kind regards ⏎ Jane Doe</span><span class="k">⌘5</span></li>
+                            <li><span class="ico b"></span><span class="t">ssh deploy@staging.example.com</span><span class="k">⌘6</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="img">Jane Doe<br>12 Sample Street<br>London N1 7GU</div>
+                            <div class="info">Pinned · Text · 3 lines</div>
+                            <div class="hint">⏎ paste   ⌥⏎ without formatting   ⌘P unpin   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene s6">
+                <p class="scene-label"><span class="step">6</span>Snippets: write them yourself, fill in forms</p>
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>History</span><span>Pinned · 6</span><span class="on">Snippets · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">My address</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Signature</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">New Snippet</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">My address</p><p class="row head"><span>Label (optional)</span><span>Text</span><span></span></p><p class="row"><span class="label">Name</span><span class="text">Jane Doe</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Street</span><span class="text">12 Sample Street</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Postcode</span><span class="text">N1 7GU</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">City</span><span class="text">London</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Add Field</span><span class="buttons"><span class="btn">Delete…</span><span class="btn">Fill In ⏎</span></span></p></div>
+                            <div class="info">Changes are saved right away.</div>
+                            <div class="hint">⏎ fill in   ⌘N new snippet   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="controls">
-                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></span>
+                <span class="dots" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span><span class="s6"></span></span>
                 <input class="pause-toggle visually-hidden" type="checkbox" id="pause-hero">
                 <label class="pause" for="pause-hero"><span class="icon" aria-hidden="true"></span>Pause animation</label>
             </div>
-            <figcaption class="caption">The clipboard history in Clipsody: everything you copied, an image, a file, and searching for text in a screenshot.</figcaption>
+            <figcaption class="caption">Clipsody: the clipboard history with everything you copied – text, an image, a file, even text in a screenshot – plus pinned clips and snippets.</figcaption>
         </figure>
     </div>
 
@@ -347,12 +396,12 @@
                     <p>Copy name, address and order number first, then paste them one by one from the list. <kbd>⌘1</kbd> to <kbd>⌘9</kbd> paste the first nine entries shown directly (of the history or the pinned list, whichever is open).</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">🔎</div><h3>Finds text in images too</h3>
                     <p>Copied screenshots and images are read on your Mac. Search for a word that appears in the image – and there it is. <a href="#text-in-images">How it works</a></p></div>
-                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Text, images, files</h3>
-                    <p>Images are kept lossless, and copied files are pasted as files again – not as a path.</p></div>
-                <div class="card"><div class="icon" aria-hidden="true">✍️</div><h3>With or without formatting</h3>
-                    <p><kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser. <kbd>⌥⏎</kbd> pastes plain text only.</p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🖼️</div><h3>Text, images, files – as copied</h3>
+                    <p>Images stay lossless, files are pasted as files. <kbd>⏎</kbd> keeps bold, links and tables from Word, Outlook or the browser; <kbd>⌥⏎</kbd> pastes plain text only.</p></div>
                 <div class="card"><div class="icon" aria-hidden="true">📌</div><h3>Pin what you use often</h3>
-                    <p>IBAN, address, snippets, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href="#pinned">How it works</a></p></div>
+                    <p>IBAN, address, commands: <kbd>⌘P</kbd> moves a clip to a separate Pinned list, one <kbd>→</kbd> away from the history. <a href="#pinned">How it works</a></p></div>
+                <div class="card"><div class="icon" aria-hidden="true">🧩</div><h3>Snippets and forms</h3>
+                    <p>Set up your address, company details or signature once – and fill in forms field by field. <a href="#snippets">How it works</a></p></div>
             </div>
         </div>
     </section>
@@ -390,7 +439,7 @@
                 <div class="pinned-shot" aria-hidden="true">
                 <div class="panel">
                     <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
-                    <div class="tabs"><span>History</span><span class="on">Pinned · 6</span></div>
+                    <div class="tabs"><span>History</span><span class="on">Pinned · 6</span><span>Snippets · 2</span></div>
                     <div class="body">
                         <ul>
                             <li><span class="ico b"></span><span class="t">jane.doe@example.com</span><span class="k">⌘1</span></li>
@@ -424,11 +473,52 @@
                 <div class="card"><div class="icon" aria-hidden="true">💻</div><h3>Development and IT</h3>
                     <p>Long commands, server addresses, test data and paths you need every day.</p></div>
             </div>
-            <div class="note">Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager.</div>
+            <div class="note">Pinned clips stay: they are never deleted automatically, don’t count towards the history limit and survive clearing the history. Like everything in Clipsody, they stay on your Mac. Passwords still belong in a password manager. Texts you write yourself, or whole forms? That is what <a href="#snippets">snippets</a> are for.</div>
         </div>
     </section>
 
-    <section class="alt" id="uses">
+    <section class="alt" id="snippets">
+        <div class="wrap">
+            <h2>Snippets: fill in forms without typing</h2>
+            <p class="sub">Write down once what you keep typing – your address, your company details, a signature. Clipsody pastes it wherever you need it: one text at once, or a whole form field by field.</p>
+            <div class="pinned-demo editor-demo">
+                <div class="pinned-shot" aria-hidden="true">
+                <div class="panel">
+                    <div class="search"><span class="placeholder">Search …</span><span class="caret"></span></div>
+                    <div class="tabs"><span>History</span><span>Pinned · 6</span><span class="on">Snippets · 2</span></div>
+                    <div class="body">
+                        <ul>
+                            <li class="sel"><span class="ico d"></span><span class="t">My address</span><span class="k">⌘1</span></li>
+                            <li><span class="ico b"></span><span class="t">Signature</span><span class="k">⌘2</span></li>
+                            <li class="new"><span class="plus">+</span><span class="t">New Snippet</span><span class="k">⌘N</span></li>
+                        </ul>
+                        <div class="preview">
+                            <div class="editor"><p class="name">My address</p><p class="row head"><span>Label (optional)</span><span>Text</span><span></span></p><p class="row"><span class="label">Name</span><span class="text">Jane Doe</span><span class="icons"><i class="off">∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Street</span><span class="text">12 Sample Street</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">Postcode</span><span class="text">N1 7GU</span><span class="icons"><i>∧</i><i>∨</i><i>✕</i></span></p><p class="row"><span class="label">City</span><span class="text">London</span><span class="icons"><i>∧</i><i class="off">∨</i><i>✕</i></span></p><p class="foot"><span class="add">+ Add Field</span><span class="buttons"><span class="btn">Delete…</span><span class="btn">Fill In ⏎</span></span></p></div>
+                            <div class="info">Changes are saved right away.</div>
+                            <div class="hint">⏎ fill in   ⌘N new snippet   ⌘⌫ delete</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ol class="pinned-steps">
+                    <li><h3><span class="step">1</span>Set it up once</h3><p>In the Snippets tab, choose New Snippet (<kbd>⌘N</kbd>), give it a name and fill in the fields – each with a label such as “Postcode” if you like.</p></li>
+                </ol>
+            </div>
+            <div class="pinned-demo">
+                <div class="snippets-shot" aria-hidden="true">
+                    <div class="fillbar"><p class="name">My address<span class="close">✕</span></p><p class="chips"><span class="chip used">✓ <span class="label">Name:</span> Jane Doe</span><span class="chip used">✓ <span class="label">Street:</span> 12 Sample Street</span><span class="chip"><span class="label">Postcode:</span> N1 7GU</span><span class="chip"><span class="label">City:</span> London</span></p><p class="hint">Click into a field, then on the value (or ⌥⌘V for the next one), or drag the value into the field.</p></div>
+                    <div class="mini-form"><p class="title">Delivery address</p><div class="field"><span class="label">Name</span><span class="input">Jane Doe</span></div><div class="field"><span class="label">Street</span><span class="input">12 Sample Street</span></div><div class="field"><span class="label">Postcode</span><span class="input focus"><span class="caret"></span></span></div><div class="field"><span class="label">City</span><span class="input"></span></div></div>
+                </div>
+                <ol class="pinned-steps" start="2">
+                    <li><h3><span class="step">2</span>Open the fill bar</h3><p>Select the snippet and press <kbd>⏎</kbd>: a bar with your values appears at the top of the screen. It doesn’t take the focus away from your form.</p></li>
+                    <li><h3><span class="step">3</span>Field by field</h3><p>Click into a field, then on the value – or press <kbd>⌥⌘V</kbd> for the next one, or drag the value into the field. If a button or a label has the focus instead of a text field, Clipsody pastes nothing.</p></li>
+                </ol>
+            </div>
+            <div class="note">A snippet with a single text, such as a signature or a canned reply, is pasted directly with <kbd>⏎</kbd>. Snippets stay on your Mac, are included in Time Machine backups unlike the history, and can be exported and imported in the settings.</div>
+        </div>
+    </section>
+
+    <section id="uses">
         <div class="wrap">
             <h2>What a clipboard history is good for</h2>
             <p class="sub">Anywhere you copy more than one thing.</p>
@@ -438,14 +528,14 @@
                 <div class="card"><h3>Writing and research</h3>
                     <p>Copy quotes, links and paragraphs from several sources and put them together later.</p></div>
                 <div class="card"><h3>Coding</h3>
-                    <p>Find commands, paths and snippets you copied hours ago. Pin the commands you use all the time.</p></div>
+                    <p>Find commands, paths and bits of code you copied hours ago. Pin the commands you use all the time.</p></div>
                 <div class="card"><h3>Support and office work</h3>
-                    <p>Canned replies, account numbers and signatures pinned and ready – pasted in seconds.</p></div>
+                    <p>Signatures, canned replies and account numbers as snippets – pasted in seconds.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="compare">
+    <section class="alt" id="compare">
         <div class="wrap">
             <h2>Doesn’t the Mac have a clipboard history already?</h2>
             <p class="sub">Since macOS 26 Tahoe, Spotlight can show recent clips. That helps for the moment – Clipsody is built for everything that should last longer than a week.</p>
@@ -468,7 +558,7 @@
         </div>
     </section>
 
-    <section class="alt" id="keys">
+    <section id="keys">
         <div class="wrap">
             <h2>All from the keyboard</h2>
             <p class="sub">You don’t need the mouse – but you can use it.</p>
@@ -477,19 +567,20 @@
                 <tr><th scope="row"><kbd>⌥⌘C</kbd></th><td>Open or close the history (configurable)</td></tr>
                 <tr><th scope="row">Enter a search word</th><td>Filter the list – finds text, app names and text in images</td></tr>
                 <tr><th scope="row"><kbd>↑</kbd> <kbd>↓</kbd></th><td>Choose a clip</td></tr>
-                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Switch between the history and the pinned clips</td></tr>
+                <tr><th scope="row"><kbd>→</kbd> <kbd>←</kbd> / <kbd>⇥</kbd></th><td>Switch between History, Pinned and Snippets</td></tr>
                 <tr><th scope="row"><kbd>⏎</kbd></th><td>Paste with formatting</td></tr>
                 <tr><th scope="row"><kbd>⌥⏎</kbd></th><td>Paste plain text only</td></tr>
                 <tr><th scope="row"><kbd>⌘1</kbd> … <kbd>⌘9</kbd></th><td>Paste one of the first nine entries shown directly (of the history or the pinned list, whichever is open)</td></tr>
                 <tr><th scope="row"><kbd>⌘P</kbd></th><td>Pin or unpin a clip. Pinned clips are in the Pinned list; one copied or pasted again also shows in the history</td></tr>
                 <tr><th scope="row"><kbd>⌘⌫</kbd></th><td>Delete a clip. A pinned clip in the history only leaves the history</td></tr>
+                <tr><th scope="row"><kbd>⌘N</kbd></th><td>Create a new snippet</td></tr>
                 <tr><th scope="row"><kbd>esc</kbd></th><td>Close</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="privacy">
+    <section class="alt" id="privacy">
         <div class="wrap">
             <h2>Your clipboard is yours</h2>
             <p class="sub">Personal things end up on the clipboard: passwords, addresses, messages. That’s why Clipsody is private by design.</p>
@@ -510,7 +601,7 @@
         </div>
     </section>
 
-    <section class="alt" id="install">
+    <section id="install">
         <div class="wrap">
             <h2>Install</h2>
             <p class="sub">Clipsody is not notarised by Apple – that needs a paid developer account. So macOS asks once on first launch – here’s how:</p>
@@ -530,13 +621,15 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
         </div>
     </section>
 
-    <section id="faq">
+    <section class="alt" id="faq">
         <div class="wrap">
             <h2>FAQ</h2>
             <details><summary>How do I see what I copied earlier on a Mac?</summary>
                 <p>Out of the box, the Mac only remembers the last thing you copied. A clipboard manager like Clipsody keeps everything you copy: <kbd>⌥⌘C</kbd> shows it all, searchable. Every way, including Finder and the Spotlight history of macOS 26: <a href="clipboard-history-mac.html">how to see your clipboard history on a Mac</a>.</p></details>
             <details><summary>How do I copy multiple items and paste them one after another?</summary>
                 <p>With Clipsody you just copy as usual with <kbd>⌘C</kbd> – every clip stays in the history. To paste, open the list with <kbd>⌥⌘C</kbd> and pick a clip with <kbd>⏎</kbd>, or paste one of the first nine directly with <kbd>⌘1</kbd> to <kbd>⌘9</kbd>. A pasted clip moves to the top of the list.</p></details>
+            <details><summary>Can Clipsody fill in forms?</summary>
+                <p>Yes, with snippets: you set up once what you keep typing, for example your address with name, street, postcode and city. Select the snippet and press <kbd>⏎</kbd>, and a small bar with these values appears: click into a field, then on the value – or press <kbd>⌥⌘V</kbd> for the next one. You decide which value goes into which field; Clipsody never fills anything in blindly.</p></details>
             <details><summary>Is Clipsody really free?</summary>
                 <p>Yes. No ads, no subscription, no trial. The source is open, under the GPLv3.</p></details>
             <details><summary>Why does Clipsody need the Accessibility permission?</summary>
@@ -554,7 +647,7 @@ codesign -d --extract-certificates=/tmp/clipsody-cert /Applications/Clipsody.app
             <details><summary>Does Clipsody check for updates?</summary>
                 <p>Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and you can install it from the menu: Clipsody downloads it from GitHub, checks its signature and restarts. You can change this under <strong>Settings → General</strong>; there and in the menu bar menu you can also check yourself at any time.</p></details>
             <details><summary>How do I uninstall Clipsody?</summary>
-                <p><strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac.</p></details>
+                <p><strong>Settings → Info → Uninstall Clipsody…</strong> deletes the history, images, snippets and settings, removes the login item and the Accessibility permission, and moves the app to the Trash. If you only drag the app to the Trash yourself, this data stays on your Mac. To keep your snippets, export them first under <strong>Settings → History</strong>.</p></details>
         </div>
     </section>
 </main>
