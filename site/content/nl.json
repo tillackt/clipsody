@@ -37,27 +37,27 @@
       "placeholder": "Zoek …",
       "items": [
         [
-          "b",
+          "mail",
           "Wil je de factuur vóór vrijdag nakijken? ⏎ Bedankt!"
         ],
         [
-          "a",
+          "photos",
           "Afbeelding 4032×3024 (2,1 MB)"
         ],
         [
-          "c",
+          "files",
           "Offerte_DeVries.pdf"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/vergaderingen"
         ],
         [
-          "d",
+          "notes",
           "IBAN: NL00 0000 0000 …"
         ],
         [
-          "b",
+          "terminal",
           "git push origin main"
         ]
       ],
@@ -81,23 +81,23 @@
       "ocrSearch": "factuur",
       "ocrItems": [
         [
-          "a",
+          "photos",
           "Afbeelding 2880×1800 (612 KB) – “…<mark>Factuur</mark> nr. 2026-1043…”"
         ],
         [
-          "b",
+          "mail",
           "Wil je de <mark>factuur</mark> vóór vrijdag nakijken? ⏎ Bedankt!"
         ],
         [
-          "c",
+          "files",
           "<mark>Factuur</mark>_oktober.pdf"
         ],
         [
-          "d",
+          "notes",
           "IBAN voor de <mark>factuur</mark>: NL00 0000 …"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/<mark>factuur</mark>/1043"
         ]
       ],
@@ -406,27 +406,27 @@
       ],
       "items": [
         [
-          "b",
+          "mail",
           "sanne.devries@example.com"
         ],
         [
-          "a",
+          "contacts",
           "Sanne de Vries ⏎ Voorbeeldstraat 12 ⏎ 1011 AB Amsterdam"
         ],
         [
-          "c",
+          "contacts",
           "+31 20 000 0000"
         ],
         [
-          "d",
+          "notes",
           "IBAN: NL00 0000 0000 …"
         ],
         [
-          "e",
+          "mail",
           "Met vriendelijke groet ⏎ Sanne de Vries"
         ],
         [
-          "b",
+          "terminal",
           "ssh deploy@staging.example.com"
         ]
       ],

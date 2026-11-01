@@ -37,27 +37,27 @@
       "placeholder": "Search …",
       "items": [
         [
-          "b",
+          "mail",
           "Please check the invoice by Friday ⏎ Thanks!"
         ],
         [
-          "a",
+          "photos",
           "Image 4032×3024 (2.1 MB)"
         ],
         [
-          "c",
+          "files",
           "Quote_Miller.pdf"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/meetings"
         ],
         [
-          "d",
+          "notes",
           "IBAN: DE00 0000 0000 …"
         ],
         [
-          "b",
+          "terminal",
           "git push origin main"
         ]
       ],
@@ -81,23 +81,23 @@
       "ocrSearch": "invoice",
       "ocrItems": [
         [
-          "a",
+          "photos",
           "Image 2880×1800 (612 KB) – “…<mark>Invoice</mark> no. 2026-1043…”"
         ],
         [
-          "b",
+          "mail",
           "Please check the <mark>invoice</mark> by Friday ⏎ Thanks!"
         ],
         [
-          "c",
+          "files",
           "<mark>Invoice</mark>_October.pdf"
         ],
         [
-          "d",
+          "notes",
           "IBAN for the <mark>invoice</mark>: DE00 0000 …"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/<mark>invoice</mark>/1043"
         ]
       ],
@@ -406,27 +406,27 @@
       ],
       "items": [
         [
-          "b",
+          "mail",
           "jane.doe@example.com"
         ],
         [
-          "a",
+          "contacts",
           "Jane Doe ⏎ 12 Sample Street ⏎ London N1 7GU"
         ],
         [
-          "c",
+          "contacts",
           "+44 20 7946 0000"
         ],
         [
-          "d",
+          "notes",
           "IBAN: GB00 0000 0000 …"
         ],
         [
-          "e",
+          "mail",
           "Kind regards ⏎ Jane Doe"
         ],
         [
-          "b",
+          "terminal",
           "ssh deploy@staging.example.com"
         ]
       ],
