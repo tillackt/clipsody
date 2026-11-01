@@ -25,10 +25,11 @@ public struct UpdateChecker: Sendable {
     /// redirects that stay on the API host.
     static let session = makeSession(.ephemeral)
 
-    static func makeSession(_ configuration: URLSessionConfiguration) -> URLSession {
+    static func makeSession(_ configuration: URLSessionConfiguration,
+                            delegate: URLSessionTaskDelegate = SameHostRedirects()) -> URLSession {
         configuration.httpCookieStorage = nil
         configuration.urlCache = nil
-        return URLSession(configuration: configuration, delegate: SameHostRedirects(), delegateQueue: nil)
+        return URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
     }
 
     public static let limitedFetch: Fetch = limitedFetch(using: session)

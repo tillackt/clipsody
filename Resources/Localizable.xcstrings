@@ -1399,6 +1399,52 @@
         }
       }
     },
+    "Checking the signature…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatur wird geprüft …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobando la firma…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérification de la signature…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica della firma…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handtekening controleren…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdzanie podpisu…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificando a assinatura…"
+          }
+        }
+      }
+    },
     "Choose an app whose copies should not be saved": {
       "localizations": {
         "de": {
@@ -1813,6 +1859,98 @@
         }
       }
     },
+    "Clipsody %@ is installed.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ ist installiert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ está instalado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ est installé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ è installato."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ is geïnstalleerd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody %@ jest zainstalowany."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody %@ está instalado."
+          }
+        }
+      }
+    },
+    "Clipsody cannot replace itself in this folder. Download the new version from the release page and drag it to Applications.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kann sich in diesem Ordner nicht selbst ersetzen. Lade die neue Version von der Release-Seite und ziehe sie in den Programme-Ordner."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody no puede reemplazarse a sí mismo en esta carpeta. Descarga la nueva versión desde la página de la versión y arrástrala a Aplicaciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody ne peut pas se remplacer lui-même dans ce dossier. Téléchargez la nouvelle version depuis la page de la version et faites-la glisser dans Applications."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody non può sostituirsi da solo in questa cartella. Scarica la nuova versione dalla pagina della release e trascinala in Applicazioni."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kan zichzelf in deze map niet vervangen. Download de nieuwe versie via de releasepagina en sleep deze naar Programma’s."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody nie może zastąpić samego siebie w tym folderze. Pobierz nową wersję ze strony wydania i przeciągnij ją do folderu Aplikacje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody não consegue se substituir nesta pasta. Baixe a nova versão na página da versão e arraste-a para Aplicativos."
+          }
+        }
+      }
+    },
     "Clipsody could not check for updates.": {
       "localizations": {
         "de": {
@@ -1855,6 +1993,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O Clipsody não conseguiu verificar atualizações."
+          }
+        }
+      }
+    },
+    "Clipsody could not install the update.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody konnte das Update nicht installieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody no ha podido instalar la actualización."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody n’a pas pu installer la mise à jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody non è riuscito a installare l’aggiornamento."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody kon de update niet installeren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody nie mógł zainstalować aktualizacji."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Clipsody não conseguiu instalar a atualização."
           }
         }
       }
@@ -2315,6 +2499,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Não verificar"
+          }
+        }
+      }
+    },
+    "Downloading…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird geladen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téléchargement…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download in corso…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaden…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pobieranie…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baixando…"
           }
         }
       }
@@ -2821,6 +3051,98 @@
           "stringUnit": {
             "state": "translated",
             "value": "Informações"
+          }
+        }
+      }
+    },
+    "Install and Restart": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installieren und neu starten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar y reiniciar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer et redémarrer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa e riavvia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installeren en opnieuw starten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zainstaluj i uruchom ponownie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar e reiniciar"
+          }
+        }
+      }
+    },
+    "Installing…": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird installiert …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installazione in corso…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installeren…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalowanie…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando…"
           }
         }
       }
@@ -3419,6 +3741,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nada fixado ainda. Fixe itens do histórico com ⌘P."
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         }
       }
@@ -4247,6 +4615,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "Encerrar"
+          }
+        }
+      }
+    },
+    "Quit Clipsody and open it again to use the new version.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beende Clipsody und öffne es erneut, um die neue Version zu nutzen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cierra Clipsody y vuelve a abrirlo para usar la nueva versión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quittez Clipsody et rouvrez-le pour utiliser la nouvelle version."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi Clipsody e riaprilo per usare la nuova versione."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Clipsody en open het opnieuw om de nieuwe versie te gebruiken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zamknij Clipsody i otwórz go ponownie, aby używać nowej wersji."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerre o Clipsody e abra-o de novo para usar a nova versão."
           }
         }
       }
@@ -5217,6 +5631,98 @@
         }
       }
     },
+    "The download failed. Please check your internet connection and try again later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Download ist fehlgeschlagen. Bitte prüfe deine Internetverbindung und versuche es später erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La descarga ha fallado. Comprueba tu conexión a internet y vuelve a intentarlo más tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le téléchargement a échoué. Vérifiez votre connexion internet et réessayez plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il download non è riuscito. Controlla la connessione a internet e riprova più tardi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het downloaden is mislukt. Controleer je internetverbinding en probeer het later opnieuw."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pobieranie nie powiodło się. Sprawdź połączenie z internetem i spróbuj ponownie później."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O download falhou. Verifique sua conexão com a internet e tente novamente mais tarde."
+          }
+        }
+      }
+    },
+    "The downloaded file did not pass the check and was not installed. Your version is unchanged.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die geladene Datei hat die Prüfung nicht bestanden und wurde nicht installiert. Deine Version bleibt unverändert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo descargado no ha superado la comprobación y no se ha instalado. Tu versión no ha cambiado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fichier téléchargé n’a pas passé la vérification et n’a pas été installé. Votre version reste inchangée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il file scaricato non ha superato la verifica e non è stato installato. La tua versione resta invariata."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het gedownloade bestand kwam niet door de controle en is niet geïnstalleerd. Je versie is ongewijzigd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pobrany plik nie przeszedł kontroli i nie został zainstalowany. Twoja wersja się nie zmieniła."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O arquivo baixado não passou na verificação e não foi instalado. Sua versão continua a mesma."
+          }
+        }
+      }
+    },
     "The history including pinned entries, all images and the settings are deleted for good, and Clipsody moves to the Trash. This cannot be undone.": {
       "localizations": {
         "de": {
@@ -5259,6 +5765,52 @@
           "stringUnit": {
             "state": "translated",
             "value": "O histórico, incluindo os itens fixados, todas as imagens e os ajustes são apagados de vez, e o Clipsody vai para o Lixo. Não é possível desfazer."
+          }
+        }
+      }
+    },
+    "The installed app could not be replaced. Your version is unchanged.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die installierte App konnte nicht ersetzt werden. Deine Version bleibt unverändert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha podido reemplazar la app instalada. Tu versión no ha cambiado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app installée n’a pas pu être remplacée. Votre version reste inchangée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è stato possibile sostituire l’app installata. La tua versione resta invariata."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De geïnstalleerde app kon niet worden vervangen. Je versie is ongewijzigd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się zastąpić zainstalowanej aplikacji. Twoja wersja się nie zmieniła."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível substituir o app instalado. Sua versão continua a mesma."
           }
         }
       }
@@ -5677,6 +6229,52 @@
         }
       }
     },
+    "Updating Clipsody to %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody wird auf %@ aktualisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizando Clipsody a la versión %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mise à jour de Clipsody vers %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiornamento di Clipsody alla versione %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipsody bijwerken naar %@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualizacja Clipsody do wersji %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualizando o Clipsody para %@"
+          }
+        }
+      }
+    },
     "Upper limit for the history. When there are more entries, the oldest are dropped, even if they are newer than the retention period. Pinned entries do not count.": {
       "localizations": {
         "de": {
@@ -5861,48 +6459,94 @@
         }
       }
     },
-    "You have version %@. The release page lists what is new and has the download.": {
+    "What’s New": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast Version %@. Auf der Release-Seite stehen die Neuerungen und der Download."
+            "value": "Was ist neu"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tienes la versión %@. En la página de la versión encontrarás las novedades y la descarga."
+            "value": "Novedades"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous avez la version %@. La page de la version présente les nouveautés et le téléchargement."
+            "value": "Nouveautés"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hai la versione %@. Nella pagina della versione trovi le novità e il download."
+            "value": "Novità"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je hebt versie %@. Op de releasepagina staan de nieuwe functies en de download."
+            "value": "Wat is er nieuw"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Masz wersję %@. Na stronie wydania znajdziesz nowości i plik do pobrania."
+            "value": "Co nowego"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você tem a versão %@. A página da versão mostra as novidades e o download."
+            "value": "Novidades"
+          }
+        }
+      }
+    },
+    "You have version %@. Clipsody downloads the new version from GitHub, checks that it carries the Clipsody signature, replaces itself and restarts. Your history and settings stay.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast Version %@. Clipsody lädt die neue Version von GitHub, prüft, dass sie die Clipsody-Signatur trägt, ersetzt sich selbst und startet neu. Historie und Einstellungen bleiben erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tienes la versión %@. Clipsody descarga la nueva versión desde GitHub, comprueba que lleva la firma de Clipsody, se reemplaza a sí mismo y se reinicia. Tu historial y tus ajustes se conservan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez la version %@. Clipsody télécharge la nouvelle version depuis GitHub, vérifie qu’elle porte la signature de Clipsody, se remplace et redémarre. Votre historique et vos réglages sont conservés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai la versione %@. Clipsody scarica la nuova versione da GitHub, verifica che abbia la firma di Clipsody, si sostituisce e si riavvia. Cronologia e impostazioni restano."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt versie %@. Clipsody downloadt de nieuwe versie van GitHub, controleert of die de Clipsody-handtekening heeft, vervangt zichzelf en start opnieuw. Je geschiedenis en instellingen blijven behouden."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masz wersję %@. Clipsody pobiera nową wersję z GitHuba, sprawdza, czy ma podpis Clipsody, zastępuje sam siebie i uruchamia się ponownie. Historia i ustawienia zostają."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você tem a versão %@. O Clipsody baixa a nova versão do GitHub, verifica se ela tem a assinatura do Clipsody, se substitui e reinicia. Seu histórico e seus ajustes são mantidos."
           }
         }
       }

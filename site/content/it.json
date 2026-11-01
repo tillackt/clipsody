@@ -377,7 +377,7 @@
         ],
         [
           "Clipsody controlla gli aggiornamenti?",
-          "Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e il menu apre la pagina di download. Puoi cambiarlo in <strong>Impostazioni → Generale</strong>; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento."
+          "Solo se lo permetti: al primo avvio Clipsody chiede se può chiedere a GitHub una volta al giorno se c’è una nuova versione. Non viene inviato nulla dei tuoi appunti; GitHub vede il tuo indirizzo IP e la versione di Clipsody. Se c’è una nuova versione, l’icona nella barra dei menu mostra un puntino e puoi installarla dal menu: Clipsody la scarica da GitHub, ne verifica la firma e si riavvia. Puoi cambiarlo in <strong>Impostazioni → Generale</strong>; lì e nel menu della barra dei menu puoi anche controllare tu in qualsiasi momento."
         ],
         [
           "Come disinstallo Clipsody?",

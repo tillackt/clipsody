@@ -377,7 +377,7 @@
         ],
         [
           "Does Clipsody check for updates?",
-          "Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and the menu opens the download page. You can change this under <strong>Settings → General</strong>; there and in the menu bar menu you can also check yourself at any time."
+          "Only if you allow it: at the first launch Clipsody asks whether it may ask GitHub once a day for a new version. Nothing from your clipboard is sent; GitHub sees your IP address and the Clipsody version. If there is a new version, the menu bar icon gets a dot, and you can install it from the menu: Clipsody downloads it from GitHub, checks its signature and restarts. You can change this under <strong>Settings → General</strong>; there and in the menu bar menu you can also check yourself at any time."
         ],
         [
           "How do I uninstall Clipsody?",

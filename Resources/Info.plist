@@ -27,6 +27,8 @@
     <string>Clipsody</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundleShortVersionString</key>
     <string>1.3.0</string>
     <key>CFBundleVersion</key>

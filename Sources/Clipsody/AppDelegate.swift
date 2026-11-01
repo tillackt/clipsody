@@ -28,6 +28,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var recognition: TextRecognitionQueue!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        UpdateInstaller.removeLeftovers(besides: Bundle.main.bundleURL)
         do {
             store = try Store()
         } catch {
