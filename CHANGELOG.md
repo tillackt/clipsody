@@ -2,6 +2,12 @@
 
 All notable changes, newest first. Versions follow [Semantic Versioning](https://semver.org) (see the README, "Versioning"). `./build.sh release` takes the section of the version it builds into the release notes, so every release needs one.
 
+## 1.4.0 – 2026-11-01
+
+- **Clipsody updates itself.** When a new version is available, "Install and Restart" downloads it from GitHub, checks that it carries the Clipsody signature (the same certificate as every release) and is exactly the announced, newer version, replaces the app and restarts. Your history, settings and permissions stay. If any check fails, nothing changes; if Clipsody cannot write its folder, it points to the release page. Nothing is downloaded unless you click Install.
+- **This update is the last one by hand:** quit Clipsody first (menu bar icon → Quit), then drag the new version to Applications and replace the old one.
+- **A real app icon,** and a disk image that shows where to drag Clipsody.
+
 ## 1.3.0 – 2026-11-01
 
 - **Pinned entries get their own list.** Text snippets, addresses or commands you pin with ⌘P no longer crowd the history. Two tabs under the search field, History and Pinned, switch with → at the end of the search text and ← at its start, or with ⇥. ⌘1–⌘9 paste from the list shown, and the latest pin comes first.
