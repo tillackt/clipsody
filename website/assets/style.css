@@ -138,12 +138,20 @@ header.top nav a:hover { color: var(--text); text-decoration: none; }
 .panel li .k { color: var(--muted); font-size: 12px; }
 .panel li.sel { background: var(--selection); color: #fff; }
 .panel li.sel .k { color: rgba(255, 255, 255, 0.92); }
-.panel .ico { width: 20px; height: 20px; border-radius: 5px; flex: none; }
-.ico.a { background: linear-gradient(135deg, #ff9f43, #ee5a24); }
-.ico.b { background: linear-gradient(135deg, #54a0ff, #2e86de); }
-.ico.c { background: linear-gradient(135deg, #1dd1a1, #10ac84); }
-.ico.d { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-.ico.e { background: linear-gradient(135deg, #feca57, #ff9f43); }
+/* App-style icons (own drawings, see ICON_PATHS in site/build.py): rounded square, gradient, white motif. */
+.ico {
+    width: 22px; height: 22px; border-radius: 5.5px; flex: none; display: inline-flex; align-items: center;
+    justify-content: center; color: #fff; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15);
+}
+.ico svg { width: 15px; height: 15px; }
+.ico.mail { background: linear-gradient(180deg, #4aa8ff, #1667dc); }
+.ico.photos { background: linear-gradient(180deg, #ff8db3, #e2457c); }
+.ico.files { background: linear-gradient(180deg, #6dc6ff, #2a8fe2); }
+.ico.browser { background: linear-gradient(180deg, #45d3a6, #12937a); }
+.ico.notes { background: linear-gradient(180deg, #ffd56e, #efa21f); }
+.ico.terminal { background: linear-gradient(180deg, #6a7a99, #3a465e); }
+.ico.contacts { background: linear-gradient(180deg, #b9a8ff, #7457e0); }
+.ico.set, .ico.text { background: linear-gradient(180deg, #9a9aa1, #63636a); }
 .panel mark { background: var(--mark); color: #111; border-radius: 3px; padding: 0 1px; }
 .panel li.sel mark { color: #111; }
 .panel .preview { padding: 16px 18px; display: flex; flex-direction: column; }
@@ -280,7 +288,7 @@ footer .spacer { flex: 1; }
 
 /* Snippets: the editor in the panel's third tab */
 .panel li.new { color: var(--accent); }
-.panel li.new .plus { width: 20px; text-align: center; font-size: 17px; line-height: 1; }
+.panel li.new .plus { width: 22px; text-align: center; font-size: 17px; line-height: 1; }
 .panel .editor { flex: 1; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
 .panel .editor p { margin: 0; }
 .panel .editor .name { padding: 6px 9px; border-radius: 7px; background: var(--card); border: 1px solid var(--panel-line); font-weight: 600; }
@@ -360,6 +368,7 @@ footer .spacer { flex: 1; }
 .mini-search .caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: -2px; margin-left: 2px; }
 .mini-search .hit { display: flex; align-items: center; gap: 8px; margin: 6px; border-radius: 6px; background: var(--selection); color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mini-search .ico { width: 16px; height: 16px; border-radius: 4px; flex: none; }
+.mini-search .ico svg { width: 11px; height: 11px; }
 
 /* Before/after cards and the comparison table */
 .grid.two { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); max-width: 880px; margin: 0 auto; }

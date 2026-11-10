@@ -37,27 +37,27 @@
       "placeholder": "Rechercher…",
       "items": [
         [
-          "b",
+          "mail",
           "Peux-tu vérifier la facture d’ici vendredi ? ⏎ Merci !"
         ],
         [
-          "a",
+          "photos",
           "Image 4032×3024 (2,1 Mo)"
         ],
         [
-          "c",
+          "files",
           "Devis_Martin.pdf"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/reunions"
         ],
         [
-          "d",
+          "notes",
           "IBAN : FR00 0000 0000 …"
         ],
         [
-          "b",
+          "terminal",
           "git push origin main"
         ]
       ],
@@ -81,23 +81,23 @@
       "ocrSearch": "facture",
       "ocrItems": [
         [
-          "a",
+          "photos",
           "Image 2880×1800 (612 Ko) – « …<mark>Facture</mark> n° 2026-1043… »"
         ],
         [
-          "b",
+          "mail",
           "Peux-tu vérifier la <mark>facture</mark> d’ici vendredi ? ⏎ Merci !"
         ],
         [
-          "c",
+          "files",
           "<mark>Facture</mark>_octobre.pdf"
         ],
         [
-          "d",
+          "notes",
           "IBAN pour la <mark>facture</mark> : FR00 0000 …"
         ],
         [
-          "e",
+          "browser",
           "https://example.com/<mark>facture</mark>/1043"
         ]
       ],
@@ -406,27 +406,27 @@
       ],
       "items": [
         [
-          "b",
+          "mail",
           "marie.dupont@example.com"
         ],
         [
-          "a",
+          "contacts",
           "Marie Dupont ⏎ 12 rue de l’Exemple ⏎ 75011 Paris"
         ],
         [
-          "c",
+          "contacts",
           "+33 1 99 00 00 00"
         ],
         [
-          "d",
+          "notes",
           "IBAN : FR00 0000 0000 …"
         ],
         [
-          "e",
+          "mail",
           "Cordialement ⏎ Marie Dupont"
         ],
         [
-          "b",
+          "terminal",
           "ssh deploy@staging.example.com"
         ]
       ],
